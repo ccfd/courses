@@ -1,0 +1,276 @@
+---
+title: Work Hard
+author:
+  - name: Łukasz Łaniewski
+  - name: Wojtek Gryglas
+output: github_document
+---
+
+This tutorial will try to teach you how to make and use a new model in TCLB. First it will discuss our goal: the model we want to create. Then it will take you step by step, on how to create all the needed components.
+
+## Finite Difference Wave equation
+We want to discretize the [Wave Equation](https://en.wikipedia.org/wiki/Wave_equation):
+
+$\ddot u=c^2\Delta u$
+
+For this purpose we will use Finite Difference method. First we change the equation into two first order (in time) equations:
+
+$\begin{cases}\dot v &= c^2 \Delta u\\
+\dot u &= v\end{cases}$
+
+Now let us discretise the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator) with simple finite difference (in 2D):
+
+![Delta u = (u(i-1)+u(i+1)-2u(i))/(dx^2)](https://latex.codecogs.com/gif.latex?%5CDelta%20u%20%5Csimeq%20%5Cfrac%7Bu_%7Bi-1%2Cj%7D&plus;u_%7Bi&plus;1%2Cj%7D&plus;u_%7Bi%2Cj-1%7D&plus;u_%7Bi%2Cj&plus;1%7D-4%20u_%7Bi%2Cj%7D%7D%7Bdx%5E2%7D)
+
+Finnaly we will use, what is called [Semi-implicit Euler rule](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method) to integrate this equation in time. This will give us:
+
+![v(n+1)=v(n)+dt c^2 Delta u(n), u(n+1)=u(n)+dt v(n+1)](https://latex.codecogs.com/gif.latex?%5Cbegin%7Bcases%7Dv%5E%7Bn&plus;1%7D_%7Bi%2Cj%7D%20%26%3D%20v%5En_%7Bi%2Cj%7D%20&plus;%20%5Ctext%7Bdt%7D%5Ccdot%20c%5E2%20%5CDelta%20u%5En%5C%5Cu%5E%7Bn&plus;1%7D_%7Bi%2Cj%7D%20%26%3D%20u%5En_%7Bi%2Cj%7D%20&plus;%20%5Ctext%7Bdt%7D%5Ccdot%20v%5E%7Bn&plus;1%7D_%7Bi%2Cj%7D%5Cend%7Bcases%7D)
+
+The semi-implicit-ness can be seen in the index of `v` in the second line
+
+Finnaly: we will get rid of all units by assuming `dx` and `dt` equal to 1
+
+# Implementation
+## Creating a model
+Every model in TCLB is defined by a subdirectory of `src`. Let us now create a new one:
+```bash
+mkdir src/wave
+touch src/wave/conf.mk
+```
+The `conf.mk` file stores some additional settings for a model, but it also tells TCLB that this directory is in fact a model.
+
+Now we have to add two main files defining everything: `Dynamics.R` - defining all the setup of the model, and `Dynamics.c` - defining what will be happening in a node.
+
+We want to have two [[Fields]]: `u` and `v`. So we define them in `Dynamics.R`:
+```R
+AddField(name="u")
+AddField(name="v")
+```
+
+Then we need the main dynamics of a node. First let us create a model that doesn't do anything:
+```c
+CudaDeviceFunction float2 Color() {
+  float2 ret;
+  ret.x = 0;
+  ret.y = 1;
+  return ret;
+}
+
+CudaDeviceFunction void Init() { }
+
+CudaDeviceFunction void Run() { }
+```
+
+The `CudaDeviceFunction` prefix is needed for all functions in `Dynamics.c` for technical reasons. As you can see we needed to fill only the `Color` function, as it is the only one which returns a value. For now, the model doesn't make sense. Let us first understand what these function do:
+
+Function | Description
+-------------------- | ----------------------------------------------
+`Init` | This function is called in all the nodes at the beginning of the simulation. All the initialization have to happen here
+`Run` | This function will be called in every node in every iteration - it is the main dynamic of a node
+`Color` | This function is useful only for the version of CLB with enabled graphics. It calculates the level `x` on which the color of a pixel will be based. In most cases this will be temperature or velocity.
+
+## First dynamics
+
+First, we want to initialize our fields:
+```c
+CudaDeviceFunction void Init() {
+  u = 0;
+  v = 0;
+}
+```
+
+Then let us start with a model that just preserves both fields without changing them. In TCLB we access fields with a notation `u(dx,dy)`, where `dx` and `dy` is the position from which to take the field, relative to the current node:
+```c
+CudaDeviceFunction void Run() {
+  u = u(0,0);
+  v = v(0,0);
+}
+```
+
+## Adding [[Quantities]]
+Finally we want to access the resulting data. In TCLB, the data that will be exported to VTK, TXT or other format, are called [[Quantities]]. Let us add a quantity `U` to `Dynamics.R`:
+```R
+AddQuantity(name="U")
+```
+Now we have to add the calculation:
+```c
+CudaDeviceFunction real_t getU() {
+  return u(0,0);
+}
+```
+
+## Running a case
+Now we can run a case (let's call it `example.xml`):
+```xml
+<?xml version="1.0"?>
+<CLBConfig output="output/">
+        <Geometry nx="128" ny="128">
+	</Geometry>
+	<Model>
+	</Model>
+	<VTK Iterations="10"/>
+	<Solve Iterations="1000"/>
+</CLBConfig>
+```
+This case will create a mesh of 128x128 nodes, initialize it and run 1000 iterations. It will also save VTK output every 10 iterations.
+
+The results are not so impressive now, because basically, not only nothing is happening in a node, but also it is initialized with 0.
+
+## [[Settings]]
+Let us introduce two [settings](Settings) to our model:
+```R
+AddSetting(name="Speed")
+AddSetting(name="Value", zonal=TRUE)
+```
+Where `Speed` will be our parameter `k` in the wave equation, and `Value` will be the initial value of `u`. [[Settings]] which we want to be changing in the domain, are called "zonal". Settings are provided to us as variables in Dynamics.c:
+```c
+CudaDeviceFunction void Init() {
+  u = Value;
+  v = 0;
+}
+```
+Now we can name a region in our domain, and initialize it with a different value:
+
+```xml
+<?xml version="1.0"?>
+<CLBConfig output="output/">
+        <Geometry nx="128" ny="128">
+                <None name="box">
+                        <Box dx="60" nx="20" dy="20" ny="30"/>
+                </None>
+	</Geometry>
+	<Model>
+                <Params Value="-1"/>
+                <Params Value-box="1"/>
+	</Model>
+	<VTK Iterations="10"/>
+	<Solve Iterations="1000"/>
+</CLBConfig>
+```
+This will mark a box 20x30 starting from the point (60,20) as a zone called 'box'. Then in the [[<code>&lt;Model/&gt;</code>|Container#model]] we first set `Value` in all zones to `-1`, then set it to `1` in 'box'.
+
+You will see that the results now are much more interesting. Ok. I'm joking, they are sill constant - but at least not 0.
+
+## Introducing FD
+
+Now we want to introduce the discretisation of our wave equation in to the mix:
+```c
+CudaDeviceFunction void Run() {
+  real_t lap_u = u(-1,0) + u(1,0) + u(0,-1) + u(0,1) - 4*u(0,0);
+  real_t a = Speed * Speed * lap_u;
+  v = v(0,0) + a;
+  u = u(0,0) + v;
+}
+```
+You can see that we assumed `dx` and `dt` equal to 1 (it will be more clear why, later on).
+
+And now ... **it won't compile**. Why? The error is a bit obscure, like with many C++ Templates errors, but the reason is simple. We didn't tell the code that we want to access `u` in our neighbors. This is crucial, because the code have to know exactly were things are accessed, to prepare the right communication buffers. You can imagine that the neighboring node is on a different GPU on a different computer. Then we need this computer to know that it will have to send this data to us. On the other hand we want to send as small packets of information as possible, that why the code have to be *conservative* wrt. to the possible access patterns. We define this information in `Dynamics.R`:
+```R
+AddField(name="u", dx=c(-1,1), dy=c(-1,1))
+```
+If you don't know [R](https://www.google.pl/?#q=r) then you need to know that `c(...)` means a vector/table of numbers. The above line means that the field `u` can be accessed for `dx` from -1 to 1 and `dy` from -1 to 1. Making it simple: we can access it from all of our 8 neighbors and ourselves. The other way (a shortcut) to express it would be:
+```R
+AddField(name="u", stencil2d=1)
+```
+Which means the same thing (`stencil3d` would mean also -1 to 1 in `z` direction)
+
+Now, the code compiles. We can add another
+```xml
+<Params Speed="0.01" />
+```
+to our case file, run and see how the wave propagates.
+
+## Make it nicer:
+We see that the result isn't very beautiful. It is partly because of our discretization, partly because the [Fourier transform of a rectangle](https://en.wikipedia.org/wiki/Sinc_function) isn't very nice. Let us introduce viscosity/drag to the system:
+```c
+CudaDeviceFunction void Run() {
+  real_t lap_u = u(-1,0) + u(1,0) + u(0,-1) + u(0,1) - 4*u(0,0);
+  real_t lap_v = v(-1,0) + v(1,0) + v(0,-1) + v(0,1) - 4*v(0,0);
+  real_t a = Speed * Speed * lap_u + Viscosity * lap_v;
+  v = v(0,0) + a;
+  u = u(0,0) + v;
+}
+```
+**Remember:** you have to modify the `v` field access pattern, and add a `Viscosity` setting in `Dynamics.R`.
+
+Now you can play a bit with the settings to see some nice waves propagating. It can be seen now more clearly that **the domain in TCLB is always periodic**. That is simply because it is the most general case. If you want to make your domain non-periodic - you add boundary conditions - otherwise, whatever leaves on one side - gets back on the other.
+
+## Node types
+
+Now we can add [node types](https://github.com/CFD-GO/TCLB/wiki/Geometry) that will change the behavior of some, selected nodes. For instance, let us have a Dirichlet boundary condition. We want the nodes that are on the boundary to set `u` and `v` to a fixed value. Let's call such nodes `Dirichlet`. We define a new node type (yes, you guessed: in `Dynamics.R`):
+```R
+AddNodeType(name="Dirichlet", group="BOUNDARY")
+```
+You can notice that node types have 'groups' (note: these groups, customary are with all caps). A node can have only one type ... from each group. You can imagine it like this: in each node we want to be able to set *separately* a boundary condition, choose a discretization model and add a heat source. But you cannot set *two* boundary conditions in the same node.
+
+Now, when we have this node type, we can use it to change the dynamics:
+```c
+CudaDeviceFunction void Run() {
+  real_t lap_u = u(-1,0) + u(1,0) + u(0,-1) + u(0,1) - 4*u(0,0)
+  real_t lap_v = v(-1,0) + v(1,0) + v(0,-1) + v(0,1) - 4*v(0,0)
+  real_t a = Speed * Speed * lap_u + Viscosity * lap_v;
+  v = v(0,0) + a;
+  u = u(0,0) + v;
+  if (NodeType == NODE_Dirichlet) {
+    u = Value;
+    v = 0;
+  }
+}
+```
+You can notice that we re-used the same zonal setting `Value` in this boundary condition. You can also notice, that the main calculation is still executed in the Dirichlet nodes. You can test it and see which version runs faster. Such additional computation can sometimes have a favorable impact on the performance on GPU, because of thing called [branching](http://stackoverflow.com/questions/17223640/is-branch-divergence-really-so-bad).
+
+Now, we can set some Dirichlet elements in the case file:
+```xml
+<?xml version="1.0"?>
+<CLBConfig output="output/">
+        <Geometry nx="128" ny="128">
+                <Dirichlet name="border">
+                        <Box nx="1"/>
+                        <Box dx="-1"/>
+                        <Box ny="1"/>
+                        <Box dy="-1"/>
+                </Dirichlet>
+                <None name="box">
+                        <Box dx="60" nx="20" dy="20" ny="30"/>
+                </None>
+	</Geometry>
+	<Model>
+                <Params Value="-1"/>
+                <Params Value-box="1"/>
+                <Params Value-border="-1"/>
+                <Params Speed="0.001"/>
+                <Params Viscosity="0.001"/>
+	</Model>
+	<VTK Iterations="10"/>
+	<Solve Iterations="1000"/>
+</CLBConfig>
+```
+
+We can notice the difference immediately. The waves are bouncing from the walls now.
+
+To understand the geometry definition, you have to imagine that [`box`](Geometry-Primitive#box) element by default spans the whole available space. Then by imposing `dx`, `nx` and `fx` attributes you cut it smaller. `dx` sets where the box starts, `nx` sets how *long* is the box in the x direction, and `fx` sets where it ends. Additionally, if you set a negative value it means a value *from the end*. The same applies of course to `y` and `z`. For example:
+
+Element | Region
+------------------------- | -----------------------------------------
+`<Box nx="1"/>` | Left border of the domain
+`<Box dx="-1"/>` | Right border of the domain
+`<Box dx="10"/>` | Everything starting from the 11th element (in x direction)
+`<Box dx="-10"/>` | 10 last layers in the x direction
+`<Box nx="10" ny="10"/>` | Square 10x10 in the left bottom corner
+
+In this case, we had a simple situation, as we have only one group of node types (and only one type), but normally we would have to distinguish between them. It would be done with:
+```c
+if ((NodeType & NODE_BOUNDARY) == NODE_Dirichlet) {
+ ...
+}
+```
+or
+```c
+switch (NodeType & NODE_BOUNDARY) {
+case NODE_Dirichlet:
+ ...
+ break;
+case ...:
+ ...
+}
+```
