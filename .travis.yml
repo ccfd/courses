@@ -8,3 +8,4 @@ install:
   - R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
   - R -e "rmarkdown::render('test.Rmd')"
+  - R -e "rmarkdown::render_site()"
