@@ -5,6 +5,6 @@ r_github_packages:
   - rstudio/rmarkdown
 install:
   - R -e "install.packages('devtools')"
-  - R -e "devtools::install_github('rstudio/rmarkdown")"
+  - R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
   - R -e "rmarkdown::render('test.Rmd')"
