@@ -3,5 +3,7 @@ sudo: false
 cache: packages
 r_github_packages:
   - rstudio/rmarkdown
+install:
+  - echo czesc
 script:
   - R -e "rmarkdown::render('test.Rmd')"
