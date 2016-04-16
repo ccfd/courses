@@ -1,11 +1,16 @@
 language: r
 sudo: false
 cache: packages
+env:
+  global:
+    - secure: gQ+2WT+tru4MgdqiPxYXDDhsa1dhd9FtfXAzdHAGIJiCYzeXUS0F13lLU5go1ZGFrQDvOp2jVa1NJfVRLOhTpjiksu2scgTBL5qR3NVFaMH48pNFGynykqof8gOvWBDJhfr+68P/qIejY1Yk7zW/PnWUBwrE2Hq8tRE62wkachSyykhQo3sqnczl2bBREjqI+A85eua8YF0vF/NAv4sR7qJIIw3dZlFujbycCo3Iy8fwFKvkcqMm/1+zPjCIOBozQYVxk5/GqBcpLkfdxY8wY+vXgK64esynLhSAmDqFpOuRQMIcJFK1QzF+JTXWCy9PY3FWY9V0T0nepODAtt++ALzNpn7A8S3Hyi3LwJtUrAtAM6IUd980l1bFRhj/VeRImCDmx9sxQNNiNlJ02VwyyR0mZEPV0pIu+tWZu99UNovtNoKF+LfbeIBnuH7QWEpabTLhS0UajRuunhsJ20GFdvgUQIqI2r01NnGi88XgAArMjlE7G9tAcIY5KZMYKGWBXnJkjK95ltJ3WdlSt2TgsF5MVTyYv9ddIi3+ZlmFeXYUz5Qxdwa6bg5DDRbRLiHkInVN8tHZ6hZiHUzYNX1BSGL6f7UQkHZX8qMVYSoLUPOjtY9JWxEEIeS/2nXxSAMjDzmrDlsLkNcvzvQ2w8GtpCZXQ5wFh6SZ5ikGkDba2co=
 r_github_packages:
-  - rstudio/rmarkdown
+- rstudio/rmarkdown
 install:
-  - R -e "install.packages('devtools')"
-  - R -e "devtools::install_github('rstudio/rmarkdown')"
+- R -e "install.packages('devtools')"
+- R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
-  - R -e "rmarkdown::render('test.Rmd')"
-  - R -e "rmarkdown::render_site()"
+- R -e "rmarkdown::render('test.Rmd')"
+- R -e "rmarkdown::render_site()"
+after_success:
+- ./deploy.sh
