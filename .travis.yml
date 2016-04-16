@@ -10,7 +10,6 @@ install:
 - R -e "install.packages('devtools')"
 - R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
-- R -e "rmarkdown::render('test.Rmd')"
 - R -e "rmarkdown::render_site()"
 after_success:
 - ./tools/deploy.sh
