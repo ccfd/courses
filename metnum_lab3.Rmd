@@ -24,11 +24,11 @@ Gdzie $p$ jest ,,poprawką'' w iteracji. Łatwo sprawdzić, że idealne $p$ był
 \[p = A^{-1}r\]
 Jednak nie mamy $A^{-1}$ (w tym rzecz). Zamiast niej użyjemy $M^{-1}$, gdzie $M$ będzie przybliżeniem $A$. Macierz $M^{-1}$ nazywamy **preconditioner'em**. Na początek zamiast rozwiązywać pełen układ, pominiemy większość jego elementów:
 \[\begin{array}{rrrrrl}
-A_{11}p_1 & \gray +A_{12}p_2&\gray +A_{13}p_1&\gray +\cdots &\gray +A_{1n}p_n&= r_1
-\gray A_{21}p_1&+ A_{22}p_2 &\gray +A_{23}p_1&\gray +\cdots &\gray +A_{2n}p_n&= r_2
-\gray A_{31}p_1&\gray +A_{32}p_2&+A_{33}p_1&\gray +\cdots &\gray +A_{3n}p_n&= r_3
+A_{11}p_1 & \color{Gray} +A_{12}p_2&\gray +A_{13}p_1&\gray +\cdots &\gray +A_{1n}p_n&= r_1
+\color{Gray} A_{21}p_1&+ A_{22}p_2 &\gray +A_{23}p_1&\gray +\cdots &\gray +A_{2n}p_n&= r_2
+\color{Gray} A_{31}p_1&\gray +A_{32}p_2&+A_{33}p_1&\gray +\cdots &\gray +A_{3n}p_n&= r_3
 \cdots
-\gray A_{n1}p_1&\gray +A_{n2}p_2&\gray +A_{n3}p_1&\gray +\cdots &+A_{nn}p_n&= r_n
+\color{Gray} A_{n1}p_1&\gray +A_{n2}p_2&\gray +A_{n3}p_1&\gray +\cdots &+A_{nn}p_n&= r_n
 \end{array}\]
 Co daje nam prosty wzór na $p$:
 \[p_i = \frac{1}{A_{ii}}{r_i}\]
@@ -43,9 +43,9 @@ Tak wykonana iteracja się nie zbiega. Wprowadźmy współczynnik, który ,,przy
 
 Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner. Zauważmy, że licząc $p_2$ mamy już obliczone $p_1$ i możemy go użyć. Tak więc nie musimy pomijać elementów układu ,,pod diagonalą'':
 \[\begin{array}{rrrrrl}
-A_{11}p_1 & \gray +A_{12}p_2&\gray +A_{13}p_1&\gray +\cdots &\gray +A_{1n}p_n&= r_1
-A_{21}p_1&+ A_{22}p_2 &\gray +A_{23}p_1&\gray +\cdots &\gray +A_{2n}p_n&= r_2
-A_{31}p_1& +A_{32}p_2&+A_{33}p_1&\gray +\cdots &\gray +A_{3n}p_n&= r_3
+A_{11}p_1 & \color{Gray} +A_{12}p_2&\gray +A_{13}p_1&\gray +\cdots &\gray +A_{1n}p_n&= r_1
+A_{21}p_1&+ A_{22}p_2 &\color{Gray} +A_{23}p_1&\gray +\cdots &\gray +A_{2n}p_n&= r_2
+A_{31}p_1& +A_{32}p_2&+A_{33}p_1&\color{Gray} +\cdots &\gray +A_{3n}p_n&= r_3
 \cdots
 A_{n1}p_1& +A_{n2}p_2& +A_{n3}p_1& +\cdots &+A_{nn}p_n&= r_n
 \end{array}\]
