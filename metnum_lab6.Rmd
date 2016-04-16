@@ -37,26 +37,26 @@ p &= S^{-1}M\phi
 \end{align*}
 W pierwszym etapie liczymy wynik $S^{-1}M\phi$, a następnie go normalizujemy tak by $\phi^T M \phi = 1$. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie $\phi$ będzie składać się tylko z tego wektora, a $p^TMp$ zbiegnie do największej $\lambda$.
 
-\begin{zad}
+### Zadanie
 Znajdź wektor $\phi$ odpowiadający największej wartości własnej wg. następującego schematu iteracji:
 - Oblicz $b = M\cdot phi$
 - Rozwiąż układ $S\cdot p = b$
 - Oblicz $Mp = M\cdot p$
 - Oblicz $phi = \frac{1}{\sqrt{\langle p, Mp \rangle}} p$
-\end{zad}
 
-\begin{zad}
+
+### Zadanie
 Pokaż przemieszczenie $\phi$ przy pomocy funkcji `draw`. Zrób animację tego przemieszczenia przemnożonego przez $\sin{t}$.
-\end{zad}
 
-\begin{zad}[Dla ciekawych]
+
+### Zadanie[Dla ciekawych]
 By otrzymać bardziej płynną animację dodaj:
 `static int pg=0; `
 `setvisualpage(pg % 2);`
 na początku funkcji `animate` w `winbgi2.cpp`. Zaś na końcu tej funkcji (przed  `return`):
 `pg++;`
 `setactivepage(pg % 2);`
-\end{zad}
+
 
 # A teraz następne $\lambda$
 Chcemy by wektory własne (drgania własne) były niezależne w energii kinetycznej. To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych (,,$E_k(\phi_0+\phi_1) = E_k(\phi_0)+E_k(\phi_1)$''). To w połączeniu z naszą ,,skalą'' daje nam bardzo ważny warunek:
@@ -77,20 +77,20 @@ Dla każdego $i$ od $1$ do $n$ wykonaj:
 \vspace{1cm}
 Po tej procedurze wszystkie wektory $\phi$ są ortogonalne i długości $1$ względem macierzy $M$.
 
-\begin{zad}
+### Zadanie
 Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własnym wg. następującego schematu iteracji:
 - Oblicz $b = M\cdot phi_j$
 - Rozwiąż układ $S\cdot p_j = b$
 - Przepisz $phi_i = p_i$
 - Wykonaj ortonormalizację G-S wektorów $phi$
-\end{zad}
 
-\begin{zad}
+
+### Zadanie
 Zrób animację dla kolejnych przemieszczeń $\phi_i$ przemnożonych przez $\sin{t}$.
-\end{zad}
 
-\begin{zad}
+
+### Zadanie
 Wyznacz odpowiednie $\lambda_i$
-\end{zad}
+
 
 
