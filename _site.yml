@@ -12,4 +12,22 @@ navbar:
         href: info1_lab02.html
       - text: "Instrukcja III"
         href: info1_lab03.html
+      - text: "Instrukcja IV"
+        href: info1_lab04.html
+      - text: "Instrukcja V"
+        href: info1_lab05.html
+      - text: "Instrukcja VI"
+        href: info1_lab06.html
+      - text: "Instrukcja VII"
+        href: info1_lab07.html
+      - text: "Instrukcja VIII"
+        href: info1_lab08.html
+      - text: "Instrukcja IX"
+        href: info1_lab09.html
+    - text: "Info III"
+      menu:
+      - text: "Instrukcja I"
+        href: info3_lab1.html
+      - text: "Instrukcja II"
+        href: info3_lab2.html
 exclude: [ "*.sh", "deploy", "*~" ]
