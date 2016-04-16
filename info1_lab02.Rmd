@@ -8,7 +8,7 @@ material: Laboratorium 2
 
 # Funkcje
 Pewne zestawy operacji, zależne od zmiennych, możemy zebrać w grupki (funkcje) i wywoływać jak `circle` i `line`. Przykład z poprzedniego paragrafu możemy zamknąć w funkcji:
-```c
+```c++
 void obrazek(int h, int r)
 {
     line( 10, 0, 0, h);
@@ -22,7 +22,7 @@ Pierwsza linia deklaruje funkcję, która jest zależna od dwóch parametrów: `
 **_Pamiętaj:_ Nową funkcję napisz przed funkcją `main**`
 
 W funkcji `main` wywołujemy funkcję `obrazek`, tak jak `circle` czy `line`:
-```c
+```c++
 void main()
 {
     graphics(200,200);
@@ -50,7 +50,7 @@ W C i C++ _musimy_ deklarować zmienne, tzn. powiedzieć, jakich będziemy używ
 **_Pamiętaj:_ Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu `double**.`
 
 Pierwszym przykładem niech będzie:
-```c
+```c++
 double a;
 a = 0;
 while (a < 2*3.14)
@@ -75,7 +75,7 @@ Ważne, by pamiętać, że liczby bez przecinka dziesiętnego, są uważane za c
 
 ## Ćwiczenia
 Przeanalizuj (i przetestuj) wynik tego programu. Które linie nie dadzą pożądanego efektu?
-```c
+```c++
 double a;
 a = 0;
 while (a < 2)
@@ -89,7 +89,7 @@ while (a < 2)
 
 # Funkcje po raz drugi
 Zestawy operacji, które powtarzamy w programie wielokrotnie, możemy zamknąć w funkcjach. Taka funkcja ,,połyka'' parametry i coś z nimi robi. Dla przykładu:
-```c
+```c++
 void kreski(int n, double r)
 {
     int i;
@@ -109,7 +109,7 @@ W pierwszej linii mówimy:
 Gdy gdziekolwiek w funkcji `main` użyjemy wywołania `kreski( 20, 0.4);` jako efekt działania funkcji otrzymamy 20 pionowych kresek o długości od $0$ do $0.4\cdot 19$ (dlaczego $19$ a nie $20$?).
 
 Taką funkcję możemy wykonać wielokrotnie dla różnych wartości $n$ i $r$:
-```c
+```c++
 void main()
 {
     graphics(200,200);
@@ -133,7 +133,7 @@ Napisz i wywołaj dwie sposród niżej wymienionych funkcji.
 
 # Instrukcja warunkowa
 Kolejnym bloczkiem składowym programowania, jest instrukcja warunkowa. Sprawdza ona warunek i wykonuje pewną część kodu, tylko gdy warunek jest spełniony.
-```c
+```c++
 x = 2.0;
 if ( x > 0 ) {
     y = sqrt(x);
@@ -144,7 +144,7 @@ if ( x > 0 ) {
 Instrukcja ta sprawdza czy $x > 0$ i jeśli jest to prawdą, to wstawia $\sqrt{x}$ do zmiennej $y$. Gdy warunek nie jest spełniony, wykonywana jest część po `else`, więc wstawiane jest $0$ do $y$. W ten sposób możemy zabezpieczyć się na przykład przed niemożliwymi obliczeniami, albo uzależnić działanie programu od jakiś wartości.
 
 Zobaczmy prosty przykład:
-```c
+```c++
 double a;
 a = 0;
 while (a < 2*3.14)

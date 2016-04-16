@@ -53,7 +53,7 @@ Macierz sztywności elementu $K$, dopóki nie zostaną na układ narzucone więz
 - `mx` i `my` oznaczają odpowiednio liczbę elementów w poziomie i w pionie w prostokątnej belce. Muszą to być zmienne globalne.
 - Funkcja do rysowania wymaga użycia globalnej tablicy `int fix[2*(mx+1)*(my+1)]` o długości równej liczbie stopni swobody w siatce. Jeśli na danej pozycji w tablicy stoi zero, przyjmujemy, że ten stopień swobody ulega przemieszczeniom. Wpisanie na danym miejscu wartości 1, oznacza, że stopień swobody o tym indeksie jest odebrany (tak układ zostanie narysowany przez procedurę rysującą `draw`). Oczywiście poprawność sformułowania matematycznego tak przyjętej konwencji i definicji tablicy `fix[]` leży w pełni po stronie użytkownika. Takie zdefiniowanie tablicy `fix` bardzo ułatwia implementację warunków brzegowych.
 - Początek głównego pliku z kodem programu powinien mieć następującą postać, aby uniknąć problemów z kolejnością definicji, nagłówkami i linkowaniem. Poniższy przykład pokazuje też sposób użycia biblioteki `MesLib.h` w celu narysowania rozwiązanego układu.
-```c
+```c++
 #include <stdio.h>
 #include "winbgi2.h"
 

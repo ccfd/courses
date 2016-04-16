@@ -8,7 +8,7 @@ author: W. Regulski
 
 # Dynamiczna alokacja pamięci
 Do tej pory używaliśmy tablic, które miały z góry zadany rozmiar. Deklarowaliśmy je w bardzo prosty sposób:
-```c
+```c++
 double x[100];
 ```
 
@@ -21,7 +21,7 @@ Oczywiście chcielibyśmy poszerzyć funkcjonalność naszego programu tak, aby 
 Nowe funkcje wymagają użycia biblioteki `stdlib.h`.
 Poniższy kawałek kodu ilustruje cały mechanizm:
 
-```c
+```c++
 #include <stdlib.h>
 
 void main()
@@ -40,7 +40,7 @@ Kluczowym elementem całego mechanizmu jest właściwe zastosowanie funkcji `mal
 # Wczytywanie i rysowanie konturów
 
 Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w dwóch plikach, `plik1.txt` oraz `plik2.txt`. Pliki mają następującą strukturę:
-```c
+```c++
 156
 12.67	 768.3254
 14.98	 768.3254

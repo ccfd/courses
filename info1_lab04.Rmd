@@ -14,7 +14,7 @@ Poniższe zadania przedstawiają mechanizm generacji liczb pseudolosowych w jęz
 Generatory liczb pseudolosowych wymagają zastosowania tzw. ziarna czyli liczby, która posłuży do inicjalizacji procesu losowania kolejnych liczb. Zazwyczaj do inicjalizacji generatora używa się czasu sczytywanego z procesora komputera, więc konieczne będzie dołączenie biblioteki `time.h`
 Poniższy program generuje losową liczbę całkowitą z przedziału 0 do RAND\_MAX. RAND\_MAX jest zdefiniowane w bibliotece `stdlib.h`, jest ono postaci $2^{n-1}$  np. 32767.
 
-```c
+```c++
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -39,7 +39,7 @@ void main()
 Zazwyczaj interesuje nas konkretny przedział liczb. Aby określić kres dolny oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach:
 Po prostu bierzemy  wyłącznie resztę z dzielenia przez zadaną długość przedziału i dodajemy kres dolny jak w poniższym fragmencie kodu:
 
-```c
+```c++
 //  kod losuje liczby z przedzialu [ 20 do 50 ]
 	
 	int min = 20;
@@ -62,7 +62,7 @@ Do tej pory losowane liczby były liczbami całkowitymi. Często potrzebujemy li
 `double`. Taką operację nazywamy rzutowaniem. Rzutowanie ma bardzo szerokie zastosowanie i odnosi się nie tylko do operacji na liczbach.
 Poniższy kod losuje liczbę z przedziału 0-1:
 
-```c
+```c++
     double x;
     srand(  time  (NULL)  );
 

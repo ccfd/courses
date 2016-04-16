@@ -19,7 +19,7 @@ Rozpakuj projekt. Otwórz plik `projekt.sln`. W otwartym projekcie są następuj
 # Pierwsze kreski
 
 Wewnątrz funkcji `main` wpisz:
-```c
+```c++
 graphics( 200, 200);
 line( 0, 0, 200, 200);
 line( 200, 200, 0, 0);
@@ -39,7 +39,7 @@ Używając funkcji `line(x1,y1,x2,y2)` i `circle(x,y,r)`, wykonaj następujące 
 
 # Zmienne
 Pewne powtarzające się parametry (jak pozycję, promień, itp), możemy zastąpić zmiennymi. Następnie z nich wyliczyć odpowiednie współrzędne np:
-```c
+```c++
 int r,h;
 h = 100;
 r = 50;
@@ -52,7 +52,7 @@ Możemy używać wszelkich działań i funkcji matematycznych: `+, -, *, /, sin(
 **_Pamiętaj:_ Pierwsza linia deklaruje zmienne. Trzeba zadeklarować wszystkie zmienne, których będziesz używać! (szczegóły, na kolejnych zajęciach).**
 
 Zauważ, że wartość zmiennej jest nadpisywana, więc możemy napisać:
-```c
+```c++
 int w;
 w = 50;
 circle( 10, w, 10);
@@ -73,7 +73,7 @@ Każdy program przetestuj dla paru ustawień zmiennych, by zobaczyć czy działa
 
 # Pętle
 Pierwszą automatyzacją są pętle. Pętla wykonuje pewną operację, dopóki pewien warunek jest spełniony. Np:
-```c
+```c++
 int x;
 x = 0;
 while (x < 200) {

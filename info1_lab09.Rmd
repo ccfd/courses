@@ -36,7 +36,7 @@ Spodziewamy się, że wynikiem działania twojego programu będzie efekt zbliżo
 \end{figure}
 ## Dodatki
 Funkcja `animate` tak naprawdę jedynie spowalnia wykonywanie pętli `while` tak, aby kółka nie rysowały się zbyt szybko. Przykład jej użycia wygląda następująco:
-```c
+```c++
 while(animate(100)) // Wartosc 0 oznacza najszybsze mozliwe
                     // wykonanie (brak opoznienia)
 {

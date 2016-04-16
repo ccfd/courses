@@ -10,7 +10,7 @@ author: B. Górecki
 # Instrukcje wejścia/wyjścia
 
 Praktyczny program powinien mieć możliwość interaktywnej komunikacji z użytkownikiem. Do drukowania informacji dla użytkownika służy najczęściej standardowe wyjście (monitor). W nowym projekcie pakietu MS Visual Studio (poproś prowadzącego, aby pokazał, jak stworzyć **pusty** projekt), napisz program, który wydrukuje tekst *Witaj na trzecim laboratorium!*
-```c
+```c++
 void main()
 {
    printf("Witaj na trzecim laboratorium!");
@@ -22,7 +22,7 @@ Instrukcja `printf` służy do wypisywania tekstu na ekran. Jako argument przyjm
 
 ## Ćwiczenia
 Używając **jednej** instrukcji `printf` oraz odpowiednich sekwencji formatujących, wygeneruj tekst identyczny z poniższym:
-```c
+```c++
 To jest pierwsze zdanie w mojej instrukcji.
 To jest tuz po znaku nowej linii.      Zas ten fragment
                                        oddzielony jest znakiem
@@ -38,12 +38,12 @@ W instrukcji `printf` nie używaj polskich znaków diakrytycznych. Da się to zr
 ## Dalej o `printf`
 Pewne znaki specjalne są w języku C zarezerwowane na potrzeby konkretnych instrukcji. Wiele z nich poznasz wkrótce. Dobrymi przykładami takich znaków są % czy backslash \. Nie mogą one być użyte wprost, gdyż mają swoje funkcje w języku C. Jeśli chcesz, by się pojawiły na ekranie, musisz poprzedzić je dodatkowym znakiem \.
 - Dopisz do swojego programu intstrukcję, która wydrukuje następujący tekst:
-```c
+```c++
 82% dysku C:\ jest w uzyciu!
 ```
 Program o znaczeniu inżynierskim musi jednak mieć możliwość drukowania na ekran liczb i wyników przeprowadzonych działań.
 - Przepisz do funkcji main następujące instrukcje:
-```c
+```c++
 int a = 5;
 double c = 8.2;
 
@@ -69,7 +69,7 @@ Dodatkowo, dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych 
 - %.3f (dla zmiennych typu `float`).
 ## Czytanie z klawiatury
 Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest instrukcja `scanf`. Przykłady jej użycia wyglądają następująco:
-```c
+```c++
 int a;
 scanf("%d", &a);
 
@@ -86,7 +86,7 @@ Zauważ również, że używając jednej instrukcji `scanf` możesz wczytać wie
 Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie. Odejmowanie i dzielenie oczywiście nie jest przemienne. Policz zatem każdą z możliwych różnic czy ilorazów. Wydrukuj wszystkie wyniki na ekran.
 # Jeszcze trochę o funkcjach
 Funkcje nie tylko grupują pewne logicznie wydzielone bloki instrukcji, których używamy wielokrotnie (jak funkcja rysująca ludzika z kółek i kresek, bądź funkcja rysująca tłum z użyciem funkcji `ludzik`). Do tej pory ich deklaracje i definicje wyglądały odpowiednio tak:
-```c
+```c++
 void NazwaFunkcji(int argument1, double argument2);
 
 void NazwaFunkcji(int argument1, double argument2)
@@ -96,7 +96,7 @@ void NazwaFunkcji(int argument1, double argument2)
 ```
 
 Funkcje mogą bowiem zwracać wartość. Typ zmiennej, jaką zwracają jest zawsze identyczny z typem funkcji. Nie musi za to być zgodny z typami argumentów, których typy mogą być zupełnie inne. Weźmy dla przykładu funkcję, która przyjmie dwie wartości (jedną typu `double`, drugą typu `float`) i zwróci liczbę całkowitą równą 5, gdy większą wartość ma pierwszy argument lub wartość 10 w przeciwnym razie. Przeanalizujmy odpowiednio deklarację i kod takiej funkcji.
-```c
+```c++
 int KtoryWiekszy(double a, float b);
 
 int KtoryWiekszy(double a, float b)
@@ -115,7 +115,7 @@ int KtoryWiekszy(double a, float b)
 }
 ```
 Zwróć uwagę na instrukcję `return`, która zwraca z funkcji **wartość przechowywaną w konkretnej zmiennej**. To ważne! Funkcja nigdy nie zwraca zmiennej. Zwraca tylko wartość, jaka była w tej zmiennej przechowywana. Ponadto zmienna zadeklarowana w danej funkcji będzie dla programu widoczna **tylko i wyłącznie wewnątrz tej funkcji**, a nie będzie rozpoznawana w innych fragmentach kodu (np. funkcji `main`). Prześledźmy jeszcze kod funkcji `main`, w której występuje wywołanie naszej funkcji.
-```c
+```c++
 void main()
 {
    float c = 8.14;
@@ -133,7 +133,7 @@ Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania,
 
 # *Coś na deser
 Drukowanie tekstów na ekran nie musi sprowadzać się tylko do drukowania napisów, które są na twardo zdefiniowane w kodzie źródłowym lub wartości przechowywanych w zmiennych liczbowych. Język C ma również odpowiedni typ na przechowywanie zmiennych tekstowych, których zawartość może dynamicznie się zmieniać w trakcie wykonywania programu. Spróbuj zrozumieć i skompilować poniższy kod. Więcej szczegółów stanie się dla Ciebie jasnych, gdy omówione zostaną *tablice*.
-```c
+```c++
 void main()
 {
    char tekst[] = "To jest moj tekst\n";
