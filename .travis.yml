@@ -13,4 +13,4 @@ script:
 - R -e "rmarkdown::render('test.Rmd')"
 - R -e "rmarkdown::render_site()"
 after_success:
-- ./deploy.sh
+- ./tools/deploy.sh
