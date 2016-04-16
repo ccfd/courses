@@ -1,9 +1,15 @@
-name: "my-website"
+name: "ccfd-courses"
 navbar:
-  title: "My Website"
+  title: "CCFD Courses"
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+    - text: "Info I"
+      menu:
+      - text: "Instrukcja I"
+        href: info1_lab01.html
+      - text: "Instrukcja II"
+        href: info1_lab02.html
+      - text: "Instrukcja III"
+        href: info1_lab03.html
 exclude: [ "*.sh", "deploy", "*~" ]
