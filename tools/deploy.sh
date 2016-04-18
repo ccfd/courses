@@ -27,7 +27,7 @@ then
 	fi
 	cat .msg
 	echo Cloning pages
-	git clone --depth 1 --branch pages-base https://$GH_TOKEN@github.com/llaniewski/new_course.git deploy
+	git clone --depth 1 --branch pages-base https://$GH_TOKEN@github.com/ccfd/courses.git deploy
 	mv _site/* deploy/
 	pushd deploy
         git config user.email "$email"
