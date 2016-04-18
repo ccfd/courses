@@ -30,6 +30,23 @@ navbar:
         href: info3_lab1.html
       - text: "Instrukcja II"
         href: info3_lab2.html
+    - text: "Met Num"
+      menu:
+      - text: "Instrukcja I"
+        href: metnum_lab1.html
+      - text: "Instrukcja II"
+        href: metnum_lab2.html
+      - text: "Instrukcja III"
+        href: metnum_lab3.html
+      - text: "Instrukcja IV"
+        href: metnum_lab4.html
+      - text: "Instrukcja V"
+        href: metnum_lab5.html
+      - text: "Instrukcja VI"
+        href: metnum_lab6.html
+      - text: "Instrukcja VII"
+        href: metnum_lab7.html
+      - text: "Instrukcja VIII"
 exclude: [ "*.sh", "deploy", "*~" ]
 output:
   html_document:
