@@ -69,9 +69,9 @@ Mając już kontur, możemy policzyć kilka interesujących rzeczy:
 ## Ćwiczenia
 - Napisz funkcję `double Perimeter()`, która zwróci obwód zadanego konturu.
 - Napisz funkcję `double Area()`, która policzy oraz zwróci powierzchnię danej mapy. Powierzchnię mapy należy policzyć jako sumę powierzchni trójkątów, których podstawy są kolejnymi odcinkmi konturu a wierzchołek jest zlokalizowany gdziekolwiek (najwygodzniej położyć go w zerze). Pole takiego trójkąta będzie po prostu połową modułu iloczynu wektorowego, gdzie wektorami są boki trójkąta:
-\begin{displaymath}
+$$
 S_{i}=\frac{1}{2} | \boldsymbol v_i\times \boldsymbol v_{i+1} | = \frac{1}{2} (x_iy_{i+1}-x_{i+1}y_i)
-\end{displaymath}
+$$
 Pamiętaj o ostatnim i pierwszym punkcie. Zwróć uwagę, że otrzymane pole może być ujemne. Od czego to zależy?
 - Policz rozciągłość południkową i równoleżnikową obu obszarów. Zaznacz najbardziej skrajne punkty na obu mapach za pomocą kółka.
 

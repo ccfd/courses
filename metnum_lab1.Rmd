@@ -25,7 +25,7 @@ Rozważmy mechanizm pokazany na Rysunku~\ref{uklad1}
 
 
 Dla układu o zadanej na rysunku geometrii oraz ciężarach członów podanych powyżej równania równowagi wyglądają następująco:
-\begin{displaymath}
+$$
 \begin{tabular}{c}
 $R_{Ax}+R_{Bx} = 0$ \\
 $R_{Ay}+R_{By} = G_{AB}$ \\
@@ -37,10 +37,10 @@ $-R_{Cx}+R_{Dx}=0$ \\
 $-R_{Cy}+R_{Dy}=G_{CD}$ \\
 $-G_{CD}+7R_{Dx}+2R_{Dy}=0$ \\
 \end{tabular}
-\end{displaymath}
+$$
 
 W postaci macierzowej układ równań zapisuje się następująco:
-\begin{displaymath}
+$$
 \left[ \begin{tabular}{c c c c c c c c c} 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
  0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
  0 & 0 & 1 & -4 & 3 & 0 & 0 & 0 & 0 \\
@@ -70,12 +70,12 @@ $R_{Dy}$ \\
 0 \\
 53 \\
 53 \\ \end{tabular} \right]
-\end{displaymath}
+$$
 
 
 ## Zadanie 1
 Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych. Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku `Gauss.h`. (Wskazówka: Funkcja `void Gauss(int n, double **M, double *F, double *x)` przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji). Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
-\begin{displaymath}
+$$
 \left[ \begin{tabular}{c} $R_{Ax}$ \\
 $R_{Ay}$ \\
 $M_A$ \\
@@ -95,7 +95,7 @@ $R_{Dy}$ \\
 		1.911765 \\
 		- 8.117647 \\
 		54.911765 \\ \end{tabular} \right]
-\end{displaymath}
+$$
 
 
 # Problem nieliniowy
@@ -103,22 +103,22 @@ $R_{Dy}$ \\
 
 ## Metoda Newtona-Raphsona
 Metoda Newtona Raphsona wypływa z rozwinięcia funkcji wielu zmiennych w szereg Taylora, ucięcia go po członie liniowym i zapostulowania, że nieznany przyrost argumentów ma być taki, aby funkcja miała w tym miejscu wartość zero. Zapiszmy takie rozwinięcie dla funkcji $F(\vec x)$, gdzie $\vec x = [x,y]$, a $\vec h = [h_x, h_y]$.
-\begin{displaymath}
+$$
 F(\vec x_0 + \vec h) = F(\vec x_0) + \frac{\partial F}{\partial x} h_x + \frac{\partial F}{\partial y} h_y + ...
-\end{displaymath}
+$$
 W zapisie indeksowym napiszemy dla funkcji $F_i$ (może tych funkcji być cały wektor dla $i = 1,...,n$)
-\begin{displaymath}
+$$
 F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \frac{\partial F_i}{\partial x_j} h_j + ...
-\end{displaymath}
+$$
 
 $\frac{\partial F_i}{\partial x_j}$ to nic innego jak macierz Jacobiego. Wiadomo, że jest to macierz kwadratowa, jako że rozwiązujemy zagadnienie mające tyle samo równań co niewiadomych. Przyrównujemy rozwinięcie do zera - pozwoli nam to wyznaczyć takie przesunięcie argumentów, że gdyby liniowe rozwinięcie funkcji wokół danego punktu było słuszne, to w jednej iteracji otrzymywalibyśmy dokładne rozwiązanie zadania. Otrzymujemy:
-\begin{displaymath}
+$$
 F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \frac{\partial F_i}{\partial x_j} h_j = 0
-\end{displaymath}
+$$
 i tym samym
-\begin{displaymath}
+$$
 \frac{\partial F_i}{\partial x_j} h_j = - F_i(\vec x_0)
-\end{displaymath}
+$$
 
 Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 - Wybierz przybliżenie startowe *$x^1$*.
@@ -134,24 +134,24 @@ Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 \includegraphics[width=0.5\textwidth]{czworobok.png}
 
 Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I). Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych. Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona. Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów $(x_0,x_1)$ i $(x_2,x_3)$, a równania więzów będą wynikać z odchylenia członu kierującego o kąt $\alpha$ od poziomu oraz długości dwóch pozostałych członów). Tym samym równania członów są postaci:
-\begin{displaymath}
+$$
 \begin{tabular}{c}
 $x_0 = 5 \cdot cos\alpha$ \\
 $x_1 = 5 \cdot sin \alpha$ \\
 $(x_2-x_0)^2 + (x_3-x_1)^2 = 4$ \\
 $(3-x_2)^2 + (x_3-0)^2 = 36$
 \end{tabular}
-\end{displaymath}
+$$
 Po rozwinięciu i zapisaniu całego układu w postaci funkcji wektorowej wektorowego argumentu otrzymamy następujące sformułowanie naszego układu równań: $\vec F(\vec x) = \vec 0$, gdzie
-\begin{displaymath}
+$$
 \vec F(\vec x) = \left[ \begin{tabular}{c} $x_0 - 5 \cdot cos\alpha$ \\
 $x_1 - 5 \cdot sin \alpha$ \\
 $x_2^2-2x_0 x_2 + x_0^2 + x_3^2-2x_1 x_3 +x_1^2 -4 $ \\
 $-6x_2+x_2^2+x_3^2-27$
 \end{tabular} \right]
-\end{displaymath}
+$$
 Wyprowadziwszy powyższe równania możemy analitycznie policzyć macierz Jacobiego:
-\begin{displaymath}
+$$
 J = \frac{\partial \vec F}{\partial \vec x} = 
 \left[ \begin{tabular}{c c c c}
 1 & 0 & 0 & 0 \\
@@ -160,7 +160,7 @@ $-2x_2+2x_0$ & $-2x_3+2x_1$ & $-2x_0+2x_2$ & $-2x_1+2x_3$ \\
 0 & 0 & $-6+2x_2$ & $2x_3$ \\
 \end{tabular}
 \right]
-\end{displaymath}
+$$
 
 
 ## Zadania do wykonania
@@ -178,12 +178,12 @@ $-2x_2+2x_0$ & $-2x_3+2x_1$ & $-2x_0+2x_2$ & $-2x_1+2x_3$ \\
 - Do *i*-tej kolumny macierzy $J$ wpisz wartości $\frac{\vec F (\vec x') - \vec F (\vec x'')}{2\epsilon}$.
 
 W ramach testów sprawdź, czy macierz Jacobiego dla punktu startowego obliczona metodą dokładną i numeryczną ma te same wartości. Dla punktu startowego $\vec x = [0, 5, 3, 6]$ macierz Jacobiego ma wartości
-\begin{displaymath}
+$$
 J = \left[ \begin{tabular}{c c c c}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 -6 & -2 & 6 &2 \\
 0 & 0 & 0 & 12 \\ \end{tabular} \right]
-\end{displaymath}
+$$
 
 
