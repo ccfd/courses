@@ -54,3 +54,6 @@ exclude: [ "*.sh", "deploy", "*~" ]
 output:
   html_document:
     highlight: default
+    toc_depth: 2
+    toc_float:
+      collapsed: false
