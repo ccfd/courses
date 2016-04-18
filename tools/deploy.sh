@@ -32,10 +32,13 @@ then
 	pushd deploy
         git config user.email "$email"
 	git config user.name "$name"
-	git branch -f gh-pages pages-base
-	git checkout gh-pages
+#	git branch -f gh-pages pages-base
+#	git checkout gh-pages
 	git add -A
 	git commit -F ../.msg
+	git branch -f gh-pages pages-base
+	git checkout gh-pages
+#       Add pdf's here.
 	git push --force --set-upstream origin gh-pages
 	popd
 	rm -fr deploy
