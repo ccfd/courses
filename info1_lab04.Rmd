@@ -7,6 +7,7 @@ material: Instrukcja 4
 author: W. Regulski
 ---
 
+
 # Liczby losowe
 Generacja liczb losowych jest bardzo przydatna w wielu obszarach począwszy od komputerowych gier w kości a na skomplikowanych symulacjach mechanicznych i kryptografii skończywszy.
 Poniższe zadania przedstawiają mechanizm generacji liczb pseudolosowych w języku C/C++^[Mówimy, że generowane liczby są pseudolosowe, gdyż niemożliwe jest wygenerowanie prawdziwie losowego ciągu liczb. W praktyce świetnym źródłem ciągów liczb losowych są dane uzyskiwane z natury  np. dane meteorologiczne (www.random.org).].
@@ -30,6 +31,7 @@ void main()
 }
 ```
 
+
 ## Ćwiczenia
 - Wykonaj powyższy program kilka razy z rzędu. Co możesz powiedzieć o wyniku? 
 - Zastąp ziarno generatora `time(NULL)` stałą liczbą. Co się wówczas stanie?
@@ -50,12 +52,15 @@ Po prostu bierzemy  wyłącznie resztę z dzielenia przez zadaną długość prz
 ```
 
 operator % liczy resztę z dzielenia jednej liczby przez drugą. Tutaj, licząc resztę z dzielenia wyniku losowania przez 31,  otrzymujemy liczbę z przedziału 0 do 30. 
+
 ## Uwaga
 Czy taki wzór będzie generował liczby losowe o rokładzie równomiernym? W domu zastanów się nad lepszym rozwiązaniem, a poniżej wykorzystaj to najprostsze.
+
 ## Ćwiczenia
 - Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od 0 do 100.
 - Wybierz krótki przedział (rzędu kilku możliwych do wylosowania liczb) i wykonaj 1000 oraz 10000 losowań. W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę.
 - Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie. Co możesz powiedzieć o rozkładzie tego losowania?
+
 
 # Liczby losowe typu rzeczywistego, rzutowanie
 Do tej pory losowane liczby były liczbami całkowitymi. Często potrzebujemy liczb zmiennoprzecinkowych. W tym celu po prostu przeskalujemy wylosowaną liczbę tak, aby zawsze należała do przedziału 0-1. Wystarczy podzielić wylosowaną liczbę przez RAND\_MAX. Dodatkowo należy pamiętać, że wylosowana liczba jest typu całkowitego `int`, więc dzielenie przez RAND\_MAX da nam zazwyczaj 0. Aby tego uniknąć, musimy przekonwertować typ `int` na typ zmiennoprzecinkowy 
@@ -77,6 +82,7 @@ Poniższy kod losuje liczbę z przedziału 0-1:
 
 
 
+
 ## Ćwiczenia
 - Napisz funkcję `isInCircle` typu `int`, która będzie losowała punkt w kwadracie $[0,1]\times[0,1]$ i zwracała wartość 1, jeśli punkt znajduje się wewnątrz koła o promieniu 1. Jeśli punkt jest poza kołem, niech funkcja zwraca 0.
 - W programie głównym sprawdź, czy punkt wylosowany przez daną funkcję jest w obszarze koła, czy nie. Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję. Funkcja zwraca tylko wartość logiczną.
@@ -90,9 +96,11 @@ Poniższy kod losuje liczbę z przedziału 0-1:
 \label{fig:awesome_image}
 \end{figure}
 
+
 # Liczenie przybliżeń liczby $\pi$ metodą Monte Carlo
 Koło wpisane w jednostkowy kwadrat ma powierzchnię równą  $\pi/4$. Toteż losując punkty w kwadracie z prawdopodobieństwem  $\pi/4$ trafiamy w obszar koła. 
 Dzięki temu, zliczając odsetek wylosowanych punktów, które trafiły do wnętrza koła, możemy określić przybliżenie liczby   $\pi$. Taka metoda zalicza się do metod Monte Carlo^[w Monte Carlo mieści się bodaj najsłynniejsze w Europie kasyno, stąd taka nazwa dla metod losowych]. 
+
 
 ## Ćwiczenia
 - Przy użyciu poprzedniej funkcji policz przybliżenie liczby $\pi$. Wykonaj 10000 losowań.

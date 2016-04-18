@@ -8,6 +8,7 @@ author: W. Regulski
 ---
 
 
+
 # Tablice
 Celem zajęć jest wprowadzenie do używania tablic w języku C. Tablicą (ang. *array*) nazywamy ciąg zmiennych zgromadzony pod jedną globalną nazwą, które są identyfikowane indeksami. 
 Na tych zajęciach zajmiemy się tylko tablicami statycznymi tzn. takimi, których rozmiar jest określany w momencie deklaracji^[bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć].
@@ -26,6 +27,7 @@ Zwróć uwagę, że elementy tablicy sa indeksowane od $0$ do $n-1$, gdzie $n$ t
 ```c++
      double b[3] = { 1.2, 2.4, -4.3};
 ```
+
 # Gra w kulki
 
 Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji. Ekran początkowy jest widoczny na Rysunku 1.
@@ -75,6 +77,7 @@ Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na k
 
 Zauważmy, że funkcja `init` pobiera 2 wskaźniki do wektorów(`x` oraz `y`) oraz jedną wartość (10). Dzięki temu funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać^[Zasady działania na wskaźnikach opisano w Instrukcji 4.2.]. 
 
+
 ## Uwaga
 Ponieważ `x` oraz `y` są wskaźnikami do pierwszych (dokładnie rzecz ujmując - zerowych) elementów tablic, można użyć mechanizmu wyłuskania wartości ze wskaźników i iterować się po wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:
 
@@ -86,6 +89,7 @@ a[0] = 1.2;         a[1] = 3.13;         a[2] = 0.22;
 *(a)   = 1.2;           *(a+1) = 3.13;        *(a+2) = 0.22;
 ```
 
+
 ## Ćwiczenia
 Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę \verb|winbgi2.h|, gdyż będziemy korzystać z grafiki.
 - Zadeklaruj wymienione wyżej wektory o długości 10.
@@ -93,9 +97,11 @@ Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę \verb|winbg
 - Napisz funkcję \verb|init|, która wylosuje współrzędne położeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji \verb|rand()| znanej z poprzednich zajęć.
 - Napisz funkcję `display`, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja \verb|init|).
 
+
 # Ruch
 
 Oczywiście piłeczki mają się poruszać, zatem konieczne będzie określenie wartości prędkości początkowych oraz zaprogramowanie ruchu piłeczek.
+
 
 ## Ćwiczenia
 
@@ -116,14 +122,17 @@ while(animate(100)) {
 }
 ```
 
+
 # Kolizje ze ścianami
 Chcielibyśmy, aby piłeczki miały wbudowany jakiś mechanizm kolizji ze ścianami. 
 Zderzenia będą doskonale sprężyste, kąt padania na przeszkodę będzie zatem równy kątowi odbicia od niej. Kąty mierzone względem normalnej do ściany.
+
 ## Ćwiczenia
 - Do funkcji \verb|run| dopisz warunek, który sprawdza, czy piłka zderzyła się ze ścianą. W przypadku kolizji należy zastosować prawo odbicia, które będzie miało prostą formę:
 Jeśli uderzamy w ścianę poziomą, wystarczy zmienić składową prędkości $cy$ na przeciwną. Analogicznie przy kolizji ze ścianą pionową, zmieniamy składową $cx$ na przeciwną.
 Sprawdź, jak działa program np. dla 5000 kroków.
 - Napisz funkcję `showEnergy`, która będzie wyświetlała na ekranie wartość całkowitej energii kinetycznej układu.
+
 
 
 # Kolizje z piłkami*}Dopisz funkcję {\tt searchAndCollide, która sprawdza, czy piłki zderzają się ze sobą nawzajem.

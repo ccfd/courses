@@ -7,6 +7,7 @@ material: Instrukcja 1
 author: Ł. Łaniewski-Wołłk
 ---
 
+
 # Wstęp
 
 Rozpakuj projekt. Otwórz plik `projekt.sln`. W otwartym projekcie są następujące pliki:
@@ -15,6 +16,7 @@ Rozpakuj projekt. Otwórz plik `projekt.sln`. W otwartym projekcie są następuj
 - `winbgi2.h` --- plik z definicjami funkcji graficznych
 
 **_Pamiętaj:_ Często kompiluj projekt i patrz, czy wszystko działa!**
+
 
 # Pierwsze kreski
 
@@ -29,6 +31,7 @@ wait();
 
 Skompiluj i uruchom projekt. Pierwsza linia tworzy okno grafiki, dwie następne rysują linie, zaś ostatnia czeka z zamknięciem okna na naciśnięcie dowolnego klawisza.
 
+
 ## Ćwiczenia
 Używając funkcji `line(x1,y1,x2,y2)` i `circle(x,y,r)`, wykonaj następujące zadania:
 
@@ -36,6 +39,7 @@ Używając funkcji `line(x1,y1,x2,y2)` i `circle(x,y,r)`, wykonaj następujące 
 - Narysuj kwadrat.
 - Narysuj ludzika.
 - Narysuj koła olimpijskie.
+
 
 # Zmienne
 Pewne powtarzające się parametry (jak pozycję, promień, itp), możemy zastąpić zmiennymi. Następnie z nich wyliczyć odpowiednie współrzędne np:
@@ -64,12 +68,14 @@ w = w + 20;
 circle( 10, w, 10);
 ```
 W efekcie wyświetlą się cztery kółka narysowane koło siebie. Przetestuj.
+
 ## Ćwiczenia
 Każdy program przetestuj dla paru ustawień zmiennych, by zobaczyć czy działa poprawnie.
 - Napisz program, który dla zmiennych x,y,s, tworzy okno o rozmiarach x,y i na środku narysuje koło o promieniu s.
 - Dla zmiennej `d`, narysuj cztery dotykające się koła o średnicy d w prawym górnym rogu okna.
 - Dla zmiennej `y` narysuje koła olimpijskie w odległości `y` od górnej krawędzi.
 - Skopiuj poprzedni kod trzy razy i w każdym fragmencie zmodyfikuj wartość zmiennej `y`.
+
 
 # Pętle
 Pierwszą automatyzacją są pętle. Pętla wykonuje pewną operację, dopóki pewien warunek jest spełniony. Np:
@@ -97,6 +103,7 @@ Taki program będzie wykonywany w następujący sposób:
 Ostatecznie program narysuje pionowe kreski dla kolejnych `x` = 0, 10, 20, ....
 
 **_Zauważ:_ Program nie narysuje linii dla $x=200$, bo komputer najpierw sprawdzi, że $x\not< 200$ i przerwie pętlę.**
+
 
 
 ## Ćwiczenia

@@ -6,6 +6,7 @@ course: Informatyka I
 material: Laboratorium 2
 ---
 
+
 # Funkcje
 Pewne zestawy operacji, zależne od zmiennych, możemy zebrać w grupki (funkcje) i wywoływać jak `circle` i `line`. Przykład z poprzedniego paragrafu możemy zamknąć w funkcji:
 ```c++
@@ -31,6 +32,7 @@ void main()
 }
 ```
 
+
 ## Ćwiczenia
 Napisz i wywołaj dowolne dwie z poniższych funkcji:
 - `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
@@ -39,8 +41,10 @@ Napisz i wywołaj dowolne dwie z poniższych funkcji:
 - `olimpiada(x,y)` --- Narysuje koła olimpijskie o środku w (`x`, `y`)
 - *  `okno(a)` --- Używając funkcji do rysowania prostokąta narysuje okno o boku $a$.
 
+
 # Trochę więcej szczegółów
 Omówmy pewne rzeczy trochę dokładniej.
+
 ## Typy
 W C i C++ _musimy_ deklarować zmienne, tzn. powiedzieć, jakich będziemy używać zmiennych i jakich one będą typów. Deklaracje piszemy 'typ zmienna1,zmienna2, ...;'. Najważniejsze typy to:
 - `int` --- Liczba całkowita (32-bitowa, od $-2^{31}$ do $2^{31}$)
@@ -61,6 +65,7 @@ while (a < 2*3.14)
 ```
 Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o promieniu 3.
 
+
 ## Ćwiczenia
 Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
 - Narysuj wykres $a^2$.
@@ -68,10 +73,12 @@ Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
 - Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
 - Narysuj punkty o współrzędnych $x=100r\sin{a}+100$ i $y=100r\cos{a}+100$, gdzie $r = \frac{\cos{a}+2}{3}$ (niech $r$ będzie kolejną zmienną).
 
+
 ## Typy --- pułapki
 Ważne, by pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania jak dla liczb całkowitych. Dlatego `1/4` da jako wynik 0! Bo wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać `1.0/4` lub jeszcze lepiej `1.0/4.0`. Możemy także bezpośrednio 'zrzutować' zmienne z `int` na `double` pisząc: `(double) zmienna`.
 
 **_Pamiętaj:_ Wszędzie, gdzie robisz obliczenia, używaj `double**. Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3`
+
 
 ## Ćwiczenia
 Przeanalizuj (i przetestuj) wynik tego programu. Które linie nie dadzą pożądanego efektu?
@@ -86,6 +93,7 @@ while (a < 2)
     a = a + 0.001;
 }
 ```
+
 
 # Funkcje po raz drugi
 Zestawy operacji, które powtarzamy w programie wielokrotnie, możemy zamknąć w funkcjach. Taka funkcja ,,połyka'' parametry i coś z nimi robi. Dla przykładu:
@@ -123,12 +131,14 @@ void main()
 }
 ```
 
+
 ## Ćwiczenia
 Napisz i wywołaj dwie sposród niżej wymienionych funkcji.
 - Funkcję, która narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`).
 - Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).
 - Funkcję, która narysuje `n` kółek w punkcie (`x`,`y`) o coraz większych promieniach.
 - *  Funkcję, która narysuje wielokąt foremny o `n` bokach.
+
 
 
 # Instrukcja warunkowa
@@ -158,6 +168,7 @@ while (a < 2*3.14)
 }
 ```
 Gdyby nie instrukcja `if`, ten program narysował by koło z małych kółek. Teraz, gdy kąt `a` przekroczy $2$ radiany zmieni promień kółeczka z $5$ na $10$ 
+
 
 ## Ćwiczenia
 Napisz program który:

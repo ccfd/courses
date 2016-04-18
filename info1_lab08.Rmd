@@ -7,6 +7,7 @@ material: Instrukcja 8
 author: B. Górecki
 ---
 
+
 # Dynamiczna alokacja tablic wielowymiarowych
 Tydzień temu nauczyliśmy się dynamicznej alokacji pamięci dla tablic jednowymiarowych. Dynamiczna oznacza tyle, że rozmiar tablicy, jaką chcemy zaalokować, znamy dopiero w momencie wykonywania programu, tzn., że nie jesteśmy w stanie go określić statycznie (daną, konkretną liczbą) na etapie kompilacji. Kod do dynamicznej alokacji tablic jednowymiarowych wyglądał tak:
 ```c++
@@ -25,6 +26,7 @@ void main()
 }
 ```
 Dziś nauczymy się dwóch nowych rzeczy: stosowania w języku C tablic wielowymiarowych (alokowanych statycznie) oraz ich dynamicznej alokacji.
+
 
 # Tablice wielowymiarowe
 Język C pozwala na stosowanie tablic wielowymiarowych. Do tej pory przez kilka tygodni używaliśmy jedynie tablic jednowymiarowych. Potocznie często określaliśmy je *wektorami*. Wyobraźmy sobie - tablica dwuwymiarowa doskonale nadaje się np. do przechowywania macierzy.^[Tak naprawdę wiele więcej struktur - często nawet zupełnie niematematycznych możemy trzymać w dwuwymiarowych tablicach - np. programując grę w szachy moglibyśmy użyć dwuwymiarowej tablicy o wymiarze 8 x 8 i w odpowiednie pola tej tablicy wpisywać liczby, które symbolizowałyby konkretne figurę. A gra w statki? Można podobnie. Z drugiej strony w praktycznych obliczeniach numerycznych wielkie macierze o rozmiarze rzędu kilkuset tysięcy do kilku milionów i większe przechowuje się w postaci wektora. W praktycznych zagadnieniach są to niemal zawsze macierze rzadkie, tzn. takie, które w stosunku do całkowitej liczby swoich elementów mają bardzo niewiele elementów, które nie są zerem. Taką macierz łatwo jest trzymać w pamięci jako wektor (przyjmując specjalny format, który pomija wszystkie zera - np. tzw. format CSR *(ang. compressed sparse row)* jest szeroko stosowanym formatem zapisania macierzy rzadkiej w trzech wektorach). Tak wielka macierz przechowywana jawnie najpewniej nie zmieściłaby się w pamięci żadnego dostępnego nam komputera.] Przyjrzyjmy się więc fragmentowi kodu, który zadeklaruje dwuwymiarową tablicę o wymiarze 3x4. Możemy to utożsamić z reprezentacją macierzy o takim samym wymiarze.
@@ -59,8 +61,10 @@ $$
 $$
 Pozostaje wytłumaczyć jeszcze, w jaki sposób odwołujemy się do elementów w dwuwymiarowej tablicy. Robimy to analogicznie do tablicy jednowymiarowej, tylko tym razem musimy podać dwa indeksy. Tak więc do elementu macierzy $a_{32}$ odwołamy się przez napisanie `a[2][1]`. W ten sposób możemy wyłuskać wartość przechowywaną pod tym elementem lub operatorem *=* przypisać temu elementowi nową wartość.
 
+
 # Ćwiczenia
 W funkcji `main` napisz fragment kodu, w którym zadeklarujesz i zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe. Jedna ma przechowywać macierz kwadratową o wymiarze 2, a druga z nich macierz kwadratową o wymiarze 3. Napisz kod, który dla każdej z tych macierzy policzy wyznacznik.
+
 
 # Dynamiczna alokacja
 Czas jednak na dynamiczną alokację. Dwuwymiarową tablicę o rozmiarze M x N zaalokujemy w następujący sposób: stworzymy tablicę jednowymiarową o rozmiarze M (umówmy się, że ona będzie wskazywać na początek każdego z wierszy), po czym każdemu z elementów tej tablicy zaalokujemy blok o długości N (to będą jednowymiarowe tablice do przechowywania kolejnych wierszy). De facto będziemy mieli w pamięci M bloków, każdy długości N. Spójrzmy na kod.
@@ -83,6 +87,7 @@ for(int i = 0; i<M; ++i)
 free(A);
 ```
 
+
 ## Podsumowanie
 Zbierzmy wszystkie instrukcje w jednym miejscu. Chcemy zaalokować dwuwymiarową tablicę zmiennych typu `int`. Dokonujemy tego tak:
 ```c++
@@ -100,6 +105,7 @@ for(int i = 0; i<M; ++i)
 free(A);
 ```
 
+
 # Ćwiczenia
 - Napisz funkcję, która jako argumenty przyjmie podwójny wskaźnik (wskaźnik do dynamicznie alokowanej tablicy dwuwymiarowej) oraz liczbę kolumn i wierszy macierzy, po czym dokona wydruku macierzy na ekran w naturalnej postaci, do jakiej jesteśmy przyzwyczajeni dla macierzy.
 - Napisz funkcję `maxAbsAij`, która dla danej macierzy zwróci do funkcji `main` największy co do modułu element tej macierzy oraz jego indeksy $i$, $j$.
@@ -109,6 +115,7 @@ free(A);
 - Zmodyfikuj powyższy program tak, żeby rozmiar *n* był wczytywany z klawiatury, elementy tablicy były generowane zgodnie ze wzorem $a_{ij} = \frac{i+1}{j+1}, (i,j = 0,...,n-1)$, zaś elementy wektora wg wzoru $v_i = i+1, (i = 0,...,n-1)$. Obliczaj iloczyn takiej macierzy przez ten wektor, korzystając ze swojej funkcji `MatVecMultiply`. Wynik wyświetlaj na ekranie oraz sprawdź, czy otrzymujesz poprawny wynik.^[Dla takiej macierzy i takiego wektora bardzo łatwo jest wygenerować analityczny wynik. Wypisz sobie małą macierz wg zadanego wzoru i odpowiadający wektor i na pewno szybko zauważysz prawidłowość. Będziesz wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.]
 - Napisz funkcję ```c++MatMatMultiply(double **A, double **B, double **C, int mA,
                                      int nA, int mB, int nB)```służącą do mnożenia dwóch macierzy prostokątnych ($\bf A$ o wymarze $m_A \times n_A$ i $\bf B$ o wymiarze $m_B \times n_B$) i wpisującą wynik do macierzy $\bf C$ (zadbaj w funkcji `main` o to, aby pamięć zaalokowana dla macierzy $\bf C$ była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). **Uwaga:** Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. ^[Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.]
+
 # Dla ambitnych*
 Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie pamięci dla tablicy trójwymiarowej. Na przykład, gdybyś chciał napisać grę w trójwymiarowe kółko i krzyżyk. Skonsultuj z prowadzącym kod dla takiego przypadku.
 

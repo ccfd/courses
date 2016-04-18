@@ -7,6 +7,7 @@ material: Instrukcja 2 i 3
 author: Ł. Łaniewski-Wołłk
 ---
 
+
 # BASH: skrypty
 Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik` i wykonać komendą `./plik`. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego:\\**każda linijka skryptu wygląda nastepująco:** ,,`_program_ {\green agumenty`}''.
 
@@ -26,6 +27,7 @@ Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 - w wyrażeniu `_expr_ {\green \$i + 1`}, musimy zachować spacje, żeby program `\red expr` dostał trzy argumenty ,,`\green\$i`'', ,,`\green +`'' i ,,`\green 1`'', a nie jeden ,,`\green i+1`''.
 - w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `\red test`. W tym wypadku podajemy mu za argumenty ,,`\green\$i`'', ,,`\green -lt`'' i ,,`\green 10`'', gdzie opcja `\green -lt` oznacza ,,less than''.
 
+
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
 - `_echo_ {\green tekst`} --- Wpisuje {\green tekst} na ekran.
@@ -39,6 +41,7 @@ Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to 
 - `_mv_ {\green pliki katalog`} --- Przenosi {\green pliki} do {\green katalog}u
 - `_mv_ {\green plik1 plik2`} --- Zmienia nazwę pliku z {\green plik1} na {\green plik2}
 - `_sed_ {\green 's/tekst1/tekst2/g'`} --- Czyta z klawiatury tekst i go wypisuje zamieniając ,,{\green tekst1}'' na ,,{\green tekst2}''
+
 
 ## Przekierowanie wejścia wyjścia
 Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować.
@@ -59,6 +62,7 @@ Przykłady:
 - `ls katalog {\blue > plik`} --- wypisze zawartość {\green katalog}u do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
 - `cp {\blue ``ls{\blue `} katalog} albo `cp {\blue \$(`ls{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
 - `cp {\blue ``cat plik{\blue `} katalog} bądz `cp {\blue \$(`cat plik{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zawartej w `plik`u.
+
 ## Pętle i wyrażenia warunkowe
 - `if _program_ {\green argumenty`\\
 then\\
@@ -85,6 +89,7 @@ _mv_ {\green \$i IMG/a\_\$i} \\
 done}\\
 Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedrostek `a\_` (np.: `obrazek.jpg` zamieni na `IMG/a\_obrazek.jpg`).
 
+
 ## Ćwiczenia
 
 Domyślnym edytorem na serwerze `info3 ` jest edytor `nano `, dostępny jest teś edytor `vim `. Pierwszy z nich wydaje się prostszy w obsłudze, drugi występuje na prawie każdym komputerze z UNIXem.
@@ -93,7 +98,9 @@ Domyślnym edytorem na serwerze `info3 ` jest edytor `nano `, dostępny jest te�
 	- Zmień skrypt, tak aby wypisywał od 0 do podanej jako argument wielkości
 
 
+
 # Obróbka obrazków
+
 ## `convert`
 Głównym programem którego będziemy używać to `convert` z biblioteki ImageMagick. Program ten służy do najróżniejszego typu konwersji i zmiany właściwości obrazów --- lecz potrafi także dodawać elementy do obrazu, a nawet tworzyć obrazy od zera. Najłatwiej zobaczyć jego użycie na przykładach:
 
@@ -106,6 +113,7 @@ Głównym programem którego będziemy używać to `convert` z biblioteki ImageM
 - `convert plik1.jpg -resize 100x100\! plik2.jpg` --- zmniejszy obrazek \uline{dokładnie} do rozmiaru 100 na 100 pixeli
 - `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'"{ `-channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 'Magick'"{ }fuzzy-magick.jpg} --- stworzy obrazek fuzzy-magick.jpg, z tekstem "Magick"
 Wykonaj powyższe operacja, sprawdź efekty.
+
 
 
 ## Ćwiczenia

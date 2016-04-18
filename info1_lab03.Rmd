@@ -7,6 +7,7 @@ author: B. Górecki
 ---
 ---
 
+
 # Instrukcje wejścia/wyjścia
 
 Praktyczny program powinien mieć możliwość interaktywnej komunikacji z użytkownikiem. Do drukowania informacji dla użytkownika służy najczęściej standardowe wyjście (monitor). W nowym projekcie pakietu MS Visual Studio (poproś prowadzącego, aby pokazał, jak stworzyć **pusty** projekt), napisz program, który wydrukuje tekst *Witaj na trzecim laboratorium!*
@@ -20,6 +21,7 @@ Instrukcja `printf` służy do wypisywania tekstu na ekran. Jako argument przyjm
 - \n --- wprowadza znak nowej linii,
 - \t --- wprowadzan znak tabulacji.
 
+
 ## Ćwiczenia
 Używając **jednej** instrukcji `printf` oraz odpowiednich sekwencji formatujących, wygeneruj tekst identyczny z poniższym:
 ```c++
@@ -30,10 +32,12 @@ To jest tuz po znaku nowej linii.      Zas ten fragment
 Za to w ponizszej linii wszystkie liczby oddzielono tabulatorami.
 5.2    3.14    -7    8
 ```
+
 ## Uwaga
 Oczywiście wprowadzenie długiego tekstu (np. kilku komunikatów dla użytkownika) w jednej instrukcji `printf` jest nonsensem. Spróbuj osiągnąć ten sam efekt, co powyżej, ale tym razem użyj osobnej instrukcji `printf` dla każdego ze zdań. Czy coś cię zaskakuje? Czy nowa instrukcja `printf` wymusza przejście do nowej linii?
 
 W instrukcji `printf` nie używaj polskich znaków diakrytycznych. Da się to zrobić, jednak wymaga pewnych komplikacji i w prostych programach nie jest praktykowane. Jeśli bardzo cię męczy ciekawość, w wolnej chwili poszukaj rozwiązań w książkach, bądź internecie.
+
 
 ## Dalej o `printf`
 Pewne znaki specjalne są w języku C zarezerwowane na potrzeby konkretnych instrukcji. Wiele z nich poznasz wkrótce. Dobrymi przykładami takich znaków są % czy backslash \. Nie mogą one być użyte wprost, gdyż mają swoje funkcje w języku C. Jeśli chcesz, by się pojawiły na ekranie, musisz poprzedzić je dodatkowym znakiem \.
@@ -67,6 +71,7 @@ Pojawiły się też nowe elementy. Do drukowania wartości przechowywanych w zmi
 Dodatkowo, dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych i ogromnych wartościach użyj poniższych sekwencji i zobacz, jaki będzie efekt działania.
 - %lg, %e, %.2lf, %.4lf (dla zmiennych typu `double`),
 - %.3f (dla zmiennych typu `float`).
+
 ## Czytanie z klawiatury
 Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest instrukcja `scanf`. Przykłady jej użycia wyglądają następująco:
 ```c++
@@ -82,8 +87,10 @@ scanf("%lf%d%d%lf", &g, &d, &b, &h);
 ```
 **Uwaga:** Zwróć szczególną uwagę na znak & występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten **nigdy** nie występuje w intrukcji `printf`, za to zawsze jest potrzebny w instrukcji `scanf`.\\
 Zauważ również, że używając jednej instrukcji `scanf` możesz wczytać wiele liczb. Sekwencje formatujące nie muszą być oddzielone spacjami, za to wartości muszą być podane z klawiatury w odpowiedniej kolejności - takiej, w jakiej zmienne na liście argumentów, do których te wartości mają trafić.
+
 ## Ćwiczenia
 Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie. Odejmowanie i dzielenie oczywiście nie jest przemienne. Policz zatem każdą z możliwych różnic czy ilorazów. Wydrukuj wszystkie wyniki na ekran.
+
 # Jeszcze trochę o funkcjach
 Funkcje nie tylko grupują pewne logicznie wydzielone bloki instrukcji, których używamy wielokrotnie (jak funkcja rysująca ludzika z kółek i kresek, bądź funkcja rysująca tłum z użyciem funkcji `ludzik`). Do tej pory ich deklaracje i definicje wyglądały odpowiednio tak:
 ```c++
@@ -130,6 +137,7 @@ void main()
 Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu funkcji `KtoryWiekszy` wydrukują wartość aktualnie przechowywaną w zmiennej `InnaZmienna`. Zastanów się, jaki będzie wynik i sprawdź, czy masz rację.
 
 Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje `Sumuj`, `Odejmij`, `Pomnoz`, `Podziel`. Funkcje te musisz napisać samodzielnie.
+
 
 # *Coś na deser
 Drukowanie tekstów na ekran nie musi sprowadzać się tylko do drukowania napisów, które są na twardo zdefiniowane w kodzie źródłowym lub wartości przechowywanych w zmiennych liczbowych. Język C ma również odpowiedni typ na przechowywanie zmiennych tekstowych, których zawartość może dynamicznie się zmieniać w trakcie wykonywania programu. Spróbuj zrozumieć i skompilować poniższy kod. Więcej szczegółów stanie się dla Ciebie jasnych, gdy omówione zostaną *tablice*.

@@ -23,6 +23,7 @@ To oznacza, że $sin(t\sqrt{\lambda})\phi$ jest oscylującym w czasie rozwiązan
 
 Dziś skupimy się na znalezieniu zestawu wektorów $\phi$ i wartości $\lambda$ dla naszej belki
 
+
 # Zacznijmy od największej $\lambda$
 Zaczniemy od największej $\lambda$. Dobrze zauważyć, że największa wartość własna odpowiada najniższej częstotliwości. Są to drgania własne najmniej tłumione w fizycznym układzie i niosące zazwyczaj najwięcej energii w inżynierskich zastosowaniach.
 
@@ -37,6 +38,7 @@ p &= S^{-1}M\phi\\
 \end{align*}
 W pierwszym etapie liczymy wynik $S^{-1}M\phi$, a następnie go normalizujemy tak by $\phi^T M \phi = 1$. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie $\phi$ będzie składać się tylko z tego wektora, a $p^TMp$ zbiegnie do największej $\lambda$.
 
+
 ### Zadanie
 
 Znajdź wektor $\phi$ odpowiadający największej wartości własnej wg. następującego schematu iteracji:
@@ -46,9 +48,11 @@ Znajdź wektor $\phi$ odpowiadający największej wartości własnej wg. następ
 - Oblicz $phi = \frac{1}{\sqrt{\langle p, Mp \rangle}} p$
 
 
+
 ### Zadanie
 
 Pokaż przemieszczenie $\phi$ przy pomocy funkcji `draw`. Zrób animację tego przemieszczenia przemnożonego przez $\sin{t}$.
+
 
 
 ### Zadanie
@@ -59,6 +63,7 @@ By otrzymać bardziej płynną animację dodaj:\\
 na początku funkcji `animate` w `winbgi2.cpp`. Zaś na końcu tej funkcji (przed  `return`):\\
 `pg++;`\\
 `setactivepage(pg % 2);`\\
+
 
 
 # A teraz następne $\lambda$
@@ -80,6 +85,7 @@ Dla każdego $i$ od $1$ do $n$ wykonaj:
 \vspace{1cm}\\
 Po tej procedurze wszystkie wektory $\phi$ są ortogonalne i długości $1$ względem macierzy $M$.
 
+
 ### Zadanie
 
 Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własnym wg. następującego schematu iteracji:
@@ -89,9 +95,11 @@ Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własny
 - Wykonaj ortonormalizację G-S wektorów $phi$
 
 
+
 ### Zadanie
 
 Zrób animację dla kolejnych przemieszczeń $\phi_i$ przemnożonych przez $\sin{t}$.
+
 
 
 ### Zadanie

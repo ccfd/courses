@@ -7,9 +7,11 @@ material: Instrukcja 2
 author: B. Górecki
 ---
 
+
 # Wprowadzenie
 
 Niniejszą instrukcją rozpoczynamy cykl laboratoriów, z których każde kolejne będzie rozwinięciem poprzedniego i wnioski z poprzedniego będą stanowiły motywację do zastosowania kolejnych metod. Tym samym należy zadbać o to, aby zadania z każdego laboratorium były wykonywane do końca, czy to na zajęciach czy w domu. Dziś zaznajomimy się ze sformułowaniem metody elementów skończonych dla jednego elementu czworokątnego. Dla uproszczenia nie będziemy stosować transformacji geometrycznych występujących w rzeczywistym sformułowaniu metody elementów skończonych, więc faktycznie będziemy operować zawsze na jednostkowych elementach kwadratowych.
+
 
 # Sformułowanie algebraiczne dla jednego elementu
 Zagadnienie wytrzymałości konstrukcji dla jednego elementu skończonego ma następujące sformułowanie algebraiczne: Elementowi skończonemu przypisana jest tzw. macierz sztywności $K$ reprezentująca jego sztywność na poszczególne rodzaje odkształceń (przesunięć jego wierzchołków), wektor przesunięć $\vec d$, jakim ulegną poszczególne wierzchołki elementu pod obciążeniem oraz wektor sił węzłowych $\vec F$ reprezentujący odpowiednio przeliczone siły (bądź obciążenia ciągłe) przyłożone do węzłów elementu.
@@ -42,11 +44,13 @@ $\frac{1}{8} - \frac{3}{8}\nu$ & $-\frac{1}{4} - \frac{\nu}{12}$ & $\frac{1}{8} 
 
 Macierz sztywności elementu $K$, dopóki nie zostaną na układ narzucone więzy unieruchamiające układ w przestrzeni jako ciało sztywne, jest osobliwa. Aby móc obliczyć przemieszczenia węzłów elementu pod działaniem określonych sił, nakładamy najpierw więzy. Załóżmy, że w naszym przypadku będą to więzy zamurowania lewego brzegu elementu, tzn. $x_0 = y_0 = x_3 = y_3 = 0$. W postaci macierzowej powyższe cztery równania są równoznaczne z zastąpieniem wierszy o indeksach 0, 1, 6 i 7 jedynkami na głównej diagonali macierzy i przypisaniu zer na tych indeksach w wektorze prawej strony. Po narzuceniu więzów macierz nie jest już osobliwa i można rozwiązać układ choćby procedurą Gaussa.
 
+
 ## Zadania
 - Napisz program, w którym zaalokujesz miejsce na macierz sztywności elementu, wektor przemieszczeń węzłowych oraz wektor prawych stron. Wykorzystaj tablicę `fix[]` (opis poniżej) do narzucenia warunków brzegowych i rozwiąż zagadnienie procedurą Gaussa. Jako wymuszenie przyłóż siłę ciągnącą w dół prawy dolny węzeł.
 - Zmodyfikuj w programie obciążenie: przyłóż siłę skierowaną pionowo w dół do obu węzłów na prawej krawędzi. Rozwiąż zadanie. Następnie rozciągnij element. Sprawdź wpływ współczynnika Poissona na rozwiązanie. Pobaw się programem, aby zaznajomić się z zadawaniem obciążeń i ruchami poszczególnych stopni swobody.
 - Zmień sposób zamurowania na inny. Sprawdź, co się stanie z rozwiązaniem, gdy w ogóle nie narzucisz warunków brzegowych lub nie w pełni odbierzesz sztywne stopnie swobody układu.
 - Spróbuj stworzyć teraz belkę składającą się z dwóch elementów skończonych.
+
 
 # Wskazówki implementacyjne
 - Elementy w belce mają być indeksowane od 0 do $m_x*m_y-1$, poczynając od elementu w lewym dolnym rogu i indeksując je po kolei w prawo. Po dojściu do końca belki, zaczynamy od lewego brzegu analogicznie indeksować kolejnymi liczbami elementy w pasie położonym o jeden element wyżej niż dopiero co poindeksowany pas. W identyczny sposób indeksowane są węzły. Takiego indeksowania wymaga uproszczenie implementacji (brak transformacji geometrycznej macierzy sztywności) oraz prostota obecnej funkcji do rysowania całego układu.
@@ -79,6 +83,7 @@ int main()
    return 0;
 }
 ```
+
 
 # Krótka dokumentacja biblioteki *MesLib.h*
 Biblioteka *MesLib.h* została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację i zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje:

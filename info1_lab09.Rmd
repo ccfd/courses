@@ -8,6 +8,7 @@ author: B. Górecki
 ---
 
 
+
 # Oblężenie
 Do poprzednich zajęć poznaliśmy już wszystkie instrukcje zaplanowane na ten kurs języka C. Czas przejść do kilku nieco bardziej dojrzałych przykładów. Dziś zajmiemy się oblężeniem zamku. Twoim zadaniem jest napisać program, który będzie symulował ostrzał zamku przez kule armatnie (kule lecą wg wzorów na rzut ukośny). Program powinien kolejno:
 - Przygotować okno graficzne o wymiarach 800 x 600.
@@ -25,8 +26,10 @@ $$
 Program powinien cały czas w pętli sprawdzać, czy kula nie uderzyła w pierwszą, pionową ścianę zamku. Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu. W przeciwnym razie program ma tak długo rysować ruch kuli, aż ta znajdzie się na ujemnych wartościach współrzędnej *y*. Ściana zamku zawiera się w przedziale $ 550 \leq x \leq 600 $ oraz jej górna powierzchnia ma współrzędną $ y = 300 $.\\
 Pamiętaj również o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędną w układzie współrzędnych ekranu oraz przeliczeniu kąta podawanego w stopniach na kąt podany w radianach na potrzeby funkcji trygonometrycznych.
 - Po wykonanym strzale program zapyta, czy udało się trafić w zamek. Jeśli odpowiesz twierdząco, zakończy działanie programu. Jeśli przecząco, pozwoli wybrać nowe parametry strzału i będzie powtarzał tę operację aż do chwili uzyskania satysfakcjonującego cię wyniku.
+
 ## Wskazówka
 W niniejszym programie w ogóle nie używaj funkcji `wait()`. Program z wykonaniem i tak będzie czekać na podanie nowego zestawu danych do funkcji `scanf()`.
+
 ## Oczekiwany wynik
 Spodziewamy się, że wynikiem działania twojego programu będzie efekt zbliżony do tego pokazanego na Rysunku 1.
 \begin{figure}
@@ -34,6 +37,7 @@ Spodziewamy się, że wynikiem działania twojego programu będzie efekt zbliżo
 \includegraphics[width=0.45\textwidth]{zamek2.jpg}
 \caption{Oczekiwany efekt działania programu}
 \end{figure}
+
 ## Dodatki
 Funkcja `animate` tak naprawdę jedynie spowalnia wykonywanie pętli `while` tak, aby kółka nie rysowały się zbyt szybko. Przykład jej użycia wygląda następująco:
 ```c++

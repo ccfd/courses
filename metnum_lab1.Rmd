@@ -8,9 +8,11 @@ material: Instrukcja 1
 author: B. Górecki
 ---
 
+
 # Wprowadzenie
 
 Rozwiązanie wielu problemów inżynierskich wymaga rozwiązania układów równań nieliniowych (wśród których choć jedno równanie jest równaniem nieliniowym). Dzisiejsze laboratorium będzie poświęcone metodzie Newtona-Raphsona pozwalającej rozwiązywać takie zagadnienia. W celu przypomnienia podstawowych zagadnień zaczniemy od problemu liniowego wypływającego ze statyki mechanizmu po uwolnieniu poszczególnych członów od więzów. Umiejętność rozwiązania zagadnienia liniowego jest nieodzownym elementem implementacji metody Newtona-Raphsona.
+
 
 # Problem liniowy
 \begin{figure*}[h]\label{uklad1}
@@ -70,6 +72,7 @@ $R_{Dy}$ \\
 53 \\ \end{tabular} \right]
 \end{displaymath}
 
+
 ## Zadanie 1
 Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych. Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku `Gauss.h`. (Wskazówka: Funkcja `void Gauss(int n, double **M, double *F, double *x)` przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji). Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
 \begin{displaymath}
@@ -94,7 +97,9 @@ $R_{Dy}$ \\
 		54.911765 \\ \end{tabular} \right]
 \end{displaymath}
 
+
 # Problem nieliniowy
+
 
 ## Metoda Newtona-Raphsona
 Metoda Newtona Raphsona wypływa z rozwinięcia funkcji wielu zmiennych w szereg Taylora, ucięcia go po członie liniowym i zapostulowania, że nieznany przyrost argumentów ma być taki, aby funkcja miała w tym miejscu wartość zero. Zapiszmy takie rozwinięcie dla funkcji $F(\vec x)$, gdzie $\vec x = [x,y]$, a $\vec h = [h_x, h_y]$.
@@ -122,6 +127,7 @@ Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 - Zaktualizuj przybliżenie rozwiązania: $\vec x^{k+1} = \vec x^k + \vec h^k$.
 - Przypisz $k = k+1$.
 - Wróc do punktu 3. i powtarzaj aż do osiągnięcia zbieżności.
+
 
 ## Zadanie 2
 
@@ -155,6 +161,7 @@ $-2x_2+2x_0$ & $-2x_3+2x_1$ & $-2x_0+2x_2$ & $-2x_1+2x_3$ \\
 \end{tabular}
 \right]
 \end{displaymath}
+
 
 ## Zadania do wykonania
 - Napisz program, który rozwiąże zadanie o położeniach przy wykorzystaniu metody Newtona-Raphsona. W tym celu stwórz następujące funkcje:

@@ -29,14 +29,17 @@ Drugie równanie to nasze równanie statyki. Pierwsze równanie to równanie spr
 Trzecie równanie to równanie ma gradient funkcji celu względem parametrów:
 \[\frac{d}{d\theta_k}J = \sum_{ij}\lambda_j \pr{\theta_k}S_{ji}(\theta)x_i = \gamma\theta_k^{\gamma-1}\sum_{ij}K^k_{ji}(\theta)\lambda_jx_i\]
 
+
 ### Zadanie
 
 Wprowadź w funkcji mnożącej przez macierz sztywności `SMult` parametr $\gamma=3$ (`gamma`) podnosząc `thick` do potęgi `gamma`. Zdefiniuj zmienną $\text`frac` = 0.5$ i ustaw początkowe $\theta$ (`thick`) na równe `frac`. 
 
 
+
 ### Zadanie
 
 Zdefiniuj wektor $g$ i rozwiąż równanie sprzężone (zauważ że $S$ jest symetryczna).
+
 
 
 ### Zadanie
@@ -49,16 +52,19 @@ Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długo�
 
 
 
+
 # Optymalizacja
 
 Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:\\
 `thick[i] += grad[i]; `
+
 ### Zadanie
 
 Dodaj gradient do parametrów `thick[i] += grad[i];`. Iteruj taką procedurę, oglądając wyniki.
 
 
 Tak ustawiony problem optymalizacyjny jest nieograniczony. Chcemy jednak uzyskać najmniejsze ugięcie przy ustalonej ,,masie'' belki. Tzn: chcemy zachować sumę parametrów $\theta$: $\sum_i\text`thick[i]` = \text`frac*mx*my`$. Możemy łatwo nałożyć ten więz na `grad`:
+
 
 ### Zadanie
 
@@ -67,6 +73,7 @@ Odejmij od wektora `grad` jego sumę.
 
 W kolejnych iteracjach grad ma różną skalę. Na początku jest duży, a później mały. Typową techniką w takich wypadkach jest normalizacja:
 
+
 ### Zadanie
 
 Zdefiniuj zmienną `move = 0.05`. Podziel `grad` przez jego największy element i pomnóż przez `move*5`.
@@ -74,14 +81,17 @@ Zdefiniuj zmienną `move = 0.05`. Podziel `grad` przez jego największy element 
 
 Na nasz projekt musimy jednak narzucić bardziej istotne warunki. Po pierwsze nigdzie grubość nie może przekroczyć $1$, i musi być powyżej $0$. Ponadto zazwyczaj chcemy, by zmiana w pojedynczej iteracji nie przekroczyła `move`. Te warunki dość trudno pogodzić z warunkiem stałej sumy elementów. 
 
+
 ### Zadanie
 
 Wynik dodania gradientu do parametrów wstaw do nowego wektora `nt[i] = thick[i] + grad[i];`. Dla danego parametru `scale` oblicz `thick[i] = scale * nt[i];`. Na tak obliczone `thick` narzuć powyżej opisane 4 warunki, obcinając za duże, bądź za małe wartości.
 
 
+
 ### Zadanie
 
 Zsumuj wartości `thick` po poprzedniej procedurze. Dobierz `scale` metodą bisekcji tak by $\sum_i\text`thick[i]` = \text`frac*mx*my`$.
+
 
 
 ### Zadanie
