@@ -6,7 +6,7 @@ author: W. Gryglas
 ---
 
 # Wstęp
-
+$x^2$
 # Wymagane narzędzie do pracy
 
 # Pierwszy skrytp
