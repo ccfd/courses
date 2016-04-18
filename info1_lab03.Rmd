@@ -139,7 +139,7 @@ Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu funkcji `Ktor
 Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje `Sumuj`, `Odejmij`, `Pomnoz`, `Podziel`. Funkcje te musisz napisać samodzielnie.
 
 
-# *Coś na deser
+# Coś na deser \*
 Drukowanie tekstów na ekran nie musi sprowadzać się tylko do drukowania napisów, które są na twardo zdefiniowane w kodzie źródłowym lub wartości przechowywanych w zmiennych liczbowych. Język C ma również odpowiedni typ na przechowywanie zmiennych tekstowych, których zawartość może dynamicznie się zmieniać w trakcie wykonywania programu. Spróbuj zrozumieć i skompilować poniższy kod. Więcej szczegółów stanie się dla Ciebie jasnych, gdy omówione zostaną *tablice*.
 ```c++
 void main()

@@ -46,7 +46,6 @@ navbar:
         href: metnum_lab6.html
       - text: "Instrukcja VII"
         href: metnum_lab7.html
-      - text: "Instrukcja VIII"
 exclude: [ "*.sh", "deploy", "*~" ]
 output:
   html_document:

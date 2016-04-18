@@ -116,7 +116,7 @@ free(A);
 - Napisz funkcję ```c++MatMatMultiply(double **A, double **B, double **C, int mA,
                                      int nA, int mB, int nB)```służącą do mnożenia dwóch macierzy prostokątnych ($\bf A$ o wymarze $m_A \times n_A$ i $\bf B$ o wymiarze $m_B \times n_B$) i wpisującą wynik do macierzy $\bf C$ (zadbaj w funkcji `main` o to, aby pamięć zaalokowana dla macierzy $\bf C$ była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). **Uwaga:** Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. ^[Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.]
 
-# Dla ambitnych*
+# Dla ambitnych \*
 Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie pamięci dla tablicy trójwymiarowej. Na przykład, gdybyś chciał napisać grę w trójwymiarowe kółko i krzyżyk. Skonsultuj z prowadzącym kod dla takiego przypadku.
 
 

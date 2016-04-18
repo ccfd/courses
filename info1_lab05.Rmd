@@ -135,7 +135,7 @@ Sprawdź, jak działa program np. dla 5000 kroków.
 
 
 
-# Kolizje z piłkami*}Dopisz funkcję {\tt searchAndCollide, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
+# Kolizje z piłkami}Dopisz funkcję {\tt searchAndCollide \*, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
 Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała.
 Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. 
 Załóżmy, że piłki, które się ze sobą zderzą mają indeksy $i$ i $j$. Ich prędkości należy policzyć w następujący sposób:
