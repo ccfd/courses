@@ -1,6 +1,9 @@
 name: "ccfd-courses"
 navbar:
   title: "CCFD Courses"
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/ccfd/courses
   left:
     - text: "Home"
       href: index.html
