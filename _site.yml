@@ -49,4 +49,4 @@ navbar:
 exclude: [ "*.sh", "deploy", "*~" ]
 output:
   html_document:
-    highlight: textmate
+    highlight: default
