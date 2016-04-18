@@ -8,17 +8,17 @@ author: Ł. Łaniewski-Wołłk
 ---
 
 # BASH: skrypty
-Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik` i wykonać komendą `./plik`. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego:**każda linijka skryptu wygląda nastepująco:** ,,`_program_ {\green agumenty`}''.
+Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik` i wykonać komendą `./plik`. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego:\\**każda linijka skryptu wygląda nastepująco:** ,,`_program_ {\green agumenty`}''.
 
 Przeanalizuj fragment kodu, z zaznaczonymi _programami_ i {\green opcjami}:
-{\tt
-_i=1_
-while _test_ {\green \$i -lt 10}
-do
-_echo_ {\green \$i}
-_cp_ {\green plik plik\_\$i}
-_i=_\$(_expr_ {\green \$i + 1})
-done
+{\tt\\
+_i=1_\\
+while _test_ {\green \$i -lt 10}\\
+do\\
+_echo_ {\green \$i}\\
+_cp_ {\green plik plik\_\$i}\\
+_i=_\$(_expr_ {\green \$i + 1})\\
+done\\
 }
 
 Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
@@ -60,29 +60,29 @@ Przykłady:
 - `cp {\blue ``ls{\blue `} katalog} albo `cp {\blue \$(`ls{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
 - `cp {\blue ``cat plik{\blue `} katalog} bądz `cp {\blue \$(`cat plik{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zawartej w `plik`u.
 ## Pętle i wyrażenia warunkowe
-- `if _program_ {\green argumenty`
-then
-_polecenia1_
-else
-_polecenia2_
-fi}
+- `if _program_ {\green argumenty`\\
+then\\
+_polecenia1_\\
+else\\
+_polecenia2_\\
+fi}\\
 Jeśli wykonanie ,,_program_ {\green argumenty}'' się powiedzie (program zwróci $0$), to wykonane zostaną _polecenia1_. W przeciwnym wypadku wykonane zostaną _polecenia2_.
-- `while _program_ {\green argumenty`
-do
-_polecenia_
-done}
+- `while _program_ {\green argumenty`\\
+do\\
+_polecenia_\\
+done}\\
 Pętla, która będzie wykonywać _polecenia_, puki ,,_program_ {\green argumenty}'' będzie wykonywany z powodzeniem.
-- `for i in {\green lista`
-do
-_polecenia_
-done}
+- `for i in {\green lista`\\
+do\\
+_polecenia_\\
+done}\\
 Pętla, która po kolei każdy element {\green list}y wstawi do zmiennej `i`, a następnie wykona _polecenia_.
 
-Dla przykładu:
-`for i in {\green *.jpg`
-do
-_mv_ {\green \$i IMG/a\_\$i} 
-done}
+Dla przykładu:\\
+`for i in {\green *.jpg`\\
+do\\
+_mv_ {\green \$i IMG/a\_\$i} \\
+done}\\
 Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedrostek `a\_` (np.: `obrazek.jpg` zamieni na `IMG/a\_obrazek.jpg`).
 
 ## Ćwiczenia

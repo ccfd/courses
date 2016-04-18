@@ -15,15 +15,15 @@ Gdzie $x$ to odkształcenie, $M$ to macierz masowa, zaś $S$ to macierz sztywno�
 Na początek przez $y$ oznaczmy prędkość odkształcenia, czyli $y = \dot{x}$. Teraz mamy układ równań pierwszego rzędu:
 
 \[\begin{cases}
-M\dot{y} &= F - Sx
-\dot{x} &= y
+M\dot{y} &= F - Sx\\
+\dot{x} &= y\\
 \end{cases}\]
 
 Zastępując pochodną po lewej stronie przez różnice skończoną mamy:
 
 \[\begin{cases}
-M\frac{y_{n+1}-y_n}{\text{dt} } &= F - Sx
-\frac{x_{n+1}-x_n}{\text{dt} } &= y
+M\frac{y_{n+1}-y_n}{\text{dt} } &= F - Sx\\
+\frac{x_{n+1}-x_n}{\text{dt} } &= y\\
 \end{cases}\]
 
 Po prawej stronie równania możemy użyć $x$ i $y$ z nowej ($n+1$), bądź starej ($n$) iteracji. W zależności co użyjemy otrzymamy mniej lub bardziej uwikłane równanie, a schemat będzie jawny (explicit) bądź niejawny (implicit).
@@ -35,8 +35,8 @@ Uwaga: by porównać różne schematy, każdy schemat napisz w nowej funkcji, kt
 Na początek wstawmy po prawej stronie wartości ze starej iteracji. Otrzymamy:
 
 \[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - Sx_n)
-x_{n+1} &= x_n + \text{dt} y_n
+My_{n+1} &= My_n + \text{dt}( F - Sx_n)\\
+x_{n+1} &= x_n + \text{dt} y_n\\
 \end{cases}\]
 
 ### ZadanieNapisz funkcję mnożącą przez macierz masową. W pliku `MesLib.h` jest ona zdefiniowana w analogiczny sposób jak macierz sztywności: przez macierz $M$ i stałą $Mm$. UWAGA: W mnożeniu przez macierz masową, należy także zamrozić wybrane stopnie swobody.
@@ -54,8 +54,8 @@ x_{n+1} &= x_n + \text{dt} y_n
 # Schemat pół niejawny (semi-implicit)
 Prostą modyfikacją jest użycie po prawej stronie $x$ ze starej iteracji i $y$ z nowej, otrzymując:
 \[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - Sx_n)
-x_{n+1} &= x_n + \text{dt} y_{n+1}
+My_{n+1} &= My_n + \text{dt}( F - Sx_n)\\
+x_{n+1} &= x_n + \text{dt} y_{n+1}\\
 \end{cases}\]
 
 ### Zadanie Zmodyfikuj kod rozwiązując układ na $y$ przed modyfikacją $x$-a. 
@@ -65,8 +65,8 @@ x_{n+1} &= x_n + \text{dt} y_{n+1}
 
 Możemy także po prawej stronie wziąć obie wartości z nowej iteracji, otrzymując:
 \[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - Sx_{n+1})
-x_{n+1} &= x_n + \text{dt} y_{n+1}
+My_{n+1} &= My_n + \text{dt}( F - Sx_{n+1})\\
+x_{n+1} &= x_n + \text{dt} y_{n+1}\\
 \end{cases}\]
 
 Wstawiając drugie równanie do pierwszego otrzymujemy:
@@ -81,8 +81,8 @@ Przekształcając:
 
 Ostatnia z omówionych metod bierze po prawej stronie średnią z wartości w nowej i starej iteracji:
 \[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - S\frac{x_{n+1}+x_{n}}{2})
-x_{n+1} &= x_n + \text{dt} \frac{y_{n+1}+y_{n}}{2}
+My_{n+1} &= My_n + \text{dt}( F - S\frac{x_{n+1}+x_{n}}{2})\\
+x_{n+1} &= x_n + \text{dt} \frac{y_{n+1}+y_{n}}{2}\\
 \end{cases}\]
 
 Po wstawieniu drugiego równania do pierwszego mamy:

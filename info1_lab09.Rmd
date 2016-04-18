@@ -22,7 +22,7 @@ $$
 $$
 y(t) = y_0 + V_0 cos(\alpha)t - \frac{gt^2}{2}.
 $$
-Program powinien cały czas w pętli sprawdzać, czy kula nie uderzyła w pierwszą, pionową ścianę zamku. Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu. W przeciwnym razie program ma tak długo rysować ruch kuli, aż ta znajdzie się na ujemnych wartościach współrzędnej *y*. Ściana zamku zawiera się w przedziale $ 550 \leq x \leq 600 $ oraz jej górna powierzchnia ma współrzędną $ y = 300 $.
+Program powinien cały czas w pętli sprawdzać, czy kula nie uderzyła w pierwszą, pionową ścianę zamku. Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu. W przeciwnym razie program ma tak długo rysować ruch kuli, aż ta znajdzie się na ujemnych wartościach współrzędnej *y*. Ściana zamku zawiera się w przedziale $ 550 \leq x \leq 600 $ oraz jej górna powierzchnia ma współrzędną $ y = 300 $.\\
 Pamiętaj również o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędną w układzie współrzędnych ekranu oraz przeliczeniu kąta podawanego w stopniach na kąt podany w radianach na potrzeby funkcji trygonometrycznych.
 - Po wykonanym strzale program zapyta, czy udało się trafić w zamek. Jeśli odpowiesz twierdząco, zakończy działanie programu. Jeśli przecząco, pozwoli wybrać nowe parametry strzału i będzie powtarzał tę operację aż do chwili uzyskania satysfakcjonującego cię wyniku.
 ## Wskazówka

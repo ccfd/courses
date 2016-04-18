@@ -19,8 +19,8 @@ Będziemy chcieli zoptymalizować przesunięcie węzła w którym przyłożyliś
 \[-\sum_i x_i g_i  + \sum_j\lambda_j (\sum_iS_{ji}(\theta)x_i - F_j)\]
 Optymalne rozwiązanie powinno zerować pochodne po $x$, $\lambda$ i $\theta$:
 \[\begin{cases}
--g_i + \sum_j\lambda_j S_{ji} (\theta) &= 0
-\sum_i S_{ji}(\theta)x_i - F_j &= 0
+-g_i + \sum_j\lambda_j S_{ji} (\theta) &= 0\\
+\sum_i S_{ji}(\theta)x_i - F_j &= 0\\
 \sum_{ij}\lambda_j \pr{\theta_k}S_{ji}(\theta)x_i &= 0
 \end{cases}\]
 
@@ -38,17 +38,17 @@ Zdefiniuj wektor $g$ i rozwiąż równanie sprzężone (zauważ że $S$ jest sym
 
 
 ### Zadanie
-Zdefiniuj funkcję `calc\_grad(int n, double * x, double * lambda, double * grad)`. Skopiuj do niej zawartość funkcji mnożącej `SMult` i zmień:
-`r[$\diamondsuit$] += x[$\spadesuit$]*pow(thick[$\clubsuit$],gamma)*$\heartsuit$;`
-na:
-`grad[$\clubsuit$] += gamma*pow(thick[$\clubsuit$],gamma-1)*lambda[$\diamondsuit$]*x[$\spadesuit$]*$\heartsuit$;`
+Zdefiniuj funkcję `calc\_grad(int n, double * x, double * lambda, double * grad)`. Skopiuj do niej zawartość funkcji mnożącej `SMult` i zmień:\\
+`r[$\diamondsuit$] += x[$\spadesuit$]*pow(thick[$\clubsuit$],gamma)*$\heartsuit$;`\\
+na:\\
+`grad[$\clubsuit$] += gamma*pow(thick[$\clubsuit$],gamma-1)*lambda[$\diamondsuit$]*x[$\spadesuit$]*$\heartsuit$;`\\
 Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długość jak `thick`, czyli `mx*my`. Pamiętaj także by wyzerować `grad` i wyciąć część murującą stopnie swobody.
 
 
 
 # Optymalizacja
 
-Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:
+Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:\\
 `thick[i] += grad[i]; `
 ### Zadanie
 Dodaj gradient do parametrów `thick[i] += grad[i];`. Iteruj taką procedurę, oglądając wyniki.

@@ -80,7 +80,7 @@ int b, d;
 double g, h;
 scanf("%lf%d%d%lf", &g, &d, &b, &h);
 ```
-**Uwaga:** Zwróć szczególną uwagę na znak & występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten **nigdy** nie występuje w intrukcji `printf`, za to zawsze jest potrzebny w instrukcji `scanf`.
+**Uwaga:** Zwróć szczególną uwagę na znak & występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten **nigdy** nie występuje w intrukcji `printf`, za to zawsze jest potrzebny w instrukcji `scanf`.\\
 Zauważ również, że używając jednej instrukcji `scanf` możesz wczytać wiele liczb. Sekwencje formatujące nie muszą być oddzielone spacjami, za to wartości muszą być podane z klawiatury w odpowiedniej kolejności - takiej, w jakiej zmienne na liście argumentów, do których te wartości mają trafić.
 ## Ćwiczenia
 Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie. Odejmowanie i dzielenie oczywiście nie jest przemienne. Policz zatem każdą z możliwych różnic czy ilorazów. Wydrukuj wszystkie wyniki na ekran.
