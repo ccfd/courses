@@ -38,6 +38,7 @@ p &= S^{-1}M\phi\\
 W pierwszym etapie liczymy wynik $S^{-1}M\phi$, a następnie go normalizujemy tak by $\phi^T M \phi = 1$. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie $\phi$ będzie składać się tylko z tego wektora, a $p^TMp$ zbiegnie do największej $\lambda$.
 
 ### Zadanie
+
 Znajdź wektor $\phi$ odpowiadający największej wartości własnej wg. następującego schematu iteracji:
 - Oblicz $b = M\cdot phi$
 - Rozwiąż układ $S\cdot p = b$
@@ -46,10 +47,12 @@ Znajdź wektor $\phi$ odpowiadający największej wartości własnej wg. następ
 
 
 ### Zadanie
+
 Pokaż przemieszczenie $\phi$ przy pomocy funkcji `draw`. Zrób animację tego przemieszczenia przemnożonego przez $\sin{t}$.
 
 
-### Zadanie[Dla ciekawych]
+### Zadanie
+[Dla ciekawych]
 By otrzymać bardziej płynną animację dodaj:\\
 `static int pg=0; `\\
 `setvisualpage(pg % 2);`\\
@@ -78,6 +81,7 @@ Dla każdego $i$ od $1$ do $n$ wykonaj:
 Po tej procedurze wszystkie wektory $\phi$ są ortogonalne i długości $1$ względem macierzy $M$.
 
 ### Zadanie
+
 Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własnym wg. następującego schematu iteracji:
 - Oblicz $b = M\cdot phi_j$
 - Rozwiąż układ $S\cdot p_j = b$
@@ -86,10 +90,12 @@ Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własny
 
 
 ### Zadanie
+
 Zrób animację dla kolejnych przemieszczeń $\phi_i$ przemnożonych przez $\sin{t}$.
 
 
 ### Zadanie
+
 Wyznacz odpowiednie $\lambda_i$
 
 

@@ -14,7 +14,8 @@ Naszym celem będzie więc napisanie funkcji `Solve` zastępującej funkcję `Ga
 
  $r = b-Ax^{(n)}$ nazywamy **residual'em**.
 
-### ZadaniePolicz residual. Następnie policz i wyświetl jego normę: $\|r\|=\sqrt{r^Tr}$ (napisz funkcję liczącą normę wektora `norm(double *,int)`). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?
+### Zadanie
+Policz residual. Następnie policz i wyświetl jego normę: $\|r\|=\sqrt{r^Tr}$ (napisz funkcję liczącą normę wektora `norm(double *,int)`). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?
 
 # Na głupa
 
@@ -34,12 +35,15 @@ Co daje nam prosty wzór na $p$:
 \[p_i = \frac{1}{A_{ii}}{r_i}\]
 Jest to równoważne z wzięciem za $M$ diagonalnej części $A$. Ten prosty schemat iteracji, z powyższą poprawką nazywamy **metodą Jacobiego**.
 
-### Zadanie Zaczynając od $x=0$ powtarzaj tą prostą iterację (np. 1000 razy). W każdej iteracji wyświetlaj normę residualu, a także wywołaj funkcję `draw\_residual(double)` by wykonać wykres zbieżności.
+### Zadanie
+ Zaczynając od $x=0$ powtarzaj tą prostą iterację (np. 1000 razy). W każdej iteracji wyświetlaj normę residualu, a także wywołaj funkcję `draw\_residual(double)` by wykonać wykres zbieżności.
 
 Tak wykonana iteracja się nie zbiega. Wprowadźmy współczynnik, który ,,przytłumi'' wykonywane iteracje:
 \[x^{(n+1)} = x^{(n)} + \alpha p\]
-### Zadanie Sprawdź zbieżność tego schematu przy różnych $\alpha$. Sprawdź $0.5$, $0.9$, $1.1$ i $2$.
-### Zadanie Wydziel z funkcji `Solve` część odpowiedzialną za mnożenie przez $A$: `Mult(double** A, double*x, double* r)` i preconditioner: `Precond(double** A, double*x, double* p)`
+### Zadanie
+ Sprawdź zbieżność tego schematu przy różnych $\alpha$. Sprawdź $0.5$, $0.9$, $1.1$ i $2$.
+### Zadanie
+ Wydziel z funkcji `Solve` część odpowiedzialną za mnożenie przez $A$: `Mult(double** A, double*x, double* r)` i preconditioner: `Precond(double** A, double*x, double* p)`
 
 Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner. Zauważmy, że licząc $p_2$ mamy już obliczone $p_1$ i możemy go użyć. Tak więc nie musimy pomijać elementów układu ,,pod diagonalą'':
 \[\begin{array}{rrrrrl}
@@ -53,7 +57,8 @@ Co daje nam prosty wzór na $p$:
 \[p_i = \frac{1}{A_{ii}}(r_i - \sum_{j=1}^{i-1}A_{ij}p_j)\]
 Gdy $\alpha=1$ schemat taki nazywamy **Metodą Gaussa-Seidla**. 
 
-### Zadanie Wypróbuj nowy wzór na $p$, znów sprawdzając różne $\alpha$.
+### Zadanie
+ Wypróbuj nowy wzór na $p$, znów sprawdzając różne $\alpha$.
 
 Schematy z $\alpha > 1$ nazywamy metodami **Successive Over-Relaxation** (SOR).
 
@@ -68,14 +73,17 @@ Ostatecznie:
 \[\alpha = \frac{r^TAp}{(Ap)^TAp}\]
 Schemat z takim $\alpha$ nazywamy metodą **MINRES**.
 
-### Zadanie Oblicz wektor $Ap$. Zauważ, że wyrażenie $a^Tb$ to iloczyn skalarny dwóch wektorów $a^Tb = a\cdot b$. Napisz funkcję liczącą iloczyn skalarny `skal(double*, double*, int)` i oblicz $\alpha$ z powyższego wzoru. Sprawdź zbieżność przy takim $\alpha$.
+### Zadanie
+ Oblicz wektor $Ap$. Zauważ, że wyrażenie $a^Tb$ to iloczyn skalarny dwóch wektorów $a^Tb = a\cdot b$. Napisz funkcję liczącą iloczyn skalarny `skal(double*, double*, int)` i oblicz $\alpha$ z powyższego wzoru. Sprawdź zbieżność przy takim $\alpha$.
 
 # Wycinamy nadmiary
 Przez $q$ oznaczmy poprawkę z poprzedniej iteracji. Można powiedzieć, że w następnej iteracji nie chcemy ,,stracić'' tego co ,,zyskaliśmy'' w poprzedniej. Dlatego za nową poprawkę weźmiemy $p - \beta q$. Teraz wzór na nowy residual będzie:
 \[\hat{r} = r - \alpha A(p-\beta q)\]
-### Zadanie Wypisz wzór na $\hat{r}^T\hat{r}$ i zróżniczkuj go po $\beta$. Wylicz $\beta$ przyjmując, że $r^T Aq = 0$ (to wynika z poprzedniej iteracji).
+### Zadanie
+ Wypisz wzór na $\hat{r}^T\hat{r}$ i zróżniczkuj go po $\beta$. Wylicz $\beta$ przyjmując, że $r^T Aq = 0$ (to wynika z poprzedniej iteracji).
 
-### Zadanie Zmodyfikuj iterację wg. schematu:
+### Zadanie
+ Zmodyfikuj iterację wg. schematu:
 - oblicz residual
 - oblicz $p=M^{-1}r$
 - jeżeli to nie pierwsza iteracja: oblicz $\beta$ i nową poprawkę: $p=p-\beta q$
@@ -92,16 +100,20 @@ W naszym przypadku możemy wykorzystać fakt, że macierz $A$ jest symetryczna i
 - Dlaczego $A$ jest symetryczna?
 - Dlaczego $A$ jest dodatnio określona?
 
-### Zadanie Podstaw w powyższym wzorze $x = x^{(n)} + \alpha p$, zróżniczkuj i wylicz $\alpha$. Zauważ, że $\frac{1}{2}x^TAx - b^Tx = \text{const} + \frac{1}{2}(\alpha p)^TA(\alpha p) - r^T(\alpha p)$.
+### Zadanie
+ Podstaw w powyższym wzorze $x = x^{(n)} + \alpha p$, zróżniczkuj i wylicz $\alpha$. Zauważ, że $\frac{1}{2}x^TAx - b^Tx = \text{const} + \frac{1}{2}(\alpha p)^TA(\alpha p) - r^T(\alpha p)$.
 
-### Zadanie Analogicznie jak poprzednio, podstaw $x = x^{(n)} + \alpha (p-\beta q)$, zróżniczkuj i wylicz $\beta$.(tym razem $q^Tr = 0$)
+### Zadanie
+ Analogicznie jak poprzednio, podstaw $x = x^{(n)} + \alpha (p-\beta q)$, zróżniczkuj i wylicz $\beta$.(tym razem $q^Tr = 0$)
 
-### Zadanie Zastosuj dokładnie identyczną iterację zamieniając jedynie $\alpha$ i $\beta$ i zbadaj zbieżność.
+### Zadanie
+ Zastosuj dokładnie identyczną iterację zamieniając jedynie $\alpha$ i $\beta$ i zbadaj zbieżność.
 
 Schemat taki nazywamy metodą **gradientu sprzężonego** --- Conjugate Gradient Method (**CG**).
 
 **Uwaga:** Aktualnie zbieżność jest bardzo słaba. Wynika to z faktu, że choć $A$ jest symetryczna to preconditioner z metody Gaussa-Seidla $M^{-1}$ już nie jest.
 
-### Zadanie Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem $p=r$ (brakiem preconditionera).
+### Zadanie
+ Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem $p=r$ (brakiem preconditionera).
 
 **Uwaga:** Metodę Conjugate Gradient można zaimplementować w bardziej ,,zwartej'' formie. Taki schemat można znaleść na wikipedii, bądz w notatkach z wykładu.
