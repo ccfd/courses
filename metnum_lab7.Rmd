@@ -21,13 +21,13 @@ Optymalne rozwiązanie powinno zerować pochodne po $x$, $\lambda$ i $\theta$:
 \[\begin{cases}
 -g_i + \sum_j\lambda_j S_{ji} (\theta) &= 0\\
 \sum_i S_{ji}(\theta)x_i - F_j &= 0\\
-\sum_{ij}\lambda_j \pr{\theta_k}S_{ji}(\theta)x_i &= 0
+\sum_{ij}\lambda_j \frac{\partial}{\partial \theta_k}S_{ji}(\theta)x_i &= 0
 \end{cases}\]
 
 Drugie równanie to nasze równanie statyki. Pierwsze równanie to równanie sprzężone (adjoint):
 \[S^T(\theta)\lambda = g\]
 Trzecie równanie to równanie ma gradient funkcji celu względem parametrów:
-\[\frac{d}{d\theta_k}J = \sum_{ij}\lambda_j \pr{\theta_k}S_{ji}(\theta)x_i = \gamma\theta_k^{\gamma-1}\sum_{ij}K^k_{ji}(\theta)\lambda_jx_i\]
+\[\frac{d}{d\theta_k}J = \sum_{ij}\lambda_j \frac{\partial}{\partial \theta_k}S_{ji}(\theta)x_i = \gamma\theta_k^{\gamma-1}\sum_{ij}K^k_{ji}(\theta)\lambda_jx_i\]
 
 
 ### Zadanie
