@@ -12,7 +12,7 @@ author: Ł. Łaniewski-Wołłk
 Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{bash}. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
 
 Przeanalizuj fragment kodu, z zaznaczonymi `programami` i `opcjami`:
-```bash
+```Bash
 i=1
 while test $i -lt 10
 do
@@ -21,6 +21,28 @@ do
 	i=$(expr $i + 1)
 done
 ```
+
+```{.bash}
+i=1
+while test $i -lt 10
+do
+	echo $i
+	cp plik plik_$i
+	i=$(expr $i + 1)
+done
+```
+
+```
+i=1
+while test $i -lt 10
+do
+	echo $i
+	cp plik plik_$i
+	i=$(expr $i + 1)
+done
+```{.bash}
+
+
 
 Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 - `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
