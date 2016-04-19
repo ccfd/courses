@@ -1,0 +1,26 @@
+\documentclass[landscape]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\usepackage[a4paper,margin=2cm,left=1cm,right=1cm]{geometry}
+\usepackage{pdfpages}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhead{}
+\rhead{\begin{tabular}{r} Creative Commons License:\\ Attribution Share Alike\end{tabular}\raisebox{-0.3\height}{\includegraphics[height=0.7cm]{common/cc_cc_30}\includegraphics[height=0.7cm]{common/cc_by_30}\includegraphics[height=0.7cm]{common/cc_sa_30}}}
+\chead{\LARGE\sc $course$ : $material$}
+\lhead{author}
+\rfoot{\thepage}
+\lfoot{}
+\cfoot{\it Wydzia\l{} Mechaniczny Energetyki i Lotnictwa, Politechnika Warszawska}
+
+\begin{document}
+\includepdf[pages={-},nup=2x1,pagecommand={\pagestyle{fancy}}]{$pdffile$}
+\end{document}
