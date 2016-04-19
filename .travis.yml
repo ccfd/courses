@@ -11,5 +11,6 @@ install:
 - R -e "devtools::install_github('rstudio/rmarkdown')"
 script:
 - R -e "rmarkdown::render_site()"
+- tools/pdf_full info1_lab01.md
 after_success:
 - ./tools/deploy.sh
