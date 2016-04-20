@@ -50,10 +50,11 @@ navbar:
         href: metnum_lab6.html
       - text: "Instrukcja VII"
         href: metnum_lab7.html
-exclude: [ "*.sh", "deploy", "*~" ]
+exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip" ]
 output:
   html_document:
     highlight: pygments
     toc_depth: 2
     toc_float:
       collapsed: false
+    mathjax: local
