@@ -14,6 +14,7 @@ install:
 - export RMARKDOWN_MATHJAX_PATH=$PWD/MathJax-master
 script:
 - R -e "rmarkdown::render_site()"
-- ls _site
+- ls _site/site_libs
+- find -name "*.js"
 after_success:
 - ./tools/deploy.sh
