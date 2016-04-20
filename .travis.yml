@@ -10,10 +10,10 @@ install:
 - R -e "install.packages('devtools')"
 - R -e "devtools::install_github('rstudio/rmarkdown')"
 - wget https://github.com/mathjax/MathJax/archive/master.zip
-- unzip master.zip
+- unzip master.zip >/dev/null
 - rm master.zip
 - export RMARKDOWN_MATHJAX_PATH=$PWD/MathJax-master
 script:
 - R -e "rmarkdown::render_site()"
 after_success:
-- ./tools/deploy.sh
+- ./tools/deploy.sh >/dev/null
