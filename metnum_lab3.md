@@ -1,6 +1,3 @@
-
-
-
 ---
 number: 1
 course: Metody Numeryczne

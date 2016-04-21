@@ -1,4 +1,3 @@
-
 ---
 author: "Gall Anonim / Krzysztof Marchlewski"
 course: Informatyka 3

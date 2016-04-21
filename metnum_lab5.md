@@ -1,6 +1,3 @@
-
-
-
 ---
 number: 5
 course: Metody Numeryczne
