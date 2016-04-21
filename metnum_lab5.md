@@ -3,6 +3,7 @@ number: 5
 course: Metody Numeryczne
 material: Instrukcja 5
 author: Ł. Łaniewski-Wołłk
+title: Równania ruchu
 ---
 
 Na tych laboratoriach skupimy się na scałkowaniu równania ruchu:

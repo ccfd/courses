@@ -3,6 +3,7 @@ number: 4
 course: Metody Numeryczne
 material: Instrukcja 4
 author: Ł. Łaniewski-Wołłk
+title: Mnożenie przez macież jako funkcja
 ---
 
 Łatwo zauważyć, że w metodzie gradientów sprzężonych nie używamy elementów macierzy, lecz tylko możliwości mnożenia przez nią. Tzn: nie musimy wiedzieć jak wygląda $A$, wystarczy że dla danego wektora $x$ potrafimy obliczyć $Ax$.
