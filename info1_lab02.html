@@ -354,7 +354,10 @@ div.tocify {
       <a href="info3_lab1.html">Instrukcja I</a>
     </li>
     <li>
-      <a href="info3_lab2.html">Instrukcja II</a>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.md">Instrukcja IV,V</a>
     </li>
   </ul>
 </li>
@@ -443,10 +446,10 @@ div.tocify {
 <p>Pierwszym przykładem niech będzie:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
 a = <span class="dv">0</span>;
-<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.14</span>)
+<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.</span><span class="dv">14</span>)
 {
     circle(a * <span class="dv">100</span>, sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
-    a = a + <span class="fl">0.001</span>;
+    a = a + <span class="fl">0.</span><span class="bn">001</span>;
 }</code></pre></div>
 <p>Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o promieniu 3.</p>
 </div>
@@ -466,10 +469,10 @@ a = <span class="dv">0</span>;
 a = <span class="dv">0</span>;
 <span class="kw">while</span> (a &lt; <span class="dv">2</span>)
 {
-    circle(a * <span class="dv">100</span>, sin( a * <span class="fl">3.14</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    circle(a * <span class="dv">100</span>, sin( a * <span class="fl">3.</span><span class="dv">14</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
     circle(a * <span class="dv">100</span>, sin( a * (<span class="dv">314</span> / <span class="dv">100</span>) ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
     circle(a * <span class="dv">100</span>, sin( (a * <span class="dv">314</span>) / <span class="dv">100</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
-    a = a + <span class="fl">0.001</span>;
+    a = a + <span class="fl">0.</span><span class="bn">001</span>;
 }</code></pre></div>
 </div>
 </div>
@@ -493,10 +496,10 @@ a = <span class="dv">0</span>;
 {
     graphics(<span class="dv">200</span>,<span class="dv">200</span>);
 
-    kreski( <span class="dv">10</span>, <span class="fl">1.000</span>); 
-    kreski( <span class="dv">20</span>, <span class="fl">0.500</span>); 
-    kreski( <span class="dv">30</span>, <span class="fl">0.333</span>); 
-    kreski( <span class="dv">40</span>, <span class="fl">0.250</span>); 
+    kreski( <span class="dv">10</span>, <span class="fl">1.</span><span class="bn">000</span>); 
+    kreski( <span class="dv">20</span>, <span class="fl">0.</span><span class="dv">500</span>); 
+    kreski( <span class="dv">30</span>, <span class="fl">0.</span><span class="dv">333</span>); 
+    kreski( <span class="dv">40</span>, <span class="fl">0.</span><span class="dv">250</span>); 
     
     wait();
 }</code></pre></div>
@@ -508,7 +511,7 @@ a = <span class="dv">0</span>;
 <div id="instrukcja-warunkowa" class="section level1">
 <h1>Instrukcja warunkowa</h1>
 <p>Kolejnym bloczkiem składowym programowania, jest instrukcja warunkowa. Sprawdza ona warunek i wykonuje pewną część kodu, tylko gdy warunek jest spełniony.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">x = <span class="fl">2.0</span>;
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">x = <span class="fl">2.</span><span class="dv">0</span>;
 <span class="kw">if</span> ( x &gt; <span class="dv">0</span> ) {
     y = sqrt(x);
 } <span class="kw">else</span> {
@@ -518,14 +521,14 @@ a = <span class="dv">0</span>;
 <p>Zobaczmy prosty przykład:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
 a = <span class="dv">0</span>;
-<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.14</span>)
+<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.</span><span class="dv">14</span>)
 {
     <span class="kw">if</span> (a &lt; <span class="dv">2</span>) {
         circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">5</span>);
     } <span class="kw">else</span> {
         circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">10</span>);
     }
-    a = a + <span class="fl">0.001</span>;
+    a = a + <span class="fl">0.</span><span class="bn">001</span>;
 }</code></pre></div>
 <p>Gdyby nie instrukcja <code>if</code>, ten program narysował by koło z małych kółek. Teraz, gdy kąt <code>a</code> przekroczy <span class="math inline">\(2\)</span> radiany zmieni promień kółeczka z <span class="math inline">\(5\)</span> na <span class="math inline">\(10\)</span></p>
 <div id="cwiczenia-4" class="section level2">

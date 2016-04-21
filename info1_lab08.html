@@ -354,7 +354,10 @@ div.tocify {
       <a href="info3_lab1.html">Instrukcja I</a>
     </li>
     <li>
-      <a href="info3_lab2.html">Instrukcja II</a>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.md">Instrukcja IV,V</a>
     </li>
   </ul>
 </li>
@@ -437,16 +440,16 @@ div.tocify {
    
    <span class="co">// Tu mozemy przypisac wartosci kolejnym elementom:</span>
    A[<span class="dv">0</span>][<span class="dv">0</span>] = <span class="dv">1</span>;
-   A[<span class="dv">0</span>][<span class="dv">1</span>] = <span class="fl">1.5</span>;
+   A[<span class="dv">0</span>][<span class="dv">1</span>] = <span class="fl">1.</span><span class="dv">5</span>;
    A[<span class="dv">0</span>][<span class="dv">2</span>] = <span class="dv">0</span>;
-   A[<span class="dv">0</span>][<span class="dv">3</span>] = <span class="fl">-2.7</span>;
+   A[<span class="dv">0</span>][<span class="dv">3</span>] = <span class="fl">-2.</span><span class="dv">7</span>;
    ...
    A[<span class="dv">2</span>][<span class="dv">3</span>] = <span class="dv">8</span>;
    <span class="co">// Tu mamy wypelniona macierz</span>
    <span class="co">// Mozemy wykonywac obliczenia</span>
 }</code></pre></div>
 <p>Zauważmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania. Kompilator sam o to dba (jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy - one też są automatycznie niszczone przez kompilator). Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez wypisanie kolejnych dwunastu linijek przypisań. Możemy to zrobić na liście inicjalizacyjnej od razu na etapie deklaracji tablicy. Dokonuje się tego tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">0</span>, <span class="fl">-2.7</span>}, {<span class="dv">-3</span>, <span class="fl">2.5</span>, <span class="dv">7</span>, <span class="dv">0</span>}, {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-3</span>, <span class="dv">8</span>}};</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="dv">1</span>, <span class="fl">1.</span><span class="dv">5</span>, <span class="dv">0</span>, <span class="fl">-2.</span><span class="dv">7</span>}, {<span class="dv">-3</span>, <span class="fl">2.</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">0</span>}, {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-3</span>, <span class="dv">8</span>}};</code></pre></div>
 <p>W ten sposób stworzymy poniższą macierz: <span class="math display">\[
 \mathbf{A} = 
 \left(

@@ -354,7 +354,10 @@ div.tocify {
       <a href="info3_lab1.html">Instrukcja I</a>
     </li>
     <li>
-      <a href="info3_lab2.html">Instrukcja II</a>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.md">Instrukcja IV,V</a>
     </li>
   </ul>
 </li>
@@ -415,12 +418,12 @@ div.tocify {
 <p>Celem zajęć jest wprowadzenie do używania tablic w języku C. Tablicą (ang. <em>array</em>) nazywamy ciąg zmiennych zgromadzony pod jedną globalną nazwą, które są identyfikowane indeksami. Na tych zajęciach zajmiemy się tylko tablicami statycznymi tzn. takimi, których rozmiar jest określany w momencie deklaracji<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tablicę statyczną deklarujemy tak, jak zwykłą zmienną, przy czym dodatkowo określamy jej długość. Wszystko wygląda, jak w przykładowym kodzie poniżej:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">      <span class="dt">double</span> a[<span class="dv">4</span>];      <span class="co">// deklaracja tablicy</span>
 
-      a[<span class="dv">0</span>] = <span class="fl">5.5</span>;          <span class="co">// przypisanie wartości do zmiennych</span>
-      a[<span class="dv">1</span>] = <span class="fl">3.521</span>;
-      a[<span class="dv">2</span>] = <span class="fl">6.45</span>;
-      a[<span class="dv">3</span>] = <span class="fl">4.51</span>;</code></pre></div>
+      a[<span class="dv">0</span>] = <span class="fl">5.</span><span class="dv">5</span>;          <span class="co">// przypisanie wartości do zmiennych</span>
+      a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">521</span>;
+      a[<span class="dv">2</span>] = <span class="fl">6.</span><span class="dv">45</span>;
+      a[<span class="dv">3</span>] = <span class="fl">4.</span><span class="dv">51</span>;</code></pre></div>
 <p>Zwróć uwagę, że elementy tablicy sa indeksowane od <span class="math inline">\(0\)</span> do <span class="math inline">\(n-1\)</span>, gdzie <span class="math inline">\(n\)</span> to rozmiar tablicy. Można również zainicjalizować wszystkie elementy tablicy natychmiast (taki mechanizm jest użyteczny, jeśli wektory są stosunkowo krótkie):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">     <span class="dt">double</span> b[<span class="dv">3</span>] = { <span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="fl">-4.3</span>};</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">     <span class="dt">double</span> b[<span class="dv">3</span>] = { <span class="fl">1.</span><span class="dv">2</span>, <span class="fl">2.</span><span class="dv">4</span>, <span class="fl">-4.</span><span class="dv">3</span>};</code></pre></div>
 </div>
 <div id="gra-w-kulki" class="section level1">
 <h1>Gra w kulki</h1>
@@ -440,8 +443,8 @@ Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graf
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N){
 
       <span class="kw">for</span> ( <span class="dt">int</span> i=<span class="dv">0</span>; i &lt; N; ++i){
-          x[i] = <span class="fl">0.0</span>;
-          y[i] = <span class="fl">0.0</span>;}
+          x[i] = <span class="fl">0.</span><span class="dv">0</span>;
+          y[i] = <span class="fl">0.</span><span class="dv">0</span>;}
 }</code></pre></div>
 <p>Wykorzystaliśmy tutaj pętlę , która pobiera 3 argumenty: - wartość startową, - warunek działania (pętle działa, dopóki warunek <span class="math inline">\(i&lt;N\)</span> jest spełniony), - operację na argumencie (tutaj zwiększamy <span class="math inline">\(i\)</span> o 1, co będzie najpowszechniejszą praktyką<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>).</p>
 <p>Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na których ma ona działać oraz długość tych wektorów:</p>
@@ -453,9 +456,9 @@ Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graf
 <p>Ponieważ <code>x</code> oraz <code>y</code> są wskaźnikami do pierwszych (dokładnie rzecz ujmując - zerowych) elementów tablic, można użyć mechanizmu wyłuskania wartości ze wskaźników i iterować się po wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a[<span class="dv">3</span>];
 <span class="co">// po wartościach:</span>
-a[<span class="dv">0</span>] = <span class="fl">1.2</span>;         a[<span class="dv">1</span>] = <span class="fl">3.13</span>;         a[<span class="dv">2</span>] = <span class="fl">0.22</span>;
+a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</span>;         a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">13</span>;         a[<span class="dv">2</span>] = <span class="fl">0.</span><span class="dv">22</span>;
 <span class="co">//albo na wskaźnikach:</span>
-*(a)   = <span class="fl">1.2</span>;           *(a<span class="dv">+1</span>) = <span class="fl">3.13</span>;        *(a<span class="dv">+2</span>) = <span class="fl">0.22</span>;</code></pre></div>
+*(a)   = <span class="fl">1.</span><span class="dv">2</span>;           *(a<span class="dv">+1</span>) = <span class="fl">3.</span><span class="dv">13</span>;        *(a<span class="dv">+2</span>) = <span class="fl">0.</span><span class="dv">22</span>;</code></pre></div>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>

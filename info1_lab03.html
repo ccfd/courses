@@ -354,7 +354,10 @@ div.tocify {
       <a href="info3_lab1.html">Instrukcja I</a>
     </li>
     <li>
-      <a href="info3_lab2.html">Instrukcja II</a>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.md">Instrukcja IV,V</a>
     </li>
   </ul>
 </li>
@@ -426,7 +429,7 @@ To jest tuz po znaku nowej linii.      Zas ten fragment
                                        oddzielony jest znakiem
                                        tabulacji!
 Za to w ponizszej linii wszystkie liczby oddzielono tabulatorami.
-<span class="fl">5.2</span>    <span class="fl">3.14</span>    <span class="dv">-7</span>    <span class="dv">8</span></code></pre></div>
+<span class="fl">5.</span><span class="dv">2</span>    <span class="fl">3.</span><span class="dv">14</span>    <span class="dv">-7</span>    <span class="dv">8</span></code></pre></div>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
@@ -439,11 +442,11 @@ Za to w ponizszej linii wszystkie liczby oddzielono tabulatorami.
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dv">82</span>% dysku C:\ jest w uzyciu!</code></pre></div>
 <p>Program o znaczeniu inżynierskim musi jednak mieć możliwość drukowania na ekran liczb i wyników przeprowadzonych działań. - Przepisz do funkcji main następujące instrukcje:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a = <span class="dv">5</span>;
-<span class="dt">double</span> c = <span class="fl">8.2</span>;
+<span class="dt">double</span> c = <span class="fl">8.</span><span class="dv">2</span>;
 
 printf(<span class="st">&quot;Zmienna a ma wartosc </span><span class="ch">%d</span><span class="st">, zas zmienna c = </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, a, c);
 
-c = c + <span class="fl">7.5</span>;
+c = c + <span class="fl">7.</span><span class="dv">5</span>;
 c -= a;
 a = <span class="dv">1</span>;
 c -= <span class="dv">2</span>*a;
@@ -509,13 +512,13 @@ scanf(<span class="st">&quot;</span><span class="ch">%lf%d%d%lf</span><span clas
 <p>Zwróć uwagę na instrukcję <code>return</code>, która zwraca z funkcji <strong>wartość przechowywaną w konkretnej zmiennej</strong>. To ważne! Funkcja nigdy nie zwraca zmiennej. Zwraca tylko wartość, jaka była w tej zmiennej przechowywana. Ponadto zmienna zadeklarowana w danej funkcji będzie dla programu widoczna <strong>tylko i wyłącznie wewnątrz tej funkcji</strong>, a nie będzie rozpoznawana w innych fragmentach kodu (np. funkcji <code>main</code>). Prześledźmy jeszcze kod funkcji <code>main</code>, w której występuje wywołanie naszej funkcji.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
 {
-   <span class="dt">float</span> c = <span class="fl">8.14</span>;
-   <span class="dt">double</span> d = <span class="fl">-7.3814</span>;
+   <span class="dt">float</span> c = <span class="fl">8.</span><span class="dv">14</span>;
+   <span class="dt">double</span> d = <span class="fl">-7.</span><span class="dv">3814</span>;
    <span class="dt">int</span> InnaZmienna = <span class="dv">15</span>;
    
    KtoryWiekszy(d, c);
    InnaZmienna = KtoryWiekszy(d, c);
-   InnaZmienna = KtoryWiekszy(<span class="fl">12.5</span>, c);
+   InnaZmienna = KtoryWiekszy(<span class="fl">12.</span><span class="dv">5</span>, c);
 }</code></pre></div>
 <p>Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu funkcji <code>KtoryWiekszy</code> wydrukują wartość aktualnie przechowywaną w zmiennej <code>InnaZmienna</code>. Zastanów się, jaki będzie wynik i sprawdź, czy masz rację.</p>
 <p>Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje <code>Sumuj</code>, <code>Odejmij</code>, <code>Pomnoz</code>, <code>Podziel</code>. Funkcje te musisz napisać samodzielnie.</p>
