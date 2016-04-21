@@ -7,7 +7,9 @@ pdf_full = function( ... ) {
       template = "tools/pdf_full_template.tex"
     )
     cat("And now running again ",input," with ",output,"\n")
-    render(input, post_doc)
+    ret = render(input, post_doc)
+    file.rename(ret, output)
+    output
   }
   ret
 }
