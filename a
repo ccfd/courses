@@ -1,0 +1,327 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(rmarkdown); render
+function (input, output_format = NULL, output_file = NULL, output_dir = NULL, 
+    output_options = NULL, intermediates_dir = NULL, runtime = c("auto", 
+        "static", "shiny"), clean = TRUE, params = NULL, knit_meta = NULL, 
+    envir = parent.frame(), run_pandoc = TRUE, quiet = FALSE, 
+    encoding = getOption("encoding")) 
+{
+    perf_timer_start("render")
+    if (identical(output_format, "all")) {
+        output_format <- enumerate_output_formats(input, envir, 
+            encoding)
+        if (is.null(output_format)) 
+            output_format <- "html_document"
+    }
+    if (is.character(output_format) && length(output_format) > 
+        1) {
+        outputs <- character()
+        for (format in output_format) {
+            output <- render(input = input, output_format = format, 
+                output_file = NULL, output_dir = output_dir, 
+                output_options = output_options, intermediates_dir = intermediates_dir, 
+                runtime = runtime, clean = clean, params = params, 
+                knit_meta = knit_meta, envir = envir, run_pandoc = run_pandoc, 
+                quiet = quiet, encoding = encoding)
+            outputs <- c(outputs, output)
+        }
+        if (length(output_file) > 1) {
+            file.rename(outputs, output_file)
+            outputs <- output_file
+        }
+        return(invisible(outputs))
+    }
+    required_pandoc <- "1.12.3"
+    if (!pandoc_available(required_pandoc)) {
+        stop("pandoc version ", required_pandoc, " or higher ", 
+            "is required and was not found.", call. = FALSE)
+    }
+    intermediates <- c()
+    on.exit(if (clean) unlink(intermediates, recursive = TRUE), 
+        add = TRUE)
+    if (!is.null(intermediates_dir)) {
+        if (!dir_exists(intermediates_dir)) 
+            dir.create(intermediates_dir, recursive = TRUE)
+        intermediates_dir <- normalize_path(intermediates_dir)
+    }
+    intermediates_loc <- function(file) {
+        if (is.null(intermediates_dir)) 
+            file
+        else file.path(intermediates_dir, file)
+    }
+    if (!is.null(output_dir)) {
+        if (!dir_exists(output_dir)) 
+            dir.create(output_dir, recursive = TRUE)
+        output_dir <- normalize_path(output_dir)
+    }
+    original_input <- normalize_path(input)
+    if (grepl(.shell_chars_regex, basename(input))) {
+        input_no_shell_chars <- intermediates_loc(file_name_without_shell_chars(basename(input)))
+        if (file.exists(input_no_shell_chars)) {
+            stop("The name of the input file cannot contain the special shell ", 
+                "characters: ", .shell_chars_regex, " (attempted to copy to a ", 
+                "version without those characters '", input_no_shell_chars, 
+                "' ", "however that file already exists)", call. = FALSE)
+        }
+        file.copy(input, input_no_shell_chars, overwrite = TRUE)
+        intermediates <- c(intermediates, input_no_shell_chars)
+        input <- input_no_shell_chars
+        if (is.null(intermediates_dir)) {
+            intermediates_dir <- dirname(normalize_path(input_no_shell_chars))
+            if (same_path(intermediates_dir, dirname(original_input))) 
+                intermediates_dir <- NULL
+        }
+    }
+    oldwd <- setwd(dirname(tools::file_path_as_absolute(input)))
+    on.exit(setwd(oldwd), add = TRUE)
+    input <- basename(input)
+    knit_input <- input
+    knit_output <- intermediates_loc(file_with_meta_ext(input, 
+        "knit", "md"))
+    intermediates <- c(intermediates, knit_output)
+    utf8_input <- intermediates_loc(file_with_meta_ext(input, 
+        "utf8", "md"))
+    intermediates <- c(intermediates, utf8_input)
+    md_input <- identical(tolower(tools::file_ext(input)), "md")
+    if (identical(tolower(tools::file_ext(input)), "r")) {
+        spin_input <- intermediates_loc(file_with_meta_ext(input, 
+            "spin", "R"))
+        file.copy(input, spin_input, overwrite = TRUE)
+        intermediates <- c(intermediates, spin_input)
+        spin_rmd <- knitr::spin(spin_input, knit = FALSE, envir = envir, 
+            format = "Rmd")
+        intermediates <- c(intermediates, spin_rmd)
+        knit_input <- spin_rmd
+        metadata <- paste("\n", "---\n", "title: \"", input, 
+            "\"\n", "author: \"", Sys.info()[["user"]], "\"\n", 
+            "date: \"", date(), "\"\n", "---\n", sep = "")
+        if (!identical(encoding, "native.enc")) 
+            metadata <- iconv(metadata, to = encoding)
+        cat(metadata, file = knit_input, append = TRUE)
+    }
+    input_lines <- read_lines_utf8(knit_input, encoding)
+    yaml_front_matter <- parse_yaml_front_matter(input_lines)
+    if (!is_output_format(output_format)) {
+        output_format <- output_format_from_yaml_front_matter(input_lines, 
+            output_options, output_format)
+        output_format <- create_output_format(output_format$name, 
+            output_format$options)
+    }
+    pandoc_to <- output_format$pandoc$to
+    run_citeproc <- citeproc_required(yaml_front_matter, input_lines)
+    if (is.null(output_file)) 
+        output_file <- pandoc_output_file(input, output_format$pandoc)
+    if (!is.null(output_dir)) {
+        output_file <- file.path(output_dir, basename(output_file))
+    }
+    output_dir <- dirname(output_file)
+    files_dir <- file.path(output_dir, knitr_files_dir(basename(output_file)))
+    files_dir <- pandoc_path_arg(files_dir)
+    cache_dir <- NULL
+    if (!is.null(intermediates_dir) && !is.null(output_format$intermediates_generator)) {
+        intermediates <- c(intermediates, output_format$intermediates_generator(original_input, 
+            encoding, intermediates_dir))
+    }
+    knit_meta_reset()
+    on.exit(knit_meta_reset(), add = TRUE)
+    if (tolower(tools::file_ext(input)) %in% c("r", "rmd", "rmarkdown")) {
+        optk <- knitr::opts_knit$get()
+        on.exit(knitr::opts_knit$restore(optk), add = TRUE)
+        optc <- knitr::opts_chunk$get()
+        on.exit(knitr::opts_chunk$restore(optc), add = TRUE)
+        hooks <- knitr::knit_hooks$get()
+        on.exit(knitr::knit_hooks$restore(hooks), add = TRUE)
+        ohooks <- knitr::opts_hooks$get()
+        on.exit(knitr::opts_hooks$restore(ohooks), add = TRUE)
+        templates <- knitr::opts_template$get()
+        on.exit(knitr::opts_template$restore(templates), add = TRUE)
+        knitr::render_markdown()
+        knitr::opts_chunk$set(tidy = FALSE, error = FALSE)
+        knitr::opts_knit$set(rmarkdown.pandoc.from = output_format$pandoc$from, 
+            rmarkdown.pandoc.to = pandoc_to, rmarkdown.keep_md = output_format$keep_md, 
+            rmarkdown.version = 2)
+        if (utils::packageVersion("knitr") < "1.5.23") {
+            local({
+                hook_source = knitr::knit_hooks$get("source")
+                knitr::knit_hooks$set(source = function(x, options) {
+                  hook_source(strip_white(x), options)
+                })
+            })
+        }
+        figures_dir <- paste(files_dir, "/figure-", pandoc_to, 
+            "/", sep = "")
+        knitr::opts_chunk$set(fig.path = figures_dir)
+        cache_dir <- knitr_cache_dir(input, pandoc_to)
+        knitr::opts_chunk$set(cache.path = cache_dir)
+        cache_dir <- gsub("/$", "", cache_dir)
+        if (!is.null(output_format$knitr)) {
+            knitr::opts_knit$set(as.list(output_format$knitr$opts_knit))
+            knitr::opts_chunk$set(as.list(output_format$knitr$opts_chunk))
+            knitr::opts_template$set(as.list(output_format$knitr$opts_template))
+            knitr::knit_hooks$set(as.list(output_format$knitr$knit_hooks))
+            knitr::opts_hooks$set(as.list(output_format$knitr$opts_hooks))
+        }
+        runtime <- match.arg(runtime)
+        if (identical(runtime, "auto")) {
+            if (!is.null(yaml_front_matter$runtime)) 
+                runtime <- yaml_front_matter$runtime
+            else runtime <- "static"
+        }
+        knitr::opts_knit$set(rmarkdown.runtime = runtime)
+        if (!is.null(yaml_front_matter$params)) {
+            params <- knit_params_get(input_lines, params)
+            if (!exists("params", envir = envir, inherits = FALSE)) {
+                assign("params", params, envir = envir)
+                lockBinding("params", envir)
+                on.exit({
+                  do.call("unlockBinding", list("params", envir))
+                  remove("params", envir = envir)
+                }, add = TRUE)
+            }
+            else {
+                stop("params object already exists in knit environment ", 
+                  "so can't be overwritten by render params", 
+                  call. = FALSE)
+            }
+        }
+        env <- environment(render)
+        metadata_this <- env$metadata
+        do.call("unlockBinding", list("metadata", env))
+        on.exit({
+            if (bindingIsLocked("metadata", env)) {
+                do.call("unlockBinding", list("metadata", env))
+            }
+            env$metadata <- metadata_this
+            lockBinding("metadata", env)
+        }, add = TRUE)
+        env$metadata <- yaml_front_matter
+        perf_timer_start("knitr")
+        input <- knitr::knit(knit_input, knit_output, envir = envir, 
+            quiet = quiet, encoding = encoding)
+        perf_timer_stop("knitr")
+    }
+    if (!is.null(output_format$post_knit)) {
+        post_knit_extra_args <- output_format$post_knit(yaml_front_matter, 
+            knit_input, runtime)
+        output_format$pandoc$args <- c(output_format$pandoc$args, 
+            post_knit_extra_args)
+    }
+    rmd_warnings <- knit_meta_reset(class = "rmd_warning")
+    for (rmd_warning in rmd_warnings) {
+        message("Warning: ", rmd_warning)
+    }
+    knit_meta <- knit_meta_reset()
+    if (!(is_pandoc_to_html(output_format$pandoc) || identical(tolower(tools::file_ext(output_file)), 
+        "html"))) {
+        if (has_html_dependencies(knit_meta)) {
+            if (!isTRUE(yaml_front_matter$always_allow_html)) {
+                stop("Functions that produce HTML output found in document targeting ", 
+                  pandoc_to, " output.\nPlease change the output type ", 
+                  "of this document to HTML. Alternatively, you can allow\n", 
+                  "HTML output in non-HTML formats by adding this option to the YAML front", 
+                  "-matter of\nyour rmarkdown file:\n\n", "  always_allow_html: yes\n\n", 
+                  "Note however that the HTML output will not be visible in non-HTML formats.\n\n", 
+                  call. = FALSE)
+            }
+        }
+        if (!identical(runtime, "static")) {
+            stop("Runtime '", runtime, "' is not supported for ", 
+                pandoc_to, " output.\nPlease change the output type ", 
+                "of this document to HTML.", call. = FALSE)
+        }
+    }
+    if (output_format$clean_supporting && (is.null(cache_dir) || 
+        !dir_exists(cache_dir))) 
+        intermediates <- c(intermediates, files_dir)
+    input_text <- read_lines_utf8(input, encoding)
+    writeLines(input_text, utf8_input, useBytes = TRUE)
+    if (run_pandoc) {
+        perf_timer_start("pre-processor")
+        if (!is.null(output_format$pre_processor)) {
+            extra_args <- output_format$pre_processor(yaml_front_matter, 
+                utf8_input, runtime, knit_meta, files_dir, output_dir)
+            output_format$pandoc$args <- c(output_format$pandoc$args, 
+                extra_args)
+        }
+        perf_timer_stop("pre-processor")
+        need_bibtex <- grepl("[.](pdf|tex)$", output_file) && 
+            any(c("--natbib", "--biblatex") %in% output_format$pandoc$args)
+        if (!is.null(bibliography <- yaml_front_matter$bibliography)) {
+            if (need_bibtex && is_windows()) 
+                bibliography <- sub("[.]bib$", "", bibliography)
+            output_format$pandoc$args <- c(output_format$pandoc$args, 
+                rbind("--bibliography", pandoc_path_arg(bibliography)))
+        }
+        perf_timer_start("pandoc")
+        convert <- function(output, citeproc = FALSE) {
+            pandoc_convert(utf8_input, pandoc_to, output_format$pandoc$from, 
+                output, citeproc, output_format$pandoc$args, 
+                !quiet)
+        }
+        texfile <- file_with_ext(output_file, "tex")
+        if (need_bibtex) {
+            convert(texfile)
+            if (grepl("[.]pdf$", output_file)) {
+                latexmk(texfile, output_format$pandoc$latex_engine)
+                file.rename(file_with_ext(texfile, "pdf"), output_file)
+            }
+            if ((texfile != output_file) && !output_format$pandoc$keep_tex) 
+                on.exit(unlink(texfile), add = TRUE)
+        }
+        else {
+            convert(output_file, run_citeproc)
+            if (output_format$pandoc$keep_tex) 
+                convert(texfile, run_citeproc)
+        }
+        if (!is.null(intermediates_dir)) {
+            intermediate_output <- file.path(intermediates_dir, 
+                basename(output_file))
+            if (file.exists(intermediate_output)) {
+                file.rename(intermediate_output, output_file)
+            }
+        }
+        perf_timer_stop("pandoc")
+        perf_timer_start("post-processor")
+        if (!is.null(output_format$post_processor)) 
+            output_file <- output_format$post_processor(yaml_front_matter, 
+                utf8_input, output_file, clean, !quiet)
+        if (!quiet) {
+            message("\nOutput created: ", relative_to(oldwd, 
+                output_file))
+        }
+        perf_timer_stop("post-processor")
+    }
+    perf_timer_stop("render")
+    if (output_format$keep_md && !md_input) {
+        md <- c(md_header_from_front_matter(yaml_front_matter), 
+            partition_yaml_front_matter(input_text)$body)
+        writeLines(md, file_with_ext(output_file, "md"), useBytes = TRUE)
+    }
+    if (run_pandoc) {
+        invisible(tools::file_path_as_absolute(output_file))
+    }
+    else {
+        structure(input, knit_meta = knit_meta, intermediates = intermediates)
+    }
+}
+<environment: namespace:rmarkdown>
+> 
+> 

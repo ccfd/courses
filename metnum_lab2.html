@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="wprowadzenie" class="section level1">
+<h1>Wprowadzenie</h1>
+<p>Niniejszą instrukcją rozpoczynamy cykl laboratoriów, z których każde kolejne będzie rozwinięciem poprzedniego i wnioski z poprzedniego będą stanowiły motywację do zastosowania kolejnych metod. Tym samym należy zadbać o to, aby zadania z każdego laboratorium były wykonywane do końca, czy to na zajęciach czy w domu. Dziś zaznajomimy się ze sformułowaniem metody elementów skończonych dla jednego elementu czworokątnego. Dla uproszczenia nie będziemy stosować transformacji geometrycznych występujących w rzeczywistym sformułowaniu metody elementów skończonych, więc faktycznie będziemy operować zawsze na jednostkowych elementach kwadratowych.</p>
+</div>
+<div id="sformuowanie-algebraiczne-dla-jednego-elementu" class="section level1">
+<h1>Sformułowanie algebraiczne dla jednego elementu</h1>
+<p>Zagadnienie wytrzymałości konstrukcji dla jednego elementu skończonego ma następujące sformułowanie algebraiczne: Elementowi skończonemu przypisana jest tzw. macierz sztywności <span class="math inline">\(K\)</span> reprezentująca jego sztywność na poszczególne rodzaje odkształceń (przesunięć jego wierzchołków), wektor przesunięć <span class="math inline">\(\vec d\)</span>, jakim ulegną poszczególne wierzchołki elementu pod obciążeniem oraz wektor sił węzłowych <span class="math inline">\(\vec F\)</span> reprezentujący odpowiednio przeliczone siły (bądź obciążenia ciągłe) przyłożone do węzłów elementu.</p>
+<p><span class="math display">\[
+K \vec d = \vec F
+\]</span></p>
+<p>Wektor przesunięć (ang. <em>displacement</em>) zawiera odpowiednio przesunięcia względem osi <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> kolejnych węzłów elementu (numeracja węzłów pokazana jest na Rysunku 1). Wektor sił węzłowych <span class="math inline">\(\vec F\)</span> ma analogiczną postać. Poniżej przedstawiona jest również macierz sztywności <span class="math inline">\(K\)</span>.</p>
+<p><span class="math display">\[
+\vec d = \left[ \begin{array}{c} $x_0$ \\ $y_0$ \\ $x_1$ \\ $y_1$ \\ $x_2$ \\ $y_2$ \\ $x_3$ \\ $y_3$ \\ \end{array} \right] \quad \quad \quad \vec F = \left[ \begin{array}{c} $F_{x_0}$ \\ $F_{y_0}$ \\ $F_{x_1}$ \\ $F_{y_1}$ \\ $F_{x_2}$ \\ $F_{y_2}$ \\ $F_{x_3}$ \\ $F_{y_3}$ \\ \end{array} \right]
+\]</span> <span class="math display">\[
+ K = \frac{E}{1-\nu^2} \left[ \begin{array}{c c c c c c c c} $\frac{1}{2} - \frac{\nu}{6}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ &amp; $\frac{\nu}{6}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ \\
+$\frac{1}{8} + \frac{\nu}{8}$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $\frac{\nu}{6}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ \\
+$-\frac{1}{4} - \frac{\nu}{12}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ &amp; $\frac{\nu}{6}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ \\
+$-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $\frac{\nu}{6}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ \\
+$-\frac{1}{4} + \frac{\nu}{12}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ &amp; $\frac{\nu}{6}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ \\
+$-\frac{1}{8} - \frac{\nu}{8}$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $\frac{\nu}{6}$ \\
+$\frac{\nu}{6}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ \\
+$\frac{1}{8} - \frac{3}{8}\nu$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $\frac{1}{8} + \frac{\nu}{8}$ &amp; $-\frac{1}{4} + \frac{\nu}{12}$ &amp; $-\frac{1}{8} + \frac{3}{8}\nu$ &amp; $\frac{\nu}{6}$ &amp; $-\frac{1}{8} - \frac{\nu}{8}$ &amp; $\frac{1}{2} - \frac{\nu}{6}$ \\ \end{array} \right]
+\]</span></p>
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.3\textwidth]{element.png}
+\caption[c]{Lokalna indeksacja węzłów elementu skończonego.}
+\end{figure}
+<p>Macierz sztywności elementu <span class="math inline">\(K\)</span>, dopóki nie zostaną na układ narzucone więzy unieruchamiające układ w przestrzeni jako ciało sztywne, jest osobliwa. Aby móc obliczyć przemieszczenia węzłów elementu pod działaniem określonych sił, nakładamy najpierw więzy. Załóżmy, że w naszym przypadku będą to więzy zamurowania lewego brzegu elementu, tzn. <span class="math inline">\(x_0 = y_0 = x_3 = y_3 = 0\)</span>. W postaci macierzowej powyższe cztery równania są równoznaczne z zastąpieniem wierszy o indeksach 0, 1, 6 i 7 jedynkami na głównej diagonali macierzy i przypisaniu zer na tych indeksach w wektorze prawej strony. Po narzuceniu więzów macierz nie jest już osobliwa i można rozwiązać układ choćby procedurą Gaussa.</p>
+<div id="zadania" class="section level2">
+<h2>Zadania</h2>
+<ul>
+<li>Napisz program, w którym zaalokujesz miejsce na macierz sztywności elementu, wektor przemieszczeń węzłowych oraz wektor prawych stron. Wykorzystaj tablicę <code>fix[]</code> (opis poniżej) do narzucenia warunków brzegowych i rozwiąż zagadnienie procedurą Gaussa. Jako wymuszenie przyłóż siłę ciągnącą w dół prawy dolny węzeł.</li>
+<li>Zmodyfikuj w programie obciążenie: przyłóż siłę skierowaną pionowo w dół do obu węzłów na prawej krawędzi. Rozwiąż zadanie. Następnie rozciągnij element. Sprawdź wpływ współczynnika Poissona na rozwiązanie. Pobaw się programem, aby zaznajomić się z zadawaniem obciążeń i ruchami poszczególnych stopni swobody.</li>
+<li>Zmień sposób zamurowania na inny. Sprawdź, co się stanie z rozwiązaniem, gdy w ogóle nie narzucisz warunków brzegowych lub nie w pełni odbierzesz sztywne stopnie swobody układu.</li>
+<li>Spróbuj stworzyć teraz belkę składającą się z dwóch elementów skończonych.</li>
+</ul>
+</div>
+</div>
+<div id="wskazowki-implementacyjne" class="section level1">
+<h1>Wskazówki implementacyjne</h1>
+<ul>
+<li>Elementy w belce mają być indeksowane od 0 do <span class="math inline">\(m_x*m_y-1\)</span>, poczynając od elementu w lewym dolnym rogu i indeksując je po kolei w prawo. Po dojściu do końca belki, zaczynamy od lewego brzegu analogicznie indeksować kolejnymi liczbami elementy w pasie położonym o jeden element wyżej niż dopiero co poindeksowany pas. W identyczny sposób indeksowane są węzły. Takiego indeksowania wymaga uproszczenie implementacji (brak transformacji geometrycznej macierzy sztywności) oraz prostota obecnej funkcji do rysowania całego układu.</li>
+<li><code>mx</code> i <code>my</code> oznaczają odpowiednio liczbę elementów w poziomie i w pionie w prostokątnej belce. Muszą to być zmienne globalne.</li>
+<li>Funkcja do rysowania wymaga użycia globalnej tablicy <code>int fix[2*(mx+1)*(my+1)]</code> o długości równej liczbie stopni swobody w siatce. Jeśli na danej pozycji w tablicy stoi zero, przyjmujemy, że ten stopień swobody ulega przemieszczeniom. Wpisanie na danym miejscu wartości 1, oznacza, że stopień swobody o tym indeksie jest odebrany (tak układ zostanie narysowany przez procedurę rysującą <code>draw</code>). Oczywiście poprawność sformułowania matematycznego tak przyjętej konwencji i definicji tablicy <code>fix[]</code> leży w pełni po stronie użytkownika. Takie zdefiniowanie tablicy <code>fix</code> bardzo ułatwia implementację warunków brzegowych.</li>
+<li>Początek głównego pliku z kodem programu powinien mieć następującą postać, aby uniknąć problemów z kolejnością definicji, nagłówkami i linkowaniem. Poniższy przykład pokazuje też sposób użycia biblioteki <code>MesLib.h</code> w celu narysowania rozwiązanego układu. ```c++ #include <stdio.h> #include “winbgi2.h”</li>
+</ul>
+<p>const int mx = 1; const int my = 1;</p>
+<p>int fix[2<em>(mx+1)</em>(my+1)];</p>
+</div>
+<div id="include-meslib.h" class="section level1">
+<h1>include “MesLib.h”</h1>
+<p>int main() { // Tu stworz caly program</p>
+<p>// Narysuj uklad graphics(700, 700); scale(0, 0.5<em>(my - mx - 3), mx + 3, 0.5</em>(my + mx + 3)); title(“X”, “Y”, “MES”); draw(d, F); wait();</p>
+<p>// Zakoncz return 0; } ```</p>
+</div>
+<div id="krotka-dokumentacja-biblioteki-meslib.h" class="section level1">
+<h1>Krótka dokumentacja biblioteki <em>MesLib.h</em></h1>
+<p>Biblioteka <em>MesLib.h</em> została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację i zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje: - <code>int P(int x, int y, int z)</code> - funkcja, która zwraca globalny indeks stopnia swobody przy założeniu, że <em>x</em> to jego indeks w kierunku x (liczony od 0 na lewej krawędzi), <em>y</em> to jego indeks w kierunku osi y (liczony od 0 na dolnej powierzchni belki), a <em>z</em> to 0 lub 1 zależnie od tego, czy interesuje nas stopień swobody w kierunku poziomym czy pionowym. - <code>int Q(int x, int y)</code> - funkcja zwracająca globalny indeks elementu przy założeniu, że jest to element o indeksie <em>x</em> w kierunku poziomym i o indeksie <em>y</em> w kierunku pionowym. - <code>int DOF(int elidx, int elidy, int locdofid)</code> - funkcja zwracająca globalny indeks stopnia swobody przy założeniu, że <em>elidx</em> oznacza indeks elementu w kierunku poziomym, <em>elidy</em> indeks elementu w kierunku pionowym, a <em>locdofid</em> to liczba od 0 do 7 oznaczająca lokalny indeks danego stopnia swobody. Lokalna indeksacja stopni swobody jest następująca: w węźle o indeksie 0 przesunięcia w kierunku poziomym i pionowym to odpowiednio <span class="math inline">\(0-wy\)</span> i <span class="math inline">\(1-szy\)</span> stopień swobody, w węźle o indeksie <span class="math inline">\(1\)</span> występują 2. i 3. stopień swobody itd. - Lokalna macierz sztywności jest zdefiniowana w dwuwymiarowej tablicy <code>K[8][8]</code>. Przy składaniu macierzy sztywności powinna być w programie przemnożona przez czynnik <code>Md</code> zawierający wpływ modułu Younga oraz współczynnika Poissona oraz przez grubość elementu. - Lokalna macierz masowa jest zdefiniowana w dwuwymiarowej tablicy <code>M[8][8]</code>. Przy składaniu globalnej macierzy masowej powinna być w programie przemnożona przez czynnik <code>Mm</code> zawierający wpływ gęstości materiału oraz dodatkowo należy ją przemnożyć przez grubość elementu. - <code>void Gauss(int n, double **M, double *f, double *x)</code> - procedura eliminacji Gaussa rozwiązująca układ równań o macierzy zapisanej w dynamicznie zaalokowanej dwuwymiarowej tablicy <code>M</code> o wymiarze <code>n</code>, i wektorze prawej strony <code>f</code>. Wynik zostanie wpisany do miejsc w pamięci wskazywanych przez wskaźnik <code>*x</code>. - <code>void draw(double *p, double *f)</code> - funkcja rysująca cały układ odkształconych elementów. <code>p</code> to wektor przesunięć poszczególnych stopni swobody, a <code>f</code> to wektor sił węzłowych w tych stopniach swobody. Ponadto funkcja wykorzystuje globalnie zadeklarowaną tablicę <code>fix</code>, z której czerpie informację, które stopnie swobody układu są odebrane.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p>Na tych laboratoriach skupimy się na rozwiązaniu układu: <span class="math display">\[Ax = b\]</span> Naszym celem będzie więc napisanie funkcji <code>Solve</code> zastępującej funkcję <code>Gauss</code>. Nie będziemy jednak tego układu rozwiązywać metodą bezpośrednią, taką jak eliminacja Gaussa, ale metodą iteracyjną. Tzn: będziemy konstruować kolejne przybliżenia <span class="math inline">\(x^{(n)}\)</span> dokładnego <span class="math inline">\(x\)</span>, takie że <span class="math inline">\(b-Ax^{(n)}\)</span> będzie coraz bliższe zeru.</p>
+<p><span class="math inline">\(r = b-Ax^{(n)}\)</span> nazywamy <strong>residual’em</strong>.</p>
+<div id="zadanie" class="section level3">
+<h3>Zadanie</h3>
+<p>Policz residual. Następnie policz i wyświetl jego normę: <span class="math inline">\(\|r\|=\sqrt{r^Tr}\)</span> (napisz funkcję liczącą normę wektora <code>norm(double *,int)</code>). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?</p>
+</div>
+<div id="na-gupa" class="section level1">
+<h1>Na głupa</h1>
+<p>Pierwszym pomysłem na iteracyjne rozwiązywanie byłoby postawienie: <span class="math display">\[x^{(n+1)} = x^{(n)} + p\]</span> Gdzie <span class="math inline">\(p\)</span> jest ,,poprawką’’ w iteracji. Łatwo sprawdzić, że idealne <span class="math inline">\(p\)</span> byłoby równe: <span class="math display">\[p = A^{-1}r\]</span> Jednak nie mamy <span class="math inline">\(A^{-1}\)</span> (w tym rzecz). Zamiast niej użyjemy <span class="math inline">\(M^{-1}\)</span>, gdzie <span class="math inline">\(M\)</span> będzie przybliżeniem <span class="math inline">\(A\)</span>. Macierz <span class="math inline">\(M^{-1}\)</span> nazywamy <strong>preconditioner’em</strong>. Na początek zamiast rozwiązywać pełen układ, pominiemy większość jego elementów: <span class="math display">\[\begin{array}{rrrrrl}
+A_{11}p_1 &amp; \color{Gray}{+A_{12}p_2}&amp;\color{Gray}{+A_{13}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{1n}p_n}&amp;= r_1\\
+\color{Gray}{A_{21}p_1}&amp;+ A_{22}p_2 &amp;\color{Gray}{+A_{23}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{2n}p_n}&amp;= r_2\\
+\color{Gray}{A_{31}p_1}&amp;\color{Gray}{+A_{32}p_2}&amp;+A_{33}p_1&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{3n}p_n}&amp;= r_3\\
+\cdots\\
+\color{Gray}{A_{n1}p_1}&amp;\color{Gray}{+A_{n2}p_2}&amp;\color{Gray}{+A_{n3}p_1}&amp;\color{Gray}{+\cdots }&amp;+A_{nn}p_n&amp;= r_n\\
+\end{array}\]</span> Co daje nam prosty wzór na <span class="math inline">\(p\)</span>: <span class="math display">\[p_i = \frac{1}{A_{ii}}{r_i}\]</span> Jest to równoważne z wzięciem za <span class="math inline">\(M\)</span> diagonalnej części <span class="math inline">\(A\)</span>. Ten prosty schemat iteracji, z powyższą poprawką nazywamy <strong>metodą Jacobiego</strong>.</p>
+<div id="zadanie-1" class="section level3">
+<h3>Zadanie</h3>
+<p>Zaczynając od <span class="math inline">\(x=0\)</span> powtarzaj tą prostą iterację (np. 1000 razy). W każdej iteracji wyświetlaj normę residualu, a także wywołaj funkcję <code>draw\_residual(double)</code> by wykonać wykres zbieżności.</p>
+<p>Tak wykonana iteracja się nie zbiega. Wprowadźmy współczynnik, który ,,przytłumi’’ wykonywane iteracje: <span class="math display">\[x^{(n+1)} = x^{(n)} + \alpha p\]</span></p>
+</div>
+<div id="zadanie-2" class="section level3">
+<h3>Zadanie</h3>
+<p>Sprawdź zbieżność tego schematu przy różnych <span class="math inline">\(\alpha\)</span>. Sprawdź <span class="math inline">\(0.5\)</span>, <span class="math inline">\(0.9\)</span>, <span class="math inline">\(1.1\)</span> i <span class="math inline">\(2\)</span>.</p>
+</div>
+<div id="zadanie-3" class="section level3">
+<h3>Zadanie</h3>
+<p>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(A\)</span>: <code>Mult(double** A, double*x, double* r)</code> i preconditioner: <code>Precond(double** A, double*x, double* p)</code></p>
+<p>Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner. Zauważmy, że licząc <span class="math inline">\(p_2\)</span> mamy już obliczone <span class="math inline">\(p_1\)</span> i możemy go użyć. Tak więc nie musimy pomijać elementów układu ,,pod diagonalą’’: <span class="math display">\[\begin{array}{rrrrrl}
+A_{11}p_1 &amp; \color{Gray}{+A_{12}p_2}&amp;\color{Gray}{+A_{13}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{1n}p_n}&amp;= r_1\\
+A_{21}p_1&amp;+ A_{22}p_2 &amp;\color{Gray}{+A_{23}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{2n}p_n}&amp;= r_2\\
+A_{31}p_1&amp; +A_{32}p_2&amp;+A_{33}p_1&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{3n}p_n}&amp;= r_3\\
+\cdots\\
+A_{n1}p_1&amp; +A_{n2}p_2&amp; +A_{n3}p_1&amp; +\cdots &amp;+A_{nn}p_n&amp;= r_n\\
+\end{array}\]</span> Co daje nam prosty wzór na <span class="math inline">\(p\)</span>: <span class="math display">\[p_i = \frac{1}{A_{ii}}(r_i - \sum_{j=1}^{i-1}A_{ij}p_j)\]</span> Gdy <span class="math inline">\(\alpha=1\)</span> schemat taki nazywamy <strong>Metodą Gaussa-Seidla</strong>.</p>
+</div>
+<div id="zadanie-4" class="section level3">
+<h3>Zadanie</h3>
+<p>Wypróbuj nowy wzór na <span class="math inline">\(p\)</span>, znów sprawdzając różne <span class="math inline">\(\alpha\)</span>.</p>
+<p>Schematy z <span class="math inline">\(\alpha &gt; 1\)</span> nazywamy metodami <strong>Successive Over-Relaxation</strong> (SOR).</p>
+</div>
+</div>
+<div id="dobieramy-alpha" class="section level1">
+<h1>Dobieramy <span class="math inline">\(\alpha\)</span></h1>
+<p>Widać wyraźnie, że zbieżność bardzo zależy od <span class="math inline">\(\alpha\)</span> i jasnym jest, że najlepiej byłoby dobierać ten współczynnik w każdej iteracji. Zauważmy że residual po iteracji wynosi: <span class="math display">\[\hat{r} = r - \alpha Ap\]</span> Spróbujmy zminimalizować kwadrat normy tego residualu: <span class="math display">\[\hat{r}^T\hat{r} = (r - \alpha Ap)^T(r - \alpha Ap) = r^Tr-2\alpha r^TAp+\alpha^2(Ap)^TAp\]</span> Licząc pochodną po <span class="math inline">\(\alpha\)</span> mamy: <span class="math display">\[-r^TAp+2\alpha(Ap)^TAp=0\]</span> Ostatecznie: <span class="math display">\[\alpha = \frac{r^TAp}{(Ap)^TAp}\]</span> Schemat z takim <span class="math inline">\(\alpha\)</span> nazywamy metodą <strong>MINRES</strong>.</p>
+<div id="zadanie-5" class="section level3">
+<h3>Zadanie</h3>
+<p>Oblicz wektor <span class="math inline">\(Ap\)</span>. Zauważ, że wyrażenie <span class="math inline">\(a^Tb\)</span> to iloczyn skalarny dwóch wektorów <span class="math inline">\(a^Tb = a\cdot b\)</span>. Napisz funkcję liczącą iloczyn skalarny <code>skal(double*, double*, int)</code> i oblicz <span class="math inline">\(\alpha\)</span> z powyższego wzoru. Sprawdź zbieżność przy takim <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+</div>
+<div id="wycinamy-nadmiary" class="section level1">
+<h1>Wycinamy nadmiary</h1>
+<p>Przez <span class="math inline">\(q\)</span> oznaczmy poprawkę z poprzedniej iteracji. Można powiedzieć, że w następnej iteracji nie chcemy ,,stracić’‘tego co ,,zyskaliśmy’’ w poprzedniej. Dlatego za nową poprawkę weźmiemy <span class="math inline">\(p - \beta q\)</span>. Teraz wzór na nowy residual będzie: <span class="math display">\[\hat{r} = r - \alpha A(p-\beta q)\]</span></p>
+<div id="zadanie-6" class="section level3">
+<h3>Zadanie</h3>
+<p>Wypisz wzór na <span class="math inline">\(\hat{r}^T\hat{r}\)</span> i zróżniczkuj go po <span class="math inline">\(\beta\)</span>. Wylicz <span class="math inline">\(\beta\)</span> przyjmując, że <span class="math inline">\(r^T Aq = 0\)</span> (to wynika z poprzedniej iteracji).</p>
+</div>
+<div id="zadanie-7" class="section level3">
+<h3>Zadanie</h3>
+<p>Zmodyfikuj iterację wg. schematu: - oblicz residual - oblicz <span class="math inline">\(p=M^{-1}r\)</span> - jeżeli to nie pierwsza iteracja: oblicz <span class="math inline">\(\beta\)</span> i nową poprawkę: <span class="math inline">\(p=p-\beta q\)</span> - oblicz <span class="math inline">\(\alpha\)</span> - wylicz nowe rozwiązanie <span class="math inline">\(x=x+\alpha p\)</span> - zachowaj poprawkę <span class="math inline">\(q=p\)</span> (opłaca się też zachować <span class="math inline">\(Ap\)</span>)</p>
+</div>
+</div>
+<div id="a-jesli-a-jest-symetryczna-i-dodatnio-okreslona" class="section level1">
+<h1>A jeśli <span class="math inline">\(A\)</span> jest symetryczna i dodatnio określona …</h1>
+<p>W naszym przypadku możemy wykorzystać fakt, że macierz <span class="math inline">\(A\)</span> jest symetryczna i dodatnio określona. Wtedy zamiast minimalizować <span class="math inline">\(r^Tr\)</span> możemy minimalizować pewien specjalny funkcjonał: <span class="math display">\[\frac{1}{2}x^TAx - b^Tx\]</span> <strong>Pytanie:</strong> Jakie fizyczne wyjaśnienie mają następujące rzeczy w naszym przypadku: - Czym jest powyższy funkcjonał? - Dlaczego <span class="math inline">\(A\)</span> jest symetryczna? - Dlaczego <span class="math inline">\(A\)</span> jest dodatnio określona?</p>
+<div id="zadanie-8" class="section level3">
+<h3>Zadanie</h3>
+<p>Podstaw w powyższym wzorze <span class="math inline">\(x = x^{(n)} + \alpha p\)</span>, zróżniczkuj i wylicz <span class="math inline">\(\alpha\)</span>. Zauważ, że <span class="math inline">\(\frac{1}{2}x^TAx - b^Tx = \text{const} + \frac{1}{2}(\alpha p)^TA(\alpha p) - r^T(\alpha p)\)</span>.</p>
+</div>
+<div id="zadanie-9" class="section level3">
+<h3>Zadanie</h3>
+<p>Analogicznie jak poprzednio, podstaw <span class="math inline">\(x = x^{(n)} + \alpha (p-\beta q)\)</span>, zróżniczkuj i wylicz <span class="math inline">\(\beta\)</span>.(tym razem <span class="math inline">\(q^Tr = 0\)</span>)</p>
+</div>
+<div id="zadanie-10" class="section level3">
+<h3>Zadanie</h3>
+<p>Zastosuj dokładnie identyczną iterację zamieniając jedynie <span class="math inline">\(\alpha\)</span> i <span class="math inline">\(\beta\)</span> i zbadaj zbieżność.</p>
+<p>Schemat taki nazywamy metodą <strong>gradientu sprzężonego</strong> — Conjugate Gradient Method (<strong>CG</strong>).</p>
+<p><strong>Uwaga:</strong> Aktualnie zbieżność jest bardzo słaba. Wynika to z faktu, że choć <span class="math inline">\(A\)</span> jest symetryczna to preconditioner z metody Gaussa-Seidla <span class="math inline">\(M^{-1}\)</span> już nie jest.</p>
+</div>
+<div id="zadanie-11" class="section level3">
+<h3>Zadanie</h3>
+<p>Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem <span class="math inline">\(p=r\)</span> (brakiem preconditionera).</p>
+<p><strong>Uwaga:</strong> Metodę Conjugate Gradient można zaimplementować w bardziej ,,zwartej’’ formie. Taki schemat można znaleść na wikipedii, bądz w notatkach z wykładu.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

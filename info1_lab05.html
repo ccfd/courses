@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="W. Regulski" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="tablice" class="section level1">
+<h1>Tablice</h1>
+<p>Celem zajęć jest wprowadzenie do używania tablic w języku C. Tablicą (ang. <em>array</em>) nazywamy ciąg zmiennych zgromadzony pod jedną globalną nazwą, które są identyfikowane indeksami. Na tych zajęciach zajmiemy się tylko tablicami statycznymi tzn. takimi, których rozmiar jest określany w momencie deklaracji<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tablicę statyczną deklarujemy tak, jak zwykłą zmienną, przy czym dodatkowo określamy jej długość. Wszystko wygląda, jak w przykładowym kodzie poniżej:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">      <span class="dt">double</span> a[<span class="dv">4</span>];      <span class="co">// deklaracja tablicy</span>
+
+      a[<span class="dv">0</span>] = <span class="fl">5.5</span>;          <span class="co">// przypisanie wartości do zmiennych</span>
+      a[<span class="dv">1</span>] = <span class="fl">3.521</span>;
+      a[<span class="dv">2</span>] = <span class="fl">6.45</span>;
+      a[<span class="dv">3</span>] = <span class="fl">4.51</span>;</code></pre></div>
+<p>Zwróć uwagę, że elementy tablicy sa indeksowane od <span class="math inline">\(0\)</span> do <span class="math inline">\(n-1\)</span>, gdzie <span class="math inline">\(n\)</span> to rozmiar tablicy. Można również zainicjalizować wszystkie elementy tablicy natychmiast (taki mechanizm jest użyteczny, jeśli wektory są stosunkowo krótkie):</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">     <span class="dt">double</span> b[<span class="dv">3</span>] = { <span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="fl">-4.3</span>};</code></pre></div>
+</div>
+<div id="gra-w-kulki" class="section level1">
+<h1>Gra w kulki</h1>
+Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji. Ekran początkowy jest widoczny na Rysunku 1.
+\begin{figure}
+\centering
+\includegraphics[width=0.3\textwidth]{kulki.pdf}
+
+\caption{Kulki wraz z wektorami predkości początkowych.}
+\end{figure}\section {Inicjalizacja}
+<p>nasze piłki będą przychowywane tylko jako zestawy współrzędnych oraz ich prędkości. Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, po prostu użyjemy funkcji . Toteż w symulacji będą potrzebne następujące wektory<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
+<span class="dt">double</span> x[<span class="dv">10</span>],y[<span class="dv">10</span>]           <span class="co">// współrzędne piłek</span>
+<span class="dt">double</span> cx[<span class="dv">10</span>], cy[<span class="dv">10</span>]      <span class="co">// składowe prędkości piłek</span></code></pre></div>
+\subsection* {Pętla `for`}
+<p>Większość operacji na tych zmiennych będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej wektory jako argumenty. Funkcje będą musiały mieć podaną długość wektorów tak, aby można było wykonać pewne operacje dla każdego z elementów tego wektora. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, piszemy funkcję następującej treści:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N){
+
+      <span class="kw">for</span> ( <span class="dt">int</span> i=<span class="dv">0</span>; i &lt; N; ++i){
+          x[i] = <span class="fl">0.0</span>;
+          y[i] = <span class="fl">0.0</span>;}
+}</code></pre></div>
+<p>Wykorzystaliśmy tutaj pętlę , która pobiera 3 argumenty: - wartość startową, - warunek działania (pętle działa, dopóki warunek <span class="math inline">\(i&lt;N\)</span> jest spełniony), - operację na argumencie (tutaj zwiększamy <span class="math inline">\(i\)</span> o 1, co będzie najpowszechniejszą praktyką<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>).</p>
+<p>Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na których ma ona działać oraz długość tych wektorów:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
+    init(x, y, <span class="dv">10</span>);</code></pre></div>
+<p>Zauważmy, że funkcja <code>init</code> pobiera 2 wskaźniki do wektorów(<code>x</code> oraz <code>y</code>) oraz jedną wartość (10). Dzięki temu funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
+<div id="uwaga" class="section level2">
+<h2>Uwaga</h2>
+<p>Ponieważ <code>x</code> oraz <code>y</code> są wskaźnikami do pierwszych (dokładnie rzecz ujmując - zerowych) elementów tablic, można użyć mechanizmu wyłuskania wartości ze wskaźników i iterować się po wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a[<span class="dv">3</span>];
+<span class="co">// po wartościach:</span>
+a[<span class="dv">0</span>] = <span class="fl">1.2</span>;         a[<span class="dv">1</span>] = <span class="fl">3.13</span>;         a[<span class="dv">2</span>] = <span class="fl">0.22</span>;
+<span class="co">//albo na wskaźnikach:</span>
+*(a)   = <span class="fl">1.2</span>;           *(a<span class="dv">+1</span>) = <span class="fl">3.13</span>;        *(a<span class="dv">+2</span>) = <span class="fl">0.22</span>;</code></pre></div>
+</div>
+<div id="cwiczenia" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę , gdyż będziemy korzystać z grafiki. - Zadeklaruj wymienione wyżej wektory o długości 10. - Zadeklaruj okno graficzne o wymiarach <span class="math inline">\(Lx \times Ly\)</span>. - Napisz funkcję , która wylosuje współrzędne położeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji  znanej z poprzednich zajęć. - Napisz funkcję <code>display</code>, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja ).</p>
+</div>
+</div>
+<div id="ruch" class="section level1">
+<h1>Ruch</h1>
+<p>Oczywiście piłeczki mają się poruszać, zatem konieczne będzie określenie wartości prędkości początkowych oraz zaprogramowanie ruchu piłeczek.</p>
+<div id="cwiczenia-1" class="section level2">
+<h2>Ćwiczenia</h2>
+<ul>
+<li>Napisz funkcję, która wylosuje początkowe prędkości piłek. Wylosuj je tak, aby wartość prędkości wynosiła 1 (najłatwiej będzie wylosować dowolną liczbę i jej sinus i cosinus przypisać jako składowe prędkości piłki)</li>
+<li><p>Napisz funkcję , która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"> <span class="kw">for</span> ( i=<span class="dv">0</span>; i &lt; N; ++i){
+      x[i] += cx[i];
+      y[i] += cy[i];
+ }</code></pre></div></li>
+<li><p>W głównym programie napisz pętlę , która wykona 50 kroków iteracji programu. Niech przy każdym kroku wyświetla położenie każdej piłki. W ciele pętli użyj funkcji  - spowolni ona wykonywanie kolejnych kroków pętli. Jej użycie wyglądało następująco.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">while</span>(animate(<span class="dv">100</span>)) {
+   clear(); <span class="co">// wyczysci okno graficzne dla nowej klatki</span>
+   <span class="co">// Dalsza czesc ciala petli</span>
+}</code></pre></div></li>
+</ul>
+</div>
+</div>
+<div id="kolizje-ze-scianami" class="section level1">
+<h1>Kolizje ze ścianami</h1>
+<p>Chcielibyśmy, aby piłeczki miały wbudowany jakiś mechanizm kolizji ze ścianami. Zderzenia będą doskonale sprężyste, kąt padania na przeszkodę będzie zatem równy kątowi odbicia od niej. Kąty mierzone względem normalnej do ściany.</p>
+<div id="cwiczenia-2" class="section level2">
+<h2>Ćwiczenia</h2>
+<ul>
+<li>Do funkcji  dopisz warunek, który sprawdza, czy piłka zderzyła się ze ścianą. W przypadku kolizji należy zastosować prawo odbicia, które będzie miało prostą formę: Jeśli uderzamy w ścianę poziomą, wystarczy zmienić składową prędkości <span class="math inline">\(cy\)</span> na przeciwną. Analogicznie przy kolizji ze ścianą pionową, zmieniamy składową <span class="math inline">\(cx\)</span> na przeciwną. Sprawdź, jak działa program np. dla 5000 kroków.</li>
+<li>Napisz funkcję <code>showEnergy</code>, która będzie wyświetlała na ekranie wartość całkowitej energii kinetycznej układu.</li>
+</ul>
+</div>
+</div>
+<div id="kolizje-z-pikamidopisz-funkcje-searchandcollide-ktora-sprawdza-czy-piki-zderzaja-sie-ze-soba-nawzajem." class="section level1">
+<h1>Kolizje z piłkami}Dopisz funkcję {searchAndCollide *, która sprawdza, czy piłki zderzają się ze sobą nawzajem.</h1>
+<p>Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała. Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. Załóżmy, że piłki, które się ze sobą zderzą mają indeksy <span class="math inline">\(i\)</span> i <span class="math inline">\(j\)</span>. Ich prędkości należy policzyć w następujący sposób: - Należy sprowadzić wszystko do układu odniesienia zwiazanego z drugą piłeczką oraz dodatkowo policzyć wektor jednostkowy wskazujący kierunek łączący środki obu piłek: <span class="math display">\[
+v_{1}= [cx_{i} - cx_{j}, cy_{i} - cy_{j}]
+\]</span> <span class="math display">\[
+L=\sqrt{(x_{i}-x_{j})^2 +(y_{i}-y_{j})^2 }
+\]</span> <span class="math display">\[
+n= [(x_{i}-x_{j})/L,(y_{i}-y_{j})/L]
+\]</span> - Przy zderzeniu przekazywana jest jedynie predkość normalna do płaszczyzny zderzenia obu piłek (patrz Rys. 2 i 3). Liczymy ją w nastepujący sposób: <span class="math display">\[
+v_{n}= [v_{nx},v_{ny}]=[(v_{1x}n_{x}+v_{1y}n_{y})n_{x},(v_{1x}n_{x}+v_{1y}n_{y})n_{y}]
+\]</span> - Policzona powyżej predkość jest odejmowana od prędkości piłki 1 oraz dodawana do prędkosci piłki 2 (która była zerem w nowym układzie): <span class="math display">\[
+v_{1}^{new}= [v_{1x}-v_{nx}, v_{1y}-v_{ny}], v_{2}^{new}= [v_{nx},v_{ny}]
+\]</span> - Na koniec wracamy do starego układu odniesienia: <span class="math display">\[
+cx_{i}^{new}=cx_{i}+v_{1x}^{new}
+\]</span> <span class="math display">\[
+cy_{i}^{new}=cy_{i}+v_{1y}^{new}
+\]</span> <span class="math display">\[
+cx_{j}^{new}=cx_{j}+v_{2x}^{new}
+\]</span> <span class="math display">\[
+cy_{j}^{new}=cy_{j}+v_{2y}^{new}
+\]</span></p>
+\begin{figure}
+\centering
+\includegraphics[width=0.135\textwidth]{zderzenie1.pdf}
+
+\caption{Zderzenie piłek w układzie związanym z drugą piłką (druga piłka jest nieruchoma). Prędkości przed wymianą pędu..}
+\end{figure}\begin{figure}
+\centering
+\includegraphics[width=0.175\textwidth]{zderzenie2.pdf}
+
+\caption{Zderzenie. Prędkosci po wymianie pędu. Składowa równoległa do osi wyzanczonej przez środki piłek zostaje przekazana piłce 2.}
+\end{figure}
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>tablice zazwyczaj będziemy nazywać wektorami, ze względu na fakt, że określenie “tablica” kojarzą się z obiektem o większej ilości wymiarów np. z macierzą<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>Zasady działania na wskaźnikach opisano w Instrukcji 4.2.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>piłki poruszają się ze stałą prędkością, toteż $x(t+t) = x(t) + vt $, a dla uproszczenia symulacji czas jest jednostkowy zatem <span class="math inline">\(x(t+1) = x(t) + v\)</span><a href="#fnref5">↩</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

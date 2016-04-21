@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p>Na tych laboratoriach skupimy się na scałkowaniu równania ruchu: <span class="math display">\[M\ddot{x} = F - Sx\]</span> Gdzie <span class="math inline">\(x\)</span> to odkształcenie, <span class="math inline">\(M\)</span> to macierz masowa, zaś <span class="math inline">\(S\)</span> to macierz sztywności.</p>
+<p>Na początek przez <span class="math inline">\(y\)</span> oznaczmy prędkość odkształcenia, czyli <span class="math inline">\(y = \dot{x}\)</span>. Teraz mamy układ równań pierwszego rzędu:</p>
+<p><span class="math display">\[\begin{cases}
+M\dot{y} &amp;= F - Sx\\
+\dot{x} &amp;= y\\
+\end{cases}\]</span></p>
+<p>Zastępując pochodną po lewej stronie przez różnice skończoną mamy:</p>
+<p><span class="math display">\[\begin{cases}
+M\frac{y_{n+1}-y_n}{\text{dt} } &amp;= F - Sx\\
+\frac{x_{n+1}-x_n}{\text{dt} } &amp;= y\\
+\end{cases}\]</span></p>
+<p>Po prawej stronie równania możemy użyć <span class="math inline">\(x\)</span> i <span class="math inline">\(y\)</span> z nowej (<span class="math inline">\(n+1\)</span>), bądź starej (<span class="math inline">\(n\)</span>) iteracji. W zależności co użyjemy otrzymamy mniej lub bardziej uwikłane równanie, a schemat będzie jawny (explicit) bądź niejawny (implicit).</p>
+<p>Uwaga: by porównać różne schematy, każdy schemat napisz w nowej funkcji, która powinna brać następujące argumenty: <code>void Dynamics(int n, double * x, double * y, double T, double dt);</code>, gdzie <code>x</code> i <code>y</code> to początkowe wartości <span class="math inline">\(x\)</span> i <span class="math inline">\(y\)</span>, <code>T</code> to całkowity czas całkowania, a <code>dt</code> to krok czasowy.</p>
+<div id="schemat-prawie-jawny-almost-explicit" class="section level1">
+<h1>Schemat prawie jawny (almost explicit)</h1>
+<p>Na początek wstawmy po prawej stronie wartości ze starej iteracji. Otrzymamy:</p>
+<p><span class="math display">\[\begin{cases}
+My_{n+1} &amp;= My_n + \text{dt}( F - Sx_n)\\
+x_{n+1} &amp;= x_n + \text{dt} y_n\\
+\end{cases}\]</span></p>
+<div id="zadanie" class="section level3">
+<h3>Zadanie</h3>
+<p>Napisz funkcję mnożącą przez macierz masową. W pliku <code>MesLib.h</code> jest ona zdefiniowana w analogiczny sposób jak macierz sztywności: przez macierz <span class="math inline">\(M\)</span> i stałą <span class="math inline">\(Mm\)</span>. UWAGA: W mnożeniu przez macierz masową, należy także zamrozić wybrane stopnie swobody.</p>
+</div>
+<div id="zadanie-1" class="section level3">
+<h3>Zadanie</h3>
+<p>Napisz funkcję całkującą równanie ruchu układu wg. następującego schematu: - Oblicz <span class="math inline">\(b = My + dt(F - Sx)\)</span> - Oblicz <span class="math inline">\(x = x + dt y\)</span> - Rozwiąż układ: <span class="math inline">\(My=b\)</span> - Co <span class="math inline">\(10\)</span>-tą iterację wyświetl belkę.</p>
+</div>
+<div id="zadanie-2" class="section level3">
+<h3>Zadanie</h3>
+<p>Przeanalizuj dla jakich <span class="math inline">\(dt\)</span> układ jest stabilny, a dla jakich nie.</p>
+</div>
+<div id="zadanie-3" class="section level3">
+<h3>Zadanie</h3>
+<p>Jak wygląda wzór na całkowitą energię układu (energia potencjalna sprężystości + praca sił + energia kinetyczna)? Zróżniczkuj ją po <span class="math inline">\(t\)</span> i pokaż, że jest stała</p>
+</div>
+<div id="zadanie-4" class="section level3">
+<h3>Zadanie</h3>
+<p>Wydrukuj w konsoli jak zmienia się całkowita energia układu w czasie.</p>
+</div>
+</div>
+<div id="schemat-po-niejawny-semi-implicit" class="section level1">
+<h1>Schemat pół niejawny (semi-implicit)</h1>
+<p>Prostą modyfikacją jest użycie po prawej stronie <span class="math inline">\(x\)</span> ze starej iteracji i <span class="math inline">\(y\)</span> z nowej, otrzymując: <span class="math display">\[\begin{cases}
+My_{n+1} &amp;= My_n + \text{dt}( F - Sx_n)\\
+x_{n+1} &amp;= x_n + \text{dt} y_{n+1}\\
+\end{cases}\]</span></p>
+<div id="zadanie-5" class="section level3">
+<h3>Zadanie</h3>
+<p>Zmodyfikuj kod rozwiązując układ na <span class="math inline">\(y\)</span> przed modyfikacją <span class="math inline">\(x\)</span>-a.</p>
+</div>
+<div id="zadanie-6" class="section level3">
+<h3>Zadanie</h3>
+<p>Przeanalizuj dla jakich <span class="math inline">\(dt\)</span> układ jest stabilny. Wydrukuj zmienność energii.</p>
+</div>
+</div>
+<div id="schemat-niejawny-fully-implicit" class="section level1">
+<h1>Schemat niejawny (fully-implicit)</h1>
+<p>Możemy także po prawej stronie wziąć obie wartości z nowej iteracji, otrzymując: <span class="math display">\[\begin{cases}
+My_{n+1} &amp;= My_n + \text{dt}( F - Sx_{n+1})\\
+x_{n+1} &amp;= x_n + \text{dt} y_{n+1}\\
+\end{cases}\]</span></p>
+<p>Wstawiając drugie równanie do pierwszego otrzymujemy: <span class="math display">\[My_{n+1} = My_n + \text{dt}( F - S(x_n + \text{dt} y_{n+1}))\]</span> Przekształcając: <span class="math display">\[(M+\text{dt}^2S)y_{n+1} = My_n + \text{dt}( F - S x_n)\]</span></p>
+<div id="zadanie-7" class="section level3">
+<h3>Zadanie</h3>
+<p>Napisz funkcję mnożącą przez <span class="math inline">\(M+\text{dt}^2S\)</span></p>
+</div>
+<div id="zadanie-8" class="section level3">
+<h3>Zadanie</h3>
+<p>Zmodyfikuj kod, by realizował schemat w pełni niejawny, zamieniając macierz <span class="math inline">\(M\)</span> na <span class="math inline">\(M+\text{dt}^2S\)</span> w obliczeniu <span class="math inline">\(y\)</span>-ka</p>
+</div>
+<div id="zadanie-9" class="section level3">
+<h3>Zadanie</h3>
+<p>Przeanalizuj dla jakich <span class="math inline">\(dt\)</span> układ jest stabilny. Wydrukuj zmienność energii.</p>
+</div>
+</div>
+<div id="w-po-kroku-midpoint" class="section level1">
+<h1>W pół kroku (midpoint)</h1>
+<p>Ostatnia z omówionych metod bierze po prawej stronie średnią z wartości w nowej i starej iteracji: <span class="math display">\[\begin{cases}
+My_{n+1} &amp;= My_n + \text{dt}( F - S\frac{x_{n+1}+x_{n}}{2})\\
+x_{n+1} &amp;= x_n + \text{dt} \frac{y_{n+1}+y_{n}}{2}\\
+\end{cases}\]</span></p>
+<p>Po wstawieniu drugiego równania do pierwszego mamy: <span class="math display">\[My_{n+1} = My_n + \text{dt}( F - S\frac{x_n + \text{dt} \frac{y_{n+1}+y_{n}}{2}+x_{n}}{2})\]</span> Przekształcając: <span class="math display">\[My_{n+1} = My_n + \text{dt}( F - S(x_n + \text{dt} \frac{y_{n+1}+y_{n}}{4})\]</span> Ostatecznie: <span class="math display">\[(M + \frac{\text{dt}^2}{4}S)y_{n+1} = My_n + \text{dt}( F - S(x_n + \text{dt} \frac{y_{n}}{4})\]</span></p>
+<div id="zadanie-10" class="section level3">
+<h3>Zadanie</h3>
+<p>Napisz funkcję mnożącą przez <span class="math inline">\(M+\frac{\text{dt}^2}{4}S\)</span></p>
+</div>
+<div id="zadanie-11" class="section level3">
+<h3>Zadanie</h3>
+<p>Napisz funkcję całkującą równanie ruchu układu wg. następującego schematu: - Oblicz <span class="math inline">\(x = x + \frac{dt}{4} y\)</span> - Oblicz <span class="math inline">\(b = My + dt(F - Sx)\)</span> - Oblicz <span class="math inline">\(x = x + \frac{dt}{4} y\)</span> - Rozwiąż układ: <span class="math inline">\((M + \frac{\text{dt}^2}{4}S)y=b\)</span> - Oblicz <span class="math inline">\(x = x + \frac{dt}{2} y\)</span> - Co <span class="math inline">\(10\)</span>-tą iterację wyświetl belkę.</p>
+</div>
+<div id="zadanie-12" class="section level3">
+<h3>Zadanie</h3>
+<p>Przeanalizuj dla jakich <span class="math inline">\(dt\)</span> układ jest stabilny. Wydrukuj zmienność energii.</p>
+</div>
+<div id="zadanie-13" class="section level3">
+<h3>Zadanie</h3>
+<p>Udowodnij, że metoda pół kroku zachowuje energię układu.<sup>[Podpowiedz: tak jak <span class="math inline">\(a^2-b^2=(a+b)(a-b)\)</span> to $x_{n+1]</sup>TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} + x_{n})$}</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

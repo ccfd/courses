@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="dynamiczna-alokacja-tablic-wielowymiarowych" class="section level1">
+<h1>Dynamiczna alokacja tablic wielowymiarowych</h1>
+<p>Tydzień temu nauczyliśmy się dynamicznej alokacji pamięci dla tablic jednowymiarowych. Dynamiczna oznacza tyle, że rozmiar tablicy, jaką chcemy zaalokować, znamy dopiero w momencie wykonywania programu, tzn., że nie jesteśmy w stanie go określić statycznie (daną, konkretną liczbą) na etapie kompilacji. Kod do dynamicznej alokacji tablic jednowymiarowych wyglądał tak:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
+
+<span class="dt">void</span> main()
+{
+   <span class="dt">double</span> *tab;
+   <span class="dt">int</span> n;
+   printf(<span class="st">&quot;Podaj n:</span><span class="ch">\n</span><span class="st">&quot;</span>);
+   scanf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">, &amp;n);</span>
+
+   tab = (<span class="dt">double</span>*)malloc(n*<span class="kw">sizeof</span>(<span class="dt">double</span>));
+   <span class="co">// Tu mozesz wykonywac operacje na tablicy</span>
+   free(tab);
+}</code></pre></div>
+<p>Dziś nauczymy się dwóch nowych rzeczy: stosowania w języku C tablic wielowymiarowych (alokowanych statycznie) oraz ich dynamicznej alokacji.</p>
+</div>
+<div id="tablice-wielowymiarowe" class="section level1">
+<h1>Tablice wielowymiarowe</h1>
+<p>Język C pozwala na stosowanie tablic wielowymiarowych. Do tej pory przez kilka tygodni używaliśmy jedynie tablic jednowymiarowych. Potocznie często określaliśmy je <em>wektorami</em>. Wyobraźmy sobie - tablica dwuwymiarowa doskonale nadaje się np. do przechowywania macierzy.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Przyjrzyjmy się więc fragmentowi kodu, który zadeklaruje dwuwymiarową tablicę o wymiarze 3x4. Możemy to utożsamić z reprezentacją macierzy o takim samym wymiarze.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
+{
+   <span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>];
+   
+   <span class="co">// Tu mozemy przypisac wartosci kolejnym elementom:</span>
+   A[<span class="dv">0</span>][<span class="dv">0</span>] = <span class="dv">1</span>;
+   A[<span class="dv">0</span>][<span class="dv">1</span>] = <span class="fl">1.5</span>;
+   A[<span class="dv">0</span>][<span class="dv">2</span>] = <span class="dv">0</span>;
+   A[<span class="dv">0</span>][<span class="dv">3</span>] = <span class="fl">-2.7</span>;
+   ...
+   A[<span class="dv">2</span>][<span class="dv">3</span>] = <span class="dv">8</span>;
+   <span class="co">// Tu mamy wypelniona macierz</span>
+   <span class="co">// Mozemy wykonywac obliczenia</span>
+}</code></pre></div>
+<p>Zauważmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania. Kompilator sam o to dba (jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy - one też są automatycznie niszczone przez kompilator). Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez wypisanie kolejnych dwunastu linijek przypisań. Możemy to zrobić na liście inicjalizacyjnej od razu na etapie deklaracji tablicy. Dokonuje się tego tak:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">0</span>, <span class="fl">-2.7</span>}, {<span class="dv">-3</span>, <span class="fl">2.5</span>, <span class="dv">7</span>, <span class="dv">0</span>}, {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">-3</span>, <span class="dv">8</span>}};</code></pre></div>
+<p>W ten sposób stworzymy poniższą macierz: <span class="math display">\[
+\mathbf{A} = 
+\left(
+\begin{array}{cccc}
+1 &amp; 1.5 &amp; 0 &amp; -2.7 \\ -3 &amp; 2.5 &amp; 7 &amp; 0 \\ 0 &amp; 1 &amp; -3 &amp; 8
+\end{array}
+\right)
+\]</span> Pozostaje wytłumaczyć jeszcze, w jaki sposób odwołujemy się do elementów w dwuwymiarowej tablicy. Robimy to analogicznie do tablicy jednowymiarowej, tylko tym razem musimy podać dwa indeksy. Tak więc do elementu macierzy <span class="math inline">\(a_{32}\)</span> odwołamy się przez napisanie <code>a[2][1]</code>. W ten sposób możemy wyłuskać wartość przechowywaną pod tym elementem lub operatorem <em>=</em> przypisać temu elementowi nową wartość.</p>
+</div>
+<div id="cwiczenia" class="section level1">
+<h1>Ćwiczenia</h1>
+<p>W funkcji <code>main</code> napisz fragment kodu, w którym zadeklarujesz i zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe. Jedna ma przechowywać macierz kwadratową o wymiarze 2, a druga z nich macierz kwadratową o wymiarze 3. Napisz kod, który dla każdej z tych macierzy policzy wyznacznik.</p>
+</div>
+<div id="dynamiczna-alokacja" class="section level1">
+<h1>Dynamiczna alokacja</h1>
+<p>Czas jednak na dynamiczną alokację. Dwuwymiarową tablicę o rozmiarze M x N zaalokujemy w następujący sposób: stworzymy tablicę jednowymiarową o rozmiarze M (umówmy się, że ona będzie wskazywać na początek każdego z wierszy), po czym każdemu z elementów tej tablicy zaalokujemy blok o długości N (to będą jednowymiarowe tablice do przechowywania kolejnych wierszy). De facto będziemy mieli w pamięci M bloków, każdy długości N. Spójrzmy na kod.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> **A;
+*A = (<span class="dt">double</span>**)malloc(M*<span class="kw">sizeof</span>(<span class="dt">double</span>*));</code></pre></div>
+<p>Zauważmy, że tydzień temu alokowaliśmy jednowymiarową tablicę jako wskaźnik. Tym razem będziemy mieć tablicę dwuwymiarową, więc używamy podwójnego wskaźnika. Dlatego w instrukcji powyżej blok pamięci zwracany przez funkcję <code>malloc</code> rzutujemy na podwójny wskaźnik <code>double**</code>. Musimy też obliczyć, ile miejsca potrzebujemy. Przechowywać będziemy wskaźniki (do odpowiednich tablic jednowymiarowych przechowujących wiersze), dlatego jako argument funkcji <code>sizeof</code> podajemy <code>double*</code>. Teraz alokujemy tablice jednowymiarowe do przechowywania wierszy.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
+   A[i] = (<span class="dt">double</span>*)malloc(N*<span class="kw">sizeof</span>(<span class="dt">double</span>));</code></pre></div>
+<p>Powyżej każdemu z elementów pierwszej tablicy przypisaliśmy tablicę do przechowywania każdego z wierszy. Tym razem blok zwrócony przez funkcję <code>malloc</code> rzutujemy na typ <code>double*</code>, a argumentem funkcji <code>sizeof</code> jest typ zmiennej przechowywanej w tej tablicy, czyli już zwykła zmienna <code>double</code>, a nie wskaźnik do niej. Tablica dwuwymiarowa jest już gotowa - możemy jej używać.</p>
+<p>Po zakończeniu pracy z tablicą, trzeba koniecznie zwolnić pamięć przez nią wykorzystywaną. Teraz trzeba operacje wykonać od końca! Tzn. najpierw zwalniamy każdy z wierszy, a na końcu zwolnimy pierwotną tablicę wskaźników do wierszy. Dokonuje tego poniższy kod.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
+   free(A[i]);
+
+free(A);</code></pre></div>
+<div id="podsumowanie" class="section level2">
+<h2>Podsumowanie</h2>
+<p>Zbierzmy wszystkie instrukcje w jednym miejscu. Chcemy zaalokować dwuwymiarową tablicę zmiennych typu <code>int</code>. Dokonujemy tego tak:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Alokacja pamieci</span>
+<span class="dt">int</span> **A;
+*A = (<span class="dt">int</span>**)malloc(M*<span class="kw">sizeof</span>(<span class="dt">int</span>*);
+<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
+   A[i] = (<span class="dt">int</span>*)malloc(N*<span class="kw">sizeof</span>(<span class="dt">int</span>));
+
+<span class="co">// Tu mozemy wykonywac dowolne operacje na tablicy</span>
+
+<span class="co">// Zwolnienie pamieci</span>
+<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
+   free(A[i]);
+free(A);</code></pre></div>
+</div>
+</div>
+<div id="cwiczenia-1" class="section level1">
+<h1>Ćwiczenia</h1>
+<ul>
+<li>Napisz funkcję, która jako argumenty przyjmie podwójny wskaźnik (wskaźnik do dynamicznie alokowanej tablicy dwuwymiarowej) oraz liczbę kolumn i wierszy macierzy, po czym dokona wydruku macierzy na ekran w naturalnej postaci, do jakiej jesteśmy przyzwyczajeni dla macierzy.</li>
+<li>Napisz funkcję <code>maxAbsAij</code>, która dla danej macierzy zwróci do funkcji <code>main</code> największy co do modułu element tej macierzy oraz jego indeksy <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>.</li>
+<li>Napisz funkcję <code>minAbsAij</code>, która dla danej macierzy zwróci do funkcji <code>main</code> najmniejszy co do modułu element tej macierzy oraz jego indeksy <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>.</li>
+<li>W funkcji main zaalokuj w sposób dynamiczny miejsce dla macierzy 3x3 oraz dwóch wektorów trzyelementowych. Wypełnij macierz i jeden z wektorów dowolnymi wartościami, po czym napisz w funkcji <code>main</code> kod, który dokona przemnożenia danej macierzy przez dany wektor i wynik mnożenia wpisze do drugiego z wektorów. Mnożenie macierzy przez wektor określone jest wzorem <span class="math display">\[w_i = \sum\limits_{j=0}^{n-1}{a_{ij}v_j}\]</span>.</li>
+<li>Zamknij powyższe operacje w funkcji o nagłówku <code>c++void MatVecMultiply(double **A, double *v1, double *v2, int n)</code> i dokonaj wywołania z funkcji <code>main</code>.</li>
+<li>Zmodyfikuj powyższy program tak, żeby rozmiar <em>n</em> był wczytywany z klawiatury, elementy tablicy były generowane zgodnie ze wzorem <span class="math inline">\(a_{ij} = \frac{i+1}{j+1}, (i,j = 0,...,n-1)\)</span>, zaś elementy wektora wg wzoru <span class="math inline">\(v_i = i+1, (i = 0,...,n-1)\)</span>. Obliczaj iloczyn takiej macierzy przez ten wektor, korzystając ze swojej funkcji <code>MatVecMultiply</code>. Wynik wyświetlaj na ekranie oraz sprawdź, czy otrzymujesz poprawny wynik.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></li>
+<li>Napisz funkcję <code>c++MatMatMultiply(double **A, double **B, double **C, int mA,                                  int nA, int mB, int nB)</code>służącą do mnożenia dwóch macierzy prostokątnych (<span class="math inline">\(\bf A\)</span> o wymarze <span class="math inline">\(m_A \times n_A\)</span> i <span class="math inline">\(\bf B\)</span> o wymiarze <span class="math inline">\(m_B \times n_B\)</span>) i wpisującą wynik do macierzy <span class="math inline">\(\bf C\)</span> (zadbaj w funkcji <code>main</code> o to, aby pamięć zaalokowana dla macierzy <span class="math inline">\(\bf C\)</span> była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). <strong>Uwaga:</strong> Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
+</ul>
+</div>
+<div id="dla-ambitnych" class="section level1">
+<h1>Dla ambitnych *</h1>
+<p>Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie pamięci dla tablicy trójwymiarowej. Na przykład, gdybyś chciał napisać grę w trójwymiarowe kółko i krzyżyk. Skonsultuj z prowadzącym kod dla takiego przypadku.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Tak naprawdę wiele więcej struktur - często nawet zupełnie niematematycznych możemy trzymać w dwuwymiarowych tablicach - np. programując grę w szachy moglibyśmy użyć dwuwymiarowej tablicy o wymiarze 8 x 8 i w odpowiednie pola tej tablicy wpisywać liczby, które symbolizowałyby konkretne figurę. A gra w statki? Można podobnie. Z drugiej strony w praktycznych obliczeniach numerycznych wielkie macierze o rozmiarze rzędu kilkuset tysięcy do kilku milionów i większe przechowuje się w postaci wektora. W praktycznych zagadnieniach są to niemal zawsze macierze rzadkie, tzn. takie, które w stosunku do całkowitej liczby swoich elementów mają bardzo niewiele elementów, które nie są zerem. Taką macierz łatwo jest trzymać w pamięci jako wektor (przyjmując specjalny format, który pomija wszystkie zera - np. tzw. format CSR <em>(ang. compressed sparse row)</em> jest szeroko stosowanym formatem zapisania macierzy rzadkiej w trzech wektorach). Tak wielka macierz przechowywana jawnie najpewniej nie zmieściłaby się w pamięci żadnego dostępnego nam komputera.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Dla takiej macierzy i takiego wektora bardzo łatwo jest wygenerować analityczny wynik. Wypisz sobie małą macierz wg zadanego wzoru i odpowiadający wektor i na pewno szybko zauważysz prawidłowość. Będziesz wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

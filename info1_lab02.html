@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="funkcje" class="section level1">
+<h1>Funkcje</h1>
+<p>Pewne zestawy operacji, zależne od zmiennych, możemy zebrać w grupki (funkcje) i wywoływać jak <code>circle</code> i <code>line</code>. Przykład z poprzedniego paragrafu możemy zamknąć w funkcji:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> obrazek(<span class="dt">int</span> h, <span class="dt">int</span> r)
+{
+    line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, h);
+    line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>*r, h);
+    circle( <span class="dv">10</span>+r, h, r);
+}</code></pre></div>
+<p>Pierwsza linia deklaruje funkcję, która jest zależna od dwóch parametrów: <code>h,r</code>. Taką funkcję, możemy wywołać dla przykładu tak: <code>obrazek(100,50);</code>. Spowoduje to wykonanie powyższych trzech operacji przy <span class="math inline">\(h=100\)</span> i <span class="math inline">\(r=50\)</span>.</p>
+<p>**<em>Pamiętaj:</em> Nową funkcję napisz przed funkcją <code>main**</code></p>
+<p>W funkcji <code>main</code> wywołujemy funkcję <code>obrazek</code>, tak jak <code>circle</code> czy <code>line</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
+{
+    graphics(<span class="dv">200</span>,<span class="dv">200</span>);
+    obrazek(<span class="dv">100</span>,<span class="dv">50</span>);    
+    wait();
+}</code></pre></div>
+<div id="cwiczenia" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Napisz i wywołaj dowolne dwie z poniższych funkcji: - <code>prostokat(x,y,a,b)</code> — Narysuje prostokąt o bokach <code>a</code> i <code>b</code> i środku w (<code>x</code>, <code>y</code>) - <code>kwadrat(x,y,r)</code> — Narysuje kwadrat o boku <span class="math inline">\(2r\)</span> i wpisane koło o promieniu <span class="math inline">\(r\)</span>. - <code>ludzik(x,y,h)</code> — Narysuje ludzika wysokości <code>h</code> i środku głowy w (<code>x</code>, <code>y</code>) - <code>olimpiada(x,y)</code> — Narysuje koła olimpijskie o środku w (<code>x</code>, <code>y</code>) - * <code>okno(a)</code> — Używając funkcji do rysowania prostokąta narysuje okno o boku <span class="math inline">\(a\)</span>.</p>
+</div>
+</div>
+<div id="troche-wiecej-szczegoow" class="section level1">
+<h1>Trochę więcej szczegółów</h1>
+<p>Omówmy pewne rzeczy trochę dokładniej.</p>
+<div id="typy" class="section level2">
+<h2>Typy</h2>
+<p>W C i C++ <em>musimy</em> deklarować zmienne, tzn. powiedzieć, jakich będziemy używać zmiennych i jakich one będą typów. Deklaracje piszemy ‘typ zmienna1,zmienna2, …;’. Najważniejsze typy to: - <code>int</code> — Liczba całkowita (32-bitowa, od <span class="math inline">\(-2^{31}\)</span> do <span class="math inline">\(2^{31}\)</span>) - <code>float</code> — Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity) - <code>double</code> — Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)</p>
+<p>**<em>Pamiętaj:</em> Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu <code>double**.</code></p>
+<p>Pierwszym przykładem niech będzie:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
+a = <span class="dv">0</span>;
+<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.14</span>)
+{
+    circle(a * <span class="dv">100</span>, sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    a = a + <span class="fl">0.001</span>;
+}</code></pre></div>
+<p>Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o promieniu 3.</p>
+</div>
+<div id="cwiczenia-1" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań. - Narysuj wykres <span class="math inline">\(a^2\)</span>. - Narysuj punkty o współrzędnych <span class="math inline">\(x=100\sin{a}+100\)</span> i <span class="math inline">\(y=100\cos{a}+100\)</span>. - Narysuj punkty o współrzędnych <span class="math inline">\(x=100\sin{a}\cos{4a}+100\)</span> i <span class="math inline">\(y=100\cos{a}\cos{4a}+100\)</span>. - Narysuj punkty o współrzędnych <span class="math inline">\(x=100r\sin{a}+100\)</span> i <span class="math inline">\(y=100r\cos{a}+100\)</span>, gdzie <span class="math inline">\(r = \frac{\cos{a}+2}{3}\)</span> (niech <span class="math inline">\(r\)</span> będzie kolejną zmienną).</p>
+</div>
+<div id="typy-puapki" class="section level2">
+<h2>Typy — pułapki</h2>
+<p>Ważne, by pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania jak dla liczb całkowitych. Dlatego <code>1/4</code> da jako wynik 0! Bo wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać <code>1.0/4</code> lub jeszcze lepiej <code>1.0/4.0</code>. Możemy także bezpośrednio ‘zrzutować’ zmienne z <code>int</code> na <code>double</code> pisząc: <code>(double) zmienna</code>.</p>
+<p>**<em>Pamiętaj:</em> Wszędzie, gdzie robisz obliczenia, używaj <code>double**. Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3</code></p>
+</div>
+<div id="cwiczenia-2" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Przeanalizuj (i przetestuj) wynik tego programu. Które linie nie dadzą pożądanego efektu?</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
+a = <span class="dv">0</span>;
+<span class="kw">while</span> (a &lt; <span class="dv">2</span>)
+{
+    circle(a * <span class="dv">100</span>, sin( a * <span class="fl">3.14</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    circle(a * <span class="dv">100</span>, sin( a * (<span class="dv">314</span> / <span class="dv">100</span>) ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    circle(a * <span class="dv">100</span>, sin( (a * <span class="dv">314</span>) / <span class="dv">100</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    a = a + <span class="fl">0.001</span>;
+}</code></pre></div>
+</div>
+</div>
+<div id="funkcje-po-raz-drugi" class="section level1">
+<h1>Funkcje po raz drugi</h1>
+<p>Zestawy operacji, które powtarzamy w programie wielokrotnie, możemy zamknąć w funkcjach. Taka funkcja ,,połyka’’ parametry i coś z nimi robi. Dla przykładu:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> kreski(<span class="dt">int</span> n, <span class="dt">double</span> r)
+{
+    <span class="dt">int</span> i;
+    i = <span class="dv">0</span>;
+    <span class="kw">while</span> (i &lt; n)
+    {
+        line(i, <span class="dv">0</span>, i, r * i);
+        i = i + <span class="dv">1</span>;
+    }
+}</code></pre></div>
+<p>W pierwszej linii mówimy: - jak nazywa się funkcja — <code>kreski</code> - jakie ma parametry — <code>n</code> typu <code>int</code> i <code>r</code> typu <code>double</code> - jakiego typu zwraca wartość —w naszym wypadku <code>void</code> oznacza, że nic nie zwraca</p>
+<p>Gdy gdziekolwiek w funkcji <code>main</code> użyjemy wywołania <code>kreski( 20, 0.4);</code> jako efekt działania funkcji otrzymamy 20 pionowych kresek o długości od <span class="math inline">\(0\)</span> do <span class="math inline">\(0.4\cdot 19\)</span> (dlaczego <span class="math inline">\(19\)</span> a nie <span class="math inline">\(20\)</span>?).</p>
+<p>Taką funkcję możemy wykonać wielokrotnie dla różnych wartości <span class="math inline">\(n\)</span> i <span class="math inline">\(r\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
+{
+    graphics(<span class="dv">200</span>,<span class="dv">200</span>);
+
+    kreski( <span class="dv">10</span>, <span class="fl">1.000</span>); 
+    kreski( <span class="dv">20</span>, <span class="fl">0.500</span>); 
+    kreski( <span class="dv">30</span>, <span class="fl">0.333</span>); 
+    kreski( <span class="dv">40</span>, <span class="fl">0.250</span>); 
+    
+    wait();
+}</code></pre></div>
+<div id="cwiczenia-3" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Napisz i wywołaj dwie sposród niżej wymienionych funkcji. - Funkcję, która narysuje ludzika wysokości <code>h</code> i środku głowy w (<code>x</code>, <code>y</code>). - Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji). - Funkcję, która narysuje <code>n</code> kółek w punkcie (<code>x</code>,<code>y</code>) o coraz większych promieniach. - * Funkcję, która narysuje wielokąt foremny o <code>n</code> bokach.</p>
+</div>
+</div>
+<div id="instrukcja-warunkowa" class="section level1">
+<h1>Instrukcja warunkowa</h1>
+<p>Kolejnym bloczkiem składowym programowania, jest instrukcja warunkowa. Sprawdza ona warunek i wykonuje pewną część kodu, tylko gdy warunek jest spełniony.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">x = <span class="fl">2.0</span>;
+<span class="kw">if</span> ( x &gt; <span class="dv">0</span> ) {
+    y = sqrt(x);
+} <span class="kw">else</span> {
+    y = <span class="dv">0</span>;
+}</code></pre></div>
+<p>Instrukcja ta sprawdza czy <span class="math inline">\(x &gt; 0\)</span> i jeśli jest to prawdą, to wstawia <span class="math inline">\(\sqrt{x}\)</span> do zmiennej <span class="math inline">\(y\)</span>. Gdy warunek nie jest spełniony, wykonywana jest część po <code>else</code>, więc wstawiane jest <span class="math inline">\(0\)</span> do <span class="math inline">\(y\)</span>. W ten sposób możemy zabezpieczyć się na przykład przed niemożliwymi obliczeniami, albo uzależnić działanie programu od jakiś wartości.</p>
+<p>Zobaczmy prosty przykład:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
+a = <span class="dv">0</span>;
+<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.14</span>)
+{
+    <span class="kw">if</span> (a &lt; <span class="dv">2</span>) {
+        circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">5</span>);
+    } <span class="kw">else</span> {
+        circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">10</span>);
+    }
+    a = a + <span class="fl">0.001</span>;
+}</code></pre></div>
+<p>Gdyby nie instrukcja <code>if</code>, ten program narysował by koło z małych kółek. Teraz, gdy kąt <code>a</code> przekroczy <span class="math inline">\(2\)</span> radiany zmieni promień kółeczka z <span class="math inline">\(5\)</span> na <span class="math inline">\(10\)</span></p>
+<div id="cwiczenia-4" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Napisz program który: - Dla parametru <span class="math inline">\(w\)</span> rysuje wykres <span class="math inline">\(x^2-w\)</span>, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład). - Wyrysuje większe kółka w miejscach przecięcia wykresu z osią <span class="math inline">\(x\)</span> (<em>jeżeli</em> przecina). - Zmodyfikuj program by działał dla dowolnych <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> i funkcji <span class="math inline">\(ax^2+bx+c\)</span>.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ccfd/courses">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit me on GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="wspopraca-z-plikami" class="section level1">
+<h1>Współpraca z plikami</h1>
+<p>Praktyczny program (szczególnie inżynierski) bardzo często musi współpracować z plikami. Czasem, przy obliczeniach trwających wiele godzin lub dni wręcz zależy nam na tym, by program działał samodzielnie bez potrzeby interakcji ze strony użytkownika. Wróćmy jednak do plików. Najczęściej chodzi o możliwość wczytania danych wejściowych z jednego (bądź wielu) plików, przeprowadzenie obliczeń wewnątrz programu i zapisanie wyników do innego pliku (bądź wielu plików).\ W języku C komunikacja z plikami prowadzona jest niemalże identycznie, jak czytanie danych z klawiatury i wydruk na ekran, co realizowaliśmy za pomocą znanych już funkcji <code>scanf</code> oraz <code>printf</code>. Musimy jednak najpierw określić, jaki plik chcemy utworzyć bądź otworzyć i w jakim celu go tworzymy/otwieramy. Ponadto, analogiem instrukcji <code>printf</code> do zapisu do plików jest instrukcja <code>fprintf</code>, zaś funkcja <code>scanf</code> jest zastąpiona przez funkcję <code>fscanf</code>. Przyjrzyjmy się przykładowemu kodowi źródłowemu.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f; <span class="co">// deklarujemy zmienną typu FILE o nazwie f</span>
+         <span class="co">// tak naprawde to wskaznik (o tym jednak w pozniej)</span>
+
+f = fopen(<span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
+                            <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
+                            <span class="co">// sujemy go do zmiennej o nazwie f</span>
+
+fprintf(f, <span class="st">&quot;Zapisujemy wlasnie ten tekst do pliku</span><span class="ch">\n</span><span class="st">&quot;</span>);
+
+fclose(f); <span class="co">// zamykamy plik</span></code></pre></div>
+<p>Warto zwrócić uwagę na trzy kwestie. Po pierwsze, w funkcji <code>fprintf</code> (to samo dotyczy funkcji <code>fscanf</code> jako pierwszy argument trzeba podać <em>strumień</em> - de facto nazwę zmiennej typu <code>FILE</code>, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy <em>f</em>, bo tak właśnie nazwaliśmy naszą zmienną. Druga uwaga: Powyższy zapis można nieco skompresować (połączyć deklarację zmiennej typu FILE z otwarciem pliku). Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f = fopen(<span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>)
+
+<span class="kw">if</span>(f == NULL)
+{
+   printf(<span class="st">&quot;Blad otwarcia pliku</span><span class="ch">\n</span><span class="st">&quot;</span>);
+   exit(<span class="dv">-1</span>); <span class="co">// zakonczenie programu</span>
+}
+
+<span class="co">// Tu wykonujemy operacje na pliku (w naszym przypadku zapis)</span>
+<span class="co">// Gdy plik juz nie bedzie wiecej potrzebny w naszym programie,</span>
+<span class="co">// koniecznie go zamykamy!</span>
+
+fclose(f);</code></pre></div>
+<p>Pliki można otworzyć nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać, czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym czy binarnym. Służą do tego odpowiednio sekwencje <code>t</code> i <code>b</code>. Przykładowe instrukcje zaprezentowano poniżej. Zauważmy też, że można otworzyć w tym samym czasie kilka plików.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
+{
+   <span class="dt">int</span> a = <span class="dv">3</span>;
+
+   FILE *f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
+   FILE *g = fopen(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
+   FILE *InnyPlik = fopen(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
+
+   <span class="kw">if</span>((f == NULL) || (g == NULL) || (InnyPlik == NULL))
+   {
+      printf(<span class="st">&quot;Nie udalo sie otwarcie choc jednego z plikow</span><span class="ch">\n</span><span class="st">&quot;</span>);
+      exit(<span class="dv">-1</span>);
+   }
+
+   fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
+   fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="ch">\n</span><span class="st">&quot;</span>);
+   fscanf(InnyPlik, <span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a); <span class="co">// Wczytujemy z pliku Dane.txt</span>
+<span class="co">// liczbe calkowita i przypisujemy jej wartosc do zmiennej a</span>
+
+   <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span>
+   
+   fclose(f);
+   fclose(g);
+   fclose(InnyPlik);
+}</code></pre></div>
+<p>W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji <code>fscanf</code>, która działa analogicznie do dobrze już znanej funkcji <code>scanf</code>.</p>
+<div id="uwaga" class="section level2">
+<h2>Uwaga</h2>
+<p>Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece <code>stdlib.h</code>. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: <code>\#include~&lt;stdlib.h&gt;</code></p>
+</div>
+<div id="cwiczenia" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>W praktyce inżynierskiej pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik <code>przebieg.txt</code> zawiera fragment przebiegu czasowego wartości trzech składowych prędkości <em>(u, v, w)</em> pochodzących z symulacji przepływu powietrza przez dużą turbinę wiatrową. Chwilowe wartości tych składowych zostały zebrane z punktu znajdującego się tuż za turbiną. Napisz program, który: - Otworzy plik. - Wczyta dane z pliku do trzech tablic <code>u</code>, <code>v</code>, <code>w</code> zadeklarowanych statycznie (każda o rozmiarze 2000 - za tydzień będzie o lepszej metodzie deklaracji dużych tablic). Czytanie zrealizuj z użyciem pętli <code>for</code>. Obejrzyj plik, aby przyjrzeć się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości <em>(u, v, w)</em>; kolejne wiersze odpowiadają kolejnym krokom czasowym). - Po wczytaniu wszystkich wartości do tablic obliczy średnią każdej ze składowych. Średnia wyrażona jest wzorem: <span class="math display">\[
+\bar{u} = \frac{\displaystyle{\sum_{i=1}^n u_i}}{n}
+\]</span> - Obliczy odchylenie standardowe dla każdej ze składowych. Odchylenie standardowe dane jest wzorem: <span class="math display">\[
+\displaystyle{\sigma = \sqrt{\frac{\displaystyle{\sum_{i=1}^n (u_i - \bar{u})^2}}{n-1}}}
+\]</span> - Zapisze do innego pliku raport z obliczeń, w którym poda wszystkie obliczone wielkości oraz wydrukuje to samo na ekran. - Wczytaj też plik <code>przebieg.txt</code> do arkusza kalkulacyjnego i utwórz wykres obrazujący te przebiegi. Oceń krytycznie wyniki uzyskane swoim programem na podstawie obserwacji wykresu. Czy średnie i odchylenia standardowe mają wiarygodne wartości?</p>
+</div>
+<div id="wskazowka" class="section level2">
+<h2>Wskazówka</h2>
+<p>Zauważ, że każda suma daje się łatwo policzyć z użyciem pętli <code>for</code> w następujący sposób:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> suma = <span class="dv">0</span>;
+
+<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++)
+{
+   suma += a[i];
+}</code></pre></div>
+<p>To tylko wskazówka. Oczywiście musisz zmodyfikować powyższy kod tak, aby liczył sumy z powyższych wzorów.</p>
+</div>
+</div>
+<div id="wazne-dalej-o-funkcjach" class="section level1">
+<h1>Ważne: Dalej o funkcjach</h1>
+<p>Wiemy, że funkcje mogą przyjmować argumenty. Dowiedzieliśmy się też, że funkcje mogą zwracać wartości. Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach <code>Srednia</code> i <code>OdchylenieStandardowe</code>. Powinny mieć takie nagłówki:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> Srednia(<span class="dt">double</span> *tablica, <span class="dt">int</span> n);
+<span class="dt">double</span> OdchStd(<span class="dt">double</span> *tablica, <span class="dt">double</span> WartoscSrednia, <span class="dt">int</span> n);</code></pre></div>
+<p>Następnie zmodyfikuj kod funkcji <code>main</code> tak, aby część dotycząca obliczeń dała się zwięźle zapisać w poniższej postaci:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
+{
+   (...) <span class="co">// Deklaracje i kod wczytujacy dane</span>
+
+   um = Srednia(u, n);
+   vm = Srednia(v, n);
+   wm = Srednia(w, n);
+
+   u_std = OdchStd(u, um, n);
+   v_std = OdchStd(v, vm, n);
+   w_std = OdchStd(w, wm, n);
+
+   (...) <span class="co">// Dalsza czesc programu zajmujaca sie raportowaniem wynikow</span>
+}</code></pre></div>
+</div>
+<div id="dla-dociekliwych" class="section level1">
+<h1>Dla dociekliwych *</h1>
+<p>Obliczenia na komputerze prowadzone są ze skończoną dokładnością. Zmodyfikuj swój kod tak, aby bieżąca wartość średniej była liczona ,,w locie’’ - w trakcie czytania danych z pliku (naturalnie będzie to średnia wartość przeczytanych dotąd elementów). Wystarczy, że zrobisz to dla jednej składowej prędkości (np. <em>u</em>). Możesz tę średnią też na bieżąco podczas czytania danych drukować na ekran. Na końcu porównaj wartość średniej uzyskanej w ten sposób z wartością policzoną <em>a posteriori</em> w poprzednim poleceniu.\ Pseudokod algorytmu znajdziesz poniżej. Zapisz go w sposób zrozumiały dla komputera, w języku C.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">biezaca_srednia = <span class="dv">0</span>
+
+Petla po i od <span class="dv">1</span> <span class="kw">do</span> n (czytajaca dane)
+{
+   PrzeczytajNowyElementZPlikuIWpiszGoDoTablicy
+
+   biezaca_srednia = (biezaca_srednia*(i<span class="dv">-1</span>) + u[i])/i
+}
+
+<span class="co">// Po zakonczeniu petli biezaca_srednia to srednia z calego zbioru</span></code></pre></div>
+<p>Zastanów się, dlaczego taki algorytm liczenia średniej w sensie matematycznym prowadzi do tak samo zdefiniowanej średniej. Jeśli trudno ci go zrozumieć, wymyśl sobie zbiór czteroelementowy i wykonaj go krok po kroku na kartce.</p>
+<div id="pytanie" class="section level2">
+<h2>Pytanie</h2>
+<p>Czy obie średnie (policzone na komputerze dwoma sposobami) mają tę samą wartość? Czy coś się zmieni, gdy weźmiesz inną składową prędkości?</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
