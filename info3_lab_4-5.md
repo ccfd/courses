@@ -271,7 +271,7 @@ Odtwórz tabelę *Person* i usuń z tabeli *Phone* wszystkie telefony Kowalskieg
 
 ### Schemat tabel zawartych w bazie danych *test*
 
-![alt text](https://github.com/kmarchlewski/courses/info3_lab_4-5_tab_test "Baza danych Test")
+![](figures/info3_lab_4-5_test_base.png "Baza danych Test")
 
 Baza danych test zawiera trzy tabele: `City`, `Country` i `CountryLanguage`. Powyższy schemat przedstawia powiązania jakie występują pomiędzy tymi tabelami. Pola: `ID` w tabeli `City` i `Code` w tabeli `Country` są unikatowe. To znaczy, że każdy rekord, np. w tabeli `City`, musi mieć inną wartość pola `ID`. Pole `CountryCode` w tabeli `City` przechowuje wartość pola `Code` z tabeli `Country`. W ten sposób można zidentyfikować, w którym państwie leży dane miasto. Podobna sytuacja występuje w powiązaniu tabeli `CountryLanguage` i `Country`. Tabela `CountryLanguage` zwiera dane o językach używanych we wszystkich państwach. Każdy rekord tej tabeli określa np. procentowy udział języka w danym państwie. Zatem, powiedzmy, język polski wystąpi w kilku rekordach tej tabeli, bo jest używany w kilku państwach.
 
@@ -286,7 +286,7 @@ mysql> SELECT Name FROM Country WHERE Capital IS NULL;
 
 ### Schemat tabel `Person` i `Pone`
 
-![alt text](https://github.com/kmarchlewski/courses/info3_lab_4-5_tab_twoja "Twoja Baza danych")
+![](figures/info3_lab_4-5_twoja_base.png "Twoja Baza danych")
 
 ### Ściągawka
 
