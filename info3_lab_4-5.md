@@ -284,7 +284,7 @@ Pola: `ID` (`City`), `Code` (`Country`), `CountryCode` (`City`, `CountryLanguage
 mysql> SELECT Name FROM Country WHERE Capital IS NULL;
 ```
 
-### Schemat tabel `Person` i `Pone`
+### Schemat tabel `Person` i `Phone`
 
 ![](figures/info3_lab_4-5_twoja_base.png "Twoja Baza danych")
 
