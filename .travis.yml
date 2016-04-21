@@ -17,4 +17,4 @@ script:
 - R -e "rmarkdown::render_site()"
 - tools/pdf_all
 after_success:
-- ./tools/deploy.sh >/dev/null
+- ./tools/deploy.sh

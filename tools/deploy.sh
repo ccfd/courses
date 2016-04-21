@@ -35,7 +35,7 @@ then
 #	git branch -f gh-pages pages-base
 #	git checkout gh-pages
 	git add -A
-	git commit -F ../.msg
+	git commit -F ../.msg | head -n 300
 	git push
 	git branch -f gh-pages pages-base
 	git checkout gh-pages
@@ -44,7 +44,7 @@ then
 	then
 		cp ../*.pdf .
 		git add -A *.pdf
-		git commit -F ../.msg
+		git commit -F ../.msg | head -n 300
 	fi
 	git push --force --set-upstream origin gh-pages
 	popd
