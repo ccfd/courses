@@ -3,8 +3,9 @@ navbar:
   title: "CCFD Courses"
   right:
     - icon: fa-github fa-lg
-      text: "Edit me on GitHub"
       href: https://github.com/ccfd/courses
+    - icon: fa-creative-commons fa-lg
+      href: https://en.wikipedia.org/wiki/Creative_Commons_license
   left:
     - text: "Home"
       href: index.html
