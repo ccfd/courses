@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo Correcting header links
+for i in *md;
+do
+	j=$(echo $i | sed 's/\.[^.]*$//')
+	if test -f "_site/$j.html"
+	then
+		if test -f "$j.pdf"
+		then
+			sed -i -e "s/PDF_LINK_DUMMY/$j.pdf/" _site/$j.html
+		else
+			sed -i -e 's/href="PDF_LINK_DUMMY"/class="hidden"/' _site/$j.html
+		fi
+		sed -i -e "s|\"\(https://github.com/ccfd/courses\)\"|\"\1/edit/master/$i\"|g" _site/$j.html
+	else
+		echo "html for $i" not found
+	fi
+done
