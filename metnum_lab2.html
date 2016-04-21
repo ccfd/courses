@@ -363,6 +363,7 @@ div.tocify {
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
+<!-- Dummy header -->
 
 <div class="fluid-row" id="header">
 
@@ -433,6 +434,7 @@ $\frac{1}{8} - \frac{3}{8}\nu$ &amp; $-\frac{1}{4} - \frac{\nu}{12}$ &amp; $\fra
 <p>Biblioteka <em>MesLib.h</em> została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację i zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje: - <code>int P(int x, int y, int z)</code> - funkcja, która zwraca globalny indeks stopnia swobody przy założeniu, że <em>x</em> to jego indeks w kierunku x (liczony od 0 na lewej krawędzi), <em>y</em> to jego indeks w kierunku osi y (liczony od 0 na dolnej powierzchni belki), a <em>z</em> to 0 lub 1 zależnie od tego, czy interesuje nas stopień swobody w kierunku poziomym czy pionowym. - <code>int Q(int x, int y)</code> - funkcja zwracająca globalny indeks elementu przy założeniu, że jest to element o indeksie <em>x</em> w kierunku poziomym i o indeksie <em>y</em> w kierunku pionowym. - <code>int DOF(int elidx, int elidy, int locdofid)</code> - funkcja zwracająca globalny indeks stopnia swobody przy założeniu, że <em>elidx</em> oznacza indeks elementu w kierunku poziomym, <em>elidy</em> indeks elementu w kierunku pionowym, a <em>locdofid</em> to liczba od 0 do 7 oznaczająca lokalny indeks danego stopnia swobody. Lokalna indeksacja stopni swobody jest następująca: w węźle o indeksie 0 przesunięcia w kierunku poziomym i pionowym to odpowiednio <span class="math inline">\(0-wy\)</span> i <span class="math inline">\(1-szy\)</span> stopień swobody, w węźle o indeksie <span class="math inline">\(1\)</span> występują 2. i 3. stopień swobody itd. - Lokalna macierz sztywności jest zdefiniowana w dwuwymiarowej tablicy <code>K[8][8]</code>. Przy składaniu macierzy sztywności powinna być w programie przemnożona przez czynnik <code>Md</code> zawierający wpływ modułu Younga oraz współczynnika Poissona oraz przez grubość elementu. - Lokalna macierz masowa jest zdefiniowana w dwuwymiarowej tablicy <code>M[8][8]</code>. Przy składaniu globalnej macierzy masowej powinna być w programie przemnożona przez czynnik <code>Mm</code> zawierający wpływ gęstości materiału oraz dodatkowo należy ją przemnożyć przez grubość elementu. - <code>void Gauss(int n, double **M, double *f, double *x)</code> - procedura eliminacji Gaussa rozwiązująca układ równań o macierzy zapisanej w dynamicznie zaalokowanej dwuwymiarowej tablicy <code>M</code> o wymiarze <code>n</code>, i wektorze prawej strony <code>f</code>. Wynik zostanie wpisany do miejsc w pamięci wskazywanych przez wskaźnik <code>*x</code>. - <code>void draw(double *p, double *f)</code> - funkcja rysująca cały układ odkształconych elementów. <code>p</code> to wektor przesunięć poszczególnych stopni swobody, a <code>f</code> to wektor sił węzłowych w tych stopniach swobody. Ponadto funkcja wykorzystuje globalnie zadeklarowaną tablicę <code>fix</code>, z której czerpie informację, które stopnie swobody układu są odebrane.</p>
 </div>
 
+<!-- Dummy footer -->
 
 
 </div>
