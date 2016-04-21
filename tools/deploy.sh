@@ -36,9 +36,16 @@ then
 #	git checkout gh-pages
 	git add -A
 	git commit -F ../.msg
+	git push
 	git branch -f gh-pages pages-base
 	git checkout gh-pages
 #       Add pdf's here.
+	if ls ../*.pdf >/dev/null 2>/dev/null
+	then
+		cp ../*.pdf .
+		git add -A *.pdf
+		git commit -F ../.msg
+	fi
 	git push --force --set-upstream origin gh-pages
 	popd
 	rm -fr deploy
