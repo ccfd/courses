@@ -16,16 +16,25 @@ Program wita nas krótkim komunikatem oraz znakiem zachęty:
 ```sql
 mysql >
 ```
-3. Wybierz istniejącą już bazę danych o nazwie ```test```:
+3. Dostępne bazy danych możemy wyświetlić za pomocą polecenia:
+```sql
+mysql > SHOW DATABASES;
+```
+4. Jest ich dużo. My chcemy skorzystać z bazy danych o nazwie *test*:
 ```sql
 mysql > USE test;
 ```
 
 ### Baza danych *test*
-1. Baza danych test zawiera trzy tabele: City, Country i CountryLanguage. Sprawdź jakie informacje są przechowywane w poszczególnych tabelach (wyświetl definicję tabeli), np.:
+1. Sprawdż jakie tabele zawarte są w bazie danych *test*:
+```sql
+mysql> SHOW TABLES;
+```
+Okaże się, że są to: *City*, *Country* i *CountryLanguage*. Informacje jakie są przechowywane w poszczególnych tabelach (definicję tabeli) wyświetli poniższe polecenie, np. dla tabeli *City*:
 ```sql
 mysql> DESCRIBE City;
 ```
+Sprawdź jakie wartości przechowują poszczególne tabele.
 2. Podstawowe zapytania (zapytanie - *query*)
 * Wyświetl wszystkie informacje zawarte w tabeli Country:
 ```sql
@@ -35,10 +44,13 @@ SELECT * FROM Country;
 ```sql
 mysql> SELECT Name, Region FROM Country;
 ```
-* Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich
-mieszkańców:
+* Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:
 ```sql
 mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent='Europe';
+```
+* Wyświetl nazwy wszystkich państw leżących w Europie i Azji wraz z długością życia ich mieszkańców:
+```sql
+mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent IN ('Europe', 'Asia');
 ```
 * Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości
 życia (dodaj do poprzedniej komendy frazę - `ORDER BY LifeExpectancy`).
@@ -50,7 +62,7 @@ mysql> SELECT sum(Population) FROM Country WHERE Continent='Europe';
 ```sql
 mysql> SELECT avg(Population) FROM Country WHERE Continent='Europe';
 ```
-* Znajdź nazwy wszystkich państw, których nazwy zaczynaj się od „Ch”:
+* Znajdź nazwy i kody wszystkich państw, których nazwy zaczynaj się od „Ch”:
 ```sql
 mysql> SELECT Name, Code FROM Country WHERE Name LIKE 'Ch%';
 ```
@@ -66,7 +78,7 @@ mysql> SELECT * FROM City WHERE CountryCode = 'POL' ORDER BY District;
 ```sql
 mysql> SELECT Name, IndepYear FROM Country WHERE IndepYear > 1980;
 ```
-* Wyświetl nazwy krajów Ameryki Północnej, które uzyskały niepodległość pomiędzy rokiem 1800 a rokiem 1900. Wyświetl również rok uzyskania niepodległości.Posortuj dane według tej daty:
+* Wyświetl nazwy krajów Ameryki Północnej, które uzyskały niepodległość pomiędzy rokiem 1800 a rokiem 1900. Wyświetl również rok uzyskania niepodległości. Posortuj dane według tej daty:
 ```sql
 mysql> SELECT Name, IndepYear from Country
 -> WHERE Continent = 'North America' AND
@@ -75,7 +87,7 @@ mysql> SELECT Name, IndepYear from Country
 -> ORDER BY IndepYear;
 ```
 3. Zapytania bardziej zaawansowane
-* Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności w kolejności malejącej:
+* Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji:
 ```sql
 mysql> SELECT Name, CountryCode, Population FROM City
 -> WHERE Population > 3000000
@@ -98,6 +110,17 @@ mysql> SELECT Name, Population FROM Country
 mysql> SELECT Continent, SUM(Population) AS 'Total Population'
 -> FROM Country GROUP BY Continent;
 ```
+* Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna *ID* w tabeli *City* odpowiada kolumnie *Capital* w tabeli *Country*):
+```sql
+mysql> SELECT Name FROM City WHERE ID IN
+-> (SELECT Capital FROM Country WHERE Continent='Europe');
+```
+Tak skonstruowane zapytanie działa bardzo wolno ponieważ sprowadza się do wielokrotnego przeszukiwania tabeli *Country*. W takich przypadkach należy posłużyć się konstrukcją `tab1 INNER JOIN tab2 ON condition`
+```sql
+mysql> SELECT City.Name FROM City INNER JOIN Country
+-> ON City.ID=Country.Capital
+-> WHERE Continent='Europe';
+```
 * Wyświetl informacje o językach używanych w europejskich państwach:
 ```sql
 mysql> SELECT Country.Name, CountryLanguage.Language FROM Country
@@ -112,7 +135,7 @@ mysql> SELECT Name, SurfaceArea FROM Country
 -> (SELECT MIN(SurfaceArea) FROM Country);
 ```
 * Wyświetl nazwę i powierzchnię najmniejszego państwa w Afryce.
-* Wyświetl nazwy państw i ich stolic (identyfikatorem miasta (z tablicy City) w tablicy Country jest pole Capital).
+* Wyświetl nazwy państw i nazwy ich stolic.
 * Wyświetl nazwy państw azjatyckich i ich stolic.
 * Wyświetl nazwy państw afrykańskich i ich stolic posortowane według nazwy kraju (użyj aliasów tabel).
 * Wyświetl informacje o językach oficjalnych używanych w europejskich państwach.
