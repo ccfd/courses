@@ -434,15 +434,20 @@ div.tocify {
 <li>Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).</li>
 <li><p>Klient MySQL’a urchamia komenda: <code>mysql</code> Program wita nas krótkim komunikatem oraz znakiem zachęty:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt;</code></pre></div></li>
-<li><p>Wybierz istniejącą już bazę danych o nazwie <code>test</code>:</p>
+<li><p>Dostępne bazy danych możemy wyświetlić za pomocą polecenia:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt; SHOW DATABASES;</code></pre></div></li>
+<li><p>Jest ich dużo. My chcemy skorzystać z bazy danych o nazwie <em>test</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt; <span class="kw">USE</span> test;</code></pre></div></li>
 </ol>
 </div>
 <div id="baza-danych-test" class="section level3">
 <h3>Baza danych <em>test</em></h3>
 <ol style="list-style-type: decimal">
-<li><p>Baza danych test zawiera trzy tabele: City, Country i CountryLanguage. Sprawdź jakie informacje są przechowywane w poszczególnych tabelach (wyświetl definicję tabeli), np.:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; DESCRIBE City;</code></pre></div></li>
+<li><p>Sprawdż jakie tabele zawarte są w bazie danych <em>test</em>:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; SHOW <span class="kw">TABLES</span>;</code></pre></div>
+<p>Okaże się, że są to: <em>City</em>, <em>Country</em> i <em>CountryLanguage</em>. Informacje jakie są przechowywane w poszczególnych tabelach (definicję tabeli) wyświetli poniższe polecenie, np. dla tabeli <em>City</em>:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; DESCRIBE City;</code></pre></div>
+Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li>Podstawowe zapytania (zapytanie - <em>query</em>)</li>
 </ol>
 <ul>
@@ -452,12 +457,14 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, Region <span class="kw">FROM</span> Country;</code></pre></div></li>
 <li><p>Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, LifeExpectancy <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
+<li><p>Wyświetl nazwy wszystkich państw leżących w Europie i Azji wraz z długością życia ich mieszkańców:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, LifeExpectancy <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent <span class="kw">IN</span> (<span class="st">&#39;Europe&#39;</span>, <span class="st">&#39;Asia&#39;</span>);</code></pre></div></li>
 <li>Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości życia (dodaj do poprzedniej komendy frazę - <code>ORDER BY LifeExpectancy</code>).</li>
 <li><p>Wyświetl liczbę ludności żyjącej w Europie:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> <span class="fu">sum</span>(Population) <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
 <li><p>Policz średnie zaludnienie krajów w Europie:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> <span class="fu">avg</span>(Population) <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
-<li><p>Znajdź nazwy wszystkich państw, których nazwy zaczynaj się od „Ch”:</p>
+<li><p>Znajdź nazwy i kody wszystkich państw, których nazwy zaczynaj się od „Ch”:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, Code <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Name <span class="kw">LIKE</span> <span class="st">&#39;Ch%&#39;</span>;</code></pre></div></li>
 <li><p>Wyświetl wszystkie informacje o miastach w Finlandii (CountryCode Finlandii to FIN):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> * <span class="kw">FROM</span> City <span class="kw">WHERE</span> CountryCode = <span class="st">&#39;FIN&#39;</span>;</code></pre></div></li>
@@ -465,7 +472,7 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> * <span class="kw">FROM</span> City <span class="kw">WHERE</span> CountryCode = <span class="st">&#39;POL&#39;</span> <span class="kw">ORDER</span> <span class="kw">BY</span> District;</code></pre></div></li>
 <li><p>Wyświetl nazwy krajów, które uzyskały niepodległość po roku 1980. Wyświetl również rok uzyskania niepodległości.</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, IndepYear <span class="kw">FROM</span> Country <span class="kw">WHERE</span> IndepYear &gt; <span class="dv">1980</span>;</code></pre></div></li>
-<li><p>Wyświetl nazwy krajów Ameryki Północnej, które uzyskały niepodległość pomiędzy rokiem 1800 a rokiem 1900. Wyświetl również rok uzyskania niepodległości.Posortuj dane według tej daty:</p>
+<li><p>Wyświetl nazwy krajów Ameryki Północnej, które uzyskały niepodległość pomiędzy rokiem 1800 a rokiem 1900. Wyświetl również rok uzyskania niepodległości. Posortuj dane według tej daty:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, IndepYear <span class="kw">from</span> Country
 -&gt; <span class="kw">WHERE</span> Continent = <span class="st">&#39;North America&#39;</span> <span class="kw">AND</span>
 -&gt; IndepYear &gt; <span class="dv">1800</span> <span class="kw">AND</span>
@@ -476,7 +483,7 @@ div.tocify {
 <li>Zapytania bardziej zaawansowane</li>
 </ol>
 <ul>
-<li><p>Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności w kolejności malejącej:</p>
+<li><p>Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, CountryCode, Population <span class="kw">FROM</span> City
 -&gt; <span class="kw">WHERE</span> Population &gt; <span class="dv">3000000</span>
 -&gt; <span class="kw">ORDER</span> <span class="kw">BY</span> CountryCode, Population <span class="kw">DESC</span>;</code></pre></div></li>
@@ -491,6 +498,13 @@ div.tocify {
 <li><p>Wyświetl liczbę państw leżących na każdym kontynencie:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Continent, <span class="fu">SUM</span>(Population) <span class="kw">AS</span> <span class="st">&#39;Total Population&#39;</span>
 -&gt; <span class="kw">FROM</span> Country <span class="kw">GROUP</span> <span class="kw">BY</span> Continent;</code></pre></div></li>
+<li><p>Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna <em>ID</em> w tabeli <em>City</em> odpowiada kolumnie <em>Capital</em> w tabeli <em>Country</em>):</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name <span class="kw">FROM</span> City <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="kw">IN</span>
+-&gt; (<span class="kw">SELECT</span> Capital <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>);</code></pre></div>
+<p>Tak skonstruowane zapytanie działa bardzo wolno ponieważ sprowadza się do wielokrotnego przeszukiwania tabeli <em>Country</em>. W takich przypadkach należy posłużyć się konstrukcją <code>tab1 INNER JOIN tab2 ON condition</code></p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> City.Name <span class="kw">FROM</span> City <span class="kw">INNER</span> <span class="kw">JOIN</span> Country
+-&gt; <span class="kw">ON</span> City.ID=Country.Capital
+-&gt; <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
 <li><p>Wyświetl informacje o językach używanych w europejskich państwach:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Country.Name, CountryLanguage.Language <span class="kw">FROM</span> Country
 -&gt; <span class="kw">INNER</span> <span class="kw">JOIN</span> CountryLanguage
@@ -501,7 +515,7 @@ div.tocify {
 -&gt; <span class="kw">WHERE</span> SurfaceArea =
 -&gt; (<span class="kw">SELECT</span> <span class="fu">MIN</span>(SurfaceArea) <span class="kw">FROM</span> Country);</code></pre></div></li>
 <li>Wyświetl nazwę i powierzchnię najmniejszego państwa w Afryce.</li>
-<li>Wyświetl nazwy państw i ich stolic (identyfikatorem miasta (z tablicy City) w tablicy Country jest pole Capital).</li>
+<li>Wyświetl nazwy państw i nazwy ich stolic.</li>
 <li>Wyświetl nazwy państw azjatyckich i ich stolic.</li>
 <li>Wyświetl nazwy państw afrykańskich i ich stolic posortowane według nazwy kraju (użyj aliasów tabel).</li>
 <li>Wyświetl informacje o językach oficjalnych używanych w europejskich państwach.</li>
