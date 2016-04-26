@@ -11,7 +11,7 @@ output: html_document
 
 ### Połączenie z serwerem MySQL
 1. Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).
-2. Klient MySQL'a urchamia komenda: `mysql`
+2. Klient MySQL'a urchamia komenda: `mysql -u mysql`
 Program wita nas krótkim komunikatem oraz znakiem zachęty:
 ```sql
 mysql >
