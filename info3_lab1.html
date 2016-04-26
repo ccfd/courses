@@ -93,6 +93,9 @@ h5 {
 h6 {
   font-size: 12px;
 }
+.table th:not([align]) {
+  text-align: left;
+}
 </style>
 
 
@@ -431,10 +434,10 @@ div.tocify {
 <p>Na potrzeby tego laboratorium każdy otrzymał kartkę z loginem i hasłem. Są one ważne do końca semestru i można przy ich pomocy zalogować się na nasz szkolny serwer również spoza kampusu.</p>
 <p>Gdy korzystasz z Windows’ów najwygodniej do połączenia wykorzystać darmowy program PuTTy. Po uruchomieniu pokaże się okno jak na obrazku obok. Należy podać: - <code>Hostname</code>– nazwa hosta, czyli <code>info3.meil.pw.edu.pl</code> - <code>Port</code>– Numer portu z których chcemy się połączyć, czyli 22, oraz protokół <code>SSH</code> z listy poniżej</p>
 <p>Następnie pojawi się czarne okno z zapytaniem o login i hasło. Po podaniu i poprawny zalogowaniu zobaczysz informacje o dacie, licencji, wersji systemu itp. kończące się:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Last login: Thu Feb <span class="dv">21</span> <span class="bn">06</span>:<span class="dv">23</span>:<span class="dv">38</span> <span class="dv">2013</span> from xx.xx.xx.xx
-stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span></code></pre></div>
+<pre><code>Last login: Thu Feb 21 06:23:38 2013 from xx.xx.xx.xx
+stud-00@info3:~$</code></pre>
 <p>Zapis:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span></code></pre></div>
+<pre><code>stud-00@info3:~$</code></pre>
 <p>oznacza, że jako użytkownik <code>stud-00</code> jesteśmy zalogowani na komputer <code>info3</code>. Między znakami : i $ znajduje się aktualny katalog. W tym przypadku ~, czyli katalog domowy, inaczej <code>/home/students/stud-00</code></p>
 </div>
 <div id="cwiczenia" class="section level1">
@@ -446,14 +449,14 @@ stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">
 <div id="poruszanie-sie-po-katalogach" class="section level2">
 <h2>Poruszanie się po katalogach</h2>
 <p>Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw. katalogu bieżącym. Jeśli uruchomimy jakiś program, np. proste programy czytające z pliku z Informatyki I, będą one czytały z plików w tym katalogu. Każdemu programowi którego będziesz używać a który potrzebuje nazwy pliku lub katalogu (np. do kopiowania) może ją przyjąć w kilku postaciach. Po pierwsze ścieżka bezwzględna, zaczynająca się od znaku / np:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">/home/students/stud<span class="bn">-00</span>
+<pre><code>/home/students/stud-00
 /usr/bin/bash
-/etc</code></pre></div>
+/etc</code></pre>
 <p>Sprawdź, w jakim katalogu się znajdujesz, wpisz <code>pwd</code> i wciśnij enter.</p>
 <p>Aby zmienić katalog, wykorzystuje się polecenie <code>cd</code>, np.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span> cd /tmp
-stud<span class="bn">-00</span><span class="er">@</span>info3:/tmp<span class="er">$</span> pwd
-/tmp</code></pre></div>
+<pre><code>stud-00@info3:~$ cd /tmp
+stud-00@info3:/tmp$ pwd
+/tmp</code></pre>
 <p>Teraz przejdź do katalogu <code>/home</code> i sprawdź czy się udało, z użyciem polecenia <code>pwd</code></p>
 <p>Dodatkowo, oprócz ścieżki bezwzględnej, można podać nazwę katalogu który nas interesuje na kilka innych sposobów.</p>
 <ul>
@@ -467,7 +470,7 @@ stud<span class="bn">-00</span><span class="er">@</span>info3:/tmp<span class="e
 <div id="tworzenie-i-usuwanie-katalogow" class="section level2">
 <h2>Tworzenie i usuwanie katalogów</h2>
 <p>Do tworzenia katalogów służy polecenie <code>mkdir</code> np.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span>mkdir nazwa_katalogu</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> nazwa_katalogu</code></pre></div>
 <p>a do sprawdzenia zawartości aktualnego katalogu polecenie <code>ls</code>. Stwórz teraz katalogi A,B,C i D, każdy wewnątrz poprzedniego. Będziesz musiał stworzyć katalog A, przejść do niego, stworzyć B itd. Do usuwanie katalogów służy polecenie <code>rmdir</code>. Usuń teraz stworzone katalogi.</p>
 <p>UWAGA: nie można w ten sposób usunąć katalogu posiadającego zawartość</p>
 </div>
@@ -475,64 +478,64 @@ stud<span class="bn">-00</span><span class="er">@</span>info3:/tmp<span class="e
 <div id="podstawowe-operacja-na-plikach-i-katalogach" class="section level1">
 <h1>Podstawowe operacja na plikach i katalogach</h1>
 <p>Komenda <code>echo</code> wypisuje na ekran ciąg znaków który podaje się jej jako argument. Sprawdź. Aby stworzyć pierwszy plik wpisz (o znaczeniu <code>&gt;&gt;</code> będzie na kolejnych zajęciach)</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span>echo pierwszy plik &gt;&gt; plik.txt</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> pierwszy plik <span class="kw">&gt;&gt;</span> plik.txt</code></pre></div>
 <p>Aby wyświetlić zawartość pliku a ekranie używamy <code>cat</code></p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span>cat plik.txt</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> plik.txt</code></pre></div>
 <div id="kopiowanie-i-przenoszenie" class="section level2">
 <h2>Kopiowanie i przenoszenie</h2>
 <p>Do kopiowanie służy komenda <code>cp CO GDZIE</code>. Stwórz teraz katalog i skopiuj do niego twój plik. Powinno to wyglądać tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span>cp plik.txt katalog</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> plik.txt katalog</code></pre></div>
 <p>Aby przenieść/zmienić nazwę pliku lub katalogu używamy <code>mv CO GDZIE</code>. Przejdź do nowego katalogu i zmień nazwę pliku. Następnie usuń plik poleceniem <code>rm</code></p>
 </div>
 </div>
 <div id="pomoc" class="section level1">
 <h1>Pomoc</h1>
 <p>Znakomita większość komend trybu tekstowego posiada porządną dokumentację dostępną od ręki.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span>man rm
-stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span>rm --help</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> rm
+$ <span class="kw">rm</span> --help</code></pre></div>
 <p>W przypadku komendy <code>man</code> dostajemy kompetentniejszą dokumentację. Przewija się strzałkami, aby zakończyć wciśnij Q. Sprawdź instrukcje dla poleceń <code>who</code>, <code>whoami</code>, <code>finger</code> i <code>date</code>. Sprawdź jak działają.</p>
 </div>
 <div id="program-tar" class="section level1">
 <h1>Program Tar</h1>
 <p>Program <code>tar</code> służy do pakowania i rozpakowywania drzewa katalogów i plików w jeden plik. Niekoniecznie musi on być mniejszy niż oryginalne pliki. Dopiero użycie kompresji zmniejszy objętość. Najpierw przygotuj kilka plików do spakowania:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span> mkdir a
-stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span> cd a
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> mkdir b
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> echo asdasd &gt;&gt; ./b/c
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> cat ./b/c
-asdasd</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> a
+$ <span class="kw">cd</span> a
+$ <span class="kw">mkdir</span> b
+$ <span class="kw">echo</span> asdasd <span class="kw">&gt;&gt;</span> ./b/c
+$ <span class="kw">cat</span> ./b/c
+<span class="kw">asdasd</span></code></pre></div>
 <p>Teraz spakuj a nastnie podejrzyj archiwum programem <code>mc</code></p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> tar -cf test.tar b
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> ls
-b  test.tar
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> mc</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tar</span> -cf test.tar b
+$ <span class="kw">ls</span>
+<span class="kw">b</span>  test.tar
+$ <span class="kw">mc</span></code></pre></div>
 <p>Sprawdź zawartość katalogu, usuń to co przed chwilą spakowałeś do archiwum, następnie rozpakuj.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> ls
-b  test.tar.gz
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> rm -rf b
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> ls
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> tar -xf test.tar
-stud<span class="bn">-00</span><span class="er">@</span>info3:~/a<span class="er">$</span> ls
-b  test.tar</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span>
+<span class="kw">b</span>  test.tar.gz
+$ <span class="kw">rm</span> -rf b
+$ <span class="kw">ls</span>
+$ <span class="kw">tar</span> -xf test.tar
+$ <span class="kw">ls</span>
+<span class="kw">b</span>  test.tar</code></pre></div>
 <p>Sprawdź poleceniem <code>ls -la</code> objętość archiwum, zapisz, następnie spakuj te same pliki z dodatkową flagą <code>z</code> zmieniając rozszerzenie na <code>tar.gz</code>. Sprawdź czy plik wynikowy jest mniejszy.</p>
 </div>
 <div id="proste-skrypty" class="section level1">
 <h1>Proste skrypty</h1>
 <p>Najważniejszym aspektem pracy w trybie tekstowym jest możliwość tworzenie skryptów, czyli zapisanych w pliku kolejnych komend wykonywanych tak, jakbyśmy wpisywali je z klawiatury. Więcej o zaawansowanych skryptach dowiesz się na następnych laboratoriach, pierwszy napiszesz dzisiaj.</p>
 <p>Prostym i dość wygodnym edytorem tekstu jest <code>nano</code> lub <code>vim</code>. Uruchom go komendą <code>nano NAZWAPLIKU</code> i zapisz do niego pierwszy skrypt:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="er">#!/bin/bash</span>
-echo <span class="dv">1</span>
-echo <span class="dv">2</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="kw">echo</span> 1
+<span class="kw">echo</span> 2</code></pre></div>
 <p>Natępnie trzeba zmienić uprawnienia, pozwolić na uruchomienie naszego skryptu:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span> chmod +x skrypt.sh
-stud<span class="bn">-00</span><span class="er">@</span>info3:~<span class="er">$</span> ./skrypt.sh</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">chmod</span> +x skrypt.sh
+$ <span class="kw">./skrypt.sh</span></code></pre></div>
 <div id="zmienne" class="section level2">
 <h2>Zmienne</h2>
 <p>Bash obsługuje zmienne, jak w C. Aby stworzyć zmienną:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">zmienna=<span class="er">$</span>( JAKISPROGRAM )
-zmienna=<span class="er">$</span>( echo <span class="dv">1</span> )</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">zmienna=$(</span> <span class="kw">JAKISPROGRAM</span> <span class="ot">)</span>
+<span class="ot">zmienna=$(</span> <span class="kw">echo</span> 1 <span class="ot">)</span></code></pre></div>
 <p>Aby odczytać zmienną:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">echo <span class="er">$</span>zmienna</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$zmienna</span></code></pre></div>
 </div>
 <div id="pierwszy-skrypt" class="section level2">
 <h2>Pierwszy skrypt</h2>
@@ -575,7 +578,7 @@ done</code></pre></div>
 <p>Zresetuj komputer, uruchom Ubuntu i zaloguj się na konto quest. Używając menu z lewej strony uruchom terminal.</p>
 <p>Połącz się programem <code>ssh LOGIN@HOST</code> z serwerem info3. Utwórz plik <code>copyme</code>.</p>
 <p>Zakończ połączenie <code>Ctrl+D</code>. Użyj programu</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">scp LOGIN<span class="er">@</span>HOST:SCIEZKA_DO_PLIKU GDZIE_KOPIOWAĆ} </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> LOGIN@HOST:SCIEZKA_DO_PLIKU GDZIE_KOPIOWAĆ</code></pre></div>
 <p>aby ściągnąć <code>copyme</code> na dysk lokalny. Program <code>scp</code> działa tak jak <code>cp</code>, z tą różnicą, że cel lub źródło znajduje się na innym komputerze obsługującym połączenia ssh.</p>
 </div>
 <div id="cos-na-deser" class="section level1">
@@ -583,18 +586,18 @@ done</code></pre></div>
 <div id="pre-rekwizyty" class="section level2">
 <h2>Pre-rekwizyty</h2>
 <p>Sprawdź do czego służy program <code>write</code> z użyciem <code>man</code>. Użyj go. następnie porównaj “wyjście” komend:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">who
-who | awk <span class="st">&#39;{print $1}&#39;</span>
-who | awk <span class="st">&#39;{print $2}&#39;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">who</span>
+$ <span class="kw">who</span> <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $1}&#39;</span>
+$ <span class="kw">who</span> <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $2}&#39;</span></code></pre></div>
 </div>
 <div id="skrypt-spamera" class="section level2">
 <h2>Skrypt spamera</h2>
 <p>Stwórz skrypt:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="er">#!/bin/bash</span>
-<span class="kw">for</span> u in <span class="er">$</span>( who | awk <span class="st">&#39;{print $1}&#39;</span> )
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="kw">for</span> <span class="kw">u</span> in <span class="ot">$(</span> <span class="kw">who</span> <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $1}&#39;</span> <span class="ot">)</span>
 <span class="kw">do</span>
-   echo <span class="er">$</span>u
-done</code></pre></div>
+   <span class="kw">echo</span> <span class="ot">$u</span>
+<span class="kw">done</span></code></pre></div>
 <p>następnie zmodyfikuj go tak, aby “zaspamować” wszystkich zalogowanych.</p>
 <p>Kolejnym krokiem będzie dodanie do skryptu pakowania uzyskanego drzewka, następnie usuwanie oryginału.</p>
 </div>
