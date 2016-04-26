@@ -1,5 +1,5 @@
 ---
-author: "Gall Anonim / Krzysztof Marchlewski"
+author: ""
 course: Informatyka 3
 material: Instrukcja 4 / 5
 number: 1
