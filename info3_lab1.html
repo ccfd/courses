@@ -565,10 +565,10 @@ $ <span class="kw">./skrypt.sh</span></code></pre></div>
 <div id="petle" class="section level2">
 <h2>Pętle</h2>
 <p>Przygotuj skrypt:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span> i in *.txt
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">i</span> in *.txt
 <span class="kw">do</span>
- cp <span class="er">$</span>i <span class="er">$</span><span class="dv">1_</span><span class="er">$</span>i
-done</code></pre></div>
+ <span class="kw">cp</span> <span class="ot">$i</span> <span class="ot">$1</span>_<span class="ot">$i</span>
+<span class="kw">done</span></code></pre></div>
 <p>i uruchom go w katalogu z plikiem <code>.txt</code>, jak działa? Pamiętaj o argumencie skryptu!</p>
 <p>Napisz skrypt który tworzy katalog <code>\$1</code> i kopiuje do niego wszystkie pliki .txt dodając przedrostek <code>\$2</code>. Co się stanie jak nie podasz argumentów do skryptu?</p>
 </div>
