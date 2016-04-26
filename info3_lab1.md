@@ -207,7 +207,7 @@ Zmodyfikuj skrypt tak, aby nazwa każdego katalogu zaczynała się od wielkości
 
 ## Pętle
 Przygotuj skrypt:
-```c++
+```bash
 for i in *.txt
 do
  cp $i $1_$i
