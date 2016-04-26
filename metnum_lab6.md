@@ -1,11 +1,9 @@
-
-
-
 ---
 number: 6
 course: Metody Numeryczne
 material: Instrukcja 6
 author: Ł. Łaniewski-Wołłk
+title: Zagadnienie własne
 ---
 
 Z poprzednich zajęć wiemy, że równanie ruchu wygląda następująco:

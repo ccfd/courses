@@ -1,4 +1,3 @@
-
 ---
 number: 2
 author: Ł. Łaniewski-Wołłk

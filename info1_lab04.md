@@ -1,5 +1,3 @@
-
-
 ---
 number: 4
 course: Informatyka I

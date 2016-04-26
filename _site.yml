@@ -2,12 +2,15 @@ name: "ccfd-courses"
 navbar:
   title: "CCFD Courses"
   right:
+    - icon: fa-file-pdf-o fa-lg
+      href: PDF_LINK_DUMMY
+      text: Download PDF
     - icon: fa-github fa-lg
-      text: "Edit me on GitHub"
+      text: Edit on GitHub
       href: https://github.com/ccfd/courses
+    - icon: fa-creative-commons fa-lg
+      href: https://en.wikipedia.org/wiki/Creative_Commons_license
   left:
-    - text: "Home"
-      href: index.html
     - text: "Info I"
       menu:
       - text: "Instrukcja I"
@@ -32,8 +35,10 @@ navbar:
       menu:
       - text: "Instrukcja I"
         href: info3_lab1.html
-      - text: "Instrukcja II"
+      - text: "Instrukcja II,III"
         href: info3_lab2.html
+      - text: "Instrukcja IV,V"
+        href: info3_lab_4-5.html
     - text: "Met Num"
       menu:
       - text: "Instrukcja I"
@@ -50,10 +55,14 @@ navbar:
         href: metnum_lab6.html
       - text: "Instrukcja VII"
         href: metnum_lab7.html
-exclude: [ "*.sh", "deploy", "*~" ]
+exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:
     highlight: pygments
     toc_depth: 2
     toc_float:
       collapsed: false
+    mathjax: local
+    include:
+      before_body: common/_header.html
+      after_body: common/_footer.html
