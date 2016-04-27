@@ -270,7 +270,7 @@ mysql> SOURCE query.sql
 ```
 6. Umieść w skrypcie query.sql instrukcję tworzącą tabelę Person (`CREATE ...`) i instrukcje wprowadzające do niej dane (`INSERT ...`). Ponieważ tabela Person już istnieje, przed wywołaniem instrukcji `CREATE` należy tą tabelę usunąć. Na początku skryptu wprowadź zatem następujący warunek:
 ```sql
-DROP TABLE IF EXISTS 'Person';
+DROP TABLE IF EXISTS Person;
 ```
 Powyższa instrukcja jest charakterystyczna dla MySQL’a i może nie zadziałać w innych wersjach SQL’a. 
 7. Wykonaj polecenia z poprzedniego punktu w odniesieniu do tabeli *Phone*. (Dodaj nowe instrukcje do pliku *query.sql*).
