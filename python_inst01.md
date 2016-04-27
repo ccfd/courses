@@ -27,6 +27,7 @@ W ramach przygotowania do zajęć należy przejść na stronę [GitHub](https://
 
 # Python
 W czasie rozwoju języka *python* wykształciły się dwie jego wersje:
+
 - *python 2*,
 - *python 3* (nowsza specyfikacja języka, choć niekoniecznie częściej używana).
 
@@ -122,44 +123,46 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 ![Okno PyCharm](figures/python_inst01/01.png "Okno PyCharm")
 
 
-![Okno PyCharm](figures/python_inst01/02.png)
+![Nowy plik *.py](figures/python_inst01/02.png)
 
-![Okno PyCharm](figures/python_inst01/03.png)
+![Pierwszy kod](figures/python_inst01/03.png)
 
-![Okno PyCharm](figures/python_inst01/19.png)
+![Pierwsze uruchomienie nowego pliku](figures/python_inst01/19.png)
 
-![Okno PyCharm](figures/python_inst01/04.png)
+![Wynik działania kodu](figures/python_inst01/04.png)
 
-![Okno PyCharm](figures/python_inst01/05.png)
+![Panel uruchamiania kodu](figures/python_inst01/05.png)
 
-![Okno PyCharm](figures/python_inst01/06.png)
+![Konfiguracja uruchamiania kodu](figures/python_inst01/06.png)
 
-![Okno PyCharm](figures/python_inst01/18.png)
+## Własne repozytorium w sieci i git w PyCharm
 
-![Okno PyCharm](figures/python_inst01/07.png)
+![Kopiowanie istniejącego repozytorium](figures/python_inst01/18.png)
 
-![Okno PyCharm](figures/python_inst01/08.png)
+![Tworzenie lokalnego repozytorium w PyCharm](figures/python_inst01/07.png)
 
-![Okno PyCharm](figures/python_inst01/09.png)
+![Konfiguracja dostępu do konta GitHub](figures/python_inst01/08.png)
 
-![Okno PyCharm](figures/python_inst01/11.png)
+![Lokalne hasło](figures/python_inst01/09.png)
 
-![Okno PyCharm](figures/python_inst01/10.png)
+![Wybór adresu własnego repozytorium](figures/python_inst01/11.png)
 
-![Okno PyCharm](figures/python_inst01/12.png)
+![Konfiguracja lokalnego repozytorium](figures/python_inst01/10.png)
 
-![Okno PyCharm](figures/python_inst01/13.png)
+![Dodawanie nowego projektu do PyCharm](figures/python_inst01/12.png)
 
-![Okno PyCharm](figures/python_inst01/14.png)
+![Konfiguracja dodawania projektu](figures/python_inst01/13.png)
 
-![Okno PyCharm](figures/python_inst01/15.png)
+![Uruchamianie testowego kodu z repozytorium](figures/python_inst01/14.png)
 
-![Okno PyCharm](figures/python_inst01/16.png)
+![Okno wyniku działania testowego kodu](figures/python_inst01/15.png)
 
-![Okno PyCharm](figures/python_inst01/20.png)
+![Zatwierdzanie zmian w lokalnym i zdalnym repozytorium](figures/python_inst01/16.png)
 
-![Okno PyCharm](figures/python_inst01/17.png)
+![Parametry zatwierdzania zmian](figures/python_inst01/20.png)
 
-![Okno PyCharm](figures/python_inst01/21.png)
+![Wysyłanie zmian do zdalnego repozytorium](figures/python_inst01/17.png)
+
+![Pobieranie zmian ze zdalnego repozytorium](figures/python_inst01/21.png)
 
 
