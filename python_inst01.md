@@ -126,6 +126,8 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 
 ![Okno PyCharm](figures/python_inst01/03.png)
 
+![Okno PyCharm](figures/python_inst01/19.png)
+
 ![Okno PyCharm](figures/python_inst01/04.png)
 
 ![Okno PyCharm](figures/python_inst01/05.png)
@@ -140,9 +142,9 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 
 ![Okno PyCharm](figures/python_inst01/09.png)
 
-![Okno PyCharm](figures/python_inst01/10.png)
-
 ![Okno PyCharm](figures/python_inst01/11.png)
+
+![Okno PyCharm](figures/python_inst01/10.png)
 
 ![Okno PyCharm](figures/python_inst01/12.png)
 
@@ -154,7 +156,10 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 
 ![Okno PyCharm](figures/python_inst01/16.png)
 
+![Okno PyCharm](figures/python_inst01/20.png)
+
 ![Okno PyCharm](figures/python_inst01/17.png)
 
+![Okno PyCharm](figures/python_inst01/21.png)
 
 
