@@ -118,7 +118,8 @@ Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli (po pierw
 ``` 
 Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruchomieniu program wyświetli okno konfiguracji w który należało będzie ustawić własne preferencje. 
 
-## Przegląd
+## Początek pracy w PyCharm
+
 
 
 
