@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.html">Instrukcja IV,V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst01.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="wymagania" class="section level1">
+<h1>Wymagania</h1>
+<ul>
+<li>minimalna znajomość systemów z rodziny Linux,</li>
+<li>podstawowa znajomość programowania (język nie ma znaczenia).</li>
+</ul>
+</div>
+<div id="system-operacyjny" class="section level1">
+<h1>System operacyjny</h1>
+<p>Zalecane jest korzystanie z systemów z rodziny Linux, a w szczególności opartych na Debianie. Jednak pakiety pythona są przygotowane do instalacji również na systemy z rodziny Windows (instalacja dodatkowych pakietów za pomocą <em>pip</em>, o którym w dalszej części). W związku z tym istnieje możliwość pracy na takim systemie, jednak będzie się to wiązało z ograniczonym wsparciem prowadzących kurs.</p>
+</div>
+<div id="kontrola-wersji---git-i-github" class="section level1">
+<h1>Kontrola wersji - git i GitHub</h1>
+<p>Narzędzia kontroli wersji są praktycznie niezbędne podczas pracy nad większym kodem, a przede wszystkim w sytuacji gdy nad jednym projektem współpracuje więcej osób. Pozwalają one na:</p>
+<ul>
+<li>śledzenie kolejnych zmian w kodzie,</li>
+<li>usuwanie niepotrzebnych zmian,</li>
+<li>tworzenie “podprojektów” w których pracuje się tylko nad częścią nowego kodu,</li>
+<li>łączenie kodu różnych osób w obrębie nawet tego samego pliku.</li>
+</ul>
+<p>Więcej informacji o tym czym właściwie jest kontrola wersji można przeczytać pod linkiem <a href="https://git-scm.com/book/pl/v1/Pierwsze-kroki-Wprowadzenie-do-kontroli-wersji">git - wprowadzenie do kontroli wersji</a>. W przypadku naszego kursu do kontroli wersji będziemy stosowali narzędzie zwane <em>git</em>, które zostało opracowane przez “ojca” systemów Linux Linusa Torwaldsa. Wielu programistów obsługuje go z poziomu konsoli. My jednak skupimy się tylko na podstawowych jego funkcjach i będziemy z gita korzystali tylko z poziomu środowiska programistycznego, o którym więcej powiemy dalej. Na poziomie naszego kursu system ten posłuży do pobierania materiałów oraz przechowywania własnych wersji rozwiązań zadań. Dzięki temu uczestnicy poznają podstawowe sposoby korzystania z gita.</p>
+<p>W ramach przygotowania do zajęć należy przejść na stronę <a href="https://github.com/">GitHub</a> i zarejestrować własne konto w tym serwisie. Dzięki temu otrzymamy pewną darmową (wersja darmowa wymaga publicznego dostępu do zamieszczonego kodu) przestrzeń dyskową na której będziemy mogli przechowywać wszystkie niezbędne pliki potrzebne w naszym projekcie. Serwis GitHub sam w sobie nie jest potrzebny do działania git’a (możemy utworzyć lokalne repozytorium na własnym dysku), jednak potrzebujemy jakiegoś miejsca, najlepiej w sieci aby mieć dostęp do kodu z każdego miejsca, w którym będziemy mogli składować własne repozytorium z tworzonym kodem.</p>
+</div>
+<div id="python" class="section level1">
+<h1>Python</h1>
+<p>W czasie rozwoju języka <em>python</em> wykształciły się dwie jego wersje: - <em>python 2</em>, - <em>python 3</em> (nowsza specyfikacja języka, choć niekoniecznie częściej używana).</p>
+<p>Oba standardy języka znacząco się nie różnią, jednak są one niekompatybilne pomiędzy sobą, w związku z czym na samym początku pracy należy się zdecydować na której wersji będziemy pracowali. Należy także pamiętać, że każdy nowo zainstalowana biblioteka będzie musiała pochodzić z repozytorium właściwego dla używanej wersji. W przypadku naszego kursu zajęcia będą prowadzone w oparciu o wersję drugą i wszystkie podane informacje odnośnie instalacji i pracy z językiem będą właściwe tylko dla standardu języka <em>python 2</em>.</p>
+</div>
+<div id="instalacja-niezbednych-pakietow" class="section level1">
+<h1>Instalacja niezbędnych pakietów</h1>
+<p>W poniższym punkcie zostaną opisane metody instalacji podstawowych i dodatkowych pakietów (zbioru narzędzi przygotowanych i upublicznionych przez innych programistów). Dokładny opis zostanie ograniczony jedynie do dystrybucji opartych na systemie Debian. W przypadku innych systemów uczestnicy powinni samodzielnie zadbać o instalację odpowiednich narzędzi.</p>
+<div id="wymagane-pakiety" class="section level2">
+<h2>Wymagane pakiety</h2>
+<p>Poniżej przedstawiamy zbiór pakietów które są najczęściej wykorzystywane podczas pracy. Podczas zajęć także będziemy korzystali z tych narzędzi, dlatego należy je zainstalować przed rozpoczęciem kursu.</p>
+<div id="python-dev" class="section level3">
+<h3>python-dev</h3>
+<p>podstawowe narzędzia języka python które są niezbędne do pracy i rozwoju kodu w tym języku.</p>
+</div>
+<div id="pip" class="section level3">
+<h3>pip</h3>
+<p>Narzędzia do zarządzania pakietami pythona. Pozwala na automatyczne pobranie kodu z oficjalnego repozytorium <em>Python Package Index</em> (PyPI), kompilację i instalację wybranego pakietu. Korzystając z <em>pip</em> możemy pobrać dowolną wersję danego pakietu, co jest najczęściej niemożliwe w przypadku innych metod instalacji pakietów. Ponadto często nowsze pakiety są dostępne jedynie za pośrednictwem tej platformy.</p>
+</div>
+<div id="numpy" class="section level3">
+<h3>numpy</h3>
+<p>Pakiet zawierający rozszerzenie tablic wielowymiarowych, który pozwala na wygodny dostęp do danych oraz na operacji na nich. Zawiera także wiele własnych funkcji do obliczeń naukowych, które jednak są ograniczone w porównaniu do pakietu <em>scipy</em> o którym dalej.</p>
+</div>
+<div id="matplotlib" class="section level3">
+<h3>matplotlib</h3>
+<p>Zbiór narzędzi służących do tworzenia wykresów przeróżnego typu, takich jak:</p>
+<ul>
+<li>proste jedno wymiarowe,</li>
+<li>różne wykresy statystyczne,</li>
+<li>wykresy konturowe,</li>
+<li>wykresy trój wymiarowe.</li>
+</ul>
+</div>
+<div id="scipy" class="section level3">
+<h3>scipy</h3>
+<p>Biblioteka zawierająca szeroki zbiór narzędzi do obliczeń naukowych . Nazwa <em>SciPy</em> może odnosić się do całego zbioru bibliotek (numpy, matplotlib, scipy, sympy, pandas). Jednak sam pakiet o nazwie <em>scipy</em> zawiera tylko narzędzia obliczeniowe. Pakiet <em>scipy</em> posiada wiele funkcji o tym samym zastosowaniu co <em>numpy</em>. Duplikacja tych narzędzi wynika z tego, że <em>scipy</em> jest w dużej części opakowaniem implementacji w języku Fortran (które są bardzo wydajne) a <em>numpy</em> jest przygotowane tak, aby możliwa była jego instalacja także bez kompilatora Fortran. Jednak <em>scipy</em> zawiera dużo więcej i w dodatku nowszych narzędzi niż <em>numpy</em>.</p>
+</div>
+<div id="sympy" class="section level3">
+<h3>sympy</h3>
+<p>Pakiet pozwalający na dokonywanie obliczeń symbolicznych.</p>
+</div>
+<div id="pandas" class="section level3">
+<h3>pandas</h3>
+<p>Biblioteka służąca do obróbki i analizy danych. W szczególności wprowadza wygodne struktury danych i operacje do ich obróbki. Biblioteka ta znajduje świetne zastosowanie w analizie statystycznej. Dane mogą być reprezentowane jako ciągi czasowe lub tablice z dodatkowymi nazwami wierszy i kolumn.</p>
+</div>
+</div>
+<div id="instalacja---linux-dystrybucje-debian" class="section level2">
+<h2>Instalacja - Linux (dystrybucje Debian)</h2>
+<div id="podstawowe-narzedzia" class="section level3">
+<h3>Podstawowe narzędzia</h3>
+<p>Większość systemów posiada domyślnie zainstalowane podstawowe pakiety języka python. Jednak, aby się upewnić, że je posiadamy możemy po prostu spróbować je zainstalować. Na początek 2 podstawowe i najważniejsze pakiety. Otwieramy konsolę a w niej wpisujemy następujące komendy (Uwaga komenda <code class="sourceCode bash"><span class="kw">sudo</span></code> oznacza uruchomienie zadania jako administrator co będzie wymagało podania hasła):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install python-dev
+<span class="kw">sudo</span> apt-get install python-pip</code></pre></div>
+<p>Po dokonaniu instalacji <em>python-pip</em> uzyskujemy dostęp do managera pakietów pythona z oficjalnego repozytorium PyPI. Z kolei instalacja pakietów za pomocą <em>apt-get</em> dostarcza tylko te pakiety które znajdują się w repozytorium wydawcy danego systemu (np. Ubuntu Repository) i na ogół są one dość ograniczone i zawierają tylko najnowsze wersje pakietów. Pakiety dostarczane za pomocą <em>apt-get</em> są wcześniej skompilowane dzięki czemu proces instalacji jest znacznie krótszy, ale nie zawsze jest to lepsze rozwiązanie.</p>
+</div>
+<div id="dodatkowe-pakiety" class="section level3">
+<h3>Dodatkowe pakiety</h3>
+<p>Aby zainstalować dodatkowe możemy skorzystać z repozytorium <em>PyPI</em> lub z repozytorium wydawcy systemu. W obu przypadkach aby zainstalować wszystkie biblioteki możemy w linii poleceń podać więcej niż jedną nazwę pakietu. Na obecnym etapie kursu będziemy potrzebowali tylko 3 dodatkowych pakietów:</p>
+<ul>
+<li><em>apt-get</em> <code class="sourceCode bash"><span class="kw">sudo</span> apt-get install python-numpy python-scipy python-matplotlib python-pandas</code></li>
+<li><em>pip</em> <code class="sourceCode bash"><span class="kw">sudo</span> pip install numpy scipy matplotlib pandas</code></li>
+</ul>
+</div>
+<div id="instalacja-git" class="section level3">
+<h3>Instalacja git</h3>
+<p>W przypadku systemów Linux większość dystrybucji posiada zainstalowane to narzędzie domyślnie. Aby sprawdzić czy pakiet jest zainstalowany możemy w konsoli wpisać:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> --version</code></pre></div>
+<p>Jeśli w konsoli zostanie wyświetlona wersja, to znaczy, że posiadamy ten program i nie trzeba go instalować. Jeśli w danej dystrybucji nie znajduje się zainstalowany git to należy go doinstalować komendą:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install git-all</code></pre></div>
+</div>
+</div>
+<div id="instalacja---windows" class="section level2">
+<h2>Instalacja - Windows</h2>
+<div id="podstawowe-narzedzia-1" class="section level3">
+<h3>Podstawowe narzędzia</h3>
+<p>Osoby zainteresowane instalacją na tym systemie odsyłamy do poniższego linku <a href="https://www.python.org/downloads/windows/">Windows Installers</a> skąd można pobrać i zainstalować podstawowe narzędzia pythona (w przypadku naszego kursu należy wybrać wersję 2.x.x). ### Dodatkowe pakiety Dodatkowe pakiety można zainstalować z poziomu linii komend. Jednak przed uczynieniem tego należy dodać ścieżkę do folderu zawierającego skrypty pythona (np. C:27) do zmiennej środowiskowej PATH (Uwaga: pod edycji zmiennej środowiskowej może być wymagane ponowne uruchomienie systemu). Następnie należy otworzyć konsolę i wywołać instalację za pomocą <em>pip</em>:</p>
+<pre class="bat"><code>pip install numpy scipy matplotlib pandas</code></pre>
+</div>
+<div id="git" class="section level3">
+<h3>git</h3>
+<p>W przypadku systemów Windows program ten musi zostać zainstalowany oddzielnie, instrukcje dotyczące instalacji można znaleźć tutaj <a href="https://git-scm.com/book/pl/v1/Pierwsze-kroki-Instalacja-Git#Instalacja-w-systemie-Windows">git - intalacja Windows</a>.</p>
+</div>
+</div>
+</div>
+<div id="srodowisko-graficzne" class="section level1">
+<h1>Środowisko graficzne</h1>
+<p>Do wygodnej pracy przy pisaniu kodu posłużymy się zintegrowanym środowiskiem programistycznym (IDE) o nazwie PyCharm Community Edition (pochodzącym od firmy JetBrains). Środowisko to pozwoli na zarządzanie plikami, kolorowanie składni kodu oraz podpowiedzi do aktualnie edytowanego miejsca w kodzie. Ponadto środowisko to ma wbudowaną obsługę systemu kontroli wersji.</p>
+<div id="instalacja" class="section level2">
+<h2>Instalacja</h2>
+<p>Aby zainstalować PyCharm na systemie Linux wystarczy pobrać odpowiedni plik i rozpakować do dowolnie wybranego miejsca na dysku. Spakowaną aplikację można pobrać ze strony <a href="https://www.jetbrains.com/pycharm/download/#section=linux">PyCharm - Linux</a>. Po zapisaniu pliku na dysku możemy go rozpakować komendą:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tar</span> xfz <span class="kw">&lt;</span>sciezka do sciagnietego pliku<span class="kw">&gt;</span> -C <span class="kw">&lt;</span>sciezka do miejsca gdzie rozpakowac<span class="kw">&gt;</span></code></pre></div>
+<p>Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli (po pierwszym uruchomieniu program doda skróty do systemu):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">&lt;sciezka</span> do rozpakowanego folderu<span class="kw">&gt;</span>/bin/pycharm.sh</code></pre></div>
+<p>Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruchomieniu program wyświetli okno konfiguracji w który należało będzie ustawić własne preferencje.</p>
+</div>
+<div id="poczatek-pracy-w-pycharm" class="section level2">
+<h2>Początek pracy w PyCharm</h2>
+<div class="figure">
+<img src="figures/python_inst01/01.png" title="Okno PyCharm" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/02.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/03.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/19.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/04.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/05.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/06.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/18.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/07.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/08.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/09.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/11.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/10.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/12.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/13.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/14.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/15.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/16.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/20.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/17.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+<div class="figure">
+<img src="figures/python_inst01/21.png" alt="Okno PyCharm" />
+<p class="caption">Okno PyCharm</p>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
