@@ -1,5 +1,3 @@
-
-
 ---
 number: 2
 course: Informatyka I
@@ -9,22 +7,44 @@ author: Ł. Łaniewski-Wołłk
 
 
 # BASH: skrypty
-Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik` i wykonać komendą `./plik`. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego:\\**każda linijka skryptu wygląda nastepująco:** ,,`_program_ {\green agumenty`}''.
+Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{bash}. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
 
-Przeanalizuj fragment kodu, z zaznaczonymi _programami_ i {\green opcjami}:
-{\tt\\
-_i=1_\\
-while _test_ {\green \$i -lt 10}\\
-do\\
-_echo_ {\green \$i}\\
-_cp_ {\green plik plik\_\$i}\\
-_i=_\$(_expr_ {\green \$i + 1})\\
-done\\
-}
+Przeanalizuj fragment kodu, z zaznaczonymi `programami` i `opcjami`:
+```Bash
+i=1
+while test $i -lt 10
+do
+	echo $i
+	cp plik plik_$i
+	i=$(expr $i + 1)
+done
+```
+
+```{.bash}
+i=1
+while test $i -lt 10
+do
+	echo $i
+	cp plik plik_$i
+	i=$(expr $i + 1)
+done
+```
+
+```
+i=1
+while test $i -lt 10
+do
+	echo $i
+	cp plik plik_$i
+	i=$(expr $i + 1)
+done
+```{.bash}
+
+
 
 Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
-- `\red i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `\red i` z opcjami `\green =` i `\green 1`. 
-- w wyrażeniu `_expr_ {\green \$i + 1`}, musimy zachować spacje, żeby program `\red expr` dostał trzy argumenty ,,`\green\$i`'', ,,`\green +`'' i ,,`\green 1`'', a nie jeden ,,`\green i+1`''.
+- `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
+- w wyrażeniu `expr \$i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `\$i`, `+` i `1`, a nie jeden `i+1`.
 - w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `\red test`. W tym wypadku podajemy mu za argumenty ,,`\green\$i`'', ,,`\green -lt`'' i ,,`\green 10`'', gdzie opcja `\green -lt` oznacza ,,less than''.
 
 

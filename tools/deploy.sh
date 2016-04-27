@@ -28,6 +28,7 @@ then
 	cat .msg
 	echo Cloning pages
 	git clone --depth 1 --branch pages-base https://$GH_TOKEN@github.com/ccfd/courses.git deploy
+	rm -r deploy/*
 	mv _site/* deploy/
 	pushd deploy
         git config user.email "$email"
@@ -35,10 +36,17 @@ then
 #	git branch -f gh-pages pages-base
 #	git checkout gh-pages
 	git add -A
-	git commit -F ../.msg
+	git commit -F ../.msg | head -n 300
+	git push
 	git branch -f gh-pages pages-base
 	git checkout gh-pages
 #       Add pdf's here.
+	if ls ../*.pdf >/dev/null 2>/dev/null
+	then
+		cp ../*.pdf .
+		git add -A *.pdf
+		git commit -F ../.msg | head -n 300
+	fi
 	git push --force --set-upstream origin gh-pages
 	popd
 	rm -fr deploy

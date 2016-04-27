@@ -1,4 +1,3 @@
-
 ---
 number: 7
 course: Informatyka I

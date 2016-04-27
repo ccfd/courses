@@ -1,11 +1,9 @@
-
-
-
 ---
 number: 1
 course: Metody Numeryczne
 material: Instrukcja 1
-author: B. Górecki
+author: Ł. Łaniewski-Wołłk
+title: Metody iteracyjne
 ---
 
 Na tych laboratoriach skupimy się na rozwiązaniu układu:

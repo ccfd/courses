@@ -1,5 +1,3 @@
-
-
 ---
 number: 1
 course: Informatyka III
@@ -24,13 +22,13 @@ Gdy korzystasz z Windows'ów najwygodniej do połączenia wykorzystać darmowy p
 
 Następnie pojawi się czarne okno z zapytaniem o login i hasło. Po podaniu i poprawny zalogowaniu zobaczysz informacje o dacie, licencji, wersji systemu itp. kończące się:
 
-```c++
+```
 Last login: Thu Feb 21 06:23:38 2013 from xx.xx.xx.xx
 stud-00@info3:~$
 ```
 
 Zapis:
-```c++
+```
 stud-00@info3:~$
 ```
 oznacza, że jako użytkownik `stud-00` jesteśmy zalogowani na komputer `info3`. Między znakami : i  \$ znajduje się aktualny katalog. W tym przypadku \~, czyli katalog domowy, inaczej `/home/students/stud-00 `
@@ -46,7 +44,7 @@ Wpisz do konsoli `date` i wciśnij enter. Komputer wyświetli aktualną (jego zd
 ## Poruszanie się po katalogach
 
 Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw. katalogu bieżącym. Jeśli uruchomimy jakiś program, np. proste programy czytające z pliku z Informatyki I, będą one czytały z plików w tym katalogu. Każdemu programowi którego będziesz używać a który potrzebuje nazwy pliku lub katalogu (np. do kopiowania) może ją przyjąć w kilku postaciach. Po pierwsze ścieżka  bezwzględna, zaczynająca się od znaku / np:
-```c++
+```
 /home/students/stud-00
 /usr/bin/bash
 /etc
@@ -55,7 +53,7 @@ Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw. katalogu
 Sprawdź, w jakim katalogu się znajdujesz, wpisz `pwd` i wciśnij enter.
 
 Aby zmienić katalog, wykorzystuje się polecenie `cd`, np.
-```c++
+```
 stud-00@info3:~$ cd /tmp
 stud-00@info3:/tmp$ pwd
 /tmp
@@ -76,8 +74,8 @@ Przejdź teraz z powrotem do katalogu domowego i sprawdź czy się udało. Nast�
 ## Tworzenie i usuwanie katalogów
 
 Do tworzenia katalogów służy polecenie `mkdir` np.
-```c++
-stud-00@info3:~$mkdir nazwa_katalogu
+```bash
+$ mkdir nazwa_katalogu
 ```
 
 a do sprawdzenia zawartości aktualnego katalogu polecenie `ls`. Stwórz teraz katalogi A,B,C i D, każdy wewnątrz poprzedniego. Będziesz musiał stworzyć katalog A, przejść do niego, stworzyć B itd.
@@ -89,22 +87,22 @@ UWAGA: nie można w ten sposób usunąć katalogu posiadającego zawartość
 # Podstawowe operacja na plikach i katalogach
 Komenda `echo ` wypisuje na ekran ciąg znaków który podaje się jej jako argument. Sprawdź.
 Aby stworzyć pierwszy plik wpisz (o znaczeniu `>>` będzie na kolejnych zajęciach)
-```c++
-stud-00@info3:~$echo pierwszy plik >> plik.txt
+```bash
+$ echo pierwszy plik >> plik.txt
 ```
 
 Aby wyświetlić zawartość pliku a ekranie używamy `cat`
 
-```c++
-stud-00@info3:~$cat plik.txt
+```bash
+$ cat plik.txt
 ```
 
 
 ## Kopiowanie i przenoszenie
 
 Do kopiowanie służy komenda `cp CO GDZIE`. Stwórz teraz katalog i skopiuj do niego twój plik. Powinno to wyglądać tak:
-```c++
-stud-00@info3:~$cp plik.txt katalog
+```bash
+$ cp plik.txt katalog
 ```
 
 Aby przenieść/zmienić nazwę pliku lub katalogu używamy `mv CO GDZIE`. Przejdź do nowego katalogu i zmień nazwę pliku. Następnie usuń plik poleceniem `rm`
@@ -112,9 +110,9 @@ Aby przenieść/zmienić nazwę pliku lub katalogu używamy `mv CO GDZIE`. Przej
 
 # Pomoc
 Znakomita większość komend trybu tekstowego posiada porządną dokumentację dostępną od ręki.
-```c++
-stud-00@info3:~$man rm
-stud-00@info3:~$rm --help
+```bash
+$ man rm
+$ rm --help
 ```
 W przypadku komendy `man` dostajemy kompetentniejszą dokumentację. Przewija się strzałkami, aby zakończyć wciśnij Q.
 Sprawdź instrukcje dla poleceń `who`, `whoami`, `finger` i  `date`. Sprawdź jak działają.
@@ -122,33 +120,33 @@ Sprawdź instrukcje dla poleceń `who`, `whoami`, `finger` i  `date`. Sprawdź j
 
 # Program Tar
 Program `tar` służy do pakowania i rozpakowywania drzewa katalogów i plików w jeden plik. Niekoniecznie musi on być mniejszy niż oryginalne pliki. Dopiero użycie kompresji zmniejszy objętość. Najpierw przygotuj kilka plików do spakowania:
-```c++
-stud-00@info3:~$ mkdir a
-stud-00@info3:~$ cd a
-stud-00@info3:~/a$ mkdir b
-stud-00@info3:~/a$ echo asdasd >> ./b/c
-stud-00@info3:~/a$ cat ./b/c
+```bash
+$ mkdir a
+$ cd a
+$ mkdir b
+$ echo asdasd >> ./b/c
+$ cat ./b/c
 asdasd
 ```
 
 Teraz spakuj a nastnie podejrzyj archiwum programem `mc`
 
-```c++
-stud-00@info3:~/a$ tar -cf test.tar b
-stud-00@info3:~/a$ ls
+```bash
+$ tar -cf test.tar b
+$ ls
 b  test.tar
-stud-00@info3:~/a$ mc
+$ mc
 ```
 
 Sprawdź zawartość katalogu, usuń to co przed chwilą spakowałeś do archiwum, następnie rozpakuj.
 
-```c++
-stud-00@info3:~/a$ ls
+```bash
+$ ls
 b  test.tar.gz
-stud-00@info3:~/a$ rm -rf b
-stud-00@info3:~/a$ ls
-stud-00@info3:~/a$ tar -xf test.tar
-stud-00@info3:~/a$ ls
+$ rm -rf b
+$ ls
+$ tar -xf test.tar
+$ ls
 b  test.tar
 ```
 
@@ -160,28 +158,28 @@ Sprawdź poleceniem `ls -la` objętość archiwum, zapisz, następnie spakuj te 
 Najważniejszym aspektem pracy w trybie tekstowym jest możliwość tworzenie skryptów, czyli zapisanych w pliku kolejnych komend wykonywanych tak, jakbyśmy wpisywali je z klawiatury. Więcej o zaawansowanych skryptach dowiesz się na następnych laboratoriach, pierwszy napiszesz dzisiaj.
 
 Prostym i dość wygodnym edytorem tekstu jest `nano` lub `vim`. Uruchom go komendą `nano NAZWAPLIKU` i zapisz do niego pierwszy skrypt:
-```c++
+```bash
 #!/bin/bash
 echo 1
 echo 2
 ```
 
 Natępnie trzeba zmienić uprawnienia, pozwolić na uruchomienie naszego skryptu: 
-```c++
-stud-00@info3:~$ chmod +x skrypt.sh
-stud-00@info3:~$ ./skrypt.sh
+```bash
+$ chmod +x skrypt.sh
+$ ./skrypt.sh
 ```
 
 
 ## Zmienne
 Bash obsługuje zmienne, jak w C. Aby stworzyć zmienną:
-```c++
+```bash
 zmienna=$( JAKISPROGRAM )
 zmienna=$( echo 1 )
 ```
 
 Aby odczytać zmienną:
-```c++
+```bash
 echo $zmienna
 ```
 
@@ -209,7 +207,7 @@ Zmodyfikuj skrypt tak, aby nazwa każdego katalogu zaczynała się od wielkości
 
 ## Pętle
 Przygotuj skrypt:
-```c++
+```bash
 for i in *.txt
 do
  cp $i $1_$i
@@ -230,8 +228,8 @@ Połącz się programem `ssh LOGIN@HOST` z serwerem info3. Utwórz plik `copyme`
 
 Zakończ połączenie `Ctrl+D`. Użyj programu 
 
-```c++
-scp LOGIN@HOST:SCIEZKA_DO_PLIKU GDZIE_KOPIOWAĆ} 
+```bash
+scp LOGIN@HOST:SCIEZKA_DO_PLIKU GDZIE_KOPIOWAĆ
 ```
 
 aby ściągnąć `copyme` na dysk lokalny. Program `scp` działa tak jak `cp`, z tą różnicą, że cel lub źródło znajduje się na innym komputerze obsługującym połączenia ssh.
@@ -242,17 +240,17 @@ aby ściągnąć `copyme` na dysk lokalny. Program `scp` działa tak jak `cp`, z
 
 ## Pre-rekwizyty
 Sprawdź do czego służy program `write` z użyciem `man`. Użyj go. następnie porównaj "wyjście" komend: 
-```c++
-who
-who | awk '{print $1}'
-who | awk '{print $2}'
+```bash
+$ who
+$ who | awk '{print $1}'
+$ who | awk '{print $2}'
 ```
 
 
 ## Skrypt spamera
 
 Stwórz skrypt:
-```c++
+```bash
 #!/bin/bash
 for u in $( who | awk '{print $1}' )
 do

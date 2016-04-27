@@ -1,10 +1,9 @@
-
-
 ---
 number: 2
 course: Metody Numeryczne
 material: Instrukcja 2
 author: B. Górecki
+title: Metoda Elementów skończonych
 ---
 
 

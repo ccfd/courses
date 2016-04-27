@@ -1,11 +1,9 @@
-
-
-
 ---
-number: 1
+number: 7
 course: Metody Numeryczne
-material: Instrukcja 1
+material: Instrukcja 7
 author: Ł. Łaniewski-Wołłk
+title: Topologiczna optymalizacja z użyciem równań sprzeżonych
 ---
 
 Na dzisiejszych zajęciach dobierzemy wektor grubości elementów $\theta=\text`thick`$, tak by ugięcie belki było jak najmniejsze. Jedynym elementem który zależy od $\theta$ jest macierz sztywności:
