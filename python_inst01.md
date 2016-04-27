@@ -119,7 +119,8 @@ Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli (po pierw
 Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruchomieniu program wyświetli okno konfiguracji w który należało będzie ustawić własne preferencje. 
 
 ## Początek pracy w PyCharm
-![Okno PyCharm](figures/python_inst01/01.png)
+![Okno PyCharm](figures/python_inst01/01.png "Okno PyCharm")
+
 
 ![Okno PyCharm](figures/python_inst01/02.png)
 
@@ -130,6 +131,8 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 ![Okno PyCharm](figures/python_inst01/05.png)
 
 ![Okno PyCharm](figures/python_inst01/06.png)
+
+![Okno PyCharm](figures/python_inst01/18.png)
 
 ![Okno PyCharm](figures/python_inst01/07.png)
 
@@ -153,5 +156,5 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 
 ![Okno PyCharm](figures/python_inst01/17.png)
 
-![Okno PyCharm](figures/python_inst01/18.png)
+
 
