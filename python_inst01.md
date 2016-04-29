@@ -122,15 +122,39 @@ Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruch
 ## Początek pracy w PyCharm
 ![Okno PyCharm](figures/python_inst01/01.png "Okno PyCharm")
 
+Gdy wstępna konfiguracja programu zostanie ukończona powinno automatycznie otworzyć się okno programu. Jeśli nie posiadamy żadnego ostatnio otwartego projektu, to należy:
+1. Przejść do menu *File* i wybrać *New project*. Następnie wybrać lokalizację projektu na dysku i nazwę dla nowego projektu.
+2. Nowy projekt otworzy się w drzewie projektu. Aby dodać nowy plik do projektu klikamy prawym przyciskiem na ten katalog w drzewie w którym plik ma zostać umieszczony.
 
 ![Nowy plik *.py](figures/python_inst01/02.png)
+W trakcie tworzenia nowego pliku: 
+1. Wybierz unikalną nazwę w kontekście wybranego katalogu,
+2. Upewnij się że ==*Kind*== jest ustawiony jako ==*Python File*==,
+3. Zatwierdź utworzenie pliku. 
 
 ![Pierwszy kod](figures/python_inst01/03.png)
+Nowo dodany plik zostanie automatycznie otwarty w panelu po prawej stronie. PyCharm automatycznie doda do pliku linijkę z kodem:
+```python
+__author__ = "user.name"
+```
+Instrukcja `__author__ =`{.python} oznacza utworzenie zmiennej globalnej. Nie jest ona konieczna potrzebna, a wręcz rzadko stosowana. Głównym celem jej dodawania jest przekazanie metadanych do celów tworzenia dokumentacji i pakietów. Opcję automatycznego dodawania tej zmiennej można wyłączyć w ustawieniach PyCharm.
+
+W dalszej części napiszmy pierwszy kod - funkcję której zadaniem będzie wyświetlenie tekstu historycznie uznanego za jeden z najważniejszych w dziejach programowania, ten od którego wszyscy zaczęli - "Hellow World"
+```python
+def first_function():
+	print "Hellow world!"
+
+first_function()
+```
+Przeanalizujmy powyższy kod. Słowo kluczowe `def`{.python} oznacza definicję funkcji. Następnie podajemy nazwę definiowanej funkcji, w naszym przypadku *first_function*. W języku *Python* nie podajemy typu zawracanej wartości, przede wszystkim dlatego że typy jako takie nie istnieją. Python jest językiem dynamicznie typowany co oznacza, że typ zmiennej jest taki jak wartość do niej przypisana, dlatego nie trzeba zmiennej deklarować. Każda zmienna może być typu *integer* a następnie może stać się typu *stringi*, w związku z czym nie ma sensu podawanie typu zwracanego obiektu ponieważ on wyniknie z tego co zostanie zwrócone. Po nazwie
+ funkcji podajemy w nawiasie nazwy argumentów (tylko nazwy, bo typów nie ma) a następnie wstawiamy znak **:**,  który rozpoczyna ciało funkcji. I tutaj pojawia się ciekawe zjawisko - brak klamer. W pythonie ogólnie znane klamry określające przynależność części kodu do instrukcji zostały zastąpione wcięciem w tekście o 1 tabulację. Koniec ciała funkcji definiujemy poprzez przesunięcie kodu o 1 tabulację z powrotem w lewo. Na koniec, po zakończeniu funkcji wywołujemy ją dokładnie tak samo jak w większości innych języków, poprzez podanie nazwy funkcji i argumentów w okrągłych nawiasach.
 
 ![Pierwsze uruchomienie nowego pliku](figures/python_inst01/19.png)
 
-![Wynik działania kodu](figures/python_inst01/04.png)
+Gdy posiadamy już kod wypada go przetestować aby sprawdzić czy poprawnie zapisaliśmy to co chcemy osiągnąć. W przypadku Pythona aby uruchomić kod wystarczy wywołać interpreter pythona (kod nie jest kompilowany tylko interpretowany linijka po linijce, tak jak inne języki skryptowe) ze wskazaniem ścieżki do pliku. Taką operację zazwyczaj wykonuje się z poziomu konsoli, jednak w momencie gdy posiadamy IDE odpalanie kodu z konsoli wydaje się być śmieszne. Możemy oczywiście odpalić kod z poziomu 
 
+![Wynik działania kodu](figures/python_inst01/04.png)
+p
 ![Panel uruchamiania kodu](figures/python_inst01/05.png)
 
 ![Konfiguracja uruchamiania kodu](figures/python_inst01/06.png)
