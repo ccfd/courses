@@ -131,6 +131,6 @@ Napisz funkcję całkującą równanie ruchu układu wg. następującego schemat
  Przeanalizuj dla jakich $dt$ układ jest stabilny. Wydrukuj zmienność energii. 
 
 ### Zadanie
- Udowodnij, że metoda pół kroku zachowuje energię układu.^[Podpowiedz: tak jak $a^2-b^2=(a+b)(a-b)$ to $x_{n+1]^TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} +
-x_{n})$}
+ Udowodnij, że metoda pół kroku zachowuje energię układu.^[Podpowiedz: tak jak $a^2-b^2=(a+b)(a-b)$ to $x_{n+1}^TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} +
+x_{n})$]
 

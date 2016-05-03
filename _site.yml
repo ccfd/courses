@@ -55,6 +55,10 @@ navbar:
         href: metnum_lab6.html
       - text: "Instrukcja VII"
         href: metnum_lab7.html
+    - text: "Python"
+      menu:
+      - text: "Instrukcja I"
+        href: python_inst01.html
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:
