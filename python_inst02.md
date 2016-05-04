@@ -77,7 +77,12 @@ peracje na plikach
 
 
 # Zadanie 1
-W folderze ***resources/lab1/files*** zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *plik: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji. 
+W folderze ***resources/lab1/files*** zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *plik: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. 
+
+![Pliki w folderach](figures/python_inst02/1.png "Przykład przetworzenia") 
+
+
+Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji. 
 
 # Zadanie 2
 Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z większego rozmiaru na mniejszy. W tym celu:
@@ -90,7 +95,11 @@ Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z wi�
 
 
 # Zadanie 3
-Należy napisać skrypt który będzie wczytywał plik graficzny ***resources/lab1/meil.png***. Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20 (wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie obraz wczytany i przeskalowany. 
+Należy napisać skrypt który będzie wczytywał plik graficzny ***resources/lab1/meil.png***. 
+
+![logo](https://github.com/ccfd/python_course/blob/master/resources/lab1/meil.png?raw=true "Obraz do przetworzenia") 
+
+Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20 (wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie obraz wczytany i przeskalowany obok siebie.
 
 ### Podpowiedzi
 - Obraz można wczytać za pomocą funkcji ***imread*** znajdującej się w bibliotece ***matplotlib.image***. Wczytany obraz będzie w postaci tablicy 3 wymiarowej, gdzie pierwsze 2 wymiary określają indeks pojedynczego punktu, a ostatni określa kanał (red, green, blue i opcjonalnie alpha)
@@ -130,9 +139,10 @@ Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie jasności obrazka
       ||||||                    -       
           ||||||||      ||||||          
             ||||||||||||||||-           
-
 ```
 ### Podpowiedzi
 W celu określenia jasności obrazka w danym punkcie skorzystaj z definicji kolorów HSV zamiast RGB. Kolory HSV, podobnie jak RGB są przechowywane w macierzy o 3 kanałach. Definicja każdego z kanałów można zobaczyć na poniższym rysunku:
-![SkalaHSV](https://en.wikipedia.org/wiki/File:HSV_color_solid_cylinder_alpha_lowgamma.png "Skala HSV, źródło wikipedia") 
+
+![SkalaHSV](https://upload.wikimedia.org/wikipedia/commons/0/0d/HSV_color_solid_cylinder_alpha_lowgamma.png "Skala HSV, źródło wikipedia") 
+
 Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą funkcji ***rgb_to_hsv*** znajdującej się w bibliotece ***matplotlib.colors***. Kanał  ***Value*** dla macierzy HSV jest określony jako trzeci(ostatni).
