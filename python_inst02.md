@@ -18,8 +18,8 @@ Jeśli chcemy używać polskich znaków, to na początku pliku należy wstawić 
 
 ## Listy
 ### Tworzenie i uzupełnianie
-a = []
-a =[1, 2, 3, "c"]
+
+## Pętla "for", słowo "in" i generator "range"
 
 ### Metody należące do klasy list
 - append - metoda dodaje element na koniec list, np.:
@@ -28,7 +28,7 @@ a = [1,2]
 a.append(5)
 print a # wyswietli sie [1, 2, 5]
 ```
-- insert - metoda wstawi
+- insert - metoda wstawia element w dokładnej pozycji
 
 ### Wycinki list
 
@@ -38,12 +38,36 @@ print a # wyswietli sie [1, 2, 5]
 
 ### Rozwijanie list
 
+### Zadania - uzupełnij ciała funkcji:
+```python
+#Remove duplicated elements
+def remove_adjacent_duplication(listObject):
+    # your code
+    pass
 
-## Pętla "for", słowo "in" i generator "range"
+print remove_adjacent_duplication([1, 2, 3, 3, 5, 68, 68, 24])
+```
+
+```python
+# Mereg 2 lists
+def merge_lists(list1, list2):
+    # your code
+    pass
+
+print merge_lists([1,2,45,19,2],[12,-12,'c',3,'5'])
+```
 
 
 ## Tuple
+##### Zadania - uzupełnij ciała funkcji:
+```python
+# Order list of tuples by last element
+def order_tuples(listTuples):
+    # your code
+    pass
 
+print "is order ok?"+ str( order_tuples([(1, 3), (3, 2), (2, 1)]) == [(2, 1), (3, 2), (1, 3)])
+```
 
 ## Instrukcja warunkowa if
 
@@ -69,7 +93,8 @@ print a # wyswietli sie [1, 2, 5]
 ### Operator % 
 
 ## instrukcja if 
-peracje na plikach
+
+## Operacje na plikach
 
 ## Podstawowe narzędzie obsługi systemu
 
@@ -77,10 +102,9 @@ peracje na plikach
 
 
 # Zadanie 1
-W folderze ***resources/lab1/files*** zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *plik: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. 
+W folderze ***resources/lab1/files*** zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *location: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. 
 
 ![Pliki w folderach](figures/python_inst02/1.png "Przykład przetworzenia") 
-
 
 Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji. 
 
@@ -90,6 +114,8 @@ Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z wi�
 1. Utwórz nowy plik pythona o nazwie matrix. 
 2. Wewnątrz tego pliku przygotuj funkcję "reduce" która jako argumenty będzie przyjmowała obiekt reprezentujący listę/tablicę dwuwymiarową oraz rozmiar wynikowej macierzy (parametr określający rozmiar powinien obsługiwać sytuację gdy przekazano 1 liczbę lub parę)
 3. Uzupełnij ciało funkcji wykorzystując algorytm opisany poniższym rysunkiem
+![algorytm](figures/python_inst02/2.png "Algorytm skalowania") 
+Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tablicy większej w zależności od indeksu elementu w tablicy mniejszej. Wartość kolejnych elementów w tablicy mniejszej powinna być obliczona jako średnia z zaznaczonych sąsiadów i referencyjnego elementu z tablicy większej. 
 
 4. Zwróć wynikową tablicę/listę dwuwymiarową.
 
