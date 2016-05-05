@@ -10,11 +10,59 @@ author: W. Gryglas
 
 ## Komentarze
 
-## Kodowanie
-Jeśli chcemy używać polskich znaków, to na początku pliku należy wstawić następujący komentarz
+Jednym z najczęściej używanych elementów każdego języka są komentarze, które pozwalają na chwilowe wyłączenie kodu bądź dodanie notatki na temat danej instrukcji. W języku python w odróżnieniu od C/C++ komentować można tylko linię za pomocą znaku ***#***
+
+```python
+# To jest komnentarz, a poniżej zwykły kod
+a = 5
+```
+
+Jeśli chcemy dodać komentarz do kilku linii tekstu to niestety należy znak ***#*** umieścić na początku każdej z linii:
+```python
+# linia 1 komentarza
+# linia 2 komentarza
+a = 5
+```
+Może być to mało wygodne, jednak w praktyce, gdy korzystamy ze środowiska graficznego PyCharm wystarczy posłużyć się odpowiednim skrótem klawiszowym. Na przykład, gdy chcemy zamienić linijkę w której znajduje się nasz kursor to wystarczy wcisnąć na klawiaturze kombinację  ***CTRL + /***
+
+![komentarz_linia]( resources/python_inst02/comment_line.png "Komentowanie 1  linii w PyCharm") 
+
+Z kolei jeśli chcemy zamienić blok kodu na komentarz to należy go zaznaczyć a następnie ponownie skorzystać z kombinacji ***CTRL + /***
+
+![komentarz_blok]( resources/python_inst02/comment_block.png "Komentowanie bloku tekstu w PyCharm") 
+
+Oprócz zwykłych komentarzy specyfikacja języka python przewiduje dodatkowy rodzaj komentarza, który jest automatycznie uznawany za dokumentację. Tekst dokumentacji powinien znaleźć się w pomiędzy znacznikami początku i końca. Jako znaczniki stosuje się trzykrotny znak cudzysłowu.  Dokumentacja powinna znaleźć się tuż pod deklaracją dokumentowanego narzędzia, np. funkcji:
+
+```python
+def funkcja(arg1, arg2):
+	"""
+	To jest funkcja, sluzy ona do robienia czegos 
+	dziwnego z przekazanymi argumentami
+	"""
+	# kod zawierajacy cialo funkcji
+	pass
+```
+
+Środowisko PyCharm w przypadku dokumentacji jest także bardzo pomocne. Jeśli chcemy dodać taki rodzaj dokumentacji funkcji, wystarczy tuż pod jej nazwą dodać trzy znaki cudzysłowu i nacisnąć klawisz ***Enter*** a program automatycznie wygeneruje ciało dokumentacji w następującej postaci
+
+![komentarz_dok](resources/python_inst02/doc_comment.png "Szablon dokumentacji funkcji w PyCharm")
+
+Jak widać na powyższym rysunku PyCharm wygenerował dodatkowe elementy które wypada umieścić w dokumentacji. Tuż za znakami cudzysłowów została pozostawiona wolna linia w której należy umieścić opis funkcji, tzn. do czego służy i ewentualnie jaki algorytm implementuje. Oprócz tego PyCharm umieścił informację o argumentach funkcji:
+
+- ***param: argument1:***  należy dopisać informację jaki obiekt powinien być przekazane jako pierwszy argument
+- ***param: argument1:***  należy dopisać informację jaki obiekt powinien być przekazane jako drugi argument
+- ***return:***  należy dodać informację jaki obiekt jest zwracany z funkcji. W przypadku gdy funkcja nie powinna zwracać argumentów zwyczajowo podaje się  "None" które oznacza, że funkcja nic nie zwraca. 
+
+Czasami programiści umieszczają pod argumentami dodatkowo przykład zastosowania funkcji.
+
+Dokumentacja kodu w języku python jest szczególnie ważna z uwagi na brak typów obiektów. Jeśli chcemy aby argument przekazany do funkcji był liczbą całkowitą, to nie możemy tego powiedzieć użytkownikowi za pomocą deklaracji funkcji (deklaracja zawiera tylko nazwy przekazanych zmiennych, nie ma typu) i musimy to zrobić za pośrednictwem dokumentacji. 
+
+## Polskie znaki diakrytyczne
+W sytuacji gdy w komentarzach zostaną umieszczone polskie znaki diakrytyczne kod znajdujący się w danym pliku może nie uda się uruchomić. Wynika to z tego, że python używa domyślnego kodowania ASCII nieobsługującego tego typu znaków. Jeśli jednak chcemy używać polskich znaków, to na początku pliku należy wstawić następujący komentarz
 ```python
 # coding=utf-8
 ```
+Ta linijka wymusi na interpreterze skorzystanie z innego dekodera.
 
 ## Listy
 ### Tworzenie i uzupełnianie
