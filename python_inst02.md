@@ -25,11 +25,11 @@ a = 5
 ```
 Może być to mało wygodne, jednak w praktyce, gdy korzystamy ze środowiska graficznego PyCharm wystarczy posłużyć się odpowiednim skrótem klawiszowym. Na przykład, gdy chcemy zamienić linijkę w której znajduje się nasz kursor to wystarczy wcisnąć na klawiaturze kombinację  ***CTRL + /***
 
-![komentarz_linia]( resources/python_inst02/comment_line.png "Komentowanie 1  linii w PyCharm") 
+![komentarz_linia]( figures/python_inst02/comment_line.png "Komentowanie 1  linii w PyCharm") 
 
 Z kolei jeśli chcemy zamienić blok kodu na komentarz to należy go zaznaczyć a następnie ponownie skorzystać z kombinacji ***CTRL + /***
 
-![komentarz_blok]( resources/python_inst02/comment_block.png "Komentowanie bloku tekstu w PyCharm") 
+![komentarz_blok]( figures/python_inst02/comment_block.png "Komentowanie bloku tekstu w PyCharm") 
 
 Oprócz zwykłych komentarzy specyfikacja języka python przewiduje dodatkowy rodzaj komentarza, który jest automatycznie uznawany za dokumentację. Tekst dokumentacji powinien znaleźć się w pomiędzy znacznikami początku i końca. Jako znaczniki stosuje się trzykrotny znak cudzysłowu.  Dokumentacja powinna znaleźć się tuż pod deklaracją dokumentowanego narzędzia, np. funkcji:
 
@@ -45,7 +45,7 @@ def funkcja(arg1, arg2):
 
 Środowisko PyCharm w przypadku dokumentacji jest także bardzo pomocne. Jeśli chcemy dodać taki rodzaj dokumentacji funkcji, wystarczy tuż pod jej nazwą dodać trzy znaki cudzysłowu i nacisnąć klawisz ***Enter*** a program automatycznie wygeneruje ciało dokumentacji w następującej postaci
 
-![komentarz_dok](resources/python_inst02/doc_comment.png "Szablon dokumentacji funkcji w PyCharm")
+![komentarz_dok](figures/python_inst02/doc_comment.png "Szablon dokumentacji funkcji w PyCharm")
 
 Jak widać na powyższym rysunku PyCharm wygenerował dodatkowe elementy które wypada umieścić w dokumentacji. Tuż za znakami cudzysłowów została pozostawiona wolna linia w której należy umieścić opis funkcji, tzn. do czego służy i ewentualnie jaki algorytm implementuje. Oprócz tego PyCharm umieścił informację o argumentach funkcji:
 
