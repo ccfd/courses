@@ -31,6 +31,8 @@ Z kolei jeśli chcemy zamienić blok kodu na komentarz to należy go zaznaczyć 
 
 ![komentarz_blok]( figures/python_inst02/comment_block.png "Komentowanie bloku tekstu w PyCharm") 
 
+Aby odkomentować ten sam blok tekstu wystarczy znów go zaznaczyć i użyć kombinacji ***CTRL + /***.
+
 Oprócz zwykłych komentarzy specyfikacja języka python przewiduje dodatkowy rodzaj komentarza, który jest automatycznie uznawany za dokumentację. Tekst dokumentacji powinien znaleźć się w pomiędzy znacznikami początku i końca. Jako znaczniki stosuje się trzykrotny znak cudzysłowu.  Dokumentacja powinna znaleźć się tuż pod deklaracją dokumentowanego narzędzia, np. funkcji:
 
 ```python
@@ -55,6 +57,10 @@ Jak widać na powyższym rysunku PyCharm wygenerował dodatkowe elementy które 
 
 Czasami programiści umieszczają pod argumentami dodatkowo przykład zastosowania funkcji.
 
+Gdy już przygotujemy tak udokumentowaną funkcję, to możemy w środowisku PyCharm skorzystać z opcji "Quick Documentation" która wyświetla w dodatkowym oknie podpowiedzi to co zapisaliśmy lub ktoś inny udokumentował. Aby wyświetlić taką dokumentację należy postawić kursor na nazwie funkcji (w miejscu w którym chcemy z niej skorzystać) a następnie z górnego menu wybrać ***View/Quick Documentation***
+
+![widok_dokumentacji](figures/python_inst02/quick_documentation.png "Okno wyświetlania dokumentacji")
+
 Dokumentacja kodu w języku python jest szczególnie ważna z uwagi na brak typów obiektów. Jeśli chcemy aby argument przekazany do funkcji był liczbą całkowitą, to nie możemy tego powiedzieć użytkownikowi za pomocą deklaracji funkcji (deklaracja zawiera tylko nazwy przekazanych zmiennych, nie ma typu) i musimy to zrobić za pośrednictwem dokumentacji. 
 
 ## Polskie znaki diakrytyczne
@@ -63,6 +69,9 @@ W sytuacji gdy w komentarzach zostaną umieszczone polskie znaki diakrytyczne ko
 # coding=utf-8
 ```
 Ta linijka wymusi na interpreterze skorzystanie z innego dekodera.
+
+## Zmienne
+
 
 ## Listy
 ### Tworzenie i uzupełnianie
