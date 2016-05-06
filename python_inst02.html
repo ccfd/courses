@@ -344,13 +344,88 @@ $(document).ready(function () {
 </div>
 <div id="wprowadzenie" class="section level1">
 <h1>Wprowadzenie</h1>
-<div id="komentarze" class="section level2">
-<h2>Komentarze</h2>
+<div id="kilka-sow-o-pythonie" class="section level2">
+<h2>Kilka słów o Pythonie</h2>
+<p>Python jest <strong>dynamicznie typowanym</strong> i <strong>interpretowanym</strong> (w szczególnych przypadkach kompilowanym) językiem. Dynamiczne typowanie oznacza, że jakakolwiek zmienna (globalna czy lokalna w funkcji) nie posiada przypisanego typu. Dzięki temu kod jest bardzo krótki, elastyczny oraz jest pozbawiony sprawdzania typów na poziomie kompilacji, co znacząco skraca czas od wprowadzenia zmian do uruchomienia kodu. Typ zmiennej jest sprawdzany dopiero w momencie wykonywania instrukcji, czyli jej konkretnego użycia. Dowolna zmienna staje się, np. integerem, w momencie gdy do niej przypiszemy wartość:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">5</span></code></pre></div>
+<p>Nie został powyżej przypisany żaden typ do zmiennej “a”, tylko konkretna wartość 5 która automatycznie informuje, że “a” od tej pory będzie integerem. Dynamiczne typowanie pozwala także na przypisanie innego typu do tej samej zmiennej, tzn.:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> <span class="dv">5</span>
+a <span class="op">=</span> <span class="st">&quot;jakis text&quot;</span></code></pre></div>
+<p>Podobnie ma się sytuacja z funkcjami - nie trzeba deklarować typu argumentu, wystarczy że przekazaną wartość będzie dało się zastosować do instrukcji znajdujących się wewnątrz funkcji. Na przykład do funkcji:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(argument1):
+    a <span class="op">=</span> argument1[<span class="dv">3</span>]
+    <span class="cf">return</span> a
+
+<span class="bu">print</span> funkcja([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) <span class="co"># wyswietli sie liczba 4</span>
+<span class="bu">print</span> funkcja(<span class="st">&quot;to jest string&quot;</span>) <span class="co">#wyswietli sie znak &quot;j&quot;</span></code></pre></div>
+<p>można bez problemu przekazać zarówno listę jak i stringa, ponieważ oba te typy obsługują operator “[ ]”. Ważne jest jedynie, aby dało się wykonać wszystkie instrukcje znajdujące się wewnątrz funkcji, a nie ma znaczenia to czy przekazana jest lista, string, tuple czy cokolwiek innego.</p>
+<p>Pythona na ogół należy postrzegać jako język <strong>interpretowany</strong>, ponieważ w taki sposób zazwyczaj będziemy uruchamiać kod. Język interpretowany to taki, w którym nie dokonuje się kompilacji całości kodu na raz(przetwarzania kodu z języka w miarę łatwo zrozumiałego dla człowiek do kodu w postaci instrukcji przesyłanych do procesora). Kod w tym przypadku jest “kompilowany” w czasie jego wykonywania. Oznacza to, że w następna linijka naszego kodu zostanie “skompilowana” dopiero w momencie gdy skończy się wywoływać poprzednia instrukcja. Z językiem interpretowanym spotykamy się bardzo często, ponieważ jest nim “bash” - język obsługujący powłokę systemową Linuxa. Dlatego też wiele podobnych cech będzie widocznych w języku Python, jednak jest on dużo bardziej wygodny i naturalny w użytkowaniu. Oprócz swobody pisania kodu chyba najważniejszą zaletą Pythona jest właśnie czas od zapisania kodu do jego uruchomienia. Z racji tego że kod jest “kompilowany w locie” program uruchamia się błyskawicznie, co w przypadku dużych kodów w języku C/C++ bywa bardzo uciążliwe.</p>
+<p>W praktyce</p>
 </div>
-<div id="kodowanie" class="section level2">
-<h2>Kodowanie</h2>
-<p>Jeśli chcemy używać polskich znaków, to na początku pliku należy wstawić następujący komentarz</p>
+<div id="gdzie-nalezy-pisac-kod" class="section level2">
+<h2>Gdzie należy pisać kod</h2>
+</div>
+<div id="jak-uruchamiac-kod" class="section level2">
+<h2>Jak uruchamiać kod</h2>
+</div>
+<div id="co-to-jest-modu" class="section level2">
+<h2>Co to jest moduł</h2>
+</div>
+<div id="komentarze-w-plikach-zrodowych" class="section level2">
+<h2>Komentarze w plikach źródłowych</h2>
+<p>Jednym z najczęściej używanych elementów każdego języka są komentarze, które pozwalają na chwilowe wyłączenie kodu bądź dodanie notatki na temat danej instrukcji. W języku python w odróżnieniu od C/C++ komentować można tylko linię za pomocą znaku <strong><em>#</em></strong></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># To jest komnentarz, a poniżej zwykły kod</span>
+a <span class="op">=</span> <span class="dv">5</span></code></pre></div>
+<p>Jeśli chcemy dodać komentarz do kilku linii tekstu to niestety należy znak <strong><em>#</em></strong> umieścić na początku każdej z linii:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># linia 1 komentarza</span>
+<span class="co"># linia 2 komentarza</span>
+a <span class="op">=</span> <span class="dv">5</span></code></pre></div>
+<p>Może być to mało wygodne, jednak w praktyce, gdy korzystamy ze środowiska graficznego PyCharm wystarczy posłużyć się odpowiednim skrótem klawiszowym. Na przykład, gdy chcemy zamienić linijkę w której znajduje się nasz kursor to wystarczy wcisnąć na klawiaturze kombinację <strong><em>CTRL + /</em></strong></p>
+<div class="figure">
+<img src="figures/python_inst02/comment_line.png" title="Komentowanie 1 linii w PyCharm" alt="komentarz_linia" />
+<p class="caption">komentarz_linia</p>
+</div>
+<p>Z kolei jeśli chcemy zamienić blok kodu na komentarz to należy go zaznaczyć a następnie ponownie skorzystać z kombinacji <strong><em>CTRL + /</em></strong></p>
+<div class="figure">
+<img src="figures/python_inst02/comment_block.png" title="Komentowanie bloku tekstu w PyCharm" alt="komentarz_blok" />
+<p class="caption">komentarz_blok</p>
+</div>
+<p>Aby odkomentować ten sam blok tekstu wystarczy znów go zaznaczyć i użyć kombinacji <strong><em>CTRL + /</em></strong>.</p>
+<p>Oprócz zwykłych komentarzy specyfikacja języka python przewiduje dodatkowy rodzaj komentarza, który jest automatycznie uznawany za dokumentację. Tekst dokumentacji powinien znaleźć się w pomiędzy znacznikami początku i końca. Jako znaczniki stosuje się trzykrotny znak cudzysłowu. Dokumentacja powinna znaleźć się tuż pod deklaracją dokumentowanego narzędzia, np. funkcji:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(arg1, arg2):
+    <span class="co">&quot;&quot;&quot;</span>
+<span class="co">    To jest funkcja, sluzy ona do robienia czegos </span>
+<span class="co">    dziwnego z przekazanymi argumentami</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="co"># kod zawierajacy cialo funkcji</span>
+    <span class="cf">pass</span></code></pre></div>
+<p>Środowisko PyCharm w przypadku dokumentacji jest także bardzo pomocne. Jeśli chcemy dodać taki rodzaj dokumentacji funkcji, wystarczy tuż pod jej nazwą dodać trzy znaki cudzysłowu i nacisnąć klawisz <strong><em>Enter</em></strong> a program automatycznie wygeneruje ciało dokumentacji w następującej postaci</p>
+<div class="figure">
+<img src="figures/python_inst02/doc_comment.png" title="Szablon dokumentacji funkcji w PyCharm" alt="komentarz_dok" />
+<p class="caption">komentarz_dok</p>
+</div>
+<p>Jak widać na powyższym rysunku PyCharm wygenerował dodatkowe elementy które wypada umieścić w dokumentacji. Tuż za znakami cudzysłowów została pozostawiona wolna linia w której należy umieścić opis funkcji, tzn. do czego służy i ewentualnie jaki algorytm implementuje. Oprócz tego PyCharm umieścił informację o argumentach funkcji:</p>
+<ul>
+<li><strong><em>param: argument1:</em></strong> należy dopisać informację jaki obiekt powinien być przekazane jako pierwszy argument</li>
+<li><strong><em>param: argument1:</em></strong> należy dopisać informację jaki obiekt powinien być przekazane jako drugi argument</li>
+<li><strong><em>return:</em></strong> należy dodać informację jaki obiekt jest zwracany z funkcji. W przypadku gdy funkcja nie powinna zwracać argumentów zwyczajowo podaje się “None” które oznacza, że funkcja nic nie zwraca.</li>
+</ul>
+<p>Czasami programiści umieszczają pod argumentami dodatkowo przykład zastosowania funkcji.</p>
+<p>Gdy już przygotujemy tak udokumentowaną funkcję, to możemy w środowisku PyCharm skorzystać z opcji “Quick Documentation” która wyświetla w dodatkowym oknie podpowiedzi to co zapisaliśmy lub ktoś inny udokumentował. Aby wyświetlić taką dokumentację należy postawić kursor na nazwie funkcji (w miejscu w którym chcemy z niej skorzystać) a następnie z górnego menu wybrać <strong><em>View/Quick Documentation</em></strong></p>
+<div class="figure">
+<img src="figures/python_inst02/quick_documentation.png" title="Okno wyświetlania dokumentacji" alt="widok_dokumentacji" />
+<p class="caption">widok_dokumentacji</p>
+</div>
+<p>Dokumentacja kodu w języku python jest szczególnie ważna z uwagi na brak typów obiektów. Jeśli chcemy aby argument przekazany do funkcji był liczbą całkowitą, to nie możemy tego powiedzieć użytkownikowi za pomocą deklaracji funkcji (deklaracja zawiera tylko nazwy przekazanych zmiennych, nie ma typu) i musimy to zrobić za pośrednictwem dokumentacji.</p>
+</div>
+<div id="polskie-znaki-diakrytyczne" class="section level2">
+<h2>Polskie znaki diakrytyczne</h2>
+<p>W sytuacji gdy w komentarzach zostaną umieszczone polskie znaki diakrytyczne kod znajdujący się w danym pliku może nie uda się uruchomić. Wynika to z tego, że python używa domyślnego kodowania ASCII nieobsługującego tego typu znaków. Jeśli jednak chcemy używać polskich znaków, to na początku pliku należy wstawić następujący komentarz</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># coding=utf-8</span></code></pre></div>
+<p>Ta linijka wymusi na interpreterze skorzystanie z innego dekodera.</p>
+</div>
+<div id="zmienne" class="section level2">
+<h2>Zmienne</h2>
 </div>
 <div id="listy" class="section level2">
 <h2>Listy</h2>
