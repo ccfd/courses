@@ -37,12 +37,61 @@ można bez problemu przekazać zarówno listę jak i stringa, ponieważ oba te t
 
 Pythona na ogół należy postrzegać jako język **interpretowany**, ponieważ w taki sposób zazwyczaj będziemy uruchamiać kod. Język interpretowany to taki, w którym nie dokonuje się kompilacji całości kodu na raz(przetwarzania kodu z języka w miarę łatwo zrozumiałego dla człowiek do kodu w postaci instrukcji przesyłanych do procesora). Kod w tym przypadku jest "kompilowany" w czasie jego wykonywania. Oznacza to, że w następna linijka naszego kodu zostanie "skompilowana" dopiero w momencie gdy skończy się wywoływać poprzednia instrukcja. Z językiem interpretowanym spotykamy się bardzo często, ponieważ jest nim "bash" - język obsługujący powłokę systemową Linuxa. Dlatego też wiele podobnych cech będzie widocznych  w języku Python, jednak jest on dużo bardziej wygodny i naturalny w użytkowaniu. Oprócz swobody pisania kodu chyba najważniejszą zaletą Pythona jest właśnie czas od zapisania kodu do jego uruchomienia. Z racji tego że kod jest "kompilowany w locie" program uruchamia się błyskawicznie, co w przypadku dużych kodów w języku C/C++ bywa bardzo uciążliwe.
 
-W praktyce 
 
-## Gdzie należy pisać kod
+## Kod i jego uruchamianie
+
+Kod Pythona może być pisany i uruchamiany w dwóch trybach:
+
+- interaktywnym,
+- wsadowym.
+
+Praca interaktywna z kodem sprowadza się do uruchomienia konsoli języka Python w której kod jest wykonywany po zatwierdzeniu klawiszem Enter. Aby uruchomić konsolę Pythona wystarczy z poziomu konsoli systemowej uruchomić aplikację "python": 
+
+```bash
+$ python
+```
+
+Po tej operacji środowisko konsoli systemowej zamieni się w środowisko konsoli Pythona i każda linijka będzie zaczynała się od znaku ***>>>***:
+```bash
+Python 2.7.6 (default, Jun 22 2015, 17:58:13) 
+[GCC 4.8.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+
+Od tego momentu możemy pisać i od razu uruchamiać kolejne instrukcje, np.:
+ 
+```bash
+>>> a=5
+>>> b=5
+>>> print a+b
+10
+>>> 
+```
+
+W trybie konsolowym można także definiować wieloliniowe funkcje, pętle lub wyrażenia. Jest to możliwe ponieważ każde takie wyrażenie kończy się znakiem ":",  co po naciśnięciu klawisza ***Enter***  środowisko interpretuje jako przejście tryb wieloliniowych komend:
+```bash
+>>> def funkcja_suma(a, b):
+...     c = a + b
+...     return c
+... 
+>>>
+```
+W powyższym przykładzie znak ***>>>*** został zamieniony na ***...***. Należy tutaj pamiętać, że ciała funkcji są zawsze przesunięte o jedną tabulację, w związku z czym w konsoli po znaku ***...*** także należy dodać jedną tabulację. W momencie gdy już uznamy, że ciało funkcji należy zakończyć, to wystarczy wcisnąć ***Enter*** w linijce bez tabulacji, co zakończy definicję funkcji i konsola powróci do znaku ***>>>***. 
+
+Na koniec, aby opuścić tryb konsolowy wystarczy wywołać funkcję ***exit*** lub w przypadku systemów Linux można także użyć skrótu ***CTRL+d***:
+```bash
+>>> print a+b
+>>> exit()
+$
+```
+
+Interaktywna konsola Pythona jest bardzo użyteczna w przypadku gdy chcemy zrobić jakąś prostą operację, np. obliczyć proste wyrażenie matematyczne bądź gdy chcemy wykonać prostą operację na plikach - np. zamienić nazwy wszystkim plikom w folderze. 
 
 
-## Jak uruchamiać kod
+Kod napisany w języku Python powinien zostać umieszczony w pliku o rozszerzeniu ****.py*** i każdy taki plik nazywany jest modułem. (więcej o modułach dowiesz się dalej). Aby uruchomić kod zawarty w danym pliku wystarczy przekazać go do interpretera Pythona (interpreter jest narzędziem które czyta i wykonuje nasz kod linia po linii). 
+
+
 
 
 ## Co to jest moduł
