@@ -4,7 +4,6 @@ course: Python
 material: Wymagania
 author: W. Gryglas
 ---
-# Git - aktualizacja kopii repozytorium
 
 # Wprowadzenie
 
@@ -86,7 +85,7 @@ $
 
 Interaktywna konsola Pythona jest bardzo użyteczna w przypadku gdy chcemy zrobić jakąś prostą operację, np. obliczyć proste wyrażenie matematyczne bądź  chcemy wykonać prostą operację na zbiorze plików. 
 
-Przejdźmy teraz do drugiego trybu - wsadowego.  Ten tryb pozwala na uruchamianie kodu znajdującego się w pliku. Kod napisany w języku Python powinien zostać umieszczony w pliku o rozszerzeniu ****.py*** i każdy taki plik nazywany jest modułem (więcej o modułach się dalej). Aby uruchomić wybrany plik wystarczy przekazać ścieżkę do pliku do interpretera Pythona:
+Przejdźmy teraz do drugiego trybu - wsadowego.  Ten tryb pozwala na uruchamianie kodu znajdującego się w pliku. Kod napisany w języku Python powinien zostać umieszczony w pliku o rozszerzeniu ***.py*** i każdy taki plik nazywany jest modułem (więcej o modułach się dalej). Aby uruchomić wybrany plik wystarczy przekazać ścieżkę do pliku do interpretera Pythona:
 ```bash
 $ python /home/uzytkownik/nazwa_pliku.py
 ```
@@ -105,7 +104,7 @@ Oprócz linijki ***#!/bin/usr/python*** należy także zezwolić na uruchamianie
 $ chmod a+x sciezka/do/pliku.py #zmiana uprawnień 
 $ sciezka/do/pliku.py #uruchomienie programu
 ```
-Powyższa metoda działa dokładnie tak samo jak w przypadku skryptów ***bash***, w miejscu ścieżki korzystamy zazwyczaj z */bin/bash*.
+Powyższa metoda działa dokładnie tak samo jak w przypadku skryptów ***bash***, gdzie w miejscu ścieżki korzystamy zazwyczaj z */bin/bash*.
 
 ## Moduły
 Każdy pojedynczy plik napisany w języku Python nazywany jest modułem. Każdy z modułów może być uruchamiany wprost (tak jak to zostało wcześniej opisane) lub zostać użyty w innym module. W tej sytuacji można w drugim module korzystać z funkcji, klas i zmiennych zawartych w pierwszym. Jednak aby skorzystać z funkcji należy odwołać się nie do samej nazwy np. funkcji, ale należy poprzedzić ją nazwą modułu (pliku):
@@ -114,7 +113,7 @@ Każdy pojedynczy plik napisany w języku Python nazywany jest modułem. Każdy 
 #wywołanie funkcji z innego modułu:
 nazwapliku.nazwafunkcji()
 ```
-Dzięki temu nazwy funkcji mogą być takie same w różnych plikach i nie powstanie konflikt. Każdy moduł statnowi swego rodzaju przestrzeń nazw wewnątrz której nazwy elementów języka nie mogą się powtarzać. Moduły rozpinają się nie tylko na pliki, ale także na struktury folderów. Jeśli plik znajduje się wewnątrz folderu o nazwi *folder2*, który z kolei znajduje w folderze *folder1*, to odwołanie do funkcji będzie miało następującą postać:
+Dzięki temu nazwy funkcji mogą być takie same w różnych plikach i nie powstanie konflikt. Każdy moduł stanowi swego rodzaju przestrzeń nazw wewnątrz której nazwy elementów języka nie mogą się powtarzać. Moduły rozpinają się nie tylko na pliki, ale także na struktury folderów. Jeśli plik znajduje się wewnątrz folderu o nazwie *folder2*, który z kolei znajduje w folderze *folder1*, to odwołanie do funkcji będzie miało następującą postać:
 
 ```python
 folder1.folder2.nazwapliku.nazwafunkcji()
@@ -125,7 +124,7 @@ folder1.folder2.nazwapliku.nazwafunkcji()
 Jednym z najczęściej używanych elementów każdego języka są komentarze, które pozwalają na chwilowe wyłączenie kodu bądź dodanie notatki na temat danej instrukcji. W języku python w odróżnieniu od C/C++ komentować można tylko linię za pomocą znaku ***#***
 
 ```python
-# To jest komnentarz, a poniżej zwykły kod
+# To jest komentarz, a poniżej zwykły kod
 a = 5
 ```
 
@@ -190,7 +189,7 @@ def oblicz(a,b):
 	return (a - b)/a
 print oblicz(2, 1)
 ```
-W wyniku dzialanie tej funkcji, zobaczymy 0, poniważ funkcja została wywołana dla zmiennych integer. W tej sytuacji można problem rozwiązać przkazując poprawne wartości:
+W wyniku działanie tej funkcji, zobaczymy 0, ponieważ funkcja została wywołana dla zmiennych integer. W tej sytuacji można problem rozwiązać przekazując poprawne wartości:
 ```python
 print oblicz(2., 1.)
 ```
@@ -222,7 +221,7 @@ moja_funkcja()
 Ta cecha języka może być jednak problematyczna, ponieważ wprowadza potencjalne błędy które trudno zlokalizować. O ile pisząc własne funkcje łatwo zauważyć taki problem, to w przypadku wbudowanych funkcji (zawsze dostępnych) takich jak ***list*** lub ***len*** jest to trudniejsze i trzeba na to uważać.
 
 ## Własne funkcje
-Już kilkukrotnie pokazywaliśmy jak wyglądają funkcje w języku Python. Teraz uzupełnimy tę wiedzę o 2 przydatne cechy. W Pythonie funkcjami można operawać podobnie do zmiennych, poniważ one są w rzeczywistości obiektami. Dzięki temu, można dowolnie zmieniać nazwę funkcji, bądź przypisywać im inne. Sprawdź poniższy kod:
+Już kilkukrotnie pokazywaliśmy jak wyglądają funkcje w języku Python. Teraz uzupełnimy tę wiedzę o 2 przydatne cechy. W Pythonie funkcjami można operować podobnie do zmiennych, ponieważ one są w rzeczywistości obiektami. Dzięki temu, można dowolnie zmieniać nazwę funkcji, bądź przypisywać im inne. Sprawdź poniższy kod:
 
 ```python
 def funkcja1():
@@ -258,10 +257,10 @@ print "Calka =", calka(x_kwadrat, 0., 10.)
 ```
 
 ## Podstawowe wbudowane funkcje
-Do tej pory pokazaliśmy, jak wygląda definicja własnych funkcji. Python posiada jednak kilka podstawowych funkcji, które są zawsze dostępne i możemy z nich kożystać w dowolnym miejscu kodu. Należą do nich np.:  ***print, float, int, str, len, range, dict, list***. Funkcje ***float, int, str*** służą do konwersji do danego typu. Następne funkcje zostaną wyjaśnione w dalszej części gdzie będziemy opisywali ich praktyczne zastosowanie. 
+Do tej pory pokazaliśmy, jak wygląda definicja własnych funkcji. Python posiada jednak kilka podstawowych funkcji, które są zawsze dostępne i możemy z nich korzystać w dowolnym miejscu kodu. Należą do nich np.:  ***print, float, int, str, len, range, dict, list***. Funkcje ***float, int, str*** służą do konwersji do danego typu. Następne funkcje zostaną wyjaśnione w dalszej części gdzie będziemy opisywali ich praktyczne zastosowanie. 
 
 ## Listy
-Jednym z najważniejszych elementów każdego języka jest kontener do przechowywania zbioru danych. W języku Python takim podstawowym typem jest lista, któr może przechowywać elementy dowolnego typu, tzn. może przechowywać zarówno int jak i string w obrębie jednej listy. Ponadto listy są modyfikowalne, co oznacza, że do listy można dopisywać nowe elementy albo usuwać już znajdujące się w niej. 
+Jednym z najważniejszych elementów każdego języka jest kontener do przechowywania zbioru danych. W języku Python takim podstawowym typem jest lista, która może przechowywać elementy dowolnego typu, tzn. może przechowywać zarówno int jak i string w obrębie jednej listy. Ponadto listy są modyfikowalne, co oznacza, że do listy można dopisywać nowe elementy albo usuwać już znajdujące się w niej. 
 
 Pustą listę można utworzyć na 2 sposoby:
 - Za pomocą wbudowanej funkcji ***list***:
@@ -293,6 +292,7 @@ Aby sprawdzić rozmiar listy korzysta się z wbudowanej funkcji ***len***:
 aList = [1, "dwa", 3. , 5]
 print "Dlugosc listy =", len(aList)
 ```
+
 ### Metody należące do klasy list
 Lista tak jak wszystkie zmienne jest obiektem, w związku z tym posiada przypisane do siebie funkcje, które operują na liście, na której zostały wywołane (funkcje takie nazywane są metodami i wywołuje się je podając jej nazwę tuż po nazwie listy, np. nazwaListy.nazwaFunkcji()) . Do tych funkcji należą:
 - nazwaListy.append(element) - metoda dodaje element na koniec listy, np.:
@@ -321,6 +321,23 @@ print aList # >> [2, 'cos', 1]
 aList = [1,'cos',2]
 print aList.index('cos') # >> wyswietli sie 1
 ```
+
+Oprócz tych funkcji dla zmiennych typu list został dodatkowo przeciążony operator ***+***. W kontekście użycia zmiennych typu list operator ten łączy 2 listy ze sobą:
+```python
+aList= [1,2,3]
+bList = [3,2,1]
+print aList + bList # >> [1, 2, 3, 3, 2, 1]
+```
+Można także użyć operatora ***+=*** zamiast metody ***append*** co spowoduje dodanie wszystkich elementów z jednej listy po prawej stronie do listy po lewej stronie operatora:
+
+```python
+aList= [1,2,3]
+aList += [3,2,1]
+print aList # >> [1, 2, 3, 3, 2, 1]
+```
+
+
+
 ### Słowo kluczowe "in" w kontekście list
 Język Python w specjalny sposób wspiera sprawdzanie czy element znajduje się w liście. Do tego służy słowo kluczowe ***in***. Przeanalizujmy następujący kod:
 ```python
@@ -335,7 +352,7 @@ if 'cos' in aList:
 Wyrażenie  *element* ***in*** *lista* zwraca wartość logiczną True/False. 
 
 ### Pętla "for" i generator "range"
-Jednym z najważniejszy elementów języków programowania są pętle. W przypadku Pythona pętla ***for*** różni się swojego odpowiednika w języku C/C++. W języku C aby pobrać z tablicy kolejne elmenty piszemy:
+Jednym z najważniejszy elementów języków programowania są pętle. W przypadku Pythona pętla ***for*** różni się swojego odpowiednika w języku C/C++. W języku C aby pobrać z tablicy kolejne elementy piszemy:
 ```c++
 float[] aList = {1,2,3,4};
 float sum = 0;
@@ -344,7 +361,7 @@ for(int i=0; i<4; ++i)
 		sum += aList[i];
 }
 ```
-Widać powyżej, że aby pobrać kolejne elementy z tablicy trzeba w pętli przesówać indeks elementu i za każdym razem pobierać wartość z tablicy. Taka konstrukcja pętli jest bardzo często używana, dlatego w języku Python pętla for została sformułowana w następujący sposób:
+Widać powyżej, że aby pobrać kolejne elementy z tablicy trzeba w pętli przesuwać indeks elementu i za każdym razem pobierać wartość z tablicy. Taka konstrukcja pętli jest bardzo często używana, dlatego w języku Python pętla for została sformułowana w następujący sposób:
 ```python
 aList = [1, 2, 3, 4]
 sum = 0
@@ -358,40 +375,318 @@ for elementListy in nazwaListy:
 ```
 Widzimy, że w Pythonie nie operujemy za pomocą indeksów, tylko od razu za pomocą kolejnych elementów z listy. Zmienna "elementListy" w każdym wywołaniu pętli przyjmuje kolejne wartości z listy. 
 
-Niestety, czasami przydaje się kożystanie z indeksów, np. gdy chcemy wykonać jakąś operację pewną ilość razy bez korzystania z listy.  Niestety w takiej sytuacji Python wymaga czegoś, co będzie zawierało te indeksy:
+Niestety, czasami przydaje się korzystanie z indeksów, np. gdy chcemy wykonać jakąś operację pewną ilość razy bez korzystania z listy.  Niestety w takiej sytuacji Python wymaga czegoś, co będzie zawierało te indeksy:
 ```python
 indeksy = [0, 1, 2, 3, 4, 5, 6]
 for i in indeksy:
 	print i
 ```
-W takiej sytuacji uciążliwe by było tworzenie takiej listy, dlatego można spodziwać się, że istnieje jakaś funkcje służąca do tego. I faktycznie, istniej i nazywa się ***range***. Funkcja ta zwraca kolejne indeksy:
+W takiej sytuacji uciążliwe by było tworzenie takiej listy, dlatego można spodziewać się, że istnieje jakaś funkcje służąca do tego. I faktycznie, istniej i nazywa się ***range***. Funkcja ta zwraca kolejne indeksy:
 ```python
 for i in ragne(7):
 	print i
 ```
-Musimy tutaj wyjaśnić pewną rzecz. Funkcja ***range*** nie zwraca w rzeczywistości listy, tylko tzw. ***generator***. Generator różni się tym od listy tym, że nie przechowuje elementów tylko generuje je na zapytanie o kolejny element. Dlatego w nawet w przypadku gdy użyjemy funkcji ***range*** z bardzo dużą liczbą, to pamięć nie zostanie zajęta. Funkcja ***range*** może przyjmować kilka argumentów:
+Musimy tutaj wyjaśnić pewną rzecz. Funkcja ***range*** nie zwraca w rzeczywistości listy, tylko tzw. ***generator***. Generator różni się tym od listy tym, że nie przechowuje elementów tylko generuje je na zapytanie o kolejny element. Dlatego nawet w przypadku gdy użyjemy funkcji ***range*** z bardzo dużą liczbą, to pamięć nie zostanie zajęta. Funkcja ***range*** może przyjmować kilka argumentów:
 1. Koniec zakresu - ```range(10)``` wygeneruje liczby od 0 do 9. Koniec zakresu określa największą liczbę całkowitą która już nie powinna być wygenerowana. Taka konstrukcja jest dopasowana do indeksowania od 0.
 2. Początek i koniec zakresu - ```range(2,8)``` wygeneruje liczby od 2 do 7. 
 3. Początek, koniec i krok - ```range(2, 20, 3)``` wygeneruje  liczby [2, 5, 8, 11, 14, 12, 5, 8, 11, 14, 17] czyli od 2 do 20 co 3. 
 
 ### Wycinki list
-Często w trakcie pracy z listami zdaża się, że chcemy pracować nie na całej liście, lecz tylko na jej części. Do takich zadań bardzo przydatne są "wycinki" list, które pozwalają na pobranie np. 5 pierwszych elementów. Do tego służy znak "***:***"
+Często w trakcie pracy z listami okazuje się, że chcemy pracować nie na całej liście, lecz tylko na jej części. Do takich zadań bardzo przydatne są "wycinki" list, które pozwalają na pobranie np. 5 pierwszych elementów. Do tego służy znak "***:***"
 ```python
 aList = [1, 2, 5, 8, 4, 54, 12, 11]
 print aList[:5] # >> wyswietli  5 pierwszych elementow [1,2,5,8,4]
 print aList[5:] # >> wyswietli elementy od 5 do końca [54,12,11]
 ```
 Można także łączyć oba zakresy
+
 ```python
 print aList[2:6] # >> wyswietli  5, 8, 4, 54
 ```
-### Tablice wielowymiarowe
+Ponadto można zdefiniować krok pomiędzy indeksami, np. co drugi element:
+
+```python
+print aList[::2] # >> wyswietli [1, 5, 4, 12]
+
+print aList[:5:2] # >>  wyswiteli [1, 5, 4]
+```
+
+Ostatnia metoda dostępu do elementów to wykorzystanie ujemnego indeksu, który zwraca elementy licząc od końca, tj.: 
+
+```python
+print aList[-1] # >> wyswietli ostatni element 11
+print aList[-3] # >> wyswietli trzeci od końca 54
+```
+
+Wycinki list działają praktycznie tak jak listy, tzn. można korzystać z nich w pętli for, np.:
+```python
+sum = 0
+for elmnt in aList[:5]:
+	sum += elmnt 
+	print sum
+```
+lub przypisywać wartość do cześci elementów:
+```python
+aList[:3] = [100, 101, 102]
+print aList # >> wyswietli [100, 101, 102, 8, 4, 54, 12, 11]
+```
+W dalszej części przedstawimy bibliotekę NumPy która obsługuje typ "array", dla którego wycinki pozwalają na jeszcze większą swobodę. 
+
+### Listy wielowymiarowe
+
+Jak łatwo się domyślić listy wielowymiarowe to są po prostu listy przechowujące jako elementy kolejne listy. Aby stworzyć taką listę możemy po prostu skorzystać inicjalizacji [...], gdzie elementami będą kolejne listy:
+```python
+lista2D = [ [1,2], [2,3] ]
+
+print "Element 0,0 =", lista2D[0][0] # >> wyswietli 1
+print "Element 0,1 =", lista2D[0][1] # >> wyswietli 2
+```
+
+Listy wielowymiarowe zazwyczaj są potrzebne do przechowywania danych w postaci liczb (np. jako reprezentacja macierzy). W takiej sytuacji typ lista nie jest najlepszym kontenerem, ponieważ czas dostępu do zmiennych może się wydłużać. Do tego typu operacji najlepiej jest skorzystać z tablic pochodzących z biblioteki NumPy, która domyślnie obsługuje tablice wielowymiarowe i robi to bardzo efektywnie, ale o tym dalej. 
 
 ### Zaawansowana inicjalizacja
 
+Poprzednio pokazaliśmy, że listę można inicjalizować wartościami wpisanymi w prost pomiędzy nawiasami [...]. Jednak ta metoda jest dość ograniczona, ponieważ explicite trudno wypełnić taką listę zbiorem np. 100 liczb. W takiej sytuacji lepiej już jest utworzyć pustą listę i skorzystać z metody append:
+
+```python
+aList = list()
+for i in range(100):
+	aList.append(i**2) # << wypelnienie listy kwadratem kolejnych liczb 0, 1, ..., 99
+```
+Powyższa struktura kodu jest poprawna, jednak tworzenie takiej pętli jest uciążliwe. Dlatego w Pythonie konstrukcja tego typu została uproszczona do:
+```python
+aList = [ i*i for i in range(100)]
+```
+
+Powyższy kod inicjalizuje listę kwadratem kolejnych liczb. Wyrażenie tuż przed ***for*** jest wartością która powinna uzupełniać kolejne elementy listy. Jest to kod który zazwyczaj znajduje się w ciele pętli for. Reszta składni tej konstrukcji typowa definicja pętli for.
+W miejscu wartości może także znajdować się wywołanie funkcji, a wynik jej działania będzie przypisany do kolejnych elementów, np.:
+
+```python
+def inicjalizacja(index):
+	a = index / 2 
+	b = index*a
+	return b
+aList = [ inicjalizacja(i) for i in range(100)]
+```
+
+Ponieważ wewnątrz tej konstrukcji znajduje się zwykła pętla for, to po słowie "in" możemy wstawić dowolną inną listę:
+
+```python
+aList = [ i for i in range(100)]
+bList = [2*element for element in aList]
+```
+
 ### Rozwijanie list
 
-### Zadania - uzupełnij ciała funkcji:
+Jak wiadomo w Pythonie nie korzystamy ze znaków ";" oznaczających koniec instrukcji. W tym języku z założenia koniec linii jest końcem pojedynczej instrukcji. Czy zatem istnieje możliwość inicjalizacji kilku zmiennych w jednej linii? Okazuje się, że tak. Służy do tego "rozwijanie list", które pozwala przypisać kolejne wartości z listy (ogólniej z obiektu po którym można iterować) do zmiennych. Konstrukcja ta ma następującą postać:
+
+```python
+aList = [ 1, 'cos', 2]
+a1, a2, a3 = aList
+print a1 # >> 1
+print a2 # >> 'cos'
+print a3 # >> 2
+```
+Jeśli utworzymy listę w "locie" to okaże się, że możemy przypisać wartości do kilku zmiennych w jednej linii:
+```python
+a1, a2, a3 = [1, 'cos', 2]
+```
+Podobnie można czynić z każdym obiektem który służy do przechowywania zbiorów (np. tuple i tablice numpy o których dalej).
+
+## Tuple
+
+Następnym typem który pozwala na przechowywanie danych jest ***tuple***. Jego konstrukcja i użytkowanie jest podobne do list. Jednak w odróżnieniu od nich ten typ jest swego rodzaju listą niemodyfikowalną. Jeśli raz zostanie utworzony obiekt tego typu, to nie można zmieniać ani wartości znajdującuych się w nim ani liczby elementów. Obiekty typu ***tuple*** tworzy się podobnie do list z tą różnicą, że zamiast nawiasów [] korzystamy z ():
+
+```python
+aTuple = (1, 2, 'cos')
+print aTuple # >> (1, 2, 'cos')
+print aTuple[1] # >> 2
+```
+Poniważ jest on niemodyfikowalny, to nie posiada ani metody "append" ani nie jest możliwe przypisanie. Sprawdź poniższy kod:
+
+```python
+aTuple = (1, 2, 'cos')
+aTuple[1] = 3
+```
+
+Poza powyższymi uwagami tuple zachowuje się jak lista. To znaczy, że można go używać w pętlach:
+
+```python
+for elmnt in (1, 2, 'cos'):
+	# jakiś kod operujący na elementach
+```
+oraz rozwijać tak jak listy:
+```python
+a1,a2,a3 = (1, 2, 'cos')
+```
+
+
+## Instrukcja warunkowa if, elif, else
+
+Konstrukcja instrukcji ***if*** jest bardzo prosta, nawet przedstawialiśmy ją w niektórych przykładach. Przypomnijmy:
+
+```python
+if wartosc_bool :
+	# instruckcje jesli wartosc jest prawda
+else:
+	# instruckje jesli wartosc jest falszem
+```
+"wartosc_bool" powinna przyjmować wartość **True** lub **False**, co może wynikać z warunku logicznego, np.: ```a == b``` lub  ```a in aList```. Należy tutaj pamiętać, że ":" musi znaleźć się także po słowie ***else***
+
+Oprócz tej prostej konstrukcji często przydatne jest sprawdzanie drugiego warunku jeśli pierwszy nie jest spełniony. Do tego służy konstrukcja if- elif:
+```python
+if wartosc_bool_1 :
+	# instruckcje 
+elif wartosc_bool_2 :
+	# instruckje
+else
+	# instruckje
+```
+
+## Wyrażenia logiczne
+
+
+## String
+
+Poza danymi liczbowymi najczęściej będziemy musieli pracować z danymi w postaci ciągów znaków - typu string. W języku Python zmienną tego typu można tworzyć wykorzystując zarówno pojedynczy znak cudzysłowu 'text' lub podwójny "text". Obie wersje są poprawne i mogą być używane zamiennie. Jednak zawsze lepiej jest przyjąć jedną konwencję i jej się trzymać. 
+
+Aby utworzyć zmienną pustą zmienną string można wykorzystać funkcję ***str***:
+
+```python
+aString  = str()
+```
+
+lub nie podać żadnego znaku w cudzysłowie:
+
+```python
+aString  = "" #  lub aString='' 
+
+aString  = "Jakis ciag znakow"
+```
+
+### Wieloliniowe ciągi znaków
+Aby złamać linię w tekście wystarczy użyć znaku "\n", jednak w kodzie nadal będziemy pisali w tej samej linii, co jest bardzo nieczytelne.  Python dodatkowo wspiera pisanie w postaci wieloliniowego tekstu. W tym celu korzysta się z potrójnego cudzysłowu:
+
+```python
+longString = """Piszemy dlugi, wieloliniowy tekst, a teraz nowa linia
+i nadal piszemy, bez przerywania definicji zmiennej longString"""
+```
+
+### String jako tablica
+
+Zmienne typu string są w rzeczywistości tablicami znaków, w związku z czym możemy nimi operować dokładnie tak jak tablicami:
+
+```python
+aString = "Uwielbiam pisac w Pythonie"
+
+print "Liczba znakow to w zdaniu", len(aString)
+
+print "Trzeci znak to ", aString[2]
+
+for znak in aString:
+	print znak
+```
+
+Z racji tego że w listach operator ***+*** służył do dodawania elementów do listy, to w przypadku stringów może posłużyć do łączenia tekstów:
+
+```python
+aString = "Uwielbiam"
+aString += " pisac"
+
+print aString + "w Pythonie"
+```
+
+Wycinki listy działają tak samo także na zmiennej string:
+```python
+aString = "Uwielbiam pisac w Pythonie"
+
+print "5 pierwszych znakow to " + aString[:5]
+print "A 8 ostatnich to "+ aString[-8:]
+```
+
+
+### Konwersja typów 
+
+Z kolei jeśli chcemy połączyć string ze zmienną innego typu najlepiej jest skorzystać z funkcji konwertującej typy - ***str***:
+```python
+a = 1
+b = 2.2
+
+aString = "Liczba a =" + str(a) + ", a liczba b = " + str(b)
+
+print aString
+```
+
+### Operator % 
+
+Oprócz konwersji zmiennych za pomocą funkcji ***str*** możemy jej dokonać przy pomocy formatowania tekstu, które jest podobne do tego znanego z języka C/C++ w funkcji "printf". W przypadku C korzystaliśmy z funkcji, w Pythonie do tego celu używa się operatora ***%***. Sprawdź działanie poniższego kodu
+```python
+a = 5.234
+formatedString = "Wartosc zmiennej a=%f" % a
+print formatedString
+
+formatedString = "Wartosc zmiennej a=%.2f" % a
+print formatedString
+
+
+b = 12
+print "Wartosc zmiennej b = %03d" % b
+```
+
+W przypadku gdy chcemy sformatować więcej niż jedną zmienną, to należy przekazać argumenty do podmiany w postaci ***tuple***:
+
+```python
+print "Trzy sformatowane kolejne cyfry to %f-%02d-%.2f" % (1.25312, 2, 2.35495)
+```
+
+**Uwaga** zmienne do sformatowania nie mogą być przekazane jako lista, ponieważ 
+
+
+### Dodatkowe metody należące do typu ***string***
+
+Zmienne typu ***string*** podobnie jak ***list *** posiadają dodatkowe metody które pozwalają na wygodną pracę. Przydatne metody należące do klasy ***string*** to:
+
+- s.lower(), s.upper() - metody zwracające nowy obiekt który stanowi konwersję znaków do małych/dużych liter:
+```python
+aString = "UbasfYTEDF"
+bString = aString.lower()
+print bString # >> 'ubasfytedf'
+```
+- s.strip() - funkcja zwraca nowy string pozbawiony białych znaków na początku i końcu
+
+- s.isalpha() - sprawdza czy string zawiera tylko litery
+```python
+print "absctd".isalpha() # >> True
+
+print "ab45".isalpha()  # >> False
+```
+- s.isdigit() - sprawdza czy zawiera tylko znaki liczbowe
+- s.isspace() - sprawdza czy obiekt zawiera tylko spacje
+- s.startswith("other")/ s.endswith("other") - sprawdza czy string zaczyna/kończy się słowem "other"
+- s.find("other") - sprawdza czy słowo "other" znajduje się w zmiennej s. Jeśli znajduje się, to funkcja zwraca indeks początku słowa "other" w zmiennej s, np.:
+```python
+print "stringotherstring".find("other") # >> 6
+```
+- s.replace("old","new")  - zamienia ciąg znaków "old" w "new" i zwraca nowo utworzony obiekt
+- s.split('delimiter') - metoda zwraca listę stringów podzielonych za pomocą znaku 'delimiter'. Jeśli nie zostanie przekazany znak 'delimiter', to domyślnie zostanie wybrany biały znak. 
+```python
+strList= "numery:1:2:123:312".split(':')
+print strList # >> ['numery', '1', '2', '123', '312']
+```
+- s.join(strList) - funkcja która łączy elementy listy. Jako znak rozdzielenie zostaje użyta zmienna "s" na której została wywołana metoda:
+```python
+delimiter="--"
+strList=['aaa','bbb','ccc']
+
+newString = delimiter.join(strList)
+print newString # >> 'aaa--bbb--ccc'
+# lub w jendej linii:
+print ":".join(strList) # >> 'aaa:bbb:ccc'
+```
+
+# Zadania treningowe
+
+## Zadanie 1
 ```python
 #Remove duplicated elements
 def remove_adjacent_duplication(listObject):
@@ -401,6 +696,7 @@ def remove_adjacent_duplication(listObject):
 print remove_adjacent_duplication([1, 2, 3, 3, 5, 68, 68, 24])
 ```
 
+## Zadanie 2 
 ```python
 # Mereg 2 lists
 def merge_lists(list1, list2):
@@ -410,9 +706,8 @@ def merge_lists(list1, list2):
 print merge_lists([1,2,45,19,2],[12,-12,'c',3,'5'])
 ```
 
-
-## Tuple
-##### Zadania - uzupełnij ciała funkcji:
+## Zadanie 3 
+uzupełnij ciała funkcji:
 ```python
 # Order list of tuples by last element
 def order_tuples(listTuples):
@@ -422,110 +717,6 @@ def order_tuples(listTuples):
 print "is order ok?"+ str( order_tuples([(1, 3), (3, 2), (2, 1)]) == [(2, 1), (3, 2), (1, 3)])
 ```
 
-## Instrukcja warunkowa if, elif, else
 
-## Wykorzystywanie i tworzenie bibliotek
-
-
-## Numpy array zamiast list
-
-### Tworzenie tablic
-
-### Dostęp do elementów tablicy wielowymiarowej
-
-### Wycinki tablic za pomocą indeksów i masek
-
-### Operacje matematyczne na całych tablicach
-
-## String
-
-### String jako tablica
-
-### Konwersja typów 
-
-### Operator % 
-
-## instrukcja if 
-
-## Argumenty przekazywane z linii komend
-
-## Operacje na plikach
-
-## Podstawowe narzędzie obsługi systemu
-
-## Rysowanie wykresów - podstawy biblioteki matplotlib
-
-
-# Zadanie 1
-W folderze ***resources/lab1/files*** zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *location: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. 
-
-![Pliki w folderach](figures/python_inst02/1.png "Przykład przetworzenia") 
-
-Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji. 
-
-# Zadanie 2
-Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z większego rozmiaru na mniejszy. W tym celu:
-
-1. Utwórz nowy plik pythona o nazwie matrix. 
-2. Wewnątrz tego pliku przygotuj funkcję "reduce" która jako argumenty będzie przyjmowała obiekt reprezentujący listę/tablicę dwuwymiarową oraz rozmiar wynikowej macierzy (parametr określający rozmiar powinien obsługiwać sytuację gdy przekazano 1 liczbę lub parę)
-3. Uzupełnij ciało funkcji wykorzystując algorytm opisany poniższym rysunkiem
-![algorytm](figures/python_inst02/2.png "Algorytm skalowania") 
-Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tablicy większej w zależności od indeksu elementu w tablicy mniejszej. Wartość kolejnych elementów w tablicy mniejszej powinna być obliczona jako średnia z zaznaczonych sąsiadów i referencyjnego elementu z tablicy większej. 
-
-4. Zwróć wynikową tablicę/listę dwuwymiarową.
-
-
-# Zadanie 3
-Należy napisać skrypt który będzie wczytywał plik graficzny ***resources/lab1/meil.png***. 
-
-![logo](https://github.com/ccfd/python_course/blob/master/resources/lab1/meil.png?raw=true "Obraz do przetworzenia") 
-
-Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20 (wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie obraz wczytany i przeskalowany obok siebie.
-
-### Podpowiedzi
-- Obraz można wczytać za pomocą funkcji ***imread*** znajdującej się w bibliotece ***matplotlib.image***. Wczytany obraz będzie w postaci tablicy 3 wymiarowej, gdzie pierwsze 2 wymiary określają indeks pojedynczego punktu, a ostatni określa kanał (red, green, blue i opcjonalnie alpha)
-- Aby utworzyć 2 wykresy/obrazki w jednym oknie zamiast funkcji ***figure*** (z biblioteki matplotlib.pyplot) należy skorzystać z funkcji ***subplot*** gdzie argumentami jest para określająca liczbę wykresów w wierszach i  kolumnach:
-
-```python
-import matplotlib.pyplot as plt
-# kod wyznaczający tablice x, y ....
-_, axes =  plt.subplot(1,2)
-axes[0].plot(x, y)
-axes[1].plot(y, x)
-plt.show()
-```
-
-- Obraz zapisany w postaci macierzy kolorów RGB (lub RGBA) można wyświetlić za pomocą funkcji ***imshow*** znajdującej się w bibliotece ***matplotlib.pyplot*** (w przypadku rysowania w jednym oknie należy skorzystać z metody ***imshow*** należącej do obiektów typu Axes, zwracanych z funkcji subplot)
-
-# Zadanie 4
-Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie jasności obrazka w danym punkcie generował obraz w pliku tekstowym za pomocą wybranych znaków. Obraz tekstowy powinien zostać utworzony na bazie przeskalowanego, mniejszego obrazka oraz powinien używać co najmniej 2 różnych znaków do określenia 2 różnych jasności (np. "||" dla czarnego koloru i "--" dla szarego). Poniżej zamieszczono przykładowy rezultat.  
-```python
-                  - - -                 
-            - - - - - - - - -           
-        ||  - -           - - -         
-      ||||        - ||        - - -     
-    ||||||      ||||||  ||||    - -     
-    ||||  ||||  ||      ||||||    - -   
-  ||||    ||    ||      ||    ||    - - 
-  ||||  ||      ||      ||    ||||  - - 
-  ||    ||      ||      ||      ||  - - 
-||||  - ||      ||      ||      ||    - 
-||||  - ||    ||||||||  ||      ||    - 
-||||    ||      ||      ||      ||    - 
-  ||-   ||      ||      ||      ||  - - 
-  ||||  ||||    ||      ||    ||||  - - 
-  ||||    ||-   ||      ||  ||||    -   
-    ||||    ||  ||      ||||||    - -   
-    - ||||      ||      ||||    - -     
-      ||||||                    -       
-          ||||||||      ||||||          
-            ||||||||||||||||-           
-```
-### Podpowiedzi
-W celu określenia jasności obrazka w danym punkcie skorzystaj z definicji kolorów HSV zamiast RGB. Kolory HSV, podobnie jak RGB są przechowywane w macierzy o 3 kanałach. Definicja każdego z kanałów można zobaczyć na poniższym rysunku:
-
-![SkalaHSV](https://upload.wikimedia.org/wikipedia/commons/0/0d/HSV_color_solid_cylinder_alpha_lowgamma.png "Skala HSV, źródło wikipedia") 
-
-Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą funkcji ***rgb_to_hsv*** znajdującej się w bibliotece ***matplotlib.colors***. Kanał  ***Value*** dla macierzy HSV jest określony jako trzeci(ostatni).
 
 

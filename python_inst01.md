@@ -291,3 +291,7 @@ Po tej operacji zostaniemy poproszeni o podanie nazwy użytkownika i hasła.
 
 W naszy przypadku skorzystamy z PyCharma - wystarczy wybrać odpowienią opcję z menu (tak jak na rysunku powyżej) a program wykona żądaną operację i ściągnie najświeższy kod.
 Musimy zrócić uwagę na jeszcze jedną opcję znajdującą się obok "Push" i "Pull" - "Fetch". Opcja ta służy jedynie do pobrania inforamcji i danych ze zdalnego repozytorium. Ona, w przeciwieństwie do "Pull", nie zmienia plików źródłowych w lokalnym repozytorium.
+
+
+Git - aktualizacja kopii repozytorium
+.... todo ....
