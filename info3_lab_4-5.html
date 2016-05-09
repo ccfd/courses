@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Gall Anonim / Krzysztof Marchlewski" />
 
 
 <title></title>
@@ -347,7 +346,7 @@ $(document).ready(function () {
 <h3>Połączenie z serwerem MySQL</h3>
 <ol style="list-style-type: decimal">
 <li>Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).</li>
-<li><p>Klient MySQL’a urchamia komenda: <code>mysql</code> Program wita nas krótkim komunikatem oraz znakiem zachęty:</p>
+<li><p>Klient MySQL’a urchamia komenda: <code>mysql -u mysql</code> Program wita nas krótkim komunikatem oraz znakiem zachęty:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt;</code></pre></div></li>
 <li><p>Dostępne bazy danych możemy wyświetlić za pomocą polecenia:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt; SHOW DATABASES;</code></pre></div></li>
@@ -398,10 +397,10 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li>Zapytania bardziej zaawansowane</li>
 </ol>
 <ul>
-<li><p>Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji:</p>
+<li><p>Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji (w przypadku alfabetu, kolejnosc malejaca oznacza porzadek od Z do A):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, CountryCode, Population <span class="kw">FROM</span> City
 -&gt; <span class="kw">WHERE</span> Population &gt; <span class="dv">3000000</span>
--&gt; <span class="kw">ORDER</span> <span class="kw">BY</span> CountryCode, Population <span class="kw">DESC</span>;</code></pre></div></li>
+-&gt; <span class="kw">ORDER</span> <span class="kw">BY</span> CountryCode <span class="kw">DESC</span>, Population <span class="kw">DESC</span>;</code></pre></div></li>
 <li><p>Wyświetl wszystkie miasta w Norwegii (załóż, że nie znasz wartości <em>CountryCode</em> tego państwa):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> * <span class="kw">FROM</span> City <span class="kw">WHERE</span> CountryCode=
 -&gt; (<span class="kw">SELECT</span> Code <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Name=<span class="st">&#39;Norway&#39;</span>);</code></pre></div></li>
@@ -411,7 +410,7 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 -&gt; (<span class="kw">SELECT</span> <span class="fu">MAX</span>(Population) <span class="kw">FROM</span> Country
 -&gt; <span class="kw">WHERE</span> Continent=<span class="st">&#39;South America&#39;</span>);</code></pre></div></li>
 <li><p>Wyświetl liczbę państw leżących na każdym kontynencie:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Continent, <span class="fu">SUM</span>(Population) <span class="kw">AS</span> <span class="st">&#39;Total Population&#39;</span>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Continent, <span class="fu">Count</span>(*) <span class="kw">AS</span> <span class="st">&#39;Total Population&#39;</span>
 -&gt; <span class="kw">FROM</span> Country <span class="kw">GROUP</span> <span class="kw">BY</span> Continent;</code></pre></div></li>
 <li><p>Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna <em>ID</em> w tabeli <em>City</em> odpowiada kolumnie <em>Capital</em> w tabeli <em>Country</em>):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name <span class="kw">FROM</span> City <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="kw">IN</span>
