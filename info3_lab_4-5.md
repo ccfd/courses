@@ -1,5 +1,5 @@
 ---
-author: ""
+author: ''
 course: Informatyka 3
 material: Instrukcja 4 / 5
 number: 1
@@ -87,11 +87,11 @@ mysql> SELECT Name, IndepYear from Country
 -> ORDER BY IndepYear;
 ```
 3. Zapytania bardziej zaawansowane
-* Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji:
+* Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji (w przypadku alfabetu, kolejnosc malejaca oznacza porzadek od Z do A):
 ```sql
 mysql> SELECT Name, CountryCode, Population FROM City
 -> WHERE Population > 3000000
--> ORDER BY CountryCode, Population DESC;
+-> ORDER BY CountryCode DESC, Population DESC;
 ```
 * Wyświetl wszystkie miasta w Norwegii (załóż, że nie znasz wartości *CountryCode* tego państwa):
 ```sql
@@ -107,7 +107,7 @@ mysql> SELECT Name, Population FROM Country
 ```
 * Wyświetl liczbę państw leżących na każdym kontynencie:
 ```sql
-mysql> SELECT Continent, SUM(Population) AS 'Total Population'
+mysql> SELECT Continent, Count(*) AS 'Total Population'
 -> FROM Country GROUP BY Continent;
 ```
 * Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna *ID* w tabeli *City* odpowiada kolumnie *Capital* w tabeli *Country*):
