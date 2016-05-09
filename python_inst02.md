@@ -9,17 +9,18 @@ author: W. Gryglas
 # Wprowadzenie
 
 ## Kilka słów o Pythonie 
-Python jest **dynamicznie typowanym** i **interpretowanym** (w szczególnych przypadkach kompilowanym) językiem. Dynamiczne typowanie oznacza, że jakakolwiek zmienna (globalna czy lokalna w funkcji) nie posiada przypisanego typu. Dzięki temu kod jest bardzo krótki, elastyczny oraz jest pozbawiony sprawdzania typów na poziomie kompilacji, co znacząco skraca czas od wprowadzenia zmian do uruchomienia kodu. Typ zmiennej jest sprawdzany dopiero w momencie wykonywania instrukcji, czyli jej konkretnego użycia. Dowolna zmienna staje się, np. integerem, w momencie gdy do niej przypiszemy wartość:
+Python jest **dynamicznie typowanym** i **interpretowanym** (w szczególnych przypadkach kompilowanym) językiem. Dynamiczne typowanie oznacza, że jakakolwiek zmienna (globalna czy lokalna w funkcji) nie posiada przypisanego typu. Dzięki temu kod jest bardzo krótki, elastyczny oraz jest pozbawiony sprawdzania typów na poziomie kompilacji, co znacząco skraca czas potrzebny od wprowadzenia zmian do uruchomienia kodu. Typ zmiennej jest sprawdzany dopiero w momencie wykonywania instrukcji, czyli jej konkretnego użycia. Dowolna zmienna staje się, np. integerem, w momencie gdy do niej przypiszemy wartość:
 
 ```python
 a = 5
 ```
 
-Nie został powyżej przypisany żaden typ do zmiennej "a",  tylko konkretna wartość 5 która automatycznie informuje, że "a" od tej pory będzie integerem. Dynamiczne typowanie pozwala także na przypisanie innego typu do tej samej zmiennej, tzn.:
+W powyższym przykładzie nie został przypisany żaden typ do zmiennej "a",  tylko konkretna wartość 5 która automatycznie informuje, że "a" od tej pory będzie integerem. Dynamiczne typowanie pozwala także na przypisanie innego typu do tej samej zmiennej, tzn.:
 
 ```python
-a = 5
-a = "jakis text"
+a = 5 # zmienna jest typu integer
+a = 5. # a teraz jest typu float
+a = "jakis text" # i na koniec typu string
 ```
 
 Podobnie ma się sytuacja z funkcjami - nie trzeba deklarować typu argumentu, wystarczy że przekazaną wartość będzie dało się zastosować do instrukcji znajdujących się wewnątrz funkcji. Na przykład do funkcji:
@@ -33,7 +34,7 @@ print funkcja([1, 2, 3, 4]) # wyswietli sie liczba 4
 print funkcja("to jest string") #wyswietli sie znak "j"
 ```
 
-można bez problemu przekazać zarówno listę jak i stringa, ponieważ oba te typy obsługują operator "[ ]". Ważne jest jedynie, aby dało się wykonać wszystkie instrukcje znajdujące się wewnątrz funkcji, a nie ma znaczenia to czy przekazana jest lista, string, tuple czy cokolwiek innego. 
+można bez problemu przekazać zarówno listę jak i string, ponieważ oba te typy obsługują operator "[ ]". Ważne jest jedynie, aby dało się wykonać wszystkie instrukcje znajdujące się wewnątrz funkcji, a nie ma znaczenia to czy przekazana jest lista, string czy jakikolwiek inny typ. 
 
 Pythona na ogół należy postrzegać jako język **interpretowany**, ponieważ w taki sposób zazwyczaj będziemy uruchamiać kod. Język interpretowany to taki, w którym nie dokonuje się kompilacji całości kodu na raz(przetwarzania kodu z języka w miarę łatwo zrozumiałego dla człowiek do kodu w postaci instrukcji przesyłanych do procesora). Kod w tym przypadku jest "kompilowany" w czasie jego wykonywania. Oznacza to, że w następna linijka naszego kodu zostanie "skompilowana" dopiero w momencie gdy skończy się wywoływać poprzednia instrukcja. Z językiem interpretowanym spotykamy się bardzo często, ponieważ jest nim "bash" - język obsługujący powłokę systemową Linuxa. Dlatego też wiele podobnych cech będzie widocznych  w języku Python, jednak jest on dużo bardziej wygodny i naturalny w użytkowaniu. Oprócz swobody pisania kodu chyba najważniejszą zaletą Pythona jest właśnie czas od zapisania kodu do jego uruchomienia. Z racji tego że kod jest "kompilowany w locie" program uruchamia się błyskawicznie, co w przypadku dużych kodów w języku C/C++ bywa bardzo uciążliwe.
 
@@ -45,20 +46,18 @@ Kod Pythona może być pisany i uruchamiany w dwóch trybach:
 - interaktywnym,
 - wsadowym.
 
-Praca interaktywna z kodem sprowadza się do uruchomienia konsoli języka Python w której kod jest wykonywany po zatwierdzeniu klawiszem Enter. Aby uruchomić konsolę Pythona wystarczy z poziomu konsoli systemowej uruchomić aplikację "python": 
-
+Praca interaktywna z kodem sprowadza się do uruchomienia konsoli języka Python w której kod jest wykonywany po jego zatwierdzeniu klawiszem Enter. Aby uruchomić konsolę Pythona wystarczy z poziomu konsoli systemowej uruchomić aplikację "python": 
 ```bash
 $ python
 ```
-
 Po tej operacji środowisko konsoli systemowej zamieni się w środowisko konsoli Pythona i każda linijka będzie zaczynała się od znaku ***>>>***:
+
 ```bash
 Python 2.7.6 (default, Jun 22 2015, 17:58:13) 
 [GCC 4.8.2] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
-
 Od tego momentu możemy pisać i od razu uruchamiać kolejne instrukcje, np.:
  
 ```bash
@@ -68,8 +67,7 @@ Od tego momentu możemy pisać i od razu uruchamiać kolejne instrukcje, np.:
 10
 >>> 
 ```
-
-W trybie konsolowym można także definiować wieloliniowe funkcje, pętle lub wyrażenia. Jest to możliwe ponieważ każde takie wyrażenie kończy się znakiem ":",  co po naciśnięciu klawisza ***Enter***  środowisko interpretuje jako przejście tryb wieloliniowych komend:
+W trybie konsolowym można także definiować wieloliniowe instrukcje takie jak funkcje lub pętle. Dzięki temu, że każde takie wyrażenie kończy się znakiem ":",  to po naciśnięciu klawisza ***Enter***  środowisko automatycznie przechodzi w tryb wieloliniowy:
 ```bash
 >>> def funkcja_suma(a, b):
 ...     c = a + b
@@ -77,7 +75,7 @@ W trybie konsolowym można także definiować wieloliniowe funkcje, pętle lub w
 ... 
 >>>
 ```
-W powyższym przykładzie znak ***>>>*** został zamieniony na ***...***. Należy tutaj pamiętać, że ciała funkcji są zawsze przesunięte o jedną tabulację, w związku z czym w konsoli po znaku ***...*** także należy dodać jedną tabulację. W momencie gdy już uznamy, że ciało funkcji należy zakończyć, to wystarczy wcisnąć ***Enter*** w linijce bez tabulacji, co zakończy definicję funkcji i konsola powróci do znaku ***>>>***. 
+W powyższym przykładzie znak ***>>>*** został zamieniony na ***...*** który oznacza kolejne linie. Należy tutaj pamiętać, że ciała funkcji są zawsze przesunięte o jedną tabulację, w związku z czym w konsoli po znaku ***...*** także należy dodać jedną tabulację. W momencie gdy uznamy, że ciało funkcji należy zakończyć, to wystarczy wcisnąć ***Enter*** w linijce niezawierającej tabulacji, co zakończy definicję funkcji i konsola powróci do znaku ***>>>***. 
 
 Na koniec, aby opuścić tryb konsolowy wystarczy wywołać funkcję ***exit*** lub w przypadku systemów Linux można także użyć skrótu ***CTRL+d***:
 ```bash
@@ -86,16 +84,41 @@ Na koniec, aby opuścić tryb konsolowy wystarczy wywołać funkcję ***exit*** 
 $
 ```
 
-Interaktywna konsola Pythona jest bardzo użyteczna w przypadku gdy chcemy zrobić jakąś prostą operację, np. obliczyć proste wyrażenie matematyczne bądź gdy chcemy wykonać prostą operację na plikach - np. zamienić nazwy wszystkim plikom w folderze. 
+Interaktywna konsola Pythona jest bardzo użyteczna w przypadku gdy chcemy zrobić jakąś prostą operację, np. obliczyć proste wyrażenie matematyczne bądź  chcemy wykonać prostą operację na zbiorze plików. 
 
+Przejdźmy teraz do drugiego trybu - wsadowego.  Ten tryb pozwala na uruchamianie kodu znajdującego się w pliku. Kod napisany w języku Python powinien zostać umieszczony w pliku o rozszerzeniu ****.py*** i każdy taki plik nazywany jest modułem (więcej o modułach się dalej). Aby uruchomić wybrany plik wystarczy przekazać ścieżkę do pliku do interpretera Pythona:
+```bash
+$ python /home/uzytkownik/nazwa_pliku.py
+```
+Można także pominąć interpreter przy wywołaniu i uruchamiać skrypt ta jak zwykłą aplikację. W takiej sytuacji trzeba dodać do pliku komentarz który poinformuje system który interpreter powinien być użyty do uruchomienia pliku
 
-Kod napisany w języku Python powinien zostać umieszczony w pliku o rozszerzeniu ****.py*** i każdy taki plik nazywany jest modułem. (więcej o modułach dowiesz się dalej). Aby uruchomić kod zawarty w danym pliku wystarczy przekazać go do interpretera Pythona (interpreter jest narzędziem które czyta i wykonuje nasz kod linia po linii). 
+```python
+#!/bin/usr/python
 
+... kod pythona ...
+... kod pythona ...
+```
 
+Oprócz linijki ***#!/bin/usr/python*** należy także zezwolić na uruchamianie pliku na poziomie systemu:
 
+```bash
+$ chmod a+x sciezka/do/pliku.py #zmiana uprawnień 
+$ sciezka/do/pliku.py #uruchomienie programu
+```
+Powyższa metoda działa dokładnie tak samo jak w przypadku skryptów ***bash***, w miejscu ścieżki korzystamy zazwyczaj z */bin/bash*.
 
-## Co to jest moduł
+## Moduły
+Każdy pojedynczy plik napisany w języku Python nazywany jest modułem. Każdy z modułów może być uruchamiany wprost (tak jak to zostało wcześniej opisane) lub zostać użyty w innym module. W tej sytuacji można w drugim module korzystać z funkcji, klas i zmiennych zawartych w pierwszym. Jednak aby skorzystać z funkcji należy odwołać się nie do samej nazwy np. funkcji, ale należy poprzedzić ją nazwą modułu (pliku):
 
+```python
+#wywołanie funkcji z innego modułu:
+nazwapliku.nazwafunkcji()
+```
+Dzięki temu nazwy funkcji mogą być takie same w różnych plikach i nie powstanie konflikt. Każdy moduł statnowi swego rodzaju przestrzeń nazw wewnątrz której nazwy elementów języka nie mogą się powtarzać. Moduły rozpinają się nie tylko na pliki, ale także na struktury folderów. Jeśli plik znajduje się wewnątrz folderu o nazwi *folder2*, który z kolei znajduje w folderze *folder1*, to odwołanie do funkcji będzie miało następującą postać:
+
+```python
+folder1.folder2.nazwapliku.nazwafunkcji()
+```
 
 ## Komentarze w plikach źródłowych
 
@@ -160,24 +183,208 @@ W sytuacji gdy w komentarzach zostaną umieszczone polskie znaki diakrytyczne ko
 Ta linijka wymusi na interpreterze skorzystanie z innego dekodera.
 
 ## Zmienne
+O zmiennych już wcześniej wspominaliśmy, teraz uzupełnimy te informacje. Najważniejsza cecha zmiennych to brak typu, z czym wiąże sie kilka cech. Po pierwsze typ zmiennej jest taki jak typ wprowadzonej wartości. Może być to jednak problematyczne, gdy chcemy wykonać operację (np. dzielenie) na konkretnie wybranym typie:
 
+```python
+def oblicz(a,b):
+	return (a - b)/a
+print oblicz(2, 1)
+```
+W wyniku dzialanie tej funkcji, zobaczymy 0, poniważ funkcja została wywołana dla zmiennych integer. W tej sytuacji można problem rozwiązać przkazując poprawne wartości:
+```python
+print oblicz(2., 1.)
+```
+Można także rozwiązać ten problem w bardziej ogólny sposób, za pomocą funkcji konwertującej do odpowiedniego typu, np. ***float(...)*** :
+
+```python
+def oblicz(a,b):
+	return float(a - b)/a
+print oblicz(2, 1)
+```
+Ponadto funkcje te potrafią konwertować string do wybranego typu, dlatego powyżej zdefiniowana funkcja zadziała i w takiej sytuacji:
+
+```python
+def oblicz(a,b):
+	a = float(a)
+	b = float(b)
+	return (a - b)/a
+a = "2"
+print oblicz(a, "1")
+```
+Zmienne mogą być nazywane dowolnie, nawet tak samo jak funkcje wcześniej zaimportowane. W tej sytuacji obiekt "funkcja" zostanie zastąpiony inną wartością, przez co nie będziemy już mieli możliwości użyć funkcji. Sprawdź działanie następującego kodu:
+
+```python
+def moja_funkcja():
+	return 5
+moja_funkcja=3
+moja_funkcja()
+```
+Ta cecha języka może być jednak problematyczna, ponieważ wprowadza potencjalne błędy które trudno zlokalizować. O ile pisząc własne funkcje łatwo zauważyć taki problem, to w przypadku wbudowanych funkcji (zawsze dostępnych) takich jak ***list*** lub ***len*** jest to trudniejsze i trzeba na to uważać.
+
+## Własne funkcje
+Już kilkukrotnie pokazywaliśmy jak wyglądają funkcje w języku Python. Teraz uzupełnimy tę wiedzę o 2 przydatne cechy. W Pythonie funkcjami można operawać podobnie do zmiennych, poniważ one są w rzeczywistości obiektami. Dzięki temu, można dowolnie zmieniać nazwę funkcji, bądź przypisywać im inne. Sprawdź poniższy kod:
+
+```python
+def funkcja1():
+	print "Hellow"
+
+funkcja2 = funkcja1
+funkcja1()
+funkcja2()
+```
+Oraz działanie tego:
+```python
+def suma(a, b):
+	return a + b
+def roznica(a, b):
+	return a - b
+suma = roznica
+print suma(5, 2)
+```
+Druga bardzo ważna sprawa związana z funkcjami to przekazywanie jednej funkcji do drugiej. Z racji tego, że Python jest dynamicznie typowany to przekazanie funkcji do funkcji jest tak proste jak przekazanie argumentu. Czy wewnątrz funkcji zostanie ona użyta poprawnie dowiemy się dopiero w momencie uruchomienia kodu. Sprawdź poniższy przykład, który oblicza całkę metodą trapezów:
+
+```python
+def calka(fun, a, b):
+	dx = (b - a) / 99
+	Int = 0
+   for i in range(100):
+		Int += (fun(i*dx) + fun((i+1)*dx))/2*dx
+	return Int
+
+def x_kwadrat(x):
+	return x**2
+
+print "Calka =", calka(x_kwadrat, 0., 10.)
+```
+
+## Podstawowe wbudowane funkcje
+Do tej pory pokazaliśmy, jak wygląda definicja własnych funkcji. Python posiada jednak kilka podstawowych funkcji, które są zawsze dostępne i możemy z nich kożystać w dowolnym miejscu kodu. Należą do nich np.:  ***print, float, int, str, len, range, dict, list***. Funkcje ***float, int, str*** służą do konwersji do danego typu. Następne funkcje zostaną wyjaśnione w dalszej części gdzie będziemy opisywali ich praktyczne zastosowanie. 
 
 ## Listy
-### Tworzenie i uzupełnianie
+Jednym z najważniejszych elementów każdego języka jest kontener do przechowywania zbioru danych. W języku Python takim podstawowym typem jest lista, któr może przechowywać elementy dowolnego typu, tzn. może przechowywać zarówno int jak i string w obrębie jednej listy. Ponadto listy są modyfikowalne, co oznacza, że do listy można dopisywać nowe elementy albo usuwać już znajdujące się w niej. 
 
-## Pętla "for", słowo "in" i generator "range"
-
-### Metody należące do klasy list
-- append - metoda dodaje element na koniec list, np.:
+Pustą listę można utworzyć na 2 sposoby:
+- Za pomocą wbudowanej funkcji ***list***:
 ```python
-a = [1,2]
-a.append(5)
-print a # wyswietli sie [1, 2, 5]
+aList = list()
 ```
-- insert - metoda wstawia element w dokładnej pozycji
+- Za pomocą nawiasów kwadratowych []
+```python
+aList = []
+```
+Puste listy są mało przydatne, dlatego wykorzystując nawiasy [] można zadeklarować listę od razu wypełnioną:
+```python
+aList = [1, 2, 3, 5]
+```
+Lista nie musi składać się z elementów tego samego typu:
+```python
+aList = [1, "dwa", 3. , 5]
+```
+Wiemy już jak umieszczać elementy, a jak je się pobiera? Tak samo jak w innych językach, używając nawiasów []. Należy jednak pamiętać, że listy są indeksowane o 0:
+
+```python
+aList = [1, "dwa", 3. , 5]
+print aList[0]  # >> 1
+print aList[1]  # >> "dwa"
+print aList[0] + aList[3] # >> 6
+```
+Aby sprawdzić rozmiar listy korzysta się z wbudowanej funkcji ***len***:
+```python
+aList = [1, "dwa", 3. , 5]
+print "Dlugosc listy =", len(aList)
+```
+### Metody należące do klasy list
+Lista tak jak wszystkie zmienne jest obiektem, w związku z tym posiada przypisane do siebie funkcje, które operują na liście, na której zostały wywołane (funkcje takie nazywane są metodami i wywołuje się je podając jej nazwę tuż po nazwie listy, np. nazwaListy.nazwaFunkcji()) . Do tych funkcji należą:
+- nazwaListy.append(element) - metoda dodaje element na koniec listy, np.:
+```python
+aList = [1,2]
+aList.append(5)
+print aList # >> [1, 2, 5]
+```
+- nazwaListy.insert(indeks, element) - metoda wstawia element w dokładnej pozycji
+```python
+aList = [1, 2]
+aList.insert(1, "cos")
+print aList # >> [1, "cos", 2]
+```
+- nazwaListy.remove(element) - metoda usuwa wskazany element z listy (podajemy wartość elementu, nie indeks),
+
+- nazwaListy.sort() - sortuje listę,
+- nazwaListy.reverse() - odwraca kolejność elementów w liście
+```python
+aList = [1,'cos',2]
+aList.reverse()
+print aList # >> [2, 'cos', 1]
+```
+- list.index(element) - zwraca numer elementu, np.:
+```python
+aList = [1,'cos',2]
+print aList.index('cos') # >> wyswietli sie 1
+```
+### Słowo kluczowe "in" w kontekście list
+Język Python w specjalny sposób wspiera sprawdzanie czy element znajduje się w liście. Do tego służy słowo kluczowe ***in***. Przeanalizujmy następujący kod:
+```python
+aList = [1, 'cos', 2]
+isInList = 'cos' in aList
+print isInList # >> True
+print 5 in aList # >> False
+
+if 'cos' in aList:
+	print 'cos is in the aList'
+```
+Wyrażenie  *element* ***in*** *lista* zwraca wartość logiczną True/False. 
+
+### Pętla "for" i generator "range"
+Jednym z najważniejszy elementów języków programowania są pętle. W przypadku Pythona pętla ***for*** różni się swojego odpowiednika w języku C/C++. W języku C aby pobrać z tablicy kolejne elmenty piszemy:
+```c++
+float[] aList = {1,2,3,4};
+float sum = 0;
+for(int i=0; i<4; ++i)
+{
+		sum += aList[i];
+}
+```
+Widać powyżej, że aby pobrać kolejne elementy z tablicy trzeba w pętli przesówać indeks elementu i za każdym razem pobierać wartość z tablicy. Taka konstrukcja pętli jest bardzo często używana, dlatego w języku Python pętla for została sformułowana w następujący sposób:
+```python
+aList = [1, 2, 3, 4]
+sum = 0
+for a in aList:
+	sum += a
+```
+Pętla ***for*** tutaj ma konstrukcję następującą:
+```python
+for elementListy in nazwaListy:
+	... instrukcje operujace na kolejnych elementach z listy ...
+```
+Widzimy, że w Pythonie nie operujemy za pomocą indeksów, tylko od razu za pomocą kolejnych elementów z listy. Zmienna "elementListy" w każdym wywołaniu pętli przyjmuje kolejne wartości z listy. 
+
+Niestety, czasami przydaje się kożystanie z indeksów, np. gdy chcemy wykonać jakąś operację pewną ilość razy bez korzystania z listy.  Niestety w takiej sytuacji Python wymaga czegoś, co będzie zawierało te indeksy:
+```python
+indeksy = [0, 1, 2, 3, 4, 5, 6]
+for i in indeksy:
+	print i
+```
+W takiej sytuacji uciążliwe by było tworzenie takiej listy, dlatego można spodziwać się, że istnieje jakaś funkcje służąca do tego. I faktycznie, istniej i nazywa się ***range***. Funkcja ta zwraca kolejne indeksy:
+```python
+for i in ragne(7):
+	print i
+```
+Musimy tutaj wyjaśnić pewną rzecz. Funkcja ***range*** nie zwraca w rzeczywistości listy, tylko tzw. ***generator***. Generator różni się tym od listy tym, że nie przechowuje elementów tylko generuje je na zapytanie o kolejny element. Dlatego w nawet w przypadku gdy użyjemy funkcji ***range*** z bardzo dużą liczbą, to pamięć nie zostanie zajęta. Funkcja ***range*** może przyjmować kilka argumentów:
+1. Koniec zakresu - ```range(10)``` wygeneruje liczby od 0 do 9. Koniec zakresu określa największą liczbę całkowitą która już nie powinna być wygenerowana. Taka konstrukcja jest dopasowana do indeksowania od 0.
+2. Początek i koniec zakresu - ```range(2,8)``` wygeneruje liczby od 2 do 7. 
+3. Początek, koniec i krok - ```range(2, 20, 3)``` wygeneruje  liczby [2, 5, 8, 11, 14, 12, 5, 8, 11, 14, 17] czyli od 2 do 20 co 3. 
 
 ### Wycinki list
-
+Często w trakcie pracy z listami zdaża się, że chcemy pracować nie na całej liście, lecz tylko na jej części. Do takich zadań bardzo przydatne są "wycinki" list, które pozwalają na pobranie np. 5 pierwszych elementów. Do tego służy znak "***:***"
+```python
+aList = [1, 2, 5, 8, 4, 54, 12, 11]
+print aList[:5] # >> wyswietli  5 pierwszych elementow [1,2,5,8,4]
+print aList[5:] # >> wyswietli elementy od 5 do końca [54,12,11]
+```
+Można także łączyć oba zakresy
+```python
+print aList[2:6] # >> wyswietli  5, 8, 4, 54
+```
 ### Tablice wielowymiarowe
 
 ### Zaawansowana inicjalizacja
@@ -215,7 +422,7 @@ def order_tuples(listTuples):
 print "is order ok?"+ str( order_tuples([(1, 3), (3, 2), (2, 1)]) == [(2, 1), (3, 2), (1, 3)])
 ```
 
-## Instrukcja warunkowa if
+## Instrukcja warunkowa if, elif, else
 
 ## Wykorzystywanie i tworzenie bibliotek
 
@@ -239,6 +446,8 @@ print "is order ok?"+ str( order_tuples([(1, 3), (3, 2), (2, 1)]) == [(2, 1), (3
 ### Operator % 
 
 ## instrukcja if 
+
+## Argumenty przekazywane z linii komend
 
 ## Operacje na plikach
 
@@ -318,3 +527,5 @@ W celu określenia jasności obrazka w danym punkcie skorzystaj z definicji kolo
 ![SkalaHSV](https://upload.wikimedia.org/wikipedia/commons/0/0d/HSV_color_solid_cylinder_alpha_lowgamma.png "Skala HSV, źródło wikipedia") 
 
 Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą funkcji ***rgb_to_hsv*** znajdującej się w bibliotece ***matplotlib.colors***. Kanał  ***Value*** dla macierzy HSV jest określony jako trzeci(ostatni).
+
+
