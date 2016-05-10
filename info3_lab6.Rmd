@@ -74,11 +74,11 @@ Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w ró�
 par(mfrow=c(1,2),mar=c(2.1,2.1,0.1,0.1))
 tms = c(1,0.6,0.6)
 tms = rbind(0.7,outer(tms,1:4))
-nms = c("alokacja","losowanie",expression(S[1]),expression(S[2]))
+nms = c("alokacja","losowanie",expression("obliczenie"~S[1]),expression("obliczenie"~S[2]))
 cls = 1:4
 Y = max(apply(tms,2,sum))
-
-plot (NA, ylab="Time", xlab="", xlim=c(0,3),ylim=c(Y,0), xaxt='n', yaxt='n')
+xlim=c(-0.5,3.5)
+plot (NA, ylab="Time", xlab="", xlim=xlim,ylim=c(Y,0), xaxt='n', yaxt='n')
 axis(1,at=0:3,paste("rank",0:3,sep="="))
 for (i in 1:ncol(tms)) {
   arrows(i-1, cumsum(tms[,i]) - tms[,i],i-1, cumsum(tms[,i]), angle = 15,length = 0.1,col=cls)
@@ -87,7 +87,7 @@ for (i in 1:ncol(tms)) {
 legend("bottomleft",nms,col=cls,lty=1)
 mtext("Time", 2, line = 1)
 par(mar=c(2.1,2.1,0.1,0.1))
-plot (NA, ylab="", xlab="", xlim=c(0,3),ylim=c(Y,0), xaxt='n', yaxt='n')
+plot (NA, ylab="", xlab="", xlim=xlim,ylim=c(Y,0), xaxt='n', yaxt='n')
 axis(1,at=0:3,paste("rank",0:3,sep="="))
 for (i in 1:ncol(tms)) {
   arrows(i-1, cumsum(tms[,4]) - tms[,4],i-1, cumsum(tms[,4]) - tms[,4] + tms[,i], angle = 15,length = 0.1,col=cls)
