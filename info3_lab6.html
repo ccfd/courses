@@ -367,11 +367,23 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">mpic++</span> -o program program.cpp
 <span class="kw">mpirun</span> -np 4 program</code></pre></div>
 <p>gdzie <code>4</code> to liczba procesorów na której ma zostać uruchomiony program.</p>
+<p>Przeanalizujmy teraz program. Funkcje <code>MPI_Init</code> i <code>MPI_Finalize</code> służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki <code>MPI</code> i komunikować się z innymi procesami w grupie. Wywołanie <code>MPI_Comm_size</code> zwroci nam liczbe procesów (np. <code>4</code>), zaś <code>MPI_Comm_rank</code> zwróci nam numer <em>naszego</em> procesu (np. <code>0</code>,<code>1</code>,<code>2</code> lub <code>3</code>). Zmienna <code>rank</code> jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.</p>
 </div>
-</div>
-<div id="kolejka-pbs" class="section level1">
-<h1>Kolejka PBS</h1>
+<div id="cwiczenie-1" class="section level3">
+<h3>Ćwiczenie</h3>
+<p>Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne statystyki:</p>
+<ol style="list-style-type: decimal">
+<li>Zaalokuj tablice liczb rzeczywistych <code>a</code> o rozmiarze <code>n = 10000*(rank-1)</code></li>
+<li>Wypełnij ją liczbami losowymi z przedziału <span class="math inline">\([0,1]\)</span></li>
+<li>Wypisz komunikat o wylosowaniu</li>
+<li>Policz <span class="math inline">\(S_1 = \sum_i a_i\)</span></li>
+<li>Wyświetl <span class="math inline">\(\frac{1}{n} S_1\)</span></li>
+<li>Policz <span class="math inline">\(S_1 = \sum_i a_i^2\)</span></li>
+<li>Wyświetl <span class="math inline">\(\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2\)</span></li>
+</ol>
+<p>Pamietaj by we wszystkich komunikatach umieszczać <code>rank</code>, tak by było wiadomo który komunikat pochodzi od którego procesu. # Kolejka PBS</p>
 <p>W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy do zlecania zadań, pozostałe, tzw. węzły obliczeniowe przyjmują i wykonują zadania. Na <code>info3</code> jest tylko jeden węzeł który spełnia obie role.</p>
+</div>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Sprawdź co zrobi komenda <code class="sourceCode bash"><span class="kw">qsub</span> -I</code> (wielka litera i). To program do wysyłania zadań do wykonania. Opcja <code>-I</code> oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz <code>qstat</code>, sprawdź opcje <code>-n</code> i <code>-f</code>. Zobacz ze twoje ‘zadanie’ jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie może być wykorzystywanych tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę <code>-l</code>, np.:</p>
@@ -387,7 +399,7 @@ $(document).ready(function () {
 <p>Następnie zlecamy jego wykonanie przez</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> plik.sh</code></pre></div>
 <p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu <code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu <code>plik.sh</code> komende <code class="sourceCode bash"><span class="kw">sleep</span> 8</code>, która spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.</p>
-<div id="cwiczenie-1" class="section level3">
+<div id="cwiczenie-2" class="section level3">
 <h3>Ćwiczenie</h3>
 <p>Spróboj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje jpg na gif) jako nieinteraktywne zadanie w kolejce.</p>
 </div>
