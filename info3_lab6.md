@@ -48,6 +48,21 @@ mpirun -np 4 program
 ```
 gdzie `4` to liczba procesorów na której ma zostać uruchomiony program.
 
+Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie. Wywołanie `MPI_Comm_size` zwroci nam liczbe procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`). Zmienna `rank` jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
+
+### Ćwiczenie
+
+Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne statystyki:
+
+1. Zaalokuj tablice liczb rzeczywistych `a` o rozmiarze `n = 10000*(rank-1)`
+2. Wypełnij ją liczbami losowymi z przedziału $[0,1]$
+3. Wypisz komunikat o wylosowaniu
+4. Policz $S_1 = \sum_i a_i$
+5. Wyświetl $\frac{1}{n} S_1$
+6. Policz $S_1 = \sum_i a_i^2$
+7. Wyświetl $\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2$
+
+Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu.
 # Kolejka PBS
 
 W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś
