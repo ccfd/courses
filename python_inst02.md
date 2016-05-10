@@ -255,9 +255,21 @@ def x_kwadrat(x):
 
 print "Calka =", calka(x_kwadrat, 0., 10.)
 ```
-
+## Słowo "pass" w ciele instrukcji
+W języku C taki zakres określała się za pomocą klamer { }. W przypadku tego języka jeśli chcemy pozostawić "pustą" funkcję, to wystarczy zapisać jej ciało jako otwarcie i zamknięcie klamer:
+```c++
+void funkcja()
+{
+}
+```
+A jak to jest w Pythonie? Przecież w Pythonie zakres ciała funkcji jest określony tylko przez indentację. Zatem czy nie ma takiej możliwości aby funkcja mogła być pozostawiona pusta? Jest, służy do tego słowo ***pass***, które określa, że funkcja jest pusta i nie wykonuje żadnego kodu. Tak zdefiniowana funkcja wygląda następująco:
+```python
+def funkcja():
+	pass
+# reszta kodu
+```
 ## Podstawowe wbudowane funkcje
-Do tej pory pokazaliśmy, jak wygląda definicja własnych funkcji. Python posiada jednak kilka podstawowych funkcji, które są zawsze dostępne i możemy z nich korzystać w dowolnym miejscu kodu. Należą do nich np.:  ***print, float, int, str, len, range, dict, list***. Funkcje ***float, int, str*** służą do konwersji do danego typu. Następne funkcje zostaną wyjaśnione w dalszej części gdzie będziemy opisywali ich praktyczne zastosowanie. 
+Do tej pory pokazaliśmy, jak wygląda definicja własnych funkcji. Python posiada jednak kilka podstawowych funkcji, które są zawsze dostępne i możemy z nich korzystać w dowolnym miejscu kodu. Należą do nich np.:  ***print, float, int, str, len, range, dict, list, max, min***. Niektóre funkcje zostaną wyjaśnione w dalszej części gdzie będziemy opisywali ich praktyczne zastosowanie. Zbiór i opis wbudowanych funkcji można znaleźć pod tym linkiem [build-in functions](https://docs.python.org/2/library/functions.html "Python build-in functions")
 
 ## Listy
 Jednym z najważniejszych elementów każdego języka jest kontener do przechowywania zbioru danych. W języku Python takim podstawowym typem jest lista, która może przechowywać elementy dowolnego typu, tzn. może przechowywać zarówno int jak i string w obrębie jednej listy. Ponadto listy są modyfikowalne, co oznacza, że do listy można dopisywać nowe elementy albo usuwać już znajdujące się w niej. 
@@ -685,37 +697,101 @@ print ":".join(strList) # >> 'aaa:bbb:ccc'
 ```
 
 # Zadania treningowe
+Zanim zaczniesz rozwiązywać zadania przekopiuj poniższą funkcję na początek swojego pliku zawierającego:
+```python
+def test(fun, *args):
+    print "".join(['-' for i in range(40)])
+    print fun.__name__[:-1].upper()+" "+fun.__name__[-1]
+    res = fun(*args[:-1])
+    if isinstance(args[0], str):
+        decoded = "".join([chr(i) for i in args[-1]])
+        if res == decoded:
+            print "Yes, "+decoded.replace("my","your")
+        else:
+            print "No, "+decoded.replace("my","your").replace("has","has not")+" yet"
+    else:
+        print "Is correct? "+ str(res == args[-1])
+    print "".join(['-' for i in range(40)])
+```
+Funkcja ta posłuży do testowania i wyświetlania informacji czy Twoja implementacja jest poprawna.
 
 ## Zadanie 1
+Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało funkcji. Zadaniem tej funkcji jest przetworzenie przekazanej listy (przekazana jako listObject) tak oby usunąć powtarzające się elementy ale tylko pomiędzy sąsiadami. 
 ```python
-#Remove duplicated elements
-def remove_adjacent_duplication(listObject):
-    # your code
+def zadanie1(listObject):
+    # type your code
     pass
 
-print remove_adjacent_duplication([1, 2, 3, 3, 5, 68, 68, 24])
+test(zadanie1, [1, 2, 3, 3, 5, 68, 68, 24], [1,2,3,5,68,24])
 ```
 
 ## Zadanie 2 
+Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało funkcji. Funkcja ta powinna zwracać nową listę która jest sumą przekazanych list, tak aby kolejne elementy nowej listy składały się naprzemiennie, raz element z jednej listy a raz z drugiej. Uwaga, listy mogą nie być tej samej długości. 
 ```python
-# Mereg 2 lists
-def merge_lists(list1, list2):
-    # your code
+def zadanie 2(list1, list2):
+    # type your code
     pass
 
-print merge_lists([1,2,45,19,2],[12,-12,'c',3,'5'])
+test(zadanie2, [1, 2, 19, 'dd', ':P', ":("], [12,'c','5'], [1, 12, 2, 'c', 19, '5', 1, 2, 19, 'dd', ':P', ':('])
 ```
 
 ## Zadanie 3 
-uzupełnij ciała funkcji:
+Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało funkcji. Funkcja powinna zwracać posortowaną listę elementów typu tuple. Sortowanie wykonaj biorąc pod uwagę ostatni element każdego tuple. 
 ```python
-# Order list of tuples by last element
-def order_tuples(listTuples):
-    # your code
+def zadanie3(listTuples):
+    # type your code
     pass
 
-print "is order ok?"+ str( order_tuples([(1, 3), (3, 2), (2, 1)]) == [(2, 1), (3, 2), (1, 3)])
+test(zadanie3, [(1, 3), (3, 3, 2), (2, 1)], [(2, 1), (3, 3, 2), (1, 3)])
 ```
+
+
+## Zadanie 4
+Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało funkcji. 
+```python
+def zadanie4(text):
+    # type your code
+    pass
+
+test(zadanie4, "okmy$aiaetiaigaafbaf??a$okwatch$oafbusd$okhas$asbrsi31480$okended$aq340af", [109, 121, 32, 119, 97, 116, 99, 104, 32, 104, 97, 115, 32, 101, 110, 100, 101, 100])
+```
+
+Zadaniem tej funkcji "zadanie4" jest odczytanie ukrytego zdania w poniższym tekście:
+
+"okmy$aiaetiaigaafbaf??a$okwatch$oafbusd$okhas$asbrsi31480$okended$aq340af"
+
+Napis ten został zakodowany w następujący sposób:
+1. do początku każdego wyrazu dodano "ok", np:
+"To jest dom" -> "okTo okjest okdom"
+2. za każdym oryginalnym wyrazem wstawiono dodatkowy losowy wyraz do zdania, np:
+"okTo okjest okdom" -> "okTo asifha okjest ??A?Sd okdom :asrof"
+3. na koniec spacje zastąpione zostały znakiem "$", np.:
+"okTo asifha okjest ??A?Sd okdom :asrof" -> "okTo$asifha okjest$??A?Sd$okdom$:asrof"
+
+To zadanie można rozwiązać za pomocą metod klasy string replace, join, startswith i split. 
+
+Jeśli ci się uda, to przerób program tak, aby rozkodowywanie było wykonane w jednej linii. Do tego celu może Ci się przydać poniższa konstrukcja inicjalizacji list:
+```python
+lista = [ kod(s) for s in lista if warunek(s)]
+```
+Konstrukcja ta pozwala na umieszczenie elementu w liście jeśli jest spełniony jakiś warunek. 
+
+
+## Zadanie 5
+Napisz grę która będzie polegała na zgadywaniu liczby od 1-9 wylosowanej przez komputer. Wybrana przez użytkownika liczba powinna być wczytana z konsoli. Gra powinna się zakończyć gdy użytkownik trafi wylosowaną liczbę.
+
+Zacznij swój kod od przekopiowania poniższej linii kodu
+```python
+from random import randint
+```
+Linijka ta pozwoli na skorzystanie z funkcji "randint" która losuje liczby całkowite w wybranym zakresie. 
+
+Do wczytywanie danych z konsoli służy funkcje "input", która jako argument przyjmuje tekst do wyświetlenia, np.:
+```python
+a = input("Podaj liczbe:\n")
+print "Podales "+a
+```
+
 
 
 
