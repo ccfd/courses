@@ -369,6 +369,30 @@ $(document).ready(function () {
 <p>gdzie <code>4</code> to liczba procesorów na której ma zostać uruchomiony program.</p>
 </div>
 </div>
+<div id="kolejka-pbs" class="section level1">
+<h1>Kolejka PBS</h1>
+<p>W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy do zlecania zadań, pozostałe, tzw. węzły obliczeniowe przyjmują i wykonują zadania. Na <code>info3</code> jest tylko jeden węzeł który spełnia obie role.</p>
+<div id="cwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Sprawdź co zrobi komenda <code class="sourceCode bash"><span class="kw">qsub</span> -I</code> (wielka litera i). To program do wysyłania zadań do wykonania. Opcja <code>-I</code> oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz <code>qstat</code>, sprawdź opcje <code>-n</code> i <code>-f</code>. Zobacz ze twoje ‘zadanie’ jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie może być wykorzystywanych tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę <code>-l</code>, np.:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> -l nodes=1:ppn=4 -I
+<span class="kw">qsub</span> -l nodes=1:ppn=2 -l walltime=00:00:10 -I</code></pre></div>
+</div>
+<div id="zadania-nieinteraktywne" class="section level2">
+<h2>Zadania nieinteraktywne</h2>
+<p>W większości przypadków czas trwania zadania interaktywnego jest mocno ograniczony. Bardziej użyteczne są zadania nieinteraktywne. Potrzebny jest nam plik zadania <code>plik.sh</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="kw">cd</span> <span class="ot">$PBS_O_WORKDIR</span>
+<span class="kw">mpirun</span> --hostfile <span class="ot">$PBS_NODEFILE</span> --display-map ./program</code></pre></div>
+<p>Następnie zlecamy jego wykonanie przez</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> plik.sh</code></pre></div>
+<p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu <code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu <code>plik.sh</code> komende <code class="sourceCode bash"><span class="kw">sleep</span> 8</code>, która spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.</p>
+<div id="cwiczenie-1" class="section level3">
+<h3>Ćwiczenie</h3>
+<p>Spróboj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje jpg na gif) jako nieinteraktywne zadanie w kolejce.</p>
+</div>
+</div>
+</div>
 
 <!-- Dummy footer -->
 
