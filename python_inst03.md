@@ -94,6 +94,8 @@ Na poprzednich zajęciach uczyliśmy się jak przechowywać dane w listach. List
 1. rozmiar jest stały,
 2. typ zmiennych jest ten sam w całej liście.
 
+Dlaczego jeszcze należy poznać bibliotekę NumPy? Głównie dlatego, że większość innych narzędzi związanych z obliczeniami numerycznymi czy rysowaniem wykresów jako wynik obliczeń zwraca obiekty które są właśnie typu numpy.array.
+
 ### Tworzenie tablic numpy.array
 
 Aby utworzyć nową tablicę można skorzystać z konstruktora (funkcji tworzącej obiekt) klasy numpy.array.  Konstruktor przyjmuje Jako argument obiekt, po którym można iterować, tzn. taki którego można użyć w pętli for.  W ten sposób utworzymy tablicę wypełnioną zadanymi elementami:
@@ -243,6 +245,20 @@ print tab2D # >> [[1 1 1]
 ```
 Jak widać w powyższym przykładzie tablice wielowymiarowe tworzymy przekazując jako rozmiar obiekt ***tuple*** (liczby znajdujące się w nawiasach ()) który jako elementy przyjmuje rozmiar tablicy w kolejnych wymiarach. Oczywiście, podobnie jak w przypadku tablicy jednowymiarowej możemy wybrać typ elementów za pomocą nazwanego argumentu ***dtype***. 
 
+W przypadku tablic wielowymiarowych można dostać się do jej elementów dokładnie tak samo jak w przypadku list:
+
+```python
+import numpy as np
+tab2D = np.zeros((3,3))
+print "Element z drugiego wiersza i drugiej kolumny to", tab2D[1][1]
+```
+Jednak dostęp do elementów w powyższy sposób może być wolniejszy, ponieważ tablica taka najpierw musi zwrócić cały wiersz, a następnie dopiero odpowiednią kolumnę. Wielowymiarowe tablice NumPy domyślnie wspierają odwoływanie się do konkretnego elementy poprzez podanie wiersza i kolumny w obrębie jednego nawiasu []:
+
+```python
+import numpy as np
+tab2D = np.zeros((3,3))
+print "Element z drugiego wiersza i drugiej kolumny to", tab2D[1,1]
+```
 ###  Spradzanie rozmiru tablic
 
 Gdy posiadaliśmy obiekt typu ***list*** to liczbę elementów można było sprawdzić za pomocą funkcji ***len***. Ta funkcja także zadziała w przypadku tablic:
@@ -265,16 +281,140 @@ print "Drugi wymiar", tab2D.shape[0] # >> Drugi wymiar 5
 ```
 
 ### Wycinki tablic i uzupełnianie wartości tablicy
+Podczas poprzednich zajęć pokazaliśmy jak można wygodnie pracować na części listy. Podobne, a nawet dalej idące, narzędzie wspierają tablice. Tworzenie wycinków w tablicach jednowymiarowych jest dokładnie takie same jak w przypadku list. Tablice pozwalają jednak na przypisanie tej samej wartości do wszystkich elementów z wycinka:
+
+```python
+import numpy as np
+tab = np.zeros(5)
+tab[:3] = 2
+print tab # >> [ 2.  2.  2.  0.  0.]
+```
+W przypadku list nie mogliśmy tak zrobić, można było tylko przypisać do inną listę o tym samym wymiarze.
+
+Podobnie sprawa ma się w przypadku tablic wielowymiarowych: 
+```python
+tab2D = np.zeros((4,4))
+tab2D[:2,:2] = 2
+print tab2D #>> [[ 2.  2.  0.  0.]
+ 					 	#  		 [ 2.  2.  0.  0.]
+ 						# 		 [ 0.  0.  0.  0.]
+						#			 [ 0.  0.  0.  0.]]
+```
 
 ### Wycinki tablic za pomocą indeksów i masek
+Tablice NumPy pozwalają także na inny sposób tworzenia wycinków tablic:
+1. Za pomocą listy indeksów.
+2. Za pomocą maski -  tablica o tej samej długości co źródłowa i złożona ze zmiennych typu boolean - wartość True oznacza wybór elementy a False pominięcie
+
+Sprawdź działanie poniższego kodu:
+```python
+import numpy as np
+
+tab = np.zeros(10)
+tab[[1,4,8,9]] = 2
+print tab
+
+mask = tab == 0
+print mask
+
+tab[ mask ] = -1
+print tab
+
+from random import randint
+tab = np.array( [ randint(0,9) for i in range(10)])
+
+print "Liczby losowe wieksze od 5:"
+for e in tab[tab > 5]:
+	print e
+```
 
 ### Operacje matematyczne na całych tablicach
+Obiekty klasy ***numpy.array*** wspierają większość znanych funkcji takich jak ***sin, cos, exp, abs, ...*** oraz operatory ** +, -, /, *, ** **. Pełną lista funkcji matematycznych zobacz [tutaj](http://docs.scipy.org/doc/numpy/reference/routines.math.html "Funkcje matematyczne NumPy"). Aby skorzystać z tych funkcji trzeba odwoływać się do nich poprzez nazwę pakietu. 
 
+Inna bardzo przydatna funkcja należąca do pakietu NumPy to ***linspace(start, stop, step)*** która generuje tablicę o liczbach równomiernie rozłożonych w zadanym zakresie:
+```python
+import numpy as np
+xy = np.zeros((10,2))
+xy[:, 0] = np.linspace(-1, 1, 10)
+print xy[:,0] #>>[-1.         -0.77777778 -0.55555556 -0.33333333 -0.11111111  0.11111111 0.33333333 0.55555556  0.77777778  1. ]
 
+xy[:, 1] = np.exp( xy[:, 0] )
+print xy
+```
 
 ## Operacje na plikach
 
+Podstawy wczytywania i zapisywania danych do plików w Pythonie niczym szczególnym nie różni się od pracy w innych językach. Aby otworzyć strumień danych z pliku wystarczy utworzyć obiekt typu ***file*** za pomocą funkcji ***open(filename, mode)***, gdzie parametr ***mode*** określa cel otwarcia pliku:
+
+- "r" - wczytywanie danych z pliku, strumień ustawiony jest na początku pliku.
+- "r+" - wczytywanie i zapisywanie do pliku, strumień ustawiony na początku pliku.
+- "a" - zapisywanie danych do pliku, strumień jest ustawiony na końcu pliku.
+- "a+" - zapisywanie danych do pliku, strumień jest ustawiony na końcu pliku.
+- "w" - zapisywanie danych do pliku, jeśli plik nie jest pusty zostanie wyczyszczony.
+- "w+" - wczytywanie i zapisywanie danych do pliku, jeśli plik nie jest pusty zostanie wyczyszczony.
+
+Po zakończeniu pracy z plikiem należy pamiętać o zamknięciu strumienia do pliku, co można sprawdzić dzięki zmiennej ***closed*** należącej do obiektu plik:
+
+```python
+plik = open("tmp.txt", "r")
+if not plik.closed:
+	print "closing file ..."
+	plik.close()
+```
+
+Czasami można zapomnieć zamknąć strumień, bądź pojawi się wyjątek (który automatycznie przerwie wykonywanie kodu) w trakcie pracy nad plikiem. Taka sytuacja może spowodować niepoprawną pracę kodu. W związku z tym istniej potrzeba takiej konstrukcji, w której kod, niezależnie od tego co się stanie w pewnej jego części, wykona "sprzątającą" operację. W wielu językach taka konstrukcja nazywa się ***try/finally*** która zapewnia, że nie zależnie od tego co się stanie po słowie ***try*** zostanie wykonany kod ***finally***. W przypadku pracy z plikami miałoby to postać:
+```python
+plik = open("tmp.txt", "r")
+try:	
+	.... operacje na pliku .....
+finally:
+	plik.close()
+```
+
+W Pythonie taka konstrukcja także istnieje, ale posiada on także jeszcze jedną, która potrafi automatycznie wykonać sprzątanie i jest bardzo przyjazna dla oka :). Zapewnia ona, że zasoby wykorzystywane przez kod zostaną zwolnione i wyczyszczone. Ta nowa konstrukcja ma następującą postać:
+
+```python
+with wyrazenie[as zmienna]:
+	... blok kodu operujacego na obiekcie zmienna ...
+```
+W przypadku pracy z plikami jako "wyrazenie" wystarczy użyć funkcję ***open***:
+
+```python
+with open("tmp.txt","r") as plik:
+	... kod pracujacy na zmiennej plik ....
+```
+
+Na koniec przyjrzyjmy się kilku metodom jakie należą do obiektów typu ***file***, które pozwolą na praktyczne wczytywanie danych:
+
+- read() - wczytuje na raz cały plik, można przekazać parametr "size" który ograniczy ilość bitów do jego wartości.
+- readline() - wczytuje kolejną linię z pliku.
+- readlines() - wczytuje wszystkie linie z pliku i zwraca listę.
+- write(str) - zapisuje przekazany ciąg znaków do pliku
+- writelines(sekwencja_stringow) - zapisuje kolejne linie z przekazanej sekwencji stringów (np. listy)
+
+Oprócz tych funkcji należy pamiętać, że obiekt ***file*** sam w sobie jest sekwencją stringów, dzięki czemu pozwala on iterować w pętli for po kolejnych liniach: 
+
+```python
+with open("tmp.txt","r") as plik:
+	for linia in plik:
+			print "Wczytalem linie tekstu = ", linia
+```
+Z kolei jeśli chcemy zapisać dane, wygodnie jest skorzystać z metody ***write***:
+
+```python
+zdanie="Jaki ten python jest latwy i czytelny"
+with open("tmp.txt", "w") as plik:
+	for slowo in zdanie.split():
+		plik.write(slowo + "\n")
+```
+lub jeszcze w jednej linii kodu:
+```python
+zdanie="Jaki ten python jest latwy i czytelny"
+with open("tmp.txt", "w") as plik: plik.writelines([s+"\n" for s in zdanie.split()])
+```
+
 ## Podstawowe narzędzie obsługi systemu
+
 
 ## Rysowanie wykresów - podstawy biblioteki matplotlib
 

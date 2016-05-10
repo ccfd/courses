@@ -1,7 +1,17 @@
+---
+number: 4
+course: Python
+material: Wymagania
+author: W. Gryglas
+---
+
+
 #Wprowadzenie
 
 
 ## Przekazywane z linii komend
+
+## NumPy - zamiana wymiarów
 
 ## Tworzenie własnych modułów
 
@@ -13,6 +23,11 @@
 
 ## Tworzenie własnych klas
 
+## NumPy - read/save data
+
 ## Tworzenie wykresów - ciąg dalszy
+contours, etc
+
+## Konsola "ipython"
 
 # Zadania 
