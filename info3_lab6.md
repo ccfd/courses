@@ -58,11 +58,32 @@ Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne 
 2. Wypełnij ją liczbami losowymi z przedziału $[0,1]$
 3. Wypisz komunikat o wylosowaniu
 4. Policz $S_1 = \sum_i a_i$
-5. Wyświetl $\frac{1}{n} S_1$
-6. Policz $S_1 = \sum_i a_i^2$
-7. Wyświetl $\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2$
+5. Wyświetl średnią $a$: $\frac{1}{n} S_1$
+6. Policz $S_2 = \sum_i (a_i)^2$
+7. Wyświetl wariancje $a$: $\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2$
 
-Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu.
+Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende `fflush(stdout);`{.c++} zaraz po każdym wywołaniu `printf`{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.
+
+Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając `MPI_Barrier(MPI_COMM_WORLD);`{.c++} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej.
+
+### Ćwiczenie
+
+Użyj funkcji wykonującej redukcję by policzyć globalną (po wszystkich procesach) średnią i wariancję z $a$. Redukcja w programowaniu równoległym polega wykonaniu jakiejś operacji, np. sumowania, czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:
+```c++
+MPI_Reduce( source, destination, count, datatype, operation, root, MPI_COMM_WORLD)
+```
+- `source` to **wskaznik** do danych które mamy np zsumować
+- `destination` to wskaznik do miejsca gdzie ma być umieszczony wynik
+- `count` to liczba elementów danych do zsumowania. czyli np `1` jeśli sumujemy jedną liczbę
+- `datatype` to typ danych które sumujemy: `MPI_INT` czy `MPI_DOUBLE`
+- `operation` to opracja którą wykonujemy, np: `MPI_SUM` czy `MPI_MAX`
+- `root` to numer procesu na którym ma wylądować wynik, np: `0`
+- Ostatni argument to uchwyt komunikatora na którym ma zostać wykonana redukcja. W naszym wypadku to domyślny komunikator `MPI_COMM_WORLD`
+
+Użyj tej funkcji by policzyć globalne statystyki, a następnie wyświetl je (pamietaj że mają one sens tylko na węźle `root`). Weź pod uwagę, że globalne `n` jest inne niż lokalne.
+
+### Ćwiczenia
+
 # Kolejka PBS
 
 W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś
