@@ -309,14 +309,14 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info3_lab6.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info3_lab6.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab6.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -388,6 +388,7 @@ $(document).ready(function () {
 </ol>
 <p>Pamietaj by we wszystkich komunikatach umieszczać <code>rank</code>, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende <code>fflush(stdout);</code>{.c++} zaraz po każdym wywołaniu <code>printf</code>{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.</p>
 <p>Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając <code>MPI_Barrier(MPI_COMM_WORLD);</code>{.c++} po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element.</p>
+<p><img src="info3_lab6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np <code>time(NULL)+rank</code> jako <em>ziarno</em> do funkcji <code>srand</code>, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.</p>
 </div>
 <div id="cwiczenie-2" class="section level3">
