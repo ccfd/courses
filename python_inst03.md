@@ -45,7 +45,7 @@ Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności $k=10$. Oba c
 
 Wykonaj wykres torów ruchu obu ciał, a następnie utwórz animację, w której przedstawisz ruch ciał w postaci punktów poruszających się po obliczonych torach. 
 
-![mass-1kg](figures/python_inst03/mass1.gif "Masa m=1kg") ![mass-10kg](figures/python_inst03/mass10.gif "Masa m=10kg")
+![mass-1kg](figures/python_inst03/mass1.gif "Masa m=1kg" =50x50) ![mass-10kg](figures/python_inst03/mass10.gif "Masa m=10kg" =50x50)
 
 Animację można zapisać do pliku *.gif za pomocą metody "save" z obiektu animation. Aby zapisać do tego formatu należy posiadać zainstalowaną aplikację "imagemagic":
 
