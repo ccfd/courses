@@ -12,7 +12,7 @@
 <meta name="author" content="M. Dzikowski" />
 
 
-<title></title>
+<title>Programowanie Równoległe</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -256,6 +256,9 @@ $(document).ready(function () {
     <li>
       <a href="info3_lab_4-5.html">Instrukcja IV,V</a>
     </li>
+    <li>
+      <a href="info3_lab6.html">Instrukcja VI</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -335,6 +338,8 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Programowanie Równoległe</h1>
+<h4 class="author"><em>M. Dzikowski</em></h4>
 
 </div>
 
@@ -375,14 +380,15 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Zaalokuj tablice liczb rzeczywistych <code>a</code> o rozmiarze <code>n = 10000*(rank-1)</code></li>
 <li>Wypełnij ją liczbami losowymi z przedziału <span class="math inline">\([0,1]\)</span></li>
-<li>Wypisz komunikat o wylosowaniu</li>
+<li>Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę <code>a[0]</code></li>
 <li>Policz <span class="math inline">\(S_1 = \sum_i a_i\)</span></li>
 <li>Wyświetl średnią <span class="math inline">\(a\)</span>: <span class="math inline">\(\frac{1}{n} S_1\)</span></li>
 <li>Policz <span class="math inline">\(S_2 = \sum_i (a_i)^2\)</span></li>
 <li>Wyświetl wariancje <span class="math inline">\(a\)</span>: <span class="math inline">\(\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2\)</span></li>
 </ol>
 <p>Pamietaj by we wszystkich komunikatach umieszczać <code>rank</code>, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende <code>fflush(stdout);</code>{.c++} zaraz po każdym wywołaniu <code>printf</code>{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.</p>
-<p>Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając <code>MPI_Barrier(MPI_COMM_WORLD);</code>{.c++} po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej.</p>
+<p>Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając <code>MPI_Barrier(MPI_COMM_WORLD);</code>{.c++} po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element.</p>
+<p>Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np <code>time(NULL)+rank</code> jako <em>ziarno</em> do funkcji <code>srand</code>, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.</p>
 </div>
 <div id="cwiczenie-2" class="section level3">
 <h3>Ćwiczenie</h3>
@@ -399,14 +405,18 @@ $(document).ready(function () {
 </ul>
 <p>Użyj tej funkcji by policzyć globalne statystyki, a następnie wyświetl je (pamietaj że mają one sens tylko na węźle <code>root</code>). Weź pod uwagę, że globalne <code>n</code> jest inne niż lokalne.</p>
 </div>
-<div id="cwiczenia" class="section level3">
-<h3>Ćwiczenia</h3>
+<div id="cwiczenie-3" class="section level3">
+<h3>Ćwiczenie*</h3>
+<p>Stwórz nowy program równoległy <code>program2.cpp</code>, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy <code>a</code> (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). Użyj we wszystkich procesach tego samego (bardzo wysokiego) <code>n</code>. Porównaj czas wykonania wykonując:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">time</span> mpirun -np 1 program2
+<span class="kw">time</span> mpirun -np 2 program2
+<span class="kw">time</span> mpirun -np 4 program2</code></pre></div>
 </div>
 </div>
 <div id="kolejka-pbs" class="section level1">
 <h1>Kolejka PBS</h1>
 <p>W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy do zlecania zadań, pozostałe, tzw. węzły obliczeniowe przyjmują i wykonują zadania. Na <code>info3</code> jest tylko jeden węzeł który spełnia obie role.</p>
-<div id="cwiczenia-1" class="section level3">
+<div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Sprawdź co zrobi komenda <code class="sourceCode bash"><span class="kw">qsub</span> -I</code> (wielka litera i). To program do wysyłania zadań do wykonania. Opcja <code>-I</code> oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz <code>qstat</code>, sprawdź opcje <code>-n</code> i <code>-f</code>. Zobacz ze twoje ‘zadanie’ jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie może być wykorzystywanych tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę <code>-l</code>, np.:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> -l nodes=1:ppn=4 -I
@@ -421,7 +431,7 @@ $(document).ready(function () {
 <p>Następnie zlecamy jego wykonanie przez</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> plik.sh</code></pre></div>
 <p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu <code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu <code>plik.sh</code> komende <code class="sourceCode bash"><span class="kw">sleep</span> 8</code>, która spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.</p>
-<div id="cwiczenie-3" class="section level3">
+<div id="cwiczenie-4" class="section level3">
 <h3>Ćwiczenie</h3>
 <p>Spróboj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje jpg na gif) jako nieinteraktywne zadanie w kolejce.</p>
 </div>
