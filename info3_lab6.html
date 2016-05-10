@@ -382,16 +382,19 @@ $(document).ready(function () {
 <li>Wypełnij ją liczbami losowymi z przedziału <span class="math inline">\([0,1]\)</span></li>
 <li>Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę <code>a[0]</code></li>
 <li>Policz <span class="math inline">\(S_1 = \sum_i a_i\)</span></li>
-<li>Wyświetl średnią <span class="math inline">\(a\)</span>: <span class="math inline">\(\frac{1}{n} S_1\)</span></li>
-<li>Policz <span class="math inline">\(S_2 = \sum_i (a_i)^2\)</span></li>
-<li>Wyświetl wariancje <span class="math inline">\(a\)</span>: <span class="math inline">\(\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2\)</span></li>
+<li>Wyświetl średnią: <span class="math inline">\(\mu = \frac{1}{n} S_1\)</span></li>
+<li>Policz <span class="math inline">\(S_2 = \sum_i (a_i - \mu)^2\)</span></li>
+<li>Wyświetl wariancje: <span class="math inline">\(\sigma^2 = \frac{1}{n-1} S_2\)</span></li>
 </ol>
-<p>Pamietaj by we wszystkich komunikatach umieszczać <code>rank</code>, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende <code>fflush(stdout);</code>{.c++} zaraz po każdym wywołaniu <code>printf</code>{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.</p>
-<p>Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając <code>MPI_Barrier(MPI_COMM_WORLD);</code>{.c++} po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element.</p>
-<p><img src="info3_lab6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Pamietaj by we wszystkich komunikatach umieszczać <code>rank</code>, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende <code class="sourceCode cpp">fflush(stdout);</code> zaraz po każdym wywołaniu <code class="sourceCode cpp">printf</code>. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.</p>
 <p>Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np <code>time(NULL)+rank</code> jako <em>ziarno</em> do funkcji <code>srand</code>, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.</p>
 </div>
 <div id="cwiczenie-2" class="section level3">
+<h3>Ćwiczenie</h3>
+<p>Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając <code class="sourceCode cpp">MPI_Barrier(MPI_COMM_WORLD);</code> po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element. Przebieg programu we wszystkich procesach można jest pokazany poglądowo na poniższym obrazku:</p>
+<p><img src="info3_lab6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="cwiczenie-3" class="section level3">
 <h3>Ćwiczenie</h3>
 <p>Użyj funkcji wykonującej redukcję by policzyć globalną (po wszystkich procesach) średnią i wariancję z <span class="math inline">\(a\)</span>. Redukcja w programowaniu równoległym polega wykonaniu jakiejś operacji, np. sumowania, czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Reduce( source, destination, count, datatype, operation, root, MPI_COMM_WORLD)</code></pre></div>
@@ -406,9 +409,11 @@ $(document).ready(function () {
 </ul>
 <p>Użyj tej funkcji by policzyć globalne statystyki, a następnie wyświetl je (pamietaj że mają one sens tylko na węźle <code>root</code>). Weź pod uwagę, że globalne <code>n</code> jest inne niż lokalne.</p>
 </div>
-<div id="cwiczenie-3" class="section level3">
+<div id="cwiczenie-4" class="section level3">
 <h3>Ćwiczenie*</h3>
-<p>Stwórz nowy program równoległy <code>program2.cpp</code>, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy <code>a</code> (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). Użyj we wszystkich procesach tego samego (bardzo wysokiego) <code>n</code>. Porównaj czas wykonania wykonując:</p>
+<p>Stwórz nowy program równoległy <code>program2.cpp</code>, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy <code>a</code> (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:</p>
+<p><span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{b}\sum_j a_j\right)^2\)</span></p>
+<p>tak by był wyrażony za pomocą <span class="math inline">\(S_1\)</span> i nowego <span class="math inline">\(\hat S_2 = \sum_i a_i^2\)</span> który da się policzyć bez znajomości średniej <span class="math inline">\(\mu\)</span>. Użyj we wszystkich procesach tego samego (bardzo wysokiego) <code>n</code>. Porównaj czas wykonania wykonując:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">time</span> mpirun -np 1 program2
 <span class="kw">time</span> mpirun -np 2 program2
 <span class="kw">time</span> mpirun -np 4 program2</code></pre></div>
@@ -432,7 +437,7 @@ $(document).ready(function () {
 <p>Następnie zlecamy jego wykonanie przez</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> plik.sh</code></pre></div>
 <p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu <code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu <code>plik.sh</code> komende <code class="sourceCode bash"><span class="kw">sleep</span> 8</code>, która spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.</p>
-<div id="cwiczenie-4" class="section level3">
+<div id="cwiczenie-5" class="section level3">
 <h3>Ćwiczenie</h3>
 <p>Spróboj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje jpg na gif) jako nieinteraktywne zadanie w kolejce.</p>
 </div>
