@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.html">Instrukcja IV,V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst03.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="numpy-array-zamiast-list" class="section level2">
+<h2>Numpy array zamiast list</h2>
+<div id="tworzenie-tablic" class="section level3">
+<h3>Tworzenie tablic</h3>
+</div>
+<div id="dostep-do-elementow-tablicy-wielowymiarowej" class="section level3">
+<h3>Dostęp do elementów tablicy wielowymiarowej</h3>
+</div>
+<div id="wycinki-tablic-za-pomoca-indeksow-i-masek" class="section level3">
+<h3>Wycinki tablic za pomocą indeksów i masek</h3>
+</div>
+<div id="operacje-matematyczne-na-caych-tablicach" class="section level3">
+<h3>Operacje matematyczne na całych tablicach</h3>
+</div>
+</div>
+<div id="argumenty-przekazywane-z-linii-komend" class="section level2">
+<h2>Argumenty przekazywane z linii komend</h2>
+</div>
+<div id="operacje-na-plikach" class="section level2">
+<h2>Operacje na plikach</h2>
+</div>
+<div id="podstawowe-narzedzie-obsugi-systemu" class="section level2">
+<h2>Podstawowe narzędzie obsługi systemu</h2>
+</div>
+<div id="rysowanie-wykresow---podstawy-biblioteki-matplotlib" class="section level2">
+<h2>Rysowanie wykresów - podstawy biblioteki matplotlib</h2>
+</div>
+<div id="wykorzystywanie-i-tworzenie-bibliotek" class="section level2">
+<h2>Wykorzystywanie i tworzenie bibliotek</h2>
+</div>
+<div id="zadanie-1" class="section level1">
+<h1>Zadanie 1</h1>
+<p>W folderze <strong><em>resources/lab1/files</em></strong> zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: <em>location: [nazwa folderu]</em>, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku.</p>
+<div class="figure">
+<img src="figures/python_inst02/1.png" title="Przykład przetworzenia" alt="Pliki w folderach" />
+<p class="caption">Pliki w folderach</p>
+</div>
+<p>Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji.</p>
+</div>
+<div id="zadanie-2" class="section level1">
+<h1>Zadanie 2</h1>
+<p>Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z większego rozmiaru na mniejszy. W tym celu:</p>
+<ol style="list-style-type: decimal">
+<li>Utwórz nowy plik pythona o nazwie matrix.</li>
+<li>Wewnątrz tego pliku przygotuj funkcję “reduce” która jako argumenty będzie przyjmowała obiekt reprezentujący listę/tablicę dwuwymiarową oraz rozmiar wynikowej macierzy (parametr określający rozmiar powinien obsługiwać sytuację gdy przekazano 1 liczbę lub parę)</li>
+<li><p>Uzupełnij ciało funkcji wykorzystując algorytm opisany poniższym rysunkiem <img src="figures/python_inst02/2.png" title="Algorytm skalowania" alt="algorytm" /> Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tablicy większej w zależności od indeksu elementu w tablicy mniejszej. Wartość kolejnych elementów w tablicy mniejszej powinna być obliczona jako średnia z zaznaczonych sąsiadów i referencyjnego elementu z tablicy większej.</p></li>
+<li><p>Zwróć wynikową tablicę/listę dwuwymiarową.</p></li>
+</ol>
+</div>
+<div id="zadanie-3" class="section level1">
+<h1>Zadanie 3</h1>
+<p>Należy napisać skrypt który będzie wczytywał plik graficzny <strong><em>resources/lab1/meil.png</em></strong>.</p>
+<div class="figure">
+<img src="https://github.com/ccfd/python_course/blob/master/resources/lab1/meil.png?raw=true" title="Obraz do przetworzenia" alt="logo" />
+<p class="caption">logo</p>
+</div>
+<p>Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20 (wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie obraz wczytany i przeskalowany obok siebie.</p>
+<div id="podpowiedzi" class="section level3">
+<h3>Podpowiedzi</h3>
+<ul>
+<li>Obraz można wczytać za pomocą funkcji <strong><em>imread</em></strong> znajdującej się w bibliotece <strong><em>matplotlib.image</em></strong>. Wczytany obraz będzie w postaci tablicy 3 wymiarowej, gdzie pierwsze 2 wymiary określają indeks pojedynczego punktu, a ostatni określa kanał (red, green, blue i opcjonalnie alpha)</li>
+<li>Aby utworzyć 2 wykresy/obrazki w jednym oknie zamiast funkcji <strong><em>figure</em></strong> (z biblioteki matplotlib.pyplot) należy skorzystać z funkcji <strong><em>subplot</em></strong> gdzie argumentami jest para określająca liczbę wykresów w wierszach i kolumnach:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="co"># kod wyznaczający tablice x, y ....</span>
+_, axes <span class="op">=</span>  plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>)
+axes[<span class="dv">0</span>].plot(x, y)
+axes[<span class="dv">1</span>].plot(y, x)
+plt.show()</code></pre></div>
+<ul>
+<li>Obraz zapisany w postaci macierzy kolorów RGB (lub RGBA) można wyświetlić za pomocą funkcji <strong><em>imshow</em></strong> znajdującej się w bibliotece <strong><em>matplotlib.pyplot</em></strong> (w przypadku rysowania w jednym oknie należy skorzystać z metody <strong><em>imshow</em></strong> należącej do obiektów typu Axes, zwracanych z funkcji subplot)</li>
+</ul>
+</div>
+</div>
+<div id="zadanie-4" class="section level1">
+<h1>Zadanie 4</h1>
+<p>Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie jasności obrazka w danym punkcie generował obraz w pliku tekstowym za pomocą wybranych znaków. Obraz tekstowy powinien zostać utworzony na bazie przeskalowanego, mniejszego obrazka oraz powinien używać co najmniej 2 różnych znaków do określenia 2 różnych jasności (np. “||” dla czarnego koloru i “–” dla szarego). Poniżej zamieszczono przykładowy rezultat.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">                  <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>                 
+            <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>           
+        <span class="op">||</span>  <span class="op">-</span> <span class="op">-</span>           <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>         
+      <span class="op">||||</span>        <span class="op">-</span> <span class="op">||</span>        <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>     
+    <span class="op">||||||</span>      <span class="op">||||||</span>  <span class="op">||||</span>    <span class="op">-</span> <span class="op">-</span>     
+    <span class="op">||||</span>  <span class="op">||||</span>  <span class="op">||</span>      <span class="op">||||||</span>    <span class="op">-</span> <span class="op">-</span>   
+  <span class="op">||||</span>    <span class="op">||</span>    <span class="op">||</span>      <span class="op">||</span>    <span class="op">||</span>    <span class="op">-</span> <span class="op">-</span> 
+  <span class="op">||||</span>  <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>    <span class="op">||||</span>  <span class="op">-</span> <span class="op">-</span> 
+  <span class="op">||</span>    <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>  <span class="op">-</span> <span class="op">-</span> 
+<span class="op">||||</span>  <span class="op">-</span> <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>    <span class="op">-</span> 
+<span class="op">||||</span>  <span class="op">-</span> <span class="op">||</span>    <span class="op">||||||||</span>  <span class="op">||</span>      <span class="op">||</span>    <span class="op">-</span> 
+<span class="op">||||</span>    <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>    <span class="op">-</span> 
+  <span class="op">||-</span>   <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>  <span class="op">-</span> <span class="op">-</span> 
+  <span class="op">||||</span>  <span class="op">||||</span>    <span class="op">||</span>      <span class="op">||</span>    <span class="op">||||</span>  <span class="op">-</span> <span class="op">-</span> 
+  <span class="op">||||</span>    <span class="op">||-</span>   <span class="op">||</span>      <span class="op">||</span>  <span class="op">||||</span>    <span class="op">-</span>   
+    <span class="op">||||</span>    <span class="op">||</span>  <span class="op">||</span>      <span class="op">||||||</span>    <span class="op">-</span> <span class="op">-</span>   
+    <span class="op">-</span> <span class="op">||||</span>      <span class="op">||</span>      <span class="op">||||</span>    <span class="op">-</span> <span class="op">-</span>     
+      <span class="op">||||||</span>                    <span class="op">-</span>       
+          <span class="op">||||||||</span>      <span class="op">||||||</span>          
+            <span class="op">||||||||||||||||-</span>           </code></pre></div>
+<div id="podpowiedzi-1" class="section level3">
+<h3>Podpowiedzi</h3>
+<p>W celu określenia jasności obrazka w danym punkcie skorzystaj z definicji kolorów HSV zamiast RGB. Kolory HSV, podobnie jak RGB są przechowywane w macierzy o 3 kanałach. Definicja każdego z kanałów można zobaczyć na poniższym rysunku:</p>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/HSV_color_solid_cylinder_alpha_lowgamma.png" title="Skala HSV, źródło wikipedia" alt="SkalaHSV" />
+<p class="caption">SkalaHSV</p>
+</div>
+<p>Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą funkcji <strong><em>rgb_to_hsv</em></strong> znajdującej się w bibliotece <strong><em>matplotlib.colors</em></strong>. Kanał <strong><em>Value</em></strong> dla macierzy HSV jest określony jako trzeci(ostatni).</p>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
