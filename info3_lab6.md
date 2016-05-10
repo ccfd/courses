@@ -1,5 +1,9 @@
 ---
+number: 6
 author: M. Dzikowski
+course: Informatyka III
+material: Instrukcja 6
+title: Programowanie Równoległe
 ---
 
 # Wstęp
@@ -56,7 +60,7 @@ Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne 
 
 1. Zaalokuj tablice liczb rzeczywistych `a` o rozmiarze `n = 10000*(rank-1)`
 2. Wypełnij ją liczbami losowymi z przedziału $[0,1]$
-3. Wypisz komunikat o wylosowaniu
+3. Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę `a[0]`
 4. Policz $S_1 = \sum_i a_i$
 5. Wyświetl średnią $a$: $\frac{1}{n} S_1$
 6. Policz $S_2 = \sum_i (a_i)^2$
@@ -64,7 +68,9 @@ Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne 
 
 Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende `fflush(stdout);`{.c++} zaraz po każdym wywołaniu `printf`{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.
 
-Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając `MPI_Barrier(MPI_COMM_WORLD);`{.c++} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej.
+Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając `MPI_Barrier(MPI_COMM_WORLD);`{.c++} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element.
+
+Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np `time(NULL)+rank` jako *ziarno* do funkcji `srand`, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.
 
 ### Ćwiczenie
 
@@ -82,7 +88,14 @@ MPI_Reduce( source, destination, count, datatype, operation, root, MPI_COMM_WORL
 
 Użyj tej funkcji by policzyć globalne statystyki, a następnie wyświetl je (pamietaj że mają one sens tylko na węźle `root`). Weź pod uwagę, że globalne `n` jest inne niż lokalne.
 
-### Ćwiczenia
+### Ćwiczenie\*
+
+Stwórz nowy program równoległy `program2.cpp`, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy `a` (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`. Porównaj czas wykonania wykonując:
+```Bash
+time mpirun -np 1 program2
+time mpirun -np 2 program2
+time mpirun -np 4 program2
+```
 
 # Kolejka PBS
 
