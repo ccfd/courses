@@ -4,6 +4,9 @@ course: Python
 material: Wymagania
 author: W. Gryglas
 ---
+
+# Wprowadzenie
+
 ## Numpy array zamiast list
 
 ### Tworzenie tablic
@@ -24,14 +27,36 @@ author: W. Gryglas
 
 ## Wykorzystywanie i tworzenie bibliotek
 
-# Zadanie 1
+
+
+# Zadania
+
+## Zadanie 1
+
 W folderze ***resources/lab1/files*** zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *location: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. 
 
 ![Pliki w folderach](figures/python_inst02/1.png "Przykład przetworzenia") 
 
 Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji. 
 
-# Zadanie 2
+## Zadanie 2
+
+Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności $k=10$. Oba ciała są wstępnie ustawione w odległości $l = 10$ od siebie i leżą na linii poziomej a sprężyna jest nienaciągnięta. Prędkość początkowa ciała pierwszego wynosi $u_1=[0,5]^T \frac{m}{s}$ a drugiego $ u_2=[-3,3]^T \frac{m}{s}$. Masy obu ciał są równe i wynoszą m=1 kg. 
+
+Wykonaj wykres torów ruchu obu ciał, a następnie utwórz animację, w której przedstawisz ruch ciał w postaci punktów poruszających się po obliczonych torach. 
+
+![mass-1kg](figures/python_inst03/mass1.gif "Masa m=1kg") ![mass-10kg](figures/python_inst03/mass10.gif "Masa m=10kg")
+
+Animację można zapisać do pliku *.gif za pomocą metody "save" z obiektu animation. Aby zapisać do tego formatu należy posiadać zainstalowaną aplikację "imagemagic":
+
+```python
+# some code ...
+anim.save("nazwa_pliku.gif", writer="imagemagic", fps=30)
+plt.show()
+```
+
+
+## Zadanie 3
 Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z większego rozmiaru na mniejszy. W tym celu:
 
 1. Utwórz nowy plik pythona o nazwie matrix. 
@@ -43,7 +68,7 @@ Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tabl
 4. Zwróć wynikową tablicę/listę dwuwymiarową.
 
 
-# Zadanie 3
+## Zadanie 4
 Należy napisać skrypt który będzie wczytywał plik graficzny ***resources/lab1/meil.png***. 
 
 ![logo](https://github.com/ccfd/python_course/blob/master/resources/lab1/meil.png?raw=true "Obraz do przetworzenia") 
@@ -65,7 +90,7 @@ plt.show()
 
 - Obraz zapisany w postaci macierzy kolorów RGB (lub RGBA) można wyświetlić za pomocą funkcji ***imshow*** znajdującej się w bibliotece ***matplotlib.pyplot*** (w przypadku rysowania w jednym oknie należy skorzystać z metody ***imshow*** należącej do obiektów typu Axes, zwracanych z funkcji subplot)
 
-# Zadanie 4
+## Zadanie 4
 Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie jasności obrazka w danym punkcie generował obraz w pliku tekstowym za pomocą wybranych znaków. Obraz tekstowy powinien zostać utworzony na bazie przeskalowanego, mniejszego obrazka oraz powinien używać co najmniej 2 różnych znaków do określenia 2 różnych jasności (np. "||" dla czarnego koloru i "--" dla szarego). Poniżej zamieszczono przykładowy rezultat.  
 ```python
                   - - -                 
