@@ -102,7 +102,7 @@ Dodatkowe pakiety można zainstalować z poziomu linii komend. Jednak przed uczy
 pip install numpy scipy matplotlib pandas
 ```
 ### git
-W przypadku systemów Windows program ten musi zostać zainstalowany oddzielnie, instrukcje dotyczące instalacji można znaleźć tutaj [git - instalacja Windows](https://git-scm.com/book/pl/v1/Pierwsze-kroki-Instalacja-Git#Instalacja-w-systemie-Windows). 
+W przypadku systemów Windows program ten musi zostać zainstalowany oddzielnie, instrukcje dotyczące instalacji można znaleźć tutaj [git - intalacja Windows](https://git-scm.com/book/pl/v1/Pierwsze-kroki-Instalacja-Git#Instalacja-w-systemie-Windows). 
 
 
 # Środowisko graficzne
@@ -111,7 +111,7 @@ Do wygodnej pracy przy pisaniu kodu posłużymy się zintegrowanym środowiskiem
 ## Instalacja
 Aby zainstalować PyCharm na systemie Linux wystarczy pobrać odpowiedni plik i rozpakować do dowolnie wybranego miejsca na dysku. Spakowaną aplikację można pobrać ze strony [PyCharm - Linux](https://www.jetbrains.com/pycharm/download/#section=linux). Po zapisaniu pliku na dysku możemy go rozpakować komendą:
 ```bash
-tar xfz <ścieżka do pobranego pliku> -C <ścieżka do miejsca gdzie rozpakować>
+tar xfz <sciezka do sciagnietego pliku> -C <sciezka do miejsca gdzie rozpakowac>
 ``` 
 Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli (po pierwszym uruchomieniu program doda skróty do systemu):
 ```bash
@@ -150,7 +150,7 @@ def first_function():
 
 first_function()
 ```
-Przeanalizujmy powyższy kod. Słowo kluczowe `def` oznacza początek definicji funkcji. Następnie podajemy nazwę definiowanej funkcji, w naszym przypadku jest to *first_function*. W Pythonie nie podajemy typu zawracanej wartości, ponieważ typy jako takie w nim nie istnieją. Python jest językiem dynamicznie typowany co oznacza, że typ zmiennej jest taki jak wartość do niej przypisana, dlatego nie trzeba zmiennej deklarować. Każda zmienna może być typu *integer* a następnie może stać się typu *string*, w związku z czym nie ma sensu podawanie typu zwracanego obiektu ponieważ on wyniknie z tego co zostanie zwrócone. Po nazwie funkcji podajemy w nawiasie nazwy argumentów (tylko nazwy, ponieważ typy nie są potrzebne) a następnie wstawiamy znak **:**,  który rozpoczyna ciało funkcji. I tutaj pojawia się ciekawe zjawisko - brak klamer. W Pythonie klamry określające przynależność części kodu do instrukcji, zostały zastąpione wcięciem w tekście o 1 tabulację. Koniec ciała funkcji z kolei definiujemy poprzez przesunięcie kodu o 1 tabulację z powrotem w lewo. Funkcje wywołujemy dokładnie tak samo jak w większości innych języków, poprzez podanie nazwy funkcji i argumentów w okrągłych nawiasach.
+Przeanalizujmy powyższy kod. Słowo kluczowe `def` oznacza początek definicji funkcji. Następnie podajemy nazwę definiowanej funkcji, w naszym przypadku jest to *first_function*. W Pythonie nie podajemy typu zawracanej wartości, ponieważ typy jako takie w nim nie istnieją. Python jest językiem dynamicznie typowany co oznacza, że typ zmiennej jest taki jak wartość do niej przypisana, dlatego nie trzeba zmiennej deklarować. Każda zmienna może być typu *integer* a następnie może stać się typu *string*, w związku z czym nie ma sensu podawanie typu zwracanego obiektu ponieważ on wyniknie z tego co zostanie zwrócone. Po nazwie funkcji podajemy w nawiasie nazwy argumentów (tylko nazwy, poniweaż typy nie są potrzebne) a następnie wstawiamy znak **:**,  który rozpoczyna ciało funkcji. I tutaj pojawia się ciekawe zjawisko - brak klamer. W Pythonie klamry określające przynależność części kodu do instrukcji, zostały zastąpione wcięciem w tekście o 1 tabulację. Koniec ciała funkcji z kolei definiujemy poprzez przesunięcie kodu o 1 tabulację z powrotem w lewo. Funkcje wywołujemy dokładnie tak samo jak w większości innych języków, poprzez podanie nazwy funkcji i argumentów w okrągłych nawiasach.
 
 ![Pierwsze uruchomienie nowego pliku](figures/python_inst01/19.png)
 
@@ -169,25 +169,25 @@ Po uruchomieniu kodu PyCharm automatycznie rozwinie konsolę w której powinien 
 
 ![Panel uruchamiania kodu](figures/python_inst01/05.png)
 
-Wróćmy jeszcze do konfiguracji uruchomianiowej.Po kliknięciu na ***Run*** automatycznie zostaje utworzona domyślna konfiguracja, która nazywa się tak jak edytowany plik. Ponadto taka konfiguracja zostaje dodana do rozwijanego menu w prawym górnym rogu, tuż nad edytorem tekstu. Znajdują się tam 3 przyciski:
+Wróćmy jeszcze do konfiguracji uruchamianiowej.Po kliknięciu na ***Run*** automatycznie zostaje utworzona domyślna konfiguracja, która nazywa się tak jak edytowany plik. Ponadto taka konfiugracja zostaje dodana do rozwijanego menu w prawym górnym rogu, tuż nad edytorem tekstu. Znajdują się tam 3 przyciski:
 
 1. Menu służące do wyboru aktualnej konfiguracji.
 2. Przycisk do uruchamiania wybranej konfiguracji.
 3. Przycisk służący do uruchamiania wybranej konfiguracji w trybie "Debug". 
 
-Po co nam różne konfiguracje? Otóż w obrębie jednego projektu możemy mieć kilka  różnych plików zawierających kod który ma wykonać jakieś zadania. Często zdarza się tak, że edytujmy jeden plik, ale żeby zobaczyć efekty pracy chcemy jednak uruchomić inny wcześniej wybrany. 
+Po co nam różne konfiguracje? Otóż w obrębie jednego projektu możemy mieć kilka  różnych plików zawierających kod który ma wykonać jakieś zadania. Często zdaża się tak, że edytuajmy jedan plik, ale żeby zobaczyć efekty pracy chcemy jednak uruchomić inny wcześniej wybrany. 
 
 ![Konfiguracja uruchamiania kodu](figures/python_inst01/06.png)
 
 Na koniec jeszcze zobaczmy co zawiera konfiguracja uruchomieniowa naszego pliku test.py. Aby otworzyć okno jej edycji należy wybrać opcję ***Edit configuration*** z rozwijanego menu ([rysunek](figures/python_inst01/05.png)). W panelu ***Configuration*** znajdują się 3 najważniejsze pola:
 
 1. ***Script*** - ścieżka do pliku który ma zostać uruchomiony.
-2. ***Script parameters*** - parametry jakie powinny zostać przekazane do naszego kodu w czasie jego wywołania. Parametry te to nic innego jak parametry przekazywane do programów gdy je wywołujemy z konsoli, np.:
+2. ***Script parameters*** - parametry jakie powinny zostać przkazane do naszego kodu w czasie jego wywołania. Paremetry te to nic innego jak parametry przekazywane do programów gdy je wywołujemy z konsoli, np.:
 ```bash
 $ rm directory_name
 ```
-W powyższym przykładzie ***rm*** jest nazwą programu, a *directory_name* to parametr który zostaje przekazany do programu. W sytuacji gdy będziemy pisali skrypt ogólnego zastosowania, który będzie zależał od parametrów przekazanych przez użytkownika, to na czas testów kodu warto właśnie w tym miejscu podać testowe parametry, zamiast na sztywno je przypisywać wewnątrz kodu.  
-3. ***Working directory*** - lokalizacja z której ma zostać wywołany nasz program. Podobnie jak w przypadku parametrów ta informacja jest przekazywana do programu przez system operacyjny w czasie uruchamiania go z konsoli. W przykładzie z poprzedniego punktu komenda ***rm*** służy do usuwania plików wskazanych za pomocą parametrów. Ścieżki tych parametrów mogą być podawane względem folderu w którym się znajdujemy, zatem program musi zawsze otrzymać dodatkową informację o lokalizacji z której został uruchomiony.
+W powyższym przykładzie ***rm*** jest nazwą programu, a *directory_name* to parametr który zostaje przekazany do programu. W sytuacji gdy będziemy pisali skrypt ogólnego zastosowania, który będzie zależał od parametrów przekazanych przez użytkownika, to na czas testów kodu warto właśnie w tym miejscu podać testowe parmetry, zamiast na sztywno je przypisywać wenątrz kodu.  
+3. ***Working directory*** - lokalizacja z której ma zostać wywołany nasz program. Podobnie jak w przypadku parametrów ta informacja jest przekazywana do programu przez system operacyjny w czasie uruchamiania go z konsoli. W przykładzie z poprzedniego punkut komenda ***rm*** służy do usuwania plików wskazanych za pomocą parmetrów. Ścieżki tych parametrów mogą być podawane względem folderu w którym się znajdujemy, zatem program musi zawsze otrzymać dodatkową informację o lokalizacji z której został uruchomiony.
 
 ## Własne repozytorium w sieci i git w PyCharm
 
@@ -199,14 +199,14 @@ Należy przejść na stronę [GitHub](https://github.com "GitHub") i zalogować 
 
 ![Tworzenie lokalnego repozytorium w PyCharm](figures/python_inst01/07.png)
 
-Utworzyliśmy właśnie własne repozytorium. Jednak znajduje się ono na razie tylko na serwerze. Aby ściągnąć pliki zawarte w tym repozytorium należy utworzyć tzw. lokalne repozytorium. Lokalne repozytorium jest kopią kodu zawartego na serwerze na przestrzeń dyskową własnego komputera. Dzięki temu można wprowadzać zmiany z poziomu własnego komputera. Należy jednak pamiętać, że wszystkie takie zamiany będą tylko lokalne, tzn. istniały tylko w obrębie własnego komputera. Aby te zmiany mogły się pojawić także na serwerze, trzeba będzie je tam wysłać, ale o tym dalej. 
-Operacja kopiowania (pobierania) zdalnego repozytorium na własny komputer nazywana jest klonowaniem (clone). Można to uczynić z poziomu konsoli za pośrednictwem programu ***git***:
+Utworzyliśmy właśnie własne repozytorium. Jednak znajduje się ono na razie tylko na serwerze. Aby ściągnąć pliki zawarte w tym repozytorium należy utowrzyć tzw. lokalne repozytorium. Lokalne repozytorium jest kopią kodu zawartego na serwerze na przestrzeń dyskową własnego komputera. Dzięki temu można wprowadzać zmiany z pozimu własnego komputera. Należy jednak pamiętać, że wszystkie takie zamiany będą tylko lokalne, tzn. istniały tylko w obrębie własnego komputera. Aby te zmiany mogły się pojawić także na serwerze, trzeba będzie je tam wysłać, ale o tym dalej. 
+Operacja kopiowania (pobierania) zdalnego repozytorium na własny komputer nazywana jest klonowaniem (clone). Można to uczynić z poziumu konsoli za pośrednictwem programu ***git***:
 ```bash
 $ git clone https://github.com/ccfd/python_course.git
 ```
-Ta komenda utworzy repozytorium w folderze o nazwie "python_course". Jeśli chcemy aby to repozytorium zostało zapisane w innym folderze, to należy podać dodatkowy parametr ze ścieżką do wybranego folderu.
+Ta komenda utworzy repozytorium w folerze o nazwie "python_course". Jeśli chcemy aby to repozytorium zostało zapisane w innmym folderze, to należy podać dodatkowy parametr ze ścieżką do wybranego folderu.
 
-PyCharm jest rozbudowanym środowiskiem i sam także pozwala na utworzenie lokalnej kopii ze zdalnego repozytorium. Aby to uczynić należy:
+PyCharm jest rozbuodwanym środowsikiem i sam także pozwala na utorzenie lokalnej kopii ze zdalnego repozytorium. Aby to ucznić należy:
 1. Wybrać opcję ***VCS*** z górnego menu.
 2. Wybrać opcję ***Cehckout from Version Control***.
 3. Na koniec wskazać ***GitHub*** który jest dodatkowo wspierany przez PyCharm.
@@ -214,23 +214,23 @@ PyCharm jest rozbudowanym środowiskiem i sam także pozwala na utworzenie lokal
 
 ![Konfiguracja dostępu do konta GitHub](figures/python_inst01/08.png)
 
-Następnie PyCharm poprosi o zalogowanie się na nasze konto, ponieważ będzie chciał pobrać informacje o dostępnych repozytoriach na naszym koncie:
+Następnie PyCharm poprsi o zalogowanie się na nasze konto, poniważ będzie chciał pobrać informacje o dostępnych repozytoriach na naszym koncie:
 1. Podajemy login.
 2. Podajemy hasło do naszego konta.
 3. Logujemy się klikając na wskazany przycisk.
 
 ![Lokalne hasło](figures/python_inst01/09.png)
 
-Ponieważ za każdym razem gdy będziemy chcieli pobrać lub wysłać nową wersję kodu będziemy musieli podać login i hasło. Może być to uciążliwe, dlatego PyCharm pozwala na wprowadzenie dodatkowego hasła, które będzie istniało tylko w obrębie PyCharm. Dzięki temu będziemy mogli wpisać to nowe hasło tylko raz na jedną sesję pracy z programem, a on wykorzysta zapisane i zaszyfrowane właściwe hasło i login do naszego konta na GitHub, co znacząco ułatwia pracę. Jeśli kotś nie chce tego robić wystarczy kliknąć ***Cancel*** i PyCharm będzie za każdym razem (gdy będzie to wymagane) prosił o podanie właściwego loginu i hasła do konta na GitHub. 
+Poniważ za każdym razem gdy będziemy chcieli pobrać lub wysłać nową wersję kodu będziemy musieli podać login i hasło. Może być to uciążliwe, dlatego PyCharm pozwala na wprowadzenie dodatkowego hasła, które będzie istniało tylko w obrębie PyCharm. Dzięki temu będziemy mogli wpisać to nowe hasło tylko raz na jedną sesję pracy z programem, a on wykorzysta zapisane i zaszyfrowane właściwe hasło i login do naszego konta na GitHub, co znacząco ułatwia pracę. Jeśli kotś nie chce tego robić wystarczy klinkąć ***Cancel*** i PyCharm będzie za każdym razem (gdy będzie to wymagane) prosił o podanie właściwego loginu i hasła do konta na GitHub. 
 
 ![Wybór adresu własnego repozytorium](figures/python_inst01/11.png)
 
-Następnym krokiem jest wybór adresu repozytorium na serwerze. Można to zrobić wchodząc na własne konto i wybierając repozytorium które skopiowaliśmy. Następnie można skopiować jego adres za pomocą przycisku na stronie.
+Następnym krokiem jest wybór adresu repozytorium na serwerze. Można to zrobić wchodząc na własne konto i wybierając repozytorium które skopiwoaliśmy. Następnie można skopiować jego adres za pomocą przycisku na stronie.
 
 ![Konfiguracja lokalnego repozytorium](figures/python_inst01/10.png)
 
 1. Z racji tego, że już zalogowaliśmy się na nasze konto za pomocą PyCharm, to on sam automatycznie pobrał wszystkie adresy naszych repozytoriów. Dlatego w miejscu ***Git Repository URL*** można wkleić skopiowany adres bądź wybrać jeden z rozwijanego menu. 
-2. Oprócz adresu musimy wybrać lokalizację na naszym dysku gdzie ma zostać przechowana lokalna kopia kodu (w przypadku używania konsoli należało przejść do właściwego folderu przed wywołaniem git clone ...). 
+2. Oprócz adresu musimy wybrać lokalizajcę na naszym dysku gdzie ma zostać przechowana lokalna kopia kodu (w przypadku używania konsoli należało przejść do właściwego folderu przed wywołaniem git clone ...). 
 3. Na koniec zatwierdzamy klikając na ***Clone***.
 
 ![Dodawanie nowego projektu do PyCharm](figures/python_inst01/12.png)
@@ -239,7 +239,7 @@ Gdy PyCharm zakończy pobierać dane z serwera zapyta czy otworzyć to repozytor
 
 ![Konfiguracja dodawania projektu](figures/python_inst01/13.png)
 
-Po kliknięciu na ***Yes*** może pojawić się powyższy komunikat. Chodzi tutaj o to, że wcześniej utworzyliśmy pierwszy projekt i program pyta się czy nowy projekt powinien zostać dodany do drzewka czy powinien otworzyć całkiem nowe okno. Możemy wybrać opcję ***Open in current window*** choć to nie będzie miało większego znaczenia.
+Po kliknięciu na ***Yes*** może pojawić się powyższy komunikat. Chodzi tutaj o to, że wcześniej utowrzyliśmy pierwszy projekt i program pyta się czy nowy projekt powinien zostać dodany do drzewka czy powinien otworzyć całkiem nowe okno. Możemy wybrać opcję ***Open in current window*** choć to nie będzie miało większego znaczenia.
 
 ![Uruchamianie testowego kodu z repozytorium](figures/python_inst01/14.png)
 
@@ -263,7 +263,7 @@ numpyArray2 = np.sin(array) + np.cos(array)
 
 ![Zatwierdzanie zmian w lokalnym i zdalnym repozytorium](figures/python_inst01/16.png)
 
-Teraz musimy zatwierdzić zmianę. W tym celu możemy utworzyć "commit" dla pojedynczego pliku lub wszystkich w naszym projekcie, co zazwyczaj jest bardziej wygodne. Aby to zrobić:
+Teraz musimy zatwierdzić zmianę. W tym celu możemy utworzyć "commit" dla pojedyńczego pliku lub wszystkich w naszym projekcie, co zazwyczaj jest bardziej wygodne. Aby to zrobić:
 
 1. Kliknij prawym przyciskiem na folder "python_course" w drzewie.
 2. Wybierz opcję ***Git***.
@@ -271,11 +271,11 @@ Teraz musimy zatwierdzić zmianę. W tym celu możemy utworzyć "commit" dla poj
 
 ![Parametry zatwierdzania zmian](figures/python_inst01/20.png)
 
-Otworzy się teraz nowe okno służące do zatwierdzania zmian. Warto robić takie zatwierdzenia jak najczęściej, dzięki czemu każda zmiana w kodzie będzie łatwa do odszukania i np. usunięcia. Aby utworzyć "Commit" musimy:
+Otworzy się teraz nowe okno służące do zatwierdzania zmian. Warto robić takie zatwierdzenia jak najczęściej, dzięki czemu każda zmiana w kodzie będzie łatwa do odszukania i np. usunięcia. Aby utowrzyć "Commit" musimy:
 
 1. Wybrać zmodyfikowane pliki które mają być zatwierdzone tym commitem. 
 2. Wpisać wiadomość informującą jakie zmiany w kodzie zostały przeprowadzone. 
-3. Zatwierdzić przyciskiem ***Commit***. Uwaga, zanim kliknie się na ten przycisk rozwija się dodatkowe menu, które pozwala wybrać opcję ***Commit and Push***. Opcja ta tworzy nowy commit i automatycznie wysyła zmiany na serwer. Czasami nie chcemy wysłać zmian, ponieważ nie jesteśmy pewni czy nie będziemy chcieli zrezygnować z nich za jakiś czas. Wybierzmy teraz drugą opcję, tj. ***Commit and Push***.
+3. Zatwierdzić przyciskiem ***Commit***. Uwaga, zanim kliknie się na ten przycisk rozwija się dodakowe menu, które pozwala wybrać opcję ***Commit and Push***. Opcja ta tworzy nowy commit i automatycznie wysyła zmiany na serwer. Czasami nie chcemy wysłać zmian, ponieważ nie jesteśmy pewni czy nie będziemy chcieli zrezygnować z nich za jakiś czas. Wybierzmy teraz drugą opcję, tj. ***Commit and Push***.
 
 ![Wysyłanie zmian do zdalnego repozytorium](figures/python_inst01/17.png)
 
@@ -283,11 +283,15 @@ Po utworzeniu commitu PyCharm otworzy nowe okno w którym należy zatwierdzić, 
 
 ![Pobieranie zmian ze zdalnego repozytorium](figures/python_inst01/21.png)
 
-Na koniec pokażemy jeszcze jak pobrać zmiany ze zdalnego repozytorium na nasze lokalne, które już istnieje (np. w sytuacji, gdy ktoś inny wprowadził zmiany i chcemy aby ten nowszy kod pojawił się także u nas na dysku). Do tego celu korzystamy z opcji "Pull" która działa przeciwnie do "Push" - czyli pobiera wszystkie zmiany z serwera i dołącza je do naszego kodu. Aby dokonać tej operacji z poziomu konsoli należy przejść do właściwego folderu zawierającego nasze lokalne repozytorium, a następnie wywołać:
+Na koniec pokażemy jeszcze jak pobrać zmiany ze zdalnego repozytorium na nasze lokalne, które już istnieje (np. w sytuacji, gdy ktoś inny wprowadził zmiany i chcemy aby ten nowszy kod pojawił się także u nas na dysku). Do tego celu korzystamy z opcji "Pull" która działa przeciwnie do "Push" - czyli pobiera wszystkie zmiany z serwera i dołącza je do naszego kodu. Aby dokonać tej operacji z pozimu konsoli należy przejść do właściwego folderu zawierającego nasze lokalne repozytorium, a następnie wywołać:
 ```bash
 $ git pull
 ```
 Po tej operacji zostaniemy poproszeni o podanie nazwy użytkownika i hasła. 
 
-W naszym przypadku skorzystamy z PyCharma - wystarczy wybrać odpowiednią opcję z menu (tak jak na rysunku powyżej) a program wykona żądaną operację i ściągnie najświeższy kod.
-Musimy zwrócić uwagę na jeszcze jedną opcję znajdującą się obok "Push" i "Pull" - "Fetch". Opcja ta służy jedynie do pobrania informacji i danych ze zdalnego repozytorium. Ona, w przeciwieństwie do "Pull", nie zmienia plików źródłowych w lokalnym repozytorium.
+W naszy przypadku skorzystamy z PyCharma - wystarczy wybrać odpowienią opcję z menu (tak jak na rysunku powyżej) a program wykona żądaną operację i ściągnie najświeższy kod.
+Musimy zrócić uwagę na jeszcze jedną opcję znajdującą się obok "Push" i "Pull" - "Fetch". Opcja ta służy jedynie do pobrania inforamcji i danych ze zdalnego repozytorium. Ona, w przeciwieństwie do "Pull", nie zmienia plików źródłowych w lokalnym repozytorium.
+
+
+Git - aktualizacja kopii repozytorium
+.... todo ....
