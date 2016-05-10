@@ -1,9 +1,9 @@
 ---
-number: 6
-author: M. Dzikowski
-course: Informatyka III
+title: "Programowanie Równoległe"
+author: "M. Dzikowski"
 material: Instrukcja 6
-title: Programowanie Równoległe
+number: 6
+course: Informatyka III
 ---
 
 # Wstęp
@@ -69,6 +69,33 @@ Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne 
 Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende `fflush(stdout);`{.c++} zaraz po każdym wywołaniu `printf`{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.
 
 Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając `MPI_Barrier(MPI_COMM_WORLD);`{.c++} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element.
+
+```{r, echo=FALSE}
+par(mfrow=c(1,2),mar=c(2.1,2.1,0.1,0.1))
+tms = c(1,0.6,0.6)
+tms = rbind(0.7,outer(tms,1:4))
+nms = c("alokacja","losowanie",expression(S[1]),expression(S[2]))
+cls = 1:4
+Y = max(apply(tms,2,sum))
+
+plot (NA, ylab="Time", xlab="", xlim=c(0,3),ylim=c(Y,0), xaxt='n', yaxt='n')
+axis(1,at=0:3,paste("rank",0:3,sep="="))
+for (i in 1:ncol(tms)) {
+  arrows(i-1, cumsum(tms[,i]) - tms[,i],i-1, cumsum(tms[,i]), angle = 15,length = 0.1,col=cls)
+}
+#text(3,cumsum(tms[,4])-tms[,4]/2,nms, adj=c(1.1,0.5))
+legend("bottomleft",nms,col=cls,lty=1)
+mtext("Time", 2, line = 1)
+par(mar=c(2.1,2.1,0.1,0.1))
+plot (NA, ylab="", xlab="", xlim=c(0,3),ylim=c(Y,0), xaxt='n', yaxt='n')
+axis(1,at=0:3,paste("rank",0:3,sep="="))
+for (i in 1:ncol(tms)) {
+  arrows(i-1, cumsum(tms[,4]) - tms[,4],i-1, cumsum(tms[,4]) - tms[,4] + tms[,i], angle = 15,length = 0.1,col=cls)
+}
+abline(h=cumsum(tms[,4]), lty=2)
+text(0.1,cumsum(tms[,4]),"Barrier", adj=c(0,-0.2))
+
+```
 
 Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np `time(NULL)+rank` jako *ziarno* do funkcji `srand`, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.
 
