@@ -62,13 +62,17 @@ Rozszerz program tak, by każdy proces wylosował pewne liczby i wypisał pewne 
 2. Wypełnij ją liczbami losowymi z przedziału $[0,1]$
 3. Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę `a[0]`
 4. Policz $S_1 = \sum_i a_i$
-5. Wyświetl średnią $a$: $\frac{1}{n} S_1$
-6. Policz $S_2 = \sum_i (a_i)^2$
-7. Wyświetl wariancje $a$: $\frac{1}{n-1} S_2 - \frac{1}{n-1}\frac{1}{n} S_1^2$
+5. Wyświetl średnią: $\mu = \frac{1}{n} S_1$
+6. Policz $S_2 = \sum_i (a_i - \mu)^2$
+7. Wyświetl wariancje: $\sigma^2 = \frac{1}{n-1} S_2$
 
-Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende `fflush(stdout);`{.c++} zaraz po każdym wywołaniu `printf`{.c++}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.
+Pamietaj by we wszystkich komunikatach umieszczać `rank`, tak by było wiadomo który komunikat pochodzi od którego procesu. By mieć pewność że rzeczywiście komunikaty wypisywane są wtedy kiedy następują w kodzie (a nie są bufforowane przez system), dodaj komende `fflush(stdout);`{.cpp} zaraz po każdym wywołaniu `printf`{.cpp}. Komenda ta powoduje, że cały bufforowany tekst zostanie odrazu wyświetlony na ekran.
 
-Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając `MPI_Barrier(MPI_COMM_WORLD);`{.c++} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element.
+Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np `time(NULL)+rank` jako *ziarno* do funkcji `srand`, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.
+
+### Ćwiczenie
+
+Zaobserwój, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Możemy sforsować program by procesy poczekały na siebie nawzajem, dodając `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów do tego miejsca dojdą, a następnie wszystkie razem ruszają dalej. Zauważ że powoduje to że program działa tak wolno jak jego najwolniejszy element. Przebieg programu we wszystkich procesach można jest pokazany poglądowo na poniższym obrazku:
 
 ```{r, echo=FALSE}
 par(mfrow=c(1,2),mar=c(2.1,2.1,0.1,0.1))
@@ -97,7 +101,6 @@ text(0.1,cumsum(tms[,4]),"Barrier", adj=c(0,-0.2))
 
 ```
 
-Aktualnie losowanie jest bardzo niedoskonałe, ponieważ wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np `time(NULL)+rank` jako *ziarno* do funkcji `srand`, tak by ciąg losowy był zainicializowany inną liczbą na każdym procesorze.
 
 ### Ćwiczenie
 
@@ -117,7 +120,11 @@ Użyj tej funkcji by policzyć globalne statystyki, a następnie wyświetl je (p
 
 ### Ćwiczenie\*
 
-Stwórz nowy program równoległy `program2.cpp`, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy `a` (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`. Porównaj czas wykonania wykonując:
+Stwórz nowy program równoległy `program2.cpp`, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy `a` (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:
+
+$\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{b}\sum_j a_j\right)^2$
+
+tak by był wyrażony za pomocą $S_1$ i nowego $\hat S_2 = \sum_i a_i^2$ który da się policzyć bez znajomości średniej $\mu$. Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`. Porównaj czas wykonania wykonując:
 ```Bash
 time mpirun -np 1 program2
 time mpirun -np 2 program2
