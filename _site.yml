@@ -67,6 +67,7 @@ exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:
     highlight: pygments
+    toc: true
     toc_depth: 2
     toc_float:
       collapsed: false
