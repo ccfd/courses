@@ -184,18 +184,10 @@ to połączymy się z portem y na Y. Jest to wyjątkowo przydatne, jeśli my nie
 - Spróbuj w przeglądarce otworzyć adres [`http://localhost/`](http://localhost/)
 - Zobacz co działa a co nie. Jeśli nie działa, to dlaczego?
 
-### Ćwiczenia HTTP Proxy
-
-- Spróbuj wykorzystać skrypt który wcześniej napisałeś żeby ściągnąć stronę `http://anonymousproxies.za.net/latest-high-anonymous-proxy-list/`
-- Wybierz sobie serwer z tej listy. Sprawdź czy jesteś wstanie połączyć się z nim za pomocą telnetu.
-- Zanotuj sobie serwer który działa i przekieruj port "80" na niego. Ustaw następnie w opcjach przeglądarki serwer proxy na `localhost:80`
-- wejdz na google.com
-- *ciesz się internetem zza firewall'a*
-
 ### Ćwiczenia SOCKS Proxy
 
-- Uruchom putty. Wejdz w ustawienia "tunneling". Tam ustaw by port `66666` był przekierowaniem typu "Dynamic". Następnie połącz się z maszyną `info3` jak zwykle.
-- Ustaw następnie w opcjach przeglądarki serwer SOCKS proxy na `localhost:66666`
+- Uruchom putty. Wejdz w ustawienia "tunneling". Tam ustaw by port `12345` był przekierowaniem typu "Dynamic". Następnie połącz się z maszyną `info3` jak zwykle.
+- Ustaw następnie w opcjach przeglądarki serwer SOCKS proxy na `localhost` i port `12345`
 - wejdz na google.com
 - *ciesz się internetem zza firewall'a*
 
