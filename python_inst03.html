@@ -448,60 +448,609 @@ div.tocify {
 </div>
 
 
+<div id="wprowadzenie" class="section level1">
+<h1>Wprowadzenie</h1>
+<p>W ramach tych zajęć nauczymy się korzystać z bibliotek Pythona na przykładzie NumPy, Matplotlib i SciPy. W praktyce większość narzędzi z których korzysta się nacodzień w Pythonie pochodzi właśnie z wymienionych bibliotek. Oprócz tych zagadnień nauczymy się jak odczytywać/zapisywać pliki oraz jak wykonywać przydatne operacje na poziomie systemu.</p>
+<div id="wykorzystywanie-istniejacych-moduow" class="section level2">
+<h2>Wykorzystywanie istniejących modułów</h2>
+<p>Podczas poprzednich zajęć powiedzieliśmy, że każdy plik jest nazywany modułem. Aby z niego skorzystać w innym pliku należy na początek zaimportować go do aktualnego pliku. W tym celu posługujemy się następującym wyrażeniem:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> nazwa_modulu</code></pre></div>
+<p>Jeśli utworzyliśmy plik o nazwie “matrix.py” zawierający jakieś funkcje które wykonują operacje na macierzach, to aby skorzystać z tych funkcji musimy się do nich odwołać za pośrednictwem nazwy modułu, tzn.:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matrix
+
+A <span class="op">=</span> matrix.create() <span class="co">#wywolanie funkcji &quot;create&quot; z pliku matrix.py</span>
+matrix.invert(A)</code></pre></div>
+<p>Czasami jednak takie odwływanie się jest uciążliwe, ponieważ musimy za każdym razem powtarzać nazwę “matrix”. Sytuacja będzie jeszcze trudniejsza jeśli np. plik “matrix.py” znajduje się folderze “tools”:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> tools.matrix
+
+A <span class="op">=</span> tools.matrix.create() 
+tools.matrix.invert(A)</code></pre></div>
+<p>Do rozwiązania takiego problemu służy słowo “as” które pozwala zmienić nazwę importowanego modułu. Dzięki temu możemy odwoływać się do tych funkcji za pomocą skróconego zapisu:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> tools.matrix <span class="im">as</span> mat
+
+A <span class="op">=</span> mat.create()
+mat.invert(A)</code></pre></div>
+<p>Innym sposobem rozwiązania tego problemu jest częściowy import, który pozwala na import tylko wybranych elementów danego pakietu:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> tools.matrix <span class="im">import</span> create
+<span class="im">from</span> tools.matrix <span class="im">import</span> invert
+
+A <span class="op">=</span> create()
+invert(A)</code></pre></div>
+<p>W powyższym kodzie zamiast importować moduł tools.matrix zaimportowaliśmy tylko same funkcje “create” i “invert”. Należy jednak uważać nazwy importowanych funkcji nie wprowadzały konfliktu z innymi funkcjami. Załóżmy, że importujemy z dwóch różnych pakietów funkcje invert:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> tools.matrix <span class="im">import</span> invert
+<span class="im">from</span> other.numerical <span class="im">import</span> invert
+
+invert()</code></pre></div>
+<p>W tej sytuacji funkcja “invert” z pakietu tools.matrix zostanie “przykryta” drugą funkcją z pakiety “other.numerical” i nie będziemy mieli do niej dostępu. Dlatego w takiej sytuacji lepiej jest korzystać z funkcji wykorzystując nazwę pakietu.</p>
+<p>Ostatnim użytecznym sposobem importowania narzędzi jest skorzystanie ze znaku “*&quot; zamiast nazw funkcji. Pozwala to na import wszystkich funkcji znajdujących się wewnątrz danego pliku. Oczywiście, podobnie jak poprzednio należy zachować szczególną uwagę na nazwy funkcji. Taki sposób importowania jest przydatny gdy piszemy bardzo krótki kod:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> tools.matrix <span class="im">import</span> <span class="op">*</span>
+
+A <span class="op">=</span> create()
+invert(A)</code></pre></div>
+<p>Dokładnie w taki sam sposób możemy importować wszystkie narzędzia, nie koniecznie tylko te które sami napisaliśmy, ale także te które pochodzą z zainstalowanych bibliotek. Aby skorzystać z funkcji służącej do całkowania znajdującej się w bibliotece SciPy możemy przykładowo napisać taki kod:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint
+
+<span class="co"># ... </span>
+<span class="co"># ... jakis kod wyznaczajacy wektory Y0 i timeSteps</span>
+
+<span class="kw">def</span> funkcja_prawych_stron():
+    <span class="cf">pass</span>
+
+Y <span class="op">=</span> odeint(funkcja_prawych_stron, Y0, timeSteps )</code></pre></div>
+</div>
+<div id="generator-enumerate-i-zip-w-petli-for" class="section level2">
+<h2>Generator enumerate i zip w pętli for</h2>
+<p>Na poprzednich zajęciach pokazaliśmy jak iterować po kolejnych elementach listy, albo po indeksach przy użyciu funkcji <strong><em>range</em></strong>. Bardzo często zdarza się, że zarówno chcemy pobierać element z listy, ale także znać indeks tego elementu. Bazując na poznanych narzędziach mamy 2 opcje:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]
+
+index<span class="op">=</span><span class="dv">0</span>
+<span class="cf">for</span> elmnt <span class="op">in</span> aList:
+    <span class="bu">print</span> ( <span class="st">&quot;Element aList[</span><span class="sc">%d</span><span class="st">]=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (index, elmnt))
+    index <span class="op">+=</span> <span class="dv">1</span></code></pre></div>
+<p>lub:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]
+
+
+<span class="cf">for</span> index <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10</span>):
+    <span class="bu">print</span> ( <span class="st">&quot;Element aList[</span><span class="sc">%d</span><span class="st">]=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (index, aList[index]))</code></pre></div>
+<p>Takie konstrukcje wymagają dodatkowej operacji, zliczania indeksów albo pobierania elementów z listy. Aby ułatwić pisanie takich pętli w Pythonie posiada wbudowana funkcję o nazwie <strong><em>enumerate</em></strong> która zwraca generator <strong>par</strong> (index, wartosc_z_sekwencji). Dzięki możliwości rozwijania sekwencji (tutaj wspomnianej pary) do zmiennych możemy powyższe kody uprościć do takiej pętli:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]
+
+<span class="cf">for</span> index, elmnt <span class="op">in</span> <span class="bu">enumerate</span>(aList):
+    <span class="bu">print</span> ( <span class="st">&quot;Element aList[</span><span class="sc">%d</span><span class="st">]=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (index, elmnt))</code></pre></div>
+<p>Jak widać w powyższym kodzie zamiast iterować po elementach listy <strong><em>aList</em></strong> iterujemy po elementach generatora <strong><em>enumerate</em></strong>. Jeśli chcemy iterować tylko po kolejnych indeksach z listy o danej długości należałoby napisać pętlę:</p>
+<pre><code>for i in range(len(aList)):
+    print i</code></pre>
+<p>W tej sytuacji także możemy skorzystać z funkcji <strong><em>enumerate</em></strong> która jest krótszym zapisem niż zagnieżdżone <strong><em>len</em></strong> w <strong><em>range</em></strong>. Ale w tej sytuacji będziemy dostawali zbędny element który trzeba przypisać do zmiennej. W takich sytuacjach programiści czasami korzystają ze “sztuczki” i przypisują drugi element z pary do zmiennej o nazwie “_“:</p>
+<pre><code>for i,_ in enumerate(aList):
+    print i</code></pre>
+<p>Taki kod wygląda bardziej elegancko, jednak może być wolniejszy w wywołaniu, ponieważ zawsze będą pobierane elementy z listy.</p>
+<p>Oprócz generatora <strong><em>enumerate</em></strong> bardzo użyteczny jest także generator o nazwie <strong><em>zip</em></strong>. Służy on do iterowania po dwóch listach na raz. Generator ten, podobnie do <strong><em>enumerate</em></strong> zwraca <strong>pary</strong>, które możemy rozwinąć do zmiennych lub korzystać nich jako para:</p>
+<pre><code>aList = [ i**2 for i in range(10)]
+bList = [ (i-1)**2 for i in range(10)]
+
+# with pair
+for p in zip(aList, bList):
+    print p[0], p[1]
+
+# or by 
+for a, b in zip(aList, bList):
+    print a, b</code></pre>
+</div>
+<div id="nazwane-argumenty-funkcji" class="section level2">
+<h2>Nazwane argumenty funkcji</h2>
+<p>Podczas używania różnych funkcji często spotykamy się z sytuacją gdy do funkcji przekazujemy argument z pewną nazwą, np.:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">tab <span class="op">=</span> np.zeros(<span class="dv">20</span>, dtyp<span class="op">=</span><span class="bu">int</span>)</code></pre></div>
+<p>W powyższym przykładzie jako nazwany argument użyliśmy “dtype”. Nazwane argumenty funkcji mogą być przekazywane w dowolnej kolejności, np. oba poniższe wywołania wykonają ten sam kod:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plot(x,y, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)
+plot(x,y, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)</code></pre></div>
+<p>Za pomocą nazwanych argumentów można wywoływać własne funkcje przekazując je w dowolnej kolejności:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(xarg, yarg):
+    <span class="bu">print</span> <span class="st">&quot;xarg=&quot;</span><span class="op">+</span><span class="bu">str</span>(xarg)
+    <span class="bu">print</span> <span class="st">&quot;yarg=&quot;</span><span class="op">+</span><span class="bu">str</span>(yarg)
+
+funkcja(yarg<span class="op">=</span><span class="dv">3</span>, xarg<span class="op">=</span><span class="dv">1</span>)</code></pre></div>
+</div>
 <div id="numpy-array-zamiast-list" class="section level2">
 <h2>Numpy array zamiast list</h2>
-<div id="tworzenie-tablic" class="section level3">
-<h3>Tworzenie tablic</h3>
+<p>Na poprzednich zajęciach uczyliśmy się jak przechowywać dane w listach. Listy są kontenerami zawierającymi dowolne typy. Ma to duży wpływ na wydajność kody gdy w rzeczywistości wiemy, że lista na której pracujemy składa się tylko z liczb tego samego typu. Wbudowany typ <strong><em>list</em></strong> przed wywołaniem dowolnej operacji, np. dodawania, będzie musiał wykonać sprawdzenie czy taka operacja może być wykonana na przekazanych typach. Dlatego w przypadku wykonywania operacji na dużych zbiorach danych lepiej jest skorzystać z narzędzi, które potrafią zoptymalizować wykonanie takiego kodu. Jednym z takich narzędzi jest klasa <strong><em>array</em></strong> pochodząca z biblioteki <strong><em>NumPy</em></strong>. Tablice te różnią się znacząco od list, ponieważ: 1. rozmiar jest stały, 2. typ zmiennych jest ten sam w całej liście.</p>
+<p>Dlaczego jeszcze należy poznać bibliotekę NumPy? Głównie dlatego, że większość innych narzędzi związanych z obliczeniami numerycznymi czy rysowaniem wykresów jako wynik obliczeń zwraca obiekty które są właśnie typu numpy.array.</p>
+<div id="tworzenie-tablic-numpy.array" class="section level3">
+<h3>Tworzenie tablic numpy.array</h3>
+<p>Aby utworzyć nową tablicę można skorzystać z konstruktora (funkcji tworzącej obiekt) klasy numpy.array. Konstruktor przyjmuje Jako argument obiekt, po którym można iterować, tzn. taki którego można użyć w pętli for. W ten sposób utworzymy tablicę wypełnioną zadanymi elementami:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+
+tablica1 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">12</span>,<span class="dv">5</span>])
+<span class="bu">print</span> tablic1<span class="co"># &gt;&gt; [ 1  2  5 12  5]</span></code></pre></div>
+<p>Możemy także skorzystać wprost z generatora <strong><em>range</em></strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+
+tablica1 <span class="op">=</span> np.array([i <span class="cf">for</span> i <span class="op">in</span> ragne(<span class="dv">10</span>])
+<span class="bu">print</span> tablic1<span class="co"># &gt;&gt; [0 1 2 3 4 5 6 7 8 9]</span>
+
+tablica1 <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">10</span>)
+<span class="bu">print</span> tablic1<span class="co"># &gt;&gt; [0 1 2 3 4 5 6 7 8 9]</span></code></pre></div>
+<p>Drugim sposobem inicjalizacji tablicy jest wykorzystanie funkcji:</p>
+<ul>
+<li>zeros - generuje tablicę o zadanym rozmiarze wypełnioną zerami</li>
+<li>ones - generuje tablicę o zadanym rozmiarze wypełnioną jedynkami</li>
+<li>zeors_like - generuje tablicę wypełnioną zerami o rozmiarze takim samym jak przekazana tablica</li>
+<li>ones_like - generuje tablicę wypełnioną jedynkami o rozmiarze takim samym jak przekazana tablica</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+
+tablica1 <span class="op">=</span> np.zeros(<span class="dv">10</span>)
+<span class="bu">print</span> tablica1 <span class="co">#&gt;&gt; [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]</span>
+
+tablica2 <span class="op">=</span> np.ones_like(tablica1)
+<span class="bu">print</span> tablica2 <span class="co">#&gt;&gt; [ 1.  1.  1.  1.  1.  1.  1.  1.  1.  1.]</span></code></pre></div>
+<p>W poprzednim przypadku przekazaliśmy listę o elementach składających się z integerów, dlatego wynikowa tablica została utworzona jako tablica integerów. W drugiej sytuacji wygenerowaliśmy tablicę która składa się ze elementów typu float, ponieważ ten typ jest domyślnie przyjmowany. W obu przypadkach możemy jednak zdecydować z jakiego typu powinna się składać dana tablica:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+
+tablica1 <span class="op">=</span> np.array( [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>], dtype<span class="op">=</span><span class="bu">float</span>)
+<span class="bu">print</span> tablica1 <span class="co">#&gt;&gt;[ 1.  2.  3.  4.  5.]</span>
+
+tablica2 <span class="op">=</span> np.zeros(<span class="dv">10</span>, dtype<span class="op">=</span><span class="bu">int</span>)
+<span class="bu">print</span> tablica2 <span class="co">#&gt;&gt; [0 0 0 0 0 0 0 0 0 0]</span></code></pre></div>
+<p>Jak widać definicję typu przeprowadzamy za pomocą nazwanego argumentu <strong><em>dtype</em></strong>.</p>
 </div>
-<div id="dostep-do-elementow-tablicy-wielowymiarowej" class="section level3">
-<h3>Dostęp do elementów tablicy wielowymiarowej</h3>
+<div id="dostep-do-elementow---optymalizacja-dziaan" class="section level3">
+<h3>Dostęp do elementów - optymalizacja działań</h3>
+<p>Teraz przejdźmy do wykorzystywania tablic. Zazwyczaj jesteśmy przyzwyczajeni do korzystania z nich za pośrednictwem pętli for, jednak w przypadku tych tablic tak nie jest. Wynika to z tego, że pętla for będzie wymagała pobierania elementów z tablicy. Każdy taki element następnie staje się obiektem Python, co jest kosztowne. Każda następna operacja, np. dodawanie, zanim zostanie wykonana, będzie wymagała sprawdzenia typów, które z założenia zawsze są takie same. Dlatego do wykonywania takich operacji lepiej nadaje się skorzystanie z gotowej funkcji, która potrafi np. zsumować kolejne elementy dwóch tablic, ale tak, że ta operacja jest wykonana optymalnie już na poziomie kodu natywnego a nie interpretowanego. Aby lepiej zobaczyć różnicę przeanalizujmy poniższy kod, który będzie mierzył czas wykonania operacji sumowania:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> timeit
+
+size<span class="op">=</span><span class="dv">1000000</span>
+
+start <span class="op">=</span> timeit.default_timer()
+
+list1 <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(size)]
+list2 <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(size)]
+list3 <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(size)]
+
+start <span class="op">=</span> timeit.default_timer()
+
+<span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(size):
+    list3[i] <span class="op">=</span> list1[i] <span class="op">+</span> list2[i]
+
+t1 <span class="op">=</span> <span class="bu">float</span>(timeit.default_timer()<span class="op">-</span>start)
+<span class="bu">print</span> <span class="st">&quot;Czas :&quot;</span>, <span class="bu">str</span>(t3)
+
+
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+list1 <span class="op">=</span> np.array(<span class="bu">range</span>(size))
+list2 <span class="op">=</span> np.array(<span class="bu">range</span>(size))
+list3 <span class="op">=</span> np.zeros_like(list2)
+
+start <span class="op">=</span> timeit.default_timer()
+
+<span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(size):
+    list3[i] <span class="op">=</span> list1[i] <span class="op">+</span> list2[i]
+
+t2 <span class="op">=</span> <span class="bu">float</span>(timeit.default_timer()<span class="op">-</span>start)
+<span class="bu">print</span> <span class="st">&quot;Czas :&quot;</span>, <span class="bu">str</span>(t3)
+
+
+start <span class="op">=</span> timeit.default_timer()
+
+list3 <span class="op">=</span> list1 <span class="op">+</span> list2
+
+t3 <span class="op">=</span> <span class="bu">float</span>(timeit.default_timer()<span class="op">-</span>start)
+<span class="bu">print</span> <span class="st">&quot;Czas :&quot;</span>, <span class="bu">str</span>(t3)
+
+<span class="bu">print</span> <span class="st">&quot;t2/t1&quot;</span>, t2<span class="op">/</span>t1
+<span class="bu">print</span> <span class="st">&quot;t1/t3&quot;</span>, t1<span class="op">/</span>t3
+<span class="bu">print</span> <span class="st">&quot;t2/t3&quot;</span>, t2<span class="op">/</span>t3</code></pre></div>
+<p>W pierwszej sytuacji wykonaliśmy sumowanie w pętli elementów znajdujących się listach. W drugim przypadku także wykonaliśmy sumowanie w pętli for, ale tym razem elementów znajdujących się tablicach numpy.array. W ostatnim przypadku wykonaliśmy sumowanie wykorzystując operator + (czyli w praktyce pewną funkcję) który wykonał zoptymalizowaną operację (w rzeczywistości operacja sumowania została oddelegowana do funkcji znajdującej się w skompilowanym binarnym kodzie). W wyniku działania powyższego skryptu otrzymaliśmy następujący wynik:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">Czas : <span class="fl">0.142781019211</span>
+Czas : <span class="fl">0.458594083786</span>
+Czas : <span class="fl">0.00325489044189</span>
+t2<span class="op">/</span>t1 <span class="fl">3.21187008134</span>
+t1<span class="op">/</span>t3 <span class="fl">43.8666129505</span>
+t2<span class="op">/</span>t3 <span class="fl">140.893861705</span></code></pre></div>
+<p>Jak widać najgorzej spisała się implementacja, która w pętli wykonywała sumowanie z tablicy numpy.array. Sumowanie elementów z listy było 3 razy szybsze niż z tablicy. Wynika to z tego, że dostęp do elementów tablice jest wolniejszy, ponieważ każdy element tablicy jest kopiowany z natywnego kodu do obiektu Pythona. Zwróćmy teraz uwagę na ostatni przypadek. Operacja sumowania “całych” tablic na raz jest wykonana ponad 40 razy szybciej niż iterowanie po elementach listy i aż 140 razy szybciej niż iterowanie po elementach tablicy. Wynika z tego następujący wniosek - <strong>jeśli korzystasz z tablic typu numpy.array unikaj za wszelką cenę pętli!</strong>. Bardzo dużo operacji można wykonać za pomocą różnych funkcji z pakiety NumPy oraz za pomocą wycinków tablic, podobnych do wycinków list.</p>
+</div>
+<div id="tworzenie-i-dostep-do-elementow-tablicy-wielowymiarowej" class="section level3">
+<h3>Tworzenie i dostęp do elementów tablicy wielowymiarowej</h3>
+<p>Klasa array z biblioteka NumPy domyślnie wspiera tworzenie tablic wielowymiarowych. Tablicę taką można utworzyć podobnie jak w przypadku jednowymiarowej tablicy:</p>
+<ul>
+<li>Za pomocą konstruktora: ```python import numpy as np</li>
+</ul>
+<p>tab2D = np.array( [[1,2,3],[3,2,1], [2,3,1]]) print tab2D # &gt;&gt; [[1 2 3] # [3 2 1] # [2 3 1]]</p>
+<p>tab2D = np.array( [ [i*j for i in range(3)] for j in range(3)] ) print tab2D # &gt;&gt; [[0 0 0] # [0 1 2] # [0 2 4]] ```</p>
+<ul>
+<li>Za pomocą funkcji zeros, ones, zeros_like, ones_like: ```python import numpy as np</li>
+</ul>
+<p>tab2D = np.zeros( (3, 3) ) print tab2D # &gt;&gt; [[0 0 0] # [0 0 0] # [0 0 0]]</p>
+<p>tab2D = np.ones_like( tab2D ) print tab2D # &gt;&gt; [[1 1 1] # [1 1 1] # [1 1 1]] ``` Jak widać w powyższym przykładzie tablice wielowymiarowe tworzymy przekazując jako rozmiar obiekt <strong><em>tuple</em></strong> (liczby znajdujące się w nawiasach ()) który jako elementy przyjmuje rozmiar tablicy w kolejnych wymiarach. Oczywiście, podobnie jak w przypadku tablicy jednowymiarowej możemy wybrać typ elementów za pomocą nazwanego argumentu <strong><em>dtype</em></strong>.</p>
+<p>W przypadku tablic wielowymiarowych można dostać się do jej elementów dokładnie tak samo jak w przypadku list:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+tab2D <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>))
+<span class="bu">print</span> <span class="st">&quot;Element z drugiego wiersza i drugiej kolumny to&quot;</span>, tab2D[<span class="dv">1</span>][<span class="dv">1</span>]</code></pre></div>
+<p>Jednak dostęp do elementów w powyższy sposób może być wolniejszy, ponieważ tablica taka najpierw musi zwrócić cały wiersz, a następnie dopiero odpowiednią kolumnę. Wielowymiarowe tablice NumPy domyślnie wspierają odwoływanie się do konkretnego elementy poprzez podanie wiersza i kolumny w obrębie jednego nawiasu []:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+tab2D <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>))
+<span class="bu">print</span> <span class="st">&quot;Element z drugiego wiersza i drugiej kolumny to&quot;</span>, tab2D[<span class="dv">1</span>,<span class="dv">1</span>]</code></pre></div>
+</div>
+<div id="spradzanie-rozmiru-tablic" class="section level3">
+<h3>Spradzanie rozmiru tablic</h3>
+<p>Gdy posiadaliśmy obiekt typu <strong><em>list</em></strong> to liczbę elementów można było sprawdzić za pomocą funkcji <strong><em>len</em></strong>. Ta funkcja także zadziała w przypadku tablic:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+
+tab <span class="op">=</span> np.zeros(<span class="dv">10</span>)
+
+<span class="bu">print</span> <span class="bu">len</span>(tab) <span class="co"># &gt;&gt; 10</span></code></pre></div>
+<p>A w przypadku tablic wielowymiarowych funkcja ta zwróci tylko rozmiar pierwszego wymiaru (np. liczbę wierszy w tablicy dwuwymiarowej). Dlatego aby sprawdzić wymiar korzystamy ze zmiennej “shape” przypisanej do obiektu tablicy, która sama w sobie jest typu <strong><em>tuple</em></strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+tab2D <span class="op">=</span> np.ones((<span class="dv">10</span>,<span class="dv">5</span>), dtype<span class="op">=</span><span class="bu">int</span>)
+
+<span class="bu">print</span> tab2D.shape <span class="co"># &gt;&gt; (10, 5)</span>
+<span class="bu">print</span> <span class="st">&quot;Pierwszy wymiar&quot;</span>, tab2D.shape[<span class="dv">0</span>] <span class="co"># &gt;&gt; Pierwszy wymiar 10</span>
+<span class="bu">print</span> <span class="st">&quot;Drugi wymiar&quot;</span>, tab2D.shape[<span class="dv">0</span>] <span class="co"># &gt;&gt; Drugi wymiar 5</span></code></pre></div>
+</div>
+<div id="wycinki-tablic-i-uzupenianie-wartosci-tablicy" class="section level3">
+<h3>Wycinki tablic i uzupełnianie wartości tablicy</h3>
+<p>Podczas poprzednich zajęć pokazaliśmy jak można wygodnie pracować na części listy. Podobne, a nawet dalej idące, narzędzie wspierają tablice. Tworzenie wycinków w tablicach jednowymiarowych jest dokładnie takie same jak w przypadku list. Tablice pozwalają jednak na przypisanie tej samej wartości do wszystkich elementów z wycinka:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+tab <span class="op">=</span> np.zeros(<span class="dv">5</span>)
+tab[:<span class="dv">3</span>] <span class="op">=</span> <span class="dv">2</span>
+<span class="bu">print</span> tab <span class="co"># &gt;&gt; [ 2.  2.  2.  0.  0.]</span></code></pre></div>
+<p>W przypadku list nie mogliśmy tak zrobić, można było tylko przypisać do inną listę o tym samym wymiarze.</p>
+<p>Podobnie sprawa ma się w przypadku tablic wielowymiarowych:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">tab2D <span class="op">=</span> np.zeros((<span class="dv">4</span>,<span class="dv">4</span>))
+tab2D[:<span class="dv">2</span>,:<span class="dv">2</span>] <span class="op">=</span> <span class="dv">2</span>
+<span class="bu">print</span> tab2D <span class="co">#&gt;&gt; [[ 2.  2.  0.  0.]</span>
+                        <span class="co">#        [ 2.  2.  0.  0.]</span>
+                        <span class="co">#        [ 0.  0.  0.  0.]</span>
+                        <span class="co">#            [ 0.  0.  0.  0.]]</span></code></pre></div>
 </div>
 <div id="wycinki-tablic-za-pomoca-indeksow-i-masek" class="section level3">
 <h3>Wycinki tablic za pomocą indeksów i masek</h3>
+<p>Tablice NumPy pozwalają także na inny sposób tworzenia wycinków tablic: 1. Za pomocą listy indeksów. 2. Za pomocą maski - tablica o tej samej długości co źródłowa i złożona ze zmiennych typu boolean - wartość True oznacza wybór elementy a False pominięcie</p>
+<p>Sprawdź działanie poniższego kodu:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+
+tab <span class="op">=</span> np.zeros(<span class="dv">10</span>)
+tab[[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">9</span>]] <span class="op">=</span> <span class="dv">2</span>
+<span class="bu">print</span> tab
+
+mask <span class="op">=</span> tab <span class="op">==</span> <span class="dv">0</span>
+<span class="bu">print</span> mask
+
+tab[ mask ] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>
+<span class="bu">print</span> tab
+
+<span class="im">from</span> random <span class="im">import</span> randint
+tab <span class="op">=</span> np.array( [ randint(<span class="dv">0</span>,<span class="dv">9</span>) <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10</span>)])
+
+<span class="bu">print</span> <span class="st">&quot;Liczby losowe wieksze od 5:&quot;</span>
+<span class="cf">for</span> e <span class="op">in</span> tab[tab <span class="op">&gt;</span> <span class="dv">5</span>]:
+    <span class="bu">print</span> e</code></pre></div>
 </div>
 <div id="operacje-matematyczne-na-caych-tablicach" class="section level3">
 <h3>Operacje matematyczne na całych tablicach</h3>
+<p>Obiekty klasy <strong><em>numpy.array</em></strong> wspierają większość znanych funkcji takich jak <strong><em>sin, cos, exp, abs, …</em></strong> oraz operatory ** +, -, /, *, <strong> </strong>. Pełną lista funkcji matematycznych zobacz <a href="http://docs.scipy.org/doc/numpy/reference/routines.math.html" title="Funkcje matematyczne NumPy">tutaj</a>. Aby skorzystać z tych funkcji trzeba odwoływać się do nich poprzez nazwę pakietu.</p>
+<p>Inna bardzo przydatna funkcja należąca do pakietu NumPy to <strong><em>linspace(start, stop, step)</em></strong> która generuje tablicę o liczbach równomiernie rozłożonych w zadanym zakresie:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
+xy <span class="op">=</span> np.zeros((<span class="dv">10</span>,<span class="dv">2</span>))
+xy[:, <span class="dv">0</span>] <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>)
+<span class="bu">print</span> xy[:,<span class="dv">0</span>] <span class="co">#&gt;&gt;[-1.         -0.77777778 -0.55555556 -0.33333333 -0.11111111  0.11111111 0.33333333 0.55555556  0.77777778  1. ]</span>
+
+xy[:, <span class="dv">1</span>] <span class="op">=</span> np.exp( xy[:, <span class="dv">0</span>] )
+<span class="bu">print</span> xy</code></pre></div>
 </div>
-</div>
-<div id="argumenty-przekazywane-z-linii-komend" class="section level2">
-<h2>Argumenty przekazywane z linii komend</h2>
 </div>
 <div id="operacje-na-plikach" class="section level2">
 <h2>Operacje na plikach</h2>
+<p>Podstawy wczytywania i zapisywania danych do plików w Pythonie niczym szczególnym nie różni się od pracy w innych językach. Aby otworzyć strumień danych z pliku wystarczy utworzyć obiekt typu <strong><em>file</em></strong> za pomocą funkcji <strong><em>open(filename, mode)</em></strong>, gdzie parametr <strong><em>mode</em></strong> określa cel otwarcia pliku:</p>
+<ul>
+<li>“r” - wczytywanie danych z pliku, strumień ustawiony jest na początku pliku.</li>
+<li>“r+” - wczytywanie i zapisywanie do pliku, strumień ustawiony na początku pliku.</li>
+<li>“a” - zapisywanie danych do pliku, strumień jest ustawiony na końcu pliku.</li>
+<li>“a+” - zapisywanie danych do pliku, strumień jest ustawiony na końcu pliku.</li>
+<li>“w” - zapisywanie danych do pliku, jeśli plik nie jest pusty zostanie wyczyszczony.</li>
+<li>“w+” - wczytywanie i zapisywanie danych do pliku, jeśli plik nie jest pusty zostanie wyczyszczony.</li>
+</ul>
+<p>Po zakończeniu pracy z plikiem należy pamiętać o zamknięciu strumienia do pliku, co można sprawdzić dzięki zmiennej <strong><em>closed</em></strong> należącej do obiektu plik:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plik <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)
+<span class="cf">if</span> <span class="op">not</span> plik.closed:
+    <span class="bu">print</span> <span class="st">&quot;closing file ...&quot;</span>
+    plik.close()</code></pre></div>
+<p>Czasami można zapomnieć zamknąć strumień, bądź pojawi się wyjątek (który automatycznie przerwie wykonywanie kodu) w trakcie pracy nad plikiem. Taka sytuacja może spowodować niepoprawną pracę kodu. W związku z tym istniej potrzeba takiej konstrukcji, w której kod, niezależnie od tego co się stanie w pewnej jego części, wykona “sprzątającą” operację. W wielu językach taka konstrukcja nazywa się <strong><em>try/finally</em></strong> która zapewnia, że nie zależnie od tego co się stanie po słowie <strong><em>try</em></strong> zostanie wykonany kod <strong><em>finally</em></strong>. W przypadku pracy z plikami miałoby to postać:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plik <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)
+<span class="cf">try</span>:    
+    .... operacje na pliku .....
+<span class="cf">finally</span>:
+    plik.close()</code></pre></div>
+<p>W Pythonie taka konstrukcja także istnieje, ale posiada on także jeszcze jedną, która potrafi automatycznie wykonać sprzątanie i jest bardzo przyjazna dla oka :). Zapewnia ona, że zasoby wykorzystywane przez kod zostaną zwolnione i wyczyszczone. Ta nowa konstrukcja ma następującą postać:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> wyrazenie[<span class="im">as</span> zmienna]:
+    ... blok kodu operujacego na obiekcie zmienna ...</code></pre></div>
+<p>W przypadku pracy z plikami jako “wyrazenie” wystarczy użyć funkcję <strong><em>open</em></strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>,<span class="st">&quot;r&quot;</span>) <span class="im">as</span> plik:
+    ... kod pracujacy na zmiennej plik ....</code></pre></div>
+<p>Na koniec przyjrzyjmy się kilku metodom jakie należą do obiektów typu <strong><em>file</em></strong>, które pozwolą na praktyczne wczytywanie danych:</p>
+<ul>
+<li>read() - wczytuje na raz cały plik, można przekazać parametr “size” który ograniczy ilość bitów do jego wartości.</li>
+<li>readline() - wczytuje kolejną linię z pliku.</li>
+<li>readlines() - wczytuje wszystkie linie z pliku i zwraca listę.</li>
+<li>write(str) - zapisuje przekazany ciąg znaków do pliku</li>
+<li>writelines(sekwencja_stringow) - zapisuje kolejne linie z przekazanej sekwencji stringów (np. listy)</li>
+</ul>
+<p>Oprócz tych funkcji należy pamiętać, że obiekt <strong><em>file</em></strong> sam w sobie jest sekwencją stringów, dzięki czemu pozwala on iterować w pętli for po kolejnych liniach:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>,<span class="st">&quot;r&quot;</span>) <span class="im">as</span> plik:
+    <span class="cf">for</span> linia <span class="op">in</span> plik:
+            <span class="bu">print</span> <span class="st">&quot;Wczytalem linie tekstu = &quot;</span>, linia</code></pre></div>
+<p>Z kolei jeśli chcemy zapisać dane, wygodnie jest skorzystać z metody <strong><em>write</em></strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">zdanie<span class="op">=</span><span class="st">&quot;Jaki ten python jest latwy i czytelny&quot;</span>
+<span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> plik:
+    <span class="cf">for</span> slowo <span class="op">in</span> zdanie.split():
+        plik.write(slowo <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<p>lub jeszcze w jednej linii kodu:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">zdanie<span class="op">=</span><span class="st">&quot;Jaki ten python jest latwy i czytelny&quot;</span>
+<span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> plik: plik.writelines([s<span class="op">+</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="cf">for</span> s <span class="op">in</span> zdanie.split()])</code></pre></div>
 </div>
 <div id="podstawowe-narzedzie-obsugi-systemu" class="section level2">
 <h2>Podstawowe narzędzie obsługi systemu</h2>
+<p>Python jako język skryptowy bardzo dobrze nadaje się do obsługi zadań związanych z zarządzaniem plikami/katalogami bądź wywoływania różnych procesów. Duży zbiór takich narzędzi znajduje się pakiecie o nazwie <strong><em>os</em></strong>, z którego opiszemy poniżej kilka najbardziej przydatnych funkcji. Zbiór wszystkich funkcji można znaleźć <a href="https://docs.python.org/2/library/os.html#module-os" title="moduł os">tutaj</a>.</p>
+<div id="sciezki-do-plikow" class="section level3">
+<h3>Ścieżki do plików</h3>
+<p>Czasami pojawia się potrzeba przetwarzania ścieżek do plików bądź wyciąganie z niej odpowiednich informacji. W tym celu korzystamy z pod-modułu path w którym znajdują się przydatne funkcje:</p>
+<ul>
+<li><strong><em>abspath(path)</em></strong> zwraca pełną ścieżkę</li>
+<li><strong><em>basename(path)</em></strong> zwraca nazwę pliku lub najwyższego folderu w podanej ścieżce</li>
+<li><strong><em>dirname(path)</em></strong> zwraca ścieżkę do folderu w którym znajduje się plik/folder wskazywany przez “path”</li>
+<li><strong><em>gettatime/gettmtime</em></strong> - zwracają czas ostatniego dostępu/modyfikacji pliku</li>
+<li><strong><em>splitext(path)</em></strong> - funkcja dzieli podaną ścieżkę na parę (“ścieżka z tylko nazwa pliku”, “rozszerzenie pliku z kropką”)</li>
+<li><strong><em>exists(path)</em></strong> - zwraca False gdy nie istnieje dana ścieżka bądź wskazuje na zepsuty link</li>
+<li><strong><em>isabs(path)</em></strong> - sprawdza czy ścieżka jest ścieżką absolutną</li>
+<li><strong><em>isfile(path)</em></strong> - sprawdza czy ścieżka wskazuje na plik (podąża za linkami)</li>
+<li><strong><em>isdir(path)</em></strong> - sprawdza czy ścieżka wskazuje na folder</li>
+<li><strong><em>islink(path)</em></strong> - sprawdza czy ścieżka wskazuje na link</li>
+<li><strong><em>join(path, </em>paths)</strong>* - łączy ścieżki używając systemowego</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> os <span class="im">import</span> path
+
+sciezka <span class="op">=</span> <span class="st">&quot;/home/wgryglas/tmp/python/some/module.py&quot;</span>
+
+<span class="co">#nazwa pliku:</span>
+<span class="bu">print</span> path.basename(sciezka) <span class="co"># &gt;&gt; module.py</span>
+
+<span class="co">#sciezka do folderu zawierajacego plik:</span>
+<span class="bu">print</span> path.dirname(sciezka) <span class="co">#&gt;&gt; /home/wgryglas/tmp/python/some</span>
+
+<span class="co"># Czy sciezka istnieje, i czy jest plikiem</span>
+<span class="cf">if</span> path.exists(sciezka):
+    <span class="bu">print</span> <span class="st">&quot;Is &quot;</span><span class="op">+</span>sciezka<span class="op">+</span><span class="st">&quot; file?&quot;</span> <span class="op">+</span> <span class="bu">str</span>( path.isfile(sciezka) )
+
+home <span class="op">=</span> <span class="st">&quot;/home/wgryglas&quot;</span>
+folder <span class="op">=</span> <span class="st">&quot;tmp/python/some&quot;</span>
+plik <span class="op">=</span> <span class="st">&quot;module.py&quot;</span>
+<span class="bu">print</span> <span class="st">&quot;Full path:&quot;</span> <span class="op">+</span> path.join(home, folder, plik)</code></pre></div>
+<p>Należy tutaj zwrócić uwagę, że funkcja <strong><em>os.path.join</em></strong> łączy ścieżki wykorzystując separator odpowiedni dla danego systemu operacyjnego. Sam separator wykorzystywany przez tą funkcję można także wykorzystać jawnie ponieważ znak ten jest przechowywany w zmiennej globalnej w module <strong><em>os</em></strong> o nazwie <strong><em>sep</em></strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
+
+<span class="bu">print</span> os.sep
+
+<span class="bu">print</span> <span class="st">&quot;folder&quot;</span> <span class="op">+</span> os.sep <span class="op">+</span> <span class="st">&quot;plik&quot;</span> </code></pre></div>
+<p>Aby kod działał poprawnie na wszystkich systemach należy wystrzegać się jawnego używania znaku “&quot; lub”/&quot; a należy korzystać ze zmiennej <strong><em>os.sep</em></strong> lub funkcji <strong><em>os.path.join</em></strong>.</p>
+</div>
+<div id="listowanie-katalogow" class="section level3">
+<h3>Listowanie katalogów</h3>
+<p>Do przejrzenia plików w danym folderze służy funkcja <strong><em>listdir</em></strong> z pakietu <strong><em>os</em></strong>. Funkcja ta zwraca listę stringów będących nazwami plików i folderów:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
+
+currentDir <span class="op">=</span> <span class="st">&quot;.&quot;</span>
+
+<span class="cf">for</span> entry <span class="op">in</span> os.listdir(currentDir):
+    <span class="cf">if</span> os.path.isdir(entry):
+        <span class="bu">print</span> entry <span class="op">+</span> <span class="st">&quot; is directory&quot;</span>
+    <span class="cf">elif</span> os.path.isfile(entry):
+        <span class="bu">print</span> entry <span class="op">+</span> <span class="st">&quot;is file&quot;</span></code></pre></div>
+<p>Czasami jednak istnieje potrzeba listowania plików o specyficznej nazwie określonej za pomocą jakiegoś wzorca. W bashu do tego celu najczęściej korzysta się ze znaku “<em>“, np.”</em>.txt” oznacza dowolny plik kończący się rozszerzeniem .txt. Podobnie można listować pliki w Pythonie, ale do tego celu należy skorzystać z funkcji <strong><em>globe1</em></strong> pakietu <strong><em>globe</em></strong>:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> glob <span class="im">import</span> glob1
+
+<span class="cf">for</span> txtFile <span class="op">in</span> glob1(<span class="st">&quot;/home/wgryglas/Desktop&quot;</span>, <span class="st">&quot;*.txt&quot;</span>):
+    <span class="bu">print</span> <span class="st">&quot;Plik text: &quot;</span><span class="op">+</span>txtFile</code></pre></div>
+</div>
+<div id="manipulacje-folderami-i-plikami-za-pomoca-moduu-os" class="section level3">
+<h3>Manipulacje folderami i plikami za pomocą modułu “os”</h3>
+<p>Pakiet <strong><em>os</em></strong> pozwala także na dokonywanie tworzenie jednego folderu - <strong><em>os.mkdir(path, [mode])</em></strong> gdzie opcjonalny parametr <strong><em>mode</em></strong> określa prawa dostępu (domyślna wartość to 0777).</p>
+<p>Z kolei jeśli chcemy utworzyć całą ścieżkę folderów, końcowy i jego właścicieli, to należy skorzystać z funkcji <strong><em>os.makedirs(path, [mode])</em></strong></p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> os
+<span class="im">from</span> glob <span class="im">import</span> glob1
+
+base <span class="op">=</span> <span class="st">&quot;/home/wgryglas/Dekstop&quot;</span>
+
+os.mkdir( os.path.join(base,<span class="st">&quot;test_dir&quot;</span>) )
+
+<span class="co">#print test_* directories</span>
+<span class="bu">print</span> [ d <span class="cf">for</span> d <span class="op">in</span> glob1(base, <span class="st">&quot;test_*&quot;</span>) <span class="cf">if</span> os.path.isdir(base<span class="op">+</span>os.sep<span class="op">+</span>d)] <span class="co"># &gt;&gt; [&#39;test_dir&#39;]</span>
+
+<span class="co"># create sequence of directories</span>
+os.makedirs( os.path.join(base, <span class="st">&quot;test2_dir&quot;</span>,<span class="st">&quot;internal_dir&quot;</span>) )</code></pre></div>
+<p>Czasami potrzebujemy informację o aktualnym katalogu w którym się znajdujemy. Do tego służy funkcja <strong><em>getcwd()</em></strong> która zwraca pełną ścieżkę do folderu roboczego, względem którego możemy odwoływać się do innych plików.</p>
+<p>Oprócz funkcji tworzących foldery możemy korzystać także z funkcji usuwających je: - <strong><em>os.rmdir</em></strong> - usuwa pojedynczy folder, ale tylko gdy jest pusty. - <strong><em>os.removdirs</em></strong> - usuwa całą ścieżkę folderów, ale tylko do miejsca gdzie foldery są puste</p>
+<p>Ponadto w pakiecie <strong><em>os</em></strong> znajduje się funkcja <strong><em>remove(path)</em></strong> która usuwa pojedynczy plik. Jeśli ścieżka wskazuje na folder, to pojawi się błąd.</p>
+<p>Ostatnia przydatna funkcja to <strong><em>rename(src, dst)</em></strong>. Jak nazwa wskazuje służy ona do zmiany nazwy pliku/folderu. Jedna w praktyce to nie zmiana nazwy tylko przeniesienie pliku/folderu ze ścieżki <strong><em>src</em></strong> do ścieżki <strong><em>dst</em></strong>.</p>
+</div>
+<div id="operacje-na-plikach-za-pomoca-pakietu-shutil" class="section level3">
+<h3>Operacje na plikach za pomocą pakietu “shutil”</h3>
+<p>Do manipulacji plikami służy służy moduł o nazwie <strong><em>shutil</em></strong>. Pozwala ona na: - kopiowanie pojedynczych plików za pomocą <strong><em>shutli.copy(src, dst)</em></strong>, gdzie <strong><em>src</em></strong> określa plik źródłowy a <strong><em>dst</em></strong> ścieżkę do kopii. Jeśli <strong><em>dst</em></strong> jest folderem to plik <strong>src</strong> zostanie skopiowany z tą samą nazwą do folderu <strong><em>dst</em></strong>. - kopiowanie całych folderów wraz z zawartością. Do tego służy funkcja <strong><em>shutil.copytree(src,dst)</em></strong>. W przypadku tej funkcji folder <strong><em>dst</em></strong> nie może wcześniej istnieć. - usuwanie folderów wraz całą zawartością za pomocą <strong><em>shutil.rmtree(path)</em></strong>.</p>
+<p>Więcej funkcji z tego pakietu możesz znaleźć <a href="https://docs.python.org/2/library/shutil.html?highlight=shutil#module-shutil" title="Moduł shutil">tutaj</a></p>
+</div>
 </div>
 <div id="rysowanie-wykresow---podstawy-biblioteki-matplotlib" class="section level2">
-<h2>Rysowanie wykresów - podstawy biblioteki matplotlib</h2>
+<h2>Rysowanie wykresów - podstawy biblioteki Matplotlib</h2>
+<p>Na koniec tych zajęć przedstawimy drugą po <strong><em>NumPy</em></strong> bardzo przydaną bibliotekę - <strong><em>Matplotlib</em></strong>. Jest to biblioteka służąca z założenia do wyświetlania wykresów. Oprócz samych wykresów pozwala na wyświetlanie i prostą obróbkę wykresów. Biblioteka ta jest tak zaprojektowana, żeby przypominała korzystanie z funkcji MATLABa, dzięki czemu jest dość prosta do nauczenia się. Ponadto jest ona rozszerzeniem pakietu NumPy, dzięki czemu domyślnie operuje na tablicach, ale wspiera także dane w postaci list. W tym punkcie pokażemy jak wykonać prosty wykres, animację i wyświetlić obrazek.</p>
+<div id="najprostsze-wykresy" class="section level3">
+<h3>Najprostsze wykresy</h3>
+<p>Aby utworzyć wykres należy na początek utworzyć okno za pomocą funkcji <strong><em>figure</em></strong> w którym będzie umieszczony nasz wykres. Aby następnie wyświetlić krzywą korzystamy z funkcji <strong><em>plot</em></strong> która umieści daną krzywą w domyślnych osiach. Każde następne wywołanie tej funkcji będzie dorysowywać kolejne krzywe w tym samym oknie. Wywołanie funkcji plot nie wyświetli automatycznie okna. Aby to zrobić należy na koniec wywołać funkcję <strong><em>show</em></strong>. Wszystkie te funkcje znajdują się w pod-module <strong><em>pyplot</em></strong> z pakietu <strong><em>matplotlib</em></strong>.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+y <span class="op">=</span> np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y)
+plt.plot(x, np.cos(x))
+
+plt.show()</code></pre></div>
+<p>Domyślnie program będzie nadawał różne kolory do każdej kolejnej linii. Można jednak wybrać kolor i format linii za pomocą skrótowego formatu, np.:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+y <span class="op">=</span> np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y, <span class="st">&quot;b.&quot;</span>)
+plt.plot(x, np.cos(x), <span class="st">&quot;b-&quot;</span>)
+
+plt.show()</code></pre></div>
+<p>Format “b.” oznacza skorzystanie z niebieskiej linii z markerami w postaci kropek. Z kolei “b-” oznacza niebieską linię. Podobny efekt uzyskamy za pomocą nazywanych argumentów:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+y <span class="op">=</span> np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>)
+plt.plot(x, np.cos(x), color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)
+
+plt.show()</code></pre></div>
+<p>Oczywiście taki wykres można następnie lepiej dostosować poprzez pokazanie siatki, tytułu i nazw osi:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+y <span class="op">=</span> np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>)
+plt.plot(x, np.cos(x), color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)
+
+plt.grid(<span class="va">True</span>)
+plt.xlable(<span class="st">&quot;x&quot;</span>)
+plt.ylabel(<span class="st">&quot;y&quot;</span>)
+plt.title(<span class="st">&quot;sin(x) i cos(x)&quot;</span>)
+
+plt.show()</code></pre></div>
 </div>
-<div id="wykorzystywanie-i-tworzenie-bibliotek" class="section level2">
-<h2>Wykorzystywanie i tworzenie bibliotek</h2>
+<div id="kilka-wykresow-w-jednym-oknie" class="section level3">
+<h3>Kilka wykresów w jednym oknie</h3>
+<p>Funkcja plt.plot, plt.xlabel … dokonuje rysowania na aktywnych osiach. Gdy posiadamy okno z jednym wykresem jest to oczywiste na której z osi go tworzymy, jednak w przypadku dwóch musimy się w jakiś sposób do wybranej osi odwoływać. Do tworzenia kilku wykresów w jednym oknie służy funkcja <strong><em>subplots</em></strong> która jako argument przyjmuje liczby osi w danym kierunku, np.: <code>plt.subplots(2,2)</code> wygeneruje okno z 4 układami współrzędnych. Funkcja ta zwraca oprócz obiektu “figure” także tablicę NumPy składającą się obiektów “axes”:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+
+fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>)
+<span class="bu">print</span> axes.shape <span class="co">#&gt;&gt; (2, )</span>
+
+fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)
+<span class="bu">print</span> axes.shape <span class="co">#&gt;&gt; (2, 2)</span></code></pre></div>
+<p>Jak widać powyżej zmienna “axes” jest tablicą 1 albo dwu wymiarową w której kolejne indeksy odnoszą się do odpowiednich osi. Aby dokonać wykresu w wybranej osi należy skorzystać z nie z <code>plt.plot(..)</code> a np. <code>axes[0,0].plot(...)</code>. Ponadto w przypadku niewielkiej liczby wykresów może być przydatnej rozwinięcie tablicy do zmiennych:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+y <span class="op">=</span> np.sin(x)
+
+fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>)
+
+ax1.plot(x, y, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>)
+ax2.plot(x, np.cos(x), color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)
+
+ax1.grid(<span class="va">True</span>)
+ax1.set_xlabel(<span class="st">&quot;x&quot;</span>)
+ax1.set_ylabel(<span class="st">&quot;y&quot;</span>)
+ax1.set_title(<span class="st">&quot;sin(x)&quot;</span>)
+ax2.set_title(<span class="st">&quot;cos(x)&quot;</span>)
+
+plt.show()</code></pre></div>
+<p>Należy tutaj zwrócić uwagę, że metody obiektów klasy <strong><em>AxesSubplot</em></strong> korzystają z nazw z przedrostkiem “set_” w odróżnieniu do tych podstawowych z pakiety <strong><em>matplotlib.pyplot</em></strong>.</p>
 </div>
-<div id="zadanie-1" class="section level1">
-<h1>Zadanie 1</h1>
-<p>W folderze <strong><em>resources/lab1/files</em></strong> zlokalizowanym się w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: <em>location: [nazwa folderu]</em>, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku.</p>
+<div id="tworzenie-animacji" class="section level3">
+<h3>Tworzenie animacji</h3>
+<p>Dzięki bibliotece matoplotlib animacje są bardzo proste do zrobienia. Należy tylko umieć aktualizować dane w wybranych liniach na wykresie. Do tego cele należy posługiwać się pewnym uchwytem który pozwala na manipulację wybraną linią z wykresu. Uchwyt taki zawsze otrzymujemy jako zwrot z funkcji <strong><em>matplotlib.pyplot.plot</em></strong>, tylko do tej pory nie przypisywaliśmy go do zmiennej. Teraz to uczynimy:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+
+fig <span class="op">=</span> plt.figure()
+
+line,  <span class="op">=</span> plt.plot(x, np.zeros_like(x))</code></pre></div>
+<p>Funkcja <strong><em>plot</em></strong> zwraca więcej niż jeden argument, dlatego musimy do zmiennych przypisać wszystkie. Jednak my potrzebujemy tylko pierwszy obiekt, dlatego tuż za <strong><em>line</em></strong> postawiliśmy przecinek a za nim nic. Oznacza to, że pierwszy argument zostanie przypisany do zmiennej <strong><em>line</em></strong> a reszta nie ma dla nas znaczenia.</p>
+<p>Obiekt <strong><em>line</em></strong> jest typu <strong><em>matplotlib.lines.Line2D</em></strong> (sprawdź pisząc <code>type(line)</code>). Klasa ta posiada metodę nazywającą się <strong><em>set_ydata</em></strong>, która przypisuje nowe wartości do wykresu. Z tej właśnie funkcji będziemy korzystali w trakcie animacji podczas zmiany kolejnych klatek.</p>
+<p>Do utworzenia animacji skorzystamy z funkcji <strong><em>FuncAnimation</em></strong> z modułu <strong><em>matplotlib.animation</em></strong>. Funkcja ta jako argument musi przyjąć inną funkcję która będzie służyła do aktualizacji danych w kolejnych klatkach. A zatem:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation
+<span class="im">import</span> numpy <span class="im">as</span> np
+
+x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)
+
+fig <span class="op">=</span> plt.figure()
+
+line,  <span class="op">=</span> plt.plot(x, np.zeros_like(x))
+
+plt.xlim([<span class="dv">0</span>, np.pi])
+plt.ylim([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])
+
+<span class="kw">def</span> update_plot(frame):
+    a  <span class="op">=</span> <span class="bu">float</span>(frame)<span class="op">/</span><span class="dv">100</span>
+    line.set_ydata(np.sin(a<span class="op">*</span>x))
+
+anim <span class="op">=</span> FuncAnimation(fig, update_plot, frames<span class="op">=</span><span class="dv">300</span>, interval<span class="op">=</span><span class="dv">1</span>, repeat<span class="op">=</span><span class="va">False</span>)
+
+plt.show()</code></pre></div>
+<div class="figure">
+<img src="figures/python_inst03/anim_example.gif" title="Przykład animacji za pomocą FuncAnimation" alt="Przykład animacji" />
+<p class="caption">Przykład animacji</p>
+</div>
+</div>
+</div>
+</div>
+<div id="zadania" class="section level1">
+<h1>Zadania</h1>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>W folderze <strong><em>resources/lab1/files</em></strong> zlokalizowanym w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: <em>location: [nazwa folderu]</em>, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku.</p>
 <div class="figure">
 <img src="figures/python_inst02/1.png" title="Przykład przetworzenia" alt="Pliki w folderach" />
 <p class="caption">Pliki w folderach</p>
 </div>
 <p>Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji.</p>
 </div>
-<div id="zadanie-2" class="section level1">
-<h1>Zadanie 2</h1>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności <span class="math inline">\(k=10\)</span> znajdujących się polu grawitacyjnym o przyśpieszeniu <span class="math inline">\(\vec{g}=[0,-9.81][\frac{m}{s^2}]\)</span>. Oba ciała są wstępnie ustawione w odległości <span class="math inline">\(l = 10\)</span> od siebie i leżą na linii poziomej, a sprężyna w tym momencie jest nienaciągnięta. Prędkość początkowa ciała pierwszego wynosi <span class="math inline">\(u_1=[0,5][\frac{m}{s}]\)</span> a drugiego $ u_2=[-3,3] []$. Masy obu ciał są równe i wynoszą <span class="math inline">\(m=1 [kg]\)</span> lub <span class="math inline">\(m=10 [kg]\)</span> (sprawdź jak zmienią się wyniki w obu przypadkach).</p>
+<p>Wykonaj wykres torów ruchu obu ciał, a następnie utwórz animację, w której przedstawisz ruch ciał w postaci punktów poruszających się po obliczonych torach.</p>
+<p><img src="figures/python_inst03/mass1.gif" title="Masa m=1kg" alt="mass-1kg" /> <img src="figures/python_inst03/mass10.gif" title="Masa m=10kg" alt="mass-10kg" /></p>
+<p>Animację można zapisać do pliku *.gif za pomocą metody “save” z obiektu animation. Aby zapisać do tego formatu należy posiadać zainstalowaną aplikację “imagemagic”:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># ...</span>
+anim <span class="op">=</span> animation.FuncAnimation(....)
+anim.save(<span class="st">&quot;nazwa_pliku.gif&quot;</span>, writer<span class="op">=</span><span class="st">&quot;imagemagic&quot;</span>, fps<span class="op">=</span><span class="dv">30</span>)
+plt.show()</code></pre></div>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
 <p>Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z większego rozmiaru na mniejszy. W tym celu:</p>
 <ol style="list-style-type: decimal">
-<li>Utwórz nowy plik pythona o nazwie matrix.</li>
+<li>Utwórz nowy plik pythona o nazwie zadanie3.py</li>
 <li>Wewnątrz tego pliku przygotuj funkcję “reduce” która jako argumenty będzie przyjmowała obiekt reprezentujący listę/tablicę dwuwymiarową oraz rozmiar wynikowej macierzy (parametr określający rozmiar powinien obsługiwać sytuację gdy przekazano 1 liczbę lub parę)</li>
 <li><p>Uzupełnij ciało funkcji wykorzystując algorytm opisany poniższym rysunkiem <img src="figures/python_inst02/2.png" title="Algorytm skalowania" alt="algorytm" /> Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tablicy większej w zależności od indeksu elementu w tablicy mniejszej. Wartość kolejnych elementów w tablicy mniejszej powinna być obliczona jako średnia z zaznaczonych sąsiadów i referencyjnego elementu z tablicy większej.</p></li>
 <li><p>Zwróć wynikową tablicę/listę dwuwymiarową.</p></li>
 </ol>
 </div>
-<div id="zadanie-3" class="section level1">
-<h1>Zadanie 3</h1>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
 <p>Należy napisać skrypt który będzie wczytywał plik graficzny <strong><em>resources/lab1/meil.png</em></strong>.</p>
 <div class="figure">
-<img src="https://github.com/ccfd/python_course/blob/master/resources/lab1/meil.png?raw=true" title="Obraz do przetworzenia" alt="logo" />
+<img src="https://github.com/ccfd/python_course/blob/master/resources/lab2/meil.png?raw=true" title="Obraz do przetworzenia" alt="logo" />
 <p class="caption">logo</p>
 </div>
 <p>Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20 (wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie obraz wczytany i przeskalowany obok siebie.</p>
@@ -522,8 +1071,8 @@ plt.show()</code></pre></div>
 </ul>
 </div>
 </div>
-<div id="zadanie-4" class="section level1">
-<h1>Zadanie 4</h1>
+<div id="zadanie-4-1" class="section level2">
+<h2>Zadanie 4</h2>
 <p>Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie jasności obrazka w danym punkcie generował obraz w pliku tekstowym za pomocą wybranych znaków. Obraz tekstowy powinien zostać utworzony na bazie przeskalowanego, mniejszego obrazka oraz powinien używać co najmniej 2 różnych znaków do określenia 2 różnych jasności (np. “||” dla czarnego koloru i “–” dla szarego). Poniżej zamieszczono przykładowy rezultat.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">                  <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>                 
             <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>           
@@ -553,6 +1102,7 @@ plt.show()</code></pre></div>
 <p class="caption">SkalaHSV</p>
 </div>
 <p>Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą funkcji <strong><em>rgb_to_hsv</em></strong> znajdującej się w bibliotece <strong><em>matplotlib.colors</em></strong>. Kanał <strong><em>Value</em></strong> dla macierzy HSV jest określony jako trzeci(ostatni).</p>
+</div>
 </div>
 </div>
 
