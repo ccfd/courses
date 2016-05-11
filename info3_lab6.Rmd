@@ -124,7 +124,7 @@ Użyj tej funkcji by policzyć globalne statystyki, a następnie wyświetl je (p
 
 Stwórz nowy program równoległy `program2.cpp`, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy `a` (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:
 
-$\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{b}\sum_j a_j\right)^2$
+$\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{n}\sum_j a_j\right)^2$
 
 tak by był wyrażony za pomocą $S_1$ i nowego $\hat S_2 = \sum_i a_i^2$ który da się policzyć bez znajomości średniej $\mu$. Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`. Porównaj czas wykonania wykonując:
 ```Bash
