@@ -1,7 +1,7 @@
 ---
 number: 4
 course: Python
-material: Wymagania
+material: Instrukcja 4
 author: W. Gryglas
 ---
 
@@ -15,7 +15,13 @@ author: W. Gryglas
 
 ## Tworzenie własnych modułów
 
+### Uruchamianie zewnętrznych procesów
+
 ## Obiekty klasy "dict"
+
+## Funkcje zwracające kilka argumentów
+
+## Domyślne wartości argumentów funkcji
 
 ## Definiowanie funkcji ze zmienną liczbą argumentów
 
@@ -29,5 +35,7 @@ author: W. Gryglas
 contours, etc
 
 ## Konsola "ipython"
+
+## Tworzenie własnych generatorów
 
 # Zadania 

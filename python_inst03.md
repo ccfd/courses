@@ -1,7 +1,7 @@
 ---
 number: 3
 course: Python
-material: Wymagania
+material: Instrukcja 3
 author: W. Gryglas
 ---
 
@@ -84,7 +84,89 @@ def funkcja_prawych_stron():
 Y = odeint(funkcja_prawych_stron, Y0, timeSteps )
 ```
 
+## Generator enumerate i zip w pętli for
+
+Na poprzednich zajęciach pokazaliśmy jak iterować po kolejnych elementach listy, albo po indeksach przy użyciu funkcji ***range***. Bardzo często zdarza się, że zarówno chcemy pobierać element z listy, ale także znać indeks tego elementu. Bazując na poznanych narzędziach mamy 2 opcje:
+
+```python
+aList = [ i**2 for i in range(10)]
+
+index=0
+for elmnt in aList:
+	print ( "Element aList[%d]=%f" % (index, elmnt))
+	index += 1
+```
+
+lub:
+
+```python
+aList = [ i**2 for i in range(10)]
+
+
+for index in range(10):
+	print ( "Element aList[%d]=%f" % (index, aList[index]))
+```
+Takie konstrukcje wymagają dodatkowej operacji, zliczania indeksów albo pobierania elementów z listy. Aby ułatwić pisanie takich pętli w Pythonie posiada wbudowana funkcję o nazwie ***enumerate*** która zwraca generator **par** (index, wartosc_z_sekwencji). Dzięki możliwości rozwijania sekwencji (tutaj wspomnianej pary) do zmiennych możemy powyższe kody uprościć do takiej pętli:
+```python
+aList = [ i**2 for i in range(10)]
+
+for index, elmnt in enumerate(aList):
+	print ( "Element aList[%d]=%f" % (index, elmnt))
+```
+Jak widać w powyższym kodzie zamiast iterować po elementach listy ***aList*** iterujemy po elementach generatora ***enumerate***. Jeśli chcemy iterować tylko po kolejnych indeksach z listy o danej długości należałoby napisać pętlę:
+
+```
+for i in range(len(aList)):
+	print i
+```
+W tej sytuacji także możemy skorzystać z funkcji ***enumerate*** która jest krótszym zapisem niż zagnieżdżone ***len*** w ***range***. Ale w tej sytuacji będziemy dostawali zbędny element który trzeba przypisać do zmiennej. W takich sytuacjach programiści czasami korzystają ze "sztuczki" i przypisują drugi element z pary do zmiennej o nazwie "_":
+
+```
+for i,_ in enumerate(aList):
+	print i
+```
+
+Taki kod wygląda bardziej elegancko, jednak może być wolniejszy w wywołaniu, ponieważ zawsze będą pobierane elementy z listy. 
+
+Oprócz generatora ***enumerate*** bardzo użyteczny jest także generator o nazwie ***zip***. Służy on do iterowania po dwóch listach na raz. Generator ten, podobnie do ***enumerate*** zwraca **pary**, które możemy rozwinąć do zmiennych lub korzystać nich jako para:
+
+```
+aList = [ i**2 for i in range(10)]
+bList = [ (i-1)**2 for i in range(10)]
+
+# with pair
+for p in zip(aList, bList):
+	print p[0], p[1]
+
+# or by 
+for a, b in zip(aList, bList):
+	print a, b
+```
+
 ## Nazwane argumenty funkcji
+
+Podczas używania różnych funkcji często spotykamy się z sytuacją gdy do funkcji przekazujemy argument z pewną nazwą, np.:
+
+```python
+tab = np.zeros(20, dtyp=int)
+```
+
+W powyższym przykładzie jako nazwany argument użyliśmy "dtype". Nazwane argumenty funkcji mogą być przekazywane w dowolnej kolejności, np. oba poniższe wywołania wykonają ten sam kod:
+
+```python
+plot(x,y, linestyle="-", color="red")
+plot(x,y, color="red", linestyle="-")
+```
+
+Za pomocą nazwanych argumentów można wywoływać własne funkcje przekazując je w dowolnej kolejności:
+
+```python
+def funkcja(xarg, yarg):
+	print "xarg="+str(xarg)
+	print "yarg="+str(yarg)
+
+funkcja(yarg=3, xarg=1)
+```
 
 
 
@@ -415,10 +497,285 @@ with open("tmp.txt", "w") as plik: plik.writelines([s+"\n" for s in zdanie.split
 
 ## Podstawowe narzędzie obsługi systemu
 
+Python jako język skryptowy bardzo dobrze nadaje się do obsługi zadań związanych z zarządzaniem plikami/katalogami bądź wywoływania różnych procesów. Duży zbiór takich narzędzi znajduje się pakiecie o nazwie ***os***, z którego opiszemy poniżej kilka najbardziej przydatnych funkcji. Zbiór wszystkich funkcji można znaleźć [tutaj](https://docs.python.org/2/library/os.html#module-os "moduł os").
 
-## Rysowanie wykresów - podstawy biblioteki matplotlib
+### Ścieżki do plików
+
+Czasami pojawia się potrzeba przetwarzania ścieżek do plików bądź wyciąganie z niej odpowiednich informacji. W tym celu korzystamy z pod-modułu path w którym znajdują się przydatne funkcje:
+
+- ***abspath(path)*** zwraca pełną ścieżkę
+- ***basename(path)*** zwraca nazwę pliku lub najwyższego folderu w podanej ścieżce
+- ***dirname(path)*** zwraca ścieżkę do folderu w którym znajduje się plik/folder wskazywany przez "path" 
+- ***gettatime/gettmtime*** - zwracają czas ostatniego dostępu/modyfikacji pliku 
+- ***splitext(path)*** - funkcja dzieli podaną ścieżkę na parę ("ścieżka z tylko nazwa pliku", "rozszerzenie pliku z kropką")
+- ***exists(path)*** - zwraca False gdy nie istnieje dana ścieżka bądź wskazuje na zepsuty link
+- ***isabs(path)*** - sprawdza czy ścieżka jest ścieżką absolutną 
+- ***isfile(path)*** - sprawdza czy ścieżka wskazuje na plik (podąża za linkami)
+- ***isdir(path)*** - sprawdza czy ścieżka wskazuje na folder
+- ***islink(path)*** - sprawdza czy ścieżka wskazuje na link 
+- ***join(path, *paths)*** - łączy ścieżki używając systemowego 
+
+```python
+from os import path
+
+sciezka = "/home/wgryglas/tmp/python/some/module.py"
+
+#nazwa pliku:
+print path.basename(sciezka) # >> module.py
+
+#sciezka do folderu zawierajacego plik:
+print path.dirname(sciezka) #>> /home/wgryglas/tmp/python/some
+
+# Czy sciezka istnieje, i czy jest plikiem
+if path.exists(sciezka):
+	print "Is "+sciezka+" file?" + str( path.isfile(sciezka) )
+
+home = "/home/wgryglas"
+folder = "tmp/python/some"
+plik = "module.py"
+print "Full path:" + path.join(home, folder, plik)
+```
+
+Należy tutaj zwrócić uwagę, że funkcja ***os.path.join*** łączy ścieżki wykorzystując separator odpowiedni dla danego systemu operacyjnego. Sam separator wykorzystywany przez tą funkcję można także wykorzystać jawnie ponieważ znak ten jest przechowywany w zmiennej globalnej w module ***os*** o nazwie ***sep***:
+
+```python
+import os
+
+print os.sep
+
+print "folder" + os.sep + "plik" 
+```
+
+Aby kod działał poprawnie na wszystkich systemach należy wystrzegać się jawnego używania znaku "\" lub "/" a należy  korzystać ze zmiennej ***os.sep*** lub funkcji ***os.path.join***.
 
 
+### Listowanie katalogów
+
+Do przejrzenia plików w danym folderze służy funkcja ***listdir*** z pakietu ***os***. Funkcja ta zwraca listę stringów będących nazwami plików i folderów:
+
+```python
+import os
+
+currentDir = "."
+
+for entry in os.listdir(currentDir):
+	if os.path.isdir(entry):
+		print entry + " is directory"
+	elif os.path.isfile(entry):
+		print entry + "is file"
+```
+
+Czasami jednak istnieje potrzeba listowania plików o specyficznej nazwie określonej za pomocą jakiegoś wzorca. W bashu do tego celu najczęściej korzysta się ze znaku "*", np. "*.txt" oznacza dowolny plik kończący się rozszerzeniem .txt. Podobnie można listować pliki w Pythonie, ale do tego celu należy skorzystać z funkcji ***globe1*** pakietu ***globe***:
+```python
+from glob import glob1
+
+for txtFile in glob1("/home/wgryglas/Desktop", "*.txt"):
+	print "Plik text: "+txtFile
+```
+
+### Manipulacje folderami i plikami za pomocą modułu "os"
+
+Pakiet ***os*** pozwala także na dokonywanie tworzenie jednego folderu - ***os.mkdir(path, [mode])*** gdzie opcjonalny parametr ***mode*** określa prawa dostępu (domyślna wartość to 0777). 
+
+Z kolei jeśli chcemy utworzyć całą ścieżkę folderów, końcowy i jego właścicieli, to należy skorzystać z funkcji ***os.makedirs(path, [mode])***
+
+```python
+import os
+from glob import glob1
+
+base = "/home/wgryglas/Dekstop"
+
+os.mkdir( os.path.join(base,"test_dir") )
+
+#print test_* directories
+print [ d for d in glob1(base, "test_*") if os.path.isdir(base+os.sep+d)] # >> ['test_dir']
+
+# create sequence of directories
+os.makedirs( os.path.join(base, "test2_dir","internal_dir") )
+```
+
+Czasami potrzebujemy informację o aktualnym katalogu w którym się znajdujemy. Do tego służy funkcja ***getcwd()*** która zwraca pełną ścieżkę do folderu roboczego, względem którego możemy odwoływać się do innych plików. 
+
+Oprócz funkcji tworzących foldery możemy korzystać także z funkcji usuwających je:
+- ***os.rmdir*** - usuwa pojedynczy folder, ale tylko gdy jest pusty. 
+- ***os.removdirs***  - usuwa całą ścieżkę folderów, ale tylko do miejsca gdzie foldery są puste
+
+Ponadto w pakiecie ***os*** znajduje się funkcja ***remove(path)*** która usuwa pojedynczy plik. Jeśli ścieżka wskazuje na folder, to pojawi się błąd.
+
+Ostatnia przydatna funkcja to ***rename(src, dst)***. Jak nazwa wskazuje służy ona do zmiany nazwy pliku/folderu. Jedna w praktyce to nie zmiana nazwy tylko przeniesienie pliku/folderu ze ścieżki ***src*** do ścieżki ***dst***.
+
+
+### Operacje na plikach za pomocą pakietu "shutil"
+
+Do manipulacji plikami służy służy moduł o nazwie ***shutil***. Pozwala ona na:
+- kopiowanie pojedynczych plików za pomocą ***shutli.copy(src, dst)***, gdzie ***src*** określa plik źródłowy a ***dst*** ścieżkę do kopii. Jeśli ***dst*** jest folderem to plik **src** zostanie skopiowany z tą samą nazwą do folderu ***dst***.
+- kopiowanie całych folderów wraz z zawartością. Do tego służy funkcja ***shutil.copytree(src,dst)***. W przypadku tej funkcji folder ***dst*** nie może wcześniej istnieć. 
+- usuwanie folderów wraz całą zawartością za pomocą ***shutil.rmtree(path)***.
+
+Więcej funkcji z tego pakietu możesz znaleźć [tutaj](https://docs.python.org/2/library/shutil.html?highlight=shutil#module-shutil "Moduł shutil")
+
+
+## Rysowanie wykresów - podstawy biblioteki Matplotlib
+
+Na koniec tych zajęć przedstawimy drugą po ***NumPy*** bardzo przydaną bibliotekę - ***Matplotlib***. Jest to biblioteka służąca z założenia do wyświetlania wykresów. Oprócz samych wykresów pozwala na wyświetlanie i prostą obróbkę wykresów. Biblioteka ta jest tak zaprojektowana, żeby przypominała korzystanie z funkcji MATLABa, dzięki czemu jest dość prosta do nauczenia się. Ponadto jest ona rozszerzeniem pakietu NumPy, dzięki czemu domyślnie operuje na tablicach, ale wspiera także dane w postaci list. W tym punkcie pokażemy jak wykonać prosty wykres, animację  i wyświetlić obrazek. 
+
+### Najprostsze wykresy
+
+Aby utworzyć wykres należy na początek utworzyć okno za pomocą funkcji ***figure*** w którym będzie umieszczony nasz wykres. Aby następnie wyświetlić krzywą korzystamy z funkcji ***plot*** która umieści daną krzywą w domyślnych osiach. Każde następne wywołanie tej funkcji będzie dorysowywać kolejne krzywe w tym samym oknie. Wywołanie funkcji plot nie wyświetli automatycznie okna. Aby to zrobić należy na koniec wywołać funkcję ***show***. Wszystkie te funkcje znajdują się w pod-module ***pyplot*** z pakietu ***matplotlib***. 
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+y = np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y)
+plt.plot(x, np.cos(x))
+
+plt.show()
+```
+
+Domyślnie program będzie nadawał różne kolory do każdej kolejnej linii. Można jednak wybrać kolor i format linii za pomocą skrótowego formatu, np.:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+y = np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y, "b.")
+plt.plot(x, np.cos(x), "b-")
+
+plt.show()
+```
+
+Format "b." oznacza skorzystanie z niebieskiej linii z markerami w postaci kropek. Z kolei "b-" oznacza niebieską linię. Podobny efekt uzyskamy za pomocą nazywanych argumentów:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+y = np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y, color="blue", marker=".", linestyle="")
+plt.plot(x, np.cos(x), color="blue", marker="", linestyle="-")
+
+plt.show()
+```
+
+Oczywiście taki wykres można następnie lepiej dostosować poprzez pokazanie siatki, tytułu i nazw osi:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+y = np.sin(x)
+
+plt.figure()
+
+plt.plot(x, y, color="blue", marker=".", linestyle="")
+plt.plot(x, np.cos(x), color="blue", marker="", linestyle="-")
+
+plt.grid(True)
+plt.xlable("x")
+plt.ylabel("y")
+plt.title("sin(x) i cos(x)")
+
+plt.show()
+```
+
+### Kilka wykresów w jednym oknie
+
+Funkcja plt.plot, plt.xlabel ... dokonuje rysowania na aktywnych osiach. Gdy posiadamy okno z jednym wykresem jest to oczywiste na której z osi go tworzymy, jednak w przypadku dwóch musimy się w jakiś sposób do wybranej osi odwoływać. Do tworzenia kilku wykresów w jednym oknie służy funkcja ***subplots*** która jako argument przyjmuje liczby osi w danym kierunku, np.: ```plt.subplots(2,2)``` wygeneruje okno z 4 układami współrzędnych. Funkcja ta zwraca oprócz obiektu "figure" także tablicę NumPy składającą się obiektów "axes":
+```python
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2)
+print axes.shape #>> (2, )
+
+fig, axes = plt.subplots(2,2)
+print axes.shape #>> (2, 2)
+```
+
+Jak widać powyżej zmienna "axes" jest tablicą 1 albo dwu wymiarową w której kolejne indeksy odnoszą się do odpowiednich osi. Aby dokonać wykresu w wybranej osi należy skorzystać z nie z ```plt.plot(..)``` a  np. ```axes[0,0].plot(...)```. Ponadto w przypadku niewielkiej liczby wykresów może być przydatnej rozwinięcie tablicy do zmiennych:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+y = np.sin(x)
+
+fig, (ax1, ax2) = plt.subplots(2)
+
+ax1.plot(x, y, color="blue", marker=".", linestyle="")
+ax2.plot(x, np.cos(x), color="blue", marker="", linestyle="-")
+
+ax1.grid(True)
+ax1.set_xlabel("x")
+ax1.set_ylabel("y")
+ax1.set_title("sin(x)")
+ax2.set_title("cos(x)")
+
+plt.show()
+```
+Należy tutaj zwrócić uwagę, że metody obiektów klasy ***AxesSubplot*** korzystają z nazw z przedrostkiem "set_" w odróżnieniu do tych podstawowych z pakiety ***matplotlib.pyplot***.
+
+
+### Tworzenie animacji
+
+Dzięki bibliotece matoplotlib animacje są bardzo proste do zrobienia. Należy tylko umieć aktualizować dane w wybranych liniach na wykresie. Do tego cele należy posługiwać się pewnym uchwytem który pozwala na manipulację wybraną linią z wykresu. Uchwyt taki zawsze otrzymujemy jako zwrot z funkcji ***matplotlib.pyplot.plot***, tylko do tej pory nie przypisywaliśmy go do zmiennej. Teraz to uczynimy:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+
+fig = plt.figure()
+
+line,  = plt.plot(x, np.zeros_like(x))
+```
+
+Funkcja ***plot*** zwraca więcej niż jeden argument, dlatego musimy do zmiennych przypisać wszystkie. Jednak my potrzebujemy tylko pierwszy obiekt, dlatego tuż za ***line*** postawiliśmy przecinek a za nim nic. Oznacza to, że pierwszy argument zostanie przypisany do zmiennej ***line*** a reszta nie ma dla nas znaczenia. 
+
+Obiekt ***line*** jest typu ***matplotlib.lines.Line2D*** (sprawdź pisząc ```type(line)```). Klasa ta posiada metodę nazywającą się ***set_ydata***, która przypisuje nowe wartości do wykresu. Z tej właśnie funkcji będziemy korzystali w trakcie animacji podczas zmiany kolejnych klatek. 
+
+Do utworzenia animacji skorzystamy z funkcji ***FuncAnimation*** z modułu ***matplotlib.animation***. Funkcja ta jako argument musi przyjąć inną funkcję która będzie służyła do aktualizacji danych w kolejnych klatkach. A zatem:
+
+```python
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import numpy as np
+
+x = np.linspace(0,np.pi, 100)
+
+fig = plt.figure()
+
+line,  = plt.plot(x, np.zeros_like(x))
+
+plt.xlim([0, np.pi])
+plt.ylim([-1, 1])
+
+def update_plot(frame):
+	a  = float(frame)/100
+	line.set_ydata(np.sin(a*x))
+
+anim = FuncAnimation(fig, update_plot, frames=300, interval=1, repeat=False)
+
+plt.show()
+```
+![Przykład animacji](figures/python_inst03/anim_example.gif "Przykład animacji za pomocą FuncAnimation")
 
 
 
