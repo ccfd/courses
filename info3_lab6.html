@@ -414,7 +414,7 @@ $(document).ready(function () {
 <div id="cwiczenie-4" class="section level3">
 <h3>Ćwiczenie*</h3>
 <p>Stwórz nowy program równoległy <code>program2.cpp</code>, który będzie liczył powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy <code>a</code> (tzn, będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:</p>
-<p><span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{b}\sum_j a_j\right)^2\)</span></p>
+<p><span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{n}\sum_j a_j\right)^2\)</span></p>
 <p>tak by był wyrażony za pomocą <span class="math inline">\(S_1\)</span> i nowego <span class="math inline">\(\hat S_2 = \sum_i a_i^2\)</span> który da się policzyć bez znajomości średniej <span class="math inline">\(\mu\)</span>. Użyj we wszystkich procesach tego samego (bardzo wysokiego) <code>n</code>. Porównaj czas wykonania wykonując:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">time</span> mpirun -np 1 program2
 <span class="kw">time</span> mpirun -np 2 program2
