@@ -1,7 +1,7 @@
 ---
 number: 2
 course: Python
-material: Wymagania
+material: Instrukcja 2
 author: W. Gryglas
 ---
 
