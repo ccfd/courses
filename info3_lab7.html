@@ -450,16 +450,14 @@ div.tocify {
 </div>
 
 
-<div id="wstep" class="section level1">
-<h1>Wstęp</h1>
-<div id="polecenia-i-materiay" class="section level2">
-<h2>Polecenia i Materiały</h2>
+<div id="polecenia-i-materiay" class="section level1">
+<h1>Polecenia i Materiały</h1>
 <p>By otworzyć linię poleceń w systemie Windows, można: poszukać jej w Akcesoriach, bądz wybrać Menu Start, Uruchom i wpisać <code>cmd</code>.</p>
 <p>Większość poleceń należy wykonać na maszynie <code>info3.meil.pw.edu.pl</code>, lecz niektóre można wykonać w lini poleceń Windows.</p>
 <p>Materiały do tego laboratiorium można znaleść w katalogu <code>llaniewski</code> na <code>\\orange.meil.pw.edu.pl\zasoby</code>. Całą zawartość katalogu można przegrać np. na pulpit, a na koniec zajęć skasować.</p>
 </div>
-<div id="serwery-i-porty" class="section level2">
-<h2>Serwery i porty</h2>
+<div id="serwery-i-porty" class="section level1">
+<h1>Serwery i porty</h1>
 <p>Standard TCP/IP mówi jak na na podstawowym poziomie działa Internet. W internecie są podłączone komputery i każdy z nich ma swój unikatowy numer IP. Ten numer to 4 bajty - zazwyczaj zapisuje się go w postaci 4 liczb oddzielonych kropkami (np. 127.0.0.1). Bajt to 8 bitów, wiec można w nim zapisać liczby od <span class="math inline">\(0\)</span> do <span class="math inline">\(2^8-1 = 255\)</span>. Tak więc wszystkich numerów IP jest <span class="math inline">\(2^{32}\)</span> więc ponad <span class="math inline">\(4\)</span> miliardy. Jednak w internecie numery sa przydzielane grupami, wiec szybko się wyczerpały. W związku z tym wprowadzono nowy standard IPv6. Nie należy jednak sądzić że to <span class="math inline">\(6\)</span> oznacza że teraz jest <span class="math inline">\(6\)</span> liczb. Jest to poprostu wersja 6ta standardu - i numerów jest teraz <span class="math inline">\(2^{128}\)</span>, co daje prawie jeden septylion. Są pewne grupy numerów które są wyjątkowe.:</p>
 <ul>
 <li>127.0.0.1 (localhost) – numer IP komputera na którym jesteśmy zalogowani – widoczny tylko z tego komputera</li>
@@ -475,9 +473,9 @@ div.tocify {
 <li>Spróbuj dowiedzieć się coś wiecej o wybranej domenie <code>whois google.com</code> albo <code>whois =onet.pl</code></li>
 </ul>
 </div>
-</div>
-<div id="port22-telnet" class="section level2">
-<h2>Port:22 Telnet</h2>
+<div id="telnet" class="section level2">
+<h2>Telnet</h2>
+<p><strong>Port</strong>: 22</p>
 <p>Jednym z bardzo użytecznych programów jest <code>telnet</code>. Gdy uruchomimy <code>telnet google.com</code> program spróbuje połączyć się z komputerem google.com, na porcie 22. Gdyby udało mu sie połączyć, moglibyśmy z klawiatury wysyłać teksty do serwera, a na ekranie wyswietlała by się odpowiedz. Telnet służył do obsługi konsoli — tak jak SSH (putty) którego używasz. Jednak telnet nie był niczym zabezpieczony (nawet hasło było widoczne), dlatego nie jest teraz nigdzie używany. Jednak <code>telnet</code> jest użyteczny ponieważ możemy mu wskazać port na który ma się połączyć — i w ten sposób “oszukać” program i połączyć się z innym protokołem.</p>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
@@ -491,51 +489,9 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="simple-mail-transfer-protocol-smtp-port25-ssl587" class="section level2">
-<h2>Simple Mail Transfer Protocol (SMTP) Port:25 SSL:587</h2>
-<p>SMTP to protokół używany do wysyłania e-maili. Polączyć się z nim można pod portem nr 25. Jego postawowe instrukcje to:</p>
-<ul>
-<li><code>HELO something</code> – przywitanie się z serwerem</li>
-<li><code>MAIL From: something</code> – Od kogo jest e-mail</li>
-<li><code>RCPT To: something</code> – Do kogo jest e-mail</li>
-<li><code>DATA</code> – Po tej komendzie można napisać treść e-maila. Zakończyć trzeba [enter].[enter]</li>
-<li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
-</ul>
-<div id="cwiczenia-2" class="section level3">
-<h3>Ćwiczenia</h3>
-<ul>
-<li>Spróbuj wysłać ze swojego konta e-mail do kolegi obok</li>
-<li>Wyślij e-mail do na swoje prywatne konto i w domu obejrzyj jego nagłówek (poszukaj go w spam’ie).</li>
-<li>Spróbuj wysłać e-mail z konta “admin”&quot; na swoje konto</li>
-<li>Napisz plik wejściowy, który po przekierowaniu do polecenia ‘telnet’ wyśle e-mail do kolegi</li>
-<li>Napisz skrypt z jednym argumentem który wyśle zawartość wybranego pliku do kolegi</li>
-</ul>
-</div>
-</div>
-<div id="post-office-protocol-version-3-pop3-port110-ssl995" class="section level2">
-<h2>Post Office Protocol version 3 (POP3) Port:110 SSL:995</h2>
-<p>POP3 to protokół używany do odbierania e-maili ze skrzynki. Połączyć się z nim można pod portem nr <span class="math inline">\(110\)</span>. Jego podstawowe instrukcje to:</p>
-<ul>
-<li><code>USER użytkownik</code> – ustawia użytkownika którego chcemy zalogować</li>
-<li><code>PASS hasło</code> – loguje użytkownika</li>
-<li><code>LIST</code> – Wypisuje listę e-maili w skrzynce w formacie [numer] [rozmiar]</li>
-<li><code>RETR number</code> – pobiera e-mail</li>
-<li><code>DELE number</code> – kasuje e-mail</li>
-<li><code>TOP number</code> – pobiera pierwsze pare linii e-mail</li>
-<li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
-</ul>
-<div id="cwiczenia-3" class="section level3">
-<h3>Ćwiczenia</h3>
-<ul>
-<li>Spróbuj odebrać swoje e-maile</li>
-<li>Spróbuj odebrać czyjeś e-maile</li>
-<li>Napisz plik wejściowy, który po przekierowaniu do polecenia <code>telnet</code> pobierze konkretnego e-maila. Jeśli telnet nie reaguje na wejściowy plik, jest to spowodowane tym, ze serwer nie nadąża z interpretowaniem komend. Napisz skrypt który co sekundę będzie wypisywał na ekran jedną linijkę z pliku - a następnie przekieruj z niego wyjście do telnet’u.</li>
-<li>Napisz skrypt z jednym argumentem, który odbierze e-mail o danym numerze.</li>
-</ul>
-</div>
-</div>
-<div id="hypertext-transfer-protocol-http-port80-ssl443" class="section level2">
-<h2>Hypertext Transfer Protocol (HTTP) Port:80 SSL:443</h2>
+<div id="hypertext-transfer-protocol-http" class="section level2">
+<h2>Hypertext Transfer Protocol (HTTP)</h2>
+<p><strong>Port</strong>:80 <strong>SSL</strong>:443</p>
 <p>HTTP to najczęściej używany protokół w internecie. Pozwala on na pobieranie stron z serwerów. W odróżnieniu od poprzednich, nie jest to protokół typu <em>instrukcja-odpowiedz</em>. W tym protokole, wysyłamy zapytanie, zaś serwer wysyła nam odpowiedz i zamyka połączenie. Zapytanie wygląda następująco:</p>
 <pre class="http"><code>GET [ścieżka] HTTP/1.0
 Host: [nazwa serwera]
@@ -551,7 +507,7 @@ Host: m.google.com
 <li><code>Accept:</code> – Jakie formaty umiesz przeczytać (html, txt) - można nadać im priorytety.</li>
 <li><code>Accept-Language</code> – Jakie języki akceptujemy – też można nadać priorytety.</li>
 </ul>
-<div id="cwiczenia-4" class="section level3">
+<div id="cwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Spróbuj ściągnąć główną stronę “m.google.com”</li>
@@ -561,8 +517,81 @@ Host: m.google.com
 </ul>
 </div>
 </div>
-<div id="sniffing" class="section level2">
-<h2>Sniffing</h2>
+<div id="http-over-secure-socket-layer-https" class="section level2">
+<h2>HTTP over Secure Socket Layer (HTTPS)</h2>
+<p><strong>Port</strong>:80 <strong>SSL</strong>:443</p>
+<p>Do wielu usług warto łączyć się kanałem szyfrowanym. Po pierwszym użyciu w tym celu programu <code>telnet</code>, np łączac się z <code>telnet google.com 443</code>, widzimy że nie umiemy rozmawiać zaszyfrowanymi bajtami.</p>
+<p>Do komunikacji z serwerem po szyfrowanym połączeniu możemy użyć program <code>openssl</code>. Dla przykładu:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">openssl</span> s_client -connect google.com:443</code></pre></div>
+<div id="cwiczenia-3" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj ściągnąć główną stronę “m.google.com” po protokole szyfrowanym</li>
+<li>Spróbuj dodać komentarz w serwisie <code>github.com</code> do dyskusji <a href="https://github.com/ccfd/courses/issues/12"><code>https://github.com/ccfd/courses/issues/12</code></a>. Użyj do tego zapytania do serwera <code>api.github.com</code> (skonstruuj je uprzednio w pliku tekstowym):</li>
+</ul>
+<pre class="http"><code>POST /repos/ccfd/courses/issues/12/comments HTTP/1.1
+Host: api.github.com
+Authorization: token [token]
+User-Agent: Wget/1.9.1
+Connection: close
+Content-Type: application/json
+Content-Length: 53
+
+{&quot;body&quot;:&quot;To jest bardzo wazny komentarz\nBardzo\n&quot;}</code></pre>
+<p><code>[token]</code> możesz uzyskać logując się na GitHub i dodając token w menu “Settings”, “Personal access tokens”.</p>
+</div>
+</div>
+<div id="simple-mail-transfer-protocol-smtp" class="section level2">
+<h2>Simple Mail Transfer Protocol (SMTP)</h2>
+<p><strong>Port</strong>:25 <strong>TLS</strong>:587 <strong>SSL</strong>:465</p>
+<p>SMTP to protokół używany do wysyłania e-maili. Polączyć się z nim można pod portem nr 25. Jego postawowe instrukcje to:</p>
+<ul>
+<li><code>HELO something</code> – przywitanie się z serwerem</li>
+<li><code>MAIL From: something</code> – Od kogo jest e-mail</li>
+<li><code>RCPT To: something</code> – Do kogo jest e-mail</li>
+<li><code>DATA</code> – Po tej komendzie można napisać treść e-maila. Zakończyć trzeba [enter].[enter]</li>
+<li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
+</ul>
+<p>Z szyfrowanym protokołem SMTP (typu TLS), można się połączyć za pomocą:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">openssl</span> s_client -connect [serwer]:25 -starttls smtp</code></pre></div>
+<div id="cwiczenia-4" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj wysłać ze swojego konta e-mail do kolegi obok</li>
+<li>Wyślij e-mail do na swoje prywatne konto i w domu obejrzyj jego nagłówek (poszukaj go w spam’ie).</li>
+<li>Spróbuj wysłać e-mail z konta “admin na swoje konto</li>
+<li>Napisz plik wejściowy, który po przekierowaniu do polecenia ‘telnet’ wyśle e-mail do kolegi</li>
+<li>Napisz skrypt z jednym argumentem który wyśle zawartość wybranego pliku do kolegi</li>
+</ul>
+</div>
+</div>
+<div id="post-office-protocol-version-3-pop3" class="section level2">
+<h2>Post Office Protocol version 3 (POP3)</h2>
+<p><strong>Port</strong>:110 <strong>SSL</strong>:995</p>
+<p>POP3 to protokół używany do odbierania e-maili ze skrzynki. Połączyć się z nim można pod portem nr <span class="math inline">\(110\)</span>. Jego podstawowe instrukcje to:</p>
+<ul>
+<li><code>USER użytkownik</code> – ustawia użytkownika którego chcemy zalogować</li>
+<li><code>PASS hasło</code> – loguje użytkownika</li>
+<li><code>LIST</code> – Wypisuje listę e-maili w skrzynce w formacie [numer] [rozmiar]</li>
+<li><code>RETR number</code> – pobiera e-mail</li>
+<li><code>DELE number</code> – kasuje e-mail</li>
+<li><code>TOP number</code> – pobiera pierwsze pare linii e-mail</li>
+<li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
+</ul>
+<p>Do połączenia szyfrowanego użyj analogicznego polecenia jak w sekcji o HTTPS</p>
+<div id="cwiczenia-5" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj odebrać swoje e-maile</li>
+<li>Spróbuj odebrać czyjeś e-maile</li>
+<li>Napisz plik wejściowy, który po przekierowaniu do polecenia <code>telnet</code> pobierze konkretnego e-maila. Jeśli telnet nie reaguje na wejściowy plik, jest to spowodowane tym, ze serwer nie nadąża z interpretowaniem komend. Napisz skrypt który co sekundę będzie wypisywał na ekran jedną linijkę z pliku - a następnie przekieruj z niego wyjście do telnet’u.</li>
+<li>Napisz skrypt z jednym argumentem, który odbierze e-mail o danym numerze.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="sniffing" class="section level1">
+<h1>Sniffing</h1>
 <p>Sniffing, czyli analiza pakietów (Packet Analysis) to najprostsza technika podsłuchu w internecie. Polega ona na przechwytywaniu pakietów na poziomie interface’u sieciowego i rozkodowywaniu ich do postaci czytelnej dla człowieka. W ten sposób możemy zobaczyć wszelkie połączenia TCP/IP (a także UDP). Analizując dane przesyłane pomiędzy klientami a serwerami, możemy nie tylko dowiedzieć się kto z kim się łączy ale:</p>
 <ul>
 <li>Zobaczyć adresy internetowe na które wchodzą użytkownicy</li>
@@ -572,26 +601,26 @@ Host: m.google.com
 </ul>
 <p>W materiałach można znaleść program <code>smsniff.exe</code>. Jest to typowy prosty sniffer pod Windows. Sieć w laboratorium jest oparta na dobrym switch’u, więc jedyne pakiety widoczne w sieci, to takie które idą od lub do danego komputera (oraz broadcast). Oznacza to, że nie da się podsłuchiwać innych studentów.</p>
 <p><strong>UWAGA:</strong> <em>Większość sieci (w tym praktycznie wszystkie WiFi) nie są zabezpieczone przed Sniffingiem! Pamiętaj, że to co właśnie robisz, może zrobić każdy!</em></p>
-<div id="cwiczenia-5" class="section level3">
+<div id="cwiczenia-6" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Podsłuchaj swoje połączenie przez SSH z orange’m (port 22)</li>
-<li>Podsłuchując wejdź w przeglądarce na <code>http://meil.pw.edu.pl/</code></li>
-<li>Podsłuchując wejdź w przeglądarce na <code>https://meil.pw.edu.pl/</code></li>
+<li>Podsłuchując wejdź w przeglądarce na <a href="http://meil.pw.edu.pl/"><code>http://meil.pw.edu.pl/</code></a></li>
+<li>Podsłuchując wejdź w przeglądarce na <a href="https://meil.pw.edu.pl/"><code>https://meil.pw.edu.pl/</code></a></li>
 </ul>
 </div>
 </div>
-<div id="dla-dociekliwych-przekierowanie-portu" class="section level2">
-<h2>Dla dociekliwych: Przekierowanie portu</h2>
+<div id="dla-dociekliwych-przekierowanie-portu" class="section level1">
+<h1>Dla dociekliwych: Przekierowanie portu</h1>
 <p><em>Ta część jest dla osób które chcą się pobawić i pogrzebać - nie ma gwarancji że cokolwiek zadziała!</em></p>
 <p>Porty można przekierować. Jeśli przekierujemy port x z serwera X do portu y serwera Y, to będzie to oznaczać, że jeśli połączymy się z portem x z serwerem X, to on przekaże całą komunikację do portu y serwera Y. Innymi słowy jeśli napiszemy:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">telnet</span> X x</code></pre></div>
 <p>to połączymy się z portem y na Y. Jest to wyjątkowo przydatne, jeśli my nie potrafimy połączyć się z komputerem Y. Dla przykłady gdy Y jest za firewall’em, albo jest w innej podsieci.</p>
-<div id="cwiczenia-6" class="section level3">
+<div id="cwiczenia-7" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
-<li>Uruchom putty. Wejdz w ustawienia ,,tunneling“. Tam ustaw by port {80} był przekierowany na {google.com:80}. Następnie połącz się z maszyną {info3} jak zwykle.</li>
-<li>Spróbuj w przeglądarce otworzyć adres “<a href="http://localhost/" class="uri">http://localhost/</a>”</li>
+<li>Uruchom putty. Wejdz w ustawienia ,,tunneling“. Tam ustaw by port <code>80</code> był przekierowany na <code>google.com:80</code>. Następnie połącz się z maszyną <code>info3</code> jak zwykle.</li>
+<li>Spróbuj w przeglądarce otworzyć adres <a href="http://localhost/"><code>http://localhost/</code></a></li>
 <li>Zobacz co działa a co nie. Jeśli nie działa, to dlaczego?</li>
 </ul>
 </div>
@@ -608,12 +637,11 @@ Host: m.google.com
 <div id="cwiczenia-socks-proxy" class="section level3">
 <h3>Ćwiczenia SOCKS Proxy</h3>
 <ul>
-<li>Uruchom putty. Wejdz w ustawienia “tunneling”. Tam ustaw by port {66666} był przekierowaniem typu “Dynamic”. Następnie połącz się z maszyną {info3} jak zwykle.</li>
+<li>Uruchom putty. Wejdz w ustawienia “tunneling”. Tam ustaw by port <code>66666</code> był przekierowaniem typu “Dynamic”. Następnie połącz się z maszyną <code>info3</code> jak zwykle.</li>
 <li>Ustaw następnie w opcjach przeglądarki serwer SOCKS proxy na <code>localhost:66666</code></li>
 <li>wejdz na google.com</li>
 <li><em>ciesz się internetem zza firewall’a</em></li>
 </ul>
-</div>
 </div>
 </div>
 
