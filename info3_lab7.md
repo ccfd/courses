@@ -12,7 +12,7 @@ By otworzyć linię poleceń w systemie Windows, można: poszukać jej w Akcesor
 
 Większość poleceń należy wykonać na maszynie `info3.meil.pw.edu.pl`, lecz niektóre można wykonać w lini poleceń Windows.
 
-Materiały do tego laboratiorium można znaleść w katalogu `llaniewski` na `\\orange.meil.pw.edu.pl\zasoby`. Całą zawartość katalogu można przegrać np. na pulpit, a na koniec zajęć skasować.
+Materiały do tego laboratiorium można znaleść w katalogu `/home/zasoby/Info3/smsniff` na serwerze `info3.meil.pw.edu.pl`. Całą zawartość katalogu można przegrać np. na pulpit za pomocą WinSCP, a na koniec zajęć skasować.
 
 # Serwery i porty
 Standard TCP/IP mówi jak na na podstawowym poziomie działa Internet. W internecie są podłączone komputery i każdy z nich ma swój unikatowy numer IP. Ten numer to 4 bajty - zazwyczaj zapisuje się go w postaci 4 liczb oddzielonych kropkami (np. 127.0.0.1). Bajt to 8 bitów, wiec można w nim zapisać liczby od $0$ do $2^8-1 = 255$. Tak więc wszystkich numerów IP jest $2^{32}$ więc ponad $4$ miliardy. Jednak w internecie numery sa przydzielane grupami, wiec szybko się wyczerpały. W związku z tym wprowadzono nowy standard IPv6. Nie należy jednak sądzić że to $6$ oznacza że teraz jest $6$ liczb. Jest to poprostu wersja 6ta standardu - i numerów jest teraz $2^{128}$, co daje prawie jeden septylion. Są pewne grupy numerów które są wyjątkowe.:
@@ -71,6 +71,7 @@ Inne opcje to :
 ### Ćwiczenia
 
 - Spróbuj ściągnąć główną stronę "m.google.com"
+- Spróbuj ściągnąć główną stronę "www.onet.pl"
 - Spróbuj ściągnąć główną stronę do pliku
 - Wyszukaj w tym pliku adresu jakiegoś obrazka i go ściągnij
 - Napisz skrypt do ściągania plików z serwera HTTP. Z dwoma argumentami: nazwa serwera i ścieżka
