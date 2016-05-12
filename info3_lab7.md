@@ -30,7 +30,7 @@ Standardową metodą komunikacji jest łączenie się jednego komputera z portem
 - Spróbuj dowiedzieć się coś wiecej o wybranej domenie `whois google.com` albo `whois =onet.pl`
 
 ## Telnet
-**Port**: 22
+**Port**: 23
 
 Jednym z bardzo użytecznych programów jest `telnet`. Gdy uruchomimy `telnet google.com` program spróbuje połączyć się z komputerem google.com, na porcie 22. Gdyby udało mu sie połączyć, moglibyśmy z klawiatury wysyłać teksty do serwera, a na ekranie wyswietlała by się odpowiedz. Telnet służył do obsługi konsoli --- tak jak SSH (putty) którego używasz. Jednak telnet nie był niczym zabezpieczony (nawet hasło było widoczne), dlatego nie jest teraz nigdzie używany. Jednak `telnet` jest użyteczny ponieważ możemy mu wskazać port na który ma się połączyć --- i w ten sposób "oszukać" program i połączyć się z innym protokołem.
 
