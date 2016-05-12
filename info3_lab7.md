@@ -27,7 +27,7 @@ Standardową metodą komunikacji jest łączenie się jednego komputera z portem
 
 - Spróbuj dowiedzieć się jaki numer IP mają różne komputery używając np. komendy `ping google.com`
 - Spróbuj to samo z nazwami `localhost` i `orange.meil.pw.edu.pl`
-- Spróbuj dowiedzieć się coś wiecej o wybranej domenie `whois google.com` albo `whois =onet.pl`
+- Spróbuj dowiedzieć się coś wiecej o wybranej domenie `whois google.com` albo `whois onet.pl`
 
 ## Telnet
 **Port**: 23
