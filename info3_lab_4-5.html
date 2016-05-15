@@ -566,11 +566,11 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li>Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).</li>
 <li>Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia.</li>
 <li>Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.</li>
-<li>Wyświetl sumę ludności mieszkającej w miastach w danym państwie (użyj kodu tego państwa).</li>
-<li>Wyświetl sumę ludności mieszkającej w miastach w danym państwie (użyj kodu tego państwa), ale tylko dla przypadków, gdy ta suma przekracza 10 000 000 (kolejność malejąca).</li>
-<li>Jak punkt wyżej tylko w miejsce kolejnych wywołań SUM(Population) użyj aliasu.</li>
-<li>Jak punkt wyżej tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (puste).</li>
-<li>Jak punkt wyżej tylko weź pod uwagę jedynie miasta mające powyżej 100000 mieszkańców.</li>
+<li>Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).</li>
+<li>Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.</li>
+<li>Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań <code>SUM(Population)</code> użyj aliasu.</li>
+<li>Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (NULL).</li>
+<li>Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100000 mieszkańców.</li>
 <li><p>Wykonaj poniższe zapytanie i zinterpretuj wynik:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Country.Name, City.Name <span class="kw">FROM</span> Country, City</code></pre></div></li>
 <li><p>Wykonaj poniższe zapytanie i zinterpretuj wynik:</p>
