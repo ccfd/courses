@@ -159,8 +159,8 @@ mysql> SELECT Name, SurfaceArea FROM Country
 * Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
 * Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
 * Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
-* Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (NULL).
-* Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100000 mieszkańców.
+* Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
+* Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
 mysql> SELECT Country.Name, City.Name FROM Country, City
