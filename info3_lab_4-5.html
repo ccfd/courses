@@ -589,8 +589,12 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 </div>
 <div id="tworzenie-i-uzywanie-nowych-baz-danych" class="section level3">
 <h3>Tworzenie i używanie nowych baz danych</h3>
-<ol style="list-style-type: decimal">
-<li><p>Utwórz pierwszą tabelę, która będzie zawierać informacje o osobach:</p>
+<ol start="0" style="list-style-type: decimal">
+<li><p>Utwórz własną bazę danych <code>studxy</code> (<em>xy</em> to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">DATABASE</span> studxy;</code></pre></div>
+<p>Przjdż do nowo utworzonej bazy danych:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">USE</span> studxy;</code></pre></div></li>
+<li><p>Utwórz pierwszą tabelę, która zawierać będzie informacje o osobach:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">CREATE</span> <span class="kw">TABLE</span> Person (
 -&gt; <span class="kw">ID</span> <span class="dt">int</span>,
 -&gt; Surname <span class="dt">varchar</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,
@@ -606,7 +610,7 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 <li>Utwórz drugą tabelę, która będzie zawierać informacje o numerach telefonów.</li>
 </ol>
 <ul>
-<li><p>Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli Phone a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):</p>
+<li><p>Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli <code>Phone</code> a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">CREATE</span> <span class="kw">TABLE</span> Phone (<span class="kw">ID</span> <span class="dt">int</span> auto_increment <span class="kw">PRIMARY</span> <span class="kw">KEY</span>);</code></pre></div></li>
 <li><p>Dodaj drugą kolumnę zawierającą numery telefonów:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">ADD</span> <span class="dt">Number</span> <span class="dt">varchar</span>(<span class="dv">16</span>) <span class="kw">DEFAULT</span> <span class="st">&#39;&#39;</span>;</code></pre></div></li>
@@ -614,9 +618,9 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">DROP</span> <span class="kw">COLUMN</span> <span class="dt">Number</span>;</code></pre></div></li>
 <li><p>Dodaj kolejną kolumnę z zawierającą ID osoby, do której należy dany numer telefonu:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">ADD</span> PersonID <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</code></pre></div></li>
-<li><p>Załóżmy, że numer telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:</p>
+<li><p>Załóżmy, że numery telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">ADD</span> <span class="kw">UNIQUE</span> (<span class="dt">Number</span>);</code></pre></div></li>
-<li><p>Podobnie jak poprzednio sprawdź postać utworzonej tabeli Phone:</p>
+<li><p>Podobnie jak poprzednio, sprawdź postać utworzonej tabeli Phone:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; DESCRIBE Phone;</code></pre></div></li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
@@ -625,7 +629,7 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 <ul>
 <li><p>Wprowadź pierwszą osobę. Podaj wszystkie wartości pól (w odpowiedniej kolejności):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">INSERT</span> <span class="kw">INTO</span> Person <span class="kw">VALUES</span> (<span class="dv">1</span>, <span class="st">&#39;Kowalski&#39;</span>, <span class="st">&#39;Jan&#39;</span>);</code></pre></div></li>
-<li><p>Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole ID tabeli Phone jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować MySQL’a które pola wypełniamy. Służy do tego lista pól podawana w nawiasach po nazwie tabeli:</p>
+<li><p>Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole <code>ID</code> tabeli <code>Phone</code> jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować <em>MySQL’a</em>, które pola wypełniamy. Służy do tego lista pól podawana w nawiasach po nazwie tabeli:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">INSERT</span> <span class="kw">INTO</span> Phone (<span class="dt">Number</span>, PersonID)
 -&gt; <span class="kw">VALUES</span> (<span class="st">&#39;022 358 85 58&#39;</span>, <span class="dv">1</span>);</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">INSERT</span> <span class="kw">INTO</span> Phone (<span class="dt">Number</span>, PersonID)
@@ -639,7 +643,7 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 <li><p>Spróbuj wprowadzić kolejną osobę podając jej imię a nie podając nazwiska:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">INSERT</span> <span class="kw">INTO</span> Person (<span class="kw">ID</span>, FirstName) <span class="kw">VALUES</span> (<span class="dv">3</span>, <span class="st">&#39;Adam&#39;</span>);</code></pre></div>
 (Jakie nazwisko zostało wpisane do bazy danych?)</li>
-<li><p>Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer ID identyczny z już istniejącym:</p>
+<li><p>Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer <code>ID</code> identyczny z już istniejącym:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">INSERT</span> <span class="kw">INTO</span> Person (<span class="kw">ID</span>, Surname) <span class="kw">VALUES</span> (<span class="dv">2</span>, <span class="st">&#39;Lis&#39;</span>);</code></pre></div>
 (Która własność tabeli Person spowodowała że wystąpił błąd?)</li>
 <li><p>Jeśli chcesz zmodyfikować pewne dane możesz użyć komendy UPDATE, np.:</p>
@@ -652,26 +656,26 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 <ul>
 <li>Wyświetl wszystkie numery telefonów Kowalskiego.</li>
 <li>Wyświetl wszystkie numery telefonów zaczynające się od numeru 022.</li>
-<li>Dodaj do poprzedniego punktu właścicieli tych numerów.</li>
+<li>Jak w powyższym podpunkcie, ale wyświetl także właścicieli tych numerów.</li>
 </ul>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy MySQL’a do pliku. Utwórz plik o przykładowej nazwie query.sql. Umieść w tym pliku dwa zapytania:</p>
+<li><p>Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy <em>MySQL’a</em> do pliku. Utwórz plik o przykładowej nazwie <em>query.sql</em>. Umieść w tym pliku dwa zapytania:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> * <span class="kw">FROM</span> Person;</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> * <span class="kw">FROM</span> Phone;</code></pre></div>
-<p>Plik możesz utworzyć za pomocą edytora <em>nano</em> na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomy MySQL’a wykonaj komendę:</p>
+<p>Plik możesz utworzyć za pomocą edytora <em>nano</em> na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomu <em>MySQL’a</em> wykonaj komendę:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SOURCE</span> query.sql</code></pre></div></li>
 <li><p>Umieść w skrypcie query.sql instrukcję tworzącą tabelę Person (<code>CREATE ...</code>) i instrukcje wprowadzające do niej dane (<code>INSERT ...</code>). Ponieważ tabela Person już istnieje, przed wywołaniem instrukcji <code>CREATE</code> należy tą tabelę usunąć. Na początku skryptu wprowadź zatem następujący warunek:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="kw">IF</span> <span class="kw">EXISTS</span> Person;</code></pre></div>
-Powyższa instrukcja jest charakterystyczna dla MySQL’a i może nie zadziałać w innych wersjach SQL’a.</li>
+Powyższa instrukcja jest charakterystyczna dla <em>MySQL’a</em> i może nie zadziałać w innych wersjach <em>SQL’a</em>.</li>
 <li>Wykonaj polecenia z poprzedniego punktu w odniesieniu do tabeli <em>Phone</em>. (Dodaj nowe instrukcje do pliku <em>query.sql</em>).</li>
-<li><p>Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format *.csv dla Excela). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku res.txt:</p>
+<li><p>Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format *.csv dla <em>Excela</em>). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku <em>res.txt</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> * <span class="kw">INTO</span> OUTFILE <span class="st">&#39;res.txt&#39;</span> <span class="kw">FROM</span> Person;</code></pre></div>
 Jak widać po liście pól (tutaj *) należy użyć instrukcji <code>INTO OUTFILE</code> podając nazwę pliku docelowego. Plik zostanie utworzony, w katalogu z którego nastąpiło logowanie do bazy danych.</li>
 <li><p>Export danych do formatu *.csv wymaga by pola w wierszu oddzielone były przecinkami:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> * <span class="kw">INTO</span> OUTFILE <span class="st">&#39;res.txt&#39;</span> FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span>
 -&gt; <span class="kw">FROM</span> Person;</code></pre></div></li>
 <li>Eksportuj dane zawierające następujący zestaw danych: imię, nazwisko i numer telefonu.</li>
-<li><p>Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt query.sql) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli <em>Person</em>:</p>
+<li><p>Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt <em>query.sql</em>) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli <em>Person</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">DELETE</span> <span class="kw">FROM</span> Person <span class="kw">WHERE</span> Surname = <span class="st">&#39;Kowalski&#39;</span>;</code></pre></div>
 <p>Odtwórz tabelę <em>Person</em> i usuń z tabeli <em>Phone</em> wszystkie telefony Kowalskiego (musisz połączyć instrukcję <code>DELETE</code> z instrukcją <code>SELECT</code> w celu pozyskania identyfikatora Kowalskiego).</p></li>
 </ol>
