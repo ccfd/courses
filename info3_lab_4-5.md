@@ -46,11 +46,13 @@ mysql> SELECT Name, Region FROM Country;
 ```
 * Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:
 ```sql
-mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent='Europe';
+mysql> SELECT Name, LifeExpectancy FROM Country
+-> WHERE Continent='Europe';
 ```
 * Wyświetl nazwy wszystkich państw leżących w Europie i Azji wraz z długością życia ich mieszkańców:
 ```sql
-mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent IN ('Europe', 'Asia');
+mysql> SELECT Name, LifeExpectancy FROM Country
+-> WHERE Continent IN ('Europe', 'Asia');
 ```
 * Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości
 życia (dodaj do poprzedniej komendy frazę - `ORDER BY LifeExpectancy`).
@@ -72,7 +74,8 @@ mysql> SELECT * FROM City WHERE CountryCode = 'FIN';
 ```
 * Wyświetl wszystkie informacje o miastach w Polsce (CountryCode Polski to POL) i posortuj je według województw:
 ```sql
-mysql> SELECT * FROM City WHERE CountryCode = 'POL' ORDER BY District;
+mysql> SELECT * FROM City WHERE CountryCode = 'POL'
+-> ORDER BY District;
 ```
 * Wyświetl nazwy krajów, które uzyskały niepodległość po roku 1980. Wyświetl również rok uzyskania niepodległości.
 ```sql
@@ -223,10 +226,12 @@ mysql> INSERT INTO Person VALUES (1, 'Kowalski', 'Jan');
 ```
 * Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole ID tabeli Phone jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować MySQL’a które pola wypełniamy. Służy do tego lista pól podawana  w nawiasach po nazwie tabeli:
 ```sql
-mysql> INSERT INTO Phone (Number, PersonID) VALUES ('022 358 85 58', 1);
+mysql> INSERT INTO Phone (Number, PersonID)
+-> VALUES ('022 358 85 58', 1);
 ```
 ```sql
-mysql> INSERT INTO Phone (Number, PersonID) VALUES ('0 600 560 780', 1);
+mysql> INSERT INTO Phone (Number, PersonID)
+-> VALUES ('0 600 560 780', 1);
 ```
 * Wprowadź nową osobę. Tym razem nie podawaj imienia użytkownika, a nazwisko ustaw na NULL: 
 ```sql
