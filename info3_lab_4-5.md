@@ -181,7 +181,15 @@ mysql> SELECT Country.Name, City.Name FROM Country, City
 * Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: VAT), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
 
 ### Tworzenie i używanie nowych baz danych
-1. Utwórz pierwszą tabelę, która będzie zawierać informacje o osobach:
+0. Utwórz własną bazę danych `studxy` (*xy* to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:
+```sql
+CREATE DATABASE studxy;
+```
+Przjdż do nowo utworzonej bazy danych:
+```sql
+USE studxy;
+```
+1. Utwórz pierwszą tabelę, która zawierać będzie informacje o osobach:
 ```sql
 mysql> CREATE TABLE Person (
 -> ID int,
@@ -195,7 +203,7 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 mysql> DESCRIBE Person;
 ```
 2. Utwórz drugą tabelę, która będzie zawierać informacje o numerach telefonów.
-* Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli Phone a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):
+* Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli `Phone` a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):
 ```sql
 mysql> CREATE TABLE Phone (ID int auto_increment PRIMARY KEY);
 ```
@@ -211,11 +219,11 @@ mysql> ALTER TABLE Phone DROP COLUMN Number;
 ```sql
 mysql> ALTER TABLE Phone ADD PersonID int NOT NULL;
 ```
-* Załóżmy, że numer telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:
+* Załóżmy, że numery telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:
 ```sql
 mysql> ALTER TABLE Phone ADD UNIQUE (Number);
 ```
-* Podobnie jak poprzednio sprawdź postać utworzonej tabeli Phone: 
+* Podobnie jak poprzednio, sprawdź postać utworzonej tabeli Phone:
 ```sql
 mysql> DESCRIBE Phone;
 ```
@@ -224,7 +232,7 @@ mysql> DESCRIBE Phone;
 ```sql
 mysql> INSERT INTO Person VALUES (1, 'Kowalski', 'Jan');
 ```
-* Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole ID tabeli Phone jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować MySQL’a które pola wypełniamy. Służy do tego lista pól podawana  w nawiasach po nazwie tabeli:
+* Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole `ID` tabeli `Phone` jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować *MySQL’a*, które pola wypełniamy. Służy do tego lista pól podawana w nawiasach po nazwie tabeli:
 ```sql
 mysql> INSERT INTO Phone (Number, PersonID)
 -> VALUES ('022 358 85 58', 1);
@@ -248,7 +256,7 @@ mysql> INSERT INTO Person (ID, Surname) VALUES (2, 'Dzik');
 mysql> INSERT INTO Person (ID, FirstName) VALUES (3, 'Adam');
 ```
 (Jakie nazwisko zostało wpisane do bazy danych?)
-* Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer ID identyczny z już istniejącym:
+* Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer `ID` identyczny z już istniejącym:
 ```sql
 mysql> INSERT INTO Person (ID, Surname) VALUES (2, 'Lis');
 ```
@@ -261,15 +269,15 @@ mysql> UPDATE Person SET FirstName='Adam' WHERE ID=2;
 4. Pobieranie informacji.
 * Wyświetl wszystkie numery telefonów Kowalskiego.
 * Wyświetl wszystkie numery telefonów zaczynające się od numeru 022.
-* Dodaj do poprzedniego punktu właścicieli tych numerów.
-5. Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy MySQL’a do pliku. Utwórz plik o przykładowej nazwie query.sql. Umieść w tym pliku dwa zapytania:
+* Jak w powyższym podpunkcie, ale wyświetl także właścicieli tych numerów.
+5. Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy *MySQL’a* do pliku. Utwórz plik o przykładowej nazwie *query.sql*. Umieść w tym pliku dwa zapytania:
 ```sql
 SELECT * FROM Person;
 ```
 ```sql
 SELECT * FROM Phone;
 ```
-Plik możesz utworzyć za pomocą edytora *nano* na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomy MySQL’a wykonaj komendę:
+Plik możesz utworzyć za pomocą edytora *nano* na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomu *MySQL’a* wykonaj komendę:
 ```sql
 mysql> SOURCE query.sql
 ```
@@ -277,9 +285,9 @@ mysql> SOURCE query.sql
 ```sql
 DROP TABLE IF EXISTS Person;
 ```
-Powyższa instrukcja jest charakterystyczna dla MySQL’a i może nie zadziałać w innych wersjach SQL’a. 
+Powyższa instrukcja jest charakterystyczna dla *MySQL’a* i może nie zadziałać w innych wersjach *SQL’a*. 
 7. Wykonaj polecenia z poprzedniego punktu w odniesieniu do tabeli *Phone*. (Dodaj nowe instrukcje do pliku *query.sql*).
-8. Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format \*.csv dla Excela). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku res.txt:
+8. Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format \*.csv dla *Excela*). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku *res.txt*:
 ```sql
 mysql> SELECT * INTO OUTFILE 'res.txt' FROM Person;
 ```
@@ -290,7 +298,7 @@ mysql> SELECT * INTO OUTFILE 'res.txt' FIELDS TERMINATED BY ','
 -> FROM Person;
 ```
 10. Eksportuj dane zawierające następujący zestaw danych: imię, nazwisko i numer telefonu.
-11. Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt query.sql) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli *Person*:
+11. Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt *query.sql*) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli *Person*:
 ```sql
 mysql> DELETE FROM Person WHERE Surname = 'Kowalski';
 ```
