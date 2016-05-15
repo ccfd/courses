@@ -572,7 +572,7 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li>Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (<code>NULL</code>).</li>
 <li>Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.</li>
 <li><p>Wykonaj poniższe zapytanie i zinterpretuj wynik:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Country.Name, City.Name <span class="kw">FROM</span> Country, City</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Country.Name, City.Name <span class="kw">FROM</span> Country, City;</code></pre></div></li>
 <li><p>Wykonaj poniższe zapytanie i zinterpretuj wynik:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Country.Name, City.Name <span class="kw">FROM</span> Country, City
 -&gt;  <span class="kw">WHERE</span> Country.Name = ’Poland’;</code></pre></div></li>
@@ -580,7 +580,7 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li>Wyświetl wszystkie miasta w Norwegii. Załóż, że nie znasz wartości CountryCode.</li>
 <li>Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.</li>
 <li>Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.</li>
-<li>Wyświetl wszystkie miasta w leżące w kraju, w którym leży Kathmandu. Użyj samozłączenia (czyli złączenia tabeli samej z sobą).</li>
+<li>Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa. Użyj samozłączenia (czyli złączenia tabeli samej ze sobą).</li>
 <li>Znajdź liczbę wystąpień każdego miasta na świecie.</li>
 <li>Znajdź liczbę wystąpień każdego miasta na świecie. Wyświetl jedynie te miasta, które występują przynajmniej 3 razy. Wyniki posortuj.</li>
 <li>Jak w punkcie wyżej tylko przy każdym mieście wyświetlić państwo w którym leży.</li>
