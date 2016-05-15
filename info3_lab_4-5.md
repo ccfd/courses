@@ -163,7 +163,7 @@ mysql> SELECT Name, SurfaceArea FROM Country
 * Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
-mysql> SELECT Country.Name, City.Name FROM Country, City
+mysql> SELECT Country.Name, City.Name FROM Country, City;
 ```
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
@@ -174,7 +174,7 @@ mysql> SELECT Country.Name, City.Name FROM Country, City
 * Wyświetl wszystkie miasta w Norwegii. Załóż, że nie znasz wartości CountryCode.
 * Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.
 * Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.
-* Wyświetl wszystkie miasta w leżące w kraju, w którym leży Kathmandu. Użyj samozłączenia (czyli złączenia tabeli samej z sobą).
+* Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa. Użyj samozłączenia (czyli złączenia tabeli samej ze sobą).
 * Znajdź liczbę wystąpień każdego miasta na świecie.
 * Znajdź liczbę wystąpień każdego miasta na świecie. Wyświetl jedynie te miasta, które występują przynajmniej 3 razy. Wyniki posortuj.
 * Jak w punkcie wyżej tylko przy każdym mieście wyświetlić państwo w którym leży.
