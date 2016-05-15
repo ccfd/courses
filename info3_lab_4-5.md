@@ -156,11 +156,11 @@ mysql> SELECT Name, SurfaceArea FROM Country
 * Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).
 * Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia.
 * Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.
-* Wyświetl sumę ludności mieszkającej w miastach w danym państwie (użyj kodu tego państwa).
-* Wyświetl sumę ludności mieszkającej w miastach w danym państwie (użyj kodu tego państwa), ale tylko dla przypadków, gdy ta suma przekracza 10 000 000 (kolejność malejąca).
-* Jak punkt wyżej tylko w miejsce kolejnych wywołań SUM(Population) użyj aliasu.
-* Jak punkt wyżej tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (puste).
-* Jak punkt wyżej tylko weź pod uwagę jedynie miasta mające powyżej 100000 mieszkańców.
+* Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
+* Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
+* Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
+* Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (NULL).
+* Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100000 mieszkańców.
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
 mysql> SELECT Country.Name, City.Name FROM Country, City
