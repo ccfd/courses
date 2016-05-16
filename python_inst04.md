@@ -9,9 +9,9 @@ author: W. Gryglas
 #Wprowadzenie
 
 
-## Przekazywane z linii komend
-
 ## NumPy - zamiana wymiarów
+
+## Przekazywane argumentów z linii komend
 
 ## Tworzenie własnych modułów
 
