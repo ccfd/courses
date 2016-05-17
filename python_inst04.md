@@ -478,9 +478,9 @@ plt.show()
 ```
 
 
-## Tworzenie wykresów - wykresy konturowe
+## Wykresy konturowe
 
-Biblioteka Matplotlib poza prostymi wykresami 2D może służyć do tworzenia wykresów słupkowych, kołowych a także wykresów trójwymiarowych. W poniższym opracowaniu pokażemy jak przygotować wykres konturowy (mapa konturowa) oraz pokazać na takiej mapie wektory. 
+Biblioteka Matplotlib poza prostymi wykresami 2D może służyć do tworzenia wykresów słupkowych, kołowych a także wykresów trójwymiarowych. W poniższym opracowaniu pokażemy jak przygotować wykres konturowy (mapa konturowa). Na koniec przedstawimy jak utworzyć także wykres w pełni trójwymiarowy.
 
 Aby utworzyć jakiś wykres trójwymiarowy musimy zdefiniować na początek pewną przestrzeń próbkowania. W przypadku dwuwymiarowych wykresów taką przestrzeń stanowiła np. tablica równomiernie rozłożonych liczba w danym zakresie. W przypadku wykresów trójwymiarowych zamiast jednej osi mamy płaszczyznę. W związku z tym musimy na niej określić w jakich punktach będą znajdowały się nasze próbki (dla których punktów x,y powinna zostać zaznaczona wartość na osi Z). Taka przestrzeń powinna być zdefiniowana jako tablica dwuwymiarowa współrzędnych X oraz druga tablica dwuwymiarowa współrzędnych Y. Dlaczego muszą być to dwie tablice dwuwymiarowe? Ponieważ każdy punkt na płaszczyźnie musi mieć przypisaną swoją współrzędną x i y. Para takich tablic tworzy siatkę. Można te tablice uzupełnić ręcznie, ale to tego celu lepiej nadaje się funkcja ***numpy.meshgrid*** która generuje dwie tablice X,Y na podstawie zadanych podziałów wzdłuż jednego kierunku i wzdłuż drugiego:
 
@@ -527,19 +527,122 @@ Posiadamy już dane, teraz przejdźmy do utworzenia mapy konturowej:
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.linspace(0,1,6)
-y = np.linspace(-1,1,11)
+x = np.linspace(0, 1, 40)
+y = np.linspace(-1, 1, 40)
 
 X,Y = np.meshgrid(x, y)
 
 Z = np.sin(X * Y)
 
 plt.figure()
-
-
-
+plt.contour(X, Y, Z)
+plt.show()
 ```
+![contour](figures/python_inst04/contour.png "Najprostszy wykres konturowy")
 
+Jak widać utworzenie wykresu konturowego, jest tak proste jak zwykłego. Wykres konturowy może zostać także wyświetlony jako wypełniony, jednak należy wtedy skorzystać z zamiast funkcji ***contour*** funkcję ***contourf***. Trudno jest odczytywać wykresy konturowe po samych kolorach bo musimy posiadać ich definicję. W tym celu korzystamy z funkcji ***colorbar***. Do skali kolorów można także dodać tytuł:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 1, 40)
+y = np.linspace(-1, 1, 40)
+
+X,Y = np.meshgrid(x, y)
+
+Z = np.sin(X * Y)
+
+plt.figure()
+cnt = plt.contourf(X, Y, Z)
+cbar = plt.colorbar(cnt)
+cbar.ax.set_ylabel("values of sin(x*y)")
+plt.show()
+```
+![contourf](figures/python_inst04/contourf_colorbar.png "Wypełniony wykres konturowy ze skalą kolorów")
+
+Do funkcji ***contourf*** można przekazać za pomocą argumentu ***levels*** wartości określające poziomy na których powinny zmieniać się kolory:
+
+```python
+plt.figure()
+cnt = plt.contourf(X, Y, Z, levels=[-1,-0.5,0., 0.5, 1])
+cbar = plt.colorbar(cnt)
+plt.show()
+```
+Domyślne skala kolorów może zostać zamieniona. W tym celu należy przekazać do funkcji ***contourf*** parametr ***cmap*** który jest obiektem typu ColorMap. Pewne określone mapy kolorów są z góry zdefiniowane w pakiecie ***matplotlib.cm*** gdzie znajdują się wszystkie stałe i domyślne parametry biblioteki matplotlib:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm
+
+x = np.linspace(0, 1, 40)
+y = np.linspace(-1, 1, 40)
+
+X,Y = np.meshgrid(x, y)
+
+Z = np.sin(X * Y)
+
+plt.figure()
+cnt = plt.contourf(X, Y, Z, levels=np.linspace(-1,1,21),  cmap=matplotlib.cm.winter)
+cbar = plt.colorbar(cnt)
+plt.show()
+```
+![contourf_winter](figures/python_inst04/contourf_winter_colormap.png "Wykres konturowy ze zmienioną mapą kolorów")
+
+## Wykresy trójwymiarowe
+Elementy grafiki 3D znajdują się w pakiecie ***mplot3d***. Znajdują się tam funkcje pozwalające na rysowanie linii oraz powierzchni w trzech wymiarach. Na początek przedstawimy rysowanie linii na przykładzie spirali:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+angles = np.linspace(0, 8*np.pi, 200)
+x = np.cos(angles)
+y = np.sin(angles)
+z = np.linspace(0,10, 200)
+
+fig = plt.figure()
+ax3D = fig.add_subplot(111, projection="3d") #dodajemy osie 3D
+ax3D.plot(x,y,z)
+plt.show()
+```
+![spirala](figures/python_inst04/spiral.png "Przykład zastosowania Axes3D.plot")
+
+Aby przedstawić wyświetlanie powierzchni zastosujemy te same dane co w przypadku wykresów konturowych. Dane w tym przypadku muszą być przygotowane w podobny sposób, tj. za pomocą tablic dwuwymiarowych dla współrzędnych X, Y i Z:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm
+from mpl_toolkits.mplot3d import Axes3D
+
+x = np.linspace(0, 1, 40)
+y = np.linspace(-1, 1, 40)
+
+X,Y = np.meshgrid(x, y)
+
+Z = np.sin(X * Y)
+
+fig = plt.figure()
+ax3D = fig.add_subplot(111, projection="3d")
+psurf= ax3D.plot_surface(X, Y, Z,  cmap = matplotlib.cm.coolwarm)
+cbar = fig.colorbar(psurf)
+plt.show()
+```
+![plot_surf](figures/python_inst04/surf.png "Przykład zastosowania Axes3D.plot_surf")
+
+Widać, że na powierzchni pojawiają się duże prostokąty, pomimo, że danych jest znacznie więcej. Wynika to z tego że domyślnie jest rysowany tylko co dziesiąty element. Aby się tego pozbyć należy ustawić parametry rstride i cstride na 1. Ponadto aby linie nie były widoczne należy ustawić grubość linii na 0:
+
+```python
+fig = plt.figure()
+ax3D = fig.add_subplot(111, projection="3d")
+psurf= ax3D.plot_surface(X, Y, Z,  cmap = matplotlib.cm.coolwarm, linewidth=0, rstride=1, cstride=1)
+cbar = fig.colorbar(psurf)
+plt.show()
+```
+![plot_surf_adjusted](figures/python_inst04/surf2.png "Bardziej dokładna powierzchnia")
 
 # Zadania 
 
