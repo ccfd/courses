@@ -67,6 +67,8 @@ navbar:
         href: python_inst02.html
       - text: "Instrukcja III"
         href: python_inst03.html
+      - text: "Instrukcja IV"
+        href: python_inst04.html
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:
