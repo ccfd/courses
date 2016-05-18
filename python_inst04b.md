@@ -667,15 +667,15 @@ Uwagi:
 
 ## Zadanie 2
 
-a) Rozwiąż równanie nieustalonego przewodnictwa cieplnego w kwadracie o boku 1 i współczynniku przewodzenia a=1 dla przedziału czasowego od 0 do 1s:
+a) Rozwiąż równanie nieustalonego przewodnictwa cieplnego w kwadracie o boku 1 dla przedziału czasowego od 0 do 1s:
 
-$$\frac{\partial T(x,y,t)}{\partial t} - a \cdot \Delta T(x,y,t) = 0$$
+$$\frac{\partial T(x,y,t)}{\partial t} - \Delta T(x,y,t) = 0$$
 z warunkami:
 $$ T|_{y=0} = 1 $$
 $$ T|_ {y=1} = T|_ {x=0} = T|_{x=1}= 0 $$
 $$ T(x, y, t=0) = 0 $$
  
-W tym celu zaimplementuj metodę różnic skończonych z jawnym schematem eulera kroczenia w czasie. Zacznij od skopiowania pliku ***resources/lab3/zadanie2-template.py*** do swojego katalogu roboczego i zmiany jego nazwy na ***zadanie2***. Wypełnij pozostawione miejsce w kodzie. Na koniec zastanów się jaki powinien zostać zastosowany krok czasowy w metodzie jawnej.
+W tym celu zaimplementuj metodę różnic skończonych z jawnym schematem eulera kroczenia w czasie. Zacznij od skopiowania pliku ***resources/lab3/zadanie2-template.py*** do swojego katalogu roboczego i zmiany jego nazwy na ***zadanie2***. Wypełnij pozostawione miejsce w kodzie.
 
 b) Zmodyfikuj swój kod tak, aby pozbyć się pętli ***for*** i zamiast niej skorzystać z wektoryzacji operacji na tablicach numpy.array
 
@@ -683,8 +683,7 @@ c) Zmodyfikuj warunki początkowe, tak aby obszar ochładzał się zamiast ogrze
 
 $$ T(x,y,t=0)=1$$
 
-**Uwagi:**
------
+Uwagi:
 Jawna schemat Eulera otrzymujemy za pomocą prostego uproszczenia równania różniczkowego:
 
 $$ \frac{\partial T}{\partial t} = g(t)$$
@@ -693,126 +692,28 @@ do:
 
 $$ \frac{T^{n+1} - T^{n}}{\Delta t} = g^n $$
 
-gdzie indeks ***n*** oznacza numer kroku czasowego, a $T^n = T(t^n)$ i $g^n = g(t^n)$. Wykorzystując to uproszczenie otrzymujemy prosty wzór pozwalający obliczyć rozwiązanie w nowym korku czasowym ***n+1***:
+gdzie indeks ***n*** oznacza numer kroku czasowego. Wykorzystując to uproszczenie otrzymujemy prosty wzór pozwalający obliczyć rozwiązanie w nowym korku czasowym ***n+1***:
 
-$$ T^{n+1} = T^n + \Delta t \cdot g^n $$
-
-Jak widać powyższy wzór pozwala na zastosowanie go do naszego docelowego zagadnienia. Jednak musimy w jakiś sposób obliczyć wartość funkcji ***g*** w poprzednim kroku. U nas funkcja g jest równa $\Delta T(x,y,t) a zatem musimy obliczyć wyrażenie:
-
-$$ \frac{\partial^2 T(x,y,t^n)}{\partial x^2} + \frac{\partial^2 T(x,y,t^n)}{\partial y^2} $$
-
-W tym miejscu musimy przypomnieć jak wygląda przybliżenie drugiej pochodnej za pomocą wartości funkcji w równoodległych od siebie punktach:
-
-$$ \frac{d^2 f(x)}{dx^2} \approx \frac{f(x + dx) - 2 \cdot f(x) + f(x-dx)}{dx^2} $$
-
-Powyższy wzór może być łatwo zastosowany do naszego zadania. Wartości funkcji (w naszym przypadku jest to T) w każdym punkcie przestrzeni są znane, ponieważ zgodnie z zaproponowanym jawnym schematem Eulera funkcja prawej strony powinna być wyznaczona na bazie rozwiązań z poprzedniego kroku czasowego. Ostatecznie, przyjmując konwencję $$T^n_{i,j} = T(x_i, y_j, t^n)$$ schemat będzie miał postać:
-
-$$ T^{n+1}_{i,j} = T^{n}_{i,j} + \Delta t \cdot a \cdot ( \frac{T^{n}_{i+1,j} -2\cdot T^{n}_{i,j} + T^{n}_{i-1,j}}{dx^2} + \frac{T^{n}_{i,j+1} -2\cdot T^{n}_{i,j} + T^{n}_{i,j-1}}{dy^2}) $$
-
-Jeśli założymy, że ***dx=dy = \delta*** to wzór uprości się do postaci:
-
-$$ T^{n+1}_{i,j} = T^{n}_{i,j} + \frac{\Delta t \cdot a}{\delta^2} \cdot ( T^{n}_{i,j+1} + T^{n}_{i+1,j} - 4 \cdot T^{n}_{i,j} + T^{n}_{i-1,j} + T^{n}_{i,j-1}) $$
-
-Na zajęciach z informatyki ćwiczyliśmy dokładnie takie same zagadnienia. Różnica polega na tym, że funkcja prawych stron jest w rzeczywistości operatorem Laplaeca, który wiąże rozwiązania z sąsiednich węzłów.  Ponadto w przypadku ćwiczeń całkowaliśmy jedno lub dwa równania w postaci wektorowej. Teraz całkujemy na raz aż $N \cdot N$ równań, ponieważ musimy znaleźć rozwiązania w każdym punkcie siatki obliczeniowej.  
+$$ T^{n+1} = T^{n} + \Delta t \cdot g^n $$
 
 
 
-## Zadanie 3
-
-Rozwiąż zagadnienie ustalonego przewodnictwa cieplnego o postaci:
-$$\Delta T(x,y,t) = 0$$
-z warunkami:
-$$ T|_{y=0} = 1 $$
-$$ T|_ {y=1} = T|_ {x=0} = T|_{x=1}= 0 $$
-
-metodą różnic skończonych. Wynik obliczeń przedstaw graficznie.
-
-
-**Uwagi:**
------
-Do tego zagadnienia nie nadaje się metoda całkowania Eulera, ponieważ poszukujemy rozwiązania ustalonego. W związku z tym należy zastosować inne podejście. Z poprzedniego zadania wiemy, że operator Laplace'a można zdyskretyzować za pomocą metody różnic skończonych, co prowadzi do następującego wzoru:
-
-$$ \Delta T(x,y) \approx \frac{T_{i,j+1} + T_{i+1,j} - 4 \cdot T_{i,j} + T_{i-1,j} + T_{i,j-1}}{\delta^2}  = 0$$
-
-Indeks ***n*** nie jest w tym wypadku potrzebny, ponieważ poszukujemy jednego pola rozwiązań T(x,y). Z powyższego wzoru wynika, że potrafimy napisać jedno równanie liniowe, które wiąże 5 liczby. Jednak wiemy także, że równań takich możemy napisać $N \cdot N$ ponieważ w naszej siatce obliczeniowej tyle węzłów (liczb do wyznaczenia) się znajduje. Wiedząc, że potrafimy ułożyć $N \cdot N$ równań **liniowych**, oraz wiedząc, że mamy $N \cdot N$ niewiadomych to powinno nam przyjść od razu na myśl, że musimy rozwiązać pewien układ równań aby znaleźć niewiadome wartości w węzłach. Jak wiadomo aby rozwiązać układ równań należy odwrócić pewną macierz. Ale aby tego dokonać trzeba na początek taką macierz posiadać. Zapiszmy naszą formę różnicową operatora Laplaca w postaci iloczyny wektorowego:
-
-$$[1, 1, -4, 1, 1] \cdot [T_{i,j+1}, T_{i+1,j}, T_{i,j}, T_{i-1,j}, T_{i,j-1}]^T $$
-
-Jak widać, równania ułożone dla każdego kolejnego węzła [i,j] zawsze będą miały taką samą postać, tylko będą musiały mnożyć się z innymi węzłami. Jeśli przyjmiemy konwencję, że indeksy i odnoszą położenia węzła na osi X a indeks j na osi Y siatki kartezjańskiej, to wszystkie wartości węzłowe możemy zapisać w jednym dużym wektorze rozwiązań, np.:
-
-T = [T00, T10, T20, T30, T40, ..... T01, T11, T21, T31, T41,   ....... T40, T41, T42, T43, T44]
-
-Powyższy wektor reprezentuje wartości węzłowe dla siatki 5x5, a węzły są w nim ułożone kolejnymi "warstwami" zmieniając tylko indeks j. Mając taki wektor możemy ułożyć dowolne równanie, np. dla węzła i=1 i j=1 zgodnie ze wzorem różnicowym:
-
-$$\frac{1}{\delta^2} \cdot ( T12 + T21 - 4 \cdot T11 + T01 + T10)$$
-
-A w formie macierzowej to jedno równanie ma postać:
-
-$$\frac{1}{\delta^2} \cdot [ 0, \textbf{1}, 0, 0, 0, \textbf{1}, \textbf{-4},  \textbf{1},  0, 0, 0, \textbf{1}, 0, .... 0, .... 0 ] \cdot [T00, \textbf{T10}, T20, T30, T40, \textbf{T01}, \textbf{T11}, \textbf{T21}, T31, T41, \textbf{T02}, T12, T22, T32, T42, ..... ]$$
-
-Jak teraz łatwo zauważyć, każde następne równanie, dla kolejnych ineksów, np. (2,1), (3,1), (4,1), (0,2),(1,2).... będzie wyglądało dokładnie tak samo, tylko wystarczy przesunąć niezerowe elementy o 1 indeks w prawo. Przykładowo układ równań będzie wyglądał tak:
 
 
 
-| | | | | | | | | | | | | | | | | | | |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|....|
-|0|1|0|0|0|1|-4|1|0|0|0|1|0|0|0|0|0|0|....|
-|0|0|1|0|0|0|1|-4|1|0|0|0|1|0|0|0|0|0|....|
-|0|0|0|1|0|0|0|1|-4|1|0|0|0|1|0|0|0|0|....|
-|0|0|0|1|0|0|0|1|-4|1|0|0|0|1|0|0|0|0|....|
-|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|....|
 
 
-Oprócz samego układu równań należy jeszcze wprowadzić warunki brzegowe, bo macierze ułożona w powyższy sposób będzie osobliwa. W naszym przypadku warunki brzegowe są zadane jako typu Dirichleta, co oznacza, że w wybranych brzegowych węzłach należy wymusić konkretne, założone wartości. Można to uczynić na kilka sposobów. My zrobimy to w najprostszy możliwy, modyfikując równania które są ułożone dla węzłów brzegowych (zwróć uwagę, że dla węzłów brzegowych nie jesteśmy nawet w stanie ułożyć pełnego równania, ponieważ nie mamy jak się odnieść np. do węzła znajdującego się poniżej dolnej krawędzi). Jak powinno zatem wyglądać równanie dla węzła brzegowego gdy? Chcemy po prostu zapisać, że rozwiązanie dla węzła T11 = 1, a zatem wystarczy zamienić wszystkie elementy w danym wierszu macierzy na 0 poza tą kolumną która odpowiada T11 w wektorze T. Np. załóżmy,  że pierwsze 2 węzły z macierzy powyżej są brzegowe, wtedy taka macierz musi być zmodyfikowana do:
-| | | | | | | | | | | | | | | | | | | |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|....|
-|0|0|0|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|....|
-|0|0|0|0|0|0|0|1|0|0|0|0|0|0|0|0|0|0|....|
-|0|0|0|1|0|0|0|1|-4|1|0|0|0|1|0|0|0|0|....|
-|0|0|0|1|0|0|0|1|-4|1|0|0|0|1|0|0|0|0|....|
-|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|...|....|
-
-W przypadku naszego wyjściowego równani otrzymaliśmy równanie o postaci: $\frac{1}{\delta^2} \cdot ( ..+.. +...) = 0$. Oznacza to, że wektor prawych stron równania macierzowego $\textbf{M} \cdot T = B = 0$. Jednak wprowadzając warunki brzegowe modyfikujemy niektóre równania do postaci $T_{ij} = a$, a zatem wektor $B$ nie będzie już składał się z samych zer. Należy w odpowiednich elementach (odpowiadającym węzłom warunków brzegowych) zadać wybraną wartość, np. 1 dla węzłów dolnej krawędzi jak to jest w naszym przypadku. 
 
 
-## Zadanie 4
-
-Rozwiąż dokładnie takie same zagadnienie jak w zadaniu 2, lecz teraz skorzystaj nie z jawnego schematu Eulera, a z niejawnego. 
-
-**Uwagi**:
------
-Przypomnijmy, schemat jawny Eulera został wyprowadzony z następującego przybliżenia:
-$$ \frac{T(t^{n+1}) - T(t^{n})}{\Delta t} = g(t^n) $$
-
-a w przypadku równania Laplaca miał postać
-$$ \frac{T(t^{n+1}) - T(t^{n})}{\Delta t} = a \cdot \Delta T(t^n) $$
 
 
-Niejawny schemat Eulera charakteryzuje się tym, że funkcja prawych stron jest obliczana nie za pomocą poprzedniego rozwiązania, ale za pomocą tego które aktualnie jest wyznaczane, a zatem ma on taką postać: 
-$$ \frac{T(t^{n+1}) - T(t^{n})}{\Delta t} - a\cdot \Delta T(t^{n+1})  = 0$$
-
-A po uproszczeniu:
-$$ T(t^{n+1})  - \Delta t \cdot a\cdot \Delta T(t^{n+1})  = T(t^{n})$$
-
-Jak teraz widać, nie możemy wprost obliczyć $T(t^{n+1}) $ponieważ rozwiązania dla kolejnych węzłów zależą od rozwiązania w innych węzłach co jest spowodowane operatorem Laplaca. Jadnak taka forma nadal jest liniowa, ponieważ jak wcześniej pokazaliśmy dyskretyzując operator Laplaca. Lecz równania nadal posiadamy, tylko przyjęły one inną formę. Jeśli przypomnimy sobie sytuację z ustalonego zagadnienia, to zauważymy, że mamy teraz do czynienia z bardzo podobnym przypadkiem. Macierz którą uzyskaliśmy z dyskretyzacji operatorem Laplaca może zostać znów wykorzystana w tym zagadnieniu. Wystarczy ją uzupełnić o dodatkowe współczynniki pochodzące od wyrazu wolnego $T(t^{n+1})$ - czyli w praktyce sprowadzi się to do dodania 1 do elementów głównej diagonali. Oczywiście warunki brzegowe powinny zostać zadane na całą macierz, po zsumowaniu wpływu od pochodnej czasowej i operatora Laplaca. Pozostaje ostatnia rzecz - prawa strona równania. W poprzednim zadaniu była ona równa 0, teraz nie, teraz po prostu do niej musimy przypisać rozwiązanie z poprzedniego korku czasowego. To wszystko, nasz układ równań będzie miał postać macierzową:
-
-$$ (\textbf{M} + \textbf{K})\cdot T^{n+1} = T^{n} $$
-
-gdzie macierz $\textbf{M}$ jest macierzą jednostkową  $\textbf{I}$ a $\textbf{K}$ to macierz utworzona tak jak w poprzednim zdaniu. 
 
 
-## Zadanie 5
 
-Przerób program z poprzedniego zadania tak, aby układ równań był utworzony za pomocą macierzy rzadkich i rozwiązany metodą iteracyjną.
 
-**Uwagi:**
-----
-* Do rozwiązania układu równań można zastosować metodę iteracyjną znajdującą się w funkcji **bicgstab** którą można zaimportować wykorzystując ***from scipy.sparse.linalg.isolve.iterative import bicgstab***
-* Macierz rzadką można utworzyć wykorzystując funkcję ***csr_matrix*** z biblioteki ***scipy.sparse***. Macierz tą tworzy się przygotowując 3 tablice:
-	- tablica zawierająca kolejne indeksy niezerowych kolumn w wierszach macierzy
-	- tablica zawierająca kolejne wartości które powinny być umieszczone w niezerowych kolumnach
-	- tablic określająca liczbę indeks od którego zaczynają się następne wiersze w dwóch poprzednich tablicach- rozmiar jej powinien być taki sam jak liczba wierszy, poprzednie dwie tablice mają rozmiar równy sumie niezerowych kolumn.
 
-Całe zadanie tutaj polega na tym aby uzupełnić macierz układu równań, ale tworząc ją w postaci skompresowanej. W poprzednim zadaniu wypełnialiśmy macierz wprost, razem z zerami, teraz już definiujemy tylko niezerowe elementy. Format zapisy jest dość prosty, tylko aby go zrozumieć należy pomyśleć nad tym jakie informacje musi posiadać macierz aby być w pełni zdefiniowana. 
+
+
+
+
+
