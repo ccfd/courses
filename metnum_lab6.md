@@ -87,10 +87,10 @@ Po tej procedurze wszystkie wektory $\phi$ są ortogonalne i długości $1$ wzgl
 ### Zadanie
 
 Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własnym wg. następującego schematu iteracji:
-- Oblicz $b = M\cdot phi_j$
+- Oblicz $b = M\cdot \phi_j$
 - Rozwiąż układ $S\cdot p_j = b$
-- Przepisz $phi_i = p_i$
-- Wykonaj ortonormalizację G-S wektorów $phi$
+- Przepisz $\phi_i = p_i$
+- Wykonaj ortonormalizację G-S wektorów $\phi$
 
 
 
