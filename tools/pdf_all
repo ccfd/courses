@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=$(ls | grep '^[^_].*\.md$')
+FILES=$(ls | grep '^[^_].*\.R\?md$')
 
 for i in $FILES
 do

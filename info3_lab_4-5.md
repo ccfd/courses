@@ -46,11 +46,13 @@ mysql> SELECT Name, Region FROM Country;
 ```
 * Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:
 ```sql
-mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent='Europe';
+mysql> SELECT Name, LifeExpectancy FROM Country
+-> WHERE Continent='Europe';
 ```
 * Wyświetl nazwy wszystkich państw leżących w Europie i Azji wraz z długością życia ich mieszkańców:
 ```sql
-mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent IN ('Europe', 'Asia');
+mysql> SELECT Name, LifeExpectancy FROM Country
+-> WHERE Continent IN ('Europe', 'Asia');
 ```
 * Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości
 życia (dodaj do poprzedniej komendy frazę - `ORDER BY LifeExpectancy`).
@@ -72,7 +74,8 @@ mysql> SELECT * FROM City WHERE CountryCode = 'FIN';
 ```
 * Wyświetl wszystkie informacje o miastach w Polsce (CountryCode Polski to POL) i posortuj je według województw:
 ```sql
-mysql> SELECT * FROM City WHERE CountryCode = 'POL' ORDER BY District;
+mysql> SELECT * FROM City WHERE CountryCode = 'POL'
+-> ORDER BY District;
 ```
 * Wyświetl nazwy krajów, które uzyskały niepodległość po roku 1980. Wyświetl również rok uzyskania niepodległości.
 ```sql
@@ -153,14 +156,14 @@ mysql> SELECT Name, SurfaceArea FROM Country
 * Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).
 * Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia.
 * Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.
-* Wyświetl sumę ludności mieszkającej w miastach w danym państwie (użyj kodu tego państwa).
-* Wyświetl sumę ludności mieszkającej w miastach w danym państwie (użyj kodu tego państwa), ale tylko dla przypadków, gdy ta suma przekracza 10 000 000 (kolejność malejąca).
-* Jak punkt wyżej tylko w miejsce kolejnych wywołań SUM(Population) użyj aliasu.
-* Jak punkt wyżej tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (puste).
-* Jak punkt wyżej tylko weź pod uwagę jedynie miasta mające powyżej 100000 mieszkańców.
+* Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
+* Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
+* Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
+* Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
+* Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
-mysql> SELECT Country.Name, City.Name FROM Country, City
+mysql> SELECT Country.Name, City.Name FROM Country, City;
 ```
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
@@ -171,14 +174,22 @@ mysql> SELECT Country.Name, City.Name FROM Country, City
 * Wyświetl wszystkie miasta w Norwegii. Załóż, że nie znasz wartości CountryCode.
 * Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.
 * Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.
-* Wyświetl wszystkie miasta w leżące w kraju, w którym leży Kathmandu. Użyj samozłączenia (czyli złączenia tabeli samej z sobą).
+* Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa. Użyj samozłączenia (czyli złączenia tabeli samej ze sobą).
 * Znajdź liczbę wystąpień każdego miasta na świecie.
 * Znajdź liczbę wystąpień każdego miasta na świecie. Wyświetl jedynie te miasta, które występują przynajmniej 3 razy. Wyniki posortuj.
 * Jak w punkcie wyżej tylko przy każdym mieście wyświetlić państwo w którym leży.
 * Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: VAT), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
 
 ### Tworzenie i używanie nowych baz danych
-1. Utwórz pierwszą tabelę, która będzie zawierać informacje o osobach:
+0. Utwórz własną bazę danych `studxy` (*xy* to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:
+```sql
+CREATE DATABASE studxy;
+```
+Przjdż do nowo utworzonej bazy danych:
+```sql
+USE studxy;
+```
+1. Utwórz pierwszą tabelę, która zawierać będzie informacje o osobach:
 ```sql
 mysql> CREATE TABLE Person (
 -> ID int,
@@ -192,7 +203,7 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 mysql> DESCRIBE Person;
 ```
 2. Utwórz drugą tabelę, która będzie zawierać informacje o numerach telefonów.
-* Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli Phone a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):
+* Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli `Phone` a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):
 ```sql
 mysql> CREATE TABLE Phone (ID int auto_increment PRIMARY KEY);
 ```
@@ -208,11 +219,11 @@ mysql> ALTER TABLE Phone DROP COLUMN Number;
 ```sql
 mysql> ALTER TABLE Phone ADD PersonID int NOT NULL;
 ```
-* Załóżmy, że numer telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:
+* Załóżmy, że numery telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:
 ```sql
 mysql> ALTER TABLE Phone ADD UNIQUE (Number);
 ```
-* Podobnie jak poprzednio sprawdź postać utworzonej tabeli Phone: 
+* Podobnie jak poprzednio, sprawdź postać utworzonej tabeli Phone:
 ```sql
 mysql> DESCRIBE Phone;
 ```
@@ -221,12 +232,14 @@ mysql> DESCRIBE Phone;
 ```sql
 mysql> INSERT INTO Person VALUES (1, 'Kowalski', 'Jan');
 ```
-* Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole ID tabeli Phone jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować MySQL’a które pola wypełniamy. Służy do tego lista pól podawana  w nawiasach po nazwie tabeli:
+* Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole `ID` tabeli `Phone` jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować *MySQL’a*, które pola wypełniamy. Służy do tego lista pól podawana w nawiasach po nazwie tabeli:
 ```sql
-mysql> INSERT INTO Phone (Number, PersonID) VALUES ('022 358 85 58', 1);
+mysql> INSERT INTO Phone (Number, PersonID)
+-> VALUES ('022 358 85 58', 1);
 ```
 ```sql
-mysql> INSERT INTO Phone (Number, PersonID) VALUES ('0 600 560 780', 1);
+mysql> INSERT INTO Phone (Number, PersonID)
+-> VALUES ('0 600 560 780', 1);
 ```
 * Wprowadź nową osobę. Tym razem nie podawaj imienia użytkownika, a nazwisko ustaw na NULL: 
 ```sql
@@ -243,7 +256,7 @@ mysql> INSERT INTO Person (ID, Surname) VALUES (2, 'Dzik');
 mysql> INSERT INTO Person (ID, FirstName) VALUES (3, 'Adam');
 ```
 (Jakie nazwisko zostało wpisane do bazy danych?)
-* Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer ID identyczny z już istniejącym:
+* Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer `ID` identyczny z już istniejącym:
 ```sql
 mysql> INSERT INTO Person (ID, Surname) VALUES (2, 'Lis');
 ```
@@ -256,25 +269,25 @@ mysql> UPDATE Person SET FirstName='Adam' WHERE ID=2;
 4. Pobieranie informacji.
 * Wyświetl wszystkie numery telefonów Kowalskiego.
 * Wyświetl wszystkie numery telefonów zaczynające się od numeru 022.
-* Dodaj do poprzedniego punktu właścicieli tych numerów.
-5. Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy MySQL’a do pliku. Utwórz plik o przykładowej nazwie query.sql. Umieść w tym pliku dwa zapytania:
+* Jak w powyższym podpunkcie, ale wyświetl także właścicieli tych numerów.
+5. Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy *MySQL’a* do pliku. Utwórz plik o przykładowej nazwie *query.sql*. Umieść w tym pliku dwa zapytania:
 ```sql
 SELECT * FROM Person;
 ```
 ```sql
 SELECT * FROM Phone;
 ```
-Plik możesz utworzyć za pomocą edytora *nano* na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomy MySQL’a wykonaj komendę:
+Plik możesz utworzyć za pomocą edytora *nano* na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomu *MySQL’a* wykonaj komendę:
 ```sql
 mysql> SOURCE query.sql
 ```
 6. Umieść w skrypcie query.sql instrukcję tworzącą tabelę Person (`CREATE ...`) i instrukcje wprowadzające do niej dane (`INSERT ...`). Ponieważ tabela Person już istnieje, przed wywołaniem instrukcji `CREATE` należy tą tabelę usunąć. Na początku skryptu wprowadź zatem następujący warunek:
 ```sql
-DROP TABLE IF EXISTS 'Person';
+DROP TABLE IF EXISTS Person;
 ```
-Powyższa instrukcja jest charakterystyczna dla MySQL’a i może nie zadziałać w innych wersjach SQL’a. 
+Powyższa instrukcja jest charakterystyczna dla *MySQL’a* i może nie zadziałać w innych wersjach *SQL’a*. 
 7. Wykonaj polecenia z poprzedniego punktu w odniesieniu do tabeli *Phone*. (Dodaj nowe instrukcje do pliku *query.sql*).
-8. Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format \*.csv dla Excela). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku res.txt:
+8. Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format \*.csv dla *Excela*). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku *res.txt*:
 ```sql
 mysql> SELECT * INTO OUTFILE 'res.txt' FROM Person;
 ```
@@ -285,7 +298,7 @@ mysql> SELECT * INTO OUTFILE 'res.txt' FIELDS TERMINATED BY ','
 -> FROM Person;
 ```
 10. Eksportuj dane zawierające następujący zestaw danych: imię, nazwisko i numer telefonu.
-11. Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt query.sql) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli *Person*:
+11. Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt *query.sql*) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli *Person*:
 ```sql
 mysql> DELETE FROM Person WHERE Surname = 'Kowalski';
 ```
