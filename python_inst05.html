@@ -26,6 +26,49 @@
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -433,12 +476,33 @@ div.tocify {
 <h2>Tworzenie własnych modułów</h2>
 </div>
 </div>
+<div id="instalacja-openfoam-i-paraview" class="section level1">
+<h1>Instalacja OpenFOAM i ParaView</h1>
+<p>Do rozwiązania poniższego zadania będzie wymagane zainstalowanie aplikacji OpenFOAM. OpenFOAM jest zbiorem różnych solverów opensource, które pozwalają na rozwiązywanie zagadnień obliczeniowej mechaniki płynów. W przypadku naszego zadania będzie on zastosowany do tworzenia siatki i wykonania obliczeń przepływu 2D, których wynik będzie następnie przez nas wykorzystany do utworzenia optymalizacji. Instalacja OpenFOAM z pakietów jest bardzo prosta. Opis instalacji można znaleźć pod <a href="http://openfoam.org/download/3-0-1-ubuntu/">tym</a> linkiem. Poniżej opisujemy dokładnie te same kroki:</p>
+<ul>
+<li><p>Należy na początek dodać repozytorium OpenFOAM do system, tak aby nasz system wiedział skąd ma pobrać aplikację. W tym celu w konsoli wpisujemy:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> add-apt-repository http://www.openfoam.org/download/ubuntu</code></pre></div></li>
+<li><p>Oprócz dodania repozytorium musimy odświeżyć nasz manager pakietów:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get update</code></pre></div></li>
+<li><p>Na koniec możemy już zainstalować samego OpenFOAMa</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get install openfoam30</code></pre></div></li>
+</ul>
+<p>OpenFOAM domyślnie powinien zostać zainstalowany w lokalizacji “/opt/openfoam30”.</p>
+<p>Oprócz samego OpenFOAMa potrzebujemy także narzędzia do wykonywania postprocessingu. Świetnie nadaje się do tego narzędzie ParaView które domyślnie wspiera wczytywanie siatki i danych wygenerowanych przez OpenFOAMa. Aplikację tą można zainstalować na dwa sposoby: Z repozytorium OpenFOAM (posiada dodatkowe wsparcie do danych OpenFOAMa):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get install paraviewopenfoam44</code></pre></div>
+<p>Drugim sposobem jest pobranie ParaView z <a href="http://www.paraview.org/download/">oficjalnego repozytorium</a> - tutaj wystarczy pobrać archiwum i następnie je rozpakować. Zaletą tego podejścia jest pobranie najnowszej dostępnej wersji tego oprogramowania.</p>
+</div>
 <div id="zadanie" class="section level1">
 <h1>Zadanie</h1>
+<p>Dokonaj optymalizacji kształtu poniższej geometrii tak aby otrzymany profil kanału zapewniał najmniejszą stratę energii przepływu.</p>
 <div class="figure">
 <img src="figures/python_inst05/tube.png" title="Kanał do optymalizacji" alt="kanal" />
 <p class="caption">kanal</p>
 </div>
+<p>Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Aby wyznaczyć</p>
+<div id="przypadek-a" class="section level2">
+<h2>przypadek a)</h2>
+<p>Optymalizacji możesz dokonać posługując się jedną z funkcji znajdujących się w pakiecie <strong><em>scipy.optimize</em></strong>. Aby wyznaczyć straty przepływu skorzystaj z “channel_optimization”</p>
 <div class="figure">
 <img src="figures/python_inst05/optimization_iteration.png" title="Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach" alt="optymalizacja dwu parametryczna" />
 <p class="caption">optymalizacja dwu parametryczna</p>
@@ -449,6 +513,7 @@ div.tocify {
 <p class="caption">optymalizacja 4-parometrowa</p>
 </div>
 <p><img src="figures/python_inst05/opt_velocity.gif" title="Optymalizacja 4-parometrowa, pole prędkości" alt="optymalizacja 4-parometrowa - prędkość" /> <img src="figures/python_inst05/opt_totalpressure_4params.gif" title="Optymalizacja 4-parometrowa, pole ciśnienia całkowitego" alt="optymalizacja 4-parometrowa, ciśnienie całkowite" /></p>
+</div>
 </div>
 
 <!-- Dummy footer -->
