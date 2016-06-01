@@ -51,41 +51,29 @@ Dokonaj optymalizacji kształtu poniższej geometrii tak aby otrzymany profil ka
 
 ![kanal](figures/python_inst05/tube.png "Kanał do optymalizacji")
 
-Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej. W związku z tym kod powinien realizować następujący zadania:
+Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej. 
+
+Kod powinien realizować następujący zadania:
 
 1. Utworzyć bazową siatkę obliczeniową.
 2. Wczytywać i zapisywać współrzędne węzłów siatki obliczeniowej z formatu OpenFOAM
 3. Wczytywać wyniki z pliku zawierającego obliczone całki z ciśnienia całkowitego na wlocie i wylocie domeny.
 4. Uruchamiać symulację
-5. Uruchamiać narzędzie ***minimize*** z biblioteki ***scipy.optimize*** w celu dokonania optymalizacji. 
+5. Uruchamiać narzędzie *minimize* z biblioteki scipy.optimize w celu 
 
-Symulacją i tworzeniem siatki nie należy się przejmować, ponieważ zostały przygotowane specjalne funkcje służące do uruchamiania aplikacji OpenFOAM - znajudują się one w pliku "resources/lab4/of.py". Aby poprawnie działały te funkcje z poziomu środowiska PyCharm przed jego uruchomieniem należy dodać pewne ścieżki do pliku konfiguracji. W tym celu otwórz plik o nazwie ***pycharm.sh*** który znajduje się w folderze ***bin*** w miejscu w którym mamy zainstalowanego PyCharma, np.: "/home/wgryglas/Applications/pycharm/bin". 
+ Symulacje powinny zostać prowadzone przy użyciu aplikacji OpenFOAM zwanej "simpleFoam", która implementuje solver przepływów nieściśliwych. Gotowa symulacja zawierająca wszystkie ustawienia znajduje się 
 
-W pliku tym przed:
-```bash
-# ---------------------------------------------------------------------
-# Run the IDE.
-# ---------------------------------------------------------------------
-```
-dodaj poniższe linijki:
-```bash
-export PYTHONPATH=<ParaView install path>/lib/paraview-4.3/site-packages:<ParaView install path>/lib/paraview-<PV version number>/site-packages/vtk:$PYTHONPATH
-export LD_LIBRARY_PATH=<ParaView install path>/lib/paraview-<PV version number>:${LD_LIBRARY_PATH}
-```
-zastępując <ParaView install path> ścieżką do miejsca gdzie jest zainstalowany ParaView na twoim komputerze (sprawdź wpisując komendę ```which paraview```) oraz <PV version number> numerem wersji, np. 4.3 (odczytaj ze ścieżki wyświetlonej komendą ```which paraview```).
+Bazowa siatka wraz z ustawieniami 
 
-Powyższy krok może zostać pominięty, ale w tej sytuacji należało będzie zakomentować funkcje które służą do uruchamiania ParaView "w locie":
 
-* view
-* view2
-* saveCurrentImage
+## przypadek a)
 
-Przed rozpoczęciem pracy musimy jeszcze przekopiować folder w którym znajdują się ustawienia OpenFOAMa(ustawienie takie, które zwyczajowo wykonuje się we Fluencie w oknie graficznym) oraz w którym będzie zapisana siatka obliczeniowa oraz wyniki. Folder do przekopiowania znajduje się w "/resources/lab4/channel_optimization". Powinien on zostać przekopiowany w dowolne miejsce, najlepiej gdzieś poza projektem PyCharm, ponieważ jest to folder symulacji a nie kodu python. 
 
-Zadanie to rozwiąż na trzy różne sposoby, które będą różniły się metodą transformacji siatki.
-#### przypadek a) - dwuparametryczna transformacja siatki
 
-Dokonaj transformacji tak, że parametr określa jak mocno powinny zostać przesunięte węzły względem odległości od linii środkowej kolanka. Parametr dodatni powinien określać odsunięcie od środkowej linii, a ujemny przyciągnięcie do niej. Ponadto transformacja powinna zapewniać, że punkty na skraju kolanka nie zostaną wcale przesunięte (wartość odsunięcia powinna być uzależniona od np. kąta pomiędzy środkiem kolanka a punktem). 
+Optymalizacji możesz dokonać posługując się jedną z funkcji znajdujących się w pakiecie ***scipy.optimize***. Aby wyznaczyć straty przepływu skorzystaj z  "channel_optimization"
+
+
+
 
 ![optymalizacja dwu parametryczna](figures/python_inst05/optimization_iteration.png "Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach")
 
@@ -94,4 +82,3 @@ Dokonaj transformacji tak, że parametr określa jak mocno powinny zostać przes
 ![optymalizacja 4-parometrowa](figures/python_inst05/optimization_iteration_4params.png "Optymalizacja 4-parometrowa, wartość funkcji celu w kolejnych iteracjach")
 
 ![optymalizacja 4-parometrowa - prędkość](figures/python_inst05/opt_velocity.gif "Optymalizacja 4-parometrowa, pole prędkości") ![optymalizacja 4-parometrowa, ciśnienie całkowite](figures/python_inst05/opt_totalpressure_4params.gif "Optymalizacja 4-parometrowa, pole ciśnienia całkowitego")
-
