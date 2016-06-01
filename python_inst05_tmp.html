@@ -425,14 +425,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="python_inst05.pdf">
+  <a href="python_inst05_tmp.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/python_inst05.md">
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst05_tmp.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -499,32 +499,20 @@ div.tocify {
 <img src="figures/python_inst05/tube.png" title="Kanał do optymalizacji" alt="kanal" />
 <p class="caption">kanal</p>
 </div>
-<p>Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej. W związku z tym kod powinien realizować następujący zadania:</p>
+<p>Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej.</p>
+<p>Kod powinien realizować następujący zadania:</p>
 <ol style="list-style-type: decimal">
 <li>Utworzyć bazową siatkę obliczeniową.</li>
 <li>Wczytywać i zapisywać współrzędne węzłów siatki obliczeniowej z formatu OpenFOAM</li>
 <li>Wczytywać wyniki z pliku zawierającego obliczone całki z ciśnienia całkowitego na wlocie i wylocie domeny.</li>
 <li>Uruchamiać symulację</li>
-<li>Uruchamiać narzędzie <strong><em>minimize</em></strong> z biblioteki <strong><em>scipy.optimize</em></strong> w celu dokonania optymalizacji.</li>
+<li>Uruchamiać narzędzie <em>minimize</em> z biblioteki scipy.optimize w celu</li>
 </ol>
-<p>Symulacją i tworzeniem siatki nie należy się przejmować, ponieważ zostały przygotowane specjalne funkcje służące do uruchamiania aplikacji OpenFOAM - znajudują się one w pliku “resources/lab4/of.py”. Aby poprawnie działały te funkcje z poziomu środowiska PyCharm przed jego uruchomieniem należy dodać pewne ścieżki do pliku konfiguracji. W tym celu otwórz plik o nazwie <strong><em>pycharm.sh</em></strong> który znajduje się w folderze <strong><em>bin</em></strong> w miejscu w którym mamy zainstalowanego PyCharma, np.: “/home/wgryglas/Applications/pycharm/bin”.</p>
-<p>W pliku tym przed:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># ---------------------------------------------------------------------</span>
-<span class="co"># Run the IDE.</span>
-<span class="co"># ---------------------------------------------------------------------</span></code></pre></div>
-<p>dodaj poniższe linijki:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PYTHONPATH=</span><span class="kw">&lt;ParaView</span> install path<span class="kw">&gt;</span>/lib/paraview-4.3/site-packages:<span class="kw">&lt;</span>ParaView install path<span class="kw">&gt;</span>/lib/paraview-<span class="kw">&lt;</span>PV version number<span class="kw">&gt;</span>/site-packages/vtk:<span class="ot">$PYTHONPATH</span>
-<span class="kw">export</span> <span class="ot">LD_LIBRARY_PATH=</span><span class="kw">&lt;ParaView</span> install path<span class="kw">&gt;</span>/lib/paraview-<span class="kw">&lt;</span>PV version number<span class="kw">&gt;</span>:<span class="ot">${LD_LIBRARY_PATH}</span></code></pre></div>
-<p>zastępując <ParaView install path> ścieżką do miejsca gdzie jest zainstalowany ParaView na twoim komputerze (sprawdź wpisując komendę <code>which paraview</code>) oraz <PV version number> numerem wersji, np. 4.3 (odczytaj ze ścieżki wyświetlonej komendą <code>which paraview</code>).</p>
-<p>Powyższy krok może zostać pominięty, ale w tej sytuacji należało będzie zakomentować funkcje które służą do uruchamiania ParaView “w locie”:</p>
-<ul>
-<li>view</li>
-<li>view2</li>
-<li>saveCurrentImage</li>
-</ul>
-<p>Przed rozpoczęciem pracy musimy jeszcze przekopiować folder w którym znajdują się ustawienia OpenFOAMa(ustawienie takie, które zwyczajowo wykonuje się we Fluencie w oknie graficznym) oraz w którym będzie zapisana siatka obliczeniowa oraz wyniki. Folder do przekopiowania znajduje się w “/resources/lab4/channel_optimization”. Powinien on zostać przekopiowany w dowolne miejsce, najlepiej gdzieś poza projektem PyCharm, ponieważ jest to folder symulacji a nie kodu python.</p>
-<p>Zadanie to rozwiąż na trzy różne sposoby, które będą różniły się metodą transformacji siatki. #### przypadek a) - dwuparametryczna transformacja siatki</p>
-<p>Dokonaj transformacji tak, że parametr określa jak mocno powinny zostać przesunięte węzły względem odległości od linii środkowej kolanka. Parametr dodatni powinien określać odsunięcie od środkowej linii, a ujemny przyciągnięcie do niej. Ponadto transformacja powinna zapewniać, że punkty na skraju kolanka nie zostaną wcale przesunięte (wartość odsunięcia powinna być uzależniona od np. kąta pomiędzy środkiem kolanka a punktem).</p>
+<p>Symulacje powinny zostać prowadzone przy użyciu aplikacji OpenFOAM zwanej “simpleFoam”, która implementuje solver przepływów nieściśliwych. Gotowa symulacja zawierająca wszystkie ustawienia znajduje się</p>
+<p>Bazowa siatka wraz z ustawieniami</p>
+<div id="przypadek-a" class="section level2">
+<h2>przypadek a)</h2>
+<p>Optymalizacji możesz dokonać posługując się jedną z funkcji znajdujących się w pakiecie <strong><em>scipy.optimize</em></strong>. Aby wyznaczyć straty przepływu skorzystaj z “channel_optimization”</p>
 <div class="figure">
 <img src="figures/python_inst05/optimization_iteration.png" title="Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach" alt="optymalizacja dwu parametryczna" />
 <p class="caption">optymalizacja dwu parametryczna</p>
@@ -535,6 +523,7 @@ div.tocify {
 <p class="caption">optymalizacja 4-parometrowa</p>
 </div>
 <p><img src="figures/python_inst05/opt_velocity.gif" title="Optymalizacja 4-parometrowa, pole prędkości" alt="optymalizacja 4-parometrowa - prędkość" /> <img src="figures/python_inst05/opt_totalpressure_4params.gif" title="Optymalizacja 4-parometrowa, pole ciśnienia całkowitego" alt="optymalizacja 4-parometrowa, ciśnienie całkowite" /></p>
+</div>
 </div>
 
 <!-- Dummy footer -->
