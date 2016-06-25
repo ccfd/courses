@@ -13,4 +13,4 @@ CCFD group at [MEIL](http://meil.pw.edu.pl/) Faculty conduct several courses in 
 
 # Końcowe wyniki egzaminu z MOMP po pierwszym terminie
 
-Pod [linkiem](exam/momp/MOMP-2015-2016-Lato-E1-WynikiCalosciowe.pdf) zamieszczamy końcowe wyniki po pierwszym terminie. Osobom którym udało się pozytywnie zaliczyć gratulujemy a pozostałe osoby zapraszamy na drugi termin.
+Pod [linkiem](exam/momp/MOMP-2015-2016-Lato-E1-WynikiCalosciowe.pdf) zamieszczamy końcowe wyniki po pierwszym terminie. Osobom którym udało się uzyskać pozytywny wynik gratulujemy, a pozostałe osoby zapraszamy na drugi termin.
