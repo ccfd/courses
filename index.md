@@ -11,6 +11,6 @@ CCFD group at [MEIL](http://meil.pw.edu.pl/) Faculty conduct several courses in 
 - Python --- Usage of scripting language Python for solving engineering problems
 
 
-# Wyniki częśćiowe egzaminu z MOMP
+# Końcowe wyniki egzaminu z MOMP po pierwszym terminie
 
-Pod poniższym [linkiem](MOMP_wyniki_czesciowe.pdf) zostały zamieszczone częściowe wyniki z pierwszego egazminu MOMP. Są to wyniki częściowe, ponieważ w grupie B nie zostało jeszcze sprawdzone zadanie nr 2. Prawdopodobnie końcowe wyniki dla obu grup zostaną zamieszczone jutro około południa. 
+Pod [linkiem](exam/momp/MOMP-2015-2016-Lato-E1-WynikiCalosciowe.pdf) zamieszczamy końcowe wyniki po pierwszym terminie. Osobom którym udało się pozytywnie zaliczyć gratulujemy a pozostałe osoby zapraszamy na drugi termin.
