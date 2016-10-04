@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
 
 
 <title></title>
@@ -440,14 +439,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="python_inst05.pdf">
+  <a href="cpp_inst01.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/python_inst05.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst01.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -473,83 +472,107 @@ div.tocify {
 </div>
 
 
-<div id="wprowadzenie" class="section level1">
-<h1>Wprowadzenie</h1>
-<div id="tworzenie-wasnych-klas" class="section level2">
-<h2>Tworzenie własnych klas</h2>
+<div id="programowanie-obiektowe-w-c" class="section level1">
+<h1>PROGRAMOWANIE OBIEKTOWE W C++</h1>
 </div>
-<div id="uruchamianie-zewnetrznych-procesow" class="section level2">
-<h2>Uruchamianie zewnętrznych procesów</h2>
-</div>
-<div id="konsola-ipython" class="section level2">
-<h2>Konsola “ipython”</h2>
-</div>
-<div id="tworzenie-wasnych-generatorow" class="section level2">
-<h2>Tworzenie własnych generatorów</h2>
-</div>
-<div id="tworzenie-wasnych-moduow" class="section level2">
-<h2>Tworzenie własnych modułów</h2>
-</div>
-</div>
-<div id="instalacja-openfoam-i-paraview" class="section level1">
-<h1>Instalacja OpenFOAM i ParaView</h1>
-<p>Do rozwiązania poniższego zadania będzie wymagane zainstalowanie aplikacji OpenFOAM. OpenFOAM jest zbiorem różnych solverów opensource, które pozwalają na rozwiązywanie zagadnień obliczeniowej mechaniki płynów. W przypadku naszego zadania będzie on zastosowany do tworzenia siatki i wykonania obliczeń przepływu 2D, których wynik będzie następnie przez nas wykorzystany do utworzenia optymalizacji. Instalacja OpenFOAM z pakietów jest bardzo prosta. Opis instalacji można znaleźć pod <a href="http://openfoam.org/download/3-0-1-ubuntu/">tym</a> linkiem. Poniżej opisujemy dokładnie te same kroki:</p>
+<div id="laboratorium-1" class="section level1">
+<h1>LABORATORIUM 1</h1>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>Utwórz klasę <code>Wektor2D</code>{.c++} będącą implementacją wektorów w przestrzeni 2D. Program pisz drobnymi krokami. Utwórz najpierw pustą klasę bez funkcji i bez zmiennych składowych. Utwórz obiekt tej klasy w funkcji <code>main()</code>{.c++}. Skompiluj i uruchom program. Dopiero teraz dodawaj kolejne elementy klasy kompilując program jak najczęściej.</p>
 <ul>
-<li><p>Należy na początek dodać repozytorium OpenFOAM do system, tak aby nasz system wiedział skąd ma pobrać aplikację. W tym celu w konsoli wpisujemy:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> add-apt-repository http://www.openfoam.org/download/ubuntu</code></pre></div></li>
-<li><p>Oprócz dodania repozytorium musimy odświeżyć nasz manager pakietów:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get update</code></pre></div></li>
-<li><p>Na koniec możemy już zainstalować samego OpenFOAMa</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get install openfoam30</code></pre></div></li>
-</ul>
-<p>OpenFOAM domyślnie powinien zostać zainstalowany w lokalizacji “/opt/openfoam30”.</p>
-<p>Oprócz samego OpenFOAMa potrzebujemy także narzędzia do wykonywania postprocessingu. Świetnie nadaje się do tego narzędzie ParaView które domyślnie wspiera wczytywanie siatki i danych wygenerowanych przez OpenFOAMa. Aplikację tą można zainstalować na dwa sposoby: Z repozytorium OpenFOAM (posiada dodatkowe wsparcie do danych OpenFOAMa):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get install paraviewopenfoam44</code></pre></div>
-<p>Drugim sposobem jest pobranie ParaView z <a href="http://www.paraview.org/download/">oficjalnego repozytorium</a> - tutaj wystarczy pobrać archiwum i następnie je rozpakować. Zaletą tego podejścia jest pobranie najnowszej dostępnej wersji tego oprogramowania.</p>
-</div>
-<div id="zadanie" class="section level1">
-<h1>Zadanie</h1>
-<p>Dokonaj optymalizacji kształtu poniższej geometrii tak aby otrzymany profil kanału zapewniał najmniejszą stratę energii przepływu. Optymalizacji powinny podlegać jednie kolanka kanału, nie wlot i wylot.</p>
-<div class="figure">
-<img src="figures/python_inst05/tube.png" title="Kanał do optymalizacji" alt="kanal" />
-<p class="caption">kanal</p>
-</div>
-<p>Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej. W związku z tym kod powinien realizować następujący zadania:</p>
-<ol style="list-style-type: decimal">
-<li>Utworzyć bazową siatkę obliczeniową.</li>
-<li>Wczytywać i zapisywać współrzędne węzłów siatki obliczeniowej z formatu OpenFOAM</li>
-<li>Wczytywać wyniki z pliku zawierającego obliczone całki z ciśnienia całkowitego na wlocie i wylocie domeny.</li>
-<li>Uruchamiać symulację</li>
-<li>Uruchamiać narzędzie <strong><em>minimize</em></strong> z biblioteki <strong><em>scipy.optimize</em></strong> w celu dokonania optymalizacji.</li>
-</ol>
-<p>Symulacją i tworzeniem siatki nie należy się przejmować, ponieważ zostały przygotowane specjalne funkcje służące do uruchamiania aplikacji OpenFOAM - znajudują się one w pliku “resources/lab4/of.py”. Aby poprawnie działały te funkcje z poziomu środowiska PyCharm przed jego uruchomieniem należy dodać pewne ścieżki do pliku konfiguracji. W tym celu otwórz plik o nazwie <strong><em>pycharm.sh</em></strong> który znajduje się w folderze <strong><em>bin</em></strong> w miejscu w którym mamy zainstalowanego PyCharma, np.: “/home/wgryglas/Applications/pycharm/bin”.</p>
-<p>W pliku tym przed:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># ---------------------------------------------------------------------</span>
-<span class="co"># Run the IDE.</span>
-<span class="co"># ---------------------------------------------------------------------</span></code></pre></div>
-<p>dodaj poniższe linijki:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PYTHONPATH=</span><span class="kw">&lt;ParaView</span> install path<span class="kw">&gt;</span>/lib/paraview-4.3/site-packages:<span class="kw">&lt;</span>ParaView install path<span class="kw">&gt;</span>/lib/paraview-<span class="kw">&lt;</span>PV version number<span class="kw">&gt;</span>/site-packages/vtk:<span class="ot">$PYTHONPATH</span>
-<span class="kw">export</span> <span class="ot">LD_LIBRARY_PATH=</span><span class="kw">&lt;ParaView</span> install path<span class="kw">&gt;</span>/lib/paraview-<span class="kw">&lt;</span>PV version number<span class="kw">&gt;</span>:<span class="ot">${LD_LIBRARY_PATH}</span></code></pre></div>
-<p>zastępując <ParaView install path> ścieżką do miejsca gdzie jest zainstalowany ParaView na twoim komputerze (sprawdź wpisując komendę <code>which paraview</code>) oraz <PV version number> numerem wersji, np. 4.3 (odczytaj ze ścieżki wyświetlonej komendą <code>which paraview</code>).</p>
-<p>Powyższy krok może zostać pominięty, ale w tej sytuacji należało będzie zakomentować funkcje które służą do uruchamiania ParaView “w locie”:</p>
+<li><p>atrybuty klasy to 2 zmienne typu double opisujące współrzędne wektora umieszczone w sekcji <code>private</code>{.c++}.</p></li>
+<li>utwórz konstruktory:
 <ul>
-<li>view</li>
-<li>view2</li>
-<li>saveCurrentImage</li>
+<li>defaultowy: <code>Wektor2D()</code>{.c++}</li>
+<li>parametrowy: <code>Wektor2D(const double&amp; xx, const double&amp; yy)</code>{.c++} (W jednym z konstruktorów użyj listy inicjalizacyjnej.)</li>
+</ul></li>
+<li><p>Utwórz metodę <code>Drukuj()</code>{.c++} służącą do drukowania zawartości klasy na ekranie w formacie:<br />
+<strong>wektor [ 2.345, 4.5678]</strong></p></li>
+<li><p>W funkcji <code>main()</code>{.c++} wykorzystaj klasę <code>Wektor2D</code>{.c++} np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
+{
+    Wektor2D v1(<span class="dv">10</span>,<span class="dv">20</span>);
+    Wektor2D v2 = v1;
+    Wektor2D v3(v1);
+    Wektor2D v4;
+    v1.Drukuj();
+    v2.Drukuj();
+    v3.Drukuj();
+    v4.Drukuj();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre></div></li>
+<li><p>Wewnątrz konstruktorów drukuj informację o rodzaju właśnie wywoływanego konstruktora i wartościach składowych klasy.</p></li>
+<li>Przy pomocy debuggera prześledź wartość składowej <code>x</code>{.c++} w poszczególnych funkcjach:
+<ul>
+<li>Postaw breakpoint na pierwszej linii kodu (<em>F9</em>).</li>
+<li>Uruchom program w sesji debuggera (<em>F5</em>).</li>
+<li>Po zatrzymaniu programu na “breakpoincie” wprowadź w oknie “watch” debuggera nazwę składowej klasy którą chcesz śledzić (np. <code>x</code>{.c++}).</li>
+<li>Wykonaj program etapami:
+<ul>
+<li>przechodząc do następnej linii kodu (<em>F10</em>);</li>
+<li>lub wchodząc do środka funkcji (<em>F11</em>).</li>
+</ul></li>
 </ul>
-<p>Przed rozpoczęciem pracy musimy jeszcze przekopiować folder w którym znajdują się ustawienia OpenFOAMa(ustawienie takie, które zwyczajowo wykonuje się we Fluencie w oknie graficznym) oraz w którym będzie zapisana siatka obliczeniowa oraz wyniki. Folder do przekopiowania znajduje się w “/resources/lab4/channel_optimization”. Powinien on zostać przekopiowany w dowolne miejsce, najlepiej gdzieś poza projektem PyCharm, ponieważ jest to folder symulacji a nie kodu python.</p>
-<p>Zadanie to rozwiąż na trzy różne sposoby, które będą różniły się metodą transformacji siatki. #### przypadek a) - dwuparametryczna transformacja siatki</p>
-<p>Dokonaj transformacji tak, że parametr określa jak mocno powinny zostać przesunięte węzły względem odległości od linii środkowej kolanka. Parametr dodatni powinien określać odsunięcie od środkowej linii, a ujemny przyciągnięcie do niej. Ponadto transformacja powinna zapewniać, że punkty na skraju kolanka nie zostaną wcale przesunięte (wartość odsunięcia powinna być uzależniona od np. kąta pomiędzy środkiem kolanka a punktem).</p>
-<div class="figure">
-<img src="figures/python_inst05/optimization_iteration.png" title="Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach" alt="optymalizacja dwu parametryczna" />
-<p class="caption">optymalizacja dwu parametryczna</p>
+Odpowiedz sobie na następujące pytania:
+<ul>
+<li>Ile obiektów utworzyłeś w programie?</li>
+<li>Ile konstruktorów zdefiniowałeś w klasie?</li>
+<li>Do ilu konstruktorów udało Ci się wejść przy pomocy debuggera?</li>
+<li>Które konstruktory kompilator utworzył automatycznie?</li>
+</ul></li>
+<li><p>Dodaj do klasy konstruktor kopiujący: <code>Wektor2D(const Wektor2D&amp; v)</code>{.c++} i powtórz doświadczenie z debuggerem.</p></li>
+<li><p>Dodaj do klasy destruktor. Wewnątrz destruktora umieść informacje identyfikujące obiekt który właśnie jest usuwany (np. wyświetlaj wartości składowych klasy).</p></li>
+</ul>
 </div>
-<p><img src="figures/python_inst05/opt_velocity.gif" title="Optymalizacja dwu parametryczna, pole prędkości" alt="optymalizacja dwu parametryczna - prędkość" /> <img src="figures/python_inst05/opt_totalpressure.gif" title="Optymalizacja dwu parametryczna, pole ciśnienia całkowitego" alt="optymalizacja dwu parametryczna, ciśnienie całkowite" /></p>
-<div class="figure">
-<img src="figures/python_inst05/optimization_iteration_4params.png" title="Optymalizacja 4-parometrowa, wartość funkcji celu w kolejnych iteracjach" alt="optymalizacja 4-parometrowa" />
-<p class="caption">optymalizacja 4-parometrowa</p>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Rozszerz klasę o obsługę wybranych operatorów.</p>
+<ul>
+<li>Utwórz operatory:
+<ul>
+<li>Jednoargumentowy <code>operator +=</code>{.c++}</li>
+<li>Dwuargumentowy <code>operator+</code>{.c++} (sprawdź czy możesz operować na atrybutach klasy <code>Wektor2D</code>{.c++} bez definiowania zaprzyjaźnienia z tą klasą)</li>
+</ul></li>
+<li><p>Dodaj i przetestuj w programie głównym następujące operacje:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v4 = v1 + v2;
+v4.Drukuj();
+v3 += v3;
+v3.Drukuj();</code></pre></div>
+<h2 id="zadanie-3">Zadanie 3</h2>
+<p>Hermetyzacja i udostępnianie składowych klasy.</p></li>
+<li><p>Sprawdź czy możesz wykonać następującą operację w programie głównym:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v4.x = <span class="dv">50</span>;</code></pre></div></li>
+<li><p>Dodaj do klasy funkcję <code>SetX(const double&amp; xx )</code>{.c++} pozwalającą na zmianę składowej klasy <code>x</code>{.c++}. Ogranicz wartość tej zmiennej do <code>MAX_VAL = 100</code>{.c++}. Przekroczenie wartości <code>MAX_VAL</code>{.c++} powinno kończyć program.</p></li>
+<li><p>Dodaj do klasy funkcje <code>GetX()</code>{.c++} zwracającą wartość składowej <code>x</code>{.c++}.</p></li>
+<li><p>Dodaj analogiczne funkcje dla składowej <code>y</code>{.c++} i wykonaj następujący fragment kodu w programie głównym</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v4.SetX(<span class="dv">50</span>);
+v4.Drukuj();
+Wektor2D v5( v4.GetY(), v3.GetX() );
+v5.Drukuj();</code></pre></div></li>
+</ul>
 </div>
-<p><img src="figures/python_inst05/opt_velocity.gif" title="Optymalizacja 4-parometrowa, pole prędkości" alt="optymalizacja 4-parometrowa - prędkość" /> <img src="figures/python_inst05/opt_totalpressure_4params.gif" title="Optymalizacja 4-parometrowa, pole ciśnienia całkowitego" alt="optymalizacja 4-parometrowa, ciśnienie całkowite" /></p>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Zmienne statyczne klasy. * Dodaj do klasy prywatną składową statyczną <code>indx</code>{.c++}. Zmienna ta powinna nadawać kolejne numery tworzonym obiektom. Zmienna taka musi być zainicjalizowana poza klasą w następujący sposób:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    <span class="dt">int</span> Wekro2D::indx = <span class="dv">0</span>;</code></pre></div>
+<ul>
+<li><p>Dodaj do klasy prywatną składową <code>nr</code>{.c++}. Składowa ta ma przechowywać kolejny numer obiektu (począwszy od 1). Inicjalizuj ją przy pomocy składowej <code>indx</code>{.c++} w każdym dostępnym konstruktorze jednocześnie zwiększając wartość składowej <code>indx</code>{.c++}.</p></li>
+<li><p>Wartość zmiennej <code>nr</code>{.c++} wyświetlaj zarówno w konstruktorach jak i w destruktorze.</p></li>
+<li>Uruchom program i przeanalizuj jeszcze raz kolejność tworzenia się i usuwania obiektów.
+<ul>
+<li>Zwróć szczególną uwagę na moment konstrukcji i destrukcji obiektów o <strong><em>nr = 5</em></strong> i <strong><em>nr = 6</em></strong>.</li>
+<li>Jak zmieni się liczba tworzonych obiektów jeśli konstruktor kopiujący zmienisz na następujący: <code>Wektor2D(const Wektor2D v)</code>{.c++} (czyli bez referencji).</li>
+<li>Jak wytłumaczysz, że przy destrukcji obiektów nigdzie nie pojawia się wartość <strong><em>nr = 4?</em></strong></li>
+</ul></li>
+<li><p>Dodaj do klasy odpowiednio zdefiniowany operator przypisania(=). Czy teraz, w trakcie usuwania obiektów, widać już wartość <strong><em>nr = 4</em></strong> ?</p></li>
+</ul>
+</div>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
+<p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
+</div>
 </div>
 
 <!-- Dummy footer -->

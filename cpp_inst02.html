@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
 
 
 <title></title>
@@ -440,14 +439,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="python_inst05.pdf">
+  <a href="cpp_inst02.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/python_inst05.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst02.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -473,83 +472,134 @@ div.tocify {
 </div>
 
 
-<div id="wprowadzenie" class="section level1">
-<h1>Wprowadzenie</h1>
-<div id="tworzenie-wasnych-klas" class="section level2">
-<h2>Tworzenie własnych klas</h2>
+<div id="programowanie-obiektowe-w-c" class="section level1">
+<h1>PROGRAMOWANIE OBIEKTOWE W C++</h1>
 </div>
-<div id="uruchamianie-zewnetrznych-procesow" class="section level2">
-<h2>Uruchamianie zewnętrznych procesów</h2>
-</div>
-<div id="konsola-ipython" class="section level2">
-<h2>Konsola “ipython”</h2>
-</div>
-<div id="tworzenie-wasnych-generatorow" class="section level2">
-<h2>Tworzenie własnych generatorów</h2>
-</div>
-<div id="tworzenie-wasnych-moduow" class="section level2">
-<h2>Tworzenie własnych modułów</h2>
-</div>
-</div>
-<div id="instalacja-openfoam-i-paraview" class="section level1">
-<h1>Instalacja OpenFOAM i ParaView</h1>
-<p>Do rozwiązania poniższego zadania będzie wymagane zainstalowanie aplikacji OpenFOAM. OpenFOAM jest zbiorem różnych solverów opensource, które pozwalają na rozwiązywanie zagadnień obliczeniowej mechaniki płynów. W przypadku naszego zadania będzie on zastosowany do tworzenia siatki i wykonania obliczeń przepływu 2D, których wynik będzie następnie przez nas wykorzystany do utworzenia optymalizacji. Instalacja OpenFOAM z pakietów jest bardzo prosta. Opis instalacji można znaleźć pod <a href="http://openfoam.org/download/3-0-1-ubuntu/">tym</a> linkiem. Poniżej opisujemy dokładnie te same kroki:</p>
+<div id="laboratorium-2" class="section level1">
+<h1>LABORATORIUM 2</h1>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Utwórz klasę Pojemnik służącą do przechowywania obiektów typu <code>Wektor2D</code>{.c++}</p>
 <ul>
-<li><p>Należy na początek dodać repozytorium OpenFOAM do system, tak aby nasz system wiedział skąd ma pobrać aplikację. W tym celu w konsoli wpisujemy:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> add-apt-repository http://www.openfoam.org/download/ubuntu</code></pre></div></li>
-<li><p>Oprócz dodania repozytorium musimy odświeżyć nasz manager pakietów:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get update</code></pre></div></li>
-<li><p>Na koniec możemy już zainstalować samego OpenFOAMa</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get install openfoam30</code></pre></div></li>
-</ul>
-<p>OpenFOAM domyślnie powinien zostać zainstalowany w lokalizacji “/opt/openfoam30”.</p>
-<p>Oprócz samego OpenFOAMa potrzebujemy także narzędzia do wykonywania postprocessingu. Świetnie nadaje się do tego narzędzie ParaView które domyślnie wspiera wczytywanie siatki i danych wygenerowanych przez OpenFOAMa. Aplikację tą można zainstalować na dwa sposoby: Z repozytorium OpenFOAM (posiada dodatkowe wsparcie do danych OpenFOAMa):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">sudo</span> apt-get install paraviewopenfoam44</code></pre></div>
-<p>Drugim sposobem jest pobranie ParaView z <a href="http://www.paraview.org/download/">oficjalnego repozytorium</a> - tutaj wystarczy pobrać archiwum i następnie je rozpakować. Zaletą tego podejścia jest pobranie najnowszej dostępnej wersji tego oprogramowania.</p>
-</div>
-<div id="zadanie" class="section level1">
-<h1>Zadanie</h1>
-<p>Dokonaj optymalizacji kształtu poniższej geometrii tak aby otrzymany profil kanału zapewniał najmniejszą stratę energii przepływu. Optymalizacji powinny podlegać jednie kolanka kanału, nie wlot i wylot.</p>
-<div class="figure">
-<img src="figures/python_inst05/tube.png" title="Kanał do optymalizacji" alt="kanal" />
-<p class="caption">kanal</p>
-</div>
-<p>Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej. W związku z tym kod powinien realizować następujący zadania:</p>
-<ol style="list-style-type: decimal">
-<li>Utworzyć bazową siatkę obliczeniową.</li>
-<li>Wczytywać i zapisywać współrzędne węzłów siatki obliczeniowej z formatu OpenFOAM</li>
-<li>Wczytywać wyniki z pliku zawierającego obliczone całki z ciśnienia całkowitego na wlocie i wylocie domeny.</li>
-<li>Uruchamiać symulację</li>
-<li>Uruchamiać narzędzie <strong><em>minimize</em></strong> z biblioteki <strong><em>scipy.optimize</em></strong> w celu dokonania optymalizacji.</li>
-</ol>
-<p>Symulacją i tworzeniem siatki nie należy się przejmować, ponieważ zostały przygotowane specjalne funkcje służące do uruchamiania aplikacji OpenFOAM - znajudują się one w pliku “resources/lab4/of.py”. Aby poprawnie działały te funkcje z poziomu środowiska PyCharm przed jego uruchomieniem należy dodać pewne ścieżki do pliku konfiguracji. W tym celu otwórz plik o nazwie <strong><em>pycharm.sh</em></strong> który znajduje się w folderze <strong><em>bin</em></strong> w miejscu w którym mamy zainstalowanego PyCharma, np.: “/home/wgryglas/Applications/pycharm/bin”.</p>
-<p>W pliku tym przed:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># ---------------------------------------------------------------------</span>
-<span class="co"># Run the IDE.</span>
-<span class="co"># ---------------------------------------------------------------------</span></code></pre></div>
-<p>dodaj poniższe linijki:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PYTHONPATH=</span><span class="kw">&lt;ParaView</span> install path<span class="kw">&gt;</span>/lib/paraview-4.3/site-packages:<span class="kw">&lt;</span>ParaView install path<span class="kw">&gt;</span>/lib/paraview-<span class="kw">&lt;</span>PV version number<span class="kw">&gt;</span>/site-packages/vtk:<span class="ot">$PYTHONPATH</span>
-<span class="kw">export</span> <span class="ot">LD_LIBRARY_PATH=</span><span class="kw">&lt;ParaView</span> install path<span class="kw">&gt;</span>/lib/paraview-<span class="kw">&lt;</span>PV version number<span class="kw">&gt;</span>:<span class="ot">${LD_LIBRARY_PATH}</span></code></pre></div>
-<p>zastępując <ParaView install path> ścieżką do miejsca gdzie jest zainstalowany ParaView na twoim komputerze (sprawdź wpisując komendę <code>which paraview</code>) oraz <PV version number> numerem wersji, np. 4.3 (odczytaj ze ścieżki wyświetlonej komendą <code>which paraview</code>).</p>
-<p>Powyższy krok może zostać pominięty, ale w tej sytuacji należało będzie zakomentować funkcje które służą do uruchamiania ParaView “w locie”:</p>
+<li><p>Atrybuty tej klasy to dynamiczna tablica typu <code>Wektor2D *mdata</code>{.c++} i rozmiar tej tablicy <code>int msize</code>{.c++}.</p></li>
+<li><p>Utwórz konstruktor domyślny i destruktor.</p></li>
+<li>Utwórz metodę <code>Dodaj(const Wektor2D&amp; v)</code>{.c++} służącą do dodawania elementów do klasy <code>Pojemnik</code>{.c++}. Konieczne jest w niej dynamiczne przealokowanie tablicy <code>mdata</code>{.c++} (używaj operatorów <code>new</code>{.c++} i <code>delete</code>{.c++}). Przealokowanie możesz wykonać według następującego schematu:
 <ul>
-<li>view</li>
-<li>view2</li>
-<li>saveCurrentImage</li>
+<li>zadeklaruj wskaźnik do tablicy tymczasowej;</li>
+<li>przydziel niezbędną pamięć;</li>
+<li>przepisz dane ze starej tablicy;</li>
+<li>zwolnij pamięć starej tablicy;</li>
+<li>wstaw nowy element na odpowiednie miejsce w tablicy tymczasowej;</li>
+<li>przypisz tablicę tymczasową do odpowiedniego wskaźnika obiektu Pojemnik.</li>
+</ul></li>
+<li><p>W programie głównym uruchom następujący fragment kodu</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Pojemnik poj;
+poj.Dodaj( v1 );
+poj.Dodaj( v2 );
+poj.Dodaj( Wektor2D(<span class="dv">3</span>,<span class="dv">2</span>) );
+poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</code></pre></div></li>
+<li>Sprawdź przy pomocy debuggera zawartość obiektu poj. W oknie watch użyj trzech różnych wpisów:
+<ul>
+<li><code>poj.mdata[0];</code>{.c++}</li>
+<li><code>poj.mdata;</code>{.c++}</li>
+<li><code>poj.mdata,4;</code>{.c++}</li>
+</ul></li>
 </ul>
-<p>Przed rozpoczęciem pracy musimy jeszcze przekopiować folder w którym znajdują się ustawienia OpenFOAMa(ustawienie takie, które zwyczajowo wykonuje się we Fluencie w oknie graficznym) oraz w którym będzie zapisana siatka obliczeniowa oraz wyniki. Folder do przekopiowania znajduje się w “/resources/lab4/channel_optimization”. Powinien on zostać przekopiowany w dowolne miejsce, najlepiej gdzieś poza projektem PyCharm, ponieważ jest to folder symulacji a nie kodu python.</p>
-<p>Zadanie to rozwiąż na trzy różne sposoby, które będą różniły się metodą transformacji siatki. #### przypadek a) - dwuparametryczna transformacja siatki</p>
-<p>Dokonaj transformacji tak, że parametr określa jak mocno powinny zostać przesunięte węzły względem odległości od linii środkowej kolanka. Parametr dodatni powinien określać odsunięcie od środkowej linii, a ujemny przyciągnięcie do niej. Ponadto transformacja powinna zapewniać, że punkty na skraju kolanka nie zostaną wcale przesunięte (wartość odsunięcia powinna być uzależniona od np. kąta pomiędzy środkiem kolanka a punktem).</p>
-<div class="figure">
-<img src="figures/python_inst05/optimization_iteration.png" title="Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach" alt="optymalizacja dwu parametryczna" />
-<p class="caption">optymalizacja dwu parametryczna</p>
 </div>
-<p><img src="figures/python_inst05/opt_velocity.gif" title="Optymalizacja dwu parametryczna, pole prędkości" alt="optymalizacja dwu parametryczna - prędkość" /> <img src="figures/python_inst05/opt_totalpressure.gif" title="Optymalizacja dwu parametryczna, pole ciśnienia całkowitego" alt="optymalizacja dwu parametryczna, ciśnienie całkowite" /></p>
-<div class="figure">
-<img src="figures/python_inst05/optimization_iteration_4params.png" title="Optymalizacja 4-parometrowa, wartość funkcji celu w kolejnych iteracjach" alt="optymalizacja 4-parometrowa" />
-<p class="caption">optymalizacja 4-parometrowa</p>
+<div id="zadanie-2-1" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Dodaj do klasy Pojemnik metodę <code>void DrukujWszystko()</code>{.c++} drukującą zawartość wszystkich obiektów <code>Wektor2D</code>{.c++} przechowywanych w tej klasie. Skorzystaj z metody <code>Drukuj()</code>{.c++} z klasy <code>Wektor2D</code>{.c++}.</p>
 </div>
-<p><img src="figures/python_inst05/opt_velocity.gif" title="Optymalizacja 4-parometrowa, pole prędkości" alt="optymalizacja 4-parometrowa - prędkość" /> <img src="figures/python_inst05/opt_totalpressure_4params.gif" title="Optymalizacja 4-parometrowa, pole ciśnienia całkowitego" alt="optymalizacja 4-parometrowa, ciśnienie całkowite" /></p>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Dodaj do klasy <code>Pojemnik</code>{.c++} metodę klasy <code>Wektor2D</code>{.c++} <code>Suma()</code>{.c++} liczącą sumę wszystkich wektorów przechowywanych w klasie <code>Pojemnik</code>{.c++}, korzystającą z operatorów zdefiniowanych dla klasy <code>Wektor2D</code>{.c++}. Wynik funkcji wyświetl w programie głównym.</p>
+<ul>
+<li>Spróbuj wywołać liczenie sumy i jej wyświetlanie w taki sposób aby były umieszczone w jednej instrukcji.</li>
+</ul>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Dodaj do klasy <code>Wektor2D operator &lt;&lt;</code>{.c++}.</p>
+<ul>
+<li><p>Operator powinien mieć postać:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> <span class="kw">operator</span>&lt;&lt;( ostream&amp; o, <span class="dt">const</span> Wektor2D&amp; w )</code></pre></div>
+<p>i powinien wykonywać te same operacje co funkcja <code>Drukuj()</code>{.c++} klasy <code>Wektor2D</code>{.c++}.</p></li>
+<li><p>Wyświetl zawartość dowolnego wektora w programie głównym:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cout &lt;&lt; v1;</code></pre></div></li>
+<li><p>Przerób definicję operatora &lt;&lt; tak, aby można było wykonać następującą instrukcję:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cout &lt;&lt; v1 &lt;&lt; v2;</code></pre></div></li>
+<li><p>Dodaj do klasy Pojemnik nową wersję funkcji <code>DrukujWszystko()</code>{.c++} (np. <code>DrukujWszystko2()</code>{.c++}). Nowa funkcja powinna wykorzystywać <code>operator &lt;&lt;</code>{.c++} zamiast funkcji <code>Drukuj()</code>{.c++} klasy <code>Wektor2D</code>{.c++}.</p></li>
+</ul>
+</div>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
+<p>Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).</p>
+<ul>
+<li><p>W oknie Solution Explorer zaznacz nazwę projektu. W menu Project powinno pojawić się na samym dole podmenu <strong><em>Properties</em></strong>.</p></li>
+<li><p>W drzewku okna <strong><em>Property</em></strong> wybierz folder <strong><em>linker/debug</em></strong>. Teraz w polu <strong><em>Generate Map File</em></strong> wybierz <strong><em>Yes (/MAP)</em></strong>, a poniżel w polu <strong><em>Map File Name</em></strong> podaj nazwę pliku ****.map<strong><em>, np.: </em></strong>$(OutDir)/Test.map***.</p></li>
+<li><p>Przebuduj program i w katalogu <strong><em>debug</em></strong> projektu odszukaj plik <strong><em>Test.map</em></strong>.</p></li>
+<li><p>Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?) Spróbuj odnaleźć konstruktory i destruktory klas <code>Wektor2D</code>{.c++} i <code>Pojemnik</code>{.c++}. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?</p></li>
+<li><p>Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji <code>Pojemnik::Max()</code>{.c++})? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?</p></li>
+<li><p>Jak myślisz, czy wśród nazw znajdujących się w pliku ****.map*** mogą wystąpić dwie identyczne nazwy funkcji?</p></li>
+</ul>
+</div>
+<div id="zadanie-6" class="section level2">
+<h2>Zadanie 6</h2>
+<p>Dodaj do klasy Pojemnik funkcję <code>Max()</code>{.c++} zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa <code>Wektor2D</code>{.c++} a nie klasa <code>Pojemnik</code>{.c++}. Zatem klasa <code>Pojemnik</code>{.c++} powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie <code>Wektor2D</code>{.c++}. Zdefiniuj również te operatory. Funkcja <code>Max()</code>{.c++} powinna zadziałać w następujący sposób:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    cout &lt;&lt; poj.Max();</code></pre></div>
+</div>
+<div id="zadanie-7" class="section level2">
+<h2>Zadanie 7</h2>
+<p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
+<hr />
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// -------------------------------------------------------------</span>
+<span class="co">// deklaracja klasy</span>
+<span class="kw">class</span> Wektor2D
+{
+<span class="kw">public</span>:
+    Wektor2D();
+    Wektor2D( <span class="dt">const</span> <span class="dt">double</span>&amp; xx, <span class="dt">const</span> <span class="dt">double</span>&amp; yy );
+    <span class="dt">void</span> <span class="kw">operator</span>+=( Wektor2D&amp; v );
+    <span class="dt">void</span> Drukuj();
+
+<span class="kw">private</span>:
+    <span class="dt">double</span> x;
+    <span class="dt">double</span> y;
+};
+<span class="co">// -------------------------------------------------------------</span>
+<span class="co">// konstruktor domyślny</span>
+Wektor2D::Wektor2D():x(<span class="dv">0</span>), y(<span class="dv">0</span>)
+{
+}
+<span class="co">// -------------------------------------------------------------</span>
+<span class="co">// konstruktor parametrowy</span>
+Wektor2D::Wektor2D( <span class="dt">const</span> <span class="dt">double</span>&amp; xx, <span class="dt">const</span> <span class="dt">double</span>&amp; yy ):x(xx), y(yy) 
+{
+}
+<span class="co">// -------------------------------------------------------------</span>
+<span class="co">// operator +=</span>
+<span class="dt">void</span> Wektor2D::<span class="kw">operator</span>+=( Wektor2D&amp; v )
+{
+    x += v.x;
+    y += v.y;
+}
+<span class="co">// ----------------------------------</span>
+<span class="co">// drukowanie wartości składowych klasy</span>
+<span class="dt">void</span> Wektor2D::Drukuj()
+{
+    cout.setf( ios::fixed );
+    cout &lt;&lt; <span class="st">&quot;wektor: [&quot;</span>;
+    cout.precision(<span class="dv">3</span>);
+   <span class="co">//   . . . </span>
+  
+  <span class="co">//    . . . </span>
+  cout.width(<span class="dv">6</span>);
+  cout &lt;&lt; x &lt;&lt; <span class="st">&quot;,&quot;</span>;
+  cout.precision(<span class="dv">4</span>);
+  cout.width(<span class="dv">7</span>);
+  cout &lt;&lt; y &lt;&lt; <span class="st">&quot;]&quot;</span> &lt;&lt; endl;
+}</code></pre></div>
+</div>
 </div>
 
 <!-- Dummy footer -->

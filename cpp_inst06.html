@@ -9,10 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ł. Łaniewski-Wołłk" />
 
 
-<title>Mnożenie przez macież jako funkcja</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -397,14 +396,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="metnum_lab4.pdf">
+  <a href="cpp_inst06.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/metnum_lab4.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst06.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -426,68 +425,18 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mnożenie przez macież jako funkcja</h1>
-<h4 class="author"><em>Ł. Łaniewski-Wołłk</em></h4>
 
 </div>
 
 
-<p>Łatwo zauważyć, że w metodzie gradientów sprzężonych nie używamy elementów macierzy, lecz tylko możliwości mnożenia przez nią. Tzn: nie musimy wiedzieć jak wygląda <span class="math inline">\(A\)</span>, wystarczy że dla danego wektora <span class="math inline">\(x\)</span> potrafimy obliczyć <span class="math inline">\(Ax\)</span>.</p>
-<p>Na tych laboratoriach wykorzystamy tą wiedzę by dodatkowo przyspieszyć program i zmniejszyć użycie pamięci.</p>
-<div id="przygotowanie" class="section level1">
-<h1>Przygotowanie</h1>
-<p>By nie pomylić się w następnych krokach, należy pierw dobrze ‘’posprzątać’’ kod.</p>
-<div id="zadanie" class="section level3">
-<h3>Zadanie</h3>
-<p>Wydziel wszystkie elementy iteracji metody gradientów sprzężonych do oddzielnych pętli. Tak by <span class="math inline">\(r=Ax\)</span>, <span class="math inline">\(r=b-r\)</span>, etc. były oddzielnymi kawałkami kodu</p>
+<div id="programowanie-obiektowe-w-c" class="section level1">
+<h1>PROGRAMOWANIE OBIEKTOWE W C++</h1>
 </div>
-<div id="zadanie-1" class="section level3">
-<h3>Zadanie</h3>
-<p>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(A\)</span>: <code>Mult(double** A, double*x, double* r)</code> i preconditioner diagonalny: <code>Precond(double** A, double*r, double* p)</code> — Zauważ że mnożenie przez macierz <span class="math inline">\(A\)</span> występuje co najmniej dwa razy w iteracji.</p>
-<p>Na tym etapie w funkcji <code>Solve</code> nie powinny występować nigdzie elementy macierzy <span class="math inline">\(A\)</span>.</p>
+<div id="laboratorium-3" class="section level1">
+<h1>LABORATORIUM 3</h1>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
 </div>
-<div id="zadanie-2" class="section level3">
-<h3>Zadanie</h3>
-<p>Przenieś zmienne <code>fix</code>, <code>thick</code> do zmiennych globalnych</p>
-</div>
-<div id="zadanie-3" class="section level3">
-<h3>Zadanie</h3>
-<p>Skopiuj funkcję <code>Mult</code> pod nazwą <code>SMult</code></p>
-</div>
-</div>
-<div id="element-po-elemencie" class="section level1">
-<h1>Element po elemencie</h1>
-<p>W funkcji <code>SMult</code> będziemy chcieli napisać funkcję mnożącą przez macierz sztywności nie używając samej macierzy <span class="math inline">\(S\)</span>. Chcemy wykonać operację <span class="math inline">\(r=Sx\)</span>, tzn: <span class="math inline">\(r_i = \sum_jS_{ij}x_j\)</span>.</p>
-<p>Jeśli dodamy do elementu <span class="math inline">\(S_{1,2}\)</span> liczbę <span class="math inline">\(4\)</span>, to do <span class="math inline">\(r_1\)</span> musimy dodać <span class="math inline">\(4x_2\)</span>.</p>
-<p>Analogicznie jeśli dodamy do elementu <span class="math inline">\(S_{ij}\)</span> liczbę <span class="math inline">\(w\)</span>, to tak jak byśmy dodali do elementu <span class="math inline">\(r_i\)</span> liczbę <span class="math inline">\(w\cdot x_j\)</span>. Jako, że macierz <span class="math inline">\(S\)</span> konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.</p>
-<div id="zadanie-4" class="section level3">
-<h3>Zadanie</h3>
-<p>Przekopiuj fragment kodu funkcji <code>main</code> odpowiedzialny za konstrukcję macierzy <span class="math inline">\(S\)</span>. Następnie, każde wystąpienie\ <code>S[i,j] += cos;</code>\ zamień na:\ <code>r[i] += cos * x[j];</code></p>
-<p>Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonalnej? Jeśli w macierzy <span class="math inline">\(S\)</span> <span class="math inline">\(i\)</span>-ty wiersz zamienimy na same zera i <span class="math inline">\(1\)</span> na przekątnej, to tak jak byśmy postawili <span class="math inline">\(r_i = x_i\)</span>.</p>
-</div>
-<div id="zadanie-5" class="section level3">
-<h3>Zadanie</h3>
-<p>Zamień pętlę wycinającą <span class="math inline">\(i\)</span>ty wiersz, na <code>r[i]=x[i]</code></p>
-</div>
-<div id="zadanie-6" class="section level3">
-<h3>Zadanie</h3>
-<p>Przetestuj kod z <code>SMult</code> zamiast <code>Mult</code></p>
-</div>
-<div id="zadanie-7" class="section level3">
-<h3>Zadanie</h3>
-<p>Napisz trywialny preconditioner <code>IPrecond(double ** A, double * r, double * p)</code>, przepisujący <span class="math inline">\(p=r\)</span>.</p>
-</div>
-<div id="zadanie-8" class="section level3">
-<h3>Zadanie</h3>
-<p>Popraw kod zauważając, że ani <code>SMult</code> ani <code>IPrecond</code> nie potrzebują brać <code>A</code> za argument.</p>
-</div>
-</div>
-<div id="a-teraz-na-powaznie" class="section level1">
-<h1>A teraz na poważnie</h1>
-<p>Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy <span class="math inline">\(S\)</span>. Możemy ją całkowicie wyeliminować. Funkcję <code>Solve</code> będziemy chcieli jednak używać dla różnych macierzy — dlatego jako argument, zamiast macierzy <code>double ** A</code> będziemy przekazywać funkcję mnożenia <code>void (*mult)(double *, double *)</code>. Tzn: nagłówek funkcji <code>Solve</code> będzie następujący:\ <code>void Solve(int n, void (*mult)(double *, double *), double *b, double *x)</code>\ A w miejscu mnożenia przez macierz <span class="math inline">\(r=Ax\)</span> będziemy mieli <code>mult(x,r);</code>. Teraz funkcję <code>Solve</code> będziemy wywoływać przekazując jej konkretną funkcję mnożącą: <code>Solve(n, SMult, F, d);</code>.</p>
-</div>
-<div id="rownolegosc" class="section level1">
-<h1>Równoległość</h1>
 </div>
 
 <!-- Dummy footer -->
