@@ -5,9 +5,9 @@
 
 Utwórz klasę `Wektor2D`{.cpp} będącą implementacją wektorów w przestrzeni 2D. Program pisz drobnymi krokami. Utwórz najpierw pustą klasę bez funkcji i bez zmiennych składowych. Utwórz obiekt tej klasy w funkcji `main()`{.cpp}. Skompiluj i uruchom program. Dopiero teraz dodawaj kolejne elementy klasy kompilując program jak najczęściej. 
 
-* atrybuty klasy to 2 zmienne typu double opisujące współrzędne wektora umieszczone w sekcji `private`{.cpp}.
+* Klasa powinna zawierać 2 atrybuty w postaci zmiennych typu double opisujących współrzędne wektora. Zmienne te umieść w sekcji `private`{.cpp}.
 
-* utwórz konstruktory:
+* Utwórz konstruktory:
     * defaultowy: `Wektor2D()`{.cpp}
     * parametrowy: `Wektor2D(const double& xx, const double& yy)`{.cpp}
 (W jednym z konstruktorów użyj listy inicjalizacyjnej.)
@@ -17,35 +17,36 @@ Utwórz klasę `Wektor2D`{.cpp} będącą implementacją wektorów w przestrzeni
 
 * W funkcji `main()`{.cpp} wykorzystaj klasę `Wektor2D`{.cpp} np.:
 ```c++
-	int main()
-	{
-		Wektor2D v1(10,20);
-		Wektor2D v2 = v1;
-		Wektor2D v3(v1);
-		Wektor2D v4;
-		v1.Drukuj();
-		v2.Drukuj();
-		v3.Drukuj();
-		v4.Drukuj();
-		
-		return 0;
-	}
+int main()
+{
+    Wektor2D v1(10,20);
+    Wektor2D v2 = v1;
+    Wektor2D v3(v1);
+    Wektor2D v4;
+    v1.Drukuj();
+    v2.Drukuj();
+    v3.Drukuj();
+    v4.Drukuj();
+
+    return 0;
+}
 ```
+
 * Wewnątrz konstruktorów drukuj informację o rodzaju właśnie wywoływanego konstruktora i wartościach składowych klasy.
 
 * Przy pomocy debuggera prześledź wartość składowej `x`{.cpp} w poszczególnych funkcjach:
     * Postaw breakpoint na pierwszej linii kodu (*F9*).
     * Uruchom program w sesji debuggera (*F5*).
     * Po zatrzymaniu programu na "breakpoincie" wprowadź w oknie "watch" debuggera nazwę składowej klasy którą chcesz śledzić (np. `x`{.cpp}).
-    * Wykonaj program etapami: 
+    * Wykonaj program etapami:
         * przechodząc do następnej linii kodu (*F10*);
         * lub wchodząc do środka funkcji (*F11*).
-	
-	Odpowiedz sobie na następujące pytania:
-	- Ile obiektów utworzyłeś w programie?
-	- Ile konstruktorów zdefiniowałeś w klasie?
-	- Do ilu konstruktorów udało Ci się wejść przy pomocy debuggera?
-	- Które konstruktory kompilator utworzył automatycznie?
+
+	* Odpowiedz sobie na następujące pytania:
+		* Ile obiektów utworzyłeś w programie?
+		* Ile konstruktorów zdefiniowałeś w klasie?
+		* Do ilu konstruktorów udało Ci się wejść przy pomocy debuggera?
+		* Które konstruktory kompilator utworzył automatycznie?
 
 * Dodaj do klasy konstruktor kopiujący: `Wektor2D(const Wektor2D& v)`{.cpp} i powtórz doświadczenie z debuggerem.
 
@@ -65,6 +66,7 @@ Rozszerz klasę o obsługę wybranych operatorów.
 	v3 += v3;
 	v3.Drukuj();
 ```
+
 ## Zadanie 3
 Hermetyzacja i udostępnianie składowych klasy.
 
