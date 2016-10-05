@@ -1,5 +1,9 @@
-#PROGRAMOWANIE OBIEKTOWE W C++
-#LABORATORIUM 2
+---
+number: 2
+course: Programowanie Obiektowe w c++
+material: Instrukcja 2
+author: W. Gryglas
+---
 
 ##  Zadanie 2
 Utwórz klasę Pojemnik służącą do przechowywania obiektów typu `Wektor2D`{.cpp}

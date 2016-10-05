@@ -1,5 +1,9 @@
-#PROGRAMOWANIE OBIEKTOWE W C++
-#LABORATORIUM 4
+---
+number: 4
+course: Programowanie Obiektowe w c++
+material: Instrukcja 4
+author: W. Gryglas
+---
 
 ## Zadanie 1
 Sprawdź działanie polimorfizmu na przykładzie tablicy figur.

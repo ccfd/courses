@@ -1,5 +1,9 @@
-#PROGRAMOWANIE OBIEKTOWE W C++
-#LABORATORIUM 3
+---
+number: 3
+course: Programowanie Obiektowe w c++
+material: Instrukcja 3
+author: W. Gryglas
+---
 
 ## Zadanie 1
 Sprawdź działanie operatorów new i delete dla tablicy klas z konstruktorem i destruktorem np.:
