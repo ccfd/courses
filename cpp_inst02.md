@@ -6,7 +6,7 @@ Utwórz klasę Pojemnik służącą do przechowywania obiektów typu `Wektor2D`{
 
 * Atrybuty tej klasy to dynamiczna tablica typu `Wektor2D *mdata`{.cpp} i rozmiar tej tablicy `int msize`{.cpp}.
 
-* Utwórz konstruktor domyślny i destruktor.
+* Utwórz domyślny konstruktor oraz destruktor.
 
 * Utwórz metodę `Dodaj(const Wektor2D& v)`{.cpp} służącą do dodawania elementów do klasy `Pojemnik`{.cpp}. Konieczne jest w niej dynamiczne przealokowanie tablicy `mdata`{.cpp} (używaj operatorów `new`{.cpp} i `delete`{.cpp}). Przealokowanie możesz wykonać według następującego schematu:
     * zadeklaruj wskaźnik do tablicy tymczasowej;
@@ -41,7 +41,7 @@ Dodaj do klasy `Pojemnik`{.cpp} metodę klasy `Wektor2D`{.cpp} `Suma()`{.cpp} li
 ## Zadanie 4
 Dodaj do klasy `Wektor2D operator <<`{.cpp}.
 
-* Operator powinien mieć postać: 
+* Operator powinien mieć postać:
 ```c++
 	void operator<<( ostream& o, const Wektor2D& w )
 ```
@@ -62,11 +62,11 @@ cout << v1 << v2;
 ##Zadanie 5
 Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).
 
-* W oknie Solution Explorer zaznacz nazwę projektu. W menu Project powinno pojawić się na samym dole podmenu ***Properties***. 
+* W oknie ***Solution Explorer*** zaznacz nazwę projektu. W menu ***Project*** powinno pojawić się na samym dole podmenu ***Properties***.
 
 * W drzewku okna ***Property*** wybierz folder ***linker/debug***. Teraz w polu ***Generate Map File***  wybierz ***Yes (/MAP)***, a poniżel w polu ***Map File Name*** podaj nazwę pliku ****.map***, np.: ***$(OutDir)/Test.map***.
 
-* Przebuduj program i w katalogu ***debug*** projektu odszukaj plik ***Test.map***. 
+* Przebuduj program i w katalogu ***debug*** projektu odszukaj plik ***Test.map***.
 
 * Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?)
 Spróbuj odnaleźć konstruktory i destruktory klas `Wektor2D`{.cpp} i `Pojemnik`{.cpp}. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?
@@ -85,7 +85,7 @@ Dodaj do klasy Pojemnik funkcję `Max()`{.cpp} zwracającą największy wektor. 
 Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.
 
 ***
-
+## Dodatek (klasa Wektor2D z poprzednich ćwiczeń)
 ```c++
 // -------------------------------------------------------------
 // deklaracja klasy
@@ -125,9 +125,9 @@ void Wektor2D::Drukuj()
 	cout.setf( ios::fixed );
 	cout << "wektor: [";
 	cout.precision(3);
-   //   . . . 
-  
-  //	. . . 
+   //   . . .
+
+  //	. . .
   cout.width(6);
   cout << x << ",";
   cout.precision(4);
