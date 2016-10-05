@@ -3,7 +3,7 @@
 
 ## Zadanie 1
 
-Utwórz klasę `Wektor2D`{.c++} będącą implementacją wektorów w przestrzeni 2D. Program pisz drobnymi krokami. Utwórz najpierw pustą klasę bez funkcji i bez zmiennych składowych. Utwórz obiekt tej klasy w funkcji `main()`{.c++}. Skompiluj i uruchom program. Dopiero teraz dodawaj kolejne elementy klasy kompilując program jak najczęściej. 
+Utwórz klasę `Wektor2D`{.cpp} będącą implementacją wektorów w przestrzeni 2D. Program pisz drobnymi krokami. Utwórz najpierw pustą klasę bez funkcji i bez zmiennych składowych. Utwórz obiekt tej klasy w funkcji `main()`{.c++}. Skompiluj i uruchom program. Dopiero teraz dodawaj kolejne elementy klasy kompilując program jak najczęściej. 
 
 * atrybuty klasy to 2 zmienne typu double opisujące współrzędne wektora umieszczone w sekcji `private`{.c++}.
 
