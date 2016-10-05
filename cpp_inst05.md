@@ -5,63 +5,112 @@ material: Instrukcja 5
 author: W. Gryglas
 ---
 
-# Wprowadzenie do STL (Standard Template Library)
-
 ## Zadanie 1
-Korzystanie ze struktur standardowych typu `vector`{.cpp} i `list`{.cpp}
+Sprawdź działanie obsługi wyjątków/błędów (exception handling) w języku C++
 
-* Utwórz tablicę służącą do przechowywania liczb całkowitych. Wykorzystaj standardową strukturę vector np.:
+* Utwórz dowolną funkcję, która zwraca wyjątek w postaci:
 ```cpp
-#include <vector>
-using namespace std;
-vector<int>	tab;
+throw ”To jest wyjatek!”;
 ```
 
-* Wypełnij tablicę pewną ilością elementów wczytywanych z klawiatury lub generowanych losowo (funkcja `rand()`{.cpp}). Do wstawienia elementu do tablicy użyj metody `push_back`{.cpp} lub `insert`{.cpp} (sprawdź jak zmienia się rozmiar tablicy – funkcja `size`{.cpp}):
+* Funkcję tę wywołaj w funkcji `main()`{.cpp} i przechwyć wyjątek:
 ```cpp
-int d;
-tab.push_back( d);		lub	tab.insert( tab.end(), d);
-cout << tab.size() << endl;
+try
+{
+	....
+}
+catch (char* s)
+{
+	....
+}
 ```
 
-* Wydrukuj zawartość tablicy na ekran używając obiektu `iterator`{.cpp}:
+* Podejrzyj debuggerem co zawiera zmienna `s`{.cpp}, a następnie wydrukuj jej wartość na ekran w sekcji `catch`{.cpp}. Sprawdź co się stanie jeśli:
+    - nie umieścisz wywołania funkcji w bloku `try - catch`{.cpp}
+    - zmienisz typ wyjątku w bloku catch na inny: np. `int`{.cpp}
+
+* Dodaj jeszcze funkcję, która zwróci jako wyjątek liczbę całkowitą. Funkcję tę wywołaj wewnątrz pierwszej funkcji. Wyjątek przechwyć wewnątrz funkcji `main()`{.cpp}.
+
+* Utwórz klasę abstrakcyjną `Except`{.cpp} która ma metodę wirtualną do drukowania informacji o wyjątku (np. `PrintInfo()`{.cpp} )
+
+* Utwórz klasę konkretną np. `Except1`{.cpp} która będzie posiadała implementację metody `PrintInfo()`{.cpp}
+
+* W funkcji main umieść instrukcje służące do przechwytywania wyjątków:
 ```cpp
-vector<int>::iterator	itr;
-for ( itr=tab.begin(); itr!=tab.end(); ++itr)
-cout << *itr <<endl;
+try
+{
+	....
+}
+catch ( Except& e)
+{
+	e.PrintInfo();
+}
 ```
 
-* Wydrukuj od końca zawartość tablicy na ekran używając obiektu `reverse_iterator`{.cpp}:
+* W sekcji try wywołaj jakąś funkcję, która rzuca wyjątek `Except1`{.cpp}:
 ```cpp
-vector<int>::reverse_iterator	ritr;
-for ( itr=tab.rbegin(); itr!=tab.rend(); ++ritr)
-cout << *ritr <<endl;
+throw Except1();
 ```
 
-* Usuń wszystkie elementu z tablicy tab przez wykorzystanie metody `clear()`{.cpp}. Sprawdź czy tablica jest rzeczywiście pusta przez sprawdzenie rozmiaru (`size()`{.cpp}) i metody `empty()`{.cpp} – zwraca wartość `bool`{.cpp} w zależności od tego czy tablica jest pusta czy też nie.
-* Zmodyfikuj program tak aby zamiast kolekcji typu `vector`{.cpp} korzystać z kolekcji typu `list`{.cpp} (pamiętaj o `include <list>`{.cpp}).
+* Spróbuj zrobić to samo dla nowej klasy `Except2`{.cpp} która będzie drukowała informacje w której linii kodu został rzucony wyjątek (użyj zmiennej preprocesora `__LINE__`{.cpp}). (Inne popularne zmienne preprocesora to: `__FILE__`{.cpp}, `__DATE__`{.cpp}, `__TIME__`{.cpp}.)
 
-##Zadanie 2
-Korzystanie ze standardowych algorytmów.
-* Posortuj rosnąco i wydrukuj zawartość tablicy `tab`{.cpp}. Skorzystaj z funkcji `sort`{.cpp} (pamiętaj o `#include <algorithm>`{.cpp}):
+* Sprawdź działanie sekcji `catch(...)`{.cpp} do przechwytywania wszystkich wyjątków. Dopisz ją poniżej już istniejącej sekcji `catch`{.cpp} i spróbuj rzucić wyjątek który nie dziedziczy po typie `Except`{.cpp}.
+
+## Zadanie 2
+Wykorzystanie prostych wzorców (template’ów)
+
+* Napisz wzorce (template’y) funkcji `mymin`{.cpp} i `mymax`{.cpp} liczące odpowiednio minimum i maksimum z dwóch argumentów. Sprawdź działanie tych funkcji dla różnych typów np. `int, double`{.cpp}.
+
+* Sprawdź działanie funkcji `mymax`{.cpp} dla następującego wywołania:
 ```cpp
-sort( tab.begin(), tab.end() );
+	cout << mymax( 1., 2 );
 ```
 
-* Posortuj malejąco i wydrukuj zawartość tablicy tab:
+* Jeśli to niezbędne popraw kod programu, aby powyższe wywołanie funkcji było poprawne.
+
+* Co jest konieczne aby można było wykorzystać powyższe funkcje również do klasy np. `Wektor2D`{.cpp}?
+
+* Napisz klasę `Wektor2D`{.cpp}, tak aby zadziałał następujący kod:
 ```cpp
-sort( tab.begin(), tab.end(), greater<int>() );
+Wektor2D w1(1, 3), w2(3, 5);
+Wektor2D w3 = mymax(w1, w2);
+```
+(Wynik działania sprawdź pod debuggerem)
+
+* Przerób klasę `Wector2D`{.cpp} tak aby był to wzorzec klasy sparametryzowany typem składowych wektora:
+```cpp
+template< class T >
+Wector2D
+{
+	. . .
+};
 ```
 
-* Czy efekt z punktu poprzedniego można osiągnąć inaczej? Czy funkcja `sort`{.cpp} będzie działała dla kolekcji typu `list`{.cpp} (dlaczego)?
-* Znajdź największy i najmniejszy element w tablicy `tab`{.cpp} (funkcje `max_element`{.cpp} i `min_element`{.cpp}).
-* Czy możesz zastosować algorytm dla tablicy typowej dla języka C? Sprawdź działanie w programie..
-* Poeksperymentuj z innym algorytmami STL (opis znajdziesz w helpie pod hasłem „algorithm header file”)
+* Sprawdź działanie takiej klasy dla różnych typów (`int, double`{.cpp}), np.:
+```cpp
+Wektor2D<double> wt1(10., 20.), wt2(10.,40.);
+Wektor2D<double> wt3 = mymax( wt1, wt2 );
+```
 
+* Dodaj do klasy `Wektor2D operator <<`{.cpp} pozwalający na wykonanie następującego kodu:
+```cpp
+Wektor2D<double> wt1(10., 20.), wt2(10.,40.);
+cout << mymax( wt1, wt2 );
+```
 
+* Zapewnij aby jedynie wektory typu int miały niepowtarzalną postać wydruku. (Należy skonkretyzować `operator<<`{.cpp} dla typu `int`{.cpp}.)
 
+* Przerób klasę `Wector2D`{.cpp} tak aby była ona również sparametryzowana liczbą składowych:
+```cpp
+template< class T, int N >
+Wektor
+{
+	. . .
+};
+```
 
-
-
-
-
+* W konstruktorze domyślnym zainicjalizuj każdą ze składowych wektora kolejną liczbą naturalną. Nie używaj dynamicznej alokacji pamięci (przynamniej na początku). Sprawdź działanie takiej klasy, np:
+```cpp
+WektorNT<int,20> wnt;
+cout << wnt;
+```

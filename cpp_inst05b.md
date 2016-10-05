@@ -1,14 +1,14 @@
 ---
-number: 6
+number: 5
 course: Programowanie Obiektowe w c++
-material: Instrukcja 6
+material: Instrukcja 5
 author: W. Gryglas
 ---
 
-Wprowadzenie do STL (Standard Template Library)
+# Wprowadzenie do STL (Standard Template Library)
 
 ## Zadanie 1
-Korzystanie ze struktur standardowych typu `vector`{.cpp} i `list`{.cpp}.
+Korzystanie ze struktur standardowych typu `vector`{.cpp} i `list`{.cpp}
 
 * Utwórz tablicę służącą do przechowywania liczb całkowitych. Wykorzystaj standardową strukturę vector np.:
 ```cpp
@@ -39,27 +39,29 @@ cout << *ritr <<endl;
 ```
 
 * Usuń wszystkie elementu z tablicy tab przez wykorzystanie metody `clear()`{.cpp}. Sprawdź czy tablica jest rzeczywiście pusta przez sprawdzenie rozmiaru (`size()`{.cpp}) i metody `empty()`{.cpp} – zwraca wartość `bool`{.cpp} w zależności od tego czy tablica jest pusta czy też nie.
-
-* Zmodyfikuj program tak aby zamiast kolekcji typu vector korzystać z kolekcji typu list (pamiętaj o include <list>).
+* Zmodyfikuj program tak aby zamiast kolekcji typu `vector`{.cpp} korzystać z kolekcji typu `list`{.cpp} (pamiętaj o `include <list>`{.cpp}).
 
 ##Zadanie 2
 Korzystanie ze standardowych algorytmów.
-
 * Posortuj rosnąco i wydrukuj zawartość tablicy `tab`{.cpp}. Skorzystaj z funkcji `sort`{.cpp} (pamiętaj o `#include <algorithm>`{.cpp}):
 ```cpp
 sort( tab.begin(), tab.end() );
-Posortuj malejąco i wydrukuj zawartość tablicy tab:
+```
+
+* Posortuj malejąco i wydrukuj zawartość tablicy tab:
+```cpp
 sort( tab.begin(), tab.end(), greater<int>() );
 ```
 
 * Czy efekt z punktu poprzedniego można osiągnąć inaczej? Czy funkcja `sort`{.cpp} będzie działała dla kolekcji typu `list`{.cpp} (dlaczego)?
-
 * Znajdź największy i najmniejszy element w tablicy `tab`{.cpp} (funkcje `max_element`{.cpp} i `min_element`{.cpp}).
-
 * Czy możesz zastosować algorytm dla tablicy typowej dla języka C? Sprawdź działanie w programie..
+* Poeksperymentuj z innym algorytmami STL (opis znajdziesz w helpie pod hasłem „algorithm header file”)
 
-* Utwórz kolekcję `vector`{.cpp} składającą się z obiektów typu `Wektor2D`{.cpp}. Współrzędne wektorów 2D generuj losowo. 
 
-* Wydrukuj wszystkie elementy kolekcji `vector`{.cpp} posortowane rosnąco.
 
-* Poeksperymentuj z innym algorytmami STL (opis znajdziesz w helpie pod hasłem „Standard C++ Library, algorithms”)
+
+
+
+
+

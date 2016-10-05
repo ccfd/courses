@@ -5,7 +5,7 @@ material: Instrukcja 2
 author: W. Gryglas
 ---
 
-##  Zadanie 2
+##  Zadanie 1
 Utwórz klasę Pojemnik służącą do przechowywania obiektów typu `Wektor2D`{.cpp}
 
 * Atrybuty tej klasy to dynamiczna tablica typu `Wektor2D *mdata`{.cpp} i rozmiar tej tablicy `int msize`{.cpp}.
