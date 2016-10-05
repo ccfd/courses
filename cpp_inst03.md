@@ -2,43 +2,66 @@
 #LABORATORIUM 3
 
 ## Zadanie 1
-Sprawdź działanie polimorfizmu na przykładzie tablicy figur.
+Sprawdź działanie operatorów new i delete dla tablicy klas z konstruktorem i destruktorem np.:
+```c++
+#include <iostream>
+using namespace std;
 
-* Utwórz klasę bazową `Shape`{.c++}. Klasa ta powinna posiadać metodę służącą do drukowania nazwy obiektu np.:
-```c++
-	void PrintName()
-	{
-		cout << ”class Shape\n”;
-	}
+class A
+{
+public:
+	A()	{ cout << "konstruktor A\n";}
+	~A()	{ cout << "destruktor A\n";}
+};
+
+int main()
+{
+	A	*ptr;
+	ptr = new A[5];
+	delete [] ptr; // co będzie gdy usunie się nawiasy [] ?
+	return 0;
+}
 ```
-* Utwórz klasy `Circle, Square, Triangle`{.c++} będące obiektami potomnymi klasy `Shape`{.c++}. Obiekty te powinny być opisane przez wierzchołki (można wykorzystać klasę z zajęć poprzednich `Wector3D`{.c++}) i posiadać metody do obliczania pola figury.
-* Zmodyfikuj klasę `Shape`{.c++} przez dodanie abstrakcyjnej metody do liczenia pola figury np.:
-```c++
-	virtual double Area() = 0;
-```
-* Sprawdź, czy możesz teraz utworzyć obiekt typu `Shape`{.c++} lub np. `Circle`{.c++}.
-* Zmodyfikuj metody `Area()`{.c++} obiektów `Circle, Square, Triangle`{.c++} tak aby były one wirtualne oraz dodaj do nich wirtualne metody `PrintName()`{.c++}.
-* Utwórz tablicę wskaźników do obiektów typu `Shape`{.c++} i zainicjalizuj je obiektami `Circle, Square, Triangle`{.c++} np.:
-```c++
-	Shape	*tabp[3];
-	tabp[0] = new Circle(…);
-	tabp[1] = new Triangle(…);
-	tabp[2] = new Square(…);
-	for ( int i=0; i<3; ++i)
-	{
-		tabp[i]->PrintName();
-		cout << tabp[i]->Area() << endl;
-	}
-```
-* Sprawdź co się stanie gdy usunie się modyfikator `virtual`{.c++} przy metodach obiektów `Circle, Square, Triangle`{.c++}. 
-* Sprawdź działanie funkcji `dynamic_cast<T*>()`{.c++} np. do policzenia ile obiektów w danej kolekcji jest typu `Circle`{.c++} (pamiętaj o włączeniu opcji kompilatora RTTI):
-```c++
-	if  ( dynamic_cast<Circle*>( tabp[i] ) )  ++count;
-```
-* Czy wiesz dlaczego w punkcie poprzednim używaliśmy `dynamic_cast`{.c++} a nie `static_cast`{.c++}?
+
+* Dodaj do klasy A atrybut statyczny np. `static int mattr`{.cpp}:
+* Sprawdź jakie wartości będą drukowane (dlaczego?) jeśli wykonasz:
+    ```c++
+    for ( i=0; i<5; ++i)
+        ptr[i].mattr = i+1;
+
+    for ( i=0; i<5; ++i)
+        cout << " element " << i << " attr = " << ptr[i].mattr << endl;
+    ```
 
 ## Zadanie 2
+Utwórz klasę bazową `Pojazd`{.cpp} opisującą pewien pojazd
+
+* Atrybut klasy to np. przebieg danego pojazdu (typu int) umieszczony w sekcji `private`{.cpp}
+* Utwórz:
+    * konstruktor defaultowy: `Pojazd()`{.cpp} – przebieg zainicjuj zerem
+    * konstruktor `Pojazd(const int& n)`{.cpp} – przebieg zainicjuj argumentem n
+    * destruktor `~Pojazd()`{.cpp}
+* W konstruktorach i destruktorach drukuj informację o ich wykonaniu tak aby można było stwierdzić co i kiedy zostało wywołane.
+* Utwórz metodę `GetPrzebieg()`{.cpp} zwracającą wartość przebiegu
+* Sprawdź poprawność tej klasy tworząc zmienną typu `Pojazd`{.cpp} i drukując wartość metody `GetPrzebieg()`{.cpp}
+
+## Zadanie 3
+Utwórz klasę `Autobus`{.cpp} która jest klasą pochodną klasy `Pojazd`{.cpp}
+* Atrybut klasy to np. liczba pasażerów (typu int) umieszczony w sekcji `private`{.cpp}
+* Utwórz:
+    * konstruktor domyślny: `Autobus()`{.cpp} – liczbę pasażerów zainicjuj zerem
+    * konstruktor `Autobus(const int& m)`{.cpp} – liczbę pasażerów zainicjuj argumentem `m`{.cpp}
+    * destruktor `~Autobus()`{.cpp}
+* Podobnie jak dla klasy `Pojazd`{.cpp} w konstruktorach i destruktorach drukuj informację o ich wykonaniu.
+* Utwórz metodę `GetLiPasazerow()`{.cpp} zwracającą wartość atrybutu przechowującego liczbę pasażerów.
+* Jeśli utworzysz zmienną typu `Autobus`{.cpp} jakie konstruktory będą wywoływane? W jakiej kolejności będą wołane konstruktory i destruktory?
+* Jaki przebieg ma zmienna typu `Autobus`{.cpp}?
+* Dodaj nowy konstruktor do klasy `Autobus`{.cpp}, który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie.
+* Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejednoznaczności?
+```c++
+Autobus	 bus;
+bus = 3;
+```
+
+## Zadanie 4
 Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp
-
-
-
