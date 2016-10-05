@@ -2,13 +2,13 @@
 #LABORATORIUM 2
 
 ##  Zadanie 2
-Utwórz klasę Pojemnik służącą do przechowywania obiektów typu `Wektor2D`{.c++}
+Utwórz klasę Pojemnik służącą do przechowywania obiektów typu `Wektor2D`{.cpp}
 
-* Atrybuty tej klasy to dynamiczna tablica typu `Wektor2D *mdata`{.c++} i rozmiar tej tablicy `int msize`{.c++}.
+* Atrybuty tej klasy to dynamiczna tablica typu `Wektor2D *mdata`{.cpp} i rozmiar tej tablicy `int msize`{.cpp}.
 
-* Utwórz konstruktor domyślny i destruktor.
+* Utwórz domyślny konstruktor oraz destruktor.
 
-* Utwórz metodę `Dodaj(const Wektor2D& v)`{.c++} służącą do dodawania elementów do klasy `Pojemnik`{.c++}. Konieczne jest w niej dynamiczne przealokowanie tablicy `mdata`{.c++} (używaj operatorów `new`{.c++} i `delete`{.c++}). Przealokowanie możesz wykonać według następującego schematu:
+* Utwórz metodę `Dodaj(const Wektor2D& v)`{.cpp} służącą do dodawania elementów do klasy `Pojemnik`{.cpp}. Konieczne jest w niej dynamiczne przealokowanie tablicy `mdata`{.cpp} (używaj operatorów `new`{.cpp} i `delete`{.cpp}). Przealokowanie możesz wykonać według następującego schematu:
     * zadeklaruj wskaźnik do tablicy tymczasowej;
     * przydziel niezbędną pamięć;
     * przepisz dane ze starej tablicy;
@@ -26,26 +26,26 @@ Utwórz klasę Pojemnik służącą do przechowywania obiektów typu `Wektor2D`{
 ```
 
 * Sprawdź przy pomocy debuggera  zawartość obiektu poj. W oknie watch użyj trzech różnych wpisów:
-	* `poj.mdata[0];`{.c++}
-	* `poj.mdata;`{.c++}
-	* `poj.mdata,4;`{.c++}
+	* `poj.mdata[0];`{.cpp}
+	* `poj.mdata;`{.cpp}
+	* `poj.mdata,4;`{.cpp}
 
 ## Zadanie 2
-Dodaj do klasy Pojemnik metodę `void DrukujWszystko()`{.c++} drukującą zawartość wszystkich obiektów `Wektor2D`{.c++} przechowywanych w tej klasie. Skorzystaj z metody `Drukuj()`{.c++} z klasy `Wektor2D`{.c++}. 
+Dodaj do klasy Pojemnik metodę `void DrukujWszystko()`{.cpp} drukującą zawartość wszystkich obiektów `Wektor2D`{.cpp} przechowywanych w tej klasie. Skorzystaj z metody `Drukuj()`{.cpp} z klasy `Wektor2D`{.cpp}. 
 
 ## Zadanie 3
-Dodaj do klasy `Pojemnik`{.c++} metodę klasy `Wektor2D`{.c++} `Suma()`{.c++} liczącą sumę wszystkich wektorów przechowywanych w klasie `Pojemnik`{.c++}, korzystającą z operatorów zdefiniowanych dla klasy `Wektor2D`{.c++}. Wynik funkcji wyświetl w programie głównym.
+Dodaj do klasy `Pojemnik`{.cpp} metodę klasy `Wektor2D`{.cpp} `Suma()`{.cpp} liczącą sumę wszystkich wektorów przechowywanych w klasie `Pojemnik`{.cpp}, korzystającą z operatorów zdefiniowanych dla klasy `Wektor2D`{.cpp}. Wynik funkcji wyświetl w programie głównym.
 
 * Spróbuj wywołać liczenie sumy i jej wyświetlanie w taki sposób aby były umieszczone w jednej instrukcji.
 
 ## Zadanie 4
-Dodaj do klasy `Wektor2D operator <<`{.c++}.
+Dodaj do klasy `Wektor2D operator <<`{.cpp}.
 
-* Operator powinien mieć postać: 
+* Operator powinien mieć postać:
 ```c++
 	void operator<<( ostream& o, const Wektor2D& w )
 ```
-i powinien wykonywać te same operacje co funkcja `Drukuj()`{.c++} klasy `Wektor2D`{.c++}.
+i powinien wykonywać te same operacje co funkcja `Drukuj()`{.cpp} klasy `Wektor2D`{.cpp}.
 
 * Wyświetl zawartość dowolnego wektora w programie głównym:
 ```c++
@@ -57,26 +57,26 @@ i powinien wykonywać te same operacje co funkcja `Drukuj()`{.c++} klasy `Wektor
 cout << v1 << v2;
 ```
 
-* Dodaj do klasy Pojemnik nową wersję funkcji `DrukujWszystko()`{.c++} (np. `DrukujWszystko2()`{.c++}). Nowa funkcja powinna wykorzystywać `operator <<`{.c++} zamiast funkcji `Drukuj()`{.c++} klasy `Wektor2D`{.c++}. 
+* Dodaj do klasy Pojemnik nową wersję funkcji `DrukujWszystko()`{.cpp} (np. `DrukujWszystko2()`{.cpp}). Nowa funkcja powinna wykorzystywać `operator <<`{.cpp} zamiast funkcji `Drukuj()`{.cpp} klasy `Wektor2D`{.cpp}. 
 
 ##Zadanie 5
 Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).
 
-* W oknie Solution Explorer zaznacz nazwę projektu. W menu Project powinno pojawić się na samym dole podmenu ***Properties***. 
+* W oknie ***Solution Explorer*** zaznacz nazwę projektu. W menu ***Project*** powinno pojawić się na samym dole podmenu ***Properties***.
 
 * W drzewku okna ***Property*** wybierz folder ***linker/debug***. Teraz w polu ***Generate Map File***  wybierz ***Yes (/MAP)***, a poniżel w polu ***Map File Name*** podaj nazwę pliku ****.map***, np.: ***$(OutDir)/Test.map***.
 
-* Przebuduj program i w katalogu ***debug*** projektu odszukaj plik ***Test.map***. 
+* Przebuduj program i w katalogu ***debug*** projektu odszukaj plik ***Test.map***.
 
 * Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?)
-Spróbuj odnaleźć konstruktory i destruktory klas `Wektor2D`{.c++} i `Pojemnik`{.c++}. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?
+Spróbuj odnaleźć konstruktory i destruktory klas `Wektor2D`{.cpp} i `Pojemnik`{.cpp}. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?
 
-* Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji `Pojemnik::Max()`{.c++})? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?
+* Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji `Pojemnik::Max()`{.cpp})? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?
 
 * Jak myślisz, czy wśród nazw znajdujących się w pliku ****.map*** mogą wystąpić dwie identyczne nazwy funkcji?
 
 ## Zadanie 6
-Dodaj do klasy Pojemnik funkcję `Max()`{.c++} zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa `Wektor2D`{.c++} a nie klasa `Pojemnik`{.c++}. Zatem klasa `Pojemnik`{.c++} powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie `Wektor2D`{.c++}. Zdefiniuj również te operatory. Funkcja `Max()`{.c++} powinna zadziałać w następujący sposób:
+Dodaj do klasy Pojemnik funkcję `Max()`{.cpp} zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa `Wektor2D`{.cpp} a nie klasa `Pojemnik`{.cpp}. Zatem klasa `Pojemnik`{.cpp} powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie `Wektor2D`{.cpp}. Zdefiniuj również te operatory. Funkcja `Max()`{.cpp} powinna zadziałać w następujący sposób:
 ```c++
 	cout << poj.Max();
 ```
@@ -85,7 +85,7 @@ Dodaj do klasy Pojemnik funkcję `Max()`{.c++} zwracającą największy wektor. 
 Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.
 
 ***
-
+## Dodatek (klasa Wektor2D z poprzednich ćwiczeń)
 ```c++
 // -------------------------------------------------------------
 // deklaracja klasy
@@ -125,9 +125,9 @@ void Wektor2D::Drukuj()
 	cout.setf( ios::fixed );
 	cout << "wektor: [";
 	cout.precision(3);
-   //   . . . 
-  
-  //	. . . 
+   //   . . .
+
+  //	. . .
   cout.width(6);
   cout << x << ",";
   cout.precision(4);
