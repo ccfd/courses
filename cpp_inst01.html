@@ -479,50 +479,50 @@ div.tocify {
 <h1>LABORATORIUM 1</h1>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Utwórz klasę <code class="sourceCode cpp">Wektor2D</code> będącą implementacją wektorów w przestrzeni 2D. Program pisz drobnymi krokami. Utwórz najpierw pustą klasę bez funkcji i bez zmiennych składowych. Utwórz obiekt tej klasy w funkcji <code>main()</code>{.c++}. Skompiluj i uruchom program. Dopiero teraz dodawaj kolejne elementy klasy kompilując program jak najczęściej.</p>
+<p>Utwórz klasę <code class="sourceCode cpp">Wektor2D</code> będącą implementacją wektorów w przestrzeni 2D. Program pisz drobnymi krokami. Utwórz najpierw pustą klasę bez funkcji i bez zmiennych składowych. Utwórz obiekt tej klasy w funkcji <code class="sourceCode cpp">main()</code>. Skompiluj i uruchom program. Dopiero teraz dodawaj kolejne elementy klasy kompilując program jak najczęściej.</p>
 <ul>
-<li><p>atrybuty klasy to 2 zmienne typu double opisujące współrzędne wektora umieszczone w sekcji <code>private</code>{.c++}.</p></li>
-<li>utwórz konstruktory:
+<li><p>Klasa powinna zawierać 2 atrybuty w postaci zmiennych typu double opisujących współrzędne wektora. Zmienne te umieść w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code>.</p></li>
+<li>Utwórz konstruktory:
 <ul>
-<li>defaultowy: <code>Wektor2D()</code>{.c++}</li>
-<li>parametrowy: <code>Wektor2D(const double&amp; xx, const double&amp; yy)</code>{.c++} (W jednym z konstruktorów użyj listy inicjalizacyjnej.)</li>
+<li>defaultowy: <code class="sourceCode cpp">Wektor2D()</code></li>
+<li>parametrowy: <code class="sourceCode cpp">Wektor2D(<span class="dt">const</span> <span class="dt">double</span>&amp; xx, <span class="dt">const</span> <span class="dt">double</span>&amp; yy)</code> (W jednym z konstruktorów użyj listy inicjalizacyjnej.)</li>
 </ul></li>
-<li><p>Utwórz metodę <code>Drukuj()</code>{.c++} służącą do drukowania zawartości klasy na ekranie w formacie:<br />
+<li><p>Utwórz metodę <code class="sourceCode cpp">Drukuj()</code> służącą do drukowania zawartości klasy na ekranie w formacie:<br />
 <strong>wektor [ 2.345, 4.5678]</strong></p></li>
-<li><p>W funkcji <code>main()</code>{.c++} wykorzystaj klasę <code>Wektor2D</code>{.c++} np.:</p>
+<li><p>W funkcji <code class="sourceCode cpp">main()</code> wykorzystaj klasę <code class="sourceCode cpp">Wektor2D</code> np.:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
 {
-    Wektor2D v1(<span class="dv">10</span>,<span class="dv">20</span>);
-    Wektor2D v2 = v1;
-    Wektor2D v3(v1);
-    Wektor2D v4;
-    v1.Drukuj();
-    v2.Drukuj();
-    v3.Drukuj();
-    v4.Drukuj();
+Wektor2D v1(<span class="dv">10</span>,<span class="dv">20</span>);
+Wektor2D v2 = v1;
+Wektor2D v3(v1);
+Wektor2D v4;
+v1.Drukuj();
+v2.Drukuj();
+v3.Drukuj();
+v4.Drukuj();
 
-    <span class="kw">return</span> <span class="dv">0</span>;
+<span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre></div></li>
 <li><p>Wewnątrz konstruktorów drukuj informację o rodzaju właśnie wywoływanego konstruktora i wartościach składowych klasy.</p></li>
-<li>Przy pomocy debuggera prześledź wartość składowej <code>x</code>{.c++} w poszczególnych funkcjach:
+<li>Przy pomocy debuggera prześledź wartość składowej <code class="sourceCode cpp">x</code> w poszczególnych funkcjach:
 <ul>
 <li>Postaw breakpoint na pierwszej linii kodu (<em>F9</em>).</li>
 <li>Uruchom program w sesji debuggera (<em>F5</em>).</li>
-<li>Po zatrzymaniu programu na “breakpoincie” wprowadź w oknie “watch” debuggera nazwę składowej klasy którą chcesz śledzić (np. <code>x</code>{.c++}).</li>
+<li>Po zatrzymaniu programu na “breakpoincie” wprowadź w oknie “watch” debuggera nazwę składowej klasy którą chcesz śledzić (np. <code class="sourceCode cpp">x</code>).</li>
 <li>Wykonaj program etapami:
 <ul>
 <li>przechodząc do następnej linii kodu (<em>F10</em>);</li>
 <li>lub wchodząc do środka funkcji (<em>F11</em>).</li>
 </ul></li>
-</ul>
-Odpowiedz sobie na następujące pytania:
+<li>Odpowiedz sobie na następujące pytania:
 <ul>
 <li>Ile obiektów utworzyłeś w programie?</li>
 <li>Ile konstruktorów zdefiniowałeś w klasie?</li>
 <li>Do ilu konstruktorów udało Ci się wejść przy pomocy debuggera?</li>
 <li>Które konstruktory kompilator utworzył automatycznie?</li>
 </ul></li>
-<li><p>Dodaj do klasy konstruktor kopiujący: <code>Wektor2D(const Wektor2D&amp; v)</code>{.c++} i powtórz doświadczenie z debuggerem.</p></li>
+</ul></li>
+<li><p>Dodaj do klasy konstruktor kopiujący: <code class="sourceCode cpp">Wektor2D(<span class="dt">const</span> Wektor2D&amp; v)</code> i powtórz doświadczenie z debuggerem.</p></li>
 <li><p>Dodaj do klasy destruktor. Wewnątrz destruktora umieść informacje identyfikujące obiekt który właśnie jest usuwany (np. wyświetlaj wartości składowych klasy).</p></li>
 </ul>
 </div>
@@ -532,21 +532,25 @@ Odpowiedz sobie na następujące pytania:
 <ul>
 <li>Utwórz operatory:
 <ul>
-<li>Jednoargumentowy <code>operator +=</code>{.c++}</li>
-<li>Dwuargumentowy <code>operator+</code>{.c++} (sprawdź czy możesz operować na atrybutach klasy <code>Wektor2D</code>{.c++} bez definiowania zaprzyjaźnienia z tą klasą)</li>
+<li>Jednoargumentowy <code class="sourceCode cpp"><span class="kw">operator</span> +=</code></li>
+<li>Dwuargumentowy <code class="sourceCode cpp"><span class="kw">operator</span>+</code> (sprawdź czy możesz operować na atrybutach klasy <code class="sourceCode cpp">Wektor2D</code> bez definiowania zaprzyjaźnienia z tą klasą)</li>
 </ul></li>
 <li><p>Dodaj i przetestuj w programie głównym następujące operacje:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v4 = v1 + v2;
 v4.Drukuj();
 v3 += v3;
-v3.Drukuj();</code></pre></div>
-<h2 id="zadanie-3">Zadanie 3</h2>
-<p>Hermetyzacja i udostępnianie składowych klasy.</p></li>
+v3.Drukuj();</code></pre></div></li>
+</ul>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Hermetyzacja i udostępnianie składowych klasy.</p>
+<ul>
 <li><p>Sprawdź czy możesz wykonać następującą operację w programie głównym:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v4.x = <span class="dv">50</span>;</code></pre></div></li>
-<li><p>Dodaj do klasy funkcję <code>SetX(const double&amp; xx )</code>{.c++} pozwalającą na zmianę składowej klasy <code>x</code>{.c++}. Ogranicz wartość tej zmiennej do <code>MAX_VAL = 100</code>{.c++}. Przekroczenie wartości <code>MAX_VAL</code>{.c++} powinno kończyć program.</p></li>
-<li><p>Dodaj do klasy funkcje <code>GetX()</code>{.c++} zwracającą wartość składowej <code>x</code>{.c++}.</p></li>
-<li><p>Dodaj analogiczne funkcje dla składowej <code>y</code>{.c++} i wykonaj następujący fragment kodu w programie głównym</p>
+<li><p>Dodaj do klasy funkcję <code class="sourceCode cpp">SetX(<span class="dt">const</span> <span class="dt">double</span>&amp; xx )</code> pozwalającą na zmianę składowej klasy <code class="sourceCode cpp">x</code>. Ogranicz wartość tej zmiennej do <code class="sourceCode cpp">MAX_VAL = <span class="dv">100</span></code>. Przekroczenie wartości <code class="sourceCode cpp">MAX_VAL</code> powinno kończyć program.</p></li>
+<li><p>Dodaj do klasy funkcje <code class="sourceCode cpp">GetX()</code> zwracającą wartość składowej <code class="sourceCode cpp">x</code>.</p></li>
+<li><p>Dodaj analogiczne funkcje dla składowej <code class="sourceCode cpp">y</code> i wykonaj następujący fragment kodu w programie głównym</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v4.SetX(<span class="dv">50</span>);
 v4.Drukuj();
 Wektor2D v5( v4.GetY(), v3.GetX() );
@@ -555,15 +559,15 @@ v5.Drukuj();</code></pre></div></li>
 </div>
 <div id="zadanie-4" class="section level2">
 <h2>Zadanie 4</h2>
-<p>Zmienne statyczne klasy. * Dodaj do klasy prywatną składową statyczną <code>indx</code>{.c++}. Zmienna ta powinna nadawać kolejne numery tworzonym obiektom. Zmienna taka musi być zainicjalizowana poza klasą w następujący sposób:</p>
+<p>Zmienne statyczne klasy. * Dodaj do klasy prywatną składową statyczną <code class="sourceCode cpp">indx</code>. Zmienna ta powinna nadawać kolejne numery tworzonym obiektom. Zmienna taka musi być zainicjalizowana poza klasą w następujący sposób:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    <span class="dt">int</span> Wekro2D::indx = <span class="dv">0</span>;</code></pre></div>
 <ul>
-<li><p>Dodaj do klasy prywatną składową <code>nr</code>{.c++}. Składowa ta ma przechowywać kolejny numer obiektu (począwszy od 1). Inicjalizuj ją przy pomocy składowej <code>indx</code>{.c++} w każdym dostępnym konstruktorze jednocześnie zwiększając wartość składowej <code>indx</code>{.c++}.</p></li>
-<li><p>Wartość zmiennej <code>nr</code>{.c++} wyświetlaj zarówno w konstruktorach jak i w destruktorze.</p></li>
+<li><p>Dodaj do klasy prywatną składową <code class="sourceCode cpp">nr</code>. Składowa ta ma przechowywać kolejny numer obiektu (począwszy od 1). Inicjalizuj ją przy pomocy składowej <code class="sourceCode cpp">indx</code> w każdym dostępnym konstruktorze jednocześnie zwiększając wartość składowej <code class="sourceCode cpp">indx</code>.</p></li>
+<li><p>Wartość zmiennej <code class="sourceCode cpp">nr</code> wyświetlaj zarówno w konstruktorach jak i w destruktorze.</p></li>
 <li>Uruchom program i przeanalizuj jeszcze raz kolejność tworzenia się i usuwania obiektów.
 <ul>
 <li>Zwróć szczególną uwagę na moment konstrukcji i destrukcji obiektów o <strong><em>nr = 5</em></strong> i <strong><em>nr = 6</em></strong>.</li>
-<li>Jak zmieni się liczba tworzonych obiektów jeśli konstruktor kopiujący zmienisz na następujący: <code>Wektor2D(const Wektor2D v)</code>{.c++} (czyli bez referencji).</li>
+<li>Jak zmieni się liczba tworzonych obiektów jeśli konstruktor kopiujący zmienisz na następujący: <code class="sourceCode cpp">Wektor2D(<span class="dt">const</span> Wektor2D v)</code> (czyli bez referencji).</li>
 <li>Jak wytłumaczysz, że przy destrukcji obiektów nigdzie nie pojawia się wartość <strong><em>nr = 4?</em></strong></li>
 </ul></li>
 <li><p>Dodaj do klasy odpowiednio zdefiniowany operator przypisania(=). Czy teraz, w trakcie usuwania obiektów, widać już wartość <strong><em>nr = 4</em></strong> ?</p></li>

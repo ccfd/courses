@@ -479,11 +479,11 @@ div.tocify {
 <h1>LABORATORIUM 2</h1>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
-<p>Utwórz klasę Pojemnik służącą do przechowywania obiektów typu <code>Wektor2D</code>{.c++}</p>
+<p>Utwórz klasę Pojemnik służącą do przechowywania obiektów typu <code class="sourceCode cpp">Wektor2D</code></p>
 <ul>
-<li><p>Atrybuty tej klasy to dynamiczna tablica typu <code>Wektor2D *mdata</code>{.c++} i rozmiar tej tablicy <code>int msize</code>{.c++}.</p></li>
-<li><p>Utwórz konstruktor domyślny i destruktor.</p></li>
-<li>Utwórz metodę <code>Dodaj(const Wektor2D&amp; v)</code>{.c++} służącą do dodawania elementów do klasy <code>Pojemnik</code>{.c++}. Konieczne jest w niej dynamiczne przealokowanie tablicy <code>mdata</code>{.c++} (używaj operatorów <code>new</code>{.c++} i <code>delete</code>{.c++}). Przealokowanie możesz wykonać według następującego schematu:
+<li><p>Atrybuty tej klasy to dynamiczna tablica typu <code class="sourceCode cpp">Wektor2D *mdata</code> i rozmiar tej tablicy <code class="sourceCode cpp">int msize</code>.</p></li>
+<li><p>Utwórz domyślny konstruktor oraz destruktor.</p></li>
+<li>Utwórz metodę <code class="sourceCode cpp">Dodaj(<span class="dt">const</span> Wektor2D&amp; v)</code> służącą do dodawania elementów do klasy <code class="sourceCode cpp">Pojemnik</code>. Konieczne jest w niej dynamiczne przealokowanie tablicy <code class="sourceCode cpp">mdata</code> (używaj operatorów <code class="sourceCode cpp"><span class="kw">new</span></code> i <code class="sourceCode cpp"><span class="kw">delete</span></code>). Przealokowanie możesz wykonać według następującego schematu:
 <ul>
 <li>zadeklaruj wskaźnik do tablicy tymczasowej;</li>
 <li>przydziel niezbędną pamięć;</li>
@@ -500,58 +500,61 @@ poj.Dodaj( Wektor2D(<span class="dv">3</span>,<span class="dv">2</span>) );
 poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</code></pre></div></li>
 <li>Sprawdź przy pomocy debuggera zawartość obiektu poj. W oknie watch użyj trzech różnych wpisów:
 <ul>
-<li><code>poj.mdata[0];</code>{.c++}</li>
-<li><code>poj.mdata;</code>{.c++}</li>
-<li><code>poj.mdata,4;</code>{.c++}</li>
+<li><code class="sourceCode cpp">poj.mdata[<span class="dv">0</span>];</code></li>
+<li><code class="sourceCode cpp">poj.mdata;</code></li>
+<li><code class="sourceCode cpp">poj.mdata,<span class="dv">4</span>;</code></li>
 </ul></li>
 </ul>
 </div>
 <div id="zadanie-2-1" class="section level2">
 <h2>Zadanie 2</h2>
-<p>Dodaj do klasy Pojemnik metodę <code>void DrukujWszystko()</code>{.c++} drukującą zawartość wszystkich obiektów <code>Wektor2D</code>{.c++} przechowywanych w tej klasie. Skorzystaj z metody <code>Drukuj()</code>{.c++} z klasy <code>Wektor2D</code>{.c++}.</p>
+<p>Dodaj do klasy Pojemnik metodę <code class="sourceCode cpp"><span class="dt">void</span> DrukujWszystko()</code> drukującą zawartość wszystkich obiektów <code class="sourceCode cpp">Wektor2D</code> przechowywanych w tej klasie. Skorzystaj z metody <code class="sourceCode cpp">Drukuj()</code> z klasy <code class="sourceCode cpp">Wektor2D</code>.</p>
 </div>
 <div id="zadanie-3" class="section level2">
 <h2>Zadanie 3</h2>
-<p>Dodaj do klasy <code>Pojemnik</code>{.c++} metodę klasy <code>Wektor2D</code>{.c++} <code>Suma()</code>{.c++} liczącą sumę wszystkich wektorów przechowywanych w klasie <code>Pojemnik</code>{.c++}, korzystającą z operatorów zdefiniowanych dla klasy <code>Wektor2D</code>{.c++}. Wynik funkcji wyświetl w programie głównym.</p>
+<p>Dodaj do klasy <code class="sourceCode cpp">Pojemnik</code> metodę klasy <code class="sourceCode cpp">Wektor2D</code> <code class="sourceCode cpp">Suma()</code> liczącą sumę wszystkich wektorów przechowywanych w klasie <code class="sourceCode cpp">Pojemnik</code>, korzystającą z operatorów zdefiniowanych dla klasy <code class="sourceCode cpp">Wektor2D</code>. Wynik funkcji wyświetl w programie głównym.</p>
 <ul>
 <li>Spróbuj wywołać liczenie sumy i jej wyświetlanie w taki sposób aby były umieszczone w jednej instrukcji.</li>
 </ul>
 </div>
 <div id="zadanie-4" class="section level2">
 <h2>Zadanie 4</h2>
-<p>Dodaj do klasy <code>Wektor2D operator &lt;&lt;</code>{.c++}.</p>
+<p>Dodaj do klasy <code class="sourceCode cpp">Wektor2D <span class="kw">operator</span> &lt;&lt;</code>.</p>
 <ul>
 <li><p>Operator powinien mieć postać:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> <span class="kw">operator</span>&lt;&lt;( ostream&amp; o, <span class="dt">const</span> Wektor2D&amp; w )</code></pre></div>
-<p>i powinien wykonywać te same operacje co funkcja <code>Drukuj()</code>{.c++} klasy <code>Wektor2D</code>{.c++}.</p></li>
+<p>i powinien wykonywać te same operacje co funkcja <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor2D</code>.</p></li>
 <li><p>Wyświetl zawartość dowolnego wektora w programie głównym:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cout &lt;&lt; v1;</code></pre></div></li>
 <li><p>Przerób definicję operatora &lt;&lt; tak, aby można było wykonać następującą instrukcję:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cout &lt;&lt; v1 &lt;&lt; v2;</code></pre></div></li>
-<li><p>Dodaj do klasy Pojemnik nową wersję funkcji <code>DrukujWszystko()</code>{.c++} (np. <code>DrukujWszystko2()</code>{.c++}). Nowa funkcja powinna wykorzystywać <code>operator &lt;&lt;</code>{.c++} zamiast funkcji <code>Drukuj()</code>{.c++} klasy <code>Wektor2D</code>{.c++}.</p></li>
+<li><p>Dodaj do klasy Pojemnik nową wersję funkcji <code class="sourceCode cpp">DrukujWszystko()</code> (np. <code class="sourceCode cpp">DrukujWszystko2()</code>). Nowa funkcja powinna wykorzystywać <code class="sourceCode cpp"><span class="kw">operator</span> &lt;&lt;</code> zamiast funkcji <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor2D</code>.</p></li>
 </ul>
 </div>
 <div id="zadanie-5" class="section level2">
 <h2>Zadanie 5</h2>
 <p>Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).</p>
 <ul>
-<li><p>W oknie Solution Explorer zaznacz nazwę projektu. W menu Project powinno pojawić się na samym dole podmenu <strong><em>Properties</em></strong>.</p></li>
+<li><p>W oknie <strong><em>Solution Explorer</em></strong> zaznacz nazwę projektu. W menu <strong><em>Project</em></strong> powinno pojawić się na samym dole podmenu <strong><em>Properties</em></strong>.</p></li>
 <li><p>W drzewku okna <strong><em>Property</em></strong> wybierz folder <strong><em>linker/debug</em></strong>. Teraz w polu <strong><em>Generate Map File</em></strong> wybierz <strong><em>Yes (/MAP)</em></strong>, a poniżel w polu <strong><em>Map File Name</em></strong> podaj nazwę pliku ****.map<strong><em>, np.: </em></strong>$(OutDir)/Test.map***.</p></li>
 <li><p>Przebuduj program i w katalogu <strong><em>debug</em></strong> projektu odszukaj plik <strong><em>Test.map</em></strong>.</p></li>
-<li><p>Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?) Spróbuj odnaleźć konstruktory i destruktory klas <code>Wektor2D</code>{.c++} i <code>Pojemnik</code>{.c++}. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?</p></li>
-<li><p>Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji <code>Pojemnik::Max()</code>{.c++})? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?</p></li>
+<li><p>Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?) Spróbuj odnaleźć konstruktory i destruktory klas <code class="sourceCode cpp">Wektor2D</code> i <code class="sourceCode cpp">Pojemnik</code>. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?</p></li>
+<li><p>Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji <code class="sourceCode cpp">Pojemnik::Max()</code>)? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?</p></li>
 <li><p>Jak myślisz, czy wśród nazw znajdujących się w pliku ****.map*** mogą wystąpić dwie identyczne nazwy funkcji?</p></li>
 </ul>
 </div>
 <div id="zadanie-6" class="section level2">
 <h2>Zadanie 6</h2>
-<p>Dodaj do klasy Pojemnik funkcję <code>Max()</code>{.c++} zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa <code>Wektor2D</code>{.c++} a nie klasa <code>Pojemnik</code>{.c++}. Zatem klasa <code>Pojemnik</code>{.c++} powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie <code>Wektor2D</code>{.c++}. Zdefiniuj również te operatory. Funkcja <code>Max()</code>{.c++} powinna zadziałać w następujący sposób:</p>
+<p>Dodaj do klasy Pojemnik funkcję <code class="sourceCode cpp">Max()</code> zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa <code class="sourceCode cpp">Wektor2D</code> a nie klasa <code class="sourceCode cpp">Pojemnik</code>. Zatem klasa <code class="sourceCode cpp">Pojemnik</code> powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie <code class="sourceCode cpp">Wektor2D</code>. Zdefiniuj również te operatory. Funkcja <code class="sourceCode cpp">Max()</code> powinna zadziałać w następujący sposób:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    cout &lt;&lt; poj.Max();</code></pre></div>
 </div>
 <div id="zadanie-7" class="section level2">
 <h2>Zadanie 7</h2>
 <p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
 <hr />
+</div>
+<div id="dodatek-klasa-wektor2d-z-poprzednich-cwiczen" class="section level2">
+<h2>Dodatek (klasa Wektor2D z poprzednich ćwiczeń)</h2>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// -------------------------------------------------------------</span>
 <span class="co">// deklaracja klasy</span>
 <span class="kw">class</span> Wektor2D
@@ -590,9 +593,9 @@ Wektor2D::Wektor2D( <span class="dt">const</span> <span class="dt">double</span>
     cout.setf( ios::fixed );
     cout &lt;&lt; <span class="st">&quot;wektor: [&quot;</span>;
     cout.precision(<span class="dv">3</span>);
-   <span class="co">//   . . . </span>
-  
-  <span class="co">//    . . . </span>
+   <span class="co">//   . . .</span>
+
+  <span class="co">//    . . .</span>
   cout.width(<span class="dv">6</span>);
   cout &lt;&lt; x &lt;&lt; <span class="st">&quot;,&quot;</span>;
   cout.precision(<span class="dv">4</span>);

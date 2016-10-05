@@ -479,36 +479,58 @@ div.tocify {
 <h1>LABORATORIUM 3</h1>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Sprawdź działanie polimorfizmu na przykładzie tablicy figur.</p>
+<p>Sprawdź działanie operatorów new i delete dla tablicy klas z konstruktorem i destruktorem np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">class</span> A
+{
+<span class="kw">public</span>:
+    A() { cout &lt;&lt; <span class="st">&quot;konstruktor A</span><span class="ch">\n</span><span class="st">&quot;</span>;}
+    ~A()    { cout &lt;&lt; <span class="st">&quot;destruktor A</span><span class="ch">\n</span><span class="st">&quot;</span>;}
+};
+
+<span class="dt">int</span> main()
+{
+    A   *ptr;
+    ptr = <span class="kw">new</span> A[<span class="dv">5</span>];
+    <span class="kw">delete</span> [] ptr; <span class="co">// co będzie gdy usunie się nawiasy [] ?</span>
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre></div>
 <ul>
-<li><p>Utwórz klasę bazową <code>Shape</code>{.c++}. Klasa ta powinna posiadać metodę służącą do drukowania nazwy obiektu np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> PrintName()
-{
-    cout &lt;&lt; ”class Shape\n”;
-}</code></pre></div></li>
-<li>Utwórz klasy <code>Circle, Square, Triangle</code>{.c++} będące obiektami potomnymi klasy <code>Shape</code>{.c++}. Obiekty te powinny być opisane przez wierzchołki (można wykorzystać klasę z zajęć poprzednich <code>Wector3D</code>{.c++}) i posiadać metody do obliczania pola figury.</li>
-<li><p>Zmodyfikuj klasę <code>Shape</code>{.c++} przez dodanie abstrakcyjnej metody do liczenia pola figury np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">virtual</span> <span class="dt">double</span> Area() = <span class="dv">0</span>;</code></pre></div></li>
-<li>Sprawdź, czy możesz teraz utworzyć obiekt typu <code>Shape</code>{.c++} lub np. <code>Circle</code>{.c++}.</li>
-<li>Zmodyfikuj metody <code>Area()</code>{.c++} obiektów <code>Circle, Square, Triangle</code>{.c++} tak aby były one wirtualne oraz dodaj do nich wirtualne metody <code>PrintName()</code>{.c++}.</li>
-<li><p>Utwórz tablicę wskaźników do obiektów typu <code>Shape</code>{.c++} i zainicjalizuj je obiektami <code>Circle, Square, Triangle</code>{.c++} np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Shape   *tabp[<span class="dv">3</span>];
-tabp[<span class="dv">0</span>] = <span class="kw">new</span> Circle(…);
-tabp[<span class="dv">1</span>] = <span class="kw">new</span> Triangle(…);
-tabp[<span class="dv">2</span>] = <span class="kw">new</span> Square(…);
-<span class="kw">for</span> ( <span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="dv">3</span>; ++i)
-{
-    tabp[i]-&gt;PrintName();
-    cout &lt;&lt; tabp[i]-&gt;Area() &lt;&lt; endl;
-}</code></pre></div></li>
-<li>Sprawdź co się stanie gdy usunie się modyfikator <code>virtual</code>{.c++} przy metodach obiektów <code>Circle, Square, Triangle</code>{.c++}.</li>
-<li><p>Sprawdź działanie funkcji <code>dynamic_cast&lt;T*&gt;()</code>{.c++} np. do policzenia ile obiektów w danej kolekcji jest typu <code>Circle</code>{.c++} (pamiętaj o włączeniu opcji kompilatora RTTI):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">if</span>  ( <span class="kw">dynamic_cast</span>&lt;Circle*&gt;( tabp[i] ) )  ++count;</code></pre></div></li>
-<li><p>Czy wiesz dlaczego w punkcie poprzednim używaliśmy <code>dynamic_cast</code>{.c++} a nie <code>static_cast</code>{.c++}?</p></li>
+<li>Dodaj do klasy A atrybut statyczny np. <code class="sourceCode cpp"><span class="dt">static</span> <span class="dt">int</span> mattr</code>:</li>
+<li><p>Sprawdź jakie wartości będą drukowane (dlaczego?) jeśli wykonasz:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span> ( i=<span class="dv">0</span>; i&lt;<span class="dv">5</span>; ++i)
+    ptr[i].mattr = i<span class="dv">+1</span>;
+
+<span class="kw">for</span> ( i=<span class="dv">0</span>; i&lt;<span class="dv">5</span>; ++i)
+    cout &lt;&lt; <span class="st">&quot; element &quot;</span> &lt;&lt; i &lt;&lt; <span class="st">&quot; attr = &quot;</span> &lt;&lt; ptr[i].mattr &lt;&lt; endl;</code></pre></div></li>
 </ul>
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
+<p>Utwórz klasę bazową <code class="sourceCode cpp">Pojazd</code> opisującą pewien pojazd</p>
+<ul>
+<li>Atrybut klasy to np. przebieg danego pojazdu (typu int) umieszczony w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code></li>
+<li>Utwórz:
+<ul>
+<li>konstruktor defaultowy: <code class="sourceCode cpp">Pojazd()</code> – przebieg zainicjuj zerem</li>
+<li>konstruktor <code class="sourceCode cpp">Pojazd(<span class="dt">const</span> <span class="dt">int</span>&amp; n)</code> – przebieg zainicjuj argumentem n</li>
+<li>destruktor <code class="sourceCode cpp">~Pojazd()</code></li>
+</ul></li>
+<li>W konstruktorach i destruktorach drukuj informację o ich wykonaniu tak aby można było stwierdzić co i kiedy zostało wywołane.</li>
+<li>Utwórz metodę <code class="sourceCode cpp">GetPrzebieg()</code> zwracającą wartość przebiegu</li>
+<li>Sprawdź poprawność tej klasy tworząc zmienną typu <code class="sourceCode cpp">Pojazd</code> i drukując wartość metody <code class="sourceCode cpp">GetPrzebieg()</code></li>
+</ul>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Utwórz klasę <code class="sourceCode cpp">Autobus</code> która jest klasą pochodną klasy <code class="sourceCode cpp">Pojazd</code> * Atrybut klasy to np. liczba pasażerów (typu int) umieszczony w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code> * Utwórz: * konstruktor domyślny: <code class="sourceCode cpp">Autobus()</code> – liczbę pasażerów zainicjuj zerem * konstruktor <code class="sourceCode cpp">Autobus(<span class="dt">const</span> <span class="dt">int</span>&amp; m)</code> – liczbę pasażerów zainicjuj argumentem <code class="sourceCode cpp">m</code> * destruktor <code class="sourceCode cpp">~Autobus()</code> * Podobnie jak dla klasy <code class="sourceCode cpp">Pojazd</code> w konstruktorach i destruktorach drukuj informację o ich wykonaniu. * Utwórz metodę <code class="sourceCode cpp">GetLiPasazerow()</code> zwracającą wartość atrybutu przechowującego liczbę pasażerów. * Jeśli utworzysz zmienną typu <code class="sourceCode cpp">Autobus</code> jakie konstruktory będą wywoływane? W jakiej kolejności będą wołane konstruktory i destruktory? * Jaki przebieg ma zmienna typu <code class="sourceCode cpp">Autobus</code>? * Dodaj nowy konstruktor do klasy <code class="sourceCode cpp">Autobus</code>, który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie. * Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejednoznaczności?</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Autobus  bus;
+bus = <span class="dv">3</span>;</code></pre></div>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
 <p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp</p>
 </div>
 </div>

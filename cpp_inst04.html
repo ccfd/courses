@@ -479,43 +479,77 @@ div.tocify {
 <h1>LABORATORIUM 4</h1>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Sprawdź działanie obsługi wyjątków/błędów (exception handling) w języku C++</p>
+<p>Sprawdź działanie polimorfizmu na przykładzie tablicy figur.</p>
 <ul>
-<li>Utwórz klasę abstrakcyjną <code>Except</code>{.c++} która ma metodę wirtualną do drukowania informacji o wyjątku (np. <code>PrintInfo()</code>{.c++} ).</li>
-<li>Utwórz klasę konkretną np. <code>Except1</code>{.c++} która będzie posiadała implementację metody <code>PrintInfo()</code>{.c++}.</li>
-<li><p>W funkcji main umieść instrukcje służące do przechwytywania wyjątków:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">try</span> 
+<li><p>Utwórz klasę <code class="sourceCode cpp">Point</code> przechowującą dane o współrzędnych punktu na płaszczyźnie. Klasa powinna posiadać konstruktor parametryczny i funkcję wyznaczającą odległość pomiędzy dwoma punktami. Definicje wymienionych funkcji powinny pozwolić na wykonanie następującego kodu:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Point p1(<span class="dv">2</span>,<span class="dv">4</span>), p2(<span class="dv">2</span>,<span class="dv">2</span>);
+cout  &lt;&lt; p1.Length(p2);</code></pre></div></li>
+<li><p>Utwórz klasę bazową <code class="sourceCode cpp">Shape</code>. Klasa ta powinna posiadać metodę służącą do drukowania nazwy obiektu np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> PrintName()
 {
-    ....
-}
-<span class="kw">catch</span> ( Except&amp; e) 
-{
-    e.PrintInfo();
+cout &lt;&lt; ”class Shape\n”;
 }</code></pre></div></li>
-<li><p>W sekcji try wywołaj jakąś funkcję która rzuca wyjątek <code>Except1</code>{.c++}:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">throw</span> Except1;</code></pre></div></li>
-<li><p>Spróbuj zrobić to samo dla nowej klasy <code>Except2</code>{.c++} która będzie drukowała informacje w której linii kodu został rzucony wyjątek (użyj zmiennej preprocesora <code>__LINE__</code>{.c++})</p></li>
-<li><p>Sprawdź działanie sekcji <code>catch(...)</code>{.c++} do przechwytywania wszystkich wyjątków. Dopisz ją poniżej już istniejącej sekcji <code>catch</code>{.c++} i spróbuj rzucić wyjątek który nie jest typu <code>Except</code>{.c++}.</p></li>
+<li>Utwórz klasy <code class="sourceCode cpp">Circle, Rectangle, Triangle</code> będące obiektami potomnymi klasy <code class="sourceCode cpp">Shape</code>. Obiekty te powinny być opisane przez wierzchołki (wykorzystaj klasę <code class="sourceCode cpp">Point</code>) i posiadać metody do obliczania pola figury.</li>
+<li>Utwórz obiekty reprezentujące klasy figur i wyświetl ich powierzchnie.</li>
+<li><p>Zmodyfikuj klasę <code class="sourceCode cpp">Shape</code> przez dodanie abstrakcyjnej metody do liczenia pola figury np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">virtual</span> <span class="dt">double</span> Area() = <span class="dv">0</span>;</code></pre></div></li>
+<li>Sprawdź, czy możesz teraz utworzyć obiekt typu <code class="sourceCode cpp">Shape</code> lub np. <code class="sourceCode cpp">Circle</code>.</li>
+<li>Zmodyfikuj metody <code class="sourceCode cpp">Area()</code> obiektów <code class="sourceCode cpp">Circle, Rectangle, Triangle</code> tak, aby były one wirtualne oraz dodaj do nich wirtualne metody <code class="sourceCode cpp">PrintName()</code>.</li>
+<li><p>Utwórz tablicę wskaźników do obiektów typu <code class="sourceCode cpp">Shape</code> i zainicjalizuj je obiektami <code class="sourceCode cpp">Circle, Rectangle, Triangle</code> np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Shape   *tabp[<span class="dv">3</span>];
+tabp[<span class="dv">0</span>] = <span class="kw">new</span> Circle(…);
+tabp[<span class="dv">1</span>] = <span class="kw">new</span> Triangle(…);
+tabp[<span class="dv">2</span>] = <span class="kw">new</span> Rectangle(…);
+<span class="kw">for</span> ( <span class="dt">int</span> I=<span class="dv">0</span>; I&lt;<span class="dv">3</span>; ++I)
+{
+tabp[I]-&gt;PrintName();
+cout &lt;&lt; tabp[I]-&gt;Area() &lt;&lt; endl;
+}</code></pre></div></li>
+<li>Sprawdź co się stanie gdy usunie się modyfikator <code class="sourceCode cpp"><span class="kw">virtual</span></code> przy metodach obiektów <code class="sourceCode cpp">Circle, Rectangle, Triangle</code>.</li>
+<li><p>Sprawdź działanie funkcji <code class="sourceCode cpp"><span class="kw">dynamic_cast</span>&lt;T*&gt;()</code> np. do policzenia ile obiektów w danej kolekcji jest typu <code class="sourceCode cpp">Circle</code> (pamiętaj o włączeniu opcji kompilatora RTTI):</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">if</span>( <span class="kw">dynamic_cast</span>&lt;Circle*&gt;( tabp[I] ) )
+{
+++count;
+}</code></pre></div></li>
+<li><p>Czy wiesz dlaczego w punkcie poprzednim używaliśmy <code class="sourceCode cpp"><span class="kw">dynamic_cast</span></code> a nie <code class="sourceCode cpp"><span class="kw">static_cast</span></code>?</p></li>
 </ul>
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
-<p>Wykorzystanie prostych wzorców (template) * Napisz wzorce (template’y) funkcji <code>mymin</code>{.c++} i <code>mymax</code>{.c++} liczące odpowiednio minimum i maksimum z dwóch argumentów. Sprawdź działanie tych funkcji dla różnych typów np. <code>int, double</code>{.c++}. * Co jest konieczne aby można było wykorzystać powyższe funkcje również do klasy np. <code>Wektor2D</code>{.c++}? * Przerób klasę <code>Wektor2D</code>{.c++} tak aby był to wzorzec klasy sparametryzowany typem składowych wektora:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    <span class="kw">template</span>&lt; <span class="kw">class</span> T &gt;
-    Wector2D
-    {
-        . . .
-    };</code></pre></div>
-<p>Sprawdź działanie takiej klasy.</p>
 <ul>
-<li><p>Przerób klasę <code>Wector2D</code>{.c++} tak aby była ona również sparametryzowana ilością składowych:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt; <span class="kw">class</span> T, <span class="dt">int</span> N &gt;
-Wector
+<li><p>Dodaj do klasy <code class="sourceCode cpp">Point</code> konstruktor kopiujący:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Point::Point( <span class="dt">const</span> Point&amp; p )
 {
-    . . .
-};</code></pre></div>
-<p>Sprawdź działanie takiej klasy.</p></li>
+        x = p.x;
+y = p.y;
+cout &lt;&lt; <span class="st">&quot;Point: Kontruktor kopiujący&quot;</span>&lt;&lt;endl;
+}</code></pre></div></li>
+<li><p>Dodaj również kolejną wersję funkcji wyznaczającej odległość pomiędzy dwoma punktami. Tym razem jednak obiekt Point powinien być przekazywany do funkcji przez kopiowanie a nie przez referencje:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> Point::Length2( <span class="dt">const</span> Point p )
+{
+<span class="kw">return</span> sqrt( (x - p.x) * (x - p.x) + (y - p.y) * (y - p.y ) );
+}</code></pre></div></li>
+<li><p>Sprawdź czym różnią się wywołania tych funkcji:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Point pa(<span class="dv">10</span>, <span class="dv">20</span>), pb(<span class="dv">30</span>, <span class="dv">40</span>);
+cout&lt;&lt;<span class="st">&quot;Length()&quot;</span>&lt;&lt;endl;
+cout&lt;&lt;pa.Length(pb)&lt;&lt;endl;
+cout&lt;&lt;<span class="st">&quot;Length2()&quot;</span>&lt;&lt;endl;
+cout&lt;&lt;pa.Length2(pb)&lt;&lt;endl;</code></pre></div></li>
+<li><p>Spróbuj zmienić wartość obiektu <code class="sourceCode cpp">p</code> wewnątrz funkcji <code class="sourceCode cpp">Length2</code> np.: <code class="sourceCode cpp">p.x = <span class="dv">100</span>;</code>. Zmień na chwilę tak definicję tej funkcji aby taka operacja była możliwa. Która wersja funkcji <code class="sourceCode cpp">Length()</code> jest najbardziej optymalna?</p></li>
 </ul>
+</div>
+<div id="zadanie-3-nie-wiem-czy-jest-sens-z-racji-roznych-wersji-programow" class="section level2">
+<h2>Zadanie 3 (Nie wiem czy jest sens z racji różnych wersji programów)</h2>
+<p>Poznaj swoje środowisko pracy. Odnajdź i przetestuj działanie następujących ikon paska narzędziowego: - wstawianie i usuwanie tabulatorów. - wstawianie i usuwanie komentarza. - sterowanie zakładkami.</p>
+<p>Dostosuj środowisko programistyczne do własnych potrzeb: poprzez menu <strong><em>Toolbox</em></strong> otwórz okno <strong><em>Customize…</em></strong> . * Wybierz zakładkę <strong><em>Toolbars</em></strong> i dodaj lub usuń z menu dowolny pasek narzędzi (np. <strong><em>Debug</em></strong>). * Wybierz zakładkę <strong><em>Commands</em></strong>. Na liście <strong><em>Categories</em></strong> zaznacz pozycję <strong><em>View</em></strong>, zaś na liście <strong><em>Commands</em></strong> odszukaj pozycję <strong><em>Full Screen</em></strong> i przeciągnij ją myszką na dowolny pasek narzędzi w menu edytora. (Spróbuj go na chwilę stamtąd usunąć). * Poprzez przycisk <strong><em>Keyboard…</em></strong> otwórz okno <strong><em>Options</em></strong>. Na liście <strong><em>Show commands containing</em></strong>: odszukaj skrót klawiaturowy przycisku <strong><em>Full Screen</em></strong>. Sprawdź działanie tego przycisku zarówno poprzez ikonę jak i klawiaturę.</p>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
+</div>
+<div id="uwaga" class="section level2">
+<h2>UWAGA</h2>
+<p>W przypadku wystąpienia ostrzeżenia: “warning C4541: ‘dynamic_cast’ used on polymorphic type ‘class Shape’ with /GR-; unpredictable behavior may result” należy: - wybrać polecenie Project | Properties; - w gałęzi C/C++ wybrać pozycję Language; - włączyć opcję Enable Run-TimeType Info (RTTI);</p>
 </div>
 </div>
 
