@@ -9,6 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="W. Gryglas" />
 
 
 <title></title>
@@ -24,6 +25,49 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -373,6 +417,30 @@ div.tocify {
     <li>
       <a href="cpp_inst04.html">Instrukcja IV</a>
     </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -402,14 +470,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="cpp_inst07.pdf">
+  <a href="cpp_inst04b.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst07.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst04b.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -435,13 +503,48 @@ div.tocify {
 </div>
 
 
-<div id="programowanie-obiektowe-w-c" class="section level1">
-<h1>PROGRAMOWANIE OBIEKTOWE W C++</h1>
-</div>
-<div id="laboratorium-3" class="section level1">
-<h1>LABORATORIUM 3</h1>
+<div id="instruckcja-poc_lab4" class="section level1">
+<h1>(Instruckcja poc_lab4)</h1>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
+<p>Sprawdź działanie obsługi wyjątków/błędów (exception handling) w języku C++.</p>
+<ul>
+<li><p>Utwórz klasę abstrakcyjną <code class="sourceCode cpp">Except</code> która ma metodę wirtualną do drukowania informacji o wyjątku (np. <code class="sourceCode cpp">PrintInfo()</code> )</p></li>
+<li><p>Utwórz klasę konkretną np. <code class="sourceCode cpp">Except1</code> która będzie posiadała implementację metody <code class="sourceCode cpp">PrintInfo()</code></p></li>
+<li><p>W funkcji main umieść instrukcje służące do przechwytywania wyjątków:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">try</span> {
+....
+}
+<span class="kw">catch</span> ( Except&amp; e) {
+e.PrintInfo();
+}</code></pre></div></li>
+<li><p>W sekcji try wywołaj jakąś funkcję która rzuca wyjątek <code class="sourceCode cpp">Except1</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">throw</span> Except1;</code></pre></div></li>
+<li>Spróbuj zrobić to samo dla nowej klasy <code class="sourceCode cpp">Except2</code> która będzie drukowała informacje w której linii kodu został rzucony wyjątek (użyj zmiennej preprocesora <code class="sourceCode cpp"><span class="ot">__LINE__</span></code>)</li>
+<li><p>Sprawdź działanie sekcji <code class="sourceCode cpp"><span class="kw">catch</span>(...)</code> do przechwytywania wszystkich wyjątków. Dopisz ją poniżej już istniejącej sekcji <code class="sourceCode cpp"><span class="kw">catch</span></code> i spróbuj rzucić wyjątek który nie jest typu <code class="sourceCode cpp">Except</code>.</p></li>
+</ul>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Wykorzystanie prostych wzorców (templatów)</p>
+<ul>
+<li><p>Napisz wzorce (template’y) funkcji <code class="sourceCode cpp">mymin</code> i <code class="sourceCode cpp">mymax</code> liczące odpowiednio minimum i maksimum z dwóch argumentów. Sprawdź działanie tych funkcji dla różnych typów np. <code class="sourceCode cpp"><span class="dt">int</span>, <span class="dt">double</span></code>.</p></li>
+<li><p>Co jest konieczne aby można było wykorzystać powyższe funkcje również do klasy np. <code class="sourceCode cpp">Wektor2D</code>?</p></li>
+<li><p>Przerób klasę <code class="sourceCode cpp">Wector2D</code> tak aby był to wzorzec klasy sparametryzowany typem składowych wektora:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt; <span class="kw">class</span> T &gt;
+Wector2D
+{
+. . .
+};</code></pre></div></li>
+<li><p>Sprawdź działanie takiej klasy.</p></li>
+<li><p>Przerób klasę <code class="sourceCode cpp">Wector2D</code> tak aby była ona również sparametryzowana ilością składowych:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt; <span class="kw">class</span> T, <span class="dt">int</span> N &gt;
+Wector
+{
+. . .
+};</code></pre></div></li>
+<li><p>Sprawdź działanie takiej klasy.</p></li>
+</ul>
 </div>
 </div>
 

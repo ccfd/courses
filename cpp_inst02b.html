@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ł. Łaniewski-Wołłk" />
+<meta name="author" content="W. Gryglas" />
 
 
 <title></title>
@@ -470,14 +470,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="cpp_inst02b.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info3_lab2.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst02b.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -503,80 +503,75 @@ div.tocify {
 </div>
 
 
-<div id="bash-skrypty" class="section level1">
-<h1>BASH: skrypty</h1>
-<p>Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą <code class="sourceCode bash"><span class="kw">chmod</span> +x plik</code> i wykonać komendą <code>./plik</code>{bash}. Linia poleceń (BASH) służy do uruchomiania programów — dlatego: <strong>każda linijka skryptu wygląda nastepująco:</strong> <code>program agumenty</code>.</p>
-<p>Przeanalizuj fragment kodu, z zaznaczonymi <code>programami</code> i <code>opcjami</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">i=</span>1
-<span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10
-<span class="kw">do</span>
-    <span class="kw">echo</span> <span class="ot">$i</span>
-    <span class="kw">cp</span> plik plik_<span class="ot">$i</span>
-    <span class="ot">i=$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span>
-<span class="kw">done</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">i=</span>1
-<span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10
-<span class="kw">do</span>
-    <span class="kw">echo</span> <span class="ot">$i</span>
-    <span class="kw">cp</span> plik plik_<span class="ot">$i</span>
-    <span class="ot">i=$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span>
-<span class="kw">done</span></code></pre></div>
-<p><code class="sourceCode bash"><span class="ot">i=</span>1 <span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10 do     echo <span class="ot">$i</span>     cp plik plik_<span class="ot">$i</span>     i=<span class="ot">$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span> done</code></p>
-<p>Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że: - <code>i=1</code> piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program <code>i</code> z opcjami <code>=</code> i <code>1</code>. - w wyrażeniu <code>expr \$i + 1</code>, musimy zachować spacje, żeby program <code>expr</code> dostał trzy argumenty <code>\$i</code>, <code>+</code> i <code>1</code>, a nie jeden <code>i+1</code>. - w pętli <code>while</code>, nie możemy wpisać ,,<code>i&lt;10</code>‘’, lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program <code>\red test</code>. W tym wypadku podajemy mu za argumenty ,,<code>\green\$i</code>’‘, ,,<code>\green -lt</code>’‘i ,,<code>\green 10</code>’‘, gdzie opcja <code>\green -lt</code> oznacza ,,less than’’.</p>
-<div id="przydatne-programy" class="section level2">
-<h2>Przydatne programy</h2>
-<p>Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty. - <code>_echo_ {\green tekst</code>} — Wpisuje {tekst} na ekran. - <code>_cat_ {\green plik</code>} — Wypisuje zawartość {plik}u na ekran - <code>_grep_ {\green tekst</code>} — Czyta z klawiatury tekst i wypisuje tylko linie zawierające {tekst} - <code>_grep_ {\green tekst pliki</code>} — Wyszukuje {tekst} w {plik}ach - <code>_cd_ {\green katalog</code>} — Wchodzi do {katalogu} - <code>_ls_ {\green katalog</code>} — Wypisuje zawartość {katalog}u na ekran - <code>_cp_ {\green pliki katalog</code>} — Kopiuje {pliki} do {katalog}u - <code>_cp_ {\green plik1 plik2</code>} — Kopiuje plik o nazwie {plik1} do pliku o nazwie {plik2} - <code>_mv_ {\green pliki katalog</code>} — Przenosi {pliki} do {katalog}u - <code>_mv_ {\green plik1 plik2</code>} — Zmienia nazwę pliku z {plik1} na {plik2} - <code>_sed_ {\green 's/tekst1/tekst2/g'</code>} — Czyta z klawiatury tekst i go wypisuje zamieniając ,,{tekst1}‘’ na ,,{tekst2}’’</p>
-</div>
-<div id="przekierowanie-wejscia-wyjscia" class="section level2">
-<h2>Przekierowanie wejścia wyjścia</h2>
-<p>Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować. - <code>_program_ {\blue &gt; plik</code>} — To co program wypisałby na ekran, zostanie wpisane do {plik}u ({plik} zostanie nadpisany jeśli istnieje) - <code>_program_ {\blue &gt;&gt; plik</code>} — To co program wypisałby na ekran, zostanie  do {plik}u ({plik} zostanie utwożony jeśli nie istniał) - <code>_program_ {\blue &lt; plik</code>} — Program dostanie zawartość {plik}u, tak jakbyśmy ją wpisali z klawiatury - <code>_program1_ {\blue |</code> <em>program2</em>} — To co <em>program1</em> wypisałby na ekran, zostanie wpisane ,,z klawiatury’’ do <em>program2</em> - <code>{\blue ``_program_{\blue</code>}} lub <code>{\blue \$(</code><em>program</em>{)}} — To co program wypisałby na ekran, zostanie  w tym miejscu kodu (patrz przykłady). </p>
-<p>Przykłady: - <code>echo Tekst {\blue &gt; plik</code>} — wypisze ,,Tekst’‘do {plik}u ({plik} zostanie nadpisany jeśli istnieje) - <code>echo Tekst {\blue &gt;&gt; plik</code>} — dopisze ,,Tekst’‘do {plik}u ({plik} zostanie utwożony jeśli nie istniał) - <code>grep Tekst {\blue &lt; plik</code>} — wyszuka w {plik}u linie zwierające {,,Tekst’‘} i je wypisze na ekran - <code>echo Tekst {\blue |</code> sed ’s/st/a/g’} — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’‘. - <code>echo \$nazwa {\blue |</code> sed ’s/.txt/.dat/g’} — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. . - <code>echo \$nazwa {\blue |</code> sed ‘s/.txt/.dat/g’} — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. . - <code>nazwa2={\blue \$(</code>echo $nazwa {|} sed ‘s/.txt/.dat/g’{)}} — Jak poprzednio, lecz  <code>nazwa2</code>. - <code>ls katalog {\blue &gt; plik</code>} — wypisze zawartość {katalog}u do {plik}u ({plik} zostanie nadpisany jeśli istnieje) - <code>cp {\blue ``ls{\blue</code>} katalog} albo <code>cp {\blue \$(</code>ls{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>. - <code>cp {\blue ``cat plik{\blue</code>} katalog} bądz <code>cp {\blue \$(</code>cat plik{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zawartej w <code>plik</code>u.</p>
-</div>
-<div id="petle-i-wyrazenia-warunkowe" class="section level2">
-<h2>Pętle i wyrażenia warunkowe</h2>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>Sprawdź działanie operatorów <code class="sourceCode cpp"><span class="kw">new</span></code> i <code class="sourceCode cpp"><span class="kw">delete</span></code> dla tablicy klas z konstruktorem i destruktorem np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;iostream.h&gt;</span>
+
+<span class="kw">class</span> A
+{
+<span class="kw">public</span>:
+    A() { cout &lt;&lt; <span class="st">&quot;konstruktor A</span><span class="ch">\n</span><span class="st">&quot;</span>;}
+    ~A()    { cout &lt;&lt; <span class="st">&quot;destruktor A</span><span class="ch">\n</span><span class="st">&quot;</span>;}
+};
+
+<span class="dt">int</span> main()
+{
+    A   *ptr;
+    ptr = <span class="kw">new</span> A[<span class="dv">5</span>];
+    <span class="kw">delete</span> [] ptr; <span class="co">// co będzie gdy usunie się nawiasy [] ?</span>
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre></div>
 <ul>
-<li><code>if _program_ {\green argumenty</code>\ then\ <em>polecenia1</em>\ else\ <em>polecenia2</em>\ fi}\ Jeśli wykonanie ,,<em>program</em> {argumenty}’’ się powiedzie (program zwróci <span class="math inline">\(0\)</span>), to wykonane zostaną <em>polecenia1</em>. W przeciwnym wypadku wykonane zostaną <em>polecenia2</em>.</li>
-<li><code>while _program_ {\green argumenty</code>\ do\ <em>polecenia</em>\ done}\ Pętla, która będzie wykonywać <em>polecenia</em>, puki ,,<em>program</em> {argumenty}’’ będzie wykonywany z powodzeniem.</li>
-<li><code>for i in {\green lista</code>\ do\ <em>polecenia</em>\ done}\ Pętla, która po kolei każdy element {list}y wstawi do zmiennej <code>i</code>, a następnie wykona <em>polecenia</em>.</li>
-</ul>
-<p>Dla przykładu:\ <code>for i in {\green *.jpg</code>\ do\ <em>mv</em> {$i IMG/a_$i} \ done}\ Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a\_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a\_obrazek.jpg</code>).</p>
-</div>
-<div id="cwiczenia" class="section level2">
-<h2>Ćwiczenia</h2>
-<p>Domyślnym edytorem na serwerze <code>info3</code> jest edytor <code>nano</code>, dostępny jest teś edytor <code>vim</code>. Pierwszy z nich wydaje się prostszy w obsłudze, drugi występuje na prawie każdym komputerze z UNIXem.</p>
-<pre><code>- Przy pomocy pętli wypisz na ekran liczby od 0 do 10
-- Zmień skrypt, tak aby wypisywał od 0 do podanej jako argument wielkości</code></pre>
-</div>
-</div>
-<div id="obrobka-obrazkow" class="section level1">
-<h1>Obróbka obrazków</h1>
-<div id="convert" class="section level2">
-<h2><code>convert</code></h2>
-<p>Głównym programem którego będziemy używać to <code>convert</code> z biblioteki ImageMagick. Program ten służy do najróżniejszego typu konwersji i zmiany właściwości obrazów — lecz potrafi także dodawać elementy do obrazu, a nawet tworzyć obrazy od zera. Najłatwiej zobaczyć jego użycie na przykładach:</p>
-<p><strong>UWAGA: Zanim zaczniesz, skopiuj katalog ze zdjęciami do jakiegoś tymczasowego katalogu!</strong></p>
-<ul>
-<li><code>convert plik.gif plik.jpg</code> — przekonwertuje plik w formacie GIF na format JPEG</li>
-<li><code>convert plik1.jpg -resize 50% plik2.jpg</code> — zmniejszy obrazek dwukrotnie</li>
-<li><code>convert plik1.jpg -resize 100 plik2.jpg</code> — zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli</li>
-<li><code>convert plik1.jpg -resize 100x100 plik2.jpg</code> — zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli</li>
-<li><code>convert plik1.jpg -resize 100x100\! plik2.jpg</code> — zmniejszy obrazek  do rozmiaru 100 na 100 pixeli</li>
-<li><code>convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw &quot;text 25,60 'Magick'&quot;{</code>-channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw “text 20,55 ‘Magick’”{ }fuzzy-magick.jpg} — stworzy obrazek fuzzy-magick.jpg, z tekstem “Magick” Wykonaj powyższe operacja, sprawdź efekty.</li>
+<li><p>Dodaj do klasy <code class="sourceCode cpp">A</code> atrybut statyczny np. <code class="sourceCode cpp"><span class="dt">static</span> <span class="dt">int</span> mattr</code>.</p></li>
+<li><p>Sprawdź jakie wartości będą drukowane (dlaczego?) jeśli wykonasz:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span> ( i=<span class="dv">0</span>; i&lt;<span class="dv">5</span>; ++i)
+    ptr[i].mattr = i<span class="dv">+1</span>;
+
+<span class="kw">for</span> ( i=<span class="dv">0</span>; i&lt;<span class="dv">5</span>; ++i)
+    cout &lt;&lt; “ element “ &lt;&lt; i &lt;&lt; “ attr = “ &lt;&lt; ptr[i].mattr &lt;&lt; endl;</code></pre></div></li>
 </ul>
 </div>
-<div id="cwiczenia-1" class="section level2">
-<h2>Ćwiczenia</h2>
-<p>Napisz skrypt który:</p>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Utwórz klasę bazową Pojazd opisującą pewien pojazd.</p>
 <ul>
-<li>Zmniejszy wszystkie pliki <code>jpg</code></li>
-<li>Napisz skrypt który: Zmniejszy wszystkie pliki <code>jpg</code> umieszczając je w innym katalogu</li>
-<li>Napisz skrypt który: Skonwertuje wszystkie pliki <code>jpg</code> na <code>gif</code>, dodając końcówkę: <code>plik.jpg $\rightarrow$ plik.jpg.gif</code></li>
-<li>Napisz skrypt który: Skonwertuje wszystkie pliki <code>jpg</code> na <code>gif</code>, zamieniając końcówkę <code>plik.jpg $\rightarrow$ plik.gif</code></li>
-<li>Na każde zdjęcie naniesie tekst używając <code>-pointsize {\green rozmiar</code> -draw “{}text {x},{y} ‘{Tekst}’”{}}</li>
-<li>Na każde zdjęcie naniesie aktualną datę (komenda <code>date</code>)</li>
-<li>Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć przy pomocy <code>stat -c %y plik</code>)</li>
-<li>Zmniejszy wszystkie obrazki z katalogu <code>drop1</code> i połączy je w animację przy pomocy <code>convert *.jpg animacja.gif</code></li>
+<li><p>Atrybut klasy to np. przebieg danego pojazdu (typu <code class="sourceCode cpp"><span class="dt">int</span></code>) umieszczony w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code></p></li>
+<li>Utwórz:
+<ul>
+<li>konstruktor defaultowy: <code class="sourceCode cpp">Pojazd()</code> – przebieg zainicjuj zerem</li>
+<li>konstruktor <code class="sourceCode cpp">Pojazd(<span class="dt">const</span> <span class="dt">int</span>&amp; n)</code> – przebieg zainicjuj argumentem n</li>
+<li>destruktor <code class="sourceCode cpp">~Pojazd()</code></li>
+</ul></li>
+<li><p>W konstruktorach i destruktorach drukuj informację o ich wykonaniu tak aby można było stwierdzić co i kiedy zostało wywołane.</p></li>
+<li><p>Utwórz metodę <code class="sourceCode cpp">Przebieg()</code> zwracającą wartość przebiegu.</p></li>
+<li><p>Sprawdź poprawność tej klasy tworząc zmienną typu Pojazd i drukując wartość metody <code class="sourceCode cpp">Przebieg()</code></p></li>
 </ul>
 </div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Utwórz klasę <code class="sourceCode cpp">Autobus</code> która jest klasą pochodną klasy <code class="sourceCode cpp">Pojazd</code>.</p>
+<ul>
+<li>Atrybut klasy to np. ilość pasażerów (typu <code class="sourceCode cpp"><span class="dt">int</span></code>) umieszczony w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code></li>
+<li>Utwórz:
+<ul>
+<li>konstruktor domyślny: <code class="sourceCode cpp">Autobus()</code> – przebieg zainicjuj zerem</li>
+<li>konstruktor <code class="sourceCode cpp">Autobus(<span class="dt">const</span> <span class="dt">int</span>&amp; m)</code> – ilość pasażerów zainicjuj argumentem <code class="sourceCode cpp">m</code></li>
+<li>destruktor <code class="sourceCode cpp">~Autobus()</code></li>
+</ul></li>
+<li><p>Podobnie jak dla klasy <code class="sourceCode cpp">Pojazd</code> w konstruktorach i destruktorach drukuj informację o ich wykonaniu.</p></li>
+<li><p>Utwórz metodę <code class="sourceCode cpp">IloscPasazerow()</code> zwracającą wartość atrybutu przechowującego ilość pasażerów.</p></li>
+<li><p>Jeśli utworzysz zmienną typu <code class="sourceCode cpp">Autobus</code> jakie konstruktory będą wywoływane? W jakiej kolejności będą wołane konstruktory i destruktory?</p></li>
+<li><p>Jaki przebieg ma zmienna typu <code class="sourceCode cpp">Autobus</code>?</p></li>
+<li><p>Dodaj nowy konstruktor do klasy <code class="sourceCode cpp">Autobus</code> który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie.</p></li>
+<li><p>Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejdnoznaczności?</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Autobus  bus;
+bus = <span class="dv">3</span>;</code></pre></div></li>
+</ul>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
 </div>
 
 <!-- Dummy footer -->

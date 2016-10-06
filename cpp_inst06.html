@@ -9,6 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="W. Gryglas" />
 
 
 <title></title>
@@ -24,6 +25,49 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -373,6 +417,30 @@ div.tocify {
     <li>
       <a href="cpp_inst04.html">Instrukcja IV</a>
     </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -435,14 +503,46 @@ div.tocify {
 </div>
 
 
-<div id="programowanie-obiektowe-w-c" class="section level1">
-<h1>PROGRAMOWANIE OBIEKTOWE W C++</h1>
-</div>
-<div id="laboratorium-3" class="section level1">
-<h1>LABORATORIUM 3</h1>
+<p>Wprowadzenie do STL (Standard Template Library)</p>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
+<p>Korzystanie ze struktur standardowych typu <code class="sourceCode cpp">vector</code> i <code class="sourceCode cpp">list</code>.</p>
+<ul>
+<li><p>Utwórz tablicę służącą do przechowywania liczb całkowitych. Wykorzystaj standardową strukturę vector np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;vector&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+vector&lt;<span class="dt">int</span>&gt; tab;</code></pre></div></li>
+<li><p>Wypełnij tablicę pewną ilością elementów wczytywanych z klawiatury lub generowanych losowo (funkcja <code class="sourceCode cpp">rand()</code>). Do wstawienia elementu do tablicy użyj metody <code class="sourceCode cpp">push_back</code> lub <code class="sourceCode cpp">insert</code> (sprawdź jak zmienia się rozmiar tablicy – funkcja <code class="sourceCode cpp">size</code>):</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> d;
+tab.push_back( d);      lub tab.insert( tab.end(), d);
+cout &lt;&lt; tab.size() &lt;&lt; endl;</code></pre></div></li>
+<li><p>Wydrukuj zawartość tablicy na ekran używając obiektu <code class="sourceCode cpp">iterator</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">vector&lt;<span class="dt">int</span>&gt;::iterator   itr;
+<span class="kw">for</span> ( itr=tab.begin(); itr!=tab.end(); ++itr)
+cout &lt;&lt; *itr &lt;&lt;endl;</code></pre></div></li>
+<li><p>Wydrukuj od końca zawartość tablicy na ekran używając obiektu <code class="sourceCode cpp">reverse_iterator</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">vector&lt;<span class="dt">int</span>&gt;::reverse_iterator   ritr;
+<span class="kw">for</span> ( itr=tab.rbegin(); itr!=tab.rend(); ++ritr)
+cout &lt;&lt; *ritr &lt;&lt;endl;</code></pre></div></li>
+<li><p>Usuń wszystkie elementu z tablicy tab przez wykorzystanie metody <code class="sourceCode cpp">clear()</code>. Sprawdź czy tablica jest rzeczywiście pusta przez sprawdzenie rozmiaru (<code class="sourceCode cpp">size()</code>) i metody <code class="sourceCode cpp">empty()</code> – zwraca wartość <code class="sourceCode cpp"><span class="dt">bool</span></code> w zależności od tego czy tablica jest pusta czy też nie.</p></li>
+<li><p>Zmodyfikuj program tak aby zamiast kolekcji typu vector korzystać z kolekcji typu list (pamiętaj o include <list>).</p></li>
+</ul>
 </div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Korzystanie ze standardowych algorytmów.</p>
+<ul>
+<li><p>Posortuj rosnąco i wydrukuj zawartość tablicy <code class="sourceCode cpp">tab</code>. Skorzystaj z funkcji <code class="sourceCode cpp">sort</code> (pamiętaj o <code class="sourceCode cpp"><span class="ot">#include &lt;algorithm&gt;</span></code>):</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">sort( tab.begin(), tab.end() );
+Posortuj malejąco i wydrukuj zawartość tablicy tab:
+sort( tab.begin(), tab.end(), greater&lt;<span class="dt">int</span>&gt;() );</code></pre></div></li>
+<li><p>Czy efekt z punktu poprzedniego można osiągnąć inaczej? Czy funkcja <code class="sourceCode cpp">sort</code> będzie działała dla kolekcji typu <code class="sourceCode cpp">list</code> (dlaczego)?</p></li>
+<li><p>Znajdź największy i najmniejszy element w tablicy <code class="sourceCode cpp">tab</code> (funkcje <code class="sourceCode cpp">max_element</code> i <code class="sourceCode cpp">min_element</code>).</p></li>
+<li><p>Czy możesz zastosować algorytm dla tablicy typowej dla języka C? Sprawdź działanie w programie..</p></li>
+<li><p>Utwórz kolekcję <code class="sourceCode cpp">vector</code> składającą się z obiektów typu <code class="sourceCode cpp">Wektor2D</code>. Współrzędne wektorów 2D generuj losowo.</p></li>
+<li><p>Wydrukuj wszystkie elementy kolekcji <code class="sourceCode cpp">vector</code> posortowane rosnąco.</p></li>
+<li><p>Poeksperymentuj z innym algorytmami STL (opis znajdziesz w helpie pod hasłem „Standard C++ Library, algorithms”)</p></li>
+</ul>
 </div>
 
 <!-- Dummy footer -->
