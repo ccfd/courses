@@ -1,5 +1,9 @@
-#PROGRAMOWANIE OBIEKTOWE W C++
-#LABORATORIUM 1
+---
+number: 1
+course: Programowanie Obiektowe w c++
+material: Instrukcja 1
+author: W. Gryglas
+---
 
 ## Zadanie 1
 
