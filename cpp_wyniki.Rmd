@@ -1,0 +1,21 @@
+---
+title: "Wyniki z zajęć c++"
+output: html_document
+---
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+# Tabela wyników
+```{r kable, echo=FALSE}
+tab=read.csv("https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=1knCYX4Sdax8bxOw7wLjw3upCLZiYAVmsdBqBDnli-V4&exportFormat=csv&gid=0")
+
+kable(tab[,2:ncol(tab)])
+```
+
+# Statystyki studentów:
+```{r, echo=FALSE}
+hist(tab$OCENA,col=1:10, xlab="ocena", ylab="liczba studentow", main="Statystyka wyników")
+grid()
+```
