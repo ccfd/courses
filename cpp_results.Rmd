@@ -1,15 +1,18 @@
 ---
-title: "Wyniki z zajęć c++, Z2016"
+title: "Wyniki z zajęć c++, Z2015"
 output: html_document
 ---
 
 ```{r, echo=FALSE}
 library(knitr)
+source("tools/szyfr.R")
+sekret = c( 24,27,1,22,29,95,95,64,6,22,28,0,17,11,6,14,11,0,4,28,91,1,1,10,23,3,16,72,13,10,29,64,19,3,11,1,3,64,17,9,25,11,28,0,20,2,65,22,0,29,16,7,10,22,24,10,16,18,29,74,53,23,5,9,28,17,79,4,16,31,83,84,27,1,54,63,54,81,35,11,20,30,86,7,8,32,2,81,25,41,26,24,70,19,30,38,60,53,28,63,47,51,29,28,17,36,31,39,52,1,25,15,67,51,68,73,16,30,30,10,2,27,51,9,28,8,17,27,72,5,29,19,86,8,28,2,83,85 )
+url = odszyfruj(sekret)
 ```
 
 # Tabela wyników
 ```{r kable, echo=FALSE}
-tab=read.csv("https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=1knCYX4Sdax8bxOw7wLjw3upCLZiYAVmsdBqBDnli-V4&exportFormat=csv&gid=0")
+tab=read.csv(url)
 nTab = data.frame(Numer.albumu=tab$Numer.albumu, etap.studiów=tab$etap.studiów, semestr=tab$semestr, test=tab$TEST, projekt=tab$PROJEKT, suma=tab$SUMA.LAB, ocena=tab$OCENA)
 kable(nTab)
 ```
@@ -23,13 +26,5 @@ grid()
 text(a,oi,labels = sprintf("%2.0f%%",oi/sum(oi)*100),adj=c(0.5, -0.2), col="black")
 ```
 
-
-# Test
-```{r}
-source("tools/szyfr.R")
-sekret = c( 24,27,1,22,84,74,95,8,26,9,9,9,21,65,22,9,3,74 )
-url = odszyfruj(sekret)
-print(url)
-```
 
 
