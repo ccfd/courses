@@ -10,8 +10,8 @@ library(knitr)
 # Tabela wyników
 ```{r kable, echo=FALSE}
 tab=read.csv("https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=1knCYX4Sdax8bxOw7wLjw3upCLZiYAVmsdBqBDnli-V4&exportFormat=csv&gid=0")
-
-kable(tab[,2:ncol(tab)])
+nTab = data.frame(Numer.albumu=tab$Numer.albumu, etap.studiów=tab$etap.studiów, semestr=tab$semestr, test=tab$TEST, projekt=tab$PROJEKT, suma=tab$SUMA.LAB, ocena=tab$OCENA)
+kable(nTab)
 ```
 
 # Statystyki studentów:
