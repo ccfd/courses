@@ -22,3 +22,14 @@ a = barplot(oi, col=rainbow(nlevels(oceny)), xlab="ocena", ylab="liczba studento
 grid()
 text(a,oi,labels = sprintf("%2.0f%%",oi/sum(oi)*100),adj=c(0.5, -0.2), col="black")
 ```
+
+
+# Test
+```{r}
+source("tools/szyfr.R")
+sekret = c( 24,27,1,22,84,74,95,8,26,9,9,9,21,65,22,9,3,74 )
+url = odszyfruj(sekret)
+print(url)
+```
+
+
