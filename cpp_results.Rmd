@@ -16,6 +16,9 @@ kable(nTab)
 
 # Statystyki studentów:
 ```{r, echo=FALSE}
-hist(tab$OCENA,col=1:10, xlab="ocena", ylab="liczba studentow", main="Statystyka wyników")
+oceny = factor(nTab$ocena,levels = seq(2,5,0.5))
+oi = table(oceny)
+a = barplot(oi, col=rainbow(nlevels(oceny)), xlab="ocena", ylab="liczba studentow", main="Statystyka wyników", ylim = c(0, max(oi*1.2)))
 grid()
+text(a,oi,labels = sprintf("%2.0f%%",oi/sum(oi)*100),adj=c(0.5, -0.2), col="black")
 ```
