@@ -1,0 +1,2691 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Wyniki z zajęć c++</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.html">Instrukcja IV,V</a>
+    </li>
+    <li>
+      <a href="info3_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="cpp_wyniki.pdf">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_wyniki.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Wyniki z zajęć c++</h1>
+
+</div>
+
+
+<div id="tabela-wynikow" class="section level1">
+<h1>Tabela wyników</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Nazwisko.i.Imię</th>
+<th align="left">Numer.albumu</th>
+<th align="left">etap.studiów</th>
+<th align="right">semestr</th>
+<th align="left">poziom</th>
+<th align="left">Prowadzący</th>
+<th align="left">Termin</th>
+<th align="left">L1</th>
+<th align="right">L2</th>
+<th align="right">L3</th>
+<th align="left">L4</th>
+<th align="left">L5</th>
+<th align="left">L6</th>
+<th align="left">L7</th>
+<th align="left">LSuma</th>
+<th align="right">Test.1</th>
+<th align="right">Test.2</th>
+<th align="right">TEST</th>
+<th align="left">X</th>
+<th align="left">Nr.Projektu</th>
+<th align="right">PROJEKT</th>
+<th align="left">X.1</th>
+<th align="right">SUMA.LAB</th>
+<th align="right">OCENA</th>
+<th align="right">test..histogram</th>
+<th align="left">X.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bachanek Jakub</td>
+<td align="left">243986</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">50</td>
+<td align="right">NA</td>
+<td align="right">50</td>
+<td align="left">NA</td>
+<td align="left">River raid</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">90</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left">Legenda terminów:</td>
+</tr>
+<tr class="even">
+<td align="left">Bogdan Karol</td>
+<td align="left">243988</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">26 (bankomat)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">81</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left">A - poniedziałek 17-19 sala A3</td>
+</tr>
+<tr class="odd">
+<td align="left">Bonicki Wojciech</td>
+<td align="left">227571</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">51</td>
+<td align="right">NA</td>
+<td align="right">51</td>
+<td align="left">NA</td>
+<td align="left">9(Data)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">91</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left">B - poniedziałek 17-19 sala 120</td>
+</tr>
+<tr class="even">
+<td align="left">Bonik Piotr</td>
+<td align="left">230027</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">(baza danych pojazdów)</td>
+<td align="right">25</td>
+<td align="left">NA</td>
+<td align="right">56</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left">C - wtorek 8-10 sala 120</td>
+</tr>
+<tr class="odd">
+<td align="left">Cichowski Michał</td>
+<td align="left">226864</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">MOSCOM</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left">D - wtorek 15-17 sala 120</td>
+</tr>
+<tr class="even">
+<td align="left">Ciesielski Michał</td>
+<td align="left">226865</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">29(Samochód)</td>
+<td align="right">34</td>
+<td align="left">NA</td>
+<td align="right">87</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left">E - środa 8-10 sala 120</td>
+</tr>
+<tr class="odd">
+<td align="left">Cieśliński Dawid</td>
+<td align="left">243992</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left">F - środa 16-18 sala 120</td>
+</tr>
+<tr class="even">
+<td align="left">Cieśluk Michał</td>
+<td align="left">273926</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">55</td>
+<td align="right">NA</td>
+<td align="right">55</td>
+<td align="left">NA</td>
+<td align="left">1(macierze-prostsze)</td>
+<td align="right">30</td>
+<td align="left">NA</td>
+<td align="right">85</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Czajkowski Jakub</td>
+<td align="left">244128</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">41</td>
+<td align="right">41</td>
+<td align="left">NA</td>
+<td align="left">31 (dziekanat)</td>
+<td align="right">30</td>
+<td align="left">NA</td>
+<td align="right">71</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Czekalski Piotr</td>
+<td align="left">243994</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">58</td>
+<td align="right">NA</td>
+<td align="right">58</td>
+<td align="left">NA</td>
+<td align="left">32(Sklep)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">98</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Ejdys Michał</td>
+<td align="left">252118</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Faraj Rami</td>
+<td align="left">243995</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">AiSL</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">10(macierze trud.)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Frąk Jakub</td>
+<td align="left">280276</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">Kompozyty</td>
+<td align="right">23</td>
+<td align="left">NA</td>
+<td align="right">61</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Gadek Grzegorz</td>
+<td align="left">243997</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">MOSCOM</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">45</td>
+<td align="right">NA</td>
+<td align="right">45</td>
+<td align="left">NA</td>
+<td align="left">12(Kalkulator tekstowy)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">66</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Golon Karol</td>
+<td align="left">244003</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">10 (macierze)</td>
+<td align="right">35</td>
+<td align="left">NA</td>
+<td align="right">73</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Górecki Marcin</td>
+<td align="left">235722</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">9 (klasa Data)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">78</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Górski Tomasz</td>
+<td align="left">243903</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">46</td>
+<td align="right">NA</td>
+<td align="right">46</td>
+<td align="left">NA</td>
+<td align="left">7 (ksiazka adresowa)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">86</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Graczyk Mateusz</td>
+<td align="left">244108</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">40</td>
+<td align="right">NA</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="left">6(Baza danych pojazdów)</td>
+<td align="right">36</td>
+<td align="left">NA</td>
+<td align="right">76</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Gugała Piotr</td>
+<td align="left">235094</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">26</td>
+<td align="left">NA</td>
+<td align="right">86</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Hołody Adrian</td>
+<td align="left">244139</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">9 (klasa Data)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">59</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Imiełowski Bartosz</td>
+<td align="left">202193</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">MOSCOM</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">37</td>
+<td align="right">NA</td>
+<td align="right">37</td>
+<td align="left">NA</td>
+<td align="left">własny(Lista armii)</td>
+<td align="right">34</td>
+<td align="left">NA</td>
+<td align="right">71</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Jędrzejczyk Filip</td>
+<td align="left">244011</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">AiSL</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">32(Sklep)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Kalbarczyk Katarzyna</td>
+<td align="left">220283</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">56</td>
+<td align="right">NA</td>
+<td align="right">56</td>
+<td align="left">NA</td>
+<td align="left">(program liczący wartości odżywcze posiłków)</td>
+<td align="right">32</td>
+<td align="left">NA</td>
+<td align="right">88</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Kamińska Agata</td>
+<td align="left">234084</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">36</td>
+<td align="right">NA</td>
+<td align="right">36</td>
+<td align="left">NA</td>
+<td align="left">bankomat</td>
+<td align="right">39</td>
+<td align="left">NA</td>
+<td align="right">75</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Khrystofor Roman</td>
+<td align="left">280762</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">3. Program prezentujący klasę Wektor3D</td>
+<td align="right">20</td>
+<td align="left">NA</td>
+<td align="right">51</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Kłak Marcin</td>
+<td align="left">244078</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">K</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">41</td>
+<td align="right">NA</td>
+<td align="right">41</td>
+<td align="left">NA</td>
+<td align="left">17(Punkt 3D-w. trud.)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">81</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Kołtun Karol</td>
+<td align="left">244383</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">58</td>
+<td align="right">NA</td>
+<td align="right">58</td>
+<td align="left">NA</td>
+<td align="left">własny(solver MES 1D)</td>
+<td align="right">36</td>
+<td align="left">NA</td>
+<td align="right">94</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Komsta Piotr</td>
+<td align="left">235118</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">BiBA</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">50</td>
+<td align="right">NA</td>
+<td align="right">50</td>
+<td align="left">NA</td>
+<td align="left">własny(Space Invaders)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">90</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Kostrubała Andrzej</td>
+<td align="left">244103</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">R</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">3</td>
+<td align="right">25</td>
+<td align="left">NA</td>
+<td align="right">63</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Kowalik Iga</td>
+<td align="left">244129</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">7 (książka adresowa)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">52</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Kowalski Mariusz</td>
+<td align="left">235098</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">12 (kalkulator tekstowy)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">78</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Krawczyk Tomasz</td>
+<td align="left">273858</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">30(Biblioteka)</td>
+<td align="right">32</td>
+<td align="left">NA</td>
+<td align="right">70</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Kręglicki Dawid</td>
+<td align="left">244025</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">AiSL</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Linart Jakub</td>
+<td align="left">235101</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">33</td>
+<td align="right">NA</td>
+<td align="right">33</td>
+<td align="left">NA</td>
+<td align="left">15(Baza danych biura matrymonialnego)</td>
+<td align="right">32</td>
+<td align="left">NA</td>
+<td align="right">65</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Łach Wojciech</td>
+<td align="left">243943</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">6. “Baza danych pojazdów”</td>
+<td align="right">35</td>
+<td align="left">NA</td>
+<td align="right">95</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Mąkowski Bartosz</td>
+<td align="left">233952</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">11(baza płyt CD)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">52</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left">nie wicej niż 3 na koniec po oddaniu projektu, kolos b. słabo…</td>
+</tr>
+<tr class="odd">
+<td align="left">Mendza Karol</td>
+<td align="left">237735</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">MOSCOM</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">46</td>
+<td align="right">NA</td>
+<td align="right">46</td>
+<td align="left">NA</td>
+<td align="left">5(punkt 3D)</td>
+<td align="right">26</td>
+<td align="left">NA</td>
+<td align="right">72</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Michalska Patrycja</td>
+<td align="left">244109</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">R</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">18</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">93</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Michnowicz Andrzej</td>
+<td align="left">235103</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">15 (biuro matrym)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">93</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Modzelewski Łukasz</td>
+<td align="left">237390</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Myrcha Piotr</td>
+<td align="left">235204</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Nowakowski Dominik</td>
+<td align="left">243944</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">41</td>
+<td align="right">46</td>
+<td align="right">46</td>
+<td align="left">NA</td>
+<td align="left">23(Magazynier)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">67</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Ogonowski Marek</td>
+<td align="left">244111</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">Silniki STM</td>
+<td align="right">35</td>
+<td align="left">NA</td>
+<td align="right">95</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Parol Filip</td>
+<td align="left">227748</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">31</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">26 (automat napoje)</td>
+<td align="right">21</td>
+<td align="left">NA</td>
+<td align="right">52</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Pawełek Adrian</td>
+<td align="left">244038</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">AiSL</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">17(Punkt trójwymiarowy-wersja trudniejsza)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Piąstka Rafał</td>
+<td align="left">273815</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">52</td>
+<td align="right">NA</td>
+<td align="right">52</td>
+<td align="left">NA</td>
+<td align="left">10 (macierze-trudniejsze)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">92</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Połdiak Tymon</td>
+<td align="left">244001</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">26(Automat z napojami)</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Poskart Piotr</td>
+<td align="left">244117</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">własny(Tower Defense)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Ratajczak Marcin</td>
+<td align="left">243953</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">18(Space Invaders)</td>
+<td align="right">30</td>
+<td align="left">NA</td>
+<td align="right">61</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Repeć Jakub</td>
+<td align="left">273816</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Reszka Daniel</td>
+<td align="left">244008</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">NL</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">41</td>
+<td align="right">NA</td>
+<td align="right">41</td>
+<td align="left">NA</td>
+<td align="left">7(Książka adresowa)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">81</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Rogóż Rafał</td>
+<td align="left">244010</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">NL</td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">27. Program „Kuchenka mikrofalowa“</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Rudziński Maciej</td>
+<td align="left">244141</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">6 (baza pojazdów)</td>
+<td align="right">35</td>
+<td align="left">NA</td>
+<td align="right">88</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Sierocki Radosław</td>
+<td align="left">244142</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">Baza kół zębatych</td>
+<td align="right">20</td>
+<td align="left">NA</td>
+<td align="right">73</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Sobczyk Arkadiusz</td>
+<td align="left">266004</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">6 (Baza pojazdów)</td>
+<td align="right">35</td>
+<td align="left">NA</td>
+<td align="right">95</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Solczak Cezary</td>
+<td align="left">243966</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">ChiK</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">22 (snake)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Stachowiak Mateusz</td>
+<td align="left">273817</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">MOSCOM</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">własny(Shooter 3D, DirectX)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Staniaszek Tomasz</td>
+<td align="left">244121</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">40</td>
+<td align="right">NA</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="left">7(Książka adresowa)</td>
+<td align="right">37</td>
+<td align="left">NA</td>
+<td align="right">77</td>
+<td align="right">4.0</td>
+<td align="right">4.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Strupiechowski Jarosław</td>
+<td align="left">244144</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">38</td>
+<td align="right">NA</td>
+<td align="right">38</td>
+<td align="left">NA</td>
+<td align="left">Baza sprzętu komputerowego</td>
+<td align="right">25</td>
+<td align="left">NA</td>
+<td align="right">63</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Szaniawska Katarzyna</td>
+<td align="left">221857</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">30</td>
+<td align="left">NA</td>
+<td align="right">61</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Szczesiak Robert</td>
+<td align="left">245222</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">30 (biblioteka)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">93</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Szulewski Michał</td>
+<td align="left">237404</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left">(Program prezentujący klasę Ułamek)</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Toboła Wojciech</td>
+<td align="left">241273</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left">4(Ułamek)</td>
+<td align="right">20</td>
+<td align="left">NA</td>
+<td align="right">51</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Trych Anna</td>
+<td align="left">235818</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">NA</td>
+<td align="right">31</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">20</td>
+<td align="left">NA</td>
+<td align="right">51</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Warmińska Marta</td>
+<td align="left">235108</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">MOSCOM</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left">14 (kółko i krzyżyk)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">93</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Wiertel Marek</td>
+<td align="left">235248</td>
+<td align="left">M, D, PL</td>
+<td align="right">3</td>
+<td align="left">KWPI</td>
+<td align="left">WG</td>
+<td align="left">E</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">14(Kółko i krzyżyk)</td>
+<td align="right">30</td>
+<td align="left">NA</td>
+<td align="right">90</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Wlazło Daniel</td>
+<td align="left">244123</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">R</td>
+<td align="left">MW</td>
+<td align="left">D</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">53</td>
+<td align="right">NA</td>
+<td align="right">53</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">93</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Wysocki Jakub</td>
+<td align="left">243980</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">ChiK</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">23 (sokoban)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Zachara Tomasz</td>
+<td align="left">224951</td>
+<td align="left">M, D, PL</td>
+<td align="right">1</td>
+<td align="left">R</td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">51</td>
+<td align="right">NA</td>
+<td align="right">51</td>
+<td align="left">NA</td>
+<td align="left">2(String)</td>
+<td align="right">15</td>
+<td align="left">NA</td>
+<td align="right">66</td>
+<td align="right">3.5</td>
+<td align="right">3.5</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Zagrodzki Krzysztof</td>
+<td align="left">237863</td>
+<td align="left">M, D, PL</td>
+<td align="right">2</td>
+<td align="left">KWPI</td>
+<td align="left">MW</td>
+<td align="left">B</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">31</td>
+<td align="right">46</td>
+<td align="right">46</td>
+<td align="left">NA</td>
+<td align="left">16 (słownik, regexp)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">86</td>
+<td align="right">4.5</td>
+<td align="right">4.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Dabiński Damian</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Zboina Maciej</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">WG</td>
+<td align="left">A</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Żochowska Iwona</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Paczocha Maciej</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">PS</td>
+<td align="left">C</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">20(Gra w życie)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Gajewski William</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">60</td>
+<td align="right">NA</td>
+<td align="right">60</td>
+<td align="left">NA</td>
+<td align="left">28(Bankomat)</td>
+<td align="right">40</td>
+<td align="left">NA</td>
+<td align="right">100</td>
+<td align="right">5.0</td>
+<td align="right">5.0</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Jamorski Hubert</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Tutka Bartłomiej</td>
+<td align="left">brak WD</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">PS</td>
+<td align="left">F</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="left"></td>
+<td align="right">0</td>
+<td align="left">NA</td>
+<td align="right">0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="statystyki-studentow" class="section level1">
+<h1>Statystyki studentów:</h1>
+<p><img src="cpp_wyniki_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
