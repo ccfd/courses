@@ -1,0 +1,31 @@
+---
+title: "Wyniki z zajęć c++, Z2016"
+output: html_document
+---
+
+```{r, echo=FALSE}
+library(knitr)
+source("tools/szyfr.R")
+sekret = c( 65,93,76,37,4,10,0,36,50,22,57,29,54,37,31,80,88,49,3,7,37,51,2,61,3,90,64,87,63,2,29,37,67,44,88,63,50,3,54,54,49,23,27,91 )
+sheet.gid.number=705209991
+url = paste('https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=',odszyfruj(sekret), '&exportFormat=csv&gid=',sheet.gid.number,sep='')
+```
+
+# Tabela wyników
+```{r kable, echo=FALSE}
+tab=read.csv(url)
+nTab = data.frame(Numer.albumu=tab$Numer.albumu, Etap.studiów=tab$etap.studiów, Semestr=tab$Semestr, Test=tab$TEST, Projekt=tab$PROJEKT, Lab.Suma=tab$LSuma, Suma=tab$SUMA.LAB, Ocena=tab$OCENA)
+kable(nTab)
+```
+
+# Statystyki studentów:
+```{r, echo=FALSE}
+oceny = factor(nTab$Ocena,levels = seq(2,5,0.5))
+oi = table(oceny)
+a = barplot(oi, col=rainbow(nlevels(oceny)), xlab="ocena", ylab="liczba studentow", main="Statystyka wyników", ylim = c(0, max(oi*1.2)))
+grid()
+text(a,oi,labels = sprintf("%2.0f%%",oi/sum(oi)*100),adj=c(0.5, -0.2), col="black")
+```
+
+
+
