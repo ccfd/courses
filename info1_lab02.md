@@ -19,7 +19,7 @@ void obrazek(int h, int r)
 
 Pierwsza linia deklaruje funkcję, która jest zależna od dwóch parametrów: `h,r`. Taką funkcję, możemy wywołać dla przykładu tak: `obrazek(100,50);`. Spowoduje to wykonanie powyższych trzech operacji przy $h=100$ i $r=50$.
 
-**_Pamiętaj:_ Nową funkcję napisz przed funkcją `main**`
+_Pamiętaj:_ Nową funkcję napisz przed funkcją `main`
 
 W funkcji `main` wywołujemy funkcję `obrazek`, tak jak `circle` czy `line`:
 ```c++
@@ -50,7 +50,7 @@ W C i C++ _musimy_ deklarować zmienne, tzn. powiedzieć, jakich będziemy używ
 - `float` --- Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity)
 - `double` --- Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)
 
-**_Pamiętaj:_ Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu `double**.`
+_Pamiętaj:_ Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu `double.`
 
 Pierwszym przykładem niech będzie:
 ```c++
