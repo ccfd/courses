@@ -76,7 +76,8 @@ Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
 ## Typy --- pułapki
 Ważne, by pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania jak dla liczb całkowitych. Dlatego `1/4` da jako wynik 0! Bo wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać `1.0/4` lub jeszcze lepiej `1.0/4.0`. Możemy także bezpośrednio 'zrzutować' zmienne z `int` na `double` pisząc: `(double) zmienna`.
 
-**_Pamiętaj:_ Wszędzie, gdzie robisz obliczenia, używaj `double**. Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3`
+_Pamiętaj:_ Wszędzie, gdzie robisz obliczenia, używaj `double`. 
+Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3
 
 
 ## Ćwiczenia
