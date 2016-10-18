@@ -34,6 +34,7 @@ void main()
 
 ## Ćwiczenia
 Napisz i wywołaj dowolne dwie z poniższych funkcji:
+
 	- `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
 	- `kwadrat(x,y,r)` --- Narysuje kwadrat o boku $2r$ i wpisane koło o promieniu $r$.
 	- `ludzik(x,y,h)` --- Narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`)
@@ -66,7 +67,8 @@ Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o pro
 
 
 ## Ćwiczenia
-Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
+Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań:
+
 	- Narysuj wykres $a^2$.
 	- Narysuj punkty o współrzędnych $x=100\sin{a}+100$ i $y=100\cos{a}+100$.
 	- Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
@@ -172,6 +174,7 @@ Gdyby nie instrukcja `if`, ten program narysował by koło z małych kółek. Te
 
 ## Ćwiczenia
 Napisz program który:
+
 	- Dla parametru $w$ rysuje wykres $x^2-w$, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).
 	- Wyrysuje większe kółka w miejscach przecięcia wykresu z osią $x$ (_jeżeli_ przecina).
 	- Zmodyfikuj program by działał dla dowolnych $a$, $b$, $c$ i funkcji $ax^2+bx+c$.
