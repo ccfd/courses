@@ -34,11 +34,11 @@ void main()
 
 ## Ćwiczenia
 Napisz i wywołaj dowolne dwie z poniższych funkcji:
-- `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
-- `kwadrat(x,y,r)` --- Narysuje kwadrat o boku $2r$ i wpisane koło o promieniu $r$.
-- `ludzik(x,y,h)` --- Narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`)
-- `olimpiada(x,y)` --- Narysuje koła olimpijskie o środku w (`x`, `y`)
-- *  `okno(a)` --- Używając funkcji do rysowania prostokąta narysuje okno o boku $a$.
+	- `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
+	- `kwadrat(x,y,r)` --- Narysuje kwadrat o boku $2r$ i wpisane koło o promieniu $r$.
+	- `ludzik(x,y,h)` --- Narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`)
+	- `olimpiada(x,y)` --- Narysuje koła olimpijskie o środku w (`x`, `y`)
+	- *  `okno(a)` --- Używając funkcji do rysowania prostokąta narysuje okno o boku $a$.
 
 
 # Trochę więcej szczegółów
@@ -46,9 +46,9 @@ Omówmy pewne rzeczy trochę dokładniej.
 
 ## Typy
 W C i C++ _musimy_ deklarować zmienne, tzn. powiedzieć, jakich będziemy używać zmiennych i jakich one będą typów. Deklaracje piszemy 'typ zmienna1,zmienna2, ...;'. Najważniejsze typy to:
-- `int` --- Liczba całkowita (32-bitowa, od $-2^{31}$ do $2^{31}$)
-- `float` --- Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity)
-- `double` --- Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)
+	- `int` --- Liczba całkowita (32-bitowa, od $-2^{31}$ do $2^{31}$)
+	- `float` --- Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity)
+	- `double` --- Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)
 
 _Pamiętaj:_ Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu `double.`
 
@@ -67,10 +67,10 @@ Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o pro
 
 ## Ćwiczenia
 Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
-- Narysuj wykres $a^2$.
-- Narysuj punkty o współrzędnych $x=100\sin{a}+100$ i $y=100\cos{a}+100$.
-- Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
-- Narysuj punkty o współrzędnych $x=100r\sin{a}+100$ i $y=100r\cos{a}+100$, gdzie $r = \frac{\cos{a}+2}{3}$ (niech $r$ będzie kolejną zmienną).
+	- Narysuj wykres $a^2$.
+	- Narysuj punkty o współrzędnych $x=100\sin{a}+100$ i $y=100\cos{a}+100$.
+	- Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
+	- Narysuj punkty o współrzędnych $x=100r\sin{a}+100$ i $y=100r\cos{a}+100$, gdzie $r = \frac{\cos{a}+2}{3}$ (niech $r$ będzie kolejną zmienną).
 
 
 ## Typy --- pułapki
@@ -134,10 +134,10 @@ void main()
 
 ## Ćwiczenia
 Napisz i wywołaj dwie sposród niżej wymienionych funkcji.
-- Funkcję, która narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`).
-- Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).
-- Funkcję, która narysuje `n` kółek w punkcie (`x`,`y`) o coraz większych promieniach.
-- *  Funkcję, która narysuje wielokąt foremny o `n` bokach.
+	- Funkcję, która narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`).
+	- Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).
+	- Funkcję, która narysuje `n` kółek w punkcie (`x`,`y`) o coraz większych promieniach.
+	- *  Funkcję, która narysuje wielokąt foremny o `n` bokach.
 
 
 
@@ -172,7 +172,7 @@ Gdyby nie instrukcja `if`, ten program narysował by koło z małych kółek. Te
 
 ## Ćwiczenia
 Napisz program który:
-- Dla parametru $w$ rysuje wykres $x^2-w$, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).
-- Wyrysuje większe kółka w miejscach przecięcia wykresu z osią $x$ (_jeżeli_ przecina).
-- Zmodyfikuj program by działał dla dowolnych $a$, $b$, $c$ i funkcji $ax^2+bx+c$.
+	- Dla parametru $w$ rysuje wykres $x^2-w$, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).
+	- Wyrysuje większe kółka w miejscach przecięcia wykresu z osią $x$ (_jeżeli_ przecina).
+	- Zmodyfikuj program by działał dla dowolnych $a$, $b$, $c$ i funkcji $ax^2+bx+c$.
 
