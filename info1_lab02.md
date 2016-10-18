@@ -35,11 +35,11 @@ void main()
 ## Ćwiczenia
 Napisz i wywołaj dowolne dwie z poniższych funkcji:
 
-	- `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
-	- `kwadrat(x,y,r)` --- Narysuje kwadrat o boku $2r$ i wpisane koło o promieniu $r$.
-	- `ludzik(x,y,h)` --- Narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`)
-	- `olimpiada(x,y)` --- Narysuje koła olimpijskie o środku w (`x`, `y`)
-	- *  `okno(a)` --- Używając funkcji do rysowania prostokąta narysuje okno o boku $a$.
+- `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
+- `kwadrat(x,y,r)` --- Narysuje kwadrat o boku $2r$ i wpisane koło o promieniu $r$.
+- `ludzik(x,y,h)` --- Narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`)
+- `olimpiada(x,y)` --- Narysuje koła olimpijskie o środku w (`x`, `y`)
+- *  `okno(a)` --- Używając funkcji do rysowania prostokąta narysuje okno o boku $a$.
 
 
 # Trochę więcej szczegółów
@@ -69,10 +69,10 @@ Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o pro
 ## Ćwiczenia
 Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań:
 
-	- Narysuj wykres $a^2$.
-	- Narysuj punkty o współrzędnych $x=100\sin{a}+100$ i $y=100\cos{a}+100$.
-	- Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
-	- Narysuj punkty o współrzędnych $x=100r\sin{a}+100$ i $y=100r\cos{a}+100$, gdzie $r = \frac{\cos{a}+2}{3}$ (niech $r$ będzie kolejną zmienną).
+- Narysuj wykres $a^2$.
+- Narysuj punkty o współrzędnych $x=100\sin{a}+100$ i $y=100\cos{a}+100$.
+- Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
+- Narysuj punkty o współrzędnych $x=100r\sin{a}+100$ i $y=100r\cos{a}+100$, gdzie $r = \frac{\cos{a}+2}{3}$ (niech $r$ będzie kolejną zmienną).
 
 
 ## Typy --- pułapki
@@ -112,6 +112,7 @@ void kreski(int n, double r)
 }
 ```
 W pierwszej linii mówimy:
+
 - jak nazywa się funkcja --- `kreski`
 - jakie ma parametry --- `n` typu `int` i `r` typu `double`
 - jakiego typu zwraca wartość ---w naszym wypadku `void` oznacza, że nic nie zwraca
@@ -175,7 +176,7 @@ Gdyby nie instrukcja `if`, ten program narysował by koło z małych kółek. Te
 ## Ćwiczenia
 Napisz program który:
 
-	- Dla parametru $w$ rysuje wykres $x^2-w$, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).
-	- Wyrysuje większe kółka w miejscach przecięcia wykresu z osią $x$ (_jeżeli_ przecina).
-	- Zmodyfikuj program by działał dla dowolnych $a$, $b$, $c$ i funkcji $ax^2+bx+c$.
+- Dla parametru $w$ rysuje wykres $x^2-w$, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).
+- Wyrysuje większe kółka w miejscach przecięcia wykresu z osią $x$ (_jeżeli_ przecina).
+- Zmodyfikuj program by działał dla dowolnych $a$, $b$, $c$ i funkcji $ax^2+bx+c$.
 
