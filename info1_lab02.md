@@ -136,12 +136,12 @@ void main()
 
 
 ## Ćwiczenia
-Napisz i wywołaj dwie sposród niżej wymienionych funkcji.
-	- Funkcję, która narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`).
-	- Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).
-	- Funkcję, która narysuje `n` kółek w punkcie (`x`,`y`) o coraz większych promieniach.
-	- *  Funkcję, która narysuje wielokąt foremny o `n` bokach.
+Napisz i wywołaj dwie sposród niżej wymienionych funkcji:
 
+- Funkcję, która narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`).
+- Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).
+- Funkcję, która narysuje `n` kółek w punkcie (`x`,`y`) o coraz większych promieniach.
+- *  Funkcję, która narysuje wielokąt foremny o `n` bokach.
 
 
 # Instrukcja warunkowa
