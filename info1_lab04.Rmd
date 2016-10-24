@@ -91,9 +91,10 @@ Poniższy kod losuje liczbę z przedziału 0-1:
 n=300
 p=matrix(runif(n*2),n,2)
 sel = rowSums(p**2)<1
-plot(p,pch=ifelse(sel,16,1),xlim=c(0,1),ylim=c(0,1),xlab="X",ylab="Y")
-a = seq(0,pi/2)
+plot(p,pch=ifelse(sel,16,1),xlim=c(0,1),ylim=c(0,1),xlab="X",ylab="Y",asp=1)
+a = seq(0,pi/2,len=300)
 lines(cos(a),sin(a))
+lines(cbind(c(0,0,1,1),c(0,1,1,0))
 ```
 
 # Liczenie przybliżeń liczby $\pi$ metodą Monte Carlo
