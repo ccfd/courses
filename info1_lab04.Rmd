@@ -94,7 +94,7 @@ sel = rowSums(p**2)<1
 plot(p,pch=ifelse(sel,16,1),xlim=c(0,1),ylim=c(0,1),xlab="X",ylab="Y",asp=1)
 a = seq(0,pi/2,len=300)
 lines(cos(a),sin(a))
-lines(cbind(c(0,0,1,1),c(0,1,1,0)))
+lines(cbind(c(0,0,1,1,0),c(0,1,1,0,0)))
 ```
 
 # Liczenie przybliżeń liczby $\pi$ metodą Monte Carlo
