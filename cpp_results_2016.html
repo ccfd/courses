@@ -164,7 +164,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -719,8 +719,8 @@ div.tocify {
 <td align="right">NA</td>
 <td align="right">0</td>
 <td align="right">NA</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">5</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -779,8 +779,8 @@ div.tocify {
 <td align="right">NA</td>
 <td align="right">0</td>
 <td align="right">NA</td>
-<td align="right">-3</td>
-<td align="right">-3</td>
+<td align="right">-6</td>
+<td align="right">-6</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -839,8 +839,8 @@ div.tocify {
 <td align="right">1</td>
 <td align="right">0</td>
 <td align="right">NA</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">-3</td>
+<td align="right">-3</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -879,8 +879,8 @@ div.tocify {
 <td align="right">6</td>
 <td align="right">0</td>
 <td align="right">NA</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">5</td>
 <td align="right">2</td>
 </tr>
 <tr class="odd">
@@ -1062,8 +1062,11 @@ div.tocify {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

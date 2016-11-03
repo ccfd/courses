@@ -24,6 +24,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -207,7 +208,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -483,7 +484,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info1_lab05.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info1_lab05.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -523,13 +524,7 @@ div.tocify {
 </div>
 <div id="gra-w-kulki" class="section level1">
 <h1>Gra w kulki</h1>
-Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji. Ekran początkowy jest widoczny na Rysunku 1.
-\begin{figure}
-\centering
-\includegraphics[width=0.3\textwidth]{kulki.pdf}
-
-\caption{Kulki wraz z wektorami predkości początkowych.}
-\end{figure}\section {Inicjalizacja}
+<p>Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji. Ekran początkowy jest widoczny na Rysunku 1. <img src="info1_lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>nasze piłki będą przychowywane tylko jako zestawy współrzędnych oraz ich prędkości. Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, po prostu użyjemy funkcji . Toteż w symulacji będą potrzebne następujące wektory<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
 <span class="dt">double</span> x[<span class="dv">10</span>],y[<span class="dv">10</span>]           <span class="co">// współrzędne piłek</span>
@@ -647,8 +642,11 @@ cy_{j}^{new}=cy_{j}+v_{2y}^{new}
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 
