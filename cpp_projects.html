@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.html">Instrukcja IV,V</a>
+    </li>
+    <li>
+      <a href="info3_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_results_2016.html">Wyniki 2016</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_projects.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="projekty-zaliczeniowe-z-c" class="section level1">
+<h1>Projekty zaliczeniowe z C++</h1>
+<p>Kryteria ocen. Przy ocenianiu programu będę brał pod uwagę następujące elementy: * obiektowość programu (umiejętność wykorzystania obiektowości języka C++ do rozwiązania danego problemu, czyli np. odpowiednie zdefiniowanie klas, odpowiednie przeciążenie operatorów itp.); * użycie dziedziczenia; * użycie wzorców; * użycie biblioteki STL; * użycie polimorfizmu (mile widziane); * przejrzystość i czytelność kodu (komentarze, podział kodu na pliki); * prezentację programu.</p>
+<p>Nie w każdym programie da się umieścić wzorce, dziedziczenie, polimorfizm i biblioteki STL na raz, jednak każdy z tych elementów będzie podwyższał ostateczną ocenę. Proszę raczej nawet przesadzać z tymi elementami aby wykazać się ich znajomością (nawet jeśli wydawać się będą wciśnięte do programu nieco na siłę). Interfejs użytkownika lub graficzny będą miały najmniejszy wpływ na ocenę. Podobnie zakres możliwości przechowywania danych w programach „bazodanowych” może być ograniczony do minimum. Program będzie trzeba obronić, więc proszę się na to odpowiednio przygotować. Należy podejść do tego tak jakby chcieli Państwo przedstawić ewentualnemu klientowi swój produkt i jednocześnie pochwalić się znajomością podstawowych zagadnień z programowania w C++. (Przy zaliczaniu programu mogę zapytać np. o jakieś podstawowe pojęcia związane z tworzeniem klas, dziedziczeniem itp.) Na wszelki wypadek dodam jeszcze, że program musi się skompilować i zadziałać!</p>
+<p>Wybór zadania proszę zgłosić na zajęciach.</p>
+<div id="lista-tematow-prostszych-za-30-punktow" class="section level2">
+<h2>Lista tematów prostszych, za 30 punktów</h2>
+<ol style="list-style-type: decimal">
+<li><p>Biblioteka do działań na macierzach (wersja prostsza). Macierze prostokątne, pamięć alokowana dynamicznie, sprawdzanie wymiarów podczas operacji, podstawowe działania jak dodawanie odejmowanie, mnożenie, obliczanie wyznacznika.</p></li>
+<li><p>Program prezentujący klasę String. Wszelkiego rodzaju operacje możliwe do wykonania na łańcuchach znakowych. Możliwość wykonywania wielu operacji w jednej instrukcji, np.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">String s = ”aaa”;
+<span class="dt">int</span> n = s.Trim().Length();</code></pre></div></li>
+<li><p>Program prezentujący klasę Wektor3D. Operacje na wektorach 3D różnego typu, np. int i double. Należy zastosować wzorce.</p></li>
+<li><p>Program prezentujący klasę Ułamek. Operacje na liczbach całkowitych. (Wykonać operacje pokazujące poprawność działań.)</p></li>
+<li><p>Punkt trójwymiarowy (wersja prostsza) W tym zadaniu należy napisać klasę opisującą punkt w przestrzeni trójwymiarowej. Należy zdefiniować metody wykonujące przesunięcie i obrót punktu, oraz metodę rzutującą punkt na określoną płaszczyznę i zwracającą współrzędne rzutu na tej płaszczyźnie. Cecha dodatkowa - zdefiniowanie klasy ‘figura 3D’ zawierającej zbiór punktów, oraz operacji przesunięcia, obrotu i rzutu figury.</p></li>
+</ol>
+</div>
+<div id="lista-tematow-trudniejszych-za-40-punktow" class="section level2">
+<h2>Lista tematów trudniejszych, za 40 punktów</h2>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Baza danych pojazdów. Wprowadzanie i usuwanie pojazdu, wyświetlanie danych o pojeździe, odczyt i zapis bazy danych do pliku (najlepiej w formacie binarnym). W programie należy utworzyć klasę Pojazd i przynajmniej jej dwie klasy pochodne, np.: Osobowy i Motor. Użyć funkcji wyświetlającej dane wykorzystującej polimorfizm.</p></li>
+<li><p>Książka adresowa. Wprowadzanie i usuwanie pozycji z książki. Odczyt i zapis książki do pliku (najlepiej w formacie binarnym). Wyświetlanie danych z danej pozycji książki.</p></li>
+<li><p>Kolejka FIFO. Wykorzystanie kolejki FIFO do kolejkowania zamówień w sklepie. Dodawanie zamówień, pobieranie zamówień, odczyt i zapis kolejki do pliku (najlepiej w formacie binarnym).</p></li>
+<li><p>Program prezentujący klasę Data. Wszelkie operacje możliwe do wykonania na datach, np.: różnica dwóch dat, przesuwanie daty o zadaną liczbę dni, miesięcy. Możliwość wyświetlania daty w kilku różnych formatach. (Ewentualnie sprawdzanie dni świątecznych.)</p></li>
+<li><p>Biblioteka do działań na macierzach (wersja trudniejsza). Macierze prostokątne, pamięć alokowana dynamicznie, sprawdzanie wymiarów podczas operacji. Oprócz podstawowych działań na macierzach należy: wyznaczać macierz odwrotną, macierz trójkątną itp. Należy również zastosować wzorce.</p></li>
+<li><ol start="11" style="list-style-type: decimal">
+<li>Baza płyt CD z programami. Dane w pliku tekstowym, ew. automatyczne skanowanie płyt np. „ls -R &gt; lista” + analiza pliku ‘lista’.</li>
+</ol></li>
+<li><p>Kalkulator tekstowy. Podstawowe operacje + obsługa nawiasów, ewentualnie funkcje trygonometryczne.</p></li>
+<li><p>Tekstowy edytor wsadowy (cos w rodzaju sed’a linuxowego). Np. komenda ‘tedytor asdas qqq’ zamieni wszystkie stringi ‘asdas’ na ‘qqq’. Może być również proste przeszukiwanie w stylu grepa.</p></li>
+<li><p>Gra w kółko i krzyżyk z komputerem Należy napisać grę w kółko i krzyżyk na planszy 3 x 3 pola. Komputer powinien grać inteligentnie, a więc nigdy nie przegrywać (istnieje strategia gwarantująca minimum remis).</p></li>
+<li><p>Baza danych dla biura matrymonialnego Baza, oprócz danych osobowych powinna zawierać pole zawierające słowa kluczowe (np. zainteresowania czy preferencje osób) i dokonywać kojarzenia par korzystając również z tego pola. Baza powinna mieć konstrukcję obiektową.</p></li>
+<li><p>Słownik elektroniczny Program umożliwiający gromadzenie definicji pojęć, a następnie przeglądanie i wyszukiwanie tych definicji. Cechą dodatkową może być wyszukiwanie według wzorców z ’*‘i’?’.</p></li>
+<li><p>Punkt trójwymiarowy (wersja trudniejsza) W tym zadaniu należy napisać klasę opisującą punkt w przestrzeni trójwymiarowej. Należy zdefiniować metody wykonujące przesunięcie i obrót punktu, oraz metodę rzutującą punkt na określoną płaszczyznę i zwracającą współrzędne rzutu na tej płaszczyźnie. Utrudnienie polega na zdefiniowaniu klasy ‘figura 3D’ zawierającej zbiór punktów, oraz operacji przesunięcia, obrotu i rzutu figury.</p></li>
+<li><p>Gra typu „Space Invaders” Gra taka polega na zestrzeliwaniu statków poruszających się powoli w dół ekranu i losowo na boki. Pojazd gracza porusza się w poziomie na dole okna (sterowany klawiaturą) i wystrzeliwuje pociski w górę. W momencie zetknięcia się pocisku ze statkiem wroga, ten ostatni znika. Statki wroga od czasu do czasu zrzucają bomby pionowo w dół, każde uderzenie bomby w pojazd gracza zmniejsza jego energię, gdy spadnie ona do zera, gracz przegrywa.</p></li>
+<li><p>Gra „Tetris” Gra powinna działać w terminalu graficznym.</p></li>
+<li><p>Symulator „gry w życie” „Gra w życie” to tak zwany automat komórkowy, składający się z kwadratowych komórek na płaszczyźnie. Proste reguły opisują śmierć, przeżywanie i narodziny nowych komórek. Kolejne pokolenia „organizmów” to zmieniające się układy punktów na kwadratowej siatce. Zadanie polega na napisaniu klasy języka C++ będącej symulatorem gry w życie. Cechy dodatkowe: zapis i odczyt organizmów na dysku, utworzenie dwupoziomowej hierarchii klas umożliwiającej zastosowanie różnych reguł.</p></li>
+<li><p>Gra „Pacman” Plansza gry to labirynt, na którego korytarzach rozmieszczone są kropki, zjadane przez bohatera gry, sterowanego klawiaturą. Celem gry jest zjedzenie wszystkich kropek. Przeszkadzają w tym wrogowie sterowani przez komputer, którzy starają się złapać gracza.</p></li>
+<li><p>Gra w węża Po planszy porusza się wąż zjadając pojawiające się przedmioty. Po zjedzeniu każdego przedmiotu staje się dłuższy. Gracz przegrywa, gdy wąż zetknie się z sobą samym.</p></li>
+<li><p>Gra „Magazynier” Tematem zadania jest gra, znana również jako Sokoban, która polega na przepychaniu skrzyń - przy pomocy sterowanego przez gracza magazyniera - na wyznaczone miejsce. Oczywiście odbywa się to w dość zawile wybudowanym magazynie… Poziomy gry powinny być czytane z pliku tekstowego (jednego lub wielu).</p></li>
+<li><p>Łamigłówka „Szafa Kowalskich” Elementy tej łamigłówki są kwadratami i prostokątami o różnych rozmiarach. Jest ich natomiast zawsze stała ilość. Zadanie gracza polega na wysunięciu z pokoju szafy - największego kwadratowego elementu (i tylko tego elementu). <img src="figures/cpp_projects/szafa_kowalskich.png" alt="Szafa Kowalskich" /></p></li>
+<li><p>Gra „River Raid” Ta pozycja to lot samolotem bojowym wzdłuż krętej rzeki. Rzekę widzimy z góry, w czasie lotu ekran przesuwa się w dół. Samolot musi poruszać się między brzegami, zderzenie z brzegiem to utrata życia. Oczywiście brzegi powinny być nieregularne. Na rzece znajdują się 2 rodzaje obiektów: statki, które należy zestrzeliwać (za to są punkty) i beczki paliwa, nad którymi należy przelecieć aby uzupełnić paliwo. Paliwa ubywa jednostajnie w czasie lotu. Ilość amunicji nieograniczona. Należy zaimplementować licznik punktów i paliwa. Sterowanie samolotem: ruch w 4 kierunkach + strzał.</p></li>
+<li><p>Program „Automat z napojami” Program ma symulować działanie automatu z napojami, który po wrzuceniu odpowiedniej monety oraz wybraniu dowolnej pozycji wydaje zamówiony napój. Zakłada się, że w automacie znajdują się napoje różnego typu (Coca Cola, Pepsi, Sprite). Automat ma posiadać możliwość wydawania reszty.</p></li>
+<li><p>Program „Kuchenka mikrofalowa” Program ma symulować działanie kuchenki mikrofalowej. Kuchenka mikrofalowa ma umożliwiać „gotowanie” potraw po uprzednim ustawieniu temperatury oraz czasu działania urządzenia. Program ma być skonstruowany w taki sposób, aby możliwa była sytuacja w której dana potrawa „spali się” w sytuacji gdy czas „gotowania” nie odpowiada rodzajowi „gotowanego” produktu.</p></li>
+<li><p>Program „Bankomat” Program ma symulować działanie bankomatu. Bankomat po włożeniu karty elektronicznej (karta kredytowa, płatnicza, bankomatowa) oraz weryfikacji posiadacza karty (sprawdzenie PIN), powinien wydawać żądaną kwotę pieniędzy. Program powinien być napisany w taki sposób, aby przed „instalacją” bankomatu można było określić jakie rodzaje kart elektronicznych są akceptowane (obsługiwać między innymi następujące karty: Visa, American Express, Visa Electron, Mastercard).</p></li>
+<li>Program „Samochód” Program ma symulować działanie samochodu. Powinno być możliwe symulowania jazdy samochodem z możliwością realizowania następujących funkcji:</li>
+</ol>
+<ul>
+<li>włączenie / wyłączenie silnika,</li>
+<li>zmiana biegów,</li>
+<li>przyśpieszanie,</li>
+<li>hamowanie. Podczas „jazdy” użytkownik powinien mieć możliwość obserwowania parametrów samochodu (szybkość, włączony bieg, obroty silnika). Program powinien obsługiwać funkcję w których jazda nie będzie możliwa ze względu na brak benzyny, bądź zatarty silnik (spowodowany brakiem oleju).</li>
+</ul>
+<ol start="30" style="list-style-type: decimal">
+<li><p>Program „Biblioteka” Program ma wspierać bibliotekę w procesie obsługi czytelników. Powinna być możliwość wypożyczenia książki, jej zwrotu oraz sprawdzenia czy książka jest dostępna w danej chwili do wypożyczenia. Dla poszczególnych czytelników powinna być przechowywana informacji o książkach aktualnie wypożyczonych, czasie w którym książkę należy zwrócić oraz ew. karze naliczonej za opóźnienie w zwrocie książki.</p></li>
+<li><p>Program „Dziekanat” Program ma wspierać dziekanat w obsłudze procesu dydaktycznego. Powinna być możliwość zapisania studenta na zajęcia (wykłady i ćwiczenia), kontrola ilości wolnych miejsc na poszczególnych zajęciach, związywanie prowadzących z zajęciami. Dla prowadzących powinno być uwzględniane pensum (210 godz. adiunkt i asystent, 180 godz. profesor, 90 godz. doktorant). Program powinien umożliwiać sprawdzenie rodzaju zajęć na które jest zapisany dany student.</p></li>
+<li><p>Program „Sklep” Program ma wspierać obsługę sklepu dowolnego rodzaju. Powinna być możliwość przyjęcia towaru do sklepu oraz jego sprzedaż w sposób hurtowy i detaliczny. Dla sprzedaży hurtowej powinna być możliwość rejestrowania stałych klientów. „Sprzedaż” ma polegać na wybieraniu towarów do koszyka, naliczaniu zbiorczej ceny, zapłatę z pieniędzy posiadanych w portfelu oraz usuwanie „sprzedanych” towarów z magazynu.</p></li>
+</ol>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
