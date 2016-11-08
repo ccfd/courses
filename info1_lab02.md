@@ -19,7 +19,7 @@ void obrazek(int h, int r)
 
 Pierwsza linia deklaruje funkcję, która jest zależna od dwóch parametrów: `h,r`. Taką funkcję, możemy wywołać dla przykładu tak: `obrazek(100,50);`. Spowoduje to wykonanie powyższych trzech operacji przy $h=100$ i $r=50$.
 
-**_Pamiętaj:_ Nową funkcję napisz przed funkcją `main**`
+_Pamiętaj:_ Nową funkcję napisz przed funkcją `main`
 
 W funkcji `main` wywołujemy funkcję `obrazek`, tak jak `circle` czy `line`:
 ```c++
@@ -34,6 +34,7 @@ void main()
 
 ## Ćwiczenia
 Napisz i wywołaj dowolne dwie z poniższych funkcji:
+
 - `prostokat(x,y,a,b)` --- Narysuje prostokąt o bokach `a` i `b` i środku w (`x`, `y`)
 - `kwadrat(x,y,r)` --- Narysuje kwadrat o boku $2r$ i wpisane koło o promieniu $r$.
 - `ludzik(x,y,h)` --- Narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`)
@@ -46,11 +47,11 @@ Omówmy pewne rzeczy trochę dokładniej.
 
 ## Typy
 W C i C++ _musimy_ deklarować zmienne, tzn. powiedzieć, jakich będziemy używać zmiennych i jakich one będą typów. Deklaracje piszemy 'typ zmienna1,zmienna2, ...;'. Najważniejsze typy to:
-- `int` --- Liczba całkowita (32-bitowa, od $-2^{31}$ do $2^{31}$)
-- `float` --- Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity)
-- `double` --- Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)
+	- `int` --- Liczba całkowita (32-bitowa, od $-2^{31}$ do $2^{31}$)
+	- `float` --- Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity)
+	- `double` --- Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)
 
-**_Pamiętaj:_ Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu `double**.`
+_Pamiętaj:_ Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu `double.`
 
 Pierwszym przykładem niech będzie:
 ```c++
@@ -66,7 +67,8 @@ Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o pro
 
 
 ## Ćwiczenia
-Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
+Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań:
+
 - Narysuj wykres $a^2$.
 - Narysuj punkty o współrzędnych $x=100\sin{a}+100$ i $y=100\cos{a}+100$.
 - Narysuj punkty o współrzędnych $x=100\sin{a}\cos{4a}+100$ i $y=100\cos{a}\cos{4a}+100$.
@@ -76,7 +78,8 @@ Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań.
 ## Typy --- pułapki
 Ważne, by pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania jak dla liczb całkowitych. Dlatego `1/4` da jako wynik 0! Bo wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać `1.0/4` lub jeszcze lepiej `1.0/4.0`. Możemy także bezpośrednio 'zrzutować' zmienne z `int` na `double` pisząc: `(double) zmienna`.
 
-**_Pamiętaj:_ Wszędzie, gdzie robisz obliczenia, używaj `double**. Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3`
+_Pamiętaj:_ Wszędzie, gdzie robisz obliczenia, używaj `double`. 
+Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3
 
 
 ## Ćwiczenia
@@ -109,6 +112,7 @@ void kreski(int n, double r)
 }
 ```
 W pierwszej linii mówimy:
+
 - jak nazywa się funkcja --- `kreski`
 - jakie ma parametry --- `n` typu `int` i `r` typu `double`
 - jakiego typu zwraca wartość ---w naszym wypadku `void` oznacza, że nic nie zwraca
@@ -132,12 +136,12 @@ void main()
 
 
 ## Ćwiczenia
-Napisz i wywołaj dwie sposród niżej wymienionych funkcji.
+Napisz i wywołaj dwie sposród niżej wymienionych funkcji:
+
 - Funkcję, która narysuje ludzika wysokości `h` i środku głowy w (`x`, `y`).
 - Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).
 - Funkcję, która narysuje `n` kółek w punkcie (`x`,`y`) o coraz większych promieniach.
 - *  Funkcję, która narysuje wielokąt foremny o `n` bokach.
-
 
 
 # Instrukcja warunkowa
@@ -171,6 +175,7 @@ Gdyby nie instrukcja `if`, ten program narysował by koło z małych kółek. Te
 
 ## Ćwiczenia
 Napisz program który:
+
 - Dla parametru $w$ rysuje wykres $x^2-w$, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).
 - Wyrysuje większe kółka w miejscach przecięcia wykresu z osią $x$ (_jeżeli_ przecina).
 - Zmodyfikuj program by działał dla dowolnych $a$, $b$, $c$ i funkcji $ax^2+bx+c$.

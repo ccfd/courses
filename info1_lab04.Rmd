@@ -87,13 +87,15 @@ Poniższy kod losuje liczbę z przedziału 0-1:
 - Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie. Jeśli jest on wewnątrz koła, niech oznacza go kółkiem. Jeśli jest na zewnątrz, niech oznacza go krzyżykiem. Najwygodniej będzie przeskalować dane zaznaczenie 200-krotnie. Dodatkowo, narysuj na ekranie ćwiartkę koła o promieniu 200 oraz kwadrat  $[0,200]\times[0,200]$, aby było widać, że wylosowany punkt rzeczysićie jest wewnatrz koła.
 - Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa^[Funkcję zwracajacą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. `a = isInCircle()` jak i po prostu wywołać ją w programie bez przypisania, pisząc po prostu `isInCircle()`. Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane ]. Wynik działania powinien przypominać rysunek poniżej.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=0.4]{monte_carlo.pdf}
-\caption{Ćwiartka koła w kwadracie.}
-\label{fig:awesome_image}
-\end{figure}
-
+```{r, echo=FALSE}
+n=300
+p=matrix(runif(n*2),n,2)
+sel = rowSums(p**2)<1
+plot(p,pch=ifelse(sel,16,1),xlim=c(0,1),ylim=c(0,1),xlab="X",ylab="Y",asp=1)
+a = seq(0,pi/2,len=300)
+lines(cos(a),sin(a))
+lines(cbind(c(0,0,1,1,0),c(0,1,1,0,0)))
+```
 
 # Liczenie przybliżeń liczby $\pi$ metodą Monte Carlo
 Koło wpisane w jednostkowy kwadrat ma powierzchnię równą  $\pi/4$. Toteż losując punkty w kwadracie z prawdopodobieństwem  $\pi/4$ trafiamy w obszar koła. 

@@ -29,13 +29,15 @@ Zwróć uwagę, że elementy tablicy sa indeksowane od $0$ do $n-1$, gdzie $n$ t
 # Gra w kulki
 
 Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji. Ekran początkowy jest widoczny na Rysunku 1.
-\begin{figure}
-\centering
-\includegraphics[width=0.3\textwidth]{kulki.pdf}
+```{r, echo=FALSE}
+n=5
+p=matrix(runif(n*2),n,2)
+v=matrix(runif(n*2),n,2)/5
+plot(p,xlim=c(0,1),ylim=c(0,1),xlab="X",ylab="Y",asp=1,cex=3)
+arrows(p[,1],p[,2],(p+v)[,1],(p+v)[,2])
+lines(cbind(c(0,0,1,1,0),c(0,1,1,0,0)))
+```
 
-\caption{Kulki wraz z wektorami predkości początkowych.}
-\end{figure}
-\section {Inicjalizacja}
 nasze piłki będą przychowywane tylko jako zestawy współrzędnych oraz ich prędkości. Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, po prostu użyjemy funkcji \verb|circle|. Toteż w symulacji będą potrzebne następujące wektory^[tablice zazwyczaj będziemy nazywać wektorami, ze względu na fakt, że określenie "tablica" kojarzą się z obiektem o większej ilości wymiarów np. z macierzą]:
 ```c++ 
 
