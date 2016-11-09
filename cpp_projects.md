@@ -88,7 +88,7 @@ Macierze prostokątne, pamięć alokowana dynamicznie, sprawdzanie wymiarów pod
 operacji. Oprócz podstawowych działań na macierzach należy: wyznaczać macierz
 odwrotną, macierz trójkątną itp. Należy również zastosować wzorce.
 
-12. 11. Baza płyt CD z programami.
+11. Baza płyt CD z programami.
 Dane w pliku tekstowym, ew. automatyczne skanowanie płyt np. „ls -R > lista” + analiza
 pliku 'lista'.
 
