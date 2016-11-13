@@ -82,7 +82,7 @@ Poniższy kod losuje liczbę z przedziału 0-1:
 
 
 ## Ćwiczenia
-- Napisz funkcję `isInCircle` typu `int`, która będzie losowała punkt w kwadracie $[0,1]\times[0,1]$ i zwracała wartość 1, jeśli punkt znajduje się wewnątrz koła o promieniu 1. Jeśli punkt jest poza kołem, niech funkcja zwraca 0.
+- Napisz funkcję `isInCircle` typu `bool`, która będzie losowała punkt w kwadracie $[0,1]\times[0,1]$ i zwracała wartość 'true', jeśli punkt znajduje się wewnątrz koła o promieniu 1. Jeśli punkt jest poza kołem, niech funkcja zwraca 'false'.
 - W programie głównym sprawdź, czy punkt wylosowany przez daną funkcję jest w obszarze koła, czy nie. Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję. Funkcja zwraca tylko wartość logiczną.
 - Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie. Jeśli jest on wewnątrz koła, niech oznacza go kółkiem. Jeśli jest na zewnątrz, niech oznacza go krzyżykiem. Najwygodniej będzie przeskalować dane zaznaczenie 200-krotnie. Dodatkowo, narysuj na ekranie ćwiartkę koła o promieniu 200 oraz kwadrat  $[0,200]\times[0,200]$, aby było widać, że wylosowany punkt rzeczysićie jest wewnatrz koła.
 - Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa^[Funkcję zwracajacą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. `a = isInCircle()` jak i po prostu wywołać ją w programie bez przypisania, pisząc po prostu `isInCircle()`. Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane ]. Wynik działania powinien przypominać rysunek poniżej.
