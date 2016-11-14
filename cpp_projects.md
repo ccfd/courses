@@ -34,7 +34,7 @@ się skompilować i zadziałać!
 
 Wybór zadania proszę zgłosić na zajęciach.
 
-## Lista tematów prostszych, za 30 punktów
+## Lista tematów prostszych, za 25 punktów
 1. Biblioteka do działań na macierzach (wersja prostsza).
 Macierze prostokątne, pamięć alokowana dynamicznie, sprawdzanie wymiarów podczas
 operacji, podstawowe działania jak dodawanie odejmowanie, mnożenie, obliczanie
@@ -61,7 +61,7 @@ rzutującą punkt na określoną płaszczyznę i zwracającą współrzędne rzu
 płaszczyźnie. Cecha dodatkowa - zdefiniowanie klasy 'figura 3D' zawierającej zbiór
 punktów, oraz operacji przesunięcia, obrotu i rzutu figury.
 
-## Lista tematów trudniejszych, za 40 punktów
+## Lista tematów trudniejszych, za 35 punktów
 6. Baza danych pojazdów.
 Wprowadzanie i usuwanie pojazdu, wyświetlanie danych o pojeździe,
 odczyt i zapis bazy danych do pliku (najlepiej w formacie binarnym).
