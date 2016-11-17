@@ -14,7 +14,7 @@ url = paste('https://spreadsheets.google.com/feeds/download/spreadsheets/Export?
 # Tabela wyników
 ```{r kable, echo=FALSE}
 tab=read.csv(url)
-nTab = data.frame(Numer.albumu=tab$Numer.albumu, Etap.studiów=tab$etap.studiów, Semestr=tab$Semestr, Test=tab$TEST, Projekt=tab$PROJEKT, Lab.Suma=tab$LSuma, Suma=tab$SUMA.LAB, Ocena=tab$OCENA)
+nTab = data.frame(Numer.albumu=tab$Numer.albumu, Etap.studiów=tab$etap.studiów, Semestr=tab$Semestr, Test=tab$TEST, Projekt=tab$PROJEKT, Lab.Suma=tab$LSuma, Suma=tab$SUMA.LAB, Ocena=tab$OCENA, Termin=tab$termin, Projekt=tab$Nr.Projektu)
 kable(nTab)
 ```
 
