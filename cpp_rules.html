@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
+<meta name="author" content="S. Gepner" />
 
 
 <title></title>
@@ -26,49 +26,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -479,14 +436,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="cpp_inst01b.pdf">
+  <a href="cpp_rules.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst01b.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_rules.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -512,55 +469,62 @@ div.tocify {
 </div>
 
 
-<div id="zadanie-1" class="section level2">
-<h2>Zadanie 1</h2>
-<p>Utwórz klasę Wektor2D będącą implementacją wektorów w przestrzeni 2D.</p>
+<div id="regulamin-przedmiotu-zasady-zaliczenia" class="section level1">
+<h1>Regulamin przedmiotu, zasady zaliczenia</h1>
+<ol style="list-style-type: decimal">
+<li>Przedmiot składa się z:
 <ul>
-<li>atrybuty klasy to 2 zmienne typu double opisujące współrzędne wektora umieszczone w sekcji protected</li>
-<li>utwórz konstruktory:
-<ul>
-<li>defaultowy: Wektor2D()</li>
-<li>kopiujący: Wektor2D(const Wektor2D&amp; v)</li>
-<li>Wektor2D(const double&amp; x, const double&amp; y)</li>
+<li>7 wykładów i 7 obowiązkowych ćwiczeń,</li>
+<li>kolokwium zaliczeniowego,</li>
+<li>obowiązkowego projektu zaliczeniowego.</li>
 </ul></li>
-<li><p>Utwórz metodę <code class="sourceCode cpp">Drukuj()</code> służącą do drukowania zawartości klasy na ekranie w formacie: <strong><em>wektor [ 2.345, 4.5678]</em></strong></p></li>
-<li>Utwórz operatory:
+<li>Postępy studenta opisane są skalą punktową w zakresie 0-100 punktów. Punkty otrzymuje się za:
 <ul>
-<li>Jednoargumentowy <code class="sourceCode cpp"><span class="kw">operator</span> +=</code></li>
-<li>Dwuargumentowy <code class="sourceCode cpp"><span class="kw">operator</span> +</code> (sprawdź czy możesz operować na atrybutach klasy <code class="sourceCode cpp">Wektor2D</code> bez definiowania zaprzyjaźnienia z tą klasą i co stanie się jeśli atrybuty klasy są umieszczone w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code>)</li>
+<li>Zaliczenie wejściówek przeprowadzonych na 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt.</li>
+<li>Projekt zaliczeniowy, 35 punktów.
+<ul>
+<li>W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów bez możliwości poprawy.</li>
+<li>Ostateczny termin zaliczenia projektu ustala prowadzący ćwiczenia, jednak nie może być to termin późniejszy niż ostatni dzień semestru.</li>
 </ul></li>
-<li><p>W funkcji <code class="sourceCode cpp">main()</code> wykorzystaj klasę <code class="sourceCode cpp">Wektor2D</code> i operatory tej klasy np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Wektor2D v1(<span class="dv">1</span>,<span class="dv">2</span>);
-Wektor2D v2 = v1;
-Wektor2D v3;
-v3 = v1 + v2;
-v1.Drukuj();
-v2.Drukuj();
-v3.Drukuj();</code></pre></div></li>
-<li><p>Sprawdź korzystając z debugera lub drukując tekst informacyjny w ciele konstruktorów które konstruktory kiedy są używane.</p></li>
-</ul>
-</div>
-<div id="zadanie-2" class="section level2">
-<h2>Zadanie 2</h2>
-<p>Utwórz klasę Pojemnik służącą do przechowywania obiektów typu <code class="sourceCode cpp">Wektor2D</code>.</p>
+<li>Kolokwium zaliczeniowe oceniane do 40 punktów.
 <ul>
-<li><p>Atrybuty tej klasy to dynamiczna tablica typu <code class="sourceCode cpp">Wektor2D *mdata</code> i rozmiar tej tablicy <code class="sourceCode cpp"><span class="dt">int</span> msize</code></p></li>
-<li><p>Utwórz konstruktor domyślny i destruktor.</p></li>
-<li><p>Utwórz metodę <code class="sourceCode cpp">Dodaj(<span class="dt">const</span> Wektor2D&amp; v)</code> służącą do dodawania elementów do klasy <code class="sourceCode cpp">Pojemnik</code>. Konieczne jest dynamiczne przealokowanie tablicy <code class="sourceCode cpp">mdata</code> (używaj operatorów <code class="sourceCode cpp"><span class="kw">new</span></code> i <code class="sourceCode cpp"><span class="kw">delete</span></code>). Wewnątrz tej metody drukuj na ekranie zawartość wektora dodawanego (przekazanego jako argument metody) korzystając z metody klasy <code class="sourceCode cpp">Wektor2D</code> – <code class="sourceCode cpp">Drukuj</code>. Co trzeba dodać do definicji metody <code class="sourceCode cpp">Drukuj</code> aby było to możliwe?</p></li>
-<li><p>Utwórz metodę <code class="sourceCode cpp">Suma()</code> należącą do klasy <code class="sourceCode cpp">Wektor2D</code> liczącą sumę wszystkich wektorów przechowywanych w klasie <code class="sourceCode cpp">Pojemnik</code>, korzystając z operatorów zdefiniowanych dla klasy <code class="sourceCode cpp">Wektor2D</code></p></li>
-<li><p>Utwórz metodę <code class="sourceCode cpp">DrukujWszystko()</code> drukującą zawartość wszystkich obiektów <code class="sourceCode cpp">Wektor2D</code> przechowywanych w klasie <code class="sourceCode cpp">Pojemnik</code> oraz ich sumę obliczoną metodą <code class="sourceCode cpp">Suma</code>.</p></li>
-<li><p>Zmodyfikuj funkcję main tak aby sprawdzić działanie nowej klasy np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Pojemnik poj;
-poj.Dodaj( v1);
-poj.Dodaj( v2);
-poj.Dodaj( Wektor2D(<span class="dv">3</span>,<span class="dv">2</span>));
-poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>));
-poj.DrukujWszystko();</code></pre></div></li>
-</ul>
-</div>
-<div id="zadanie-3" class="section level2">
-<h2>Zadanie 3</h2>
-<p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
+<li>Kolokwium przeprowadzane jest bez wykorzystania materiałów dodatkowych, tj. notatek, książek, pamięci zewnętrznych, itp.</li>
+<li>W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów.</li>
+</ul></li>
+</ul></li>
+<li>Zaliczenie przedmiotu jest możliwe jedynie w przypadku uzyskania minimalnej liczby punktów z każdej ocenianej części, tj.:
+<ul>
+<li>13 punktów z ćwiczeń,</li>
+<li>18 z projektu,</li>
+<li>21 punktów z kolokwium W przypadku nieuzyskania minimalnej liczby punktów student otrzymuje ocenę niedostateczną (2.0).</li>
+</ul></li>
+<li>W przypadku uzyskania minimalnej liczby punktów, podanej w punkcie 3, ostateczna ocena obliczana jest w następujący sposób:
+<ul>
+<li>0-50: 2.0</li>
+<li>51-60: 3.0</li>
+<li>61-70: 3.5</li>
+<li>71-80: 4.0</li>
+<li>81-90: 4.5</li>
+<li>91-100: 5.0 Oceny wystawione w ostatnim dnu semestru są ostateczne. Nie będzie popraw w sesji ani semestrze letnim. Nie istnieją oceny „N”.</li>
+</ul></li>
+<li>Obecność na ćwiczeniach jest obowiązkowa. Każda nieusprawiedliwiona i nieodrobiona nieobecność na ćwiczeniach powoduje odjęcie 3 punktów.
+<ul>
+<li>W przypadku nieobecności w wyniku zdarzeń losowych odrobienie ćwiczeń możliwe jest po przedstawieniu zwolnienia.</li>
+<li>W przypadku nieobecności planowanej (np. wyjazd) odrobienie jest możliwe jedynie w przypadku wcześniejszej zgody prowadzącego ćwiczenia.</li>
+<li>Zasady, oraz termin odrobienia nieobecności ustala prowadzący ćwiczenia.</li>
+</ul></li>
+<li>Prowadzący ćwiczenia może zorganizować poprawę kolokwium zaliczeniowego. Do kolokwium poprawkowego może przystąpić student:
+<ul>
+<li>Obecny na kolokwium zaliczeniowym lub z usprawiedliwioną na nim nieobecnością. Obowiązują zasady jak w 5a,b.</li>
+<li>Z zaliczonym projektem zaliczeniowym. Brak pozytywnej oceny z projektu uniemożliwia poprawę kolokwium.</li>
+<li>Obecny na 5 z 7 wykładów.</li>
+</ul></li>
+<li>Zapisy do grup laboratoryjnych odbywają się na pierwszym wykładzie. Kolejność zapisu wg. list rankingowych dostępnych w wirtualnym dziekanacie w dniu zapisu.
+<ul>
+<li>Studenci niezapisani na przedmiot nie mają prawa uczestniczyć w laboratoriach.</li>
+<li>Studenci zapisani, zapisani po terminie i nie wymienieni na listach dziekańskich zapisują się jako ostatni.</li>
+</ul></li>
+</ol>
 </div>
 
 <!-- Dummy footer -->
