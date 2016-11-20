@@ -108,13 +108,17 @@ Oczywiście piłeczki mają się poruszać, zatem konieczne będzie określenie 
 - Napisz funkcję, która wylosuje początkowe prędkości piłek. Wylosuj je tak, aby wartość prędkości wynosiła 1 
    (najłatwiej będzie wylosować dowolną liczbę i jej sinus i cosinus przypisać jako składowe prędkości piłki)
 - Napisz funkcję \verb|run|, która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość^[piłki poruszają się ze stałą prędkością, toteż $x(t+\Delta t) = x(t) + v\Delta t $, a dla uproszczenia symulacji czas jest jednostkowy zatem $x(t+1) = x(t) + v$]:
+
+
 ```c++
      for ( i=0; i < N; ++i){
           x[i] += cx[i];
           y[i] += cy[i];
      }
 ```
+
 - W głównym programie napisz pętlę \verb|while|, która wykona 50 kroków iteracji programu. Niech przy każdym kroku wyświetla położenie każdej piłki. W ciele pętli użyj funkcji \verb|animate(100)| - spowolni ona wykonywanie kolejnych kroków pętli. Jej użycie wyglądało następująco.
+
 ```c++
 while(animate(100)) {
    clear(); // wyczysci okno graficzne dla nowej klatki
@@ -179,7 +183,7 @@ $$
 \end{figure}
 \begin{figure}
 \centering
-\includegraphics[width=0.175\textwidth]{info1_figures/zderzenie2.pdf}
+\includegraphics[width=0.175\textwidth]{info1_figures/zderzenie2.png}
 
 \caption{Zderzenie. Prędkosci po wymianie pędu. Składowa równoległa do osi wyzanczonej przez środki piłek zostaje przekazana piłce 2.}
 \end{figure}
