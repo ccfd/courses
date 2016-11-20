@@ -595,27 +595,32 @@ a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</spa
 </ul>
 </div>
 </div>
-<div id="kolizje-z-pikamidopisz-funkcje-searchandcollide-ktora-sprawdza-czy-piki-zderzaja-sie-ze-soba-nawzajem." class="section level1">
-<h1>Kolizje z piłkami}Dopisz funkcję {searchAndCollide *, która sprawdza, czy piłki zderzają się ze sobą nawzajem.</h1>
-<p>Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała. Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. Załóżmy, że piłki, które się ze sobą zderzą mają indeksy <span class="math inline">\(i\)</span> i <span class="math inline">\(j\)</span>. Ich prędkości należy policzyć w następujący sposób: - Należy sprowadzić wszystko do układu odniesienia zwiazanego z drugą piłeczką oraz dodatkowo policzyć wektor jednostkowy wskazujący kierunek łączący środki obu piłek: <span class="math display">\[
+<div id="kolizje-z-pikami" class="section level1">
+<h1>Kolizje z piłkami</h1>
+<p>Dopisz funkcję ‘searchAndCollide’ , która sprawdza, czy piłki zderzają się ze sobą nawzajem. Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała. Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. Załóżmy, że piłki, które się ze sobą zderzą mają indeksy <span class="math inline">\(i\)</span> i <span class="math inline">\(j\)</span>. Ich prędkości należy policzyć w następujący sposób: - Należy sprowadzić wszystko do układu odniesienia zwiazanego z drugą piłeczką oraz dodatkowo policzyć wektor jednostkowy wskazujący kierunek łączący środki obu piłek: <span class="math display">\[
 v_{1}= [cx_{i} - cx_{j}, cy_{i} - cy_{j}]
 \]</span> <span class="math display">\[
 L=\sqrt{(x_{i}-x_{j})^2 +(y_{i}-y_{j})^2 }
 \]</span> <span class="math display">\[
 n= [(x_{i}-x_{j})/L,(y_{i}-y_{j})/L]
-\]</span> - Przy zderzeniu przekazywana jest jedynie predkość normalna do płaszczyzny zderzenia obu piłek (patrz Rys. 2 i 3). Liczymy ją w nastepujący sposób: <span class="math display">\[
+\]</span> - Przy zderzeniu przekazywana jest jedynie predkość normalna do płaszczyzny zderzenia obu piłek (patrz Rys. 2 i 3). Liczymy ją w nastepujący sposób:</p>
+<p><span class="math display">\[
 v_{n}= [v_{nx},v_{ny}]=[(v_{1x}n_{x}+v_{1y}n_{y})n_{x},(v_{1x}n_{x}+v_{1y}n_{y})n_{y}]
-\]</span> - Policzona powyżej predkość jest odejmowana od prędkości piłki 1 oraz dodawana do prędkosci piłki 2 (która była zerem w nowym układzie): <span class="math display">\[
-v_{1}^{new}= [v_{1x}-v_{nx}, v_{1y}-v_{ny}], v_{2}^{new}= [v_{nx},v_{ny}]
-\]</span> - Na koniec wracamy do starego układu odniesienia: <span class="math display">\[
-cx_{i}^{new}=cx_{i}+v_{1x}^{new}
-\]</span> <span class="math display">\[
-cy_{i}^{new}=cy_{i}+v_{1y}^{new}
-\]</span> <span class="math display">\[
-cx_{j}^{new}=cx_{j}+v_{2x}^{new}
-\]</span> <span class="math display">\[
-cy_{j}^{new}=cy_{j}+v_{2y}^{new}
 \]</span></p>
+<ul>
+<li><p>Policzona powyżej predkość jest odejmowana od prędkości piłki 1 oraz dodawana do prędkosci piłki 2 (która była zerem w nowym układzie): <span class="math display">\[
+v_{1}^{new}= [v_{1x}-v_{nx}, v_{1y}-v_{ny}], v_{2}^{new}= [v_{nx},v_{ny}]
+\]</span></p></li>
+<li><p>Na koniec wracamy do starego układu odniesienia: <span class="math display">\[
+cx_{i}^{new}=cx_{i} - v_{nx} 
+\]</span> <span class="math display">\[
+cy_{i}^{new}=cy_{i} - v_{ny}
+\]</span> <span class="math display">\[
+cx_{j}^{new}=cx_{j}+ v_{nx}
+\]</span> <span class="math display">\[
+cy_{j}^{new}=cy_{j}+v_{ny}
+\]</span></p></li>
+</ul>
 \begin{figure}
 \centering
 \includegraphics[width=0.135\textwidth]{info1_figures/zderzenie1.png}
