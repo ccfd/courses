@@ -109,7 +109,6 @@ Oczywiście piłeczki mają się poruszać, zatem konieczne będzie określenie 
    (najłatwiej będzie wylosować dowolną liczbę i jej sinus i cosinus przypisać jako składowe prędkości piłki)
 - Napisz funkcję \verb|run|, która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość^[piłki poruszają się ze stałą prędkością, toteż $x(t+\Delta t) = x(t) + v\Delta t $, a dla uproszczenia symulacji czas jest jednostkowy zatem $x(t+1) = x(t) + v$]:
 
-
 ```c++
      for ( i=0; i < N; ++i){
           x[i] += cx[i];
@@ -175,18 +174,9 @@ $$
 cy_{j}^{new}=cy_{j}+v_{2y}^{new}
 $$
 
-\begin{figure}
-\centering
-\includegraphics[width=0.135\textwidth]{info1_figures/zderzenie1.png}
-
-\caption{Zderzenie piłek w układzie związanym z drugą piłką (druga piłka jest nieruchoma). Prędkości przed wymianą pędu..}
-\end{figure}
-\begin{figure}
-\centering
-\includegraphics[width=0.175\textwidth]{info1_figures/zderzenie2.png}
-
-\caption{Zderzenie. Prędkosci po wymianie pędu. Składowa równoległa do osi wyzanczonej przez środki piłek zostaje przekazana piłce 2.}
-\end{figure}
+![Okno](info1_figures/zderzenie1.png )
+Zderzenie piłek w układzie związanym z drugą piłką (druga piłka jest nieruchoma). Prędkości przed wymianą pędu.
 
 
-
+![Okno](info1_figures/zderzenie2.png )
+Zderzenie. Prędkosci po wymianie pędu. Składowa równoległa do osi wyzanczonej przez środki piłek zostaje przekazana piłce 2.
