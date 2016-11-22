@@ -5,7 +5,9 @@ material: Instrukcja 5+
 author: W. Regulski
 ---
 
-
+```{r, echo=FALSE}
+set.seed(14) # Set seed for all the pictures to be reproducible
+```
 
 # Tablice
 Celem zajęć jest wprowadzenie do używania tablic w języku C. Tablicą (ang. *array*) nazywamy ciąg zmiennych zgromadzony pod jedną globalną nazwą, które są identyfikowane indeksami. 
