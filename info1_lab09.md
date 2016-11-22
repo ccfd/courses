@@ -30,11 +30,7 @@ W niniejszym programie w ogóle nie używaj funkcji `wait()`. Program z wykonani
 
 ## Oczekiwany wynik
 Spodziewamy się, że wynikiem działania twojego programu będzie efekt zbliżony do tego pokazanego na Rysunku 1.
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{zamek2.jpg}
-\caption{Oczekiwany efekt działania programu}
-\end{figure}
+![Oczekiwany efekt działania programu](figures/info1_lab09/zamek2.jpg)
 
 ## Dodatki
 Funkcja `animate` tak naprawdę jedynie spowalnia wykonywanie pętli `while` tak, aby kółka nie rysowały się zbyt szybko. Przykład jej użycia wygląda następująco:
