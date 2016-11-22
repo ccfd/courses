@@ -40,7 +40,7 @@ Kluczowym elementem całego mechanizmu jest właściwe zastosowanie funkcji `mal
 
 # Wczytywanie i rysowanie konturów
 
-Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w dwóch plikach, `plik1.txt` oraz `plik2.txt`. Pliki mają następującą strukturę:
+Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w dwóch plikach, `plik1.txt` ([do ściągnięcia tu](data/plik1.txt)) oraz `plik2.txt` ([do ściągnięcia tu](data/plik2.txt)). Pliki mają następującą strukturę:
 ```c++
 156
 12.67	 768.3254
