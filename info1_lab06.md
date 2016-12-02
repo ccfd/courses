@@ -68,6 +68,15 @@ void main()
 ```
 W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji `fscanf`, która działa analogicznie do dobrze już znanej funkcji `scanf`.
 
+### Bufor
+Zapisywanie danych do pliku jest "względnie" czasochłonną operacją. Jest to spowodowane róznicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD. Aby nie zapisywać co chwilę drobnych ilości danych na dysk system operacyjny zbiera je w buforze, a gdy uzna że jest on już odpowiednio pełny to czyści go przepisując dane na dysk. 
+Funkcja `fclose(plik)` zapisuje dane z bufora do pliku, a następnie zamykana plik.
+Chcąc wywołać jedynie opróżnienie bufora należy użyć funkcji `fflush(plik)`.
+
+Process ten ma istotne konsekwencje:
+- jeżeli nastąpi "crash" programu przed wykonaniem komendy `fclose(plik)` może się zdarzyć, że żadne dane nie zostaną zapisane.
+- wyjmując pendrive z komputera bez korzystania z opcji "bezpieczne usuwanie sprzętu" narażamy się na błędnie zapisanie pliku. Część danych może być jeszcze w buferze, mimo że okienko kopiowania zostało już formalnie zamknięte.
+
 ## Uwaga
 Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece `stdlib.h`. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: `\#include~<stdlib.h>`
 
