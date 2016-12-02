@@ -521,19 +521,26 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f; <span class="co">// deklarujemy zmienną typu FILE o nazwie f</span>
          <span class="co">// tak naprawde to wskaznik (o tym jednak w pozniej)</span>
 
-f = fopen(<span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
+errno_t err_f = fopen_s( &amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
                             <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
                             <span class="co">// sujemy go do zmiennej o nazwie f</span>
+                            <span class="co">// errno_t określa wynik otwarcia</span>
+                            <span class="co">// kod err_f = 0 oznacza, że operacja przebiegła pomyślnie</span>
 
 fprintf(f, <span class="st">&quot;Zapisujemy wlasnie ten tekst do pliku</span><span class="ch">\n</span><span class="st">&quot;</span>);
 
 fclose(f); <span class="co">// zamykamy plik</span></code></pre></div>
-<p>Warto zwrócić uwagę na trzy kwestie. Po pierwsze, w funkcji <code>fprintf</code> (to samo dotyczy funkcji <code>fscanf</code> jako pierwszy argument trzeba podać <em>strumień</em> - de facto nazwę zmiennej typu <code>FILE</code>, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy <em>f</em>, bo tak właśnie nazwaliśmy naszą zmienną. Druga uwaga: Powyższy zapis można nieco skompresować (połączyć deklarację zmiennej typu FILE z otwarciem pliku). Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f = fopen(<span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>)
-
-<span class="kw">if</span>(f == NULL)
+<p>Warto zwrócić uwagę na dwie kwestie. Po pierwsze, w funkcji <code>fprintf</code> (to samo dotyczy funkcji <code>fscanf</code> jako pierwszy argument trzeba podać <em>strumień</em> - de facto nazwę zmiennej typu <code>FILE</code>, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy <em>f</em>, bo tak właśnie nazwaliśmy naszą zmienną. Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
+FILE *f;
+errno_t err_f = fopen_s( &amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
+                            <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
+                            <span class="co">// sujemy go do zmiennej o nazwie f</span>
+                            <span class="co">// errno_t określa wynik otwarcia</span>
+                            <span class="co">// kod err_f = 0 oznacza, że operacja przebiegła pomyślnie</span>
+<span class="kw">if</span>(err_f != <span class="dv">0</span>)
 {
-   printf(<span class="st">&quot;Blad otwarcia pliku</span><span class="ch">\n</span><span class="st">&quot;</span>);
+   printf(<span class="st">&quot;Blad otwarcia pliku </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, err_f); <span class="co">// możemy przeczytać kod błędnu i sprawdzic w google co jest jego przyczyna</span>
    exit(<span class="dv">-1</span>); <span class="co">// zakonczenie programu</span>
 }
 
@@ -547,15 +554,16 @@ fclose(f);</code></pre></div>
 {
    <span class="dt">int</span> a = <span class="dv">3</span>;
 
-   FILE *f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
-   FILE *g = fopen(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
-   FILE *InnyPlik = fopen(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
+   FILE *f, *g, *InnyPlik;
+   FILE *f = fopen_s(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
+   FILE *g = fopen_s(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
+   FILE *InnyPlik = fopen_s(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
 
-   <span class="kw">if</span>((f == NULL) || (g == NULL) || (InnyPlik == NULL))
-   {
-      printf(<span class="st">&quot;Nie udalo sie otwarcie choc jednego z plikow</span><span class="ch">\n</span><span class="st">&quot;</span>);
-      exit(<span class="dv">-1</span>);
-   }
+         <span class="kw">if</span> (err_f != <span class="dv">0</span> || errf_g != <span class="dv">0</span> || errf_InnyPlik != <span class="dv">0</span>)
+         {
+                  printf(<span class="st">&quot;Nie udalo sie otwarcie choc jednego z plikow</span><span class="ch">\n</span><span class="st">&quot;</span>);
+                  exit(<span class="dv">-1</span>);
+         }
 
    fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
    fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="ch">\n</span><span class="st">&quot;</span>);
@@ -576,7 +584,7 @@ fclose(f);</code></pre></div>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
-<p>Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece <code>stdlib.h</code>. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: <code>\#include~&lt;stdlib.h&gt;</code></p>
+<p>Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece <code>cstdio</code>. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: <code>#include &lt;cstdio&gt;</code></p>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
