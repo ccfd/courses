@@ -52,9 +52,9 @@ void main()
    int a = 3;
 
    FILE *f, *g, *InnyPlik;
-   FILE *f = fopen_s("plik1.txt", "wt"); // Zapis w trybie tekstowym
-   FILE *g = fopen_s("plik2.dat", "wb"); // Zapis w trybie binarnym
-   FILE *InnyPlik = fopen_s("Dane.txt", "r"); // Czytanie z pliku
+   errno_t err_f = fopen_s("plik1.txt", "wt"); // Zapis w trybie tekstowym
+   errno_t err_h = fopen_s("plik2.dat", "wb"); // Zapis w trybie binarnym
+   errno_t err_InnyPlik = fopen_s("Dane.txt", "r"); // Czytanie z pliku
 
          if (err_f != 0 || errf_g != 0 || errf_InnyPlik != 0)
          {
