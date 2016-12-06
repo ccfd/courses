@@ -82,8 +82,9 @@ Funkcja `fclose(plik)` zapisuje dane z bufora do pliku, a następnie zamykana pl
 Chcąc wywołać jedynie opróżnienie bufora należy użyć funkcji `fflush(plik)`.
 
 Process ten ma istotne konsekwencje:
-- jeżeli nastąpi "crash" programu przed wykonaniem komendy `fclose(plik)` może się zdarzyć, że żadne dane nie zostaną zapisane.
-- wyjmując pendrive z komputera bez korzystania z opcji "bezpieczne usuwanie sprzętu" narażamy się na błędnie zapisanie pliku. Część danych może być jeszcze w buferze, mimo że okienko kopiowania zostało już formalnie zamknięte.
+
+         - jeżeli nastąpi "crash" programu przed wykonaniem komendy `fclose(plik)` może się zdarzyć, że żadne dane nie zostaną zapisane.
+         - wyjmując pendrive z komputera bez korzystania z opcji "bezpieczne usuwanie sprzętu" narażamy się na błędnie zapisanie pliku. Część danych może być jeszcze w buferze, mimo że okienko kopiowania zostało już formalnie zamknięte.
 
 ## Uwaga
 Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece `cstdio`. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: `#include <cstdio>`
