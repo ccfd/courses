@@ -555,9 +555,9 @@ fclose(f);</code></pre></div>
    <span class="dt">int</span> a = <span class="dv">3</span>;
 
    FILE *f, *g, *InnyPlik;
-   FILE *f = fopen_s(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
-   FILE *g = fopen_s(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
-   FILE *InnyPlik = fopen_s(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
+   errno_t err_f = fopen_s(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
+   errno_t err_h = fopen_s(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
+   errno_t err_InnyPlik = fopen_s(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
 
          <span class="kw">if</span> (err_f != <span class="dv">0</span> || errf_g != <span class="dv">0</span> || errf_InnyPlik != <span class="dv">0</span>)
          {
