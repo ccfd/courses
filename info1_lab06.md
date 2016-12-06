@@ -47,7 +47,7 @@ fclose(f);
 ```
 Pliki można otworzyć nie tylko w trybie zapisu *(ang. write)* `w` (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku *(ang. append)* `a` lub czytania z pliku *(ang. read)* `r`. Można również wybrać, czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym czy binarnym. Służą do tego odpowiednio sekwencje `t` i `b`. Przykładowe instrukcje zaprezentowano poniżej. Zauważmy też, że można otworzyć w tym samym czasie kilka plików.
 ```c++
-void main()
+int main()
 {
    int a = 3;
 
@@ -64,7 +64,7 @@ void main()
 
    fprintf(f, "Zapisujemy wartosc a do plik1.txt, a = %d\n", a);
    fprintf(g, "Binarnie zapisujemy ten tekst do plik2.dat\n");
-   fscanf(InnyPlik, "%d", &a); // Wczytujemy z pliku Dane.txt
+   fscanf_s(InnyPlik, "%d", &a); // Wczytujemy z pliku Dane.txt
 // liczbe calkowita i przypisujemy jej wartosc do zmiennej a
 
    // Tu mozemy wykonac jeszcze inne operacje na otwartych plikach
@@ -72,6 +72,8 @@ void main()
    fclose(f);
    fclose(g);
    fclose(InnyPlik);
+   
+   exit(0);
 }
 ```
 W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji `fscanf`, która działa analogicznie do dobrze już znanej funkcji `scanf`.
