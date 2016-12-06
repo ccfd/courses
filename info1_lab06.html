@@ -550,7 +550,7 @@ errno_t err_f = fopen_s( &amp;f, <span class="st">&quot;plik.txt&quot;</span>, <
 
 fclose(f);</code></pre></div>
 <p>Pliki można otworzyć nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać, czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym czy binarnym. Służą do tego odpowiednio sekwencje <code>t</code> i <code>b</code>. Przykładowe instrukcje zaprezentowano poniżej. Zauważmy też, że można otworzyć w tym samym czasie kilka plików.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
 {
    <span class="dt">int</span> a = <span class="dv">3</span>;
 
@@ -567,7 +567,7 @@ fclose(f);</code></pre></div>
 
    fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
    fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="ch">\n</span><span class="st">&quot;</span>);
-   fscanf(InnyPlik, <span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a); <span class="co">// Wczytujemy z pliku Dane.txt</span>
+   fscanf_s(InnyPlik, <span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a); <span class="co">// Wczytujemy z pliku Dane.txt</span>
 <span class="co">// liczbe calkowita i przypisujemy jej wartosc do zmiennej a</span>
 
    <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span>
@@ -575,6 +575,8 @@ fclose(f);</code></pre></div>
    fclose(f);
    fclose(g);
    fclose(InnyPlik);
+   
+   exit(<span class="dv">0</span>);
 }</code></pre></div>
 <p>W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji <code>fscanf</code>, która działa analogicznie do dobrze już znanej funkcji <code>scanf</code>.</p>
 <div id="bufor" class="section level3">
