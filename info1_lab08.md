@@ -12,7 +12,7 @@ Tydzień temu nauczyliśmy się dynamicznej alokacji pamięci dla tablic jednowy
 #include <stdlib.h>
 
 void main()
-{
+{http://ccfd.github.io/courses/metnum_lab1.html#
    double *tab;
    int n;
    printf("Podaj n:\n");
@@ -68,7 +68,7 @@ W funkcji `main` napisz fragment kodu, w którym zadeklarujesz i zainicjalizujes
 Czas jednak na dynamiczną alokację. Dwuwymiarową tablicę o rozmiarze M x N zaalokujemy w następujący sposób: stworzymy tablicę jednowymiarową o rozmiarze M (umówmy się, że ona będzie wskazywać na początek każdego z wierszy), po czym każdemu z elementów tej tablicy zaalokujemy blok o długości N (to będą jednowymiarowe tablice do przechowywania kolejnych wierszy). De facto będziemy mieli w pamięci M bloków, każdy długości N. Spójrzmy na kod.
 ```c++
 double **A;
-*A = (double**)malloc(M*sizeof(double*));
+A = (double**)malloc(M*sizeof(double*));
 ```
 Zauważmy, że tydzień temu alokowaliśmy jednowymiarową tablicę jako wskaźnik. Tym razem będziemy mieć tablicę dwuwymiarową, więc używamy podwójnego wskaźnika. Dlatego w instrukcji powyżej blok pamięci zwracany przez funkcję `malloc` rzutujemy na podwójny wskaźnik `double**`. Musimy też obliczyć, ile miejsca potrzebujemy. Przechowywać będziemy wskaźniki (do odpowiednich tablic jednowymiarowych przechowujących wiersze), dlatego jako argument funkcji `sizeof` podajemy `double*`. Teraz alokujemy tablice jednowymiarowe do przechowywania wierszy.
 ```c++
@@ -91,7 +91,7 @@ Zbierzmy wszystkie instrukcje w jednym miejscu. Chcemy zaalokować dwuwymiarową
 ```c++
 // Alokacja pamieci
 int **A;
-*A = (int**)malloc(M*sizeof(int*);
+A = (int**)malloc(M*sizeof(int*));
 for(int i = 0; i<M; ++i)
    A[i] = (int*)malloc(N*sizeof(int));
 
