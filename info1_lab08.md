@@ -12,7 +12,7 @@ Tydzień temu nauczyliśmy się dynamicznej alokacji pamięci dla tablic jednowy
 #include <stdlib.h>
 
 void main()
-{http://ccfd.github.io/courses/metnum_lab1.html#
+{
    double *tab;
    int n;
    printf("Podaj n:\n");
