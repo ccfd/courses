@@ -623,7 +623,7 @@ free(A);</code></pre></div>
     <span class="dt">int</span> count = <span class="dv">0</span>;
     <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
         <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
-            A[i][j] = <span class="dv">2</span> * ++count; <span class="co">// OR *(*(A+i)+j) = ++count</span>
+            A[i][j] = ++count; <span class="co">// OR *(*(A+i)+j) = ++count</span>
 
     <span class="co">//drukuj</span>
     <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
