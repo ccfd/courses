@@ -608,6 +608,57 @@ free(A);</code></pre></div>
 <li>Napisz funkcję <code>MatMatMultiply(double **A, double **B, double **C, int mA, int nA, int mB, int nB)</code> służącą do mnożenia dwóch macierzy prostokątnych (<span class="math inline">\(\bf A\)</span> o wymarze <span class="math inline">\(m_A \times n_A\)</span> i <span class="math inline">\(\bf B\)</span> o wymiarze <span class="math inline">\(m_B \times n_B\)</span>) i wpisującą wynik do macierzy <span class="math inline">\(\bf C\)</span> (zadbaj w funkcji <code>main</code> o to, aby pamięć zaalokowana dla macierzy <span class="math inline">\(\bf C\)</span> była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). <strong>Uwaga:</strong> Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
 </ul>
 </div>
+<div id="alokacja-wewnatrz-funkcji" class="section level1">
+<h1>Alokacja wewnątrz funkcji</h1>
+<p>Dlaczego poniższy kod nie działa poprawnie?</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
+<span class="dt">void</span> AllocateAndFillArrayBAD(<span class="dt">int</span> **A, <span class="dt">int</span> M, <span class="dt">int</span> N)
+{
+    A = (<span class="dt">int</span>**)malloc(M * <span class="kw">sizeof</span>(<span class="dt">int</span>*));
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
+        A[i] = (<span class="dt">int</span>*)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span>));
+
+
+    <span class="co">// Tu mozemy wykonywac dowolne operacje na tablicy</span>
+    <span class="dt">int</span> count = <span class="dv">0</span>;
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
+        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
+            A[i][j] = <span class="dv">2</span> * ++count; <span class="co">// OR *(*(A+i)+j) = ++count</span>
+
+    <span class="co">//drukuj</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
+    {
+        printf_s(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
+        {
+            printf_s(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> &quot;</span>, A[i][j]);
+        }
+    }
+
+    printf_s(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+}
+
+<span class="dt">int</span> main()
+{
+   <span class="dt">int</span> M = <span class="dv">4</span>;
+    <span class="dt">int</span> N = <span class="dv">3</span>;
+    <span class="dt">int</span> **A = <span class="kw">nullptr</span>;
+   
+   AllocateAndFillArrayBAD(A, M, N);
+   
+   <span class="co">//gdzie są dane?</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
+    {
+        printf_s(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
+        {
+            printf_s(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> &quot;</span>, (*A)[i][j]);
+        }
+    }
+}</code></pre></div>
+<p>Popraw deklarację i ciało funkcji <code>AllocateAndFillArrayBAD</code>. - Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:<br />
+ <code>void AllocateAndFillArray(int ***A, int M, int N)</code></p>
+</div>
 <div id="dla-ambitnych" class="section level1">
 <h1>Dla ambitnych *</h1>
 <p>Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie pamięci dla tablicy trójwymiarowej. Na przykład, gdybyś chciał napisać grę w trójwymiarowe kółko i krzyżyk. Skonsultuj z prowadzącym kod dla takiego przypadku.</p>
