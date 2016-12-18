@@ -113,6 +113,62 @@ free(A);
 - Zmodyfikuj powyższy program tak, żeby rozmiar *n* był wczytywany z klawiatury, elementy tablicy były generowane zgodnie ze wzorem $a_{ij} = \frac{i+1}{j+1}, (i,j = 0,...,n-1)$, zaś elementy wektora wg wzoru $v_i = i+1, (i = 0,...,n-1)$. Obliczaj iloczyn takiej macierzy przez ten wektor, korzystając ze swojej funkcji `MatVecMultiply`. Wynik wyświetlaj na ekranie oraz sprawdź, czy otrzymujesz poprawny wynik.^[Dla takiej macierzy i takiego wektora bardzo łatwo jest wygenerować analityczny wynik. Wypisz sobie małą macierz wg zadanego wzoru i odpowiadający wektor i na pewno szybko zauważysz prawidłowość. Będziesz wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.]
 - Napisz funkcję ```MatMatMultiply(double **A, double **B, double **C, int mA, int nA, int mB, int nB)``` służącą do mnożenia dwóch macierzy prostokątnych ($\bf A$ o wymarze $m_A \times n_A$ i $\bf B$ o wymiarze $m_B \times n_B$) i wpisującą wynik do macierzy $\bf C$ (zadbaj w funkcji `main` o to, aby pamięć zaalokowana dla macierzy $\bf C$ była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). **Uwaga:** Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. ^[Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.]
 
+# Alokacja wewnątrz funkcji
+Dlaczego poniższy kod nie działa poprawnie?
+
+```c++
+
+void AllocateAndFillArrayBAD(int **A, int M, int N)
+{
+	A = (int**)malloc(M * sizeof(int*));
+	for (int i = 0; i<M; ++i)
+		A[i] = (int*)malloc(N * sizeof(int));
+
+
+	// Tu mozemy wykonywac dowolne operacje na tablicy
+	int count = 0;
+	for (int i = 0; i < M; ++i)
+		for (int j = 0; j < N; ++j)
+			A[i][j] = 2 * ++count; // OR *(*(A+i)+j) = ++count
+
+	//drukuj
+	for (int i = 0; i < M; ++i)
+	{
+		printf_s("\n");
+		for (int j = 0; j < N; ++j)
+		{
+			printf_s(" %d ", A[i][j]);
+		}
+	}
+
+	printf_s("\n");
+}
+
+int main()
+{
+   int M = 4;
+	int N = 3;
+	int **A = nullptr;
+   
+   AllocateAndFillArrayBAD(A, M, N);
+   
+   //gdzie są dane?
+	for (int i = 0; i < M; ++i)
+	{
+		printf_s("\n");
+		for (int j = 0; j < N; ++j)
+		{
+			printf_s(" %d ", (*A)[i][j]);
+		}
+	}
+}
+```
+
+Popraw deklarację i ciało funkcji `AllocateAndFillArrayBAD`. 
+ - Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:  
+   `void AllocateAndFillArray(int ***A, int M, int N)`
+
+
 # Dla ambitnych \*
 Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie pamięci dla tablicy trójwymiarowej. Na przykład, gdybyś chciał napisać grę w trójwymiarowe kółko i krzyżyk. Skonsultuj z prowadzącym kod dla takiego przypadku.
 
