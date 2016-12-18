@@ -129,7 +129,7 @@ void AllocateAndFillArrayBAD(int **A, int M, int N)
 	int count = 0;
 	for (int i = 0; i < M; ++i)
 		for (int j = 0; j < N; ++j)
-			A[i][j] = 2 * ++count; // OR *(*(A+i)+j) = ++count
+			A[i][j] = ++count; // OR *(*(A+i)+j) = ++count
 
 	//drukuj
 	for (int i = 0; i < M; ++i)
