@@ -158,7 +158,7 @@ int main()
 		printf_s("\n");
 		for (int j = 0; j < N; ++j)
 		{
-			printf_s(" %d ", (*A)[i][j]);
+			printf_s(" %d ", A[i][j]);
 		}
 	}
 }
