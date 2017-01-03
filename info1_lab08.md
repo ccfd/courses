@@ -161,6 +161,13 @@ int main()
 			printf_s(" %d ", A[i][j]);
 		}
 	}
+	
+	
+	// Zwolnienie pamieci
+	for (int i = 0; i<M; ++i)
+		free(A[i]);
+
+	free(A);
 }
 ```
 
