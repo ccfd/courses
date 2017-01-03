@@ -655,6 +655,13 @@ free(A);</code></pre></div>
             printf_s(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> &quot;</span>, A[i][j]);
         }
     }
+    
+    
+    <span class="co">// Zwolnienie pamieci</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
+        free(A[i]);
+
+    free(A);
 }</code></pre></div>
 <p>Popraw deklarację i ciało funkcji <code>AllocateAndFillArrayBAD</code>. - Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:<br />
  <code>void AllocateAndFillArray(int ***A, int M, int N)</code></p>
