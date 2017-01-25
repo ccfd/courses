@@ -140,7 +140,9 @@ Sprawdź, jak działa program np. dla 5000 kroków.
 
 
 
-# Kolizje z piłkami}Dopisz funkcję {\tt searchAndCollide \*, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
+# Kolizje z piłkami
+
+Dopisz funkcję 'searchAndCollide' , która sprawdza, czy piłki zderzają się ze sobą nawzajem.
 Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała.
 Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. 
 Załóżmy, że piłki, które się ze sobą zderzą mają indeksy $i$ i $j$. Ich prędkości należy policzyć w następujący sposób:
@@ -155,25 +157,28 @@ $$
 n= [(x_{i}-x_{j})/L,(y_{i}-y_{j})/L]
 $$
 - Przy zderzeniu przekazywana jest jedynie predkość normalna do płaszczyzny zderzenia obu piłek (patrz Rys. 2 i 3). Liczymy ją w nastepujący sposób:
+
 $$
 v_{n}= [v_{nx},v_{ny}]=[(v_{1x}n_{x}+v_{1y}n_{y})n_{x},(v_{1x}n_{x}+v_{1y}n_{y})n_{y}]
 $$
+
 - Policzona powyżej predkość jest odejmowana od prędkości piłki 1 oraz dodawana do prędkosci piłki 2 (która była zerem w nowym układzie):
 $$
 v_{1}^{new}= [v_{1x}-v_{nx}, v_{1y}-v_{ny}], v_{2}^{new}= [v_{nx},v_{ny}]
 $$
+
 - Na koniec wracamy do starego układu odniesienia:
 $$
-cx_{i}^{new}=cx_{i}+v_{1x}^{new}
+cx_{i}^{new}=cx_{i} - v_{nx} 
 $$
 $$
-cy_{i}^{new}=cy_{i}+v_{1y}^{new}
+cy_{i}^{new}=cy_{i} - v_{ny}
 $$
 $$
-cx_{j}^{new}=cx_{j}+v_{2x}^{new}
+cx_{j}^{new}=cx_{j}+ v_{nx}
 $$
 $$
-cy_{j}^{new}=cy_{j}+v_{2y}^{new}
+cy_{j}^{new}=cy_{j}+v_{ny}
 $$
 
 ![Okno](info1_figures/zderzenie1.png )
