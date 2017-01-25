@@ -96,7 +96,7 @@ a[0] = 1.2;         a[1] = 3.13;         a[2] = 0.22;
 Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę \verb|winbgi2.h|, gdyż będziemy korzystać z grafiki.
 - Zadeklaruj wymienione wyżej wektory o długości 10.
 - Zadeklaruj okno graficzne o wymiarach $Lx \times Ly$.
-- Napisz funkcję \verb|init|, która wylosuje współrzędne położeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji \verb|rand()| znanej z poprzednich zajęć.
+- Napisz funkcję \verb|init|, która wylosuje współrzędne położcsaeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji \verb|rand()| znanej z poprzednich zajęć.
 - Napisz funkcję `display`, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja \verb|init|).
 
 
@@ -142,39 +142,32 @@ Sprawdź, jak działa program np. dla 5000 kroków.
 
 # Kolizje z piłkami}Dopisz funkcję {\tt searchAndCollide \*, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
 Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała.
-Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. 
-Załóżmy, że piłki, które się ze sobą zderzą mają indeksy $i$ i $j$. Ich prędkości należy policzyć w następujący sposób:
-- Należy sprowadzić wszystko do układu odniesienia zwiazanego z drugą piłeczką oraz dodatkowo policzyć wektor jednostkowy wskazujący kierunek łączący środki obu piłek:
+Weźmy dwie kulki 1 i 2 o prędkościach przed zderzeniem odpowiednio $v_{1}$ i $v_{2}$ oraz położeniach $p_{1}$ i $p_{2}$.
+Kulki zderzając się ze sobą, mogą wymienić się pędem tylko w kierunku zgodnym z prostą przechodzącą przez ich środki.
+Przyjmijmy, że kulki mają te same masy. Z równania wynikającego z zas. zachowania pędu wyciągamy wniosek, że prędkości po zderzeniu będą wynosić.
 $$
-v_{1}= [cx_{i} - cx_{j}, cy_{i} - cy_{j}]
-$$
-$$
-L=\sqrt{(x_{i}-x_{j})^2 +(y_{i}-y_{j})^2 }
+v_{1}'= v_{1}+v_{p}
 $$
 $$
-n= [(x_{i}-x_{j})/L,(y_{i}-y_{j})/L]
+v_{2}'= v_{2}-v_{p}
 $$
-- Przy zderzeniu przekazywana jest jedynie predkość normalna do płaszczyzny zderzenia obu piłek (patrz Rys. 2 i 3). Liczymy ją w nastepujący sposób:
+gdzie $v_{p}$ to wektor, którego zmiany pędu w postaci:
 $$
-v_{n}= [v_{nx},v_{ny}]=[(v_{1x}n_{x}+v_{1y}n_{y})n_{x},(v_{1x}n_{x}+v_{1y}n_{y})n_{y}]
-$$
-- Policzona powyżej predkość jest odejmowana od prędkości piłki 1 oraz dodawana do prędkosci piłki 2 (która była zerem w nowym układzie):
-$$
-v_{1}^{new}= [v_{1x}-v_{nx}, v_{1y}-v_{ny}], v_{2}^{new}= [v_{nx},v_{ny}]
-$$
-- Na koniec wracamy do starego układu odniesienia:
-$$
-cx_{i}^{new}=cx_{i}+v_{1x}^{new}
+v_{p}= C*(p_{1}-p_{2})
 $$
 $$
-cy_{i}^{new}=cy_{i}+v_{1y}^{new}
+$p_{1}$ i $p_{2}$ to wektory położenia środków kulek.
 $$
+Przyjmijmy, że kulki zderzają się sprężyście, zatem możemy zapisać równanie wynikajacę z zas. zachowania energii:
 $$
-cx_{j}^{new}=cx_{j}+v_{2x}^{new}
+v_{1}^2+v_{2}^2= v_{1}'^2 +v_{2}'^2
 $$
+Po wstawieniu do tego równania zależności otrzymanych wcześniej otrzymujemy wartość współczynnika C:
 $$
-cy_{j}^{new}=cy_{j}+v_{2y}^{new}
+C= -(p_{1}-p_{2})o(v_{1}-v_{2})/(|p_{1}-p_{2}|^2)
 $$
+gdzie iloczyn skalarny ( a właściwie jego znak) informuje nas, czy w ogóle do zderzenia dojdzie; jeśli jest ujemny, to dojdzie.
+
 
 ![Okno](info1_figures/zderzenie1.png )
 Zderzenie piłek w układzie związanym z drugą piłką (druga piłka jest nieruchoma). Prędkości przed wymianą pędu.
