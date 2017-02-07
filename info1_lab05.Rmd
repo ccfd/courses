@@ -96,7 +96,7 @@ a[0] = 1.2;         a[1] = 3.13;         a[2] = 0.22;
 Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę \verb|winbgi2.h|, gdyż będziemy korzystać z grafiki.
 - Zadeklaruj wymienione wyżej wektory o długości 10.
 - Zadeklaruj okno graficzne o wymiarach $Lx \times Ly$.
-- Napisz funkcję \verb|init|, która wylosuje współrzędne położeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji \verb|rand()| znanej z poprzednich zajęć.
+- Napisz funkcję \verb|init|, która wylosuje współrzędne położcsaeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji \verb|rand()| znanej z poprzednich zajęć.
 - Napisz funkcję `display`, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja \verb|init|).
 
 
@@ -140,45 +140,52 @@ Sprawdź, jak działa program np. dla 5000 kroków.
 
 
 
-# Kolizje z piłkami}Dopisz funkcję {\tt searchAndCollide \*, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
+# Kolizje z piłkami
+
+Dopisz funkcję `searchAndCollide`, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
 Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała.
-Jeśli tak jest, piłki odbiją się od siebie, zachowując pęd oraz energię. 
-Załóżmy, że piłki, które się ze sobą zderzą mają indeksy $i$ i $j$. Ich prędkości należy policzyć w następujący sposób:
-- Należy sprowadzić wszystko do układu odniesienia zwiazanego z drugą piłeczką oraz dodatkowo policzyć wektor jednostkowy wskazujący kierunek łączący środki obu piłek:
+Weźmy dwie kulki 1 i 2 o prędkościach przed zderzeniem odpowiednio $v_{1}$ i $v_{2}$ oraz położeniach $p_{1}$ i $p_{2}$.
+Przyjmijmy, że kulki mają te same masy. Z zasady zachowania pędu wynika, że prędkości po zderzeniu będą wynosić:
 $$
-v_{1}= [cx_{i} - cx_{j}, cy_{i} - cy_{j}]
-$$
-$$
-L=\sqrt{(x_{i}-x_{j})^2 +(y_{i}-y_{j})^2 }
+\hat v_{1}= v_{1}+\Delta v
 $$
 $$
-n= [(x_{i}-x_{j})/L,(y_{i}-y_{j})/L]
+\hat v_{2}= v_{2}-\Delta v
 $$
-- Przy zderzeniu przekazywana jest jedynie predkość normalna do płaszczyzny zderzenia obu piłek (patrz Rys. 2 i 3). Liczymy ją w nastepujący sposób:
-$$
-v_{n}= [v_{nx},v_{ny}]=[(v_{1x}n_{x}+v_{1y}n_{y})n_{x},(v_{1x}n_{x}+v_{1y}n_{y})n_{y}]
-$$
-- Policzona powyżej predkość jest odejmowana od prędkości piłki 1 oraz dodawana do prędkosci piłki 2 (która była zerem w nowym układzie):
-$$
-v_{1}^{new}= [v_{1x}-v_{nx}, v_{1y}-v_{ny}], v_{2}^{new}= [v_{nx},v_{ny}]
-$$
-- Na koniec wracamy do starego układu odniesienia:
-$$
-cx_{i}^{new}=cx_{i}+v_{1x}^{new}
-$$
-$$
-cy_{i}^{new}=cy_{i}+v_{1y}^{new}
-$$
-$$
-cx_{j}^{new}=cx_{j}+v_{2x}^{new}
-$$
-$$
-cy_{j}^{new}=cy_{j}+v_{2y}^{new}
-$$
+gdzie $\Delta v$ to pęd którym wymieniły się kulki. Jedyny kierunek w którym następuje wymiana pędem (zakładamy tu brak tarcia) to kierunek prostopadły do płaszczyzny zderzenia:
+$$\Delta v=C(p_{1}-p_{2})$$
+Teraz wystarczy jedynie spełnić zasadę zachowania energii. Znów przyjmując równe masy otrzymujemy:
+$$\newcommand{\abs}[1]{\left|#1\right|}\abs{v_1}^2+\abs{v_2}^2 = \abs{\hat v_1}^2 + \abs{\hat v_2}^2$$
+$$0 = 2\abs{\Delta v}^2 + 2\Delta v\cdot (v_1-v_2)$$
+$$0 = C^2\abs{p_{1}-p_{2}}^2 + C(p_{1}-p_{2})\cdot (v_1-v_2)$$
+$$C = - \frac{(p_{1}-p_{2})\cdot (v_1-v_2)}{\abs{p_{1}-p_{2}}^2}$$
+Warto zauważyć, że znak iloczynu skalarnego $(p_{1}-p_{2})\cdot (v_1-v_2)$ mówi nam czy kulki lecą do siebie czy od siebie. Ostatecznie można powiedzieć że zderzenie następuje tylko gdy $C>0$.
 
-![Okno](info1_figures/zderzenie1.png )
-Zderzenie piłek w układzie związanym z drugą piłką (druga piłka jest nieruchoma). Prędkości przed wymianą pędu.
-
-
-![Okno](info1_figures/zderzenie2.png )
-Zderzenie. Prędkosci po wymianie pędu. Składowa równoległa do osi wyzanczonej przez środki piłek zostaje przekazana piłce 2.
+```{R echo=FALSE}
+plot(NA,xlim=c(-2,4),ylim=c(-1,2),asp=1,axes = FALSE,xlab="",ylab="")
+a = seq(0,2*pi,len=100)
+p = 2*c(cos(0.3),sin(0.3))
+v1 = c(-0.5,1.2)
+v2 = c(0.5,1.6)
+lines(cos(a),sin(a))
+lines(cos(a)+p[1],sin(a)+p[2])
+arrows2 = function(...) arrows(...,angle=15)
+arrows2(0,0,p[1],p[2],lty=2)
+text(0,0,labels = expression(p[2]),lwd=2,adj=c(-.2,1))
+text(p[1],p[2],labels = expression(p[1]),lwd=2,adj=c(-.2,1))
+text(p[1]/3,p[2]/3,labels = expression(p[1]-p[2]),lwd=2,adj=c(-.2,1))
+text(p[1]/3,p[2]/3,labels = expression(p[1]-p[2]),lwd=2,adj=c(-.2,1))
+arrows2(0,0,v2[1],v2[2],lwd=2)
+text(v2[1]/2,v2[2]/2,labels = expression(v[2]),lwd=2,adj=c(-.2,1))
+arrows2(p[1],p[2],p[1]+v1[1],p[2]+v1[2],lwd=2)
+text(p[1]+v1[1]/2,p[2]+v1[2]/2,labels = expression(v[1]),lwd=2,adj=c(1.2,1))
+C = -sum((v1-v2)*p)/sum(p*p)
+arrows2(v2[1],v2[2],v2[1]-C*p[1],v2[2]-C*p[2])
+text(v2[1]-C*p[1]/2,v2[2]-C*p[2]/2,labels = expression(Delta*v),lwd=2,adj=c(.5,-0.2))
+arrows2(p[1]+v1[1],p[2]+v1[2],p[1]+v1[1]+C*p[1],p[2]+v1[2]+C*p[2])
+text(p[1]+v1[1]+C*p[1]/2,p[2]+v1[2]+C*p[2]/2,labels = expression(Delta*v),lwd=2,adj=c(.5,-0.2))
+v1=v1+C*p
+v2=v2-C*p
+arrows2(0,0,v2[1],v2[2])
+arrows2(p[1],p[2],p[1]+v1[1],p[2]+v1[2])
+```
