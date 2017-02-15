@@ -1,0 +1,185 @@
+---
+author: "Ł. Łaniewski-Wołłk"
+course: TCLB
+material: Cheatsheet
+number: 1
+---
+# Configure and make
+
+Klonowanie repo:
+```bash
+git clone https://github.com/CFD-GO/TCLB.git
+cd TCLB
+```
+
+Instalacja dodatkowych pakierów R:
+```bash
+tools/install.sh rdep
+tools/install.sh rinside
+```
+
+Konfiguracja - tu wybieramy opcje kompilacji:
+```bash
+make configure
+./configure
+```
+
+Kompilacja --- tu wybieramy model:
+```bash
+make -j 8 d2q9
+```
+
+Uruchomienie --- tu wybieramy case do uruchomienia:
+```bash
+CLB/d2q9/main example/flow/2d/karman.xml
+```
+
+### Opcje `./configure`
+
+- `--enable-graphics` Włączenie okna podglądu
+- `--disable-double` Przełączenie na pojedyńczą precyzję
+- `--disable-cuda` Kompilacja na CPU
+- `--with-nlopt` Kompilacja z biblioteką do optymalizacji nlOpt.
+- `--with-python` Kompilacja z integracją z Python'em
+- `--with-r` Kompilacja z integracją z R'em
+
+### XML
+**XML** to format danych o zagnieżdzającej się struktórze. Element w pliku zaczynamy tagiem `<Nazwa argument="wartosc">`{.xml} a kończymy tagiem `</Nazwa>`{.xml}. Jeśli chcemy stworzyć element i odrazu go zakończyć (nic do środka nie włożyć) to piszemy `<Nazwa argument="wartosc"/>`{.xml}.
+
+\newpage
+# Model definition
+**Fields** to pola, które rozwiązywane są przez model. Definiujemy je za pomocą:
+
+`AddField(name="A", dx=c(-1,1),dy=c(0,0))`{.R}
+gdzie `dx`, `dy`, `dz` wskazują w jakich zakresach sąsiednich komórek możliwy jest odczyt pola. W `Dynamics.c` mamy do nich dostęp przy pomocy wywołania `A(-1,0)`.
+
+**Density** to akcesory do pól --- predefiniowane kierunki z których zostają czytane/stream'owane pola.
+
+`AddDensity(name="B", field="A", dx=-1,dy=0)`{.R}
+definiuje zmienna `B` do której zostanie wczytane pole `A` z sąsiada o współrzędnych `dx`, `dy` i `dz`. Gdy argument `field` zostanie pominięty, odpowiednie pole o tej samej nazwie zostanie utworzone.
+
+**Quantity** to pola eksportowane. W LBM są to zazwyczaj pola makroskopowe takie jak prędkość czy ciśnienie.
+
+`AddQuantity(name="C",unit="m/s",vector=TRUE)`{.R}
+definiuje pole `C`. Pola te mogą być wektorowe (zawsze 3D) i mogą posiadać jednostkę. Są to pola zapisywane do plików `vti` przy pomocy elementu `<VTK \>`{.xml}.
+
+**Setting** to ustawienia, które przekazywane są do dynamiki węzła.
+
+`AddSetting(name="Velocity",default=0,zonal=TRUE)`{.R}
+definiuje ustawienie "Velocity". Domyślnie ustawienia są globalne dla całej siatki, jednak ustawienia typu `zonal` mogą być ustawiane oddzielnie dla wybranych stref siatki, jak i mogą być kontrolowane w czasie. 
+
+**Global** to całki/sumy po siatce. Służą do obliczenia globalnych funkcji takich jak strumień, dysypacja, siła nośna, etc.
+
+`AddGlobal(name="Flux",unit="m/s")`{.R}
+definiuje całkę o nazwie `Flux`. Każdy element *może* dać swoją kontrybucję do tej całki za pomocą `AddToFlux(74)`{.cpp}. Całki te mogą być eksportowane do plik typu `csv` przy pomocy elementu `<Log \>`{.xml}.
+
+**NodeType** to typy elementów siatki. Typy elementów podzielone są na grupy. Element może posiadać wiele typów, ale *tylko po jednym z każdej grupy*.
+
+`AddNodeType(name="CrazyInlet", group="BOUNDARY")`{.R}
+dodaje typ `CrazyInlet` do grupy `BOUNDARY`. Typowe grupy w LBM to `BOUNDARY` i `COLLISION`.
+\newpage
+
+# XML Config
+
+`<CLBConfig output="output/">...</CLBConfig>`{.xml} obejmuje cały plik konfiguracyjny i ustawia ścierzkę dla plików wyjściowych
+
+`<Geometry nx="10" ny="10">...</Geometry>`{.xml} definiuje siatkę/geometrię (patrz obok).
+
+`<Model>...</Model>`{.xml} zazwyczaj obejmuje wszystkie ustawienia przypadku. *po zakończeniu tego elementu następuje inicjalizacja siatki*.
+
+`<Params Viscosity="0.01"/>`{.xml} przypisuje wartości ustawieniom.
+
+`<Params Viscosity-Strefa="0.01"/>`{.xml} przypisuje wartości ustawieniu typu `zonal` w konkretnej strefie.
+
+`<VTK Iterations="100" what="U,P"/>`{.xml} eksportuje wyniki do formatu `vti` czytanego przez ParaView co 100 iteracji. Argument `what` pozwala wybrać jakie pola zostaną zapisane.
+
+`<Log Iterations="10"/>`{.xml} zapisuje do pliku `csv` wartości całek i ustawień co 10 iteracji.
+
+`<Solve Iterations="10000"/>`{.xml} wykonuje 10000 iteracji.
+
+```xml
+<Units>
+  <Params Velocity="1m/s" gauge="0.1"/>
+  <Params Viscosity="0.01m2/s" gauge="0.01"/>
+</Units>
+```
+Ustala jednostki, tak by wartości mianowane zgadzały się z niemianowanymi (`gauge`). W tym wypadku $1\frac{m}{s} = 0.1$ i $0.01\frac{m^2}{s}=0.01$, co daje: jeden metr to 10 elementów, a jedna sekunda to 100 iteracji.
+
+```xml
+<Control Iterations="1000">
+  <CSV file="file.csv" Time="x*1000">
+    <Params Velocity="y*0.02+0.05"/>
+  </CSV>
+</Control>
+```
+Przypisuje zmienne w czasie sterowanie dla ustawienia `Velocity` wczytanego z pliku `file.csv`. Kolumna `x` z pliku zostanie przeliczona na czas, zaś kolumna `y` na wartości.
+
+\newpage
+# XML Geometry
+
+O definiowaniu geometrii można myśleć jako o zamalowywaniu obszarów. Każdy element geometrii składa się z definicji "czym malujemy" i "gdzie malujemy":
+```xml
+<Wall mask="ALL" name="Sciana">
+  <Box dx="5" nx="1" ny="30"/>
+</Wall>
+```
+
+Elementem typu `Wall` zostanie zamalowany obszar prostopadłościanu (`Box`). Argument `mask="ALL"` mówi nam, że wszystkie typy (także z innych grup) węzłów zostaną nadpisane (m.in. zostanie wyłączona kolizja). Argument `name="Sciana"` przypisuje temu obszarowi nazwę strefy (będzie w niej można przypisać ustawienia typu `zonal`).
+
+Elementów definiujących "gdzie malujemy", może być wiele następujących po sobie. Ich wielkość zazwyczaj definiujemy za pomocą argumentów `dx`, `nx`, `fx` i analogicznych dla `y` i `z`. Domyślnie każdy element zajmuje całą geometrię, lecz można ją zminiejszyć tymi ustawieniami:
+```{R echo=FALSE}
+mybox = function(dx=0,fx=n,n=20,m=5) {
+  par(mar=c(0,0,0,0))
+  plot(NA,xlim=c(0,n),ylim=c(-3,m),bty='n',axes=FALSE,asp=1)
+  rect(dx,0,fx,m,col=8)
+  segments(0,0:m,n,0:m)
+  segments(0:n,0,0:n,m)
+}
+brace = function(x1,y1,x2,y2,len=1,text,...){
+  a=c(1,2,3,48,50)    # set flexion point for spline
+  b=c(0,.2,.28,.7,.8) # set depth for spline flexion point
+  curve = spline(a, b, n = 50, method = "natural")$y / 0.8
+  curve = c(curve,rev(curve))
+  i = which.max(curve)
+  curve = cbind(seq(0,1,len=length(curve)),curve,1)
+  v = c(x2-x1,y2-y1)
+  v = rbind(v,c(v[2],-v[1])/sqrt(sum(v**2))*len,c(x1,y1))
+  v = curve %*% v
+  lines(v,asp=1)
+  text(v[i,1],v[i,2],labels = text,...)
+}
+
+px = 1
+py = 0.3
+```
+
+
+```{R fig.width=px, fig.height=py,echo=FALSE}
+mybox(dx=4)
+brace(0,0,4,0,text="dx",adj=c(0.5,1),cex=0.5)
+```
+```<Box dx="4"/>```{.xml}
+
+```{R fig.width=px, fig.height=py,echo=FALSE}
+mybox(dx=20-4)
+brace(20-4,0,20,0,text="-dx",adj=c(0.5,1),cex=0.5)
+```
+```<Box dx="-4"/>```{.xml}
+
+```{R fig.width=px, fig.height=py,echo=FALSE}
+mybox(dx=4,fx=4+10)
+brace(4,0,4+10,0,text="nx",adj=c(0.5,1),cex=0.5)
+```
+```<Box dx="4" nx="10"/>```{.xml}
+
+```{R fig.width=px, fig.height=py,echo=FALSE}
+mybox(dx=4,fx=10)
+brace(0,0,10,0,text="fx",adj=c(0.5,1),cex=0.5)
+```
+```<Box dx="4" fx="10"/>```{.xml}
+
+Typowe elementy geometryczne to: `<Box .../>`{.xml} - Prostopadłościan, `<Sphere .../>`{.xml} - Kula, `<Wedge ... direction="LowerRight"/>`{.xml} - Klin (trójkąt prostokątny). Dodatkowo ważne elementy to:
+
+`<Text file="file.txt"/>`{.xml} wczytuje kształt z tekstowego pliku z zerami i jedynkami.
+
+`<STL file="file.stl"/>`{.xml} wczytuje geometrie z pliku `stl`. Skale i pozycje można ustalać za pomocą argumentów `scale="0.2" x="0.1" y="0.3" z="0.2" Xrot="90d"`. Dodatkowo, można ustalić czy zostanie zamalowane wnętrze ( `side="in"`), zewnętrze (`side="out"`) czy powieszchnia (`side="surface"` - głownie istotne dla warunków interpolowanych).
