@@ -116,7 +116,7 @@ $ man rm
 $ rm --help
 ```
 W przypadku komendy `man` dostajemy kompetentniejszą dokumentację. Przewija się strzałkami, aby zakończyć wciśnij Q.
-Sprawdź instrukcje dla poleceń `who`, `whoami`, `finger` i  `date`. Sprawdź jak działają.
+Sprawdź instrukcje dla poleceń `who`, `who am i`, `finger` i  `date`. Sprawdź jak działają.
 
 
 # Program Tar
