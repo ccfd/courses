@@ -38,7 +38,8 @@ oznacza, że jako użytkownik `stud-00` jesteśmy zalogowani na komputer `info3`
 
 ## Pierwsze starcie
 
-Wpisz do konsoli `date` i wciśnij enter. Komputer wyświetli aktualną (jego zdaniem) datę. następnie ponownie wyświetli linijką kończącą się na \$, oznaczającą że czeka na polecenia. Używając strzałki do góry możesz przeglądać historię poleceń. Jeśli wpiszesz `dat` i naciśniesz 2x klawisz tab, wyświetlona Ci zostanie lista poleceń zaczynających się na `dat` lub jeśli jest tylko jedno, nazwa zostanie dokończona. Pamiętaj o tych 2 trikach, bo znacznie ułatwiają pracę w trybie tekstowym.
+Wpisz do konsoli `date` i wciśnij enter. Komputer wyświetli aktualną (jego zdaniem) datę. następnie ponownie wyświetli linijką kończącą się na \$, oznaczającą że czeka na polecenia. Używając strzałki do góry możesz przeglądać historię poleceń. Jeśli wpiszesz `dat` i naciśniesz 2x klawisz tab, wyświetlona Ci zostanie lista poleceń zaczynających się na `dat` lub jeśli jest tylko jedno, nazwa zostanie dokończona. Kombinacja `ctrl+shift+r` pozwala wyszukiwać ostatnio wpisane komendy zaczynające się od danego ciągu znaków (reverse-i-search).
+Kolejnymi przydatnymi skrótami są `ctr+shift+c` oraz `ctrl+shift+v` służą one do kopiowania zaznaczonego tekstu pomiędzy konsolą, a innym otwartym oknem (np. przeglądarką internetową). Pamiętaj o tych trikach, bo znacznie ułatwiają pracę w trybie tekstowym.
 
 
 ## Poruszanie się po katalogach
