@@ -91,7 +91,7 @@ Aby stworzyć pierwszy plik wpisz (o znaczeniu `>>` będzie na kolejnych zajęci
 $ echo pierwszy plik >> plik.txt
 ```
 
-Aby wyświetlić zawartość pliku a ekranie używamy `cat`
+Aby wyświetlić zawartość pliku na ekranie używamy `cat`
 
 ```bash
 $ cat plik.txt
