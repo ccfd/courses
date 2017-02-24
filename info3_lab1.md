@@ -142,7 +142,7 @@ Sprawdź zawartość katalogu, usuń to co przed chwilą spakowałeś do archiwu
 
 ```bash
 $ ls
-b  test.tar.gz
+b  test.tar
 $ rm -rf b
 $ ls
 $ tar -xf test.tar
@@ -150,7 +150,7 @@ $ ls
 b  test.tar
 ```
 
-Sprawdź poleceniem `ls -la` objętość archiwum. Następnie spakuj te same pliki z dodatkową flagą `z` zmieniając rozszerzenie na `tar.gz`. W tym celu wykonaj komendę 'tar -czf test.tar.gz b'. Sprawdź czy plik wynikowy jest mniejszy.
+Sprawdź poleceniem `ls -la` objętość archiwum. Następnie spakuj te same pliki z dodatkową flagą `z` zmieniając rozszerzenie na `tar.gz`. W tym celu wykonaj komendę `tar -czf test.tar.gz b`. Sprawdź czy plik wynikowy jest mniejszy.
 
 
 
