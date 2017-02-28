@@ -616,12 +616,12 @@ div.tocify {
 <p>Głównym programem którego będziemy używać to <code>convert</code> z biblioteki ImageMagick. Program ten służy do najróżniejszego typu konwersji i zmiany właściwości obrazów — lecz potrafi także dodawać elementy do obrazu, a nawet tworzyć obrazy od zera. Najłatwiej zobaczyć jego użycie na przykładach:</p>
 <p><strong>UWAGA: Zanim zaczniesz, skopiuj katalog ze zdjęciami do jakiegoś tymczasowego katalogu!</strong></p>
 <ul>
-<li><code>convert plik.gif plik.jpg</code> — przekonwertuje plik w formacie GIF na format JPEG</li>
-<li><code>convert plik1.jpg -resize 50% plik2.jpg</code> — zmniejszy obrazek dwukrotnie</li>
-<li><code>convert plik1.jpg -resize 100 plik2.jpg</code> — zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli</li>
-<li><code>convert plik1.jpg -resize 100x100 plik2.jpg</code> — zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli</li>
-<li><code>convert plik1.jpg -resize 100x100\! plik2.jpg</code> — zmniejszy obrazek  do rozmiaru 100 na 100 pixeli</li>
-<li><code>convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw &quot;text 25,60 'Magick'&quot;{</code>-channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw “text 20,55 ‘Magick’”{ }fuzzy-magick.jpg} — stworzy obrazek fuzzy-magick.jpg, z tekstem “Magick” Wykonaj powyższe operacja, sprawdź efekty.</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik.gif plik.jpg</code> — przekonwertuje plik w formacie GIF na format JPEG</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 50% plik2.jpg</code> — zmniejszy obrazek dwukrotnie</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100 plik2.jpg</code> — zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100 plik2.jpg</code> — zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100\! plik2.jpg</code> — zmniejszy obrazek  do rozmiaru 100 na 100 pixeli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw <span class="st">&quot;text 25,60 &#39;Magick&#39;&quot;</span> -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw <span class="st">&quot;text 20,55 &#39;Magick&#39;&quot;</span> fuzzy-magick.jpg</code> — stworzy obrazek fuzzy-magick.jpg, z tekstem “Magick” Wykonaj powyższe operacja, sprawdź efekty.</li>
 </ul>
 </div>
 <div id="cwiczenia-1" class="section level2">
