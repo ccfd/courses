@@ -74,29 +74,47 @@ Przykłady:
 
 
 ## Pętle i wyrażenia warunkowe
-- `if _program_ {\green argumenty`\\
-then\\
-_polecenia1_\\
-else\\
-_polecenia2_\\
-fi}\\
-Jeśli wykonanie ,,_program_ {\green argumenty}'' się powiedzie (program zwróci $0$), to wykonane zostaną _polecenia1_. W przeciwnym wypadku wykonane zostaną _polecenia2_.
-- `while _program_ {\green argumenty`\\
-do\\
-_polecenia_\\
-done}\\
-Pętla, która będzie wykonywać _polecenia_, puki ,,_program_ {\green argumenty}'' będzie wykonywany z powodzeniem.
-- `for i in {\green lista`\\
-do\\
-_polecenia_\\
-done}\\
-Pętla, która po kolei każdy element {\green list}y wstawi do zmiennej `i`, a następnie wykona _polecenia_.
 
-Dla przykładu:\\
-`for i in {\green *.jpg`\\
-do\\
-_mv_ {\green \$i IMG/a\_\$i} \\
-done}\\
+
+```Bash
+if program argumenty
+then
+	polecenia1
+else
+	polecenia2
+fi
+```
+
+Jeśli wykonanie `program argumenty`{.bash} się powiedzie (program zwróci $0$), to wykonane zostaną _polecenia1_. W przeciwnym wypadku wykonane zostaną _polecenia2_.
+
+
+```Bash
+while program argumenty
+do
+	polecenia
+done
+```
+
+Pętla, która będzie wykonywać _polecenia_ , poki `program argumenty`{.bash} będzie wykonywany z powodzeniem.
+
+```Bash
+for i in lista
+do
+	polecenia
+done
+```
+
+Pętla, która po kolei każdy element listy wstawi do zmiennej `i`, a następnie wykona _polecenia_.
+
+Dla przykładu:
+
+```Bash
+for i in *.jpg
+do
+	mv $i IMG/a_$i
+done
+```
+
 Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedrostek `a\_` (np.: `obrazek.jpg` zamieni na `IMG/a\_obrazek.jpg`).
 
 
