@@ -36,16 +36,16 @@ probka3 `mkdir`{.bash}
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
 
 - `echo tekst` --- Wypisuje tekst na ekran.
-- `cat plik` --- Wypisuje zawartość {\green plik}u na ekran
-- `grep tekst` --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające {\green tekst}
-- `grep tekst pliki` --- Wyszukuje {\green tekst} w {\green plik}ach
-- `cd katalog` --- Wchodzi do {\green katalogu}
-- `ls katalog` --- Wypisuje zawartość {\green katalog}u na ekran
-- `cp pliki katalog` --- Kopiuje {\green pliki} do {\green katalog}u
-- `cp plik1 plik2` --- Kopiuje plik o nazwie {\green plik1} do pliku o nazwie {\green plik2}
-- `mv pliki katalog` --- Przenosi {\green pliki} do {\green katalog}u
-- `mvplik1 plik2` --- Zmienia nazwę pliku z {\green plik1} na {\green plik2}
-- `sed  's/tekst1/tekst2/g' --- Czyta z klawiatury tekst i go wypisuje zamieniając ,,{\green tekst1}'' na ,,{\green tekst2}''
+- `cat plik` --- Wypisuje zawartość pliku na ekran
+- `grep tekst` --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające tekst
+- `grep tekst pliki` --- Wyszukuje tekst w plikach
+- `cd katalog` --- Wchodzi do katalogu
+- `ls katalog` --- Wypisuje zawartość katalogu na ekran
+- `cp pliki katalog` --- Kopiuje pliki do katalogu
+- `cp plik1 plik2` --- Kopiuje plik o nazwie plik1 do pliku o nazwie plik2
+- `mv pliki katalog` --- Przenosi pliki do katalogu
+- `mvplik1 plik2` --- Zmienia nazwę pliku z plik1 na plik2
+- `sed  's/tekst1/tekst2/g' --- Czyta z klawiatury tekst i go wypisuje zamieniając ''tekst1'' na ''tekst2''
 
 
 ## Przekierowanie wejścia wyjścia
@@ -59,12 +59,12 @@ Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można j
 
 Przykłady:
 
-- `echo Tekst {\blue > plik`} --- wypisze ,,Tekst'' do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
-- `echo Tekst {\blue >> plik`} --- dopisze ,,Tekst'' do {\blue plik}u ({\blue plik} zostanie utwożony jeśli nie istniał)
-- `grep Tekst {\blue < plik`} --- wyszuka w {\blue plik}u linie zwierające {\green ,,Tekst''} i je wypisze na ekran
-- `echo Tekst {\blue |` sed 's/st/a/g'} --- Zamieni w ,,Tekst'' każde wystąpienie ,,st'' na ,,a''. Więc wypisze na ekran ,,Teka''.
-- `echo \$nazwa {\blue |` sed 's/\.txt/.dat/g'} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. \uline{Rezultat wypisze na ekran}.
-- `echo \$nazwa {\blue |` sed 's/\.txt/.dat/g'} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. \uline{Rezultat wypisze na ekran}.
+- `echo Tekst > plik` --- wypisze ,,Tekst'' do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
+- `echo Tekst  >> plik` --- dopisze ,,Tekst'' do {\blue plik}u ({\blue plik} zostanie utwożony jeśli nie istniał)
+- `grep Tekst  < plik` --- wyszuka w {\blue plik}u linie zwierające {\green ,,Tekst''} i je wypisze na ekran
+- `echo Tekst |` sed 's/st/a/g' --- Zamieni w ,,Tekst'' każde wystąpienie ,,st'' na ,,a''. Więc wypisze na ekran ,,Teka''.
+- `echo \$nazwa |` sed 's/\.txt/.dat/g' --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. \uline{Rezultat wypisze na ekran}.
+- `echo \$nazwa |` sed 's/\.txt/.dat/g' --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. \uline{Rezultat wypisze na ekran}.
 - `nazwa2={\blue \$(`echo \$nazwa {\blue |} sed 's/\.txt/.dat/g'{\blue )}} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
 - `ls katalog {\blue > plik`} --- wypisze zawartość {\green katalog}u do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
 - `cp {\blue ``ls{\blue `} katalog} albo `cp {\blue \$(`ls{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
