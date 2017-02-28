@@ -7,7 +7,7 @@ author: Ł. Łaniewski-Wołłk
 
 
 # BASH: skrypty
-Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{bash}. Linia poleceń (BASH) służy do uruchomiania programów --- dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
+Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{bash}. Linia poleceń (BASH) służy do uruchomiania programów - dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
 
 Przeanalizuj fragment kodu, z zaznaczonymi `programami` i `opcjami`:
 ```Bash
@@ -23,8 +23,8 @@ done
 Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 
 - `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
-- w wyrażeniu `expr \$i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `\$i`, `+` i `1`, a nie jeden `i+1`.
-- w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `\red test`. W tym wypadku podajemy mu za argumenty ,,`\green\$i`'', ,,`\green -lt`'' i ,,`\green 10`'', gdzie opcja `\green -lt` oznacza ,,less than''.
+- w wyrażeniu `expr $i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `$i`, `+` i `1`, a nie jeden `i+1`.
+- w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `test`. W tym wypadku podajemy mu za argumenty `$i`, `-lt` i `10`, gdzie opcja `-lt` oznacza ''less than''.
 
 
 
