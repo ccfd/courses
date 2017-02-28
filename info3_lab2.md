@@ -61,15 +61,15 @@ Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można j
 Przykłady:
 
 - `echo Tekst > plik`{.bash} --- wypisze ,,Tekst'' do pliku (plik zostanie nadpisany jeśli istnieje)
-- `echo Tekst  >> plik`{.bash} --- dopisze ,,Tekst'' do pliku (plik zostanie utwożony jeśli nie istniał)
-- `grep Tekst  < plik`{.bash} --- wyszuka w pliku linie zwierające ,,Tekst'' i je wypisze na ekran
-- `echo Tekst |` sed 's/st/a/g'`{.bash} --- Zamieni w ,,Tekst'' każde wystąpienie ,,st'' na ,,a''. Więc wypisze na ekran ,,Teka''.
-- `echo \$nazwa |` sed 's/\.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
-- `echo \$nazwa |` sed 's/\.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
-- `nazwa2={\blue \$(`echo \$nazwa {\blue |} sed 's/\.txt/.dat/g'{\blue )}} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
-- `ls katalog {\blue > plik`} --- wypisze zawartość {\green katalog}u do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
-- `cp {\blue ``ls{\blue `} katalog} albo `cp {\blue \$(`ls{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
-- `cp {\blue ``cat plik{\blue `} katalog} bądz `cp {\blue \$(`cat plik{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zawartej w `plik`u.
+- `echo Tekst >> plik`{.bash} --- dopisze ,,Tekst'' do pliku (plik zostanie utwożony jeśli nie istniał)
+- `grep Tekst < plik`{.bash} --- wyszuka w pliku linie zwierające ,,Tekst'' i je wypisze na ekran
+- `echo Tekst | sed 's/st/a/g'`{.bash} --- Zamieni w ,,Tekst'' każde wystąpienie ,,st'' na ,,a''. Więc wypisze na ekran ,,Teka''.
+- `echo \$nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
+- `echo \$nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
+- `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
+- `ls katalog > plik`{.bash} --- wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)
+- `cp ls katalog` albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
+- `cp cat plik katalog`{.bash} bądz `cp $(`cat plik) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zawartej w `plik`u.
 
 
 
@@ -151,7 +151,7 @@ Napisz skrypt który:
 - Napisz skrypt który: Zmniejszy wszystkie pliki `jpg` umieszczając je w innym katalogu
 - Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, dodając końcówkę: `plik.jpg $\rightarrow$ plik.jpg.gif`
 - Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, zamieniając końcówkę `plik.jpg $\rightarrow$ plik.gif`
-- Na każde zdjęcie naniesie tekst używając `-pointsize {\green rozmiar` -draw "{}text {\green x},{\green y} '{\green Tekst}'"{}}
+- Na każde zdjęcie naniesie tekst używając `-pointsize rozmiar` -draw "text x, y 'Tekst'"
 - Na każde zdjęcie naniesie aktualną datę (komenda `date`)
 - Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć przy pomocy `stat -c %y plik`)
 - Zmniejszy wszystkie obrazki z katalogu `drop1` i połączy je w animację przy pomocy `convert *.jpg animacja.gif`
