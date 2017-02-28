@@ -57,8 +57,8 @@ Przykłady:
 - `echo Tekst >> plik`{.bash} --- dopisze ,,Tekst'' do pliku (plik zostanie utwożony jeśli nie istniał)
 - `grep Tekst < plik`{.bash} --- wyszuka w pliku linie zwierające ,,Tekst'' i je wypisze na ekran
 - `echo Tekst | sed 's/st/a/g'`{.bash} --- Zamieni w ,,Tekst'' każde wystąpienie ,,st'' na ,,a''. Więc wypisze na ekran ,,Teka''.
-- `echo \$nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
-- `echo \$nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
+- `echo $nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
+- `echo $nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
 - `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
 - `ls katalog > plik`{.bash} --- wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)
 - `cp ls katalog` albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
@@ -114,7 +114,7 @@ do
 done
 ```
 
-Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedrostek `a\_` (np.: `obrazek.jpg` zamieni na `IMG/a\_obrazek.jpg`).
+Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedrostek `a_` (np.: `obrazek.jpg` zamieni na `IMG/a_obrazek.jpg`).
 
 
 ## Ćwiczenia
@@ -137,7 +137,7 @@ Głównym programem którego będziemy używać to `convert` z biblioteki ImageM
 - `convert plik1.jpg -resize 50% plik2.jpg`{.bash} --- zmniejszy obrazek dwukrotnie
 - `convert plik1.jpg -resize 100 plik2.jpg`{.bash} --- zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli
 - `convert plik1.jpg -resize 100x100 plik2.jpg`{.bash} --- zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli
-- `convert plik1.jpg -resize 100x100\! plik2.jpg`{.bash} --- zmniejszy obrazek \uline{dokładnie} do rozmiaru 100 na 100 pixeli
+- `convert plik1.jpg -resize 100x100\! plik2.jpg`{.bash} --- zmniejszy obrazek dokładnie do rozmiaru 100 na 100 pixeli
 - `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 'Magick'" fuzzy-magick.jpg`{.bash} --- stworzy obrazek fuzzy-magick.jpg, z tekstem "Magick"
 Wykonaj powyższe operacja, sprawdź efekty.
 
