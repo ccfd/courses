@@ -566,15 +566,15 @@ div.tocify {
 <p>Przykłady:</p>
 <ul>
 <li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">&gt;</span> plik</code> — wypisze ,,Tekst’’ do pliku (plik zostanie nadpisany jeśli istnieje)</li>
-<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst  <span class="kw">&gt;&gt;</span> plik</code> — dopisze ,,Tekst’’ do pliku (plik zostanie utwożony jeśli nie istniał)</li>
-<li><code class="sourceCode bash"><span class="kw">grep</span> Tekst  <span class="kw">&lt;</span> plik</code> — wyszuka w pliku linie zwierające ,,Tekst’’ i je wypisze na ekran</li>
-<li><code>echo Tekst |</code> sed ‘s/st/a/g’`{.bash} — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
-<li><code>echo \$nazwa |</code> sed ‘s/.txt/.dat/g’<code>{.bash} --- Zastąpi w zmiennej</code>nazwa<code>końcówkę</code>.txt<code>na</code>.dat`. Rezultat wypisze na ekran.</li>
-<li><code>echo \$nazwa |</code> sed ‘s/.txt/.dat/g’<code>{.bash} --- Zastąpi w zmiennej</code>nazwa<code>końcówkę</code>.txt<code>na</code>.dat`. Rezultat wypisze na ekran.</li>
-<li><code>nazwa2={\blue \$(</code>echo $nazwa {|} sed ‘s/.txt/.dat/g’{)}} — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
-<li><code>ls katalog {\blue &gt; plik</code>} — wypisze zawartość {katalog}u do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
-<li><code>cp {\blue ``ls{\blue</code>} katalog} albo <code>cp {\blue \$(</code>ls{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
-<li><code>cp {\blue ``cat plik{\blue</code>} katalog} bądz <code>cp {\blue \$(</code>cat plik{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zawartej w <code>plik</code>u.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">&gt;&gt;</span> plik</code> — dopisze ,,Tekst’’ do pliku (plik zostanie utwożony jeśli nie istniał)</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> Tekst <span class="kw">&lt;</span> plik</code> — wyszuka w pliku linie zwierające ,,Tekst’’ i je wypisze na ekran</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/st/a/g&#39;</span></code> — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="dt">\$</span>nazwa <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="dt">\$</span>nazwa <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
+<li><code class="sourceCode bash"><span class="ot">nazwa2=$(</span><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="ot">)</span></code> — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
+<li><code class="sourceCode bash"><span class="kw">ls</span> katalog <span class="kw">&gt;</span> plik</code> — wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)</li>
+<li><code>cp ls katalog</code> albo <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">ls</span><span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> cat plik katalog</code> bądz <code>cp $(</code>cat plik) katalog<code>{.bash} --- skopiuje pliki do</code>katalog<code>u według listy zawartej w</code>plik`u.</li>
 </ul>
 </div>
 <div id="petle-i-wyrazenia-warunkowe" class="section level2">
@@ -633,7 +633,7 @@ div.tocify {
 <li>Napisz skrypt który: Zmniejszy wszystkie pliki <code>jpg</code> umieszczając je w innym katalogu</li>
 <li>Napisz skrypt który: Skonwertuje wszystkie pliki <code>jpg</code> na <code>gif</code>, dodając końcówkę: <code>plik.jpg $\rightarrow$ plik.jpg.gif</code></li>
 <li>Napisz skrypt który: Skonwertuje wszystkie pliki <code>jpg</code> na <code>gif</code>, zamieniając końcówkę <code>plik.jpg $\rightarrow$ plik.gif</code></li>
-<li>Na każde zdjęcie naniesie tekst używając <code>-pointsize {\green rozmiar</code> -draw “{}text {x},{y} ‘{Tekst}’”{}}</li>
+<li>Na każde zdjęcie naniesie tekst używając <code>-pointsize rozmiar</code> -draw “text x, y ‘Tekst’”</li>
 <li>Na każde zdjęcie naniesie aktualną datę (komenda <code>date</code>)</li>
 <li>Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć przy pomocy <code>stat -c %y plik</code>)</li>
 <li>Zmniejszy wszystkie obrazki z katalogu <code>drop1</code> i połączy je w animację przy pomocy <code>convert *.jpg animacja.gif</code></li>
