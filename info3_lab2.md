@@ -20,28 +20,6 @@ do
 done
 ```
 
-```{.bash}
-i=1
-while test $i -lt 10
-do
-	echo $i
-	cp plik plik_$i
-	i=$(expr $i + 1)
-done
-```
-
-```
-i=1
-while test $i -lt 10
-do
-	echo $i
-	cp plik plik_$i
-	i=$(expr $i + 1)
-done
-```{.bash}
-
-
-
 Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 
 - `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
@@ -52,6 +30,7 @@ Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
+
 - `_echo_ {\green tekst`} --- Wpisuje {\green tekst} na ekran.
 - `_cat_ {\green plik`} --- Wypisuje zawartość {\green plik}u na ekran
 - `_grep_ {\green tekst`} --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające {\green tekst}
