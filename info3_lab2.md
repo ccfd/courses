@@ -43,9 +43,11 @@ done
 
 
 Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
+
 - `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
 - w wyrażeniu `expr \$i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `\$i`, `+` i `1`, a nie jeden `i+1`.
 - w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `\red test`. W tym wypadku podajemy mu za argumenty ,,`\green\$i`'', ,,`\green -lt`'' i ,,`\green 10`'', gdzie opcja `\green -lt` oznacza ,,less than''.
+
 
 
 ## Przydatne programy
@@ -65,6 +67,7 @@ Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to 
 
 ## Przekierowanie wejścia wyjścia
 Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować.
+
 - `_program_ {\blue > plik`} --- To co program wypisałby na ekran, zostanie wpisane do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
 - `_program_ {\blue >> plik`} --- To co program wypisałby na ekran, zostanie \uline{dopisane} do {\blue plik}u ({\blue plik} zostanie utwożony jeśli nie istniał)
 - `_program_ {\blue < plik`} --- Program dostanie zawartość {\blue plik}u, tak jakbyśmy ją wpisali z klawiatury
@@ -72,6 +75,7 @@ Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można j
 - `{\blue ``_program_{\blue `}} lub `{\blue \$(`_program_{\blue )}} --- To co program wypisałby na ekran, zostanie \uline{wklejone} w tym miejscu kodu (patrz przykłady). \uline{Znak `\blue `` jest na klawiaturze przy tyldzie `\textasciitilde{`}.}
 
 Przykłady:
+
 - `echo Tekst {\blue > plik`} --- wypisze ,,Tekst'' do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
 - `echo Tekst {\blue >> plik`} --- dopisze ,,Tekst'' do {\blue plik}u ({\blue plik} zostanie utwożony jeśli nie istniał)
 - `grep Tekst {\blue < plik`} --- wyszuka w {\blue plik}u linie zwierające {\green ,,Tekst''} i je wypisze na ekran
@@ -82,6 +86,8 @@ Przykłady:
 - `ls katalog {\blue > plik`} --- wypisze zawartość {\green katalog}u do {\blue plik}u ({\blue plik} zostanie nadpisany jeśli istnieje)
 - `cp {\blue ``ls{\blue `} katalog} albo `cp {\blue \$(`ls{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
 - `cp {\blue ``cat plik{\blue `} katalog} bądz `cp {\blue \$(`cat plik{\blue )} katalog} --- skopiuje pliki do `katalog`u według listy zawartej w `plik`u.
+
+
 
 ## Pętle i wyrażenia warunkowe
 - `if _program_ {\green argumenty`\\
