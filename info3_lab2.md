@@ -78,11 +78,11 @@ else
 	polecenia2
 fi
 ```
-
 Jeśli wykonanie `program argumenty`{.bash} się powiedzie (program zwróci $0$), to wykonane zostaną _polecenia1_. W przeciwnym wypadku wykonane zostaną _polecenia2_.
 
-**pętla while **
 
+
+**pętla while **
 
 ```Bash
 while program argumenty
@@ -90,8 +90,9 @@ do
 	polecenia
 done
 ```
-
 Pętla, która będzie wykonywać _polecenia_ , poki `program argumenty`{.bash} będzie wykonywany z powodzeniem.
+
+
 
 **pętla for **
 
@@ -132,12 +133,12 @@ Głównym programem którego będziemy używać to `convert` z biblioteki ImageM
 
 **UWAGA: Zanim zaczniesz, skopiuj katalog ze zdjęciami do jakiegoś tymczasowego katalogu!**
 
-- `convert plik.gif plik.jpg` --- przekonwertuje plik w formacie GIF na format JPEG
-- `convert plik1.jpg -resize 50% plik2.jpg` --- zmniejszy obrazek dwukrotnie
-- `convert plik1.jpg -resize 100 plik2.jpg` --- zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli
-- `convert plik1.jpg -resize 100x100 plik2.jpg` --- zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli
-- `convert plik1.jpg -resize 100x100\! plik2.jpg` --- zmniejszy obrazek \uline{dokładnie} do rozmiaru 100 na 100 pixeli
-- `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'"{ `-channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 'Magick'"{ }fuzzy-magick.jpg} --- stworzy obrazek fuzzy-magick.jpg, z tekstem "Magick"
+- `convert plik.gif plik.jpg`{.bash} --- przekonwertuje plik w formacie GIF na format JPEG
+- `convert plik1.jpg -resize 50% plik2.jpg`{.bash} --- zmniejszy obrazek dwukrotnie
+- `convert plik1.jpg -resize 100 plik2.jpg`{.bash} --- zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli
+- `convert plik1.jpg -resize 100x100 plik2.jpg`{.bash} --- zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli
+- `convert plik1.jpg -resize 100x100\! plik2.jpg`{.bash} --- zmniejszy obrazek \uline{dokładnie} do rozmiaru 100 na 100 pixeli
+- `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 'Magick'" fuzzy-magick.jpg`{.bash} --- stworzy obrazek fuzzy-magick.jpg, z tekstem "Magick"
 Wykonaj powyższe operacja, sprawdź efekty.
 
 
