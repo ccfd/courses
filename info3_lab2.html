@@ -517,7 +517,7 @@ div.tocify {
 
 <div id="bash-skrypty" class="section level1">
 <h1>BASH: skrypty</h1>
-<p>Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą <code class="sourceCode bash"><span class="kw">chmod</span> +x plik</code> i wykonać komendą <code class="sh">./plik</code> . Linia poleceń (BASH) służy do uruchomiania programów - dlatego: <strong>każda linijka skryptu wygląda nastepująco:</strong> <code>program agumenty</code>.</p>
+<p>Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą <code class="sourceCode bash"><span class="kw">chmod</span> +x plik</code> i wykonać komendą <code class="sourceCode bash"><span class="kw">./plik</span></code> . Linia poleceń (BASH) służy do uruchomiania programów - dlatego: <strong>każda linijka skryptu wygląda nastepująco:</strong> <code>program agumenty</code>.</p>
 <p>Przeanalizuj fragment kodu, z zaznaczonymi <code>programami</code> i <code>opcjami</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">i=</span>1
 <span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10
@@ -539,37 +539,37 @@ div.tocify {
 <h2>Przydatne programy</h2>
 <p>Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.</p>
 <ul>
-<li><code>echo tekst</code> — Wypisuje tekst na ekran.</li>
-<li><code>cat plik</code> — Wypisuje zawartość pliku na ekran</li>
-<li><code>grep tekst</code> — Czyta z klawiatury tekst i wypisuje tylko linie zawierające tekst</li>
-<li><code>grep tekst pliki</code> — Wyszukuje tekst w plikach</li>
-<li><code>cd katalog</code> — Wchodzi do katalogu</li>
-<li><code>ls katalog</code> — Wypisuje zawartość katalogu na ekran</li>
-<li><code>cp pliki katalog</code> — Kopiuje pliki do katalogu</li>
-<li><code>cp plik1 plik2</code> — Kopiuje plik o nazwie plik1 do pliku o nazwie plik2</li>
-<li><code>mv pliki katalog</code> — Przenosi pliki do katalogu</li>
-<li><code>mvplik1 plik2</code> — Zmienia nazwę pliku z plik1 na plik2</li>
-<li>`sed ‘s/tekst1/tekst2/g’ — Czyta z klawiatury tekst i go wypisuje zamieniając ‘’tekst1’‘na’‘tekst2’’</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> tekst</code> — Wypisuje tekst na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">cat</span> plik</code> — Wypisuje zawartość pliku na ekran</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> tekst</code> — Czyta z klawiatury tekst i wypisuje tylko linie zawierające tekst</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> tekst pliki</code> — Wyszukuje tekst w plikach</li>
+<li><code class="sourceCode bash"><span class="kw">cd</span> katalog</code> — Wchodzi do katalogu</li>
+<li><code class="sourceCode bash"><span class="kw">ls</span> katalog</code> — Wypisuje zawartość katalogu na ekran</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> pliki katalog</code> — Kopiuje pliki do katalogu</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> plik1 plik2</code> — Kopiuje plik o nazwie plik1 do pliku o nazwie plik2</li>
+<li><code class="sourceCode bash"><span class="kw">mv</span> pliki katalog</code> — Przenosi pliki do katalogu</li>
+<li><code class="sourceCode bash"><span class="kw">mvplik1</span> plik2</code> — Zmienia nazwę pliku z plik1 na plik2</li>
+<li><code class="sourceCode bash"><span class="kw">sed</span>  <span class="st">&#39;s/tekst1/tekst2/g&#39;</span></code>— Czyta z klawiatury tekst i go wypisuje zamieniając ‘’tekst1’‘na’‘tekst2’’</li>
 </ul>
 </div>
 <div id="przekierowanie-wejscia-wyjscia" class="section level2">
 <h2>Przekierowanie wejścia wyjścia</h2>
 <p>Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować.</p>
 <ul>
-<li><code>_program_ {\blue &gt; plik</code>} — To co program wypisałby na ekran, zostanie wpisane do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
-<li><code>_program_ {\blue &gt;&gt; plik</code>} — To co program wypisałby na ekran, zostanie  do {plik}u ({plik} zostanie utwożony jeśli nie istniał)</li>
-<li><code>_program_ {\blue &lt; plik</code>} — Program dostanie zawartość {plik}u, tak jakbyśmy ją wpisali z klawiatury</li>
-<li><code>_program1_ {\blue |</code> <em>program2</em>} — To co <em>program1</em> wypisałby na ekran, zostanie wpisane ,,z klawiatury’’ do <em>program2</em></li>
-<li><code>{\blue ``_program_{\blue</code>}} lub <code>{\blue \$(</code><em>program</em>{)}} — To co program wypisałby na ekran, zostanie  w tym miejscu kodu (patrz przykłady). </li>
+<li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&gt;</span> plik</code> — To co program wypisałby na ekran, zostanie wpisane do pliku (plik zostanie nadpisany jeśli istnieje)</li>
+<li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&gt;&gt;</span> plik</code> — To co program wypisałby na ekran, zostanie dopisane do pliku (plik zostanie utwożony jeśli nie istniał)</li>
+<li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&lt;</span> plik</code> — Program dostanie zawartość pliku, tak jakbyśmy ją wpisali z klawiatury</li>
+<li><code class="sourceCode bash"><span class="kw">program1</span> <span class="kw">|</span> <span class="kw">program2</span></code> — To co program1 wypisałby na ekran, zostanie wpisane ‘z klawiatury’ do program2</li>
+<li><code>program</code> lub <code class="sourceCode bash"><span class="ot">$(</span><span class="kw">program</span><span class="ot">)</span></code> — To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Znak ‘`’ jest na klawiaturze przy tyldzie ‘~’.</li>
 </ul>
 <p>Przykłady:</p>
 <ul>
-<li><code>echo Tekst &gt; plik</code> — wypisze ,,Tekst’’ do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
-<li><code>echo Tekst  &gt;&gt; plik</code> — dopisze ,,Tekst’’ do {plik}u ({plik} zostanie utwożony jeśli nie istniał)</li>
-<li><code>grep Tekst  &lt; plik</code> — wyszuka w {plik}u linie zwierające {,,Tekst’’} i je wypisze na ekran</li>
-<li><code>echo Tekst |</code> sed ‘s/st/a/g’ — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
-<li><code>echo \$nazwa |</code> sed ‘s/.txt/.dat/g’ — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. .</li>
-<li><code>echo \$nazwa |</code> sed ‘s/.txt/.dat/g’ — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. .</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">&gt;</span> plik</code> — wypisze ,,Tekst’’ do pliku (plik zostanie nadpisany jeśli istnieje)</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst  <span class="kw">&gt;&gt;</span> plik</code> — dopisze ,,Tekst’’ do pliku (plik zostanie utwożony jeśli nie istniał)</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> Tekst  <span class="kw">&lt;</span> plik</code> — wyszuka w pliku linie zwierające ,,Tekst’’ i je wypisze na ekran</li>
+<li><code>echo Tekst |</code> sed ‘s/st/a/g’`{.bash} — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
+<li><code>echo \$nazwa |</code> sed ‘s/.txt/.dat/g’<code>{.bash} --- Zastąpi w zmiennej</code>nazwa<code>końcówkę</code>.txt<code>na</code>.dat`. Rezultat wypisze na ekran.</li>
+<li><code>echo \$nazwa |</code> sed ‘s/.txt/.dat/g’<code>{.bash} --- Zastąpi w zmiennej</code>nazwa<code>końcówkę</code>.txt<code>na</code>.dat`. Rezultat wypisze na ekran.</li>
 <li><code>nazwa2={\blue \$(</code>echo $nazwa {|} sed ‘s/.txt/.dat/g’{)}} — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
 <li><code>ls katalog {\blue &gt; plik</code>} — wypisze zawartość {katalog}u do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
 <li><code>cp {\blue ``ls{\blue</code>} katalog} albo <code>cp {\blue \$(</code>ls{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
