@@ -526,14 +526,6 @@ div.tocify {
     <span class="kw">cp</span> plik plik_<span class="ot">$i</span>
     <span class="ot">i=$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span>
 <span class="kw">done</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">i=</span>1
-<span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10
-<span class="kw">do</span>
-    <span class="kw">echo</span> <span class="ot">$i</span>
-    <span class="kw">cp</span> plik plik_<span class="ot">$i</span>
-    <span class="ot">i=$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span>
-<span class="kw">done</span></code></pre></div>
-<p><code class="sourceCode bash"><span class="ot">i=</span>1 <span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10 do     echo <span class="ot">$i</span>     cp plik plik_<span class="ot">$i</span>     i=<span class="ot">$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span> done</code></p>
 <p>Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:</p>
 <ul>
 <li><code>i=1</code> piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program <code>i</code> z opcjami <code>=</code> i <code>1</code>.</li>
@@ -542,7 +534,20 @@ div.tocify {
 </ul>
 <div id="przydatne-programy" class="section level2">
 <h2>Przydatne programy</h2>
-<p>Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty. - <code>_echo_ {\green tekst</code>} — Wpisuje {tekst} na ekran. - <code>_cat_ {\green plik</code>} — Wypisuje zawartość {plik}u na ekran - <code>_grep_ {\green tekst</code>} — Czyta z klawiatury tekst i wypisuje tylko linie zawierające {tekst} - <code>_grep_ {\green tekst pliki</code>} — Wyszukuje {tekst} w {plik}ach - <code>_cd_ {\green katalog</code>} — Wchodzi do {katalogu} - <code>_ls_ {\green katalog</code>} — Wypisuje zawartość {katalog}u na ekran - <code>_cp_ {\green pliki katalog</code>} — Kopiuje {pliki} do {katalog}u - <code>_cp_ {\green plik1 plik2</code>} — Kopiuje plik o nazwie {plik1} do pliku o nazwie {plik2} - <code>_mv_ {\green pliki katalog</code>} — Przenosi {pliki} do {katalog}u - <code>_mv_ {\green plik1 plik2</code>} — Zmienia nazwę pliku z {plik1} na {plik2} - <code>_sed_ {\green 's/tekst1/tekst2/g'</code>} — Czyta z klawiatury tekst i go wypisuje zamieniając ,,{tekst1}‘’ na ,,{tekst2}’’</p>
+<p>Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.</p>
+<ul>
+<li><code>_echo_ {\green tekst</code>} — Wpisuje {tekst} na ekran.</li>
+<li><code>_cat_ {\green plik</code>} — Wypisuje zawartość {plik}u na ekran</li>
+<li><code>_grep_ {\green tekst</code>} — Czyta z klawiatury tekst i wypisuje tylko linie zawierające {tekst}</li>
+<li><code>_grep_ {\green tekst pliki</code>} — Wyszukuje {tekst} w {plik}ach</li>
+<li><code>_cd_ {\green katalog</code>} — Wchodzi do {katalogu}</li>
+<li><code>_ls_ {\green katalog</code>} — Wypisuje zawartość {katalog}u na ekran</li>
+<li><code>_cp_ {\green pliki katalog</code>} — Kopiuje {pliki} do {katalog}u</li>
+<li><code>_cp_ {\green plik1 plik2</code>} — Kopiuje plik o nazwie {plik1} do pliku o nazwie {plik2}</li>
+<li><code>_mv_ {\green pliki katalog</code>} — Przenosi {pliki} do {katalog}u</li>
+<li><code>_mv_ {\green plik1 plik2</code>} — Zmienia nazwę pliku z {plik1} na {plik2}</li>
+<li><code>_sed_ {\green 's/tekst1/tekst2/g'</code>} — Czyta z klawiatury tekst i go wypisuje zamieniając ,,{tekst1}‘’ na ,,{tekst2}’’</li>
+</ul>
 </div>
 <div id="przekierowanie-wejscia-wyjscia" class="section level2">
 <h2>Przekierowanie wejścia wyjścia</h2>
