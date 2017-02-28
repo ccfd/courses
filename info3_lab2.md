@@ -35,6 +35,7 @@ probka3 `mkdir`{.bash}
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
 
+- komendą `chmod +x plik`{.bash} i wykonać  - test
 - `echo tekst`{.bash} --- Wypisuje tekst na ekran.
 - `cat plik`{.bash} --- Wypisuje zawartość pliku na ekran
 - `grep tekst`{.bash} --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające tekst
