@@ -570,11 +570,12 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="ot">nazwa2=$(</span><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="ot">)</span></code> — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
 <li><code class="sourceCode bash"><span class="kw">ls</span> katalog <span class="kw">&gt;</span> plik</code> — wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)</li>
 <li><code>cp ls katalog</code> albo <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">ls</span><span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
-<li><code class="sourceCode bash"><span class="kw">cp</span> cat plik katalog</code> bądz <code>cp $(</code>cat plik) katalog<code>{.bash} --- skopiuje pliki do</code>katalog<code>u według listy zawartej w</code>plik`u.</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> cat plik katalog</code> bądz <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">cat</span> plik<span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zawartej w pliku.</li>
 </ul>
 </div>
 <div id="petle-i-wyrazenia-warunkowe" class="section level2">
 <h2>Pętle i wyrażenia warunkowe</h2>
+<p><strong>instrucja warunkowa if</strong></p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">if</span> <span class="kw">program</span> argumenty
 <span class="kw">then</span>
     <span class="kw">polecenia1</span>
@@ -582,11 +583,13 @@ div.tocify {
     <span class="kw">polecenia2</span>
 <span class="kw">fi</span></code></pre></div>
 <p>Jeśli wykonanie <code class="sourceCode bash"><span class="kw">program</span> argumenty</code> się powiedzie (program zwróci <span class="math inline">\(0\)</span>), to wykonane zostaną <em>polecenia1</em>. W przeciwnym wypadku wykonane zostaną <em>polecenia2</em>.</p>
+<p><strong>pętla while </strong></p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">while</span> <span class="kw">program</span> argumenty
 <span class="kw">do</span>
     <span class="kw">polecenia</span>
 <span class="kw">done</span></code></pre></div>
 <p>Pętla, która będzie wykonywać <em>polecenia</em> , poki <code class="sourceCode bash"><span class="kw">program</span> argumenty</code> będzie wykonywany z powodzeniem.</p>
+<p><strong>pętla for </strong></p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">i</span> in lista
 <span class="kw">do</span>
     <span class="kw">polecenia</span>
