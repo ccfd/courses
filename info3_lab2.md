@@ -147,8 +147,8 @@ Napisz skrypt który:
 
 - Zmniejszy wszystkie pliki `jpg`
 - Napisz skrypt który: Zmniejszy wszystkie pliki `jpg` umieszczając je w innym katalogu
-- Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, dodając końcówkę: `plik.jpg $\rightarrow$ plik.jpg.gif`
-- Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, zamieniając końcówkę `plik.jpg $\rightarrow$ plik.gif`
+- Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, dodając końcówkę z `plik.jpg` na `plik.jpg.gif`
+- Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, zamieniając końcówkę z `plik.jpg` na `plik.gif`
 - Na każde zdjęcie naniesie tekst używając `-pointsize rozmiar` -draw "text x, y 'Tekst'"
 - Na każde zdjęcie naniesie aktualną datę (komenda `date`)
 - Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć przy pomocy `stat -c %y plik`)
