@@ -565,8 +565,8 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">&gt;&gt;</span> plik</code> — dopisze ,,Tekst’’ do pliku (plik zostanie utwożony jeśli nie istniał)</li>
 <li><code class="sourceCode bash"><span class="kw">grep</span> Tekst <span class="kw">&lt;</span> plik</code> — wyszuka w pliku linie zwierające ,,Tekst’’ i je wypisze na ekran</li>
 <li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/st/a/g&#39;</span></code> — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
-<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="dt">\$</span>nazwa <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
-<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="dt">\$</span>nazwa <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
 <li><code class="sourceCode bash"><span class="ot">nazwa2=$(</span><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="ot">)</span></code> — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
 <li><code class="sourceCode bash"><span class="kw">ls</span> katalog <span class="kw">&gt;</span> plik</code> — wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)</li>
 <li><code>cp ls katalog</code> albo <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">ls</span><span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
@@ -600,7 +600,7 @@ div.tocify {
 <span class="kw">do</span>
     <span class="kw">mv</span> <span class="ot">$i</span> IMG/a_<span class="ot">$i</span>
 <span class="kw">done</span></code></pre></div>
-<p>Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a\_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a\_obrazek.jpg</code>).</p>
+<p>Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a_obrazek.jpg</code>).</p>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
@@ -620,7 +620,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 50% plik2.jpg</code> — zmniejszy obrazek dwukrotnie</li>
 <li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100 plik2.jpg</code> — zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli</li>
 <li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100 plik2.jpg</code> — zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli</li>
-<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100\! plik2.jpg</code> — zmniejszy obrazek  do rozmiaru 100 na 100 pixeli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100\! plik2.jpg</code> — zmniejszy obrazek dokładnie do rozmiaru 100 na 100 pixeli</li>
 <li><code class="sourceCode bash"><span class="kw">convert</span> -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw <span class="st">&quot;text 25,60 &#39;Magick&#39;&quot;</span> -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw <span class="st">&quot;text 20,55 &#39;Magick&#39;&quot;</span> fuzzy-magick.jpg</code> — stworzy obrazek fuzzy-magick.jpg, z tekstem “Magick” Wykonaj powyższe operacja, sprawdź efekty.</li>
 </ul>
 </div>
