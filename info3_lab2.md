@@ -26,16 +26,9 @@ Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 - w wyrażeniu `expr $i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `$i`, `+` i `1`, a nie jeden `i+1`.
 - w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `test`. W tym wypadku podajemy mu za argumenty `$i`, `-lt` i `10`, gdzie opcja `-lt` oznacza ''less than''.
 
-probka `mkdir`{.cpp}
-
-probka2 `mkdir`{.sh}
-
-probka3 `mkdir`{.bash}
-
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
 
-- komendą `chmod +x plik`{.bash} i wykonać  - test
 - `echo tekst`{.bash} --- Wypisuje tekst na ekran.
 - `cat plik`{.bash} --- Wypisuje zawartość pliku na ekran
 - `grep tekst`{.bash} --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające tekst
