@@ -7,7 +7,7 @@ author: Ł. Łaniewski-Wołłk
 
 
 # BASH: skrypty
-Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{bash}. Linia poleceń (BASH) służy do uruchomiania programów - dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
+Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{.sh} . Linia poleceń (BASH) służy do uruchomiania programów - dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
 
 Przeanalizuj fragment kodu, z zaznaczonymi `programami` i `opcjami`:
 ```Bash
@@ -26,7 +26,11 @@ Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 - w wyrażeniu `expr $i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `$i`, `+` i `1`, a nie jeden `i+1`.
 - w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `test`. W tym wypadku podajemy mu za argumenty `$i`, `-lt` i `10`, gdzie opcja `-lt` oznacza ''less than''.
 
+probka `main()`{.cpp}
 
+probka2 `main()`{.sh}
+
+probka3 `main()`{.bash}
 
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
