@@ -517,7 +517,7 @@ div.tocify {
 
 <div id="bash-skrypty" class="section level1">
 <h1>BASH: skrypty</h1>
-<p>Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą <code class="sourceCode bash"><span class="kw">chmod</span> +x plik</code> i wykonać komendą <code>./plik</code>{bash}. Linia poleceń (BASH) służy do uruchomiania programów — dlatego: <strong>każda linijka skryptu wygląda nastepująco:</strong> <code>program agumenty</code>.</p>
+<p>Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą <code class="sourceCode bash"><span class="kw">chmod</span> +x plik</code> i wykonać komendą <code>./plik</code>{bash}. Linia poleceń (BASH) służy do uruchomiania programów - dlatego: <strong>każda linijka skryptu wygląda nastepująco:</strong> <code>program agumenty</code>.</p>
 <p>Przeanalizuj fragment kodu, z zaznaczonymi <code>programami</code> i <code>opcjami</code>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">i=</span>1
 <span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10
@@ -529,8 +529,8 @@ div.tocify {
 <p>Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:</p>
 <ul>
 <li><code>i=1</code> piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program <code>i</code> z opcjami <code>=</code> i <code>1</code>.</li>
-<li>w wyrażeniu <code>expr \$i + 1</code>, musimy zachować spacje, żeby program <code>expr</code> dostał trzy argumenty <code>\$i</code>, <code>+</code> i <code>1</code>, a nie jeden <code>i+1</code>.</li>
-<li>w pętli <code>while</code>, nie możemy wpisać ,,<code>i&lt;10</code>‘’, lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program <code>\red test</code>. W tym wypadku podajemy mu za argumenty ,,<code>\green\$i</code>’‘, ,,<code>\green -lt</code>’‘i ,,<code>\green 10</code>’‘, gdzie opcja <code>\green -lt</code> oznacza ,,less than’’.</li>
+<li>w wyrażeniu <code>expr $i + 1</code>, musimy zachować spacje, żeby program <code>expr</code> dostał trzy argumenty <code>$i</code>, <code>+</code> i <code>1</code>, a nie jeden <code>i+1</code>.</li>
+<li>w pętli <code>while</code>, nie możemy wpisać ,,<code>i&lt;10</code>‘’, lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program <code>test</code>. W tym wypadku podajemy mu za argumenty <code>$i</code>, <code>-lt</code> i <code>10</code>, gdzie opcja <code>-lt</code> oznacza’‘less than’’.</li>
 </ul>
 <div id="przydatne-programy" class="section level2">
 <h2>Przydatne programy</h2>
