@@ -534,15 +534,39 @@ div.tocify {
     <span class="ot">i=$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span>
 <span class="kw">done</span></code></pre></div>
 <p><code class="sourceCode bash"><span class="ot">i=</span>1 <span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10 do     echo <span class="ot">$i</span>     cp plik plik_<span class="ot">$i</span>     i=<span class="ot">$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span> done</code></p>
-<p>Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że: - <code>i=1</code> piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program <code>i</code> z opcjami <code>=</code> i <code>1</code>. - w wyrażeniu <code>expr \$i + 1</code>, musimy zachować spacje, żeby program <code>expr</code> dostał trzy argumenty <code>\$i</code>, <code>+</code> i <code>1</code>, a nie jeden <code>i+1</code>. - w pętli <code>while</code>, nie możemy wpisać ,,<code>i&lt;10</code>‘’, lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program <code>\red test</code>. W tym wypadku podajemy mu za argumenty ,,<code>\green\$i</code>’‘, ,,<code>\green -lt</code>’‘i ,,<code>\green 10</code>’‘, gdzie opcja <code>\green -lt</code> oznacza ,,less than’’.</p>
+<p>Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:</p>
+<ul>
+<li><code>i=1</code> piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program <code>i</code> z opcjami <code>=</code> i <code>1</code>.</li>
+<li>w wyrażeniu <code>expr \$i + 1</code>, musimy zachować spacje, żeby program <code>expr</code> dostał trzy argumenty <code>\$i</code>, <code>+</code> i <code>1</code>, a nie jeden <code>i+1</code>.</li>
+<li>w pętli <code>while</code>, nie możemy wpisać ,,<code>i&lt;10</code>‘’, lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program <code>\red test</code>. W tym wypadku podajemy mu za argumenty ,,<code>\green\$i</code>’‘, ,,<code>\green -lt</code>’‘i ,,<code>\green 10</code>’‘, gdzie opcja <code>\green -lt</code> oznacza ,,less than’’.</li>
+</ul>
 <div id="przydatne-programy" class="section level2">
 <h2>Przydatne programy</h2>
 <p>Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty. - <code>_echo_ {\green tekst</code>} — Wpisuje {tekst} na ekran. - <code>_cat_ {\green plik</code>} — Wypisuje zawartość {plik}u na ekran - <code>_grep_ {\green tekst</code>} — Czyta z klawiatury tekst i wypisuje tylko linie zawierające {tekst} - <code>_grep_ {\green tekst pliki</code>} — Wyszukuje {tekst} w {plik}ach - <code>_cd_ {\green katalog</code>} — Wchodzi do {katalogu} - <code>_ls_ {\green katalog</code>} — Wypisuje zawartość {katalog}u na ekran - <code>_cp_ {\green pliki katalog</code>} — Kopiuje {pliki} do {katalog}u - <code>_cp_ {\green plik1 plik2</code>} — Kopiuje plik o nazwie {plik1} do pliku o nazwie {plik2} - <code>_mv_ {\green pliki katalog</code>} — Przenosi {pliki} do {katalog}u - <code>_mv_ {\green plik1 plik2</code>} — Zmienia nazwę pliku z {plik1} na {plik2} - <code>_sed_ {\green 's/tekst1/tekst2/g'</code>} — Czyta z klawiatury tekst i go wypisuje zamieniając ,,{tekst1}‘’ na ,,{tekst2}’’</p>
 </div>
 <div id="przekierowanie-wejscia-wyjscia" class="section level2">
 <h2>Przekierowanie wejścia wyjścia</h2>
-<p>Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować. - <code>_program_ {\blue &gt; plik</code>} — To co program wypisałby na ekran, zostanie wpisane do {plik}u ({plik} zostanie nadpisany jeśli istnieje) - <code>_program_ {\blue &gt;&gt; plik</code>} — To co program wypisałby na ekran, zostanie  do {plik}u ({plik} zostanie utwożony jeśli nie istniał) - <code>_program_ {\blue &lt; plik</code>} — Program dostanie zawartość {plik}u, tak jakbyśmy ją wpisali z klawiatury - <code>_program1_ {\blue |</code> <em>program2</em>} — To co <em>program1</em> wypisałby na ekran, zostanie wpisane ,,z klawiatury’’ do <em>program2</em> - <code>{\blue ``_program_{\blue</code>}} lub <code>{\blue \$(</code><em>program</em>{)}} — To co program wypisałby na ekran, zostanie  w tym miejscu kodu (patrz przykłady). </p>
-<p>Przykłady: - <code>echo Tekst {\blue &gt; plik</code>} — wypisze ,,Tekst’‘do {plik}u ({plik} zostanie nadpisany jeśli istnieje) - <code>echo Tekst {\blue &gt;&gt; plik</code>} — dopisze ,,Tekst’‘do {plik}u ({plik} zostanie utwożony jeśli nie istniał) - <code>grep Tekst {\blue &lt; plik</code>} — wyszuka w {plik}u linie zwierające {,,Tekst’‘} i je wypisze na ekran - <code>echo Tekst {\blue |</code> sed ’s/st/a/g’} — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’‘. - <code>echo \$nazwa {\blue |</code> sed ’s/.txt/.dat/g’} — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. . - <code>echo \$nazwa {\blue |</code> sed ‘s/.txt/.dat/g’} — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. . - <code>nazwa2={\blue \$(</code>echo $nazwa {|} sed ‘s/.txt/.dat/g’{)}} — Jak poprzednio, lecz  <code>nazwa2</code>. - <code>ls katalog {\blue &gt; plik</code>} — wypisze zawartość {katalog}u do {plik}u ({plik} zostanie nadpisany jeśli istnieje) - <code>cp {\blue ``ls{\blue</code>} katalog} albo <code>cp {\blue \$(</code>ls{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>. - <code>cp {\blue ``cat plik{\blue</code>} katalog} bądz <code>cp {\blue \$(</code>cat plik{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zawartej w <code>plik</code>u.</p>
+<p>Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować.</p>
+<ul>
+<li><code>_program_ {\blue &gt; plik</code>} — To co program wypisałby na ekran, zostanie wpisane do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
+<li><code>_program_ {\blue &gt;&gt; plik</code>} — To co program wypisałby na ekran, zostanie  do {plik}u ({plik} zostanie utwożony jeśli nie istniał)</li>
+<li><code>_program_ {\blue &lt; plik</code>} — Program dostanie zawartość {plik}u, tak jakbyśmy ją wpisali z klawiatury</li>
+<li><code>_program1_ {\blue |</code> <em>program2</em>} — To co <em>program1</em> wypisałby na ekran, zostanie wpisane ,,z klawiatury’’ do <em>program2</em></li>
+<li><code>{\blue ``_program_{\blue</code>}} lub <code>{\blue \$(</code><em>program</em>{)}} — To co program wypisałby na ekran, zostanie  w tym miejscu kodu (patrz przykłady). </li>
+</ul>
+<p>Przykłady:</p>
+<ul>
+<li><code>echo Tekst {\blue &gt; plik</code>} — wypisze ,,Tekst’’ do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
+<li><code>echo Tekst {\blue &gt;&gt; plik</code>} — dopisze ,,Tekst’’ do {plik}u ({plik} zostanie utwożony jeśli nie istniał)</li>
+<li><code>grep Tekst {\blue &lt; plik</code>} — wyszuka w {plik}u linie zwierające {,,Tekst’’} i je wypisze na ekran</li>
+<li><code>echo Tekst {\blue |</code> sed ‘s/st/a/g’} — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
+<li><code>echo \$nazwa {\blue |</code> sed ‘s/.txt/.dat/g’} — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. .</li>
+<li><code>echo \$nazwa {\blue |</code> sed ‘s/.txt/.dat/g’} — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. .</li>
+<li><code>nazwa2={\blue \$(</code>echo $nazwa {|} sed ‘s/.txt/.dat/g’{)}} — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
+<li><code>ls katalog {\blue &gt; plik</code>} — wypisze zawartość {katalog}u do {plik}u ({plik} zostanie nadpisany jeśli istnieje)</li>
+<li><code>cp {\blue ``ls{\blue</code>} katalog} albo <code>cp {\blue \$(</code>ls{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
+<li><code>cp {\blue ``cat plik{\blue</code>} katalog} bądz <code>cp {\blue \$(</code>cat plik{)} katalog} — skopiuje pliki do <code>katalog</code>u według listy zawartej w <code>plik</code>u.</li>
+</ul>
 </div>
 <div id="petle-i-wyrazenia-warunkowe" class="section level2">
 <h2>Pętle i wyrażenia warunkowe</h2>
