@@ -579,12 +579,29 @@ div.tocify {
 </div>
 <div id="petle-i-wyrazenia-warunkowe" class="section level2">
 <h2>Pętle i wyrażenia warunkowe</h2>
-<ul>
-<li><code>if _program_ {\green argumenty</code>\ then\ <em>polecenia1</em>\ else\ <em>polecenia2</em>\ fi}\ Jeśli wykonanie ,,<em>program</em> {argumenty}’’ się powiedzie (program zwróci <span class="math inline">\(0\)</span>), to wykonane zostaną <em>polecenia1</em>. W przeciwnym wypadku wykonane zostaną <em>polecenia2</em>.</li>
-<li><code>while _program_ {\green argumenty</code>\ do\ <em>polecenia</em>\ done}\ Pętla, która będzie wykonywać <em>polecenia</em>, puki ,,<em>program</em> {argumenty}’’ będzie wykonywany z powodzeniem.</li>
-<li><code>for i in {\green lista</code>\ do\ <em>polecenia</em>\ done}\ Pętla, która po kolei każdy element {list}y wstawi do zmiennej <code>i</code>, a następnie wykona <em>polecenia</em>.</li>
-</ul>
-<p>Dla przykładu:\ <code>for i in {\green *.jpg</code>\ do\ <em>mv</em> {$i IMG/a_$i} \ done}\ Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a\_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a\_obrazek.jpg</code>).</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">if</span> <span class="kw">program</span> argumenty
+<span class="kw">then</span>
+    <span class="kw">polecenia1</span>
+<span class="kw">else</span>
+    <span class="kw">polecenia2</span>
+<span class="kw">fi</span></code></pre></div>
+<p>Jeśli wykonanie <code class="sourceCode bash"><span class="kw">program</span> argumenty</code> się powiedzie (program zwróci <span class="math inline">\(0\)</span>), to wykonane zostaną <em>polecenia1</em>. W przeciwnym wypadku wykonane zostaną <em>polecenia2</em>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">while</span> <span class="kw">program</span> argumenty
+<span class="kw">do</span>
+    <span class="kw">polecenia</span>
+<span class="kw">done</span></code></pre></div>
+<p>Pętla, która będzie wykonywać <em>polecenia</em> , poki <code class="sourceCode bash"><span class="kw">program</span> argumenty</code> będzie wykonywany z powodzeniem.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">i</span> in lista
+<span class="kw">do</span>
+    <span class="kw">polecenia</span>
+<span class="kw">done</span></code></pre></div>
+<p>Pętla, która po kolei każdy element listy wstawi do zmiennej <code>i</code>, a następnie wykona <em>polecenia</em>.</p>
+<p>Dla przykładu:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">i</span> in *.jpg
+<span class="kw">do</span>
+    <span class="kw">mv</span> <span class="ot">$i</span> IMG/a_<span class="ot">$i</span>
+<span class="kw">done</span></code></pre></div>
+<p>Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a\_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a\_obrazek.jpg</code>).</p>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
