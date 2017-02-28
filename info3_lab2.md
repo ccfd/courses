@@ -35,17 +35,17 @@ probka3 `main()`{.bash}
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
 
-- `_echo_ {\green tekst`} --- Wpisuje {\green tekst} na ekran.
-- `_cat_ {\green plik`} --- Wypisuje zawartość {\green plik}u na ekran
-- `_grep_ {\green tekst`} --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające {\green tekst}
-- `_grep_ {\green tekst pliki`} --- Wyszukuje {\green tekst} w {\green plik}ach
-- `_cd_ {\green katalog`} --- Wchodzi do {\green katalogu}
-- `_ls_ {\green katalog`} --- Wypisuje zawartość {\green katalog}u na ekran
-- `_cp_ {\green pliki katalog`} --- Kopiuje {\green pliki} do {\green katalog}u
-- `_cp_ {\green plik1 plik2`} --- Kopiuje plik o nazwie {\green plik1} do pliku o nazwie {\green plik2}
-- `_mv_ {\green pliki katalog`} --- Przenosi {\green pliki} do {\green katalog}u
-- `_mv_ {\green plik1 plik2`} --- Zmienia nazwę pliku z {\green plik1} na {\green plik2}
-- `_sed_ {\green 's/tekst1/tekst2/g'`} --- Czyta z klawiatury tekst i go wypisuje zamieniając ,,{\green tekst1}'' na ,,{\green tekst2}''
+- `echo tekst` --- Wypisuje tekst na ekran.
+- `cat plik` --- Wypisuje zawartość {\green plik}u na ekran
+- `grep tekst` --- Czyta z klawiatury tekst i wypisuje tylko linie zawierające {\green tekst}
+- `grep tekst pliki` --- Wyszukuje {\green tekst} w {\green plik}ach
+- `cd katalog` --- Wchodzi do {\green katalogu}
+- `ls katalog` --- Wypisuje zawartość {\green katalog}u na ekran
+- `cp pliki katalog` --- Kopiuje {\green pliki} do {\green katalog}u
+- `cp plik1 plik2` --- Kopiuje plik o nazwie {\green plik1} do pliku o nazwie {\green plik2}
+- `mv pliki katalog` --- Przenosi {\green pliki} do {\green katalog}u
+- `mvplik1 plik2` --- Zmienia nazwę pliku z {\green plik1} na {\green plik2}
+- `sed  's/tekst1/tekst2/g' --- Czyta z klawiatury tekst i go wypisuje zamieniając ,,{\green tekst1}'' na ,,{\green tekst2}''
 
 
 ## Przekierowanie wejścia wyjścia
