@@ -62,12 +62,13 @@ Przykłady:
 - `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
 - `ls katalog > plik`{.bash} --- wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)
 - `cp ls katalog` albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
-- `cp cat plik katalog`{.bash} bądz `cp $(`cat plik) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zawartej w `plik`u.
+- `cp cat plik katalog`{.bash} bądz `cp $(cat plik) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zawartej w pliku.
 
 
 
 ## Pętle i wyrażenia warunkowe
 
+**instrucja warunkowa if**
 
 ```Bash
 if program argumenty
@@ -80,6 +81,8 @@ fi
 
 Jeśli wykonanie `program argumenty`{.bash} się powiedzie (program zwróci $0$), to wykonane zostaną _polecenia1_. W przeciwnym wypadku wykonane zostaną _polecenia2_.
 
+**pętla while **
+
 
 ```Bash
 while program argumenty
@@ -89,6 +92,8 @@ done
 ```
 
 Pętla, która będzie wykonywać _polecenia_ , poki `program argumenty`{.bash} będzie wykonywany z powodzeniem.
+
+**pętla for **
 
 ```Bash
 for i in lista
