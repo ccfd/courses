@@ -92,6 +92,7 @@ $$ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
 gdzie $w_i$ to kolejne wagi kwadratury, $x_i$ to węzły kwadratury, a $n$ oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości $n$ można je znaleźć w internecie (Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się
 je znaleźć choćby pod [adresem](http://holoborodko.com/pavel/numerical-methods/numerical-
 integration/)). Położenia węzłów i wartości wag dla $n = 5$ są podane w poniższej tabeli:
+
 |             $x_i$            |            $w_i$            |
 |:----------------------------:|:---------------------------:|
 | -0.9061798459386639927976269 | 0.2369268850561890875142640 |
