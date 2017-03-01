@@ -22,7 +22,7 @@ Wewnątrz funkcji `main` wpisz:
 ```c++
 graphics( 200, 200);
 line( 0, 0, 200, 200);
-line( 200, 200, 0, 0);
+line( 100, 100, 100, 0);
 wait();
 ```
 **_Uwaga:_ Zawsze pamiętaj o średnikach!**

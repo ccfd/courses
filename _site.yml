@@ -13,6 +13,8 @@ navbar:
   left:
     - text: "Info I"
       menu:
+      - text: "Projekt z biblioteką graficzną"
+        href: https://github.com/ccfd/courses_graphics/archive/master.zip
       - text: "Instrukcja I"
         href: info1_lab01.html
       - text: "Instrukcja II"
@@ -59,6 +61,39 @@ navbar:
         href: metnum_lab6.html
       - text: "Instrukcja VII"
         href: metnum_lab7.html
+    - text: "C++"
+      menu:
+      - text: "Regulamin przedmiotu"
+        href: cpp_rules.html
+      - text: "Wyniki 2016"
+        href: cpp_results_2016.html
+      - text: "Instrukcja I"
+        href: cpp_inst01.html
+      - text: "Instrukcja II"
+        href: cpp_inst02.html
+      - text: "Instrukcja III"
+        href: cpp_inst03.html
+      - text: "Instrukcja IV"
+        href: cpp_inst04.html
+      - text: "Instrukcja V"
+        href: cpp_inst05.html
+      - text: "Instrukcja VI"
+        href: cpp_inst06.html
+      - text: "Instrukcja Ib"
+        href: cpp_inst01b.html
+      - text: "Instrukcja IIb"
+        href: cpp_inst02b.html
+      - text: "Instrukcja IIIb"
+        href: cpp_inst03b.html
+      - text: "Instrukcja IVb"
+        href: cpp_inst04b.html
+      - text: "Instrukcja Vb"
+        href: cpp_inst05b.html
+      - text: "Instrukcja VIb"
+        href: cpp_inst06b.html
+      - text: "Lista projektów"
+        href: cpp_projects.html
+ 
     - text: "Python"
       menu:
       - text: "Instrukcja I"
@@ -69,6 +104,8 @@ navbar:
         href: python_inst03.html
       - text: "Instrukcja IV"
         href: python_inst04.html
+      - text: "Instrukcja V"
+        href: python_inst05.html
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:

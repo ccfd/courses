@@ -61,8 +61,8 @@ Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą do od
 
 Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne statystyki:
 
-1. Zaalokuj tablicę liczb rzeczywistych `a` o rozmiarze `n = 10000 * (rank + 1)`
-2. Wypełnij ją liczbami losowymi z przedziału $[0,1]$
+1. [Zaalokuj](info1_lab07.html) tablicę liczb rzeczywistych `a` o rozmiarze `n = 10000 * (rank + 1)`
+2. Wypełnij ją [liczbami losowymi](info1_lab04.html) z przedziału $[0,1]$
 3. Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę `a[0]`
 4. Oblicz $S_1 = \sum_i a_i$
 5. Wyświetl średnią: $\mu = \frac{1}{n} S_1$

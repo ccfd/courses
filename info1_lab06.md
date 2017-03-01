@@ -14,21 +14,28 @@ W języku C komunikacja z plikami prowadzona jest niemalże identycznie, jak czy
 FILE *f; // deklarujemy zmienną typu FILE o nazwie f
          // tak naprawde to wskaznik (o tym jednak w pozniej)
 
-f = fopen("plik.txt", "w"); // otwieramy plik o nazwie plik.txt
+errno_t err_f = fopen_s( &f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
                             // z zamiarem zapisu ("w") i przypi-
                             // sujemy go do zmiennej o nazwie f
+                            // errno_t określa wynik otwarcia
+                            // kod err_f = 0 oznacza, że operacja przebiegła pomyślnie
 
 fprintf(f, "Zapisujemy wlasnie ten tekst do pliku\n");
 
 fclose(f); // zamykamy plik
 ```
-Warto zwrócić uwagę na trzy kwestie. Po pierwsze, w funkcji `fprintf` (to samo dotyczy funkcji `fscanf` jako pierwszy argument trzeba podać *strumień* - de facto nazwę zmiennej typu `FILE`, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy *f*, bo tak właśnie nazwaliśmy naszą zmienną. Druga uwaga: Powyższy zapis można nieco skompresować (połączyć deklarację zmiennej typu FILE z otwarciem pliku). Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:
+Warto zwrócić uwagę na dwie kwestie. Po pierwsze, w funkcji `fprintf` (to samo dotyczy funkcji `fscanf` jako pierwszy argument trzeba podać *strumień* - de facto nazwę zmiennej typu `FILE`, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy *f*, bo tak właśnie nazwaliśmy naszą zmienną. Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:
 ```c++
-FILE *f = fopen("plik.txt", "w")
 
-if(f == NULL)
+FILE *f;
+errno_t err_f = fopen_s( &f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
+                            // z zamiarem zapisu ("w") i przypi-
+                            // sujemy go do zmiennej o nazwie f
+                            // errno_t określa wynik otwarcia
+                            // kod err_f = 0 oznacza, że operacja przebiegła pomyślnie
+if(err_f != 0)
 {
-   printf("Blad otwarcia pliku\n");
+   printf("Blad otwarcia pliku %d \n", err_f); // możemy przeczytać kod błędnu i sprawdzic w google co jest jego przyczyna
    exit(-1); // zakonczenie programu
 }
 
@@ -40,23 +47,24 @@ fclose(f);
 ```
 Pliki można otworzyć nie tylko w trybie zapisu *(ang. write)* `w` (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku *(ang. append)* `a` lub czytania z pliku *(ang. read)* `r`. Można również wybrać, czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym czy binarnym. Służą do tego odpowiednio sekwencje `t` i `b`. Przykładowe instrukcje zaprezentowano poniżej. Zauważmy też, że można otworzyć w tym samym czasie kilka plików.
 ```c++
-void main()
+int main()
 {
    int a = 3;
 
-   FILE *f = fopen("plik1.txt", "wt"); // Zapis w trybie tekstowym
-   FILE *g = fopen("plik2.dat", "wb"); // Zapis w trybie binarnym
-   FILE *InnyPlik = fopen("Dane.txt", "r"); // Czytanie z pliku
+   FILE *f, *g, *InnyPlik;
+   errno_t err_f = fopen_s("plik1.txt", "wt"); // Zapis w trybie tekstowym
+   errno_t err_h = fopen_s("plik2.dat", "wb"); // Zapis w trybie binarnym
+   errno_t err_InnyPlik = fopen_s("Dane.txt", "r"); // Czytanie z pliku
 
-   if((f == NULL) || (g == NULL) || (InnyPlik == NULL))
-   {
-      printf("Nie udalo sie otwarcie choc jednego z plikow\n");
-      exit(-1);
-   }
+         if (err_f != 0 || errf_g != 0 || errf_InnyPlik != 0)
+         {
+                  printf("Nie udalo sie otwarcie choc jednego z plikow\n");
+                  exit(-1);
+         }
 
    fprintf(f, "Zapisujemy wartosc a do plik1.txt, a = %d\n", a);
    fprintf(g, "Binarnie zapisujemy ten tekst do plik2.dat\n");
-   fscanf(InnyPlik, "%d", &a); // Wczytujemy z pliku Dane.txt
+   fscanf_s(InnyPlik, "%d", &a); // Wczytujemy z pliku Dane.txt
 // liczbe calkowita i przypisujemy jej wartosc do zmiennej a
 
    // Tu mozemy wykonac jeszcze inne operacje na otwartych plikach
@@ -64,15 +72,27 @@ void main()
    fclose(f);
    fclose(g);
    fclose(InnyPlik);
+   
+   exit(0);
 }
 ```
 W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji `fscanf`, która działa analogicznie do dobrze już znanej funkcji `scanf`.
 
+### Bufor
+Zapisywanie danych do pliku jest "względnie" czasochłonną operacją. Jest to spowodowane róznicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD. Aby nie zapisywać co chwilę drobnych ilości danych na dysk system operacyjny zbiera je w buforze, a gdy uzna że jest on już odpowiednio pełny to czyści go przepisując dane na dysk. 
+Funkcja `fclose(plik)` zapisuje dane z bufora do pliku, a następnie zamykana plik.
+Chcąc wywołać jedynie opróżnienie bufora należy użyć funkcji `fflush(plik)`.
+
+Process ten ma istotne konsekwencje:
+
+         - jeżeli nastąpi "crash" programu przed wykonaniem komendy `fclose(plik)` może się zdarzyć, że żadne dane nie zostaną zapisane.
+         - wyjmując pendrive z komputera bez korzystania z opcji "bezpieczne usuwanie sprzętu" narażamy się na błędnie zapisanie pliku. Część danych może być jeszcze w buferze, mimo że okienko kopiowania zostało już formalnie zamknięte.
+
 ## Uwaga
-Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece `stdlib.h`. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: `\#include~<stdlib.h>`
+Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece `cstdio`. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: `#include <cstdio>`
 
 ## Ćwiczenia
-W praktyce inżynierskiej pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik `przebieg.txt` zawiera fragment przebiegu czasowego wartości trzech składowych prędkości *(u, v, w)* pochodzących z symulacji przepływu powietrza przez dużą turbinę wiatrową. Chwilowe wartości tych składowych zostały zebrane z punktu znajdującego się tuż za turbiną. Napisz program, który:
+W praktyce inżynierskiej pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik `przebieg.txt` ([do ściągnięcia tu](data/przebieg.txt)) zawiera fragment przebiegu czasowego wartości trzech składowych prędkości *(u, v, w)* pochodzących z symulacji przepływu powietrza przez dużą turbinę wiatrową. Chwilowe wartości tych składowych zostały zebrane z punktu znajdującego się tuż za turbiną. Napisz program, który:
 - Otworzy plik.
 - Wczyta dane z pliku do trzech tablic `u`, `v`, `w` zadeklarowanych statycznie (każda o rozmiarze 2000 - za tydzień będzie o lepszej metodzie deklaracji dużych tablic). Czytanie zrealizuj z użyciem pętli `for`. Obejrzyj plik, aby przyjrzeć się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości *(u, v, w)*; kolejne wiersze odpowiadają kolejnym krokom czasowym).
 - Po wczytaniu wszystkich wartości do tablic obliczy średnią każdej ze składowych. Średnia wyrażona jest wzorem:

@@ -68,7 +68,7 @@ W funkcji `main` napisz fragment kodu, w którym zadeklarujesz i zainicjalizujes
 Czas jednak na dynamiczną alokację. Dwuwymiarową tablicę o rozmiarze M x N zaalokujemy w następujący sposób: stworzymy tablicę jednowymiarową o rozmiarze M (umówmy się, że ona będzie wskazywać na początek każdego z wierszy), po czym każdemu z elementów tej tablicy zaalokujemy blok o długości N (to będą jednowymiarowe tablice do przechowywania kolejnych wierszy). De facto będziemy mieli w pamięci M bloków, każdy długości N. Spójrzmy na kod.
 ```c++
 double **A;
-*A = (double**)malloc(M*sizeof(double*));
+A = (double**)malloc(M*sizeof(double*));
 ```
 Zauważmy, że tydzień temu alokowaliśmy jednowymiarową tablicę jako wskaźnik. Tym razem będziemy mieć tablicę dwuwymiarową, więc używamy podwójnego wskaźnika. Dlatego w instrukcji powyżej blok pamięci zwracany przez funkcję `malloc` rzutujemy na podwójny wskaźnik `double**`. Musimy też obliczyć, ile miejsca potrzebujemy. Przechowywać będziemy wskaźniki (do odpowiednich tablic jednowymiarowych przechowujących wiersze), dlatego jako argument funkcji `sizeof` podajemy `double*`. Teraz alokujemy tablice jednowymiarowe do przechowywania wierszy.
 ```c++
@@ -91,7 +91,7 @@ Zbierzmy wszystkie instrukcje w jednym miejscu. Chcemy zaalokować dwuwymiarową
 ```c++
 // Alokacja pamieci
 int **A;
-*A = (int**)malloc(M*sizeof(int*);
+A = (int**)malloc(M*sizeof(int*));
 for(int i = 0; i<M; ++i)
    A[i] = (int*)malloc(N*sizeof(int));
 
@@ -111,8 +111,70 @@ free(A);
 - W funkcji main zaalokuj w sposób dynamiczny miejsce dla macierzy 3x3 oraz dwóch wektorów trzyelementowych. Wypełnij macierz i jeden z wektorów dowolnymi wartościami, po czym napisz w funkcji `main` kod, który dokona przemnożenia danej macierzy przez dany wektor i wynik mnożenia wpisze do drugiego z wektorów. Mnożenie macierzy przez wektor określone jest wzorem $$w_i = \sum\limits_{j=0}^{n-1}{a_{ij}v_j}$$.
 - Zamknij powyższe operacje w funkcji o nagłówku ```c++void MatVecMultiply(double **A, double *v1, double *v2, int n)``` i dokonaj wywołania z funkcji `main`.
 - Zmodyfikuj powyższy program tak, żeby rozmiar *n* był wczytywany z klawiatury, elementy tablicy były generowane zgodnie ze wzorem $a_{ij} = \frac{i+1}{j+1}, (i,j = 0,...,n-1)$, zaś elementy wektora wg wzoru $v_i = i+1, (i = 0,...,n-1)$. Obliczaj iloczyn takiej macierzy przez ten wektor, korzystając ze swojej funkcji `MatVecMultiply`. Wynik wyświetlaj na ekranie oraz sprawdź, czy otrzymujesz poprawny wynik.^[Dla takiej macierzy i takiego wektora bardzo łatwo jest wygenerować analityczny wynik. Wypisz sobie małą macierz wg zadanego wzoru i odpowiadający wektor i na pewno szybko zauważysz prawidłowość. Będziesz wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.]
-- Napisz funkcję ```c++MatMatMultiply(double **A, double **B, double **C, int mA,
-                                     int nA, int mB, int nB)```służącą do mnożenia dwóch macierzy prostokątnych ($\bf A$ o wymarze $m_A \times n_A$ i $\bf B$ o wymiarze $m_B \times n_B$) i wpisującą wynik do macierzy $\bf C$ (zadbaj w funkcji `main` o to, aby pamięć zaalokowana dla macierzy $\bf C$ była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). **Uwaga:** Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. ^[Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.]
+- Napisz funkcję ```MatMatMultiply(double **A, double **B, double **C, int mA, int nA, int mB, int nB)``` służącą do mnożenia dwóch macierzy prostokątnych ($\bf A$ o wymarze $m_A \times n_A$ i $\bf B$ o wymiarze $m_B \times n_B$) i wpisującą wynik do macierzy $\bf C$ (zadbaj w funkcji `main` o to, aby pamięć zaalokowana dla macierzy $\bf C$ była odpowiedniej wielkości - zgodnej z regułami mnożenia macierzy). **Uwaga:** Pamiętaj, aby koniecznie zwolnić wszelką dynamicznie alokowaną pamięć. ^[Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.]
+
+# Alokacja wewnątrz funkcji
+Dlaczego poniższy kod nie działa poprawnie?
+
+```c++
+
+void AllocateAndFillArrayBAD(int **A, int M, int N)
+{
+	A = (int**)malloc(M * sizeof(int*));
+	for (int i = 0; i<M; ++i)
+		A[i] = (int*)malloc(N * sizeof(int));
+
+
+	// Tu mozemy wykonywac dowolne operacje na tablicy
+	int count = 0;
+	for (int i = 0; i < M; ++i)
+		for (int j = 0; j < N; ++j)
+			A[i][j] = ++count; // OR *(*(A+i)+j) = ++count
+
+	//drukuj
+	for (int i = 0; i < M; ++i)
+	{
+		printf_s("\n");
+		for (int j = 0; j < N; ++j)
+		{
+			printf_s(" %d ", A[i][j]);
+		}
+	}
+
+	printf_s("\n");
+}
+
+int main()
+{
+   int M = 4;
+	int N = 3;
+	int **A = nullptr;
+   
+   AllocateAndFillArrayBAD(A, M, N);
+   
+   //gdzie są dane?
+	for (int i = 0; i < M; ++i)
+	{
+		printf_s("\n");
+		for (int j = 0; j < N; ++j)
+		{
+			printf_s(" %d ", A[i][j]);
+		}
+	}
+	
+	
+	// Zwolnienie pamieci
+	for (int i = 0; i<M; ++i)
+		free(A[i]);
+
+	free(A);
+}
+```
+
+Popraw deklarację i ciało funkcji `AllocateAndFillArrayBAD`. 
+ - Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:  
+   `void AllocateAndFillArray(int ***A, int M, int N)`
+
 
 # Dla ambitnych \*
 Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie pamięci dla tablicy trójwymiarowej. Na przykład, gdybyś chciał napisać grę w trójwymiarowe kółko i krzyżyk. Skonsultuj z prowadzącym kod dla takiego przypadku.

@@ -16,8 +16,9 @@ void main()
 }
 ```
 Instrukcja `printf` służy do wypisywania tekstu na ekran. Jako argument przyjmuje zmienną typu tekstowego. Do formatowania tekstu służą *sekwencje formatujące*, które pozwalają wprowadzić znak nowej linii, tabulacji itp. Umieszczona wewnątrz tekstu sekwencja znaków:
-- \n --- wprowadza znak nowej linii,
-- \t --- wprowadzan znak tabulacji.
+
+- `"\n"` --- wprowadza znak nowej linii,
+- `"\t"` --- wprowadzan znak tabulacji.
 
 
 ## Ćwiczenia
