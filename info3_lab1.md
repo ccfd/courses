@@ -3,9 +3,6 @@ author: "M. Dzikowski, rev. K. Marchlewski"
 course: Informatyka III
 material: Instrukcja 1
 number: 1
-output:
-  html_document: default
-  pdf_document: default
 ---
 
 # Podstawy pracy z systemem UNIX
