@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_lab1.html">Instrukcja I</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab2.html">Instrukcja II,III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4-5.html">Instrukcja IV,V</a>
+    </li>
+    <li>
+      <a href="info3_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_results_2016.html">Wyniki 2016</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info2_lab01.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="interpolacja" class="section level1">
+<h1>Interpolacja</h1>
+<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków: - <a href="http://ccfd.github.io/courses/code/info2/inter.h">Plik nagłówkowy inter.h</a> - <a href="http://ccfd.github.io/courses/code/info2/inter.cpp">Plik źródłowy inter.cpp</a></p>
+<div id="interpolacja-w-praktyce-inzynierskiej" class="section level2">
+<h2>Interpolacja w praktyce inżynierskiej</h2>
+<p>Dziś będziemy się zajmować zagadnieniem interpolacji. Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości rurą wypływa woda aż do jego opróżnienia. Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika. W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, by umieć przewidzieć ten czas dla dowolnej wysokości umieszczenia zbiornika, która zawiera się między skrajnymi, a więc np. na wysokości wynoszącej 3.27 m. Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność. Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.</p>
+<div id="meritum" class="section level4">
+<h4>Meritum</h4>
+<p>Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie (!!!) punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi. Tzn., że liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).</p>
+</div>
+</div>
+<div id="interpolacja-wielomianowa" class="section level2">
+<h2>Interpolacja wielomianowa</h2>
+<p>W tym momencie przejdziemy do zbadania działania interpolacji wielomianowej Lagrange’a. Funkcja interpolująca to wielomian.</p>
+<div id="cwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<ol style="list-style-type: decimal">
+<li>Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych <span class="math inline">\([x_i, exp(-x_i^2)]\)</span>, gdzie <span class="math inline">\(x_i = a + i \cdot h\)</span> <span class="math inline">\(h = \frac{b-a}{n-1}\)</span> <span class="math inline">\(i=0,...,n-1\)</span> zaś <span class="math inline">\(a=-2, b=2\)</span>.</li>
+</ol>
+<p>Może być Ci przydatne przypomnienie użycia funkcji <code>malloc</code> do alokacji pamięci:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> *x;
+x = (<span class="dt">double</span>*)malloc(n*<span class="kw">sizeof</span>(<span class="dt">double</span>));
+free(x);</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Obliczy wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. dla <span class="math inline">\(t_i=a+\frac{i\cdot h}{4}, i=0,...,4n-4\)</span>. Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
+{
+<span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};
+<span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};
+<span class="dt">double</span> f, t = <span class="fl">1.</span><span class="dv">5</span>
+<span class="co">// Wyznacz wartosc paraboli dla t = 1.5</span>
+f = lagrange(x, y, <span class="dv">3</span>, t);
+}</code></pre></div></li>
+<li><p>Wydrukuj te wyniki (dla każdego <span class="math inline">\(t\)</span>) na ekran.</p></li>
+<li><p>Wyświetl je graficznie, korzystając z nowej funkcji zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
+{
+graphics(<span class="dv">600</span>, <span class="dv">400</span>);scale(<span class="dv">0</span>, <span class="dv">7</span>, <span class="fl">-1.</span><span class="dv">2</span>, <span class="fl">1.</span><span class="dv">2</span>); <span class="co">// okresl xmin, xmax, ymin, ymax</span>
+<span class="dt">double</span> x = <span class="dv">0</span>;
+<span class="kw">while</span>(x&lt;<span class="fl">6.</span><span class="dv">28</span>)
+{
+    point(x, sin(x));
+    x += <span class="fl">0.</span><span class="bn">01</span>;
+}
+}</code></pre></div></li>
+<li><p>Zapisz wyniki do pliku.</p></li>
+<li><p>Obejrzyj wyniki na wykresie dla różnych wartości parametru n.</p></li>
+<li><p>Dla wybranego n stwórz w Excelu wykres błędu interpolacji.</p></li>
+<li><p>Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji |x|. Dlaczego tak wyglądają?</p></li>
+</ol>
+<div id="uwaga" class="section level4">
+<h4>Uwaga</h4>
+<p>Parametry funkcji <code>lagrange(double *x, double *y, int n, double xx)</code> to: - <code>x,y</code> - wskaźniki do <span class="math inline">\(n\)</span>-elementowych tablic zawierających współrzędne punktów interpolowanych, - <code>n</code> - rozmiar wektora (liczbę jego elementów), - <code>xx</code> - bieżącą wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.</p>
+</div>
+</div>
+<div id="dla-ambitnych" class="section level3">
+<h3>Dla ambitnych</h3>
+<p>Sprawdźmy, czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających. <img src="figures/info2/inst1/chebyshev_nodes.png" title="Ilustracja generacji węzłów Czebyszewa" alt="" /></p>
+<div id="wezy-czebyszewa" class="section level4">
+<h4>Węzły Czebyszewa</h4>
+<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz je rozłóżmy w taki sposób, aby były gęściej rozłożone przy brzegach ob- szaru i rzadziej w środku. Można tego dokonać nastepująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [−1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n − 1\)</span> fragmentów. Teraz zrzutujmy punkty podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu na spokojnie ten wzór - to dość proste) <span class="math inline">\(x\)</span>-owe dane wzorem: <span class="math display">\[
+x_i = -cos(\frac{i \cdot \pi}{n-1}),  i=0,...,n-1
+\]</span> Dla ogólnego przypadku przedziału x = [a, b] wzór wyglądałby tak: <span class="math display">\[
+x_i = - \frac{b-a}{2} cos(\frac{i \cdot \pi}{n-1}) + \frac{a+b}{2},  i=0,...,n-1
+\]</span></p>
+</div>
+<div id="cwiczenie" class="section level4">
+<h4>Ćwiczenie</h4>
+<p>Zmodyfikuj swój program tak, aby początkowy zestaw punktów generował dla współrzędnych zdefiniowanych w powyższy sposób. Wystarczy zmienić jedną linię kodu. Sprawdź działanie interpolacji funkcji <span class="math inline">\(|x|\)</span> z użyciem węzłów Czebyszewa. Czy wyniki są inne?</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
