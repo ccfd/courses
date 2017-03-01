@@ -1,76 +1,91 @@
 ---
-number: 1
+author: "M. Dzikowski, rev. K. Marchlewski"
 course: Informatyka III
 material: Instrukcja 1
-author: M. Dzikowski
+number: 1
+output:
+  html_document: default
+  pdf_document: default
 ---
-
 
 # Podstawy pracy z systemem UNIX
 
-Większość współczesnych komputerów (i podobnych urządzeń, np tablety czy telefony) wyposażonych jest w złożone oprogramowanie które składa się na system operacyjny. Z całą pewnością korzystałeś z systemów firmy Microsoft czyli rodziny Windows. Mogłeś też zetknąć się z Android'em  (czyli odmianą UNIXa) od Google czy iOS od Apple. W większości przypadków system posiada tzw. interfejs graficzny czyli GUI. Większość z nich jest zasadniczo podobna i np. uruchomienie przeglądarki internetowej czy przeglądanie dysku nie jest dla nikogo wyzwaniem.
+Większość współczesnych komputerów (i podobnych urządzeń np. tablety czy telefony) wyposażonych jest w złożone oprogramowanie, które składa się na system operacyjny. Z całą pewnością korzystałeś z systemów operacyjnych firmy Microsoft -- rodziny Windows. Mogłeś też zetknąć się z systemem Android  (czyli odmianą Uniksa) od Google czy iOS od Apple. W większości przypadków system posiada tzw. interfejs graficzny czyli GUI (Graphical User Interface). Systemy te są zasadniczo podobne i np. uruchomienie przeglądarki internetowej czy przeglądanie dysku nie jest dla nikogo wyzwaniem.
 
-Jednak nie każdy komputer posiada GUI, dotyczy to głównie dużych komputerów używanych w poważnych obliczeniach numerycznych (np. wyznaczanie właściwości aerodynamicznych samochodu z użyciem Fluent'a). W takim przypadku nie ma możliwości skorzystania z klawiatury i myszki czy podejrzenia czegoś na ekranie, ponieważ komputer znajduje się w serwerowni, czasami w innym kraju. Aby korzystać z takiego zdalnego komputera musimy połączyć się z nim przy pomocy specjalnego programu, następnie wydajemy mu polecenia w trybie tekstowym.
+Jednak nie każdy komputer posiada GUI, dotyczy to np. rozbudowanych komputerów wykorzystywanych w obliczeniach numerycznych (np. wyznaczanie właściwości aerodynamicznych samochodu z użyciem programu Fluent). W takim przypadku nie ma możliwości skorzystania z myszki i obejrzenia czegoś na ekranie, ponieważ komputer znajduje się w serwerowni, czasami w innym kraju. Aby korzystać z takiego zdalnego komputera musimy połączyć się z nim za pomocą specjalnego programu, który pozwoli nam na wydawanie mu polecenia w trybie tekstowym.
 
-Na potrzeby tego laboratorium każdy otrzymał kartkę z loginem i hasłem. Są one ważne do końca semestru i można przy ich pomocy zalogować się na nasz szkolny serwer również spoza kampusu.
+Na potrzeby tego laboratorium każdy otrzymał kartkę z loginem i hasłem. Są one ważne do końca semestru i można za ich pomocą zalogować się na nasz szkolny serwer `info3.meil.pw.edu.pl` również spoza kampusu.
 
-Gdy korzystasz z Windows'ów najwygodniej do połączenia wykorzystać darmowy program PuTTy. Po uruchomieniu pokaże się okno jak na obrazku obok. Należy podać:
-- `Hostname `-- nazwa hosta, czyli `info3.meil.pw.edu.pl`
-- `Port`-- Numer portu z których chcemy się połączyć, czyli 22, oraz protokół `SSH` z listy poniżej
+Jeśli korzystasz z oprogramowania Windows, do połączenia najwygodniej wykorzystać darmowy program PuTTy. Po uruchomieniu należy podać dane:
 
+* `Host Name `-- nazwa hosta (`info3.meil.pw.edu.pl`),
+* `Port`-- Numer portu, z których chcemy się połączyć (`22`),
+* `Connection Type` -- typ połączenia (`SSH`).
 
-
-Następnie pojawi się czarne okno z zapytaniem o login i hasło. Po podaniu i poprawny zalogowaniu zobaczysz informacje o dacie, licencji, wersji systemu itp. kończące się:
+Po kliknięciu `Open` pojawi się czarne okno z zapytaniem o login a następnie o hasło. Uwaga: znaki wpisywanego hasła nie są w żaden sposób zaznaczone (np. gwiazdkami) i jest ono niewidoczne. Po zalogowaniu się zobaczysz informacje o dacie, licencji, wersji systemu, itd. kończące się:
 
 ```
 Last login: Thu Feb 21 06:23:38 2013 from xx.xx.xx.xx
-stud-00@info3:~$
+stud01@eto:~$
 ```
+
+W przypadku logowania się z systemu Linuks korzystamy z polecenia `ssh`:
+```
+ssh stud01@info3.meil.pw.edu.pl
+```
+
+Port `22` jest domyślnym portem używanym przez polecenie, nie trzeba go podawać explicite.
 
 Zapis:
 ```
-stud-00@info3:~$
+stud01@eto:~$
 ```
-oznacza, że jako użytkownik `stud-00` jesteśmy zalogowani na komputer `info3`. Między znakami : i  \$ znajduje się aktualny katalog. W tym przypadku \~, czyli katalog domowy, inaczej `/home/students/stud-00 `
 
+to tzw. znak zachęty i oznacza, że jako użytkownik `stud01` jesteśmy zalogowani na komputer `eto`. Między znakami `:` i `$` znajduje się katalog, w którym się aktualnie znajdujemy. W tym przypadku jesteśmy katalogu domowym. Znak `~` to skrót, którego rozwinięcie to `/home/students/stud01`.
 
 # Ćwiczenia
 
 ## Pierwsze starcie
 
-Wpisz do konsoli `date` i wciśnij enter. Komputer wyświetli aktualną (jego zdaniem) datę. następnie ponownie wyświetli linijką kończącą się na \$, oznaczającą że czeka na polecenia. Używając strzałki do góry możesz przeglądać historię poleceń. Jeśli wpiszesz `dat` i naciśniesz 2x klawisz tab, wyświetlona Ci zostanie lista poleceń zaczynających się na `dat` lub jeśli jest tylko jedno, nazwa zostanie dokończona. Kombinacja `ctrl+shift+r` pozwala wyszukiwać ostatnio wpisane komendy zaczynające się od danego ciągu znaków (reverse-i-search).
-Kolejnymi przydatnymi skrótami są `ctr+shift+c` oraz `ctrl+shift+v` służą one do kopiowania zaznaczonego tekstu pomiędzy konsolą, a innym otwartym oknem (np. przeglądarką internetową). Pamiętaj o tych trikach, bo znacznie ułatwiają pracę w trybie tekstowym.
+Wpisz w konsoli polecenie `date` i wciśnij enter. Komputer wyświetli aktualną (jego zdaniem) datę i godzinę. Poniżej ponownie wyświetli się linijka kończącą się na `$`, oznaczającą, że komputer czeka na nowe polecenia. Używając strzałek `góra` i `dół` możesz przeglądać historię poleceń. Kliknięcie klawiszy `Ctrl + R` uruchomi opcję wyszukiwania poleceń w historii. Klasyczny znak zachęty zostanie zastąpiony przez
+```bash
+(reverse-i-search)`':
+```
 
+Wyszukujemy przez wpisywanie kolejnych znaków z szukanego polecenia, a pod dwukropku system pokarze podpowiedź. Kolejne kliknięcie `Ctrl + R` pokarze nastęþną sugestię. Innym ułatwieniem jest kończenie nazw. Jeśli wpiszesz `dat` i naciśniesz 2x klawisz `tab`, wyświetlona zostanie lista poleceń zaczynających się na `dat`. Jeśli jest tylko jedno takie polecenie, nazwa zostanie dokończona. Pamiętaj o tych trikach -- znacznie ułatwiają pracę w trybie tekstowym.
 
 ## Poruszanie się po katalogach
 
-Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw. katalogu bieżącym. Jeśli uruchomimy jakiś program, np. proste programy czytające z pliku z Informatyki I, będą one czytały z plików w tym katalogu. Każdemu programowi którego będziesz używać a który potrzebuje nazwy pliku lub katalogu (np. do kopiowania) może ją przyjąć w kilku postaciach. Po pierwsze ścieżka  bezwzględna, zaczynająca się od znaku / np:
+Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw. katalogu bieżącym. Jeśli uruchomimy jakiś program, np. prosty program czytający dane z pliku z Informatyki I, będzie on odczytywał pliki znajdujące się w tym katalogu. Każdy program, którego będziesz używać, a który potrzebuje nazwy pliku lub katalogu (np. do kopiowania), może ją otrzymać w dwóch postaciach. Pierwsza to tzw. ścieżka bezwzględna, zaczynająca się od znaku `/` np:
 ```
-/home/students/stud-00
+/home/students/stud01
 /usr/bin/bash
 /etc
 ```
 
-Sprawdź, w jakim katalogu się znajdujesz, wpisz `pwd` i wciśnij enter.
+Sprawdź, w jakim katalogu się znajdujesz przez wpisanie polecenia `pwd`.
 
 Aby zmienić katalog, wykorzystuje się polecenie `cd`, np.
 ```
-stud-00@info3:~$ cd /tmp
-stud-00@info3:/tmp$ pwd
+stud01@eto:~$ cd /tmp
+stud01@eto:/tmp$ pwd
 /tmp
+stud01@eto:~$
 ```
 
-Teraz przejdź do katalogu `/home` i sprawdź czy się udało, z użyciem polecenia `pwd`
+Teraz przejdź do katalogu `/home` i sprawdź czy się udało, z użyciem polecenia `pwd`. Aby powrócić do katalogu domowego wpisz
+```
+stud01@eto:~$ cd ~
+```
+Znak $\sim$  zawsze oznacza katalog domowy użytkownika.
 
-Dodatkowo, oprócz ścieżki bezwzględnej, można podać nazwę katalogu który nas interesuje na kilka innych sposobów.
+Dodatkowo, oprócz ścieżki bezwzględnej, można podać ścieżkę względną:
 
-- $\sim$  zawsze oznacza katalog domowy
-- `../` oznacza katalog nadrzędny
-- `/` oznacza katalog główny, początek każdej ścieżki bezwzględnej
-- `.` i `./` oznacza katalog bieżący, ten zwracany przez `pwd`
+* `../` oznacza katalog nadrzędny,
+* `/` oznacza katalog główny (początek każdej ścieżki bezwzględnej),
+* `.` i `./` oznaczają katalog bieżący (ten zwracany przez polecenie `pwd`).
 
-Przejdź teraz z powrotem do katalogu domowego i sprawdź czy się udało. Następnie 2 razy przejdź katalog wyżej i sprawdź, czy katalog bieżący to `/home`
-
+Poeksperymentuj teraz z poruszaniem się po katalogach. Jeśli wpisywanie ścieżek Cię znudzi wypróbuj program `mc`. Pozwala on m. in. na graficzne poruszanie się po drzewie katalogów. Z programu wychodzimy przez kliknięcie klawisza `F10` lub wpisanie `exit`.
 
 ## Tworzenie i usuwanie katalogów
 
@@ -79,48 +94,44 @@ Do tworzenia katalogów służy polecenie `mkdir` np.
 $ mkdir nazwa_katalogu
 ```
 
-a do sprawdzenia zawartości aktualnego katalogu polecenie `ls`. Stwórz teraz katalogi A,B,C i D, każdy wewnątrz poprzedniego. Będziesz musiał stworzyć katalog A, przejść do niego, stworzyć B itd.
-Do usuwanie katalogów służy polecenie `rmdir`. Usuń teraz stworzone katalogi.
+a do sprawdzenia zawartości aktualnego katalogu polecenie `ls`. Stwórz teraz katalogi A, B, C i D, każdy wewnątrz poprzedniego. Aby to zrobić będziesz musiał stworzyć katalog A, przejść do niego, następnie stworzyć B, itd. Do usuwania katalogów służy polecenie `rmdir`. Usuń teraz stworzone katalogi.
 
-UWAGA: nie można w ten sposób usunąć katalogu posiadającego zawartość
-
+Za pomocą `rmdir` nie można usunąć katalogu posiadającego zawartość. W tym celu należy wykorzystać polecenie `rm -r`. Znaki `-r` po nazwie programu `rm` są argumentem programu i oznaczają, że katalog ma być usuwany rekurencyjne. Podobne argumenty posiada większość poleceń, np. `ls -l` pokazuje zawartość danego katalogu w postaci listy zawierającej różne informacje o pliku.
 
 # Podstawowe operacja na plikach i katalogach
-Komenda `echo ` wypisuje na ekran ciąg znaków który podaje się jej jako argument. Sprawdź.
-Aby stworzyć pierwszy plik wpisz (o znaczeniu `>>` będzie na kolejnych zajęciach)
+Komenda `echo ` wypisuje na ekran ciąg znaków, który podany jest jako jej argument. Można to wykorzystać do stworzenia pierwszego pliku (o znaczeniu symbolu `>>` będzie na kolejnych zajęciach)
 ```bash
 $ echo pierwszy plik >> plik.txt
 ```
 
-Aby wyświetlić zawartość pliku na ekranie używamy `cat`
-
+Aby wyświetlić zawartość pliku na ekranie używamy polecenia `cat`
 ```bash
 $ cat plik.txt
 ```
 
-
 ## Kopiowanie i przenoszenie
 
-Do kopiowanie służy komenda `cp CO GDZIE`. Stwórz teraz katalog i skopiuj do niego twój plik. Powinno to wyglądać tak:
+Do kopiowania służy komenda `cp CO GDZIE`. Stwórz teraz katalog i skopiuj do niego Twój plik. Powinno to wyglądać tak:
 ```bash
 $ cp plik.txt katalog
 ```
 
-Aby przenieść/zmienić nazwę pliku lub katalogu używamy `mv CO GDZIE`. Przejdź do nowego katalogu i zmień nazwę pliku. Następnie usuń plik poleceniem `rm`
+Aby przenieść/zmienić nazwę pliku lub katalogu używamy polecenia `mv CO GDZIE`. Przejdź do nowego katalogu i zmień nazwę pliku. Następnie usuń plik poleceniem `rm`.
 
+Nie zawsze trzeba podawać pełną nazwę pliku/katalogu, który chcemy wykorzystać jako argument programu. Kliknięcie klawisza `tab` dokończy wpisywaną nazwę. Jeśli podpowiedź nie jest jednoznaczna, po dwukrotnym naciśnięciu klawisza `tab` w konsoli zostaną wyświetlone nazwy wszystkich plików/katalogów zaczynające się od wpisanych znaków.
 
 # Pomoc
-Znakomita większość komend trybu tekstowego posiada porządną dokumentację dostępną od ręki.
+
+Znakomita większość komend trybu tekstowego posiada porządną dokumentację dostępną od ręki, np.:
 ```bash
 $ man rm
 $ rm --help
 ```
-W przypadku komendy `man` dostajemy kompetentniejszą dokumentację. Przewija się strzałkami, aby zakończyć wciśnij Q.
-Sprawdź instrukcje dla poleceń `who`, `who am i`, `finger` i  `date`. Sprawdź jak działają.
-
+W przypadku komendy `man` dostajemy obszerniejszą dokumentację. Tekst przewija się za pomocą strzałek. Aby zakończyć przeglądanie należy wcisnąć `Q`. Sprawdź instrukcje dla poleceń `who`, `whoami`, `finger` i `date`. Sprawdź jak działają.
 
 # Program Tar
-Program `tar` służy do pakowania i rozpakowywania drzewa katalogów i plików w jeden plik. Niekoniecznie musi on być mniejszy niż oryginalne pliki. Dopiero użycie kompresji zmniejszy objętość. Najpierw przygotuj kilka plików do spakowania:
+
+Program `tar` służy do pakowania i rozpakowywania drzewa katalogów i plików w jeden plik. Plik wynikowy niekoniecznie musi być mniejszy niż oryginalne pliki. Dopiero użycie kompresji zmniejszy rozmiar. Przygotuj najpierw kilka plików do spakowania:
 ```bash
 $ mkdir a
 $ cd a
@@ -130,8 +141,7 @@ $ cat ./b/c
 asdasd
 ```
 
-Teraz spakuj a nastnie podejrzyj archiwum programem `mc`
-
+Teraz spakuj je a następnie obejrzyj zawartość archiwum za pomocą programu `mc`.
 ```bash
 $ tar -cf test.tar b
 $ ls
@@ -139,53 +149,57 @@ b  test.tar
 $ mc
 ```
 
-Sprawdź zawartość katalogu, usuń to co przed chwilą spakowałeś do archiwum, następnie rozpakuj.
-
+Sprawdź zawartość katalogu, który spakowałeś, następnie usuń go i rozpakuj archiwum.
 ```bash
 $ ls
 b  test.tar
-$ rm -rf b
+$ rm -r b
 $ ls
+test.tar
 $ tar -xf test.tar
 $ ls
 b  test.tar
 ```
 
-Sprawdź poleceniem `ls -la` objętość archiwum. Następnie spakuj te same pliki z dodatkową flagą `z` zmieniając rozszerzenie na `tar.gz`. W tym celu wykonaj komendę `tar -czf test.tar.gz b`. Sprawdź czy plik wynikowy jest mniejszy.
-
-
+Sprawdź poleceniem `ls -la` objętość utworzonego archiwum. Następnie spakuj te same pliki z dodatkową flagą `z` zmieniając rozszerzenie na `tar.gz`. Sprawdź czy plik wynikowy jest mniejszy.
 
 # Proste skrypty
-Najważniejszym aspektem pracy w trybie tekstowym jest możliwość tworzenie skryptów, czyli zapisanych w pliku kolejnych komend wykonywanych tak, jakbyśmy wpisywali je z klawiatury. Więcej o zaawansowanych skryptach dowiesz się na następnych laboratoriach, pierwszy napiszesz dzisiaj.
 
-Prostym i dość wygodnym edytorem tekstu jest `nano` lub `vim`. Uruchom go komendą `nano NAZWAPLIKU` i zapisz do niego pierwszy skrypt:
+Najważniejszym aspektem pracy w trybie tekstowym jest możliwość tworzenia skryptów, czyli zapisanych w pliku kolejnych komend wykonywanych tak, jakbyśmy wpisywali je z klawiatury. Więcej o zaawansowanych skryptach dowiesz się na następnych laboratoriach, pierwszy napiszesz dzisiaj.
+
+Prostymi i dość wygodnymi edytorami tekstu są `nano` i `vim`. Uruchom program `nano` komendą `nano skrypt.sh` i zapisz do niego pierwszy skrypt:
 ```bash
 #!/bin/bash
 echo 1
 echo 2
 ```
 
-Natępnie trzeba zmienić uprawnienia, pozwolić na uruchomienie naszego skryptu: 
+Następnie zmień uprawnienia, aby pozwolić na uruchomienie naszego skryptu: 
 ```bash
-$ chmod +x skrypt.sh
+$ chmod u+x skrypt.sh
 $ ./skrypt.sh
 ```
 
+Polecenie `chmod` służy do zmiany uprawnień pliku. `u` oznacza użytkownika (czyli Ciebie), któremu chcemy nadać `+` prawo uruchamiania `x` skryptów/programów.
 
 ## Zmienne
-Bash obsługuje zmienne, jak w C. Aby stworzyć zmienną:
+
+Bash obsługuje zmienne, tak jak język C. Nie występuje tu jednak typowanie. Aby stworzyć zmienną zawierającą tekst piszemy:
 ```bash
-zmienna=$( JAKISPROGRAM )
-zmienna=$( echo 1 )
+zmienna="Tekst"
 ```
 
-Aby odczytać zmienną:
+Natomiast wynik działania jakiegoś programu możemy zapisać do zmiennej w następujący sposób:
+```bash
+zmienna=$( pwd )
+```
+
+Aby odczytać zmienną piszemy:
 ```bash
 echo $zmienna
 ```
 
-
-## Pierwszy skrypt
+## Drugi skrypt
 
 Przygotuj strukturę katalogów:
 
@@ -196,73 +210,79 @@ Przygotuj strukturę katalogów:
      - DD
      - plik.txt
 
-zawierając komendy w skrypcie, plik ma zawierać datę z użyciem `date`.
+zawierając niezbędne komendy w skrypcie. Plik `plik.txt` ma zawierać datę zwracaną przez polecenie `date`.
 
-Zmodyfikuj skrypt tak, aby nazwa każdego katalogu zaczynała się od wielkości ze zmiennej `\$1 `, która jest pierwszym argumentem skryptu w linii komend.
+Zmodyfikuj skrypt tak, aby nazwa każdego katalogu zaczynała się przedrostkiem przekazanym do skryptu przy jego uruchomieniu.
 
- - \$1\_AA
-   - \$1\_BB
-     - ...
+ - przed_AA
+   - przed_BB
+     - plik.txt
+   - przed_CC
+     - przed_DD
+     - plik.txt
 
+Abu uruchomić skrypt wraz z dwoma argumentami `arg1` i `arg2` należy wpisać
+```bash
+./skrypt.sh arg1 arg2
+```
 
+Do argumentów `arg1` i `arg2` mamy dostęp z wewnątrz skryptu dzięki tzw. zmiennym programowym. Jest ich dziewięć `$1` -- `$9`, w tym przypadku będą to zmienne `$1` i `$2`.
 
 ## Pętle
-Przygotuj skrypt:
+
+Przygotuj skrypt zawierający:
 ```bash
+#!/bin/bash
+
 for i in *.txt
 do
- cp $i $1_$i
+  cp $i $1_$i
 done
 ```
-i uruchom go w katalogu z plikiem `.txt`, jak działa? Pamiętaj o argumencie skryptu!
+
+i uruchom go w katalogu zawierającym pliki z rozszerzeniem `.txt`. W jaki sposób działa? Pamiętaj o argumencie skryptu!
 
 
-Napisz skrypt który tworzy katalog `\$1` i kopiuje do niego wszystkie pliki .txt dodając przedrostek `\$2`. Co się stanie jak nie podasz argumentów do skryptu?
-
-
+Napisz skrypt, który tworzy katalog o nazwie podanej jako pierwszy argument skryptu `$1` i kopiuje do niego wszystkie pliki `.txt` dodając do ich nazwy przedrostek podany jako drugi argument `$2`. Co się stanie jeśli nie podasz argumentów do skryptu?
 
 # GUI
 
-Zresetuj komputer, uruchom Ubuntu i zaloguj się na konto quest. Używając menu z lewej strony uruchom terminal.
+Jeśli korzystasz z systemu Linux dane z komputera zdalnego możesz skopiować na komputer lokalny za pomocą polecenia `scp`. Będąc cały czas zalogowanym na serwer `eto` stwórz w katalogu domowym plik `copyme`. Wyloguj się poleceniem `exit` lub skrótem klawiaturowym `Ctrl+D`.
 
-Połącz się programem `ssh LOGIN@HOST` z serwerem info3. Utwórz plik `copyme`.
-
-Zakończ połączenie `Ctrl+D`. Użyj programu 
-
+Otwórz konsolę na komputerze lokalnym i ściągnij utworzony plik za pomocą polecenia
 ```bash
-scp LOGIN@HOST:SCIEZKA_DO_PLIKU GDZIE_KOPIOWAĆ
+scp stud01@info3.meil.pw.edu.pl:~/copyme ./
 ```
 
-aby ściągnąć `copyme` na dysk lokalny. Program `scp` działa tak jak `cp`, z tą różnicą, że cel lub źródło znajduje się na innym komputerze obsługującym połączenia ssh.
+W ogólności składnia ma postać
+```bash
+scp login@host:sciezka_do_pliku gdzie_zapisac
 
+```
 
-# Coś na deser \*
+Program `scp` działa tak jak `cp`, z tą różnicą, że cel (lub źródło) znajduje się na innym komputerze obsługującym połączenia ssh. Dla komputerów z systemem z rodziny Windows stworzono program `WinSCP`, który pozwala na kopiowanie danych w trybie graficznym.
 
+# Deser! \*
 
 ## Pre-rekwizyty
-Sprawdź do czego służy program `write` z użyciem `man`. Użyj go. następnie porównaj "wyjście" komend: 
+Sprawdź do czego służy program `write` z użyciem polecenia `man`. Porównaj także rezultaty komend: 
 ```bash
 $ who
 $ who | awk '{print $1}'
 $ who | awk '{print $2}'
 ```
 
-
+Zwróć uwagę na symbol `|`, który oznacza przekierowanie wyjścia jednego programu na wejście drugiego. Taki zapis nazywa się "potokiem" (ang. pipe).
+ 
 ## Skrypt spamera
-
 Stwórz skrypt:
 ```bash
 #!/bin/bash
+
 for u in $( who | awk '{print $1}' )
 do
    echo $u
 done
 ```
 
-następnie zmodyfikuj go tak, aby "zaspamować" wszystkich zalogowanych.
-
-Kolejnym krokiem będzie dodanie do skryptu pakowania uzyskanego drzewka, następnie usuwanie oryginału.
-
-
-
-
+i sprawdź jak działa. Następnie zmodyfikuj go tak, aby "zaspamować" wszystkich zalogowanych.
