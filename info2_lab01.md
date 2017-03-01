@@ -8,24 +8,26 @@ author: B. Górecki
 # Interpolacja
 
 Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:
+
  - [Plik nagłówkowy inter.h](http://ccfd.github.io/courses/code/info2/inter.h)
  - [Plik źródłowy inter.cpp](http://ccfd.github.io/courses/code/info2/inter.cpp)
 
 
-## Interpolacja w praktyce inżynierskiej
+## 1 Interpolacja w praktyce inżynierskiej
 
 Dziś będziemy się zajmować zagadnieniem interpolacji. Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości rurą wypływa woda aż do jego opróżnienia. Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika. W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, by umieć przewidzieć ten czas dla dowolnej wysokości umieszczenia zbiornika, która zawiera się między skrajnymi, a więc np. na wysokości wynoszącej 3.27 m. Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność. Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.
 
-#### Meritum
+### Meritum
 Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie (!!!) punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi. Tzn., że liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).
 
-## Interpolacja wielomianowa
+## 2 Interpolacja wielomianowa
 
 W tym momencie przejdziemy do zbadania działania interpolacji wielomianowej
 Lagrange’a. Funkcja interpolująca to wielomian.
 
 ### Ćwiczenia
 1. Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych $[x_i, exp(-x_i^2)]$,
+
 gdzie $x_i = a + i \cdot h$
 $h = \frac{b-a}{n-1}$
 $i=0,...,n-1$
@@ -74,17 +76,18 @@ int main()
 
 8. Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji |x|. Dlaczego tak wyglądają?
 
-#### Uwaga
+### Uwaga
 Parametry funkcji `lagrange(double *x, double *y, int n, double xx)` to:
+
 - `x,y` - wskaźniki do $n$-elementowych tablic zawierających współrzędne punktów interpolowanych,
 - `n` - rozmiar wektora (liczbę jego elementów),
 - `xx` - bieżącą wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.
 
-### Dla ambitnych
+## 3 Dla ambitnych
 Sprawdźmy, czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją $|x|$ jako jedną z bardziej wymagających.
 ![ ](figures/info2/inst1/chebyshev_nodes.png  "Ilustracja generacji węzłów Czebyszewa")
 
-#### Węzły Czebyszewa
+### Węzły Czebyszewa
 Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz je rozłóżmy w taki sposób, aby były gęściej rozłożone przy brzegach ob-
 szaru i rzadziej w środku. Można tego dokonać nastepująco. Chcemy rozłożyć punkty w przedziale $x = [−1, 1]$. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w $x = 0$ i promieniu $R = 1$). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n − 1$ fragmentów. Teraz zrzutujmy punkty podziału na oś $x$. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu na spokojnie ten wzór - to dość proste) $x$-owe dane wzorem:
 $$
