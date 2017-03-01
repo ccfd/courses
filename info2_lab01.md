@@ -7,6 +7,10 @@ author: B. Górecki
 
 # Interpolacja
 
+Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:
+ - [Plik nagłówkowy inter.h](http://ccfd.github.io/courses/code/info2/inter.h)
+ - [Plik źródłowy inter.cpp](http://ccfd.github.io/courses/code/info2/inter.cpp)
+
 
 ## Interpolacja w praktyce inżynierskiej
 
