@@ -1,95 +1,104 @@
 ---
-number: 1
+number: 2
 course: Informatyka 2
-material: Instrukcja 1
-author: B. Górecki
+material: Instrukcja 2
+author: B. Górecki, rev. W. Gryglas
 ---
 
-# Interpolacja
+# Całkowanie numeryczne
 
 
-## Interpolacja w praktyce inżynierskiej
+## 1 Słowem wstępu
+Całkowanie numeryczne jest jednym z podstawowych algorytmów używanych w obliczeniach inżynierskich. Pamiętajmy, że całkowanie numeryczne zawsze dotyczy obliczania całki oznaczonej (jedno- bądź wielowymiarowej). Nigdy natomiast nie dotyczy obliczania całki nieoznaczonej. Wynikiem jego działania jest wartość całki, a w żadnym razie wzór funkcji pierwotnej.
 
-Dziś będziemy się zajmować zagadnieniem interpolacji. Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości rurą wypływa woda aż do jego opróżnienia. Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika. W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, by umieć przewidzieć ten czas dla dowolnej wysokości umieszczenia zbiornika, która zawiera się między skrajnymi, a więc np. na wysokości wynoszącej 3.27 m. Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność. Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.
+## 2 Algorytmy całkujące
 
-#### Meritum
-Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie (!!!) punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi. Tzn., że liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).
-
-## Interpolacja wielomianowa
-
-W tym momencie przejdziemy do zbadania działania interpolacji wielomianowej
-Lagrange’a. Funkcja interpolująca to wielomian.
+Wśród dwóch podstawowych algorytmów, jakim będziemy się zajmować jest
+metoda trapezów oraz metoda Simpsona.
 
 ### Ćwiczenia
-1. Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych $[x_i, exp(-x_i^2)]$,
-gdzie $x_i = a + i \cdot h$
-$h = \frac{b-a}{n-1}$
-$i=0,...,n-1$
-zaś $a=-2, b=2$.
-
-   Może być Ci przydatne przypomnienie użycia funkcji `malloc` do alokacji pamięci:
+1. Napisz program obliczający metodą trapezów całkę oznaczoną o wzorze:
+$$ g(x) = \int_{a}^{b}{f(x)dx} $$
+Algorytm całkowania metodą trapezów jest zaimplementowany. Znajdziesz go w funkcji `trapez` w pliku *kwad.cpp*. Nagłówek funkcji `trapez` ma następującą postać:
 ```c++
-double *x;
-x = (double*)malloc(n*sizeof(double));
-free(x);
+double trapez(double a, double b, double (*fun)(double x), int n)
 ```
-
-2. Obliczy wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. dla $t_i=a+\frac{i\cdot h}{4}, i=0,...,4n-4$. Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`. Przykład najprostszego użycia funkcji `lagrange` pokazany jest poniżej.
+Argumenty `a`, `b` i `n` to odpowiednio dolna i górna granica całkowania oraz liczba przedziałów, na które dzielony jest obszar całkowania. Zwróć uwagę na trzeci argument. Jest to wskaźnik do funkcji. Dzięki temu procedura trapez jest w stanie w taki sam, ogólny sposób liczyć całkę z dowolnej funkcji. Po nazwie (wskaźniku do funkcji) wie, której funkcji
+ma użyć do obliczania wartości funkcji podcałkowej. Poprawne wywołanie to np. `trapez(a, b, sin, n);` lub `trapez(1, 5, sqrt, 100);`. Możesz też użyć tej procedury do przecałkowania funkcji, którą wcześniej zdefiniowałeś, np. `trapez(a, b, MojaFunkcja, 50);` pod warunkiem, że we wcześniejszym miejscu w kodzie ta funkcja jest określona. Np. tak:
 ```c++
-int main()
+double MojaFunkcja(double x) // funkcja musi byc typu double i miec 1 argument typu double
 {
-    double x[3] = {0, 1, 2};
-    double y[3] = {0, 1, 4};
-    double f, t = 1.5
-    // Wyznacz wartosc paraboli dla t = 1.5
-    f = lagrange(x, y, 3, t);
+    return x*x+sin(x);
+}
+```
+Aby zrealizować zadanie z punktu 1, wykonaj następujące czynności:
+- Napisz funkcję obliczającą $f(x)$ oraz funkcję obliczającą całkę w sposób analityczny (przecałkuj na papierze). Umieść ich prototypy przed funkcją główną oraz załącz plik nagłówkowy *kwad.h* z funkcjami całkującymi.
+- Czytaj z klawiatury `a`, `b` oraz `n`- liczbę podziałów.
+- Obliczaj całkę numerycznie `cn` oraz analitycznie ca przez wywołanie odpowiednich funkcji.
+- Obliczaj błąd $|c_n - c_a|$.
+- Wpisuj do pliku krok całkowania oraz wartość całki policzonej analitycznie oraz numerycznie.
+
+
+2. Przetestuj ten program dla:
+$$ f(x) = \frac{1}{x^2} $$
+$$ f(x) = \frac{1}{x} $$
+dla $a = 1, b = 5$ oraz $a = 0.1$ i $b = 5$.
+
+3. Rozszerz ten program tak, aby zapisywał do pliku kolejne wierwsz odpowiadające $n = 2, 4, 8, . . . , 2^m$.
+
+4. Wynik przedstaw graficznie, korzystając z Excela.
+
+5. Rozszerz program tak, aby dodatkowo używał metody Simpsona. Wymaga to tylko kosmetycznych zmian. Cały potrzebny szkielet już masz. Metoda Simpsona jest zaimplementowana w procedurze `simpson(double a, double b, double(*fun)(double x), int n)`.
+
+6. Przedstaw wyniki graficznie.
+
+
+#### Wskazówki odnośnie wskaźników do funkcji
+Przeanalizuj poniższy kod ilustrujący użycie wskaźników do funkcji. Jakie wartości przyjmują zmienne `y1` i `y2`?
+```c++
+//funkcja: y = 2*x
+double fun1(double x)
+{
+	return 2*x;
+}
+
+// funkcja: y = -x
+double fun2(double x)
+{
+	return -x;
+}
+
+// funkcja zwaraca y^2
+double kwadrat(double xx, double (*pf)(double))
+{
+	return pf(xx)*pf(xx);
+}
+
+void main()
+{
+	double y1 = kwadrat(2., fun1);
+	double y2 = kwadrat(2., fun2);
 }
 ```
 
-3. Wydrukuj te wyniki (dla każdego $t$) na ekran.
+## 3 Dla dociekliwych
+Procedury trapezów i Simpsona to dość elementarne procedury. W programach obliczeniowych, które wymagają wykonywania całkowań wielokrotnie (często wiele milionów razy - o takich metodach, np. metodzie elementów skończonych - stosowanej choćby w wytrzymałości konstrukcji - będziesz się uczyć na wyższych latach) trzeba używać procedur najbardziej wydajnych obliczeniowo. Jedną klasę takich metod, które osiągają dużą dokładność przy niewielkiej liczbie punktów, w których obliczana jest funkcja podcałkowa (o tych punktach mówimy węzły kwadratury) stanowią kwadratury Gaussa.
 
-4. Wyświetl je graficznie, korzystając z nowej funkcji zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.
-```c++
-int main()
-{
-    graphics(600, 400);scale(0, 7, -1.2, 1.2); // okresl xmin, xmax, ymin, ymax
-    double x = 0;
-    while(x<6.28)
-    {
-        point(x, sin(x));
-        x += 0.01;
-    }
-}
-```
+### 3.1
+Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale $x = [−1, 1]$).
+$$ I = \int_{-1}^{1}{f(x)dx} $$
+Całkę w sposób przybliżony oblicza się wg następującego wzoru:
+$$ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
+gdzie $w_i$ to kolejne wagi kwadratury, $x_i$ to węzły kwadratury, a $n$ oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości $n$ można je znaleźć w internecie (Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się
+je znaleźć choćby pod [adresem](http://holoborodko.com/pavel/numerical-methods/numerical-
+integration/)). Położenia węzłów i wartości wag dla $n = 5$ są podane w poniższej tabeli:
+|             $x_i$            |            $w_i$            |
+|:----------------------------:|:---------------------------:|
+| -0.9061798459386639927976269 | 0.2369268850561890875142640 |
+| -0.5384693101056830910363144 | 0.4786286704993664680412915 |
+|              0.0             | 0.5688888888888888888888889 |
+|  0.5384693101056830910363144 | 0.4786286704993664680412915 |
+|  0.9061798459386639927976269 | 0.2369268850561890875142640 |
 
-5. Zapisz wyniki do pliku.
-
-6. Obejrzyj wyniki na wykresie dla różnych wartości parametru n.
-
-7. Dla wybranego n stwórz w Excelu wykres błędu interpolacji.
-
-8. Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji |x|. Dlaczego tak wyglądają?
-
-#### Uwaga
-Parametry funkcji `lagrange(double *x, double *y, int n, double xx)` to:
-- `x,y` - wskaźniki do $n$-elementowych tablic zawierających współrzędne punktów interpolowanych,
-- `n` - rozmiar wektora (liczbę jego elementów),
-- `xx` - bieżącą wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.
-
-### Dla ambitnych
-Sprawdźmy, czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją $|x|$ jako jedną z bardziej wymagających.
-![ ](figures/info2/inst1/chebyshev_nodes.png  "Ilustracja generacji węzłów Czebyszewa")
-
-#### Węzły Czebyszewa
-Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz je rozłóżmy w taki sposób, aby były gęściej rozłożone przy brzegach ob-
-szaru i rzadziej w środku. Można tego dokonać nastepująco. Chcemy rozłożyć punkty w przedziale $x = [−1, 1]$. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w $x = 0$ i promieniu $R = 1$). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n − 1$ fragmentów. Teraz zrzutujmy punkty podziału na oś $x$. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu na spokojnie ten wzór - to dość proste) $x$-owe dane wzorem:
-$$
-x_i = -cos(\frac{i \cdot \pi}{n-1}),  i=0,...,n-1
-$$
-Dla ogólnego przypadku przedziału x = [a, b] wzór wyglądałby tak:
-$$
-x_i = - \frac{b-a}{2} cos(\frac{i \cdot \pi}{n-1}) + \frac{a+b}{2},  i=0,...,n-1
-$$
-
-#### Ćwiczenie
-Zmodyfikuj swój program tak, aby początkowy zestaw punktów generował dla współrzędnych zdefiniowanych w powyższy sposób. Wystarczy zmienić jedną linię kodu. Sprawdź działanie interpolacji funkcji $|x|$ z użyciem węzłów Czebyszewa. Czy wyniki są inne?
+### 3.2 Ćwiczenie
+Zaimplementuj w dowolny sposób (choćby w pętli - niekoniecznie w osobnej procedurze) metodę całkowania za pomocą kwadratury Gaussa. Porównaj ją z poprzednimi metodami. Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadaturę Gaussa opartą na pięciu węzłach?
