@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ł. Łaniewski-Wołłk" />
+<meta name="author" content="B. Górecki, rev. W. Gryglas" />
 
 
 <title></title>
@@ -512,14 +512,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info1_lab01.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info1_lab01.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info2_lab06.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -545,81 +545,29 @@ div.tocify {
 </div>
 
 
-<div id="wstep" class="section level1">
-<h1>Wstęp</h1>
-<p>Rozpakuj projekt. Otwórz plik <code>projekt.sln</code>. W otwartym projekcie są następujące pliki: - <code>main.cpp</code> — główny plik z kodem. Tu piszemy nasz program - <code>winbgi2.cpp</code> — plik z funkcjami graficznymi - <code>winbgi2.h</code> — plik z definicjami funkcji graficznych</p>
-<p><strong><em>Pamiętaj:</em> Często kompiluj projekt i patrz, czy wszystko działa!</strong></p>
-</div>
-<div id="pierwsze-kreski" class="section level1">
-<h1>Pierwsze kreski</h1>
-<p>Wewnątrz funkcji <code>main</code> wpisz:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">graphics( <span class="dv">200</span>, <span class="dv">200</span>);
-line( <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">200</span>);
-line( <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>);
-wait();</code></pre></div>
-<p><strong><em>Uwaga:</em> Zawsze pamiętaj o średnikach!</strong></p>
-<p>Skompiluj i uruchom projekt. Pierwsza linia tworzy okno grafiki, dwie następne rysują linie, zaś ostatnia czeka z zamknięciem okna na naciśnięcie dowolnego klawisza.</p>
+<div id="metoda-eliminacji-gaussa" class="section level1">
+<h1>Metoda eliminacji Gaussa</h1>
+<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
+<ul>
+<li><a href="http://ccfd.github.io/courses/code/info2/gauss.h">Plik nagłówkowy gauss.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/gauss.cpp">Plik źródłowy gauss.cpp</a></li>
+</ul>
+<p>Wygeneruj układ równań <span class="math inline">\(Ax = b\)</span>, gdzie: - A jest macierzą Hilberta, tzn. <span class="math inline">\(a_{ij} =\frac{1}{i+j+1}\)</span>, <span class="math inline">\(i, j= 0, ..., n − 1\)</span> - Wektor prawych stron b ma elementy równe sumie elementów macierzy <span class="math inline">\(A\)</span> w wierszu, co oznacza, że znane jest rozwiązanie analityczne tego układu równań. Ile ono wynosi?</p>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>Używając funkcji <code>line(x1,y1,x2,y2)</code> i <code>circle(x,y,r)</code>, wykonaj następujące zadania:</p>
-<ul>
-<li>Zidentyfikuj, jak ułożony jest układ współrzędnych (X,Y) w oknie.</li>
-<li>Narysuj kwadrat.</li>
-<li>Narysuj ludzika.</li>
-<li>Narysuj koła olimpijskie.</li>
-</ul>
-</div>
-</div>
-<div id="zmienne" class="section level1">
-<h1>Zmienne</h1>
-<p>Pewne powtarzające się parametry (jak pozycję, promień, itp), możemy zastąpić zmiennymi. Następnie z nich wyliczyć odpowiednie współrzędne np:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> r,h;
-h = <span class="dv">100</span>;
-r = <span class="dv">50</span>;
-line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, h);
-line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>*r, h);
-circle( <span class="dv">10</span>+r, h, r);</code></pre></div>
-<p>Możemy używać wszelkich działań i funkcji matematycznych: <code>+, -, *, /, sin(), ...</code>.</p>
-<p><strong><em>Pamiętaj:</em> Pierwsza linia deklaruje zmienne. Trzeba zadeklarować wszystkie zmienne, których będziesz używać! (szczegóły, na kolejnych zajęciach).</strong></p>
-<p>Zauważ, że wartość zmiennej jest nadpisywana, więc możemy napisać:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> w;
-w = <span class="dv">50</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);
-w = w + <span class="dv">20</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);
-w = w + <span class="dv">20</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);
-w = w + <span class="dv">20</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);</code></pre></div>
-<p>W efekcie wyświetlą się cztery kółka narysowane koło siebie. Przetestuj.</p>
-<div id="cwiczenia-1" class="section level2">
-<h2>Ćwiczenia</h2>
-<p>Każdy program przetestuj dla paru ustawień zmiennych, by zobaczyć czy działa poprawnie. - Napisz program, który dla zmiennych x,y,s, tworzy okno o rozmiarach x,y i na środku narysuje koło o promieniu s. - Dla zmiennej <code>d</code>, narysuj cztery dotykające się koła o średnicy d w prawym górnym rogu okna. - Dla zmiennej <code>y</code> narysuje koła olimpijskie w odległości <code>y</code> od górnej krawędzi. - Skopiuj poprzedni kod trzy razy i w każdym fragmencie zmodyfikuj wartość zmiennej <code>y</code>.</p>
-</div>
-</div>
-<div id="petle" class="section level1">
-<h1>Pętle</h1>
-<p>Pierwszą automatyzacją są pętle. Pętla wykonuje pewną operację, dopóki pewien warunek jest spełniony. Np:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> x;
-x = <span class="dv">0</span>;
-<span class="kw">while</span> (x &lt; <span class="dv">200</span>) {
-    line(x,<span class="dv">10</span>,x,<span class="dv">190</span>);
-    x = x + <span class="dv">10</span>;
-}</code></pre></div>
-<p>Taki program będzie wykonywany w następujący sposób: - wpisujemy <span class="math inline">\(0\)</span> do zmiennej <span class="math inline">\(x\)</span> - sprawdzamy, czy <span class="math inline">\(x&lt;200\)</span> - rysujemy linię - zwiększamy zmienną <span class="math inline">\(x\)</span> o <span class="math inline">\(10\)</span> - i znów: sprawdzamy, czy <span class="math inline">\(x&lt;200\)</span> - rysujemy linię - zwiększamy zmienną <span class="math inline">\(x\)</span> o <span class="math inline">\(10\)</span> - sprawdzamy, czy <span class="math inline">\(x&lt;200\)</span> - rysujemy linię - … - gdy wreszcie <span class="math inline">\(x\)</span> przekroczy <span class="math inline">\(200\)</span>, pętla się skończy i program pójdzie dalej.</p>
-<p>Ostatecznie program narysuje pionowe kreski dla kolejnych <code>x</code> = 0, 10, 20, ….</p>
-<p><strong><em>Zauważ:</em> Program nie narysuje linii dla <span class="math inline">\(x=200\)</span>, bo komputer najpierw sprawdzi, że <span class="math inline">\(x\not&lt; 200\)</span> i przerwie pętlę.</strong></p>
-<div id="cwiczenia-2" class="section level2">
-<h2>Ćwiczenia</h2>
-<ul>
-<li>Napisz program, który narysuje kratkę z odstępem <code>w</code></li>
-<li>Narysuj rząd stycznych do siebie kół o promieniu <span class="math inline">\(r\)</span>, zaczynając od lewej strony. Przemyśl: jeśli <span class="math inline">\(x\)</span> to pozycja środka koła, to jaka wartość powinna jej być przypisana przed pętlą, o ile powinna być zwiększana i jaki warunek musi spełniać, by nie rysować poza oknem?!</li>
-<li>Pisząc jedną pętlę w drugiej, zapełnij cały obrazek przylegającymi kółkami.</li>
-<li><ul>
-<li>Czy da się je lepiej upakować?</li>
-</ul></li>
-<li>Narysuj rząd kółek, których promienie zmniejszają się jak <span class="math inline">\(\frac{1}{n}\)</span>.</li>
-</ul>
+<ol style="list-style-type: decimal">
+<li>Macierz <span class="math inline">\(A\)</span> i wektor <span class="math inline">\(b\)</span> zadeklaruj statycznie dla maksymalnie <span class="math inline">\(N = 50\)</span> elementów.</li>
+<li><p>Napisz funkcje odpowiednio generujące macierz Hilberta, wyświetlające macierz, generujące wektor prawych stron oraz wyśtwietlające wektor. Ich nagłówki (które muszą zawierać maksymalny rozmiar macierzy) mają postać:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> HilbertMatrix(<span class="dt">int</span> n, <span class="dt">double</span> A[][N]);
+<span class="dt">void</span> DisplayMatrix(<span class="dt">int</span> n, <span class="dt">double</span> A[][N]);
+<span class="dt">void</span> ComputeVec(<span class="dt">int</span> n, <span class="dt">double</span> A[][N], <span class="dt">double</span> v[]);
+<span class="dt">void</span> DisplayVec(<span class="dt">int</span> n, <span class="dt">double</span> v[]);.</code></pre></div></li>
+<li>Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania powyższego układu równań. Nagłówek funkcji jest postaci <code>void gauss(int n, double A[][N], double b[], doublex[])</code>, gdzie <code>n</code> to liczba równań, <code>A</code> to macierz układu równań, <code>b</code> - wektor prawych stron, zaś <code>x</code> to wektor, w którym zostanie zapisany wynik.</li>
+<li>Przetestuj działanie programu dla różnych <code>n</code>.</li>
+<li>Na podstawie funkcji gauss napisz funkcję wyznaczającą macierz trójkątną. Następnie wykorzystując tę macierz, oblicz wartość wyznacznika.</li>
+<li>Przerób program tak, aby macierz i wektor były wczytywane z wcześniej utworzonych plików.</li>
+<li><p>Zamień statyczną alokację pamięci na alokację dynamiczną.</p></li>
+</ol>
 </div>
 </div>
 

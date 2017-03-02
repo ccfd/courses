@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ł. Łaniewski-Wołłk" />
+<meta name="author" content="W. Regulski, rev. W. Gryglas" />
 
 
 <title></title>
@@ -512,14 +512,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info1_lab01.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info1_lab01.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info2_lab03.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -545,81 +545,48 @@ div.tocify {
 </div>
 
 
-<div id="wstep" class="section level1">
-<h1>Wstęp</h1>
-<p>Rozpakuj projekt. Otwórz plik <code>projekt.sln</code>. W otwartym projekcie są następujące pliki: - <code>main.cpp</code> — główny plik z kodem. Tu piszemy nasz program - <code>winbgi2.cpp</code> — plik z funkcjami graficznymi - <code>winbgi2.h</code> — plik z definicjami funkcji graficznych</p>
-<p><strong><em>Pamiętaj:</em> Często kompiluj projekt i patrz, czy wszystko działa!</strong></p>
-</div>
-<div id="pierwsze-kreski" class="section level1">
-<h1>Pierwsze kreski</h1>
-<p>Wewnątrz funkcji <code>main</code> wpisz:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">graphics( <span class="dv">200</span>, <span class="dv">200</span>);
-line( <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">200</span>);
-line( <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">0</span>);
-wait();</code></pre></div>
-<p><strong><em>Uwaga:</em> Zawsze pamiętaj o średnikach!</strong></p>
-<p>Skompiluj i uruchom projekt. Pierwsza linia tworzy okno grafiki, dwie następne rysują linie, zaś ostatnia czeka z zamknięciem okna na naciśnięcie dowolnego klawisza.</p>
-<div id="cwiczenia" class="section level2">
-<h2>Ćwiczenia</h2>
-<p>Używając funkcji <code>line(x1,y1,x2,y2)</code> i <code>circle(x,y,r)</code>, wykonaj następujące zadania:</p>
+<div id="iteracyjne-metody-rozwiazywania-rownan-nieliniowych" class="section level1">
+<h1>Iteracyjne metody rozwiązywania równań nieliniowych</h1>
+<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
 <ul>
-<li>Zidentyfikuj, jak ułożony jest układ współrzędnych (X,Y) w oknie.</li>
-<li>Narysuj kwadrat.</li>
-<li>Narysuj ludzika.</li>
-<li>Narysuj koła olimpijskie.</li>
+<li><a href="http://ccfd.github.io/courses/code/info2/nonlin.h">Plik nagłówkowy nonlin.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/nonlin.cpp">Plik źródłowy nonlin.cpp</a></li>
 </ul>
+<div id="wstep" class="section level2">
+<h2>1. Wstęp</h2>
+<p>Celem ćwiczenia jest zapoznanie z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych równań algebraicznych. W praktyce najczęściej jest niemożliwe znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą bisekcji, siecznych oraz stycznych. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy, była ciągła.</p>
+</div>
+<div id="metoda-bisekcji" class="section level2">
+<h2>2. Metoda bisekcji</h2>
+<p>W przypadu metody bisekcji korzystamy z faktu, że jeśli na końcach pewnego przedziału liczbowego wartosci funkcji są przeciwnych znaków, gdzieś na tym odcinku funkcja ma miejsce zerowe (ta trywialna obserwacja to tzw. twierdzenie Darboux, sformułowane przez francuskiego matematyka Jeana Gastona Darboux (1842-1917)). Za pomocą tej metody rozwiążemy równanie: <span class="math display">\[cos(x) = x\]</span> Posłużymy się przygotowaną wcześniej funkcją <code>bisec</code>. W tym celu należy załączyć do projektu pliki <em>nonlin.h</em> oraz <em>nonlin.cpp</em>. Funkcja <code>bisec</code> ma nagłówek następującej postaci:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> bisec(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</code></pre></div>
+<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty: - <code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania - <code>(*pf)</code> - wzkaźnik do funkcji zawierającej rozwiązywane równanie - <code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span> - <code>iter</code> - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to pod wskaźnik <code>iter</code> zostaje przypisana wartość <code>−1</code> a funkcja zwraca wartość <code>0</code>.</p>
+<div id="cwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<ol style="list-style-type: decimal">
+<li>Napisz funkcję <code>double eqn(double x)</code>, która będzie zwracac wartość naszego równania sprowadzonego do postaci <span class="math inline">\(f (x) = 0\)</span>.</li>
+<li>Wczytać z klawiatury dokładność rozwiązania <code>eps</code> oraz krańce przedziału przeszukiwań <code>a</code> i <code>b</code>. Należy pamętać o tym, że <span class="math inline">\(f (a) \cdot f (b) &lt; 0\)</span>.</li>
+<li>Wypisz na ekranie miejsce zerowe oraz liczbę iteracji.</li>
+<li>Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{−20} , 2^{−19}, ..., 2^{−3}\)</span>.</li>
+<li>Zrób wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).</li>
+</ol>
 </div>
 </div>
-<div id="zmienne" class="section level1">
-<h1>Zmienne</h1>
-<p>Pewne powtarzające się parametry (jak pozycję, promień, itp), możemy zastąpić zmiennymi. Następnie z nich wyliczyć odpowiednie współrzędne np:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> r,h;
-h = <span class="dv">100</span>;
-r = <span class="dv">50</span>;
-line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, h);
-line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>*r, h);
-circle( <span class="dv">10</span>+r, h, r);</code></pre></div>
-<p>Możemy używać wszelkich działań i funkcji matematycznych: <code>+, -, *, /, sin(), ...</code>.</p>
-<p><strong><em>Pamiętaj:</em> Pierwsza linia deklaruje zmienne. Trzeba zadeklarować wszystkie zmienne, których będziesz używać! (szczegóły, na kolejnych zajęciach).</strong></p>
-<p>Zauważ, że wartość zmiennej jest nadpisywana, więc możemy napisać:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> w;
-w = <span class="dv">50</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);
-w = w + <span class="dv">20</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);
-w = w + <span class="dv">20</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);
-w = w + <span class="dv">20</span>;
-circle( <span class="dv">10</span>, w, <span class="dv">10</span>);</code></pre></div>
-<p>W efekcie wyświetlą się cztery kółka narysowane koło siebie. Przetestuj.</p>
-<div id="cwiczenia-1" class="section level2">
-<h2>Ćwiczenia</h2>
-<p>Każdy program przetestuj dla paru ustawień zmiennych, by zobaczyć czy działa poprawnie. - Napisz program, który dla zmiennych x,y,s, tworzy okno o rozmiarach x,y i na środku narysuje koło o promieniu s. - Dla zmiennej <code>d</code>, narysuj cztery dotykające się koła o średnicy d w prawym górnym rogu okna. - Dla zmiennej <code>y</code> narysuje koła olimpijskie w odległości <code>y</code> od górnej krawędzi. - Skopiuj poprzedni kod trzy razy i w każdym fragmencie zmodyfikuj wartość zmiennej <code>y</code>.</p>
+<div id="metoda-siecznych-i-stycznych" class="section level2">
+<h2>3. Metoda siecznych i stycznych</h2>
+<p>Innymi metodami poszukiwania rozwiązań równań nieliniowych są metody stycznych oraz siecznych. W przypadku metody siecznych kolejne przybliżenie miejsca zerowego wyznacza się jako miejsca przecięcia odpowiedniej siecznej wykresu funkcji z osią odciętych. Dana sieczna przechodzi przez punkty z wykresu funkcji, których rzędne były poprzednimi przybliżeniami miejsca zerowego. Schemat iteracyjny ma następującą postać: <span class="math display">\[ x_{i+1} = x_i - f(x_i) \frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})} \]</span> W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia miejsca zerowego są przeciąciami stycznych do wykresu funkcji z osią odciętych. Policzenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji. Schemat iteracyjny przybiera następującą postać: <span class="math display">\[ x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x)} \]</span></p>
+<div id="cwiczenia-1" class="section level3">
+<h3>Ćwiczenia</h3>
+<ol style="list-style-type: decimal">
+<li>Rozwiąż to samo równanie, co poprzednio, używajac obu powyższych metod. Wypisz na ekran dokładność, liczbę itaracji metody siecznych, stycznych oraz bisekcji.</li>
+<li>Stwórz wykres przedstawiajacy zależność liczby iteracji od dokładnosci rozwiązania (dokładność przedstaw na skali logarytmicznej).</li>
+<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(cos(x) = w \cdot x\)</span>. Dokładność <span class="math inline">\(\varepsilon = 10^−6\)</span> , Parametr <span class="math inline">\(w\)</span> przebiega w zakresie <span class="math inline">\(w = 0.5, 0.6, ..., 15.0\)</span>.</li>
+</ol>
 </div>
 </div>
-<div id="petle" class="section level1">
-<h1>Pętle</h1>
-<p>Pierwszą automatyzacją są pętle. Pętla wykonuje pewną operację, dopóki pewien warunek jest spełniony. Np:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> x;
-x = <span class="dv">0</span>;
-<span class="kw">while</span> (x &lt; <span class="dv">200</span>) {
-    line(x,<span class="dv">10</span>,x,<span class="dv">190</span>);
-    x = x + <span class="dv">10</span>;
-}</code></pre></div>
-<p>Taki program będzie wykonywany w następujący sposób: - wpisujemy <span class="math inline">\(0\)</span> do zmiennej <span class="math inline">\(x\)</span> - sprawdzamy, czy <span class="math inline">\(x&lt;200\)</span> - rysujemy linię - zwiększamy zmienną <span class="math inline">\(x\)</span> o <span class="math inline">\(10\)</span> - i znów: sprawdzamy, czy <span class="math inline">\(x&lt;200\)</span> - rysujemy linię - zwiększamy zmienną <span class="math inline">\(x\)</span> o <span class="math inline">\(10\)</span> - sprawdzamy, czy <span class="math inline">\(x&lt;200\)</span> - rysujemy linię - … - gdy wreszcie <span class="math inline">\(x\)</span> przekroczy <span class="math inline">\(200\)</span>, pętla się skończy i program pójdzie dalej.</p>
-<p>Ostatecznie program narysuje pionowe kreski dla kolejnych <code>x</code> = 0, 10, 20, ….</p>
-<p><strong><em>Zauważ:</em> Program nie narysuje linii dla <span class="math inline">\(x=200\)</span>, bo komputer najpierw sprawdzi, że <span class="math inline">\(x\not&lt; 200\)</span> i przerwie pętlę.</strong></p>
-<div id="cwiczenia-2" class="section level2">
-<h2>Ćwiczenia</h2>
-<ul>
-<li>Napisz program, który narysuje kratkę z odstępem <code>w</code></li>
-<li>Narysuj rząd stycznych do siebie kół o promieniu <span class="math inline">\(r\)</span>, zaczynając od lewej strony. Przemyśl: jeśli <span class="math inline">\(x\)</span> to pozycja środka koła, to jaka wartość powinna jej być przypisana przed pętlą, o ile powinna być zwiększana i jaki warunek musi spełniać, by nie rysować poza oknem?!</li>
-<li>Pisząc jedną pętlę w drugiej, zapełnij cały obrazek przylegającymi kółkami.</li>
-<li><ul>
-<li>Czy da się je lepiej upakować?</li>
-</ul></li>
-<li>Narysuj rząd kółek, których promienie zmniejszają się jak <span class="math inline">\(\frac{1}{n}\)</span>.</li>
-</ul>
+<div id="zadanie-dodatkowe" class="section level2">
+<h2>4. Zadanie dodatkowe</h2>
+<p>Metody rozwiązywania równań nieliniowych mogą być również użyte do znajdowania ekstremów funkcji. Spróbuj znaleźć ekstremum funkcji: <span class="math display">\[ f (x) = (1 + x) \cdot arctan(x) \]</span></p>
 </div>
 </div>
 

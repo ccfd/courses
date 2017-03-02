@@ -26,6 +26,49 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -312,10 +355,25 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
       <a href="info2_lab01.html">Instrukcja I</a>
     </li>
     <li>
       <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
     </li>
   </ul>
 </li>
@@ -454,7 +512,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="metnum_lab1.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -495,16 +553,16 @@ div.tocify {
 <h1>Problem liniowy</h1>
 <p><img src="figures/metnum_inst1/mechanizm.png" title="Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej)" alt="" /> Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych. Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące <span class="math inline">\(G_{AB}=25\)</span>, <span class="math inline">\(G_{BC}=16\)</span> oraz <span class="math inline">\(G_{CD}=53\)</span>.</p>
 <p>Dla układu o zadanej na rysunku geometrii oraz ciężarach członów podanych powyżej równania równowagi wyglądają następująco: <span class="math display">\[
-\begin{array}{c}
-$R_{Ax}+R_{Bx} = 0$ \\
-$R_{Ay}+R_{By} = G_{AB}$ \\
-$M_A-1.5G_{AB}+3R_{By}-4R_{Bx}=0$ \\
-$-R_{Bx}+R_{Cx}=0$ \\
-$-R_{By}+R_{Cy}=G_{BC}$ \\
-$-2G_{BC}-3R_{Cx}+4R_{Cy}=0$ \\
-$-R_{Cx}+R_{Dx}=0$ \\
-$-R_{Cy}+R_{Dy}=G_{CD}$ \\
-$-G_{CD}+7R_{Dx}+2R_{Dy}=0$ \\
+\begin{array}{rrrrrrrrrl}
+R_{Ax}&amp;&amp;&amp;+R_{Bx}&amp;&amp;&amp;&amp;&amp; &amp;= 0 \\
+&amp;R_{Ay}&amp;&amp;&amp;+R_{By}&amp;&amp;&amp;&amp; &amp;= G_{AB} \\
+&amp;&amp;M_A&amp;-4R_{Bx}&amp;+3R_{By}&amp;&amp;&amp;&amp; &amp;=+1.5G_{AB} \\
+&amp;&amp;&amp;-R_{Bx}&amp;&amp;+R_{Cx}&amp;&amp;&amp; &amp;=0 \\
+&amp;&amp;&amp;&amp;-R_{By}&amp;&amp;+R_{Cy}&amp;&amp; &amp;=G_{BC} \\
+&amp;&amp;&amp;&amp;&amp;-3R_{Cx}&amp;+4R_{Cy}&amp;&amp; &amp;=G_{BC} \\
+&amp;&amp;&amp;&amp;&amp;-R_{Cx}&amp;&amp;+R_{Dx}&amp; &amp;=0 \\
+&amp;&amp;&amp;&amp;&amp;&amp;-R_{Cy}&amp;&amp;+R_{Dy}&amp;=G_{CD} \\
+&amp;&amp;&amp;&amp;&amp;&amp;&amp;+7R_{Dx}&amp;+2R_{Dy}&amp;=-G_{CD} \\
 \end{array}
 \]</span></p>
 <p>W postaci macierzowej układ równań zapisuje się następująco: <span class="math display">\[
@@ -518,15 +576,16 @@ $-G_{CD}+7R_{Dx}+2R_{Dy}=0$ \\
  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 0 &amp; 1 \\
  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 7 &amp; 2 \\
   \end{array} \right]
-\left[ \begin{array}{c} $R_{Ax}$ \\
-$R_{Ay}$ \\
-$M_A$ \\
-$R_{Bx}$ \\
-$R_{By}$ \\
-$R_{Cx}$ \\
-$R_{Cy}$ \\
-$R_{Dx}$ \\
-$R_{Dy}$ \\
+\left[ \begin{array}{c}
+R_{Ax} \\
+R_{Ay} \\
+M_A \\
+R_{Bx} \\
+R_{By} \\
+R_{Cx} \\
+R_{Cy} \\
+R_{Dx} \\
+R_{Dy} \\
 \end{array} \right] = \left[
 \begin{array}{c} 0 \\
 25 \\
@@ -540,16 +599,16 @@ $R_{Dy}$ \\
 \]</span></p>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych. Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku <code>Gauss.h</code>. (Wskazówka: Funkcja <code>void Gauss(int n, double **M, double *F, double *x)</code> przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji). Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące: <span class="math display">\[
-\left[ \begin{array}{c} $R_{Ax}$ \\
-$R_{Ay}$ \\
-$M_A$ \\
-$R_{Bx}$ \\
-$R_{By}$ \\
-$R_{Cx}$ \\
-$R_{Cy}$ \\
-$R_{Dx}$ \\
-$R_{Dy}$ \\
+<p>Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych. Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku <code>Gauss.h</code>. (Wskazówka: Funkcja <code>void Gauss(int n, double **M, double *F, double *x)</code> przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji). Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:</p>
+<p><span class="math display">\[\left[ \begin{array}{c} R_{Ax} \\
+R_{Ay} \\
+M_A \\
+R_{Bx} \\
+R_{By} \\
+R_{Cx} \\
+R_{Cy} \\
+R_{Dx} \\
+R_{Dy} \\
 \end{array} \right] = \left[
 \begin{array}{c} 8.117647 \\
         39.088235 \\
@@ -559,8 +618,7 @@ $R_{Dy}$ \\
         - 8.117647 \\
         1.911765 \\
         - 8.117647 \\
-        54.911765 \\ \end{array} \right]
-\]</span></p>
+        54.911765 \\ \end{array} \right]\]</span></p>
 </div>
 </div>
 <div id="problem-nieliniowy" class="section level1">
@@ -586,25 +644,25 @@ F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \frac{\partial F_i}{\partial x_j} h_j =
 
 </div>
 <p>Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I). Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych. Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona. Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów <span class="math inline">\((x_0,x_1)\)</span> i <span class="math inline">\((x_2,x_3)\)</span>, a równania więzów będą wynikać z odchylenia członu kierującego o kąt <span class="math inline">\(\alpha\)</span> od poziomu oraz długości dwóch pozostałych członów). Tym samym równania członów są postaci: <span class="math display">\[
-\begin{array}{c}
-$x_0 = 5 \cdot cos\alpha$ \\
-$x_1 = 5 \cdot sin \alpha$ \\
-$(x_2-x_0)^2 + (x_3-x_1)^2 = 4$ \\
-$(3-x_2)^2 + (x_3-0)^2 = 36$
-\end{array}
+\begin{aligned}
+x_0 &amp;= 5 \cos\alpha \\
+x_1 &amp;= 5 \sin \alpha \\
+(x_2-x_0)^2 + (x_3-x_1)^2 &amp;= 4 \\
+(3-x_2)^2 + (x_3-0)^2 &amp;= 36
+\end{aligned}
 \]</span> Po rozwinięciu i zapisaniu całego układu w postaci funkcji wektorowej wektorowego argumentu otrzymamy następujące sformułowanie naszego układu równań: <span class="math inline">\(\vec F(\vec x) = \vec 0\)</span>, gdzie <span class="math display">\[
-\vec F(\vec x) = \left[ \begin{array}{c} $x_0 - 5 \cdot cos\alpha$ \\
-$x_1 - 5 \cdot sin \alpha$ \\
-$x_2^2-2x_0 x_2 + x_0^2 + x_3^2-2x_1 x_3 +x_1^2 -4 $ \\
-$-6x_2+x_2^2+x_3^2-27$
+\vec F(\vec x) = \left[ \begin{array}{c} x_0 - 5 \cos\alpha \\
+x_1 - 5 \sin \alpha \\
+x_2^2-2x_0 x_2 + x_0^2 + x_3^2-2x_1 x_3 +x_1^2 -4  \\
+-6x_2+x_2^2+x_3^2-27
 \end{array} \right]
 \]</span> Wyprowadziwszy powyższe równania możemy analitycznie policzyć macierz Jacobiego: <span class="math display">\[
 J = \frac{\partial \vec F}{\partial \vec x} = 
 \left[ \begin{array}{c c c c}
 1 &amp; 0 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; 0 &amp; 0 \\
-$-2x_2+2x_0$ &amp; $-2x_3+2x_1$ &amp; $-2x_0+2x_2$ &amp; $-2x_1+2x_3$ \\
-0 &amp; 0 &amp; $-6+2x_2$ &amp; $2x_3$ \\
+-2x_2+2x_0 &amp; -2x_3+2x_1 &amp; -2x_0+2x_2 &amp; -2x_1+2x_3 \\
+0 &amp; 0 &amp; -6+2x_2 &amp; 2x_3 \\
 \end{array}
 \right]
 \]</span></p>
@@ -613,10 +671,10 @@ $-2x_2+2x_0$ &amp; $-2x_3+2x_1$ &amp; $-2x_0+2x_2$ &amp; $-2x_1+2x_3$ \\
 <h2>Zadania do wykonania</h2>
 <ul>
 <li>Napisz program, który rozwiąże zadanie o położeniach przy wykorzystaniu metody Newtona-Raphsona. W tym celu stwórz następujące funkcje:</li>
-<li><code>void Constraints(double *x, double *F);</code></li>
-<li><code>void JacobiMatrix(double **J, double *x);</code></li>
-<li><code>void NewtonRaphson(double *x);</code></li>
-<li><p>Zmodyfikuj program tak, aby nie wymagał analitycznego obliczenia macierzy Jacobiego, ale potrafił numerycznie obliczyć tę macierz. W tym celu stwórz dodatkową funkcję <code>void JacobiMatrixFD(double **J, double *x);</code> przybliżającą poprawną macierz Jacobiego macierzą obliczoną z użyciem metody różnic skończonych (ang. <em>finite difference</em>). Można tego dokonać z użyciem algorytmu zapisanego w poniższym pseudokodzie (metoda różnic skończonych 2-ego rzędu):</p></li>
+<li><code class="sourceCode cpp"><span class="dt">void</span> Constraints(<span class="dt">double</span> *x, <span class="dt">double</span> *F);</code></li>
+<li><code class="sourceCode cpp"><span class="dt">void</span> JacobiMatrix(<span class="dt">double</span> **J, <span class="dt">double</span> *x);</code></li>
+<li><code class="sourceCode cpp"><span class="dt">void</span> NewtonRaphson(<span class="dt">double</span> *x);</code></li>
+<li><p>Zmodyfikuj program tak, aby nie wymagał analitycznego obliczenia macierzy Jacobiego, ale potrafił numerycznie obliczyć tę macierz. W tym celu stwórz dodatkową funkcję <code class="sourceCode cpp"><span class="dt">void</span> JacobiMatrixFD(<span class="dt">double</span> **J, <span class="dt">double</span> *x);</code> przybliżającą poprawną macierz Jacobiego macierzą obliczoną z użyciem metody różnic skończonych (ang. <em>finite difference</em>). Można tego dokonać z użyciem algorytmu zapisanego w poniższym pseudokodzie (metoda różnic skończonych 2-ego rzędu):</p></li>
 <li>Wybierz małą wartość, np. <span class="math inline">\(\epsilon = 1e-8\)</span>, stwórz wektor <span class="math inline">\(\vec x&#39;\)</span> i <span class="math inline">\(\vec x&#39;&#39;\)</span>.</li>
 <li>Pętla po wszystkich czterech kolumnach:</li>
 <li>Przypisz do <span class="math inline">\(\vec x&#39;\)</span> i <span class="math inline">\(\vec x&#39;&#39;\)</span> bieżącą wartość <span class="math inline">\(\vec x\)</span>.</li>
@@ -660,7 +718,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

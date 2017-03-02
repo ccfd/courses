@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="B. Górecki" />
+<meta name="author" content="B. Górecki, rev. W. Gryglas" />
 
 
 <title></title>
@@ -355,10 +355,25 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
       <a href="info2_lab01.html">Instrukcja I</a>
     </li>
     <li>
       <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
     </li>
   </ul>
 </li>
@@ -551,14 +566,10 @@ div.tocify {
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li>Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych <span class="math inline">\([x_i, exp(-x_i^2)]\)</span>,</li>
-</ol>
-<p>gdzie <span class="math inline">\(x_i = a + i \cdot h\)</span> <span class="math inline">\(h = \frac{b-a}{n-1}\)</span> <span class="math inline">\(i=0,...,n-1\)</span> zaś <span class="math inline">\(a=-2, b=2\)</span>.</p>
-<p>Może być Ci przydatne przypomnienie użycia funkcji <code>malloc</code> do alokacji pamięci:</p>
+<li><p>Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych <span class="math display">\[[x_i, exp(-x_i^2)]\]</span> gdzie <span class="math display">\[ x_i = a + i \cdot h \\ h = \frac{b-a}{n-1} \\ i=0,...,n-1 \\ \]</span> zaś <span class="math display">\[a=-2, b=2\]</span> Może być Ci przydatne przypomnienie użycia funkcji <code>malloc</code> do alokacji pamięci:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> *x;
 x = (<span class="dt">double</span>*)malloc(n*<span class="kw">sizeof</span>(<span class="dt">double</span>));
-free(x);</code></pre></div>
-<ol start="2" style="list-style-type: decimal">
+free(x);</code></pre></div></li>
 <li><p>Obliczy wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. dla <span class="math inline">\(t_i=a+\frac{i\cdot h}{4}, i=0,...,4n-4\)</span>. Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
 {
@@ -640,7 +651,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
