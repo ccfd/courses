@@ -13,13 +13,10 @@ Rozwiązanie wielu problemów inżynierskich wymaga rozwiązania układów równ
 
 
 # Problem liniowy
-\begin{figure*}[h]\label{uklad1}
-\centering
-\includegraphics[width=0.9\textwidth]{mechanizm.png}
-\caption[c]{Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej).}
-\end{figure*}
-Rozważmy mechanizm pokazany na Rysunku~\ref{uklad1}
-(strona~\pageref{uklad1}) i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych. Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące $G_{AB}=25$, $G_{BC}=16$ oraz $G_{CD}=53$.
+
+
+![ ](figures/metnum_inst1/mechanizm.png "Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej)")
+Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych. Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące $G_{AB}=25$, $G_{BC}=16$ oraz $G_{CD}=53$.
 
 
 Dla układu o zadanej na rysunku geometrii oraz ciężarach członów podanych powyżej równania równowagi wyglądają następująco:
@@ -129,7 +126,7 @@ Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 
 ## Zadanie 2
 
-\includegraphics[width=0.5\textwidth]{czworobok.png}
+![ ](figures/metnum_inst1/czworobok.png)
 
 Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I). Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych. Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona. Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów $(x_0,x_1)$ i $(x_2,x_3)$, a równania więzów będą wynikać z odchylenia członu kierującego o kąt $\alpha$ od poziomu oraz długości dwóch pozostałych członów). Tym samym równania członów są postaci:
 $$
