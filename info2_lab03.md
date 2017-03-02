@@ -2,10 +2,14 @@
 number: 3
 course: Informatyka 2
 material: Instrukcja 3
-author: B. Górecki, rev. W. Gryglas
+author: W. Regulski, rev. W. Gryglas
 ---
 
 # Iteracyjne metody rozwiązywania równań nieliniowych
+Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:
+
+ - [Plik nagłówkowy nonlin.h](http://ccfd.github.io/courses/code/info2/nonlin.h)
+ - [Plik źródłowy nonlin.cpp](http://ccfd.github.io/courses/code/info2/nonlin.cpp)
 
 ## 1. Wstęp
 Celem ćwiczenia jest zapoznanie z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych równań algebraicznych. W praktyce najczęściej jest niemożliwe znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą bisekcji, siecznych oraz stycznych. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy,
