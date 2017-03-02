@@ -1,8 +1,8 @@
 ---
-number: 2
-course: Informatyka I
-material: Instrukcja 2 i 3
 author: Ł. Łaniewski-Wołłk
+course: Informatyka III
+material: Instrukcja 2-3
+number: 2, 3
 ---
 
 
