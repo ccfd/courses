@@ -21,16 +21,16 @@ Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwyd
 
 Dla układu o zadanej na rysunku geometrii oraz ciężarach członów podanych powyżej równania równowagi wyglądają następująco:
 $$
-\begin{array}{c}
-$R_{Ax}+R_{Bx} = 0$ \\
-$R_{Ay}+R_{By} = G_{AB}$ \\
-$M_A-1.5G_{AB}+3R_{By}-4R_{Bx}=0$ \\
-$-R_{Bx}+R_{Cx}=0$ \\
-$-R_{By}+R_{Cy}=G_{BC}$ \\
-$-2G_{BC}-3R_{Cx}+4R_{Cy}=0$ \\
-$-R_{Cx}+R_{Dx}=0$ \\
-$-R_{Cy}+R_{Dy}=G_{CD}$ \\
-$-G_{CD}+7R_{Dx}+2R_{Dy}=0$ \\
+\begin{array}{rrrrrrrrrl}
+R_{Ax}&&&+R_{Bx}&&&&& &= 0 \\
+&R_{Ay}&&&+R_{By}&&&& &= G_{AB} \\
+&&M_A&-4R_{Bx}&+3R_{By}&&&& &=+1.5G_{AB} \\
+&&&-R_{Bx}&&+R_{Cx}&&& &=0 \\
+&&&&-R_{By}&&+R_{Cy}&& &=G_{BC} \\
+&&&&&-3R_{Cx}&+4R_{Cy}&& &=G_{BC} \\
+&&&&&-R_{Cx}&&+R_{Dx}& &=0 \\
+&&&&&&-R_{Cy}&&+R_{Dy}&=G_{CD} \\
+&&&&&&&+7R_{Dx}&+2R_{Dy}&=-G_{CD} \\
 \end{array}
 $$
 
@@ -46,15 +46,16 @@ $$
  0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 1 \\
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 7 & 2 \\
   \end{array} \right]
-\left[ \begin{array}{c} $R_{Ax}$ \\
-$R_{Ay}$ \\
-$M_A$ \\
-$R_{Bx}$ \\
-$R_{By}$ \\
-$R_{Cx}$ \\
-$R_{Cy}$ \\
-$R_{Dx}$ \\
-$R_{Dy}$ \\
+\left[ \begin{array}{c}
+R_{Ax} \\
+R_{Ay} \\
+M_A \\
+R_{Bx} \\
+R_{By} \\
+R_{Cx} \\
+R_{Cy} \\
+R_{Dx} \\
+R_{Dy} \\
 \end{array} \right] = \left[
 \begin{array}{c} 0 \\
 25 \\
@@ -70,16 +71,16 @@ $$
 
 ## Zadanie 1
 Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych. Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku `Gauss.h`. (Wskazówka: Funkcja `void Gauss(int n, double **M, double *F, double *x)` przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji). Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
-$$
-\left[ \begin{array}{c} $R_{Ax}$ \\
-$R_{Ay}$ \\
-$M_A$ \\
-$R_{Bx}$ \\
-$R_{By}$ \\
-$R_{Cx}$ \\
-$R_{Cy}$ \\
-$R_{Dx}$ \\
-$R_{Dy}$ \\
+
+$$\left[ \begin{array}{c} R_{Ax} \\
+R_{Ay} \\
+M_A \\
+R_{Bx} \\
+R_{By} \\
+R_{Cx} \\
+R_{Cy} \\
+R_{Dx} \\
+R_{Dy} \\
 \end{array} \right] = \left[
 \begin{array}{c} 8.117647 \\
 		39.088235 \\
@@ -89,8 +90,7 @@ $R_{Dy}$ \\
 		- 8.117647 \\
 		1.911765 \\
 		- 8.117647 \\
-		54.911765 \\ \end{array} \right]
-$$
+		54.911765 \\ \end{array} \right]$$
 
 
 # Problem nieliniowy
@@ -130,19 +130,19 @@ Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 
 Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I). Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych. Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona. Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów $(x_0,x_1)$ i $(x_2,x_3)$, a równania więzów będą wynikać z odchylenia członu kierującego o kąt $\alpha$ od poziomu oraz długości dwóch pozostałych członów). Tym samym równania członów są postaci:
 $$
-\begin{array}{c}
-$x_0 = 5 \cdot cos\alpha$ \\
-$x_1 = 5 \cdot sin \alpha$ \\
-$(x_2-x_0)^2 + (x_3-x_1)^2 = 4$ \\
-$(3-x_2)^2 + (x_3-0)^2 = 36$
-\end{array}
+\begin{aligned}
+x_0 &= 5 \cos\alpha \\
+x_1 &= 5 \sin \alpha \\
+(x_2-x_0)^2 + (x_3-x_1)^2 &= 4 \\
+(3-x_2)^2 + (x_3-0)^2 &= 36
+\end{aligned}
 $$
 Po rozwinięciu i zapisaniu całego układu w postaci funkcji wektorowej wektorowego argumentu otrzymamy następujące sformułowanie naszego układu równań: $\vec F(\vec x) = \vec 0$, gdzie
 $$
-\vec F(\vec x) = \left[ \begin{array}{c} $x_0 - 5 \cdot cos\alpha$ \\
-$x_1 - 5 \cdot sin \alpha$ \\
-$x_2^2-2x_0 x_2 + x_0^2 + x_3^2-2x_1 x_3 +x_1^2 -4 $ \\
-$-6x_2+x_2^2+x_3^2-27$
+\vec F(\vec x) = \left[ \begin{array}{c} x_0 - 5 \cos\alpha \\
+x_1 - 5 \sin \alpha \\
+x_2^2-2x_0 x_2 + x_0^2 + x_3^2-2x_1 x_3 +x_1^2 -4  \\
+-6x_2+x_2^2+x_3^2-27
 \end{array} \right]
 $$
 Wyprowadziwszy powyższe równania możemy analitycznie policzyć macierz Jacobiego:
@@ -151,8 +151,8 @@ J = \frac{\partial \vec F}{\partial \vec x} =
 \left[ \begin{array}{c c c c}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
-$-2x_2+2x_0$ & $-2x_3+2x_1$ & $-2x_0+2x_2$ & $-2x_1+2x_3$ \\
-0 & 0 & $-6+2x_2$ & $2x_3$ \\
+-2x_2+2x_0 & -2x_3+2x_1 & -2x_0+2x_2 & -2x_1+2x_3 \\
+0 & 0 & -6+2x_2 & 2x_3 \\
 \end{array}
 \right]
 $$
@@ -160,10 +160,10 @@ $$
 
 ## Zadania do wykonania
 - Napisz program, który rozwiąże zadanie o położeniach przy wykorzystaniu metody Newtona-Raphsona. W tym celu stwórz następujące funkcje:
-- `void Constraints(double *x, double *F);`
-- `void JacobiMatrix(double **J, double *x);`
-- `void NewtonRaphson(double *x);`
-- Zmodyfikuj program tak, aby nie wymagał analitycznego obliczenia macierzy Jacobiego, ale potrafił numerycznie obliczyć tę macierz. W tym celu stwórz dodatkową funkcję `void JacobiMatrixFD(double **J, double *x);` przybliżającą poprawną macierz Jacobiego macierzą obliczoną z użyciem metody różnic skończonych (ang. *finite difference*). Można tego dokonać z użyciem algorytmu zapisanego w poniższym pseudokodzie (metoda różnic skończonych 2-ego rzędu):
+- `void Constraints(double *x, double *F);`{.cpp}
+- `void JacobiMatrix(double **J, double *x);`{.cpp}
+- `void NewtonRaphson(double *x);`{.cpp}
+- Zmodyfikuj program tak, aby nie wymagał analitycznego obliczenia macierzy Jacobiego, ale potrafił numerycznie obliczyć tę macierz. W tym celu stwórz dodatkową funkcję `void JacobiMatrixFD(double **J, double *x);`{.cpp} przybliżającą poprawną macierz Jacobiego macierzą obliczoną z użyciem metody różnic skończonych (ang. *finite difference*). Można tego dokonać z użyciem algorytmu zapisanego w poniższym pseudokodzie (metoda różnic skończonych 2-ego rzędu):
 
 - Wybierz małą wartość, np. $\epsilon = 1e-8$, stwórz wektor $\vec x'$ i $\vec x''$.
 - Pętla po wszystkich czterech kolumnach:
