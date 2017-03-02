@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="B. Górecki, rev. W. Gryglas" />
+<meta name="author" content="W. Regulski, rev. W. Gryglas" />
 
 
 <title></title>
@@ -504,7 +504,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info2_lab01.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info2_lab03.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -530,83 +530,48 @@ div.tocify {
 </div>
 
 
-<div id="interpolacja" class="section level1">
-<h1>Interpolacja</h1>
+<div id="iteracyjne-metody-rozwiazywania-rownan-nieliniowych" class="section level1">
+<h1>Iteracyjne metody rozwiązywania równań nieliniowych</h1>
 <p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
 <ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/inter.h">Plik nagłówkowy inter.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/inter.cpp">Plik źródłowy inter.cpp</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/nonlin.h">Plik nagłówkowy nonlin.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/nonlin.cpp">Plik źródłowy nonlin.cpp</a></li>
 </ul>
-<div id="interpolacja-w-praktyce-inzynierskiej" class="section level2">
-<h2>1 Interpolacja w praktyce inżynierskiej</h2>
-<p>Dziś będziemy się zajmować zagadnieniem interpolacji. Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości rurą wypływa woda aż do jego opróżnienia. Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika. W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, by umieć przewidzieć ten czas dla dowolnej wysokości umieszczenia zbiornika, która zawiera się między skrajnymi, a więc np. na wysokości wynoszącej 3.27 m. Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność. Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.</p>
-<div id="meritum" class="section level3">
-<h3>Meritum</h3>
-<p>Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie (!!!) punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi. Tzn., że liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).</p>
+<div id="wstep" class="section level2">
+<h2>1. Wstęp</h2>
+<p>Celem ćwiczenia jest zapoznanie z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych równań algebraicznych. W praktyce najczęściej jest niemożliwe znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą bisekcji, siecznych oraz stycznych. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy, była ciągła.</p>
 </div>
-</div>
-<div id="interpolacja-wielomianowa" class="section level2">
-<h2>2 Interpolacja wielomianowa</h2>
-<p>W tym momencie przejdziemy do zbadania działania interpolacji wielomianowej Lagrange’a. Funkcja interpolująca to wielomian.</p>
+<div id="metoda-bisekcji" class="section level2">
+<h2>2. Metoda bisekcji</h2>
+<p>W przypadu metody bisekcji korzystamy z faktu, że jeśli na końcach pewnego przedziału liczbowego wartosci funkcji są przeciwnych znaków, gdzieś na tym odcinku funkcja ma miejsce zerowe (ta trywialna obserwacja to tzw. twierdzenie Darboux, sformułowane przez francuskiego matematyka Jeana Gastona Darboux (1842-1917)). Za pomocą tej metody rozwiążemy równanie: <span class="math display">\[cos(x) = x\]</span> Posłużymy się przygotowaną wcześniej funkcją <code>bisec</code>. W tym celu należy załączyć do projektu pliki <em>nonlin.h</em> oraz <em>nonlin.cpp</em>. Funkcja <code>bisec</code> ma nagłówek następującej postaci:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> bisec(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</code></pre></div>
+<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty: - <code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania - <code>(*pf)</code> - wzkaźnik do funkcji zawierającej rozwiązywane równanie - <code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span> - <code>iter</code> - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to pod wskaźnik <code>iter</code> zostaje przypisana wartość <code>−1</code> a funkcja zwraca wartość <code>0</code>.</p>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li><p>Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych <span class="math display">\[[x_i, exp(-x_i^2)]\]</span> gdzie <span class="math display">\[ x_i = a + i \cdot h \\ h = \frac{b-a}{n-1} \\ i=0,...,n-1 \\ \]</span> zaś <span class="math display">\[a=-2, b=2\]</span> Może być Ci przydatne przypomnienie użycia funkcji <code>malloc</code> do alokacji pamięci:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> *x;
-x = (<span class="dt">double</span>*)malloc(n*<span class="kw">sizeof</span>(<span class="dt">double</span>));
-free(x);</code></pre></div></li>
-<li><p>Obliczy wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. dla <span class="math inline">\(t_i=a+\frac{i\cdot h}{4}, i=0,...,4n-4\)</span>. Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
-{
-<span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};
-<span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};
-<span class="dt">double</span> f, t = <span class="fl">1.</span><span class="dv">5</span>
-<span class="co">// Wyznacz wartosc paraboli dla t = 1.5</span>
-f = lagrange(x, y, <span class="dv">3</span>, t);
-}</code></pre></div></li>
-<li><p>Wydrukuj te wyniki (dla każdego <span class="math inline">\(t\)</span>) na ekran.</p></li>
-<li><p>Wyświetl je graficznie, korzystając z nowej funkcji zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
-{
-graphics(<span class="dv">600</span>, <span class="dv">400</span>);scale(<span class="dv">0</span>, <span class="dv">7</span>, <span class="fl">-1.</span><span class="dv">2</span>, <span class="fl">1.</span><span class="dv">2</span>); <span class="co">// okresl xmin, xmax, ymin, ymax</span>
-<span class="dt">double</span> x = <span class="dv">0</span>;
-<span class="kw">while</span>(x&lt;<span class="fl">6.</span><span class="dv">28</span>)
-{
-    point(x, sin(x));
-    x += <span class="fl">0.</span><span class="bn">01</span>;
-}
-}</code></pre></div></li>
-<li><p>Zapisz wyniki do pliku.</p></li>
-<li><p>Obejrzyj wyniki na wykresie dla różnych wartości parametru n.</p></li>
-<li><p>Dla wybranego n stwórz w Excelu wykres błędu interpolacji.</p></li>
-<li><p>Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji |x|. Dlaczego tak wyglądają?</p></li>
+<li>Napisz funkcję <code>double eqn(double x)</code>, która będzie zwracac wartość naszego równania sprowadzonego do postaci <span class="math inline">\(f (x) = 0\)</span>.</li>
+<li>Wczytać z klawiatury dokładność rozwiązania <code>eps</code> oraz krańce przedziału przeszukiwań <code>a</code> i <code>b</code>. Należy pamętać o tym, że <span class="math inline">\(f (a) \cdot f (b) &lt; 0\)</span>.</li>
+<li>Wypisz na ekranie miejsce zerowe oraz liczbę iteracji.</li>
+<li>Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{−20} , 2^{−19}, ..., 2^{−3}\)</span>.</li>
+<li>Zrób wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).</li>
 </ol>
 </div>
-<div id="uwaga" class="section level3">
-<h3>Uwaga</h3>
-<p>Parametry funkcji <code>lagrange(double *x, double *y, int n, double xx)</code> to:</p>
-<ul>
-<li><code>x,y</code> - wskaźniki do <span class="math inline">\(n\)</span>-elementowych tablic zawierających współrzędne punktów interpolowanych,</li>
-<li><code>n</code> - rozmiar wektora (liczbę jego elementów),</li>
-<li><code>xx</code> - bieżącą wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.</li>
-</ul>
+</div>
+<div id="metoda-siecznych-i-stycznych" class="section level2">
+<h2>3. Metoda siecznych i stycznych</h2>
+<p>Innymi metodami poszukiwania rozwiązań równań nieliniowych są metody stycznych oraz siecznych. W przypadku metody siecznych kolejne przybliżenie miejsca zerowego wyznacza się jako miejsca przecięcia odpowiedniej siecznej wykresu funkcji z osią odciętych. Dana sieczna przechodzi przez punkty z wykresu funkcji, których rzędne były poprzednimi przybliżeniami miejsca zerowego. Schemat iteracyjny ma następującą postać: <span class="math display">\[ x_{i+1} = x_i - f(x_i) \frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})} \]</span> W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia miejsca zerowego są przeciąciami stycznych do wykresu funkcji z osią odciętych. Policzenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji. Schemat iteracyjny przybiera następującą postać: <span class="math display">\[ x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x)} \]</span></p>
+<div id="cwiczenia-1" class="section level3">
+<h3>Ćwiczenia</h3>
+<ol style="list-style-type: decimal">
+<li>Rozwiąż to samo równanie, co poprzednio, używajac obu powyższych metod. Wypisz na ekran dokładność, liczbę itaracji metody siecznych, stycznych oraz bisekcji.</li>
+<li>Stwórz wykres przedstawiajacy zależność liczby iteracji od dokładnosci rozwiązania (dokładność przedstaw na skali logarytmicznej).</li>
+<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(cos(x) = w \cdot x\)</span>. Dokładność <span class="math inline">\(\varepsilon = 10^−6\)</span> , Parametr <span class="math inline">\(w\)</span> przebiega w zakresie <span class="math inline">\(w = 0.5, 0.6, ..., 15.0\)</span>.</li>
+</ol>
 </div>
 </div>
-<div id="dla-ambitnych" class="section level2">
-<h2>3 Dla ambitnych</h2>
-<p>Sprawdźmy, czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających. <img src="figures/info2/inst1/chebyshev_nodes.png" title="Ilustracja generacji węzłów Czebyszewa" alt="" /></p>
-<div id="wezy-czebyszewa" class="section level3">
-<h3>Węzły Czebyszewa</h3>
-<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz je rozłóżmy w taki sposób, aby były gęściej rozłożone przy brzegach ob- szaru i rzadziej w środku. Można tego dokonać nastepująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [−1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n − 1\)</span> fragmentów. Teraz zrzutujmy punkty podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu na spokojnie ten wzór - to dość proste) <span class="math inline">\(x\)</span>-owe dane wzorem: <span class="math display">\[
-x_i = -cos(\frac{i \cdot \pi}{n-1}),  i=0,...,n-1
-\]</span> Dla ogólnego przypadku przedziału x = [a, b] wzór wyglądałby tak: <span class="math display">\[
-x_i = - \frac{b-a}{2} cos(\frac{i \cdot \pi}{n-1}) + \frac{a+b}{2},  i=0,...,n-1
-\]</span></p>
-<div id="cwiczenie" class="section level4">
-<h4>Ćwiczenie</h4>
-<p>Zmodyfikuj swój program tak, aby początkowy zestaw punktów generował dla współrzędnych zdefiniowanych w powyższy sposób. Wystarczy zmienić jedną linię kodu. Sprawdź działanie interpolacji funkcji <span class="math inline">\(|x|\)</span> z użyciem węzłów Czebyszewa. Czy wyniki są inne?</p>
-</div>
-</div>
+<div id="zadanie-dodatkowe" class="section level2">
+<h2>4. Zadanie dodatkowe</h2>
+<p>Metody rozwiązywania równań nieliniowych mogą być również użyte do znajdowania ekstremów funkcji. Spróbuj znaleźć ekstremum funkcji: <span class="math display">\[ f (x) = (1 + x) \cdot arctan(x) \]</span></p>
 </div>
 </div>
 
