@@ -312,25 +312,10 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="info2_regulamin.html">Regulamin</a>
-    </li>
-    <li>
       <a href="info2_lab01.html">Instrukcja I</a>
     </li>
     <li>
       <a href="info2_lab02.html">Instrukcja II</a>
-    </li>
-    <li>
-      <a href="info2_lab03.html">Instrukcja III</a>
-    </li>
-    <li>
-      <a href="info2_lab04.html">Instrukcja IV</a>
-    </li>
-    <li>
-      <a href="info2_lab05.html">Instrukcja V</a>
-    </li>
-    <li>
-      <a href="info2_lab06.html">Instrukcja VI</a>
     </li>
   </ul>
 </li>
@@ -504,15 +489,11 @@ div.tocify {
 </div>
 
 
+<p>Pliki do pobrania: - <a href="code/metnum/inter.h">Plik nagłówkowy gauss.h</a></p>
 <p>Rozwiązanie wielu problemów inżynierskich wymaga rozwiązania układów równań nieliniowych (wśród których choć jedno równanie jest równaniem nieliniowym). Dzisiejsze laboratorium będzie poświęcone metodzie Newtona-Raphsona pozwalającej rozwiązywać takie zagadnienia. W celu przypomnienia podstawowych zagadnień zaczniemy od problemu liniowego wypływającego ze statyki mechanizmu po uwolnieniu poszczególnych członów od więzów. Umiejętność rozwiązania zagadnienia liniowego jest nieodzownym elementem implementacji metody Newtona-Raphsona.</p>
 <div id="problem-liniowy" class="section level1">
 <h1>Problem liniowy</h1>
-\begin{figure*}[h]\label{uklad1}
-\centering
-\includegraphics[width=0.9\textwidth]{mechanizm.png}
-\caption[c]{Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej).}
-\end{figure*}
-<p>Rozważmy mechanizm pokazany na Rysunku<sub> (strona</sub>) i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych. Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące <span class="math inline">\(G_{AB}=25\)</span>, <span class="math inline">\(G_{BC}=16\)</span> oraz <span class="math inline">\(G_{CD}=53\)</span>.</p>
+<p><img src="figures/metnum_inst1/mechanizm.png" title="Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej)" alt="" /> Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych. Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące <span class="math inline">\(G_{AB}=25\)</span>, <span class="math inline">\(G_{BC}=16\)</span> oraz <span class="math inline">\(G_{CD}=53\)</span>.</p>
 <p>Dla układu o zadanej na rysunku geometrii oraz ciężarach członów podanych powyżej równania równowagi wyglądają następująco: <span class="math display">\[
 \begin{array}{c}
 $R_{Ax}+R_{Bx} = 0$ \\
@@ -600,7 +581,10 @@ F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \frac{\partial F_i}{\partial x_j} h_j =
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
-<p></p>
+<div class="figure">
+<img src="figures/metnum_inst1/czworobok.png" alt="" />
+
+</div>
 <p>Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I). Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych. Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona. Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów <span class="math inline">\((x_0,x_1)\)</span> i <span class="math inline">\((x_2,x_3)\)</span>, a równania więzów będą wynikać z odchylenia członu kierującego o kąt <span class="math inline">\(\alpha\)</span> od poziomu oraz długości dwóch pozostałych członów). Tym samym równania członów są postaci: <span class="math display">\[
 \begin{array}{c}
 $x_0 = 5 \cdot cos\alpha$ \\
@@ -676,7 +660,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
