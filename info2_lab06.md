@@ -14,6 +14,7 @@ Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniżs
 
 
 Wygeneruj układ równań $Ax = b$, gdzie:
+
 - A jest macierzą Hilberta, tzn. $a_{ij} =\frac{1}{i+j+1}$, $i, j= 0, ..., n − 1$
 - Wektor prawych stron b ma elementy równe sumie elementów macierzy $A$ w wierszu, co oznacza, że znane jest rozwiązanie analityczne tego układu równań. Ile ono wynosi?
 
