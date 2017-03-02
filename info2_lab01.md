@@ -2,7 +2,7 @@
 number: 1
 course: Informatyka 2
 material: Instrukcja 1
-author: B. Górecki
+author: B. Górecki, rev. W. Gryglas
 ---
 
 # Interpolacja
@@ -26,14 +26,12 @@ W tym momencie przejdziemy do zbadania działania interpolacji wielomianowej
 Lagrange’a. Funkcja interpolująca to wielomian.
 
 ### Ćwiczenia
-1. Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych $[x_i, exp(-x_i^2)]$,
-
-gdzie $x_i = a + i \cdot h$
-$h = \frac{b-a}{n-1}$
-$i=0,...,n-1$
-zaś $a=-2, b=2$.
-
-   Może być Ci przydatne przypomnienie użycia funkcji `malloc` do alokacji pamięci:
+1. Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych 
+$$[x_i, exp(-x_i^2)]$$ 
+gdzie 
+$$ x_i = a + i \cdot h \\ h = \frac{b-a}{n-1} \\ i=0,...,n-1 \\ $$
+zaś $$a=-2, b=2$$
+Może być Ci przydatne przypomnienie użycia funkcji `malloc` do alokacji pamięci:
 ```c++
 double *x;
 x = (double*)malloc(n*sizeof(double));
