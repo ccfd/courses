@@ -587,7 +587,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&gt;&gt;</span> plik</code> — To co program wypisałby na ekran, zostanie dopisane do pliku (plik zostanie utwożony jeśli nie istniał)</li>
 <li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&lt;</span> plik</code> — Program dostanie zawartość pliku, tak jakbyśmy ją wpisali z klawiatury</li>
 <li><code class="sourceCode bash"><span class="kw">program1</span> <span class="kw">|</span> <span class="kw">program2</span></code> — To co program1 wypisałby na ekran, zostanie wpisane ‘z klawiatury’ do program2</li>
-<li><code>program</code> lub <code class="sourceCode bash"><span class="ot">$(</span><span class="kw">program</span><span class="ot">)</span></code> — To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Znak ‘`’ jest na klawiaturze przy tyldzie ‘~’.</li>
+<li><code class="sourceCode bash"><span class="st">&#39;program&#39;</span></code> lub <code class="sourceCode bash"><span class="ot">$(</span><span class="kw">program</span><span class="ot">)</span></code> — To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Znak ‘`’ jest na klawiaturze przy tyldzie ‘~’.</li>
 </ul>
 <p>Przykłady:</p>
 <ul>
@@ -599,7 +599,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
 <li><code class="sourceCode bash"><span class="ot">nazwa2=$(</span><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="ot">)</span></code> — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
 <li><code class="sourceCode bash"><span class="kw">ls</span> katalog <span class="kw">&gt;</span> plik</code> — wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)</li>
-<li><code>cp ls katalog</code> albo <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">ls</span><span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> ls katalog</code> albo <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">ls</span><span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zwróconej przez <code>ls</code>.</li>
 <li><code class="sourceCode bash"><span class="kw">cp</span> cat plik katalog</code> bądz <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">cat</span> plik<span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalog</code>u według listy zawartej w pliku.</li>
 </ul>
 </div>
