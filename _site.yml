@@ -130,7 +130,7 @@ output:
     toc_depth: 2
     toc_float:
       collapsed: false
-#    mathjax: local
+    mathjax: local
     include:
       before_body: common/_header.html
       after_body: common/_footer.html
