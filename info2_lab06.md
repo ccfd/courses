@@ -45,7 +45,6 @@ Aby rozwiązać ten problem musimy go przeformułować do postaci układu równa
 ## 3. Rozwiązanie układu równań
 
 
-
 ## Ćwiczenia
 1. Macierz $A$ i wektor $b$ zadeklaruj statycznie dla maksymalnie $N = 50$ elementów.
 2. Napisz funkcje odpowiednio generujące macierz Hilberta, wyświetlające macierz, generujące wektor prawych stron oraz wyśtwietlające wektor. Ich nagłówki (które muszą zawierać maksymalny rozmiar macierzy) mają postać:

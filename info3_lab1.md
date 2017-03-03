@@ -158,7 +158,7 @@ $ ls
 b  test.tar
 ```
 
-Sprawdź poleceniem `ls -la` objętość utworzonego archiwum. Następnie spakuj te same pliki z dodatkową flagą `z` zmieniając rozszerzenie na `tar.gz`. Sprawdź czy plik wynikowy jest mniejszy.
+Sprawdź poleceniem `ls -la` objętość utworzonego archiwum. Następnie spakuj te same pliki z dodatkową flagą `z`. Dodanie tego parametru uruchamia kompresję programem `gzip`. Zmień rozszerzenie archiwum na `tar.gz`. Sprawdź czy plik wynikowy jest mniejszy.
 
 # Proste skrypty
 
