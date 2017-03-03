@@ -49,7 +49,7 @@ Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można j
 - `program >> plik`{.bash} --- To co program wypisałby na ekran, zostanie dopisane do pliku (plik zostanie utwożony jeśli nie istniał)
 - `program < plik`{.bash} --- Program dostanie zawartość pliku, tak jakbyśmy ją wpisali z klawiatury
 - `program1 | program2`{.bash} --- To co program1 wypisałby na ekran, zostanie wpisane 'z klawiatury' do program2
-- `program` lub `$(program)`{.bash} --- To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Znak '\`' jest na klawiaturze przy tyldzie '~'.
+- `'program'`{.bash} lub `$(program)`{.bash} --- To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Znak '\`' jest na klawiaturze przy tyldzie '~'.
 
 Przykłady:
 
@@ -61,7 +61,7 @@ Przykłady:
 - `echo $nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
 - `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
 - `ls katalog > plik`{.bash} --- wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)
-- `cp ls katalog` albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
+- `cp ls katalog`{.bash} albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
 - `cp cat plik katalog`{.bash} bądz `cp $(cat plik) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zawartej w pliku.
 
 

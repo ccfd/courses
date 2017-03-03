@@ -35,10 +35,20 @@ navbar:
         href: info1_lab09.html
     - text: "Info II"
       menu:
+      - text: "Regulamin"
+        href: info2_regulamin.html
       - text: "Instrukcja I"
         href: info2_lab01.html
       - text: "Instrukcja II"
         href: info2_lab02.html
+      - text: "Instrukcja III"
+        href: info2_lab03.html
+      - text: "Instrukcja IV"
+        href: info2_lab04.html
+      - text: "Instrukcja V"
+        href: info2_lab05.html
+      - text: "Instrukcja VI"
+        href: info2_lab06.html
     - text: "Info III"
       menu:
       - text: "Regulamin i Informacje""
@@ -124,7 +134,7 @@ output:
     toc_depth: 2
     toc_float:
       collapsed: false
-    mathjax: local
+#    mathjax: local
     include:
       before_body: common/_header.html
       after_body: common/_footer.html
