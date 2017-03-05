@@ -27,7 +27,7 @@ W daleszej części ćwiczeń wykonamy dwa zadania. Pierwsze zadanie będzie pol
 Na początek zajmijmy się przygotowaniem układu równań. Tak jak już na początku wspomnieliśmy powstanie on jako wynik dyskretyzacji równania przewodnictwa cieplnego:
 ![](figures/info2/inst6/problem.png "Zagadnienie")
 
-Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości $L=1[m]$ i przewodności cieplnej $\lambda=58[\frac{W}{mK}]$. Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - $Q=sin(\frac{x}{\pi})[\frac{W}{m^3}]$. Ponadto na obu końcach pręta utrzymywne są stałe temperatura $T_p=273[K]$ i $T_k=300[K]$. 
+Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości $L=1[m]$ i przewodności cieplnej $\lambda=58[\frac{W}{mK}]$. Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - $Q= - 10^4 \cdot sin(x\pi)[\frac{W}{m^3}]$. Ponadto na obu końcach pręta utrzymywne są stałe temperatura $T_p=273[K]$ i $T_k=300[K]$. 
 
 Proces ten opisuje następujące równanie:
 $$ \lambda \frac{d^2T}{dx^2} = Q(x) $$
@@ -150,7 +150,7 @@ T_{N}
 $$
 
 ## Ćwiczenia
-1. Utwórz zmienną określającą macierze $K$ wykorzystując tablice dwuwymiarowe statyczne. Zadeklaruj stały rozmiar na `N=5` (użyj instrukcji ` const int N=...;` lub defklaracji preprocesora `#define` aby sterować rozmiarem tablicy statycznej)
+1. Utwórz zmienną określającą macierze $K$ wykorzystując tablice dwuwymiarowe statyczne. Zadeklaruj stały rozmiar na `N=6` (użyj instrukcji ` const int N=...;` lub defklaracji preprocesora `#define` aby sterować rozmiarem tablicy statycznej). Pamiętaj, że liczba punktów dyskretyzacji jest równa $N+1$ dla zaprezentowanego przykładu. 
 
 2. Utwórz tablicę statyczną określającą wektor prawych stron $F$ oraz poszukiwanego rozwiązania $T$.
 
