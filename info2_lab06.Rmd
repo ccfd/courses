@@ -171,7 +171,28 @@ Przejdźmy teraz do ostatniej części ćwiczeń - rozwiązania układu równań
 ## Ćwiczenia
 1. Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania powyższego układu równań. Nagłówek funkcji jest postaci `void gauss(int n, double A[][N], double b[], double x[])`, gdzie `n` to liczba równań, `A` to macierz układu równań, `b` - wektor prawych stron, zaś `x` to wektor, w którym zostanie zapisany wynik.
 
-2. Sporządź wykres funkcji $T=T(x)$ wykorzystując bibliotekę graficzną. 
+2. Sporządź wykres funkcji $T=T(x)$ wykorzystując bibliotekę graficzną. Dla liczby podziałów N=20 (21 punktów) powinieneś uzyskać podobny wynik do zaprezentowanego poniżej
+```{r, echo=FALSE}
+N = 20
+lambda=58
+h = 1./N
+K = diag(x=-2, nrow=N+1, ncol=N+1)
+K[row(K) == col(K) + 1] = 1
+K[row(K)+1 == col(K) ] = 1
+K[1,]=0
+K[1,1]=1
+K[N+1,]=0
+K[N+1,N+1]=1
+x = matrix(seq(from=0, to=1., by=h))
+F = apply(x*pi,1,sin)
+F = -1e4*F/lambda*(h*h)
+F[1] = 273
+F[N+1] = 300
+T = solve(K,F)
+plot(x,T, "l", ylab = "T(x)")
+points(x,T)
+grid()
+```
 
 3. Przetestuj działanie programu dla różnych `n` (nie przesadź, ponieważ metoda gaussa nie jest metodą optymalną do tego typu problemów).
 
