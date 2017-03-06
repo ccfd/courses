@@ -1,0 +1,7 @@
+---
+output: html_document
+---
+
+```{r, echo=FALSE}
+htmltools::includeHTML("test.html")
+```
