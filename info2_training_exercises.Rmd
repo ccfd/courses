@@ -1,0 +1,187 @@
+---
+number: 7
+course: Informatyka 2
+material: Zadania treningowe
+author: W. Gryglas
+---
+
+# Zadania treningowe
+
+## Wstęp
+Jako materiał pomocniczy do zadań można skorzystać z plików:
+
+- [Plik nagłówkowy narzedzia.h](http://ccfd.github.io/courses/code/info2/narzedzia.h)
+- [Plik nagłówkowy narzedzia.cpp](http://ccfd.github.io/courses/code/info2/narzedzia.cpp)
+
+W tych plikach znajdują się zebrane wszystkie funkcje numeryczne implementujące poznane przez nas metody. Dodatkowo zamieszczona zosatła tam funkcja rysuj_wykres która rysuje wykres na podstawie przekazanych tablic x oraz y. Narzędzia z tych plików mogą Państwo dołączyć do projektu i dodać dyrektywę `#include "narzedzia.h"` lub tylko przekopiować odpowiednie funkcje wprost do pliku roboczego `main.cpp`.
+
+Zadania od 1-4 są zadaniami z zakresu materiału dotyczącego 3 pierwszych ćwiczeń laboratoryjnych. 
+
+## Zadanie 1
+Samolot lecący na pewnej wysokości został uszkodzony i uległ wypadkowi. Większość systemów sterowania i narzędzi pomiarowych przestało działać. Jedyne co udało się zarejestrować to przeciążenia działające na samolot w zależności od położenia i wysokości nad ziemią:
+
+$$\vec{a} = [a_x(x,y), a_y(x,y)]$$
+
+Oprócz przebiegu przeciążeń udało się także zarejestrować prędkość $V=V_0$ w momencie uszkodzenia oraz wysokości na jakiej znajdował się samolot w czasie spadania:
+$$y=f(x)$$
+
+Ponieważ nic więcej nie udało się zarejestrować komisja badająca wypadek nie potrafi wyznaczyć prędkości z jaką samolot uderzył w ziemię. Twoim zadaniem jest im pomóc i wyznaczyć prędkość wiedząc, że zarejestrowane przeciążenie to:
+$$\vec{a} = \left[\frac{x^2}{10^5}, \frac{x^2}{10^3}sin(y)\right] \left[\frac{m}{s^2}\right]$$
+Masa samolotu to 
+$$m=50 \cdot 10^3$$
+wysokość samolotu w funkcji położenia:
+$$y=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318) [m]$$
+a prędkość na początku awarii: 
+$$v(x=0)=85 [\frac{m}{s}]$$
+
+## Zadanie 2
+Pan Janusz wymyślił sobie, że ogrodzi działkę od strony północnej na kształt sinusoidy. Jako, że nie uczęszczał na zajęcia z informatyki 2 to nie potrafi sam obliczyć jaką długość siatki powinien on zakupić w sklepie. Wymiary działki są następujące:
+
+![](figures/info2/training/fence.png "Ogrodzenie")
+
+Górną krawędź opisuje funkcja 
+$$5 \cdot sin(\frac{x}{10})$$
+gdzie $x=0$ odpowiada lewemu bokowi. Pomóż Panu Januszowi i oblicz ile metrów siatki potrzebuje aby ogrodzić swoją działkę.
+
+## Zadanie 3
+Zamieszczony mechanizm na rysunku poniżej składa się z dwóch członów połączonych między sobą, z ziemią i szyną na górze parami obrotowymi. 
+
+![](figures/info2/training/mechanism.png "Mechanizm")
+
+Mechanizm ten ma 1 stopień swobody(można jedynie przesuwać górny punkt wzdłuż linii kreskowej). Górna końcówka przemieszcza się w czasie zgodnie z następującym równaniem:
+$$ x = 5 \cdot sin(t) + 2 $$
+Wymiary mechanizmu to:
+$$
+h = 10 \\
+l_1 = 5 \\
+l_2 = 8
+$$
+Wyznacz zależność kąta α od czasu dla 10 różnych chwil czasowych: $t = 0, 0.5, 1, 1.5, ..., 4.5$. Następnie dokonaj interpolacji z otrzymanych punktów i przedstaw na wykresie zależność:
+$$ \alpha = \alpha(t) $$
+wykorzystując 100 punktów, których wartości powinny pochodzić z zastosowania interpolacji metodą wielomianową. 
+
+### Dla zainteresowanych
+Wykonaj animację ruchu mechanizmu korzystając z biblioteki graficznej, funkcji `animate` oraz funkcji `clear` (funkcja `animate` wstrzymuje działanie programu na pewną chwilę, a funkcja `clear` czyści okno). Za pomocą tych funkcji można napisać prostą animację w następujący sposób:
+```c++
+int iter=0;
+while(animate(15) && iter<liczba_czasow)
+{
+    clear();
+    .... rysowanie mechanizmu...
+    iter++;
+}
+```
+## Zadanie 4 (typu kolokwialnego)
+
+Masz zadaną funkcję zmiennej $x$ która zawiera dodatkowy parametr $a$:
+$$ f(x) = - x \cdot sinh(x) + a $$
+
+### Wersja podstawowa zadania
+1. Znajdź 2 miejsca zerowe powyższej funkcji dla parametru $a=1$.
+
+2. Oblicz całkę z zadanej funkcji dla parametru $a=1$ i w granicach od pierwszego miejsca zerowego do drugiego $[x_{01}; x_{02}]$
+
+3. Wyświetlić obliczone miejsca zerowe i całkę z dokładnością do 3 miejsc po przecinku.
+
+### Wersja zaawansowana zadania
+1. Zmodyfikuj funkcję obliczającą miejsca zerowe oraz funkcję całkującą tak, aby przyjmowała wskaźnik do funkcji dwuargumentowej (typu `double funkcja(doublex, double a)`) oraz dodatkowy parametr typu `double a`.  
+**Uwaga** Należy pamiętać aby wewnątrz odpowiedniej funkcji podczas wywołania przekazanej funkcji wykorzystać także dodany parametr `a`.
+
+2. Znajdź 2 miejsca zerowe przedstawionej na początku funkcji dla zakresu parametrów $a=1,2,\dots, 10$.
+
+3. Dla parametrów $a=1,2,\dots, 10$ oblicz całkę w granicach pomiędzy pomiędzy pierwszym a drugim pierwiastkiem ($[x_{01}; x_{02}], wyznaczonymi w poprzednim podpunkcie) odpowiednim dla poszczególnych wartości parametru $a$.
+
+4. Zapisz poszczególne wartości parametru $a$ oraz obliczone wartości całki w dwóch oddzielnych tablicach.
+
+5. Dokonaj interpolacji funkcji $Całka=f(a)$ metodą wielomianową i przedstaw wynik w punktach: $a=1, 1.1, 1.2, \dots, 9.8, 9.8$ na wykresie wykorzystując bibliotekę graficzną. 
+
+**Podpowiedź** Pierwiastki równania $−x \cdot sinh(x) + a$ dla $a=1, \dots, 10$ to liczby z zakresów:
+$$ 
+x_{01} = [-0.5, -2.5] \\
+x_{01} = [0.5, 2.5]
+$$
+
+
+# Podpowiedzi do zadań
+
+Poniżej zamieszczamy znaczące podopiedzi pokazujące jak należy rozwiązać powyższe zadania. Zanim z nich skorzystasz spróbuj własnych sił. Zadania są tak skonstruowane abyś przećwiczył samodzielne definiowanie problemu oraz rozwiązywanie go za pomocą metod numerycznych poznanych na zajęciach. 
+
+## Zadanie 1
+Rozwiązanie tego zadania polega na skorzystaniu z zasady zachowania energii. Znamy prędkość początkową, znamy tor ruchu oraz znamy przeciążenie. Za pomocą przeciążenia możemy obliczyć siłę wypadkową działającą na samolot. Czyli znamy tor i siłę, a zatem możemy obliczyć pracę sił wypadkowych. Podsumowując możemy napisać:
+$$E_0 = \frac{m\cdot v_0^2}{2}$$
+$$ W = \int_{x_0}^{x_1}{\vec{F}(x,y(x)) \cdot \vec{ds}} $$
+a $y$ mamy z danych zadania:
+$$y=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318)$$
+$$ E_k = E_0 + W \quad \to \quad  v_k = \sqrt{2 (\frac{mv_0^2}{2} + \int_{x_0}^{x_1}{\vec{F}\cdot \vec{ds}})} $$
+Pozostaje obliczyć całkę z iloczynu skalarnego. W tym wypadku jedyne rzeczy których nie znamy to $\vec{ds}$ i $\vec{F}$. Jeśli znamy krzywą po której porusza się samolot to wektor przyrostu drogi to nic innego jak:
+$$ \vec{ds} = \left[dx, y'dx\right]$$
+a siła (przeciwnie skierowana do zarejestrowanego przeciążenia): 
+$$ \vec{F} = m \cdot \vec{a} = m \cdot \left[ - \frac{x^2}{10^5}, - \frac{x^2}{10^3} \cdot sin(y)  \right] $$
+Ostatecznie całka którą należy obliczyć to:
+$$ m \cdot \int_{x_0}^{x_1} \frac{x^2}{10^5}dx - \frac{x^2}{10^3}\sin(y)y'dx $$
+
+Jedyna rzecz której nie posiadamy to koniec przedziału całkowania. Jak wiemy końcem będzie moment zderzenia samolotu z ziemią, czyli y=0 . Ponieważ równanie to jest nieliniowe, to wypada skorzystać w tym miejscu z jakiejś metody do rozwiązywania równań nieliniowych. Jak będziemy znali ten ostatni parametr to pozostaje scałkować numerycznie (np. metodą trapezów)
+pracę i można obliczyć ostatecznie wartość prędkości.
+
+Schemat rozwiązania:
+
+1. Przygotuj funkcję obliczającą wysokość w zależności od $x$
+$$y(x)=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318)$$
+
+2. Rozwiąż równianie nieliniowe(metodą bisekcji/siecznych/stycznych) i znajdź współrzędną $x$ zderzenia ( warunek $y=0$).
+
+3. Przygotuj funkcję obliczającą funkcję podcałkową określającą pracę sił wypadkowych.
+
+4. Oblicz całkę stosując metodę trapezów lub simpsona.
+
+5. Oblicz energię kinetyczną początkową. 
+
+6. Oblicz ostateczną wartość prędkości.
+
+
+## Zadanie 2
+
+To zadanie jest mniej złożone niż poprzednie. W zasadzie sprowadza się jedynie do obliczenia całki z długości łuku krzywej opisanej za pomocą funkcji $y=f(x)$. W przypadku tak prostej funkcji elementarna długość łuku to:
+$$ ds = \sqrt{f'(x)^2 + 1} dx$$
+W związku z tym długość łuku to:
+$$ \int_{x_0}^{x_1}{ds} = \int_{x_0}^{x_1}{\sqrt{f'(x)^2 + 1} dx} $$
+Po podstawieniu funkcji opisującej północne ogrodzenie dostaniemy:
+$$ \int_{x_0}^{x_1}{\sqrt{(0.5\cdot sin(\frac{x}{10}))^2 + 1} dx} $$
+
+Zatem schemat rozwiązania zadania będzie następujący:
+
+1. Przygotuj funkcję podcałkową.
+
+2. Wykonaj całkowanie znaną Ci metodą.
+
+3. Oblicz końcową długość ogrodzenia.
+
+4. Znajdź w internecie cenę ogrodzenia w kształcie kota.
+
+5. Oblicz cenę końcową ogrodzenia.
+
+6. Wystaw fakturę Panu Januszowi za wykorzystanie magicznych umiejętności całkowania dowolnej funkcji :-)
+
+## Zadanie 3
+Przyjmijmy, że dolny punkt znajduje się w punkcie $[0,0]$. Wtedy możemy napisać 2 równania opisujące ten mechanizm:
+$$ 
+x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad ponieważ \quad y_1 > 0 \\
+(5 \cdot sin(t) + 2 − x_1)^2 +(h − y_1)^2 =l_2^2
+$$
+a po podstawieniu:
+$$ (5 \cdot sin(t) + 2 − x_1)^2 +(h − \sqrt{l_1^2 - x_1^2} )^2 =l_2^2 $$
+
+Mamy zatem jedno równanie nieliniowe opisujące ruch dolnej korby mechanizmu. Pozostaje je
+rozwiązać wykorzystując np. metodę siecznych.
+
+Schemat rozwiązania:
+
+1. Utwórz tablice do przechowywania 10 czasów oraz 10 kątów $\alpha$
+
+2. Utwórz pętlę w której będziesz zmieniał czas od $t=0, \dots, 4.5$ co $0.5$
+
+3. W pętli wywołaj metodę bisekcji/siecznych/stycznych aby znaleźć rozwiązanie równania opisującego współrzędną $x_1$ . Oblicz następnie współrzędną $y_1$.
+
+4. Mając wsp. $x_1$ , $y_1$ oblicz kąt $\alpha$ używając np.: funkcji $atan(x)$ i zapisz w tablicy nową chwilę czasową oraz nowy kąt $\alpha$.
+
+5. Otwórz nową pętlę która będzie iterowała od $0, \dots, 99$. Następnie używając funkcji „lagrange” dokonaj interpolacji kata $\alpha$ dla chwil czasowych $0.00, 0.05, 0.1, 0.15 , \dots, 4.5$. Dla każdej chwili czasowej narysuj na wykresie punkt o współrzędnych $\left[t_i , \alpha_(t_i )\right]$
