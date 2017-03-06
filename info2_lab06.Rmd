@@ -69,16 +69,16 @@ Podstawiając powyższe do wzoru wyjściowego otrzymamy:
 $$\frac{\frac{T(x+h)-T(x)}{h} - \frac{T(x)-T(x-h)}{h}}{h} = \frac{T(x+h)-2\cdot T(x)+T(x-h)}{h^2} = \frac{Q(x)}{\lambda}$$
 
 Powyższy wzór jest przybliżeniem drugiej pochodnej za pomocą wartości rozwiązania w 3 punktach: $x-h, x, x+h$. Powyższy schemat jest przybliżeniem drugigo rzędu, co zapewnia dużą dokładność odwzorowania pochodnej. Równanie to wykorzystamy w celu przygotowania odpowiedniego układu równań. Zanim przejdziemy do ostatecznego sformułowania układu równań przemnóżmy zaproponowane równanie przez $h^2$:
-$$ T(x+h) - 2T(x) + T(x-h) = \frac{Q(x)}{\lambda}h $$
+$$ T(x+h) - 2T(x) + T(x-h) = \frac{Q(x)}{\lambda}h^2 $$
 Wróćmy do obrazka przedstawiającego dyskretyzację. Weźmy pod uwagę węzeły o numerach od 1,...,N-1. Jeśli podstawimy kolejne $x_i$ do równania powyżej, to otrzymamy zestaw następujących równań:
 $$
-T_2 - 2 \cdot T_1 + T_0 = \frac{Q(x_1)}{\lambda} \cdot h \\
-T_3 - 2 \cdot T_2 + T_1 = \frac{Q(x_2)}{\lambda} \cdot h \\
-T_4 - 2 \cdot T_3 + T_2 = \frac{Q(x_3)}{\lambda} \cdot h \\
+T_2 - 2 \cdot T_1 + T_0 = \frac{Q(x_1)}{\lambda} \cdot h^2 \\
+T_3 - 2 \cdot T_2 + T_1 = \frac{Q(x_2)}{\lambda} \cdot h^2 \\
+T_4 - 2 \cdot T_3 + T_2 = \frac{Q(x_3)}{\lambda} \cdot h^2 \\
 . \\
 . \\
 . \\
-T_N - 2 \cdot T_{N-1} + T_{N-2} = \frac{Q(x_{N-1})}{\lambda} \cdot h 
+T_N - 2 \cdot T_{N-1} + T_{N-2} = \frac{Q(x_{N-1})}{\lambda} \cdot h^2
 $$
 Umyślnie pominięte zostały węzły $0$ i $N$, ponieważ dla nich trudno jest napisać równanie, skoro nie istnieją węzły $x_{-1}$ i $x_{N+1}$ - nimi zajmiemy się później. Teraz należy zwrócić uwagę na samą postać uzyskanych równań. Każde z nich wiąże 3 niewiadome wielkości, oznaczane jako $T_{i+1}, T_{i}, T_{i-1}$. Są to wartości poszukiwanej funkcji w odpowiadających im węzłach. Wprowadźmy jeszcze jedno oznaczenie:
 $$ F_i = \frac{Q(x_i)}{\lambda} \cdot h^2$$
