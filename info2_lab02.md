@@ -94,9 +94,7 @@ Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej ca�
 $$ I = \int_{-1}^{1}{f(x)dx} $$
 Całkę w sposób przybliżony oblicza się wg następującego wzoru:
 $$ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
-gdzie $w_i$ to kolejne wagi kwadratury, $x_i$ to węzły kwadratury, a $n$ oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości $n$ można je znaleźć w internecie (Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się
-je znaleźć choćby pod [adresem](http://holoborodko.com/pavel/numerical-methods/numerical-
-integration/)). Położenia węzłów i wartości wag dla $n = 5$ są podane w poniższej tabeli:
+gdzie $w_i$ to kolejne wagi kwadratury, $x_i$ to węzły kwadratury, a $n$ oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości $n$ można je znaleźć w internecie[^1]. Położenia węzłów i wartości wag dla $n = 5$ są podane w poniższej tabeli:
 
 |             $x_i$            |            $w_i$            |
 |:----------------------------:|:---------------------------:|
@@ -108,3 +106,7 @@ integration/)). Położenia węzłów i wartości wag dla $n = 5$ są podane w p
 
 ### Ćwiczenie
 Zaimplementuj w dowolny sposób (choćby w pętli - niekoniecznie w osobnej procedurze) metodę całkowania za pomocą kwadratury Gaussa. Porównaj ją z poprzednimi metodami. Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadaturę Gaussa opartą na pięciu węzłach?
+
+
+[^1]:Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się je znaleźć choćby pod [adresem](http://holoborodko.com/pavel/numerical-methods/numerical-
+integration/)
