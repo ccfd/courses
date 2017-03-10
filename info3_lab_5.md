@@ -32,7 +32,7 @@ W celu poszerzenie wiedzy autorzy polecają pozycję: *Nie za krótkie wprowadze
 # Pierwszy dokument
 
 Przejdziemy teraz do stworzenia pierwszego dokumentu w $\LaTeX u$.
-Najpierw musimy zadeklarować jego klasę.
+Najpierw musimy zadeklarować klasę dokumentu.
 Robimy to za pomocą instrukcji `\documentclass[opcje]{typ}`, która pozwala nam na wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz pewnych opcji, np.
 
 * rozmiar pisma (`10pt`, `11pt`, itp.),
@@ -72,27 +72,68 @@ Pakiety, z których planujemy korzystać umieszczamy za instrukcją `\documentcl
 Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
 
 Ponieważ teraz tekst wygląda elegancko, warto pochwalić się swoim osiągnięciem światu.
-Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością:
+Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
 ```tex
 \author{Gall Anonim}
 \title{Kroniki}
 \date{1113-1116}
 ```
-W "ciele" dokumentu (między instrukcjami `\begin{document}` i `\end{document}`) umieść instukcję
+W "ciele" dokumentu (między instrukcjami `\begin{document}` i `\end{document}`) umieść instrukcję
 ```tex
 \maketitle
 ```
-i skompiluj ponownie tekst.
+i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.
 
 # Podział logiczny dokumentu
 
-4. akapity
-5. sekcje
-6b. wypunktowania i numeracje
-6c. odsyłacze, przypisy
-6d. streszczenie i spis literatury
+Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
+W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
+```tex
+\section{Nazwa}
+\subsection{Nazwa}
+\subsubsection{Nazwa}
+```
+Sprawdź jak działają wymienione polecenia.
+
+Wypunktowania i numeracje uzyskuje się natomiast wykorzystując środowiska.
+W przypadku listy nieuporządkowanej napiszemy:
+```tex
+\begin{itemize}
+  \item A
+  \item B
+\end{itemize}
+```
+Z kolei dla listy uporządkowanej
+```tex
+\begin{enumerate}
+  \item A
+  \item B
+\end{enumerate}
+```
+Utwórz teraz zagnieżdżoną listę:
+
+  \begin{enumerate}
+    \item A1
+      \begin{enumerate}
+        \item A2
+        \item B2
+          \begin{itemize}
+            \item A3
+            \item B3
+          \end{itemize}
+        \item C2
+      \end{enumerate}
+    \item B1
+  \end{enumerate}
 
 # Wzory i równania matematyczne
+
+$$
+\begin{aligned}
+ AR(p): Y_i &= c + \epsilon_i + \phi_i Y_{i-1} \dots \\
+ Y_{i} &= c + \phi_i Y_{i-1} \dots
+\end{aligned}
+$$
 
 # Tabele
 
