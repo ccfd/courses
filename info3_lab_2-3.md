@@ -38,8 +38,9 @@ Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to 
 - `cp pliki katalog`{.bash} --- Kopiuje pliki do katalogu
 - `cp plik1 plik2`{.bash} --- Kopiuje plik o nazwie plik1 do pliku o nazwie plik2
 - `mv pliki katalog`{.bash} --- Przenosi pliki do katalogu
-- `mvplik1 plik2`{.bash} --- Zmienia nazwę pliku z plik1 na plik2
-- `sed  's/tekst1/tekst2/g'`{.bash}--- Czyta z klawiatury tekst i go wypisuje zamieniając ''tekst1'' na ''tekst2''
+- `mv plik1 plik2`{.bash} --- Zmienia nazwę pliku z plik1 na plik2
+- `sed 's/tekst1/tekst2/g'`{.bash} --- Czyta z klawiatury tekst i go wypisuje zamieniając ''tekst1'' na ''tekst2''
+- `seq liczba1 liczba2`{.bash} --- Wypisuje na ekran ciąg liczb od liczba1 do liczba2 co jeden (wartość domyślna).
 
 
 ## Przekierowanie wejścia wyjścia
