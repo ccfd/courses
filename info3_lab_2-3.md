@@ -1,5 +1,5 @@
 ---
-author: Ł. Łaniewski-Wołłk
+author: "Ł. Łaniewski-Wołłk"
 course: Informatyka III
 material: Instrukcja 2-3
 number: 2, 3
@@ -24,7 +24,7 @@ Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
 
 - `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
 - w wyrażeniu `expr $i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `$i`, `+` i `1`, a nie jeden `i+1`.
-- w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stwożony został program `test`. W tym wypadku podajemy mu za argumenty `$i`, `-lt` i `10`, gdzie opcja `-lt` oznacza ''less than''.
+- w pętli `while`, nie możemy wpisać ,,`i<10`'', lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stworzony został program `test`. W tym wypadku podajemy mu za argumenty `$i`, `-lt` i `10`, gdzie opcja `-lt` oznacza ''less than''.
 
 ## Przydatne programy
 Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.
@@ -46,7 +46,7 @@ Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to 
 Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno pierwsze jak i drugie przekierować.
 
 - `program > plik`{.bash} --- To co program wypisałby na ekran, zostanie wpisane do pliku (plik zostanie nadpisany jeśli istnieje)
-- `program >> plik`{.bash} --- To co program wypisałby na ekran, zostanie dopisane do pliku (plik zostanie utwożony jeśli nie istniał)
+- `program >> plik`{.bash} --- To co program wypisałby na ekran, zostanie dopisane do pliku (plik zostanie utworzony jeśli nie istniał)
 - `program < plik`{.bash} --- Program dostanie zawartość pliku, tak jakbyśmy ją wpisali z klawiatury
 - `program1 | program2`{.bash} --- To co program1 wypisałby na ekran, zostanie wpisane 'z klawiatury' do program2
 - `'program'`{.bash} lub `$(program)`{.bash} --- To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Znak '\`' jest na klawiaturze przy tyldzie '~'.
@@ -54,7 +54,7 @@ Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można j
 Przykłady:
 
 - `echo Tekst > plik`{.bash} --- wypisze ,,Tekst'' do pliku (plik zostanie nadpisany jeśli istnieje)
-- `echo Tekst >> plik`{.bash} --- dopisze ,,Tekst'' do pliku (plik zostanie utwożony jeśli nie istniał)
+- `echo Tekst >> plik`{.bash} --- dopisze ,,Tekst'' do pliku (plik zostanie utworzony jeśli nie istniał)
 - `grep Tekst < plik`{.bash} --- wyszuka w pliku linie zwierające ,,Tekst'' i je wypisze na ekran
 - `echo Tekst | sed 's/st/a/g'`{.bash} --- Zamieni w ,,Tekst'' każde wystąpienie ,,st'' na ,,a''. Więc wypisze na ekran ,,Teka''.
 - `echo $nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`. Rezultat wypisze na ekran.
@@ -62,7 +62,7 @@ Przykłady:
 - `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
 - `ls katalog > plik`{.bash} --- wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje)
 - `cp ls katalog`{.bash} albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zwróconej przez `ls`.
-- `cp cat plik katalog`{.bash} bądz `cp $(cat plik) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zawartej w pliku.
+- `cp cat plik katalog`{.bash} bądź `cp $(cat plik) katalog`{.bash} --- skopiuje pliki do `katalog`u według listy zawartej w pliku.
 
 
 
@@ -90,7 +90,7 @@ do
 	polecenia
 done
 ```
-Pętla, która będzie wykonywać _polecenia_ , poki `program argumenty`{.bash} będzie wykonywany z powodzeniem.
+Pętla, która będzie wykonywać _polecenia_ , póki `program argumenty`{.bash} będzie wykonywany z powodzeniem.
 
 
 
@@ -119,7 +119,7 @@ Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedr
 
 ## Ćwiczenia
 
-Domyślnym edytorem na serwerze `info3 ` jest edytor `nano `, dostępny jest teś edytor `vim `. Pierwszy z nich wydaje się prostszy w obsłudze, drugi występuje na prawie każdym komputerze z UNIXem.
+Domyślnym edytorem na serwerze `info3 ` jest edytor `nano `, dostępny jest też edytor `vim `. Pierwszy z nich wydaje się prostszy w obsłudze, drugi występuje na prawie każdym komputerze z UNIXem.
 
 	- Przy pomocy pętli wypisz na ekran liczby od 0 do 10
 	- Zmień skrypt, tak aby wypisywał od 0 do podanej jako argument wielkości
@@ -133,7 +133,7 @@ Głównym programem którego będziemy używać to `convert` z biblioteki ImageM
 
 **UWAGA: Zanim zaczniesz, skopiuj katalog ze zdjęciami do jakiegoś tymczasowego katalogu!**
 
-- `convert plik.gif plik.jpg`{.bash} --- przekonwertuje plik w formacie GIF na format JPEG
+- `convert plik.gif plik.jpg`{.bash} --- konwertuje plik w formacie GIF na format JPEG
 - `convert plik1.jpg -resize 50% plik2.jpg`{.bash} --- zmniejszy obrazek dwukrotnie
 - `convert plik1.jpg -resize 100 plik2.jpg`{.bash} --- zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli
 - `convert plik1.jpg -resize 100x100 plik2.jpg`{.bash} --- zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli
