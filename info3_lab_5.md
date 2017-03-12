@@ -33,15 +33,15 @@ W celu poszerzenie wiedzy autorzy polecają pozycję: *Nie za krótkie wprowadze
 
 Przejdziemy teraz do stworzenia pierwszego dokumentu w $\LaTeX u$.
 Najpierw musimy zadeklarować klasę dokumentu.
-Robimy to za pomocą instrukcji `\documentclass[opcje]{typ}`, która pozwala nam na wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz pewnych opcji, np.
+Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
 
-* rozmiar pisma (`10pt`, `11pt`, itp.),
-* rozmiar papieru (`a4paper`, `letterpaper`),
-* czy ma być wygenerowana osobna strona tytułowa (`titlepage`, `notitlepage`),
-* liczbę kolumn (`onecolumn`, `twocolumn`),
+* rozmiaru pisma (`10pt`, `11pt`, itp.),
+* rozmiaru papieru (`a4paper`, `letterpaper`),
+* czy strona tytułowa ma być wygenerowana osobno (`titlepage`, `notitlepage`),
+* liczby kolumn (`onecolumn`, `twocolumn`),
 * czy tekst ma być przygotowany do wydruku dwustronnego (`oneside`, `twoside`), itd.
 
-Opcje nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej zostaną użyte wartości domyślne.
+Opcje ujęte w nawiasy kwadratowe (`[` i`]`) nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej zostaną użyte wartości domyślne.
 
 W edytorze tekstu wpisz poniższy kod:
 ```tex
@@ -61,7 +61,11 @@ Otwórz plik `dokument.pdf` i naciesz oczy wynikiem swojej pracy.
 Ale co to?
 Okazuje się, że brakuje kilku liter!
 Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
-Domyślne reguły trzeba rozszerzyć wykorzystując dodatkowe pakiety:
+
+### Pakiety
+
+Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety.
+Przykładowo, kompletną obsługę języka polskiego włączamy za pomocą:
 
 * `\usepackage[T1]{fontenc}` - zawiera czcionkę z polskimi znakami,
 * `\usepackage[utf8]{inputenc}` - definiuje kodowanie (`utf8` - Linux, `Cp1250` - Windows) znaków w pliku źródłowym,
@@ -70,6 +74,8 @@ Domyślne reguły trzeba rozszerzyć wykorzystując dodatkowe pakiety:
 
 Pakiety, z których planujemy korzystać umieszczamy za instrukcją `\documentclass`.
 Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
+
+### Strona tytułowa
 
 Ponieważ teraz tekst wygląda elegancko, warto pochwalić się swoim osiągnięciem światu.
 Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
@@ -86,7 +92,10 @@ i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony 
 
 # Podział logiczny dokumentu
 
+### Sekcje
+
 Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
+Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie.
 W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
 ```tex
 \section{Nazwa}
@@ -95,7 +104,10 @@ W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instr
 ```
 Sprawdź jak działają wymienione polecenia.
 
-Wypunktowania i numeracje uzyskuje się natomiast wykorzystując środowiska.
+### Listy i numeracje
+
+Wypunktowania i numeracje uzyskuje się wykorzystując tzw. środowiska.
+Charkteryzują się one instrukcjami: otwierającą `\begin{}` i zamykającą `\end{}`.
 W przypadku listy nieuporządkowanej napiszemy:
 ```tex
 \begin{itemize}
