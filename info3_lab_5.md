@@ -32,16 +32,16 @@ W celu poszerzenie wiedzy autorzy polecają pozycję: *Nie za krótkie wprowadze
 # Pierwszy dokument
 
 Przejdziemy teraz do stworzenia pierwszego dokumentu w $\LaTeX u$.
-Najpierw musimy zadeklarować jego klasę.
-Robimy to za pomocą instrukcji `\documentclass[opcje]{typ}`, która pozwala nam na wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz pewnych opcji, np.
+Najpierw musimy zadeklarować klasę dokumentu.
+Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
 
-* rozmiar pisma (`10pt`, `11pt`, itp.),
-* rozmiar papieru (`a4paper`, `letterpaper`),
-* czy ma być wygenerowana osobna strona tytułowa (`titlepage`, `notitlepage`),
-* liczbę kolumn (`onecolumn`, `twocolumn`),
+* rozmiaru pisma (`10pt`, `11pt`, itp.),
+* rozmiaru papieru (`a4paper`, `letterpaper`),
+* czy strona tytułowa ma być wygenerowana osobno (`titlepage`, `notitlepage`),
+* liczby kolumn (`onecolumn`, `twocolumn`),
 * czy tekst ma być przygotowany do wydruku dwustronnego (`oneside`, `twoside`), itd.
 
-Opcje nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej zostaną użyte wartości domyślne.
+Opcje ujęte w nawiasy kwadratowe (`[` i`]`) nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej zostaną użyte wartości domyślne.
 
 W edytorze tekstu wpisz poniższy kod:
 ```tex
@@ -61,7 +61,11 @@ Otwórz plik `dokument.pdf` i naciesz oczy wynikiem swojej pracy.
 Ale co to?
 Okazuje się, że brakuje kilku liter!
 Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
-Domyślne reguły trzeba rozszerzyć wykorzystując dodatkowe pakiety:
+
+### Pakiety
+
+Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety.
+Przykładowo, kompletną obsługę języka polskiego włączamy za pomocą:
 
 * `\usepackage[T1]{fontenc}` - zawiera czcionkę z polskimi znakami,
 * `\usepackage[utf8]{inputenc}` - definiuje kodowanie (`utf8` - Linux, `Cp1250` - Windows) znaków w pliku źródłowym,
@@ -71,28 +75,77 @@ Domyślne reguły trzeba rozszerzyć wykorzystując dodatkowe pakiety:
 Pakiety, z których planujemy korzystać umieszczamy za instrukcją `\documentclass`.
 Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
 
+### Strona tytułowa
+
 Ponieważ teraz tekst wygląda elegancko, warto pochwalić się swoim osiągnięciem światu.
-Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością:
+Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
 ```tex
 \author{Gall Anonim}
 \title{Kroniki}
 \date{1113-1116}
 ```
-W "ciele" dokumentu (między instrukcjami `\begin{document}` i `\end{document}`) umieść instukcję
+W "ciele" dokumentu (między instrukcjami `\begin{document}` i `\end{document}`) umieść instrukcję
 ```tex
 \maketitle
 ```
-i skompiluj ponownie tekst.
+i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.
 
 # Podział logiczny dokumentu
 
-4. akapity
-5. sekcje
-6b. wypunktowania i numeracje
-6c. odsyłacze, przypisy
-6d. streszczenie i spis literatury
+### Sekcje
+
+Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
+Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie.
+W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
+```tex
+\section{Nazwa}
+\subsection{Nazwa}
+\subsubsection{Nazwa}
+```
+Sprawdź jak działają wymienione polecenia.
+
+### Listy i numeracje
+
+Wypunktowania i numeracje uzyskuje się wykorzystując tzw. środowiska.
+Charkteryzują się one instrukcjami: otwierającą `\begin{}` i zamykającą `\end{}`.
+W przypadku listy nieuporządkowanej napiszemy:
+```tex
+\begin{itemize}
+  \item A
+  \item B
+\end{itemize}
+```
+Z kolei dla listy uporządkowanej
+```tex
+\begin{enumerate}
+  \item A
+  \item B
+\end{enumerate}
+```
+Utwórz teraz zagnieżdżoną listę:
+
+  \begin{enumerate}
+    \item A1
+      \begin{enumerate}
+        \item A2
+        \item B2
+          \begin{itemize}
+            \item A3
+            \item B3
+          \end{itemize}
+        \item C2
+      \end{enumerate}
+    \item B1
+  \end{enumerate}
 
 # Wzory i równania matematyczne
+
+$$
+\begin{aligned}
+ AR(p): Y_i &= c + \epsilon_i + \phi_i Y_{i-1} \dots \\
+ Y_{i} &= c + \phi_i Y_{i-1} \dots
+\end{aligned}
+$$
 
 # Tabele
 
