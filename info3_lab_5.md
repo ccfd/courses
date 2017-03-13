@@ -33,7 +33,7 @@ W celu poszerzenie wiedzy autorzy polecają pozycję: *Nie za krótkie wprowadze
 
 Przejdziemy teraz do stworzenia pierwszego dokumentu w $\LaTeX u$.
 Najpierw musimy zadeklarować klasę dokumentu.
-Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
+Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`{.tex}, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
 
 * rozmiaru pisma (`10pt`, `11pt`, itp.),
 * rozmiaru papieru (`a4paper`, `letterpaper`),
@@ -44,7 +44,7 @@ Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`, które umożliwia n
 Opcje ujęte w nawiasy kwadratowe (`[` i`]`) nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej zostaną użyte wartości domyślne.
 
 W edytorze tekstu wpisz poniższy kod:
-```tex
+```{.tex}
 \documentclass[11pt, a4paper, twoside]{article}
 
 \begin{document}
@@ -67,10 +67,10 @@ Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
 Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety.
 Przykładowo, kompletną obsługę języka polskiego włączamy za pomocą:
 
-* `\usepackage[T1]{fontenc}` - zawiera czcionkę z polskimi znakami,
-* `\usepackage[utf8]{inputenc}` - definiuje kodowanie (`utf8` - Linux, `Cp1250` - Windows) znaków w pliku źródłowym,
-* `\usepackage[english, polish]{babel}`- definiuje język dokumentu,
-* `\usepackage{polski}` - wymusza polskie reguły składu dokumentu. 
+* `\usepackage[T1]{fontenc}`{.tex} - zawiera czcionkę z polskimi znakami,
+* `\usepackage[utf8]{inputenc}`{.tex} - definiuje kodowanie (`utf8` - Linux, `Cp1250` - Windows) znaków w pliku źródłowym,
+* `\usepackage[english, polish]{babel}`{.tex} - definiuje język dokumentu,
+* `\usepackage{polski}`{.tex} - wymusza polskie reguły składu dokumentu. 
 
 Pakiety, z których planujemy korzystać umieszczamy za instrukcją `\documentclass`.
 Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
@@ -79,13 +79,13 @@ Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawid
 
 Ponieważ teraz tekst wygląda elegancko, warto pochwalić się swoim osiągnięciem światu.
 Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
-```tex
+```{.tex}
 \author{Gall Anonim}
 \title{Kroniki}
 \date{1113-1116}
 ```
-W "ciele" dokumentu (między instrukcjami `\begin{document}` i `\end{document}`) umieść instrukcję
-```tex
+W "ciele" dokumentu (między instrukcjami `\begin{document}`{.tex} i `\end{document}`{.tex}) umieść instrukcję
+```{.tex}
 \maketitle
 ```
 i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.
@@ -97,26 +97,33 @@ i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony 
 Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
 Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie.
 W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
-```tex
+```{.tex}
 \section{Nazwa}
 \subsection{Nazwa}
 \subsubsection{Nazwa}
+\paragraph{Nazwa}
+\subparagraph{Nazwa}
 ```
-Sprawdź jak działają wymienione polecenia.
+Podziel wybrany fragment tekstu za pomocą wymienionych poleceń i sprawdź jak działają.
+Zbuduj teraz spis treści odpowiadający utworzonym rozdziałom.
+W tym celu dodaj instrukcję na początku ciała dokumentu
+```{.tex}
+\tableofcontents
+```
 
 ### Listy i numeracje
 
 Wypunktowania i numeracje uzyskuje się wykorzystując tzw. środowiska.
-Charkteryzują się one instrukcjami: otwierającą `\begin{}` i zamykającą `\end{}`.
+Charkteryzują się one dwiema instrukcjami: otwierającą `\begin{}`{.tex} i zamykającą `\end{}`{.tex}.
 W przypadku listy nieuporządkowanej napiszemy:
-```tex
+```{.tex}
 \begin{itemize}
   \item A
   \item B
 \end{itemize}
 ```
 Z kolei dla listy uporządkowanej
-```tex
+```{.tex}
 \begin{enumerate}
   \item A
   \item B
@@ -124,28 +131,156 @@ Z kolei dla listy uporządkowanej
 ```
 Utwórz teraz zagnieżdżoną listę:
 
-  \begin{enumerate}
-    \item A1
-      \begin{enumerate}
-        \item A2
-        \item B2
-          \begin{itemize}
-            \item A3
-            \item B3
-          \end{itemize}
-        \item C2
-      \end{enumerate}
-    \item B1
-  \end{enumerate}
+1. A1
+2. B1
+    - A2
+    - B2
+        - A3
+        - B3
+    - C2
+3. C1
+    1. D2
+    2. E2
+4. D1
 
 # Wzory i równania matematyczne
 
-$$
-\begin{aligned}
- AR(p): Y_i &= c + \epsilon_i + \phi_i Y_{i-1} \dots \\
- Y_{i} &= c + \phi_i Y_{i-1} \dots
-\end{aligned}
-$$
+Żaden dobry tekst naukowy nie może obyć się bez równań (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
+W $\LaTeX u$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
+Perwszy pozwala na wstawianie wyrażeń razem z tekstem w linii (z ang. często mówi się *inline*)
+```{.tex}
+przereklamowany wzór $E=mc^2$ powstał \ldots 
+```
+Kolejny sposób to dodanie środowiska, które pozwoli na wyświetlenie równania w osobnym wierszu
+```{.tex}
+dla trójkąta prostokątnego zachodzi:
+\begin{displaymath}
+  c ^ 2 = a ^ 2 + b ^ 2
+\end{displaymath}
+```
+Dla utrzymania porządku czasem warto numerować równania
+```{.tex}
+\begin{equation}
+  c ^ 2 = a ^ 2 + b ^ 2
+\end{equation}
+```
+
+Przedstawimy teraz podstawowe symbole i techniki wykorzystywane przy wpisywaniu rówań matemataycznych
+
+W celu *dezorientacji* czytającego często stosuje się greckie litery:
+```{.tex}
+  \[
+    \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
+  \]
+```
+Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę na dużą pierwszej litery danej nazwy (`\alpha`{.tex} -> `\Alpha`{.tex}).
+
+
+Indeksy otrzymuje się przez:
+```{.tex}
+\[
+  n^3=m^{a^2-d}
+\]
+\[
+  \alpha_{1,2}=x_1+y_{1,2}
+\]
+```
+
+Pierwiastki to
+```{.tex}
+\[
+  R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2}
+\]
+```
+
+Symbol wektora
+```{.tex}
+\[
+  \vec{z} = \vec{x} \times\vec{y}
+\]
+```
+
+Podkreślenia i klamry wykorzystywane do komentowania poszczególnych części wzorów:
+```{.tex}
+\[
+  \overline{x + i \cdot y}\cdot\underline{v - i \cdot w}
+\]
+\[
+  \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0}
+\]
+```
+
+Nazwy funkcji powinny być zapisane zwykłą czcionką:
+```{.tex}
+\[
+  1 = \sin^2(x) + \cos^2(x)
+\]
+```
+a nie pochyloną:
+```{.tex}
+\[
+  1 = sin^2(x) + cos^2(x)
+\]
+```
+
+Ułamki piętrowe uzyskujemy przez
+```{.tex}
+\[
+  \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1}
+\]
+```
+
+Nawiasy możemy wprowadzić wprost
+```{.tex}
+\[
+  y=((\frac{1}{1 + x})^2 - 1)
+\]
+```
+Nie jest to jednak alagancki sposób.
+W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest napisać
+```{.tex}
+\[
+  y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right)
+\]
+```
+
+Całki zapisujemy:
+```{.tex}
+\[
+  \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx
+\]
+```
+Natomiast sumy:
+```{.tex}
+\[
+  S=\sum_{n=1}^{\inf} a \cdot q^{n-1}
+\]
+```
+
+Macierze zapisujemy stosując środowisko `array`{.tex}
+```{.tex}
+\[
+\left|
+\begin{array}{ccc}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33} \\
+\end{array}
+\right|
+\]
+```
+
+Środowisko te można także wykorzystać do zapisu warunków
+```{.tex}
+\[
+f(x)=\left\{
+\begin{array}{lr}
+0 & x > 0 \\
+1 & x\leq 0 \\
+\end{array}
+\right.
+\]
+```
 
 # Tabele
 
