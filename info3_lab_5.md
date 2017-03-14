@@ -147,11 +147,11 @@ Utwórz teraz zagnieżdżoną listę:
 
 Żaden dobry tekst naukowy nie może obyć się bez równań (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
 W $\LaTeX u$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
-Perwszy pozwala na wstawianie wyrażeń razem z tekstem w linii (z ang. często mówi się *inline*)
+Perwszy umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
 ```{.tex}
-przereklamowany wzór $E=mc^2$ powstał \ldots 
+przereklamowany wzór $E=mc^2$ powstał \ldots
 ```
-Kolejny sposób to dodanie środowiska, które pozwoli na wyświetlenie równania w osobnym wierszu
+Kolejny sposób to dodanie środowiska, które pozwala na wyświetlenie równania w osobnym wierszu, np.
 ```{.tex}
 dla trójkąta prostokątnego zachodzi:
 \begin{displaymath}
