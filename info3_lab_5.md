@@ -113,8 +113,8 @@ W tym celu dodaj instrukcję na początku ciała dokumentu
 
 ### Listy i numeracje
 
-Wypunktowania i numeracje uzyskuje się wykorzystując tzw. środowiska.
-Charkteryzują się one dwiema instrukcjami: otwierającą `\begin{}`{.tex} i zamykającą `\end{}`{.tex}.
+Wypunktowania i numeracje uzyskuje się wykorzystując tzw. otoczenia.
+Charakteryzują się one dwiema instrukcjami: otwierającą `\begin{}`{.tex} i zamykającą `\end{}`{.tex}.
 W przypadku listy nieuporządkowanej napiszemy:
 ```{.tex}
 \begin{itemize}
@@ -145,38 +145,46 @@ Utwórz teraz zagnieżdżoną listę:
 
 # Wzory i równania matematyczne
 
-Żaden dobry tekst naukowy nie może obyć się bez równań (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
+Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
 W $\LaTeX u$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
-Perwszy umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
+Pierwszy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
 ```{.tex}
-przereklamowany wzór $E=mc^2$ powstał \ldots
+  wzór $E=mc^2$ powstał \ldots
 ```
-Kolejny sposób to dodanie środowiska, które pozwala na wyświetlenie równania w osobnym wierszu, np.
+Kolejny sposób to wykorzystanie otoczenia, które pozwala na wyświetlenie równania w osobnym wierszu, np.
 ```{.tex}
 dla trójkąta prostokątnego zachodzi:
 \begin{displaymath}
   c ^ 2 = a ^ 2 + b ^ 2
 \end{displaymath}
 ```
-Dla utrzymania porządku czasem warto numerować równania
+Aby nie zapisywać pełnej nazwy otoczenia piszemy skrótowo
+```{.tex}
+\[
+  c ^ 2 = a ^ 2 + b ^ 2
+\]
+```
+
+Dla utrzymania porządku często warto numerować równania
 ```{.tex}
 \begin{equation}
   c ^ 2 = a ^ 2 + b ^ 2
 \end{equation}
 ```
 
-Przedstawimy teraz podstawowe symbole i techniki wykorzystywane przy wpisywaniu rówań matemataycznych
+Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię.
+Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\LaTeX u$ przy wpisywaniu równań matematycznych
 
-W celu *dezorientacji* czytającego często stosuje się greckie litery:
+Greckie litery są jednym z podstawowych elementów.
+Są dość łatwe do zapamiętania ze względu na zapis fonetyczny.
 ```{.tex}
   \[
     \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
   \]
 ```
-Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę na dużą pierwszej litery danej nazwy (`\alpha`{.tex} -> `\Alpha`{.tex}).
+Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę na dużą pierwszej litery danej nazwy (np. `\alpha`{.tex} -> `\Alpha`{.tex}).
 
-
-Indeksy otrzymuje się przez:
+Indeksy górne i dolne otrzymuje się przez użycie symboli `^` i `_`:
 ```{.tex}
 \[
   n^3=m^{a^2-d}
@@ -186,17 +194,17 @@ Indeksy otrzymuje się przez:
 \]
 ```
 
-Pierwiastki to
+Zapis pierwiastków wymaga z kolei instrukcji `\sqrt{}`{.tex} 
 ```{.tex}
 \[
   R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2}
 \]
 ```
 
-Symbol wektora
+Symbol wektora uzyskuje się przez
 ```{.tex}
 \[
-  \vec{z} = \vec{x} \times\vec{y}
+  \vec{z} = \vec{x} \times \vec{y}
 \]
 ```
 
@@ -236,7 +244,7 @@ Nawiasy możemy wprowadzić wprost
   y=((\frac{1}{1 + x})^2 - 1)
 \]
 ```
-Nie jest to jednak alagancki sposób.
+Nie jest to jednak elegancki sposób.
 W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest napisać
 ```{.tex}
 \[
@@ -257,7 +265,7 @@ Natomiast sumy:
 \]
 ```
 
-Macierze zapisujemy stosując środowisko `array`{.tex}
+Macierze zapisujemy stosując otoczenie `array`{.tex}
 ```{.tex}
 \[
 \left|
@@ -270,7 +278,7 @@ a_{31} & a_{32} & a_{33} \\
 \]
 ```
 
-Środowisko te można także wykorzystać do zapisu warunków
+Otoczenie te można także wykorzystać do zapisu warunków
 ```{.tex}
 \[
 f(x)=\left\{
@@ -282,6 +290,117 @@ f(x)=\left\{
 \]
 ```
 
+## Ćwiczenia
+
+Zapisz poniższe równania wykorzystując system $\LaTeX$.
+Niektóre symbole nie były wprowadzone wcześniej.
+W sieci Internet można znaleźć listy dostępnych symboli.
+W naszej pracowni można skorzystać ze strony: https://www.sharelatex.com/learn/Mathematical_expressions
+
+$$
+  i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
+$$
+
+$$
+  \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla\mathbf{u} =
+  -\frac{1}{\rho}\nabla p+\nu \nabla^{2}\mathbf{u} + \frac{1}{3}\nu \nabla (\nabla \cdot \mathbf{u}) + \mathbf{g}
+$$
+
+$$
+  \oint_{\partial \Sigma}\mathbf{B} \cdot \mathrm{dl} =
+  \mu_0 \iint_{\Sigma} \mathbf{J} \cdot \mathrm{d} \mathbf{S} +
+  \mu_0 \varepsilon_0 \frac{\mathrm{d}}{\mathrm{dt}} \iint_{\Sigma} \mathbf{E} \cdot \mathrm{d} \mathbf{S} 
+$$
+
+$$
+\mathrm{Var} \left(\hat{Z}(x_0)-Z(x_0)\right) =
+\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
+\underbrace{
+\left(
+\begin{array}{c}
+c(x_1,x_0) \\
+\vdots \\
+c(x_n,x_0) \\
+\end{array}
+\right)
+\left(
+\begin{array}{ccc}
+c(x_1,x_1) & \cdots & c(x_1,x_n)  \\
+\vdots & \ddots & \vdots  \\
+c(x_n,x_1) & \cdots & c(x_n,x_n)
+\end{array}
+\right)^{-1}
+\left(
+\begin{array}{c}
+c(x_1,x_0) \\
+\vdots \\
+c(x_n,x_0)
+\end{array}
+\right)}_{\mathrm{Var}(\hat{Z}(x_0))}
+$$
+
 # Tabele
 
+Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie $\LaTeX$.
+Pokarzemy najprostszy przykład z wykorzystaniem otoczenia `tabular`.
+Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości.
+Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania.
+Przeanalizuj poniższy kod:
+```{.tex}
+  \begin{tabular}{c||c|c|c}
+     & symb. & symb. & symb. \\ \hline \hline
+    symb. & X & O & O \\ \hline
+    symb. & O & X & X \\ \hline
+    symb. & X & O & X \\
+  \end{tabular}
+```
+
+Otoczenie `tabular` pozwala także na tworzenie wielokolumnowych rubryk:
+```{.tex}
+  \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{symb.} \\ \hline \hline
+    X & O & O \\ \hline
+    O & X & X \\ \hline
+    X & O & X \\
+  \end{tabular}
+```
+
+Użycie powyższej konstrukcji ma pewną wadę.
+Tabele dodane do dokumentu za pomocą otoczenia `tabular` nie zawsze znajdą się tam gdzie byśmy tego chcieli.
+Aby mieć kontrolę nad położeniem tabeli należy użyć otoczenia `table`, które ma jeden argument opcjonalny mówiący o tym gdzie na stronie ma się znaleźć wstawka z tabelą.
+Dodatkowo, otoczenie to pozwala na dodanie podpisu do naszej tabeli.
+Służy do tego instrukcja `\caption{podpis}`{.tex}.
+Przykładowo, jeśli chcemy aby tabela znalazła się dokładnie w miejscu użycia, napiszemy:
+```{.tex}
+\begin{table}[h]
+  \begin{tabular}{c|c|c}
+    X & O & O \\ \hline
+    O & X & X \\ \hline
+    X & O & X \\
+  \end{tabular}
+  \caption{Kółko i krzyżyk.}
+\end{table}
+```
+
+## Ćwiczenia
+
+Wykonaj poniższą tabelę:
+
+![](figures/info3_lab_5_table.png "Tabela")
+
 # Grafika
+
+Wstawienie grafiki w $LaTeX u$ ogranicza się do użycia instrukcji `\includegraphics[parametry]{sciezka_do_grafiki}`{.tex}.
+Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa `95%` szerokości tekstu napiszemy:
+```{.tex}
+\includegraphics[width=.95\textwidth]{rysunek.pdf}
+```
+
+Podobnie jak to było w przypadku tabel, kontrolę nad położeniem rysunku i możliwość dodawania podpisów otrzymamy po zastosowaniu specjalnego otoczenia.
+W przypadku grafiki będzie to otoczenie `figure`:
+```{.tex}
+\begin{figure}[!h]
+    \includegraphics[width=.95\textwidth]{rysunek.pdf}
+    \caption{Rysunek.}
+\end{figure}
+```
