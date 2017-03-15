@@ -15,9 +15,9 @@ Czy wizualna atrakcyjność dokumentu oznacza jednak, że dokument jest wysokiej
 Ciężko powiedzieć... nie napisaliśmy jeszcze co to znaczy "dokument wysokiej jakości".
 
 Otóż, dokument powinien być tak sformatowany, aby umożliwić czytelnikowi całkowite skupienie się na tekście.
-Nie powinien zawierać żadnych elementów, które rozpraszają lub odwracają jego uwagę od tego co jest najważniejsze -- od treści.
-Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów niemieszczących się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych.
-Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel.
+Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwagę od tego co jest najważniejsze -- od treści.
+Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych.
+Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.
 
 Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program $\LaTeX$ (wł. zestaw makr i instrukcji do obsługi programu $\TeX$).
 Nazwę $\LaTeX$ czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
@@ -27,7 +27,7 @@ Pisanie w $\LaTeX u$ w pewnym stopniu przypomina pisanie w języku HTML.
 Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie $\LaTeX$ można tworzyć wiele różnych typów dokumentów.
 Na dzisiejszych zajęciach skorzystamy z podstawowego typu `article`.
 
-W celu poszerzenie wiedzy autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu $\LaTeX 2_{\varepsilon}$*.
+W celu poszerzenia wiedzy, autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu $\LaTeX 2_{\varepsilon}$*.
 
 # Pierwszy dokument
 
@@ -41,7 +41,7 @@ Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`{.tex}, które umożl
 * liczby kolumn (`onecolumn`, `twocolumn`),
 * czy tekst ma być przygotowany do wydruku dwustronnego (`oneside`, `twoside`), itd.
 
-Opcje ujęte w nawiasy kwadratowe (`[` i`]`) nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej zostaną użyte wartości domyślne.
+Opcje ujęte w nawiasy kwadratowe (`[` i`]`) nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej, zostaną użyte wartości domyślne.
 
 W edytorze tekstu wpisz poniższy kod:
 ```{.tex}
@@ -65,7 +65,7 @@ Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
 ### Pakiety
 
 Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety.
-Przykładowo, kompletną obsługę języka polskiego włączamy za pomocą:
+Przykładowo, kompletną obsługę języka polskiego włączamy dodając pakiety:
 
 * `\usepackage[T1]{fontenc}`{.tex} - zawiera czcionkę z polskimi znakami,
 * `\usepackage[utf8]{inputenc}`{.tex} - definiuje kodowanie (`utf8` - Linux, `Cp1250` - Windows) znaków w pliku źródłowym,
@@ -88,7 +88,8 @@ W "ciele" dokumentu (między instrukcjami `\begin{document}`{.tex} i `\end{docum
 ```{.tex}
 \maketitle
 ```
-i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.
+i skompiluj ponownie tekst.
+Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.
 
 # Podział logiczny dokumentu
 
@@ -106,10 +107,11 @@ W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instr
 ```
 Podziel wybrany fragment tekstu za pomocą wymienionych poleceń i sprawdź jak działają.
 Zbuduj teraz spis treści odpowiadający utworzonym rozdziałom.
-W tym celu dodaj instrukcję na początku ciała dokumentu
+W tym celu dodaj instrukcję
 ```{.tex}
 \tableofcontents
 ```
+na początku ciała dokumentu.
 
 ### Listy i numeracje
 
@@ -164,7 +166,6 @@ Aby nie zapisywać pełnej nazwy otoczenia piszemy skrótowo
   c ^ 2 = a ^ 2 + b ^ 2
 \]
 ```
-
 Dla utrzymania porządku często warto numerować równania
 ```{.tex}
 \begin{equation}
@@ -173,10 +174,10 @@ Dla utrzymania porządku często warto numerować równania
 ```
 
 Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię.
-Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\LaTeX u$ przy wpisywaniu równań matematycznych
+Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\LaTeX u$ przy wpisywaniu równań matematycznych.
 
 Greckie litery są jednym z podstawowych elementów.
-Są dość łatwe do zapamiętania ze względu na zapis fonetyczny.
+Są dość łatwe do zapamiętania ze względu na zapis fonetyczny:
 ```{.tex}
   \[
     \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
@@ -268,32 +269,32 @@ Natomiast sumy:
 Macierze zapisujemy stosując otoczenie `array`{.tex}
 ```{.tex}
 \[
-\left|
-\begin{array}{ccc}
-a_{11} & a_{12} & a_{13} \\
-a_{21} & a_{22} & a_{23} \\
-a_{31} & a_{32} & a_{33} \\
-\end{array}
-\right|
+  \left|
+    \begin{array}{ccc}
+      a_{11} & a_{12} & a_{13} \\
+      a_{21} & a_{22} & a_{23} \\
+      a_{31} & a_{32} & a_{33} \\
+    \end{array}
+  \right|
 \]
 ```
 
 Otoczenie te można także wykorzystać do zapisu warunków
 ```{.tex}
 \[
-f(x)=\left\{
-\begin{array}{lr}
-0 & x > 0 \\
-1 & x\leq 0 \\
-\end{array}
-\right.
+  \delta(x)=\left\{
+    \begin{array}{lr}
+      0 & x \ne 0 \\
+      +\infty & x = 0 \\
+    \end{array}
+  \right.
 \]
 ```
 
 ## Ćwiczenia
 
 Zapisz poniższe równania wykorzystując system $\LaTeX$.
-Niektóre symbole nie były wprowadzone wcześniej.
+Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej.
 W sieci Internet można znaleźć listy dostępnych symboli.
 W naszej pracowni można skorzystać ze strony: https://www.sharelatex.com/learn/Mathematical_expressions
 
@@ -354,8 +355,10 @@ Przeanalizuj poniższy kod:
     symb. & X & O & X \\
   \end{tabular}
 ```
+Jaki wpływ na wygląd tabeli mają parametry `{c||c|c|c}`{.tex}?
 
-Otoczenie `tabular` pozwala także na tworzenie wielokolumnowych rubryk:
+Otoczenie `tabular` pozwala także na tworzenie wielokolumnowych rubryk.
+Służy do tego polecenie `\multicolumn{l_kolumn}{justowanie}{tekst}`{.tex}.
 ```{.tex}
   \begin{tabular}{c|c|c}
     \multicolumn{3}{c}{symb.} \\ \hline \hline
@@ -381,6 +384,11 @@ Przykładowo, jeśli chcemy aby tabela znalazła się dokładnie w miejscu użyc
   \caption{Kółko i krzyżyk.}
 \end{table}
 ```
+Pozostałe parametry to:
+
+- `t` -- umieść wstawkę na górze strony,
+- `b` -- umieść wstawkę na dole strony,
+- `p` -- umieść wstawkę na oddzielnej stronie ze wstawkami.
 
 ## Ćwiczenia
 
