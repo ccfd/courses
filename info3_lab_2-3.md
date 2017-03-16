@@ -5,9 +5,10 @@ material: Instrukcja 2-3
 number: 2, 3
 ---
 
-
 # BASH: skrypty
-Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod +x plik`{.bash} i wykonać komendą `./plik`{.bash} . Linia poleceń (BASH) służy do uruchomiania programów - dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
+Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń.
+Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod u+x plik`{.bash} i wykonać komendą `./plik`{.bash} .
+Linia poleceń (BASH) służy do uruchamiania programów - dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
 
 Przeanalizuj fragment kodu, z zaznaczonymi `programami` i `opcjami`:
 ```Bash

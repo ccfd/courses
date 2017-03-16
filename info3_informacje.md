@@ -1,6 +1,5 @@
 ---
 author: "K. Marchlewski"
-date: "March 16, 2017"
 course: Informatyka III
 material: Regulamin
 number: 0
