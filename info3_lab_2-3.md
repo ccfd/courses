@@ -58,9 +58,11 @@ Napisz skrypt, który:
 
 Spróbuj napisać skrypty wykonujące następujące zadania:
 
-- Dodanie do obrazka ramki i wypisanie na niej wybranej informacji `EXIF`.
+- Doda do obrazka ramkę i wypisze na niej wybraną informację `EXIF`.
 Informację tę można wyciągnąć za pomocą polecenia `identify -format "%[EXIF:*]" plik.jpg`{.bash}.
 Może to być np. modelu aparatu, którym wykonano zdjęcie.
+- Wypisze na ekran liczby od 0 do 10 za pomocą pętli.
+- Wypisze na ekran liczby od 0 do pewnej liczby podanej jako argument skryptu.
 - Połączy wszystkie obrazki w danym katalogu, zmniejszone do rozmiaru 10 na 10 pikseli, w jeden duży obraz `JPG`.
 Argument `-append`{.bash} łączy obrazy w pionie, a argument `+append`{.bash} w poziomie.
 - W sposób analogiczny, połączy obrazy z katalogu `drop` w jeden duży obraz.

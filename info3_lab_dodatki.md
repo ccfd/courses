@@ -1,16 +1,17 @@
 ---
-author: "Ł. Łaniewski-Wołłk"
-course: Informatyka III
-material: Instrukcja 2-3: Sciągawka
-number: 2, 3
+author: "Ł. Łaniewski-Wołłk, rev. K. Marchlewski"
+course: "Informatyka III"
+material: "Bash: Dodatki"
+number: 8
 ---
 
 # BASH: skrypty
-Pisanie skryptów, polega na spisaniu w pliku komend, które normalnie wpisywalibyśmy w linii poleceń.
+
+Pisanie skryptów, polega w uproszczeniu na spisaniu w pliku komend, które normalnie wpisalibyśmy w linii poleceń.
 Taki plik możemy następnie oznaczyć jako wykonywalny komendą `chmod u+x plik`{.bash} i wykonać komendą `./plik`{.bash} .
 Linia poleceń (BASH) służy do uruchamiania programów - dlatego: **każda linijka skryptu wygląda nastepująco:** `program agumenty`.
 
-Przeanalizuj fragment kodu, z zaznaczonymi `programami` i `opcjami`:
+Przeanalizuj poniższy fragment kodu:
 ```Bash
 i=1
 while test $i -lt 10
@@ -21,7 +22,7 @@ do
 done
 ```
 
-Gdy zapamiętamy tą zasadę, łatwo zobaczyć, że:
+Łatwo zobaczyć, że:
 
 - `i=1` piszemy bez spacji ponieważ wtedy BASH wie, że to przypisanie, a nie program `i` z opcjami `=` i `1`. 
 - w wyrażeniu `expr $i + 1`, musimy zachować spacje, żeby program `expr` dostał trzy argumenty `$i`, `+` i `1`, a nie jeden `i+1`.
@@ -117,44 +118,5 @@ done
 ```
 
 Przeniesie każdy plik o końcówce `.jpg`, do katalogu `IMG` dodając im przedrostek `a_` (np.: `obrazek.jpg` zamieni na `IMG/a_obrazek.jpg`).
-
-
-## Ćwiczenia
-
-Domyślnym edytorem na serwerze `info3 ` jest edytor `nano `, dostępny jest też edytor `vim `. Pierwszy z nich wydaje się prostszy w obsłudze, drugi występuje na prawie każdym komputerze z UNIXem.
-
-	- Przy pomocy pętli wypisz na ekran liczby od 0 do 10
-	- Zmień skrypt, tak aby wypisywał od 0 do podanej jako argument wielkości
-
-
-
-# Obróbka obrazków
-
-## `convert`
-Głównym programem którego będziemy używać to `convert` z biblioteki ImageMagick. Program ten służy do najróżniejszego typu konwersji i zmiany właściwości obrazów --- lecz potrafi także dodawać elementy do obrazu, a nawet tworzyć obrazy od zera. Najłatwiej zobaczyć jego użycie na przykładach:
-
-**UWAGA: Zanim zaczniesz, skopiuj katalog ze zdjęciami do jakiegoś tymczasowego katalogu!**
-
-- `convert plik.gif plik.jpg`{.bash} --- konwertuje plik w formacie GIF na format JPEG
-- `convert plik1.jpg -resize 50% plik2.jpg`{.bash} --- zmniejszy obrazek dwukrotnie
-- `convert plik1.jpg -resize 100 plik2.jpg`{.bash} --- zmniejszy obrazek, tak by krótszy wymiar był 100 pikseli
-- `convert plik1.jpg -resize 100x100 plik2.jpg`{.bash} --- zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli
-- `convert plik1.jpg -resize 100x100\! plik2.jpg`{.bash} --- zmniejszy obrazek dokładnie do rozmiaru 100 na 100 pixeli
-- `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 'Magick'" fuzzy-magick.jpg`{.bash} --- stworzy obrazek fuzzy-magick.jpg, z tekstem "Magick"
-Wykonaj powyższe operacja, sprawdź efekty.
-
-
-
-## Ćwiczenia
-Napisz skrypt który:
-
-- Zmniejszy wszystkie pliki `jpg`
-- Napisz skrypt który: Zmniejszy wszystkie pliki `jpg` umieszczając je w innym katalogu
-- Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, dodając końcówkę z `plik.jpg` na `plik.jpg.gif`
-- Napisz skrypt który: Skonwertuje wszystkie pliki `jpg` na `gif`, zamieniając końcówkę z `plik.jpg` na `plik.gif`
-- Na każde zdjęcie naniesie tekst używając `-pointsize rozmiar` -draw "text x, y 'Tekst'"
-- Na każde zdjęcie naniesie aktualną datę (komenda `date`)
-- Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć przy pomocy `stat -c %y plik`)
-- Zmniejszy wszystkie obrazki z katalogu `drop1` i połączy je w animację przy pomocy `convert *.jpg animacja.gif`
 
 
