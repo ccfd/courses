@@ -38,7 +38,7 @@ Jeśli już wiemy, że każdy skrypt w BASH to seria wywołanych programów, to 
 - `cp pliki katalog`{.bash} --- Kopiuje pliki do katalogu
 - `cp plik1 plik2`{.bash} --- Kopiuje plik o nazwie plik1 do pliku o nazwie plik2
 - `mv pliki katalog`{.bash} --- Przenosi pliki do katalogu
-- `mv plik1 plik2`{.bash} --- Zmienia nazwę pliku z plik1 na plik2
+- `mvplik1 plik2`{.bash} --- Zmienia nazwę pliku z plik1 na plik2
 - `sed  's/tekst1/tekst2/g'`{.bash}--- Czyta z klawiatury tekst i go wypisuje zamieniając ''tekst1'' na ''tekst2''
 
 
