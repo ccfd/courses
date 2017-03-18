@@ -1,10 +1,8 @@
 ---
-title: "TCP/IP"
-author: 
-  - "Ł. Łaniewski-Wołłk"
+author: "Ł. Łaniewski-Wołłk"
+course: Informatyka III
 material: Instrukcja 7
 number: 7
-course: Informatyka III
 ---
 
 # Polecenia i Materiały
