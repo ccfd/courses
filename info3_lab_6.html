@@ -9,7 +9,8 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
+<meta name="author" content="M. Dzikowski" />
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
 
 
 <title></title>
@@ -24,6 +25,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -521,14 +523,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="cpp_inst03b.pdf">
+  <a href="info3_lab_6.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst03b.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab_6.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -554,41 +556,110 @@ div.tocify {
 </div>
 
 
-<div id="zadanie-1" class="section level2">
-<h2>Zadanie 1</h2>
-<p>Sprawdź działanie polimorfizmu na przykładzie tablicy figur. * Utwórz klasę bazową <code class="sourceCode cpp">Shape</code>. Klasa ta powinna posiadać metodę służącą do drukowania nazwy obiektu np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> PrintName()
-{
-    cout &lt;&lt; ”class Shape\n”;
-}</code></pre></div>
-<ul>
-<li><p>Utwórz klasy <code class="sourceCode cpp">Circle, Square, Triangle</code> będące obiektami potomnymi klasy <code class="sourceCode cpp">Shape</code>. Obiekty te powinny być opisane przez wierzchołki (można wykorzystać klasę z zajęć poprzednich <code class="sourceCode cpp">Wektor2D</code>) i posiadać metody do obliczania pola figury.</p></li>
-<li><p>Zmodyfikuj klasę <code class="sourceCode cpp">Shape</code> przez dodanie abstrakcyjnej metody do liczenia pola figury np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">virtual</span> <span class="dt">double</span> Area() = <span class="dv">0</span>;</code></pre></div></li>
-<li><p>Sprawdź, czy możesz teraz utworzyć obiekt typu <code class="sourceCode cpp">Shape</code> lub np. <code class="sourceCode cpp">Circle</code>.</p></li>
-<li><p>Zmodyfikuj metody <code class="sourceCode cpp">Area()</code> obiektów <code class="sourceCode cpp">Circle, Square, Triangle</code> tak aby były one wirtualne oraz dodaj do nich wirtualne metody <code class="sourceCode cpp">PrintName()</code>.</p></li>
-<li><p>Utwórz tablicę wskaźników do obiektów typu <code class="sourceCode cpp">Shape</code> i zainicjalizuj je obiektami <code class="sourceCode cpp">Circle, Square, Triangle</code> np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Shape   *tabp[<span class="dv">3</span>];
-tabp[<span class="dv">0</span>] = <span class="kw">new</span> Circle(…);
-tabp[<span class="dv">1</span>] = <span class="kw">new</span> Triangle(…);
-tabp[<span class="dv">2</span>] = <span class="kw">new</span> Square(…);
-<span class="kw">for</span> ( <span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="dv">3</span>; ++i)
-{
-tabp[i]-&gt;PrintName();
-cout &lt;&lt; tabp[i]-&gt;Area() &lt;&lt; endl;
-}</code></pre></div></li>
-<li><p>Sprawdź co się stanie gdy usunie się modyfikator <code class="sourceCode cpp"><span class="kw">virtual</span></code> przy metodach obiektów <code class="sourceCode cpp">Circle, Square, Triangle</code>.</p></li>
-<li><p>Sprawdź działanie funkcji <code class="sourceCode cpp"><span class="kw">dynamic_cast</span>&lt;T*&gt;()</code> np. do policzenia ile obiektów w danej kolekcji jest typu <code class="sourceCode cpp">Circle</code> (pamiętaj o włączeniu opcji kompilatora RTTI):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">if</span>( <span class="kw">dynamic_cast</span>&lt;Circle*&gt;( tabp[i] ) )
-{
-  ++count;
-}</code></pre></div></li>
-<li><p>Czy wiesz dlaczego w punkcie poprzednim używaliśmy <code class="sourceCode cpp"><span class="kw">dynamic_cast</span></code> a nie <code class="sourceCode cpp"><span class="kw">static_cast</span></code>?</p></li>
-</ul>
+<div id="wstep" class="section level1">
+<h1>Wstęp</h1>
+<p>Obliczenia z wykorzystaniem komputerów są nieodłączną częścią współczesnej nauki. Natomiast, podstawą obliczeń komputerowych są obliczenia równoległe. Gdy korzystamy z 1 komputera, nawet bardzo mocnego, jesteśmy ograniczeni do około 32 procesorów (obecnie) i kilkuset Gb pamięci RAM. Co więcej, czas obliczeń spada (przynajmniej tego byśmy sobie życzyli) jak 1/(liczba procesów). Dlatego z reguły potrzebujemy i chcemy wykorzystać ich jak najwięcej.</p>
 </div>
-<div id="zadanie-2" class="section level2">
-<h2>Zadanie 2</h2>
-<p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp</p>
+<div id="obliczenia-rownolege" class="section level1">
+<h1>Obliczenia równoległe</h1>
+<p>Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu, potrzebuje mechanizmu komunikacji. W naszym przypadku będzie to standard MPI czyli Message Passing Interface. Biblioteka OpenMPI dostarcza nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami składającymi się na nasz “program”.</p>
+<div id="cwiczenie-1" class="section level3">
+<h3>Ćwiczenie 1</h3>
+<p>Przygotuj plik <code>program.cpp</code> o poniższej treści. Następnie skompiluj go za pomocą programu <code>mpic++</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;mpi.h&gt;</span>
+<span class="ot">#include &lt;unistd.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[]) {
+  <span class="dt">int</span> numprocs, rank, namelen;
+  <span class="dt">char</span> processor_name[MPI_MAX_PROCESSOR_NAME];
+  MPI_Init(&amp;argc, &amp;argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;numprocs);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+    MPI_Get_processor_name(processor_name, &amp;namelen);
+    printf(<span class="st">&quot;Hello World! from process </span><span class="ch">%d</span><span class="st"> out of </span><span class="ch">%d</span><span class="st"> on </span><span class="ch">%s\n</span><span class="st">&quot;</span>,
+           rank, numprocs, processor_name);
+  MPI_Finalize();
+}</code></pre></div>
+<p>Powyższy program można skompilować i uruchomić używając komend:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">mpic++</span> -o program program.cpp
+<span class="kw">mpirun</span> -np 4 program</code></pre></div>
+<p>gdzie <code>4</code> to liczba procesorów, na których ma zostać uruchomiony program.</p>
+<p>Przeanalizujmy teraz program. Funkcje <code>MPI_Init</code> i <code>MPI_Finalize</code> służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki <code>MPI</code> i komunikować się z innymi procesami w grupie. Wywołanie <code>MPI_Comm_size</code> zwroci nam liczbe procesów (np. <code>4</code>), zaś <code>MPI_Comm_rank</code> zwróci nam numer <em>naszego</em> procesu (np. <code>0</code>,<code>1</code>,<code>2</code> lub <code>3</code>). Zmienna <code>rank</code> jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.</p>
+</div>
+<div id="cwiczenie-2" class="section level3">
+<h3>Ćwiczenie 2</h3>
+<p>Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne statystyki:</p>
+<ol style="list-style-type: decimal">
+<li><a href="info1_lab07.html">Zaalokuj</a> tablicę liczb rzeczywistych <code>a</code> o rozmiarze <code>n = 10000 * (rank + 1)</code></li>
+<li>Wypełnij ją <a href="info1_lab04.html">liczbami losowymi</a> z przedziału <span class="math inline">\([0,1]\)</span></li>
+<li>Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę <code>a[0]</code></li>
+<li>Oblicz <span class="math inline">\(S_1 = \sum_i a_i\)</span></li>
+<li>Wyświetl średnią: <span class="math inline">\(\mu = \frac{1}{n} S_1\)</span></li>
+<li>Oblicz <span class="math inline">\(S_2 = \sum_i (a_i - \mu)^2\)</span></li>
+<li>Wyświetl wariancję: <span class="math inline">\(\sigma^2 = \frac{1}{n-1} S_2\)</span></li>
+</ol>
+<p>Pamietaj aby we wszystkich komunikatach umieszczać zmienną <code>rank</code>, tak by było wiadomo, który komunikat pochodzi, od którego procesu. By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę <code class="sourceCode cpp">fflush(stdout);</code> zaraz po każdym wywołaniu <code class="sourceCode cpp">printf</code>. Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.</p>
+<p>Aktualnie, losowanie jest bardzo niedoskonałe. Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np. wartość <code>time(NULL) + rank</code> jako <em>ziarno</em> do funkcji <code>srand</code>, tak aby ciąg losowy był zainicjalizowany inną liczbą na każdym procesorze.</p>
+</div>
+<div id="cwiczenie-3" class="section level3">
+<h3>Ćwiczenie 3</h3>
+<p>Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1. Możemy wymusić aby procesy czekały na siebie nawzajem dodając instrukcję <code class="sourceCode cpp">MPI_Barrier(MPI_COMM_WORLD);</code> po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej. Zauważ, że powoduje to iż program działa tak wolno, jak jego najwolniejszy element. Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:</p>
+<p><img src="info3_lab_6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="cwiczenie-4" class="section level3">
+<h3>Ćwiczenie 4</h3>
+<p>Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z <span class="math inline">\(a\)</span>. Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Reduce(source, destination, count, datatype, operation, root,
+           MPI_COMM_WORLD);</code></pre></div>
+<ul>
+<li><code>source</code> to <strong>wskaźnik</strong> do danych, które mamy np. zsumować.</li>
+<li><code>destination</code> to wskaźnik do miejsca, gdzie ma być umieszczony wynik.</li>
+<li><code>count</code> to liczba elementów danych do zsumowania. Czyli np. <code>1</code> jeśli dane to jedna liczba.</li>
+<li><code>datatype</code> to typ danych, które sumujemy: <code>MPI_INT</code> lub <code>MPI_DOUBLE</code>.</li>
+<li><code>operation</code> to operacja, którą wykonujemy, np: <code>MPI_SUM</code> lub <code>MPI_MAX</code>.</li>
+<li><code>root</code> to numer procesu, do którego przesyłamy wynik, np: <code>0.</code></li>
+<li>Ostatni argument to uchwyt komunikatora, na którym ma zostać wykonana redukcja. W naszym wypadku to domyślny komunikator <code>MPI_COMM_WORLD</code></li>
+</ul>
+<p>Użyj tej funkcji aby obliczyć globalne statystyki, a następnie wyświetl je (pamietaj, że mają one sens tylko na węźle <code>root</code>). Weź pod uwagę, że globalne <code>n</code> jest inne niż <code>n</code> lokalne.</p>
+<p>Bliźniaczą do funkcji <code>MPI_Reduce</code> jest funkcja <code>MPI_Allreduce</code>. Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu <code>root</code>.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Allreduce(source, destination, count, datatype, operation,
+              MPI_COMM_WORLD);</code></pre></div>
+</div>
+<div id="cwiczenie" class="section level3">
+<h3>Ćwiczenie *</h3>
+<p>Stwórz nowy program równoległy <code>program2.cpp</code>, który będzie obliczał powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy <code>a</code> (tzn., będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:</p>
+<p><span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{n}\sum_j a_j\right)^2\)</span></p>
+<p>tak aby był wyrażony za pomocą <span class="math inline">\(S_1\)</span> i nowego <span class="math inline">\(\hat S_2 = \sum_i a_i^2\)</span>, który da się obliczyć bez znajomości średniej <span class="math inline">\(\mu\)</span>. Użyj we wszystkich procesach tego samego (bardzo wysokiego) <code>n</code>. Porównaj czas wykonania wykonując:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">time</span> mpirun -np 1 program2
+<span class="kw">time</span> mpirun -np 2 program2
+<span class="kw">time</span> mpirun -np 4 program2</code></pre></div>
+</div>
+</div>
+<div id="kolejka-pbs" class="section level1">
+<h1>Kolejka PBS</h1>
+<p>W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy do zlecania zadań, pozostałe, tzw. węzły obliczeniowe, przyjmują i wykonują zadania. Na <code>info3</code> jest tylko jeden węzeł który spełnia obie role.</p>
+<div id="cwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Sprawdź co zrobi komenda <code class="sourceCode bash"><span class="kw">qsub</span> -I</code> (wielka litera i). To program do wysyłania zadań do wykonania. Opcja <code>-I</code> oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz <code>qstat</code>, sprawdź opcje <code>-n</code> i <code>-f</code>. Zobacz, że twoje ‘zadanie’ jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie mogą być wykorzystywane tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę <code>-l</code>, np.:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> -l nodes=1:ppn=4 -I
+<span class="kw">qsub</span> -l nodes=1:ppn=2 -l walltime=00:00:10 -I</code></pre></div>
+<p>Parametr <code>walltime=00:00:10</code> mówi nam o maksymalnym czasie trwania zadania. Po upłynięciu tego czasu zadanie zostanie automatycznie przerwane.</p>
+</div>
+<div id="zadania-nieinteraktywne" class="section level2">
+<h2>Zadania nieinteraktywne</h2>
+<p>W większości przypadków czas trwania zadania interaktywnego jest mocno ograniczony. Bardziej użyteczne są zadania nieinteraktywne. Aby zlecić takie zadanie potrzebny jest nam plik zadania <code>plik.sh</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="kw">cd</span> <span class="ot">$PBS_O_WORKDIR</span>
+<span class="kw">mpirun</span> --hostfile <span class="ot">$PBS_NODEFILE</span> --display-map ./program</code></pre></div>
+<p>Zlecamy jego wykonanie przez</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">qsub</span> plik.sh</code></pre></div>
+<p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu <code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu <code>plik.sh</code> komendę <code class="sourceCode bash"><span class="kw">sleep</span> 8</code>, która spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.</p>
+<div id="cwiczenie-5" class="section level3">
+<h3>Ćwiczenie</h3>
+<p>Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w kolejce.</p>
+</div>
+</div>
 </div>
 
 <!-- Dummy footer -->

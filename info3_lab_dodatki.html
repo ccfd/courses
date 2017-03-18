@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ł. Łaniewski-Wołłk, rev. K. Marchlewski" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_regulamin.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab_dodatki.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="bash-skrypty" class="section level1">
+<h1>BASH: skrypty</h1>
+<p>Pisanie skryptów, w uproszczeniu polega na zebraniu w pliku komend, które normalnie wpisalibyśmy w linii poleceń. Taki plik możemy następnie oznaczyć jako wykonywalny za pomocą polecenia <code class="sourceCode bash"><span class="kw">chmod</span> u+x plik</code> i wykonać komendą <code class="sourceCode bash"><span class="kw">./plik</span></code> . Linia poleceń (BASH) służy do uruchamiania programów - dlatego: <strong>każda linijka skryptu wygląda nastepująco:</strong> <code class="sourceCode bash"><span class="kw">program</span> agumenty</code>.</p>
+<p>Przeanalizuj poniższy fragment kodu:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">i=</span>1
+<span class="kw">while</span> <span class="kw">test</span> <span class="ot">$i</span> -lt 10
+<span class="kw">do</span>
+    <span class="kw">echo</span> <span class="ot">$i</span>
+    <span class="kw">cp</span> plik plik_<span class="ot">$i</span>
+    <span class="ot">i=$(</span><span class="kw">expr</span> <span class="ot">$i</span> + 1<span class="ot">)</span>
+<span class="kw">done</span></code></pre></div>
+<p>Łatwo zobaczyć, że:</p>
+<ul>
+<li>nadając zmiennej wartość <code class="sourceCode bash"><span class="ot">i=</span>1</code> nie używamy spacji ponieważ powłoka <code>Bash</code> wie wtedy, że jest to przypisanie, a nie wywołanie programu <code>i</code> z opcjami <code>=</code> oraz <code>1</code>.</li>
+<li>w wyrażeniu <code class="sourceCode bash"><span class="kw">expr</span> <span class="ot">$i</span> + 1</code>, musimy zachować spacje, żeby program <code>expr</code> dostał trzy argumenty <code>$i</code>, <code>+</code> i <code>1</code>, a nie jeden <code class="sourceCode bash"><span class="kw">i+1</span></code>.</li>
+<li>w pętli <code>while</code>, nie możemy napisać ,,<code class="sourceCode bash"><span class="kw">i&lt;</span>10</code>‘’, lecz musimy użyć jakiegoś programu. Do wszelkiego rodzaju testów stworzony został program <code class="sourceCode bash"><span class="kw">test</span></code>. W tym wypadku uruchamiamy go z argumentami <code>$i</code>, <code>-lt</code> i <code>10</code>, gdzie opcja <code>-lt</code> oznacza ,,less than’’.</li>
+</ul>
+<div id="przydatne-programy" class="section level2">
+<h2>Przydatne programy</h2>
+<p>Jeśli już wiemy, że każdy skrypt w powłoce <code>Bash</code> to seria wywołanych programów, to potrzebne jest nam dużo małych programów, z których będziemy mogli tworzyć skrypty.</p>
+<p>Przykładowo:</p>
+<ul>
+<li><code class="sourceCode bash"><span class="kw">echo</span> tekst</code> — Wypisuje tekst na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">cat</span> plik</code> — Wypisuje zawartość pliku na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> tekst</code> — Czyta znaki z klawiatury i wypisuje tylko linie zawierające ,,tekst’’.</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> tekst pliki</code> — Wyszukuje ,,tekst’’ w plikach.</li>
+<li><code class="sourceCode bash"><span class="kw">cd</span> katalog</code> — Wchodzi do katalogu.</li>
+<li><code class="sourceCode bash"><span class="kw">ls</span> katalog</code> — Wypisuje zawartość katalogu na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> pliki katalog</code> — Kopiuje pliki do katalogu.</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> plik1 plik2</code> — Kopiuje plik o nazwie ,,plik1’‘do pliku o nazwie ,,plik2’’.</li>
+<li><code class="sourceCode bash"><span class="kw">mv</span> pliki katalog</code> — Przenosi pliki do katalogu.</li>
+<li><code class="sourceCode bash"><span class="kw">mv</span> plik1 plik2</code> — Zmienia nazwę pliku z ,,plik1’‘na ,,plik2’’.</li>
+<li><code class="sourceCode bash"><span class="kw">sed</span> <span class="st">&#39;s/tekst1/tekst2/g&#39;</span></code> — Czyta z klawiatury tekst i wypisuje go zamieniając ,,tekst1’‘na ,,tekst2’’.</li>
+<li><code class="sourceCode bash"><span class="kw">seq</span> liczba1 liczba2</code> — Wypisuje na ekran ciąg liczb od ,,liczba1’‘do ,,liczba2’’ co jeden (wartość domyślna).</li>
+</ul>
+</div>
+<div id="przekierowanie-wejscia-wyjscia" class="section level2">
+<h2>Przekierowanie wejścia wyjścia</h2>
+<p>Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno wejście jak i wyjście przekierować.</p>
+<ul>
+<li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&gt;</span> plik</code> — To co program wypisałby na ekran, zostanie wpisane do pliku (plik zostanie nadpisany jeśli istnieje).</li>
+<li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&gt;&gt;</span> plik</code> — To co program wypisałby na ekran, zostanie dopisane do pliku (plik zostanie utworzony jeśli nie istniał).</li>
+<li><code class="sourceCode bash"><span class="kw">program</span> <span class="kw">&lt;</span> plik</code> — Program dostanie zawartość pliku, tak jakbyśmy ją wpisali z klawiatury.</li>
+<li><code class="sourceCode bash"><span class="kw">program1</span> <span class="kw">|</span> <span class="kw">program2</span></code> — To co ,,program1’‘wypisałby na ekran, zostanie wpisane ,,z klawiatury’‘do ,,program2’’.</li>
+<li><code class="sourceCode bash"><span class="st">&#39;program&#39;</span></code> lub <code class="sourceCode bash"><span class="ot">$(</span><span class="kw">program</span><span class="ot">)</span></code> — To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Odwrócony apostrof <code>`</code> jest na klawiszu z tyldą <code>~</code>.</li>
+</ul>
+<div id="przykady" class="section level3">
+<h3>Przykłady:</h3>
+<ul>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">&gt;</span> plik</code> — wypisze ,,Tekst’’ do pliku (plik zostanie nadpisany jeśli istnieje)</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">&gt;&gt;</span> plik</code> — dopisze ,,Tekst’’ do pliku (plik zostanie utworzony jeśli nie istniał)</li>
+<li><code class="sourceCode bash"><span class="kw">grep</span> Tekst <span class="kw">&lt;</span> plik</code> — wyszuka w pliku linie zwierające ,,Tekst’’ i je wypisze na ekran</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> Tekst <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/st/a/g&#39;</span></code> — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
+<li><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|</span> <span class="kw">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
+<li><code class="sourceCode bash"><span class="ot">nazwa2=$(</span><span class="kw">echo</span> <span class="ot">$nazwa</span> <span class="kw">|sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="ot">)</span></code> — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
+<li><code class="sourceCode bash"><span class="kw">ls</span> katalog <span class="kw">&gt;</span> plik</code> — wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje).</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> ls katalog</code> albo <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">ls</span><span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalogu</code> według listy zwróconej przez <code>ls</code>.</li>
+<li><code class="sourceCode bash"><span class="kw">cp</span> cat plik katalog</code> bądź <code class="sourceCode bash"><span class="kw">cp</span> <span class="ot">$(</span><span class="kw">cat</span> plik<span class="ot">)</span> katalog</code> — skopiuje pliki do <code>katalogu</code> według listy zawartej w pliku.</li>
+</ul>
+</div>
+</div>
+<div id="petle-i-wyrazenia-warunkowe" class="section level2">
+<h2>Pętle i wyrażenia warunkowe</h2>
+<p><strong>instrucja warunkowa if</strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">if</span> <span class="kw">program</span> argumenty
+<span class="kw">then</span>
+    <span class="kw">polecenia1</span>
+<span class="kw">else</span>
+    <span class="kw">polecenia2</span>
+<span class="kw">fi</span></code></pre></div>
+<p>Jeśli wykonanie polecenia <code class="sourceCode bash"><span class="kw">program</span> argumenty</code> się powiedzie (program zwróci <span class="math inline">\(0\)</span>), to wykonane zostaną <em>polecenia1</em>. W przeciwnym wypadku wykonane zostaną <em>polecenia2</em>.</p>
+<p><strong>pętla while </strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">while</span> <span class="kw">program</span> argumenty
+<span class="kw">do</span>
+    <span class="kw">polecenia</span>
+<span class="kw">done</span></code></pre></div>
+<p>Pętla, która będzie wykonywać <em>polecenia</em> , dopóki <code class="sourceCode bash"><span class="kw">program</span> argumenty</code> będzie wykonywany z powodzeniem.</p>
+<p><strong>pętla for </strong></p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">i</span> in lista
+<span class="kw">do</span>
+    <span class="kw">polecenia</span>
+<span class="kw">done</span></code></pre></div>
+<p>Pętla, która po kolei każdy element z listy wstawi do zmiennej <code>i</code>, a następnie wykona <em>polecenia</em>.</p>
+<p>Przykładowo:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">i</span> in *.jpg
+<span class="kw">do</span>
+    <span class="kw">mv</span> <span class="ot">$i</span> IMG/a_<span class="ot">$i</span>
+<span class="kw">done</span></code></pre></div>
+<p>Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a_obrazek.jpg</code>).</p>
+</div>
+</div>
+<div id="obrobka-obrazkow" class="section level1">
+<h1>Obróbka obrazków</h1>
+<div id="program-convert" class="section level2">
+<h2>Program <code>convert</code></h2>
+<ul>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik.gif plik.jpg</code> – konwertuje plik w formacie GIF na format JPG</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 50% plik2.jpg</code> – zmniejszy obrazek dwukrotnie</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100 plik2.jpg</code> – zmniejszy obrazek, tak by krótszy wymiar był równy 100 pikseli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100 plik2.jpg</code> – zmniejszy obrazek tak, by mieścił się w kwadracie 100 na 100 pikseli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100n! plik2.jpg</code> – zmniejszy obrazek dokładnie do rozmiaru 100 na 100 pikseli</li>
+<li><code class="sourceCode bash"><span class="kw">convert</span> -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw <span class="st">&quot;text 25,60 &#39;Magick&#39;&quot;</span> -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw <span class="st">&quot;text 20,55 &#39;Magick&#39;&quot;</span> fuzzy-magick.jpg</code> – stworzy obrazek fuzzy-magick.jpg, z naniesionym tekstem ,,Magick’’</li>
+</ul>
+</div>
+<div id="wszystkie-opcje-programu-convert" class="section level2">
+<h2>Wszystkie opcje programu <code>convert</code></h2>
+<ul>
+<li><code class="sourceCode bash"><span class="kw">-adaptive-blur</span> geometry</code> – adaptively blur pixels; decrease effect near edges</li>
+<li><code class="sourceCode bash"><span class="kw">-adaptive-resize</span> geometry</code> – adaptively resize image with data dependent triangulation.</li>
+<li><code class="sourceCode bash"><span class="kw">-adaptive-sharpen</span> geometry</code> – adaptively sharpen pixels; increase effect near edges</li>
+<li><code class="sourceCode bash"><span class="kw">-adjoin</span></code> – join images into a single multi-image file</li>
+<li><code class="sourceCode bash"><span class="kw">-affine</span> matrix</code> – affine transform matrix</li>
+<li><code class="sourceCode bash"><span class="kw">-alpha</span></code> – on, activate, off, deactivate, set, opaque, copy, transparent, extract, background, or shape the alpha channel</li>
+<li><code class="sourceCode bash"><span class="kw">-annotate</span> geometry text</code> – annotate the image with text</li>
+<li><code class="sourceCode bash"><span class="kw">-antialias</span></code> – remove pixel-aliasing</li>
+<li><code class="sourceCode bash"><span class="kw">-append</span></code> – append an image sequence</li>
+<li><code class="sourceCode bash"><span class="kw">-authenticate</span> value</code> – decipher image with this password</li>
+<li><code class="sourceCode bash"><span class="kw">-auto-gamma</span></code> – automagically adjust gamma level of image</li>
+<li><code class="sourceCode bash"><span class="kw">-auto-level</span></code> – automagically adjust color levels of image</li>
+<li><code class="sourceCode bash"><span class="kw">-auto-orient</span></code> – automagically orient image</li>
+<li><code class="sourceCode bash"><span class="kw">-background</span> color</code> – background color</li>
+<li><code class="sourceCode bash"><span class="kw">-bench</span> iterations</code> – measure performance</li>
+<li><code class="sourceCode bash"><span class="kw">-bias</span> value</code> – add bias when convolving an image</li>
+<li><code class="sourceCode bash"><span class="kw">-black-threshold</span> value</code> – force all pixels below the threshold into black</li>
+<li><code class="sourceCode bash"><span class="kw">-blue-primary</span> point</code> – chromaticity blue primary point</li>
+<li><code class="sourceCode bash"><span class="kw">-blue-shift</span> factor</code> – simulate a scene at nighttime in the moonlight</li>
+<li><code class="sourceCode bash"><span class="kw">-blur</span> geometry</code> – reduce image noise and reduce detail levels</li>
+<li><code class="sourceCode bash"><span class="kw">-border</span> geometry</code> – surround image with a border of color</li>
+<li><code class="sourceCode bash"><span class="kw">-bordercolor</span> color</code> – border color</li>
+<li><code class="sourceCode bash"><span class="kw">-brightness-contrast</span> geometry</code> – improve brightness / contrast of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-caption</span> string</code> – assign a caption to an image</li>
+<li><code class="sourceCode bash"><span class="kw">-cdl</span> filename</code> – color correct with a color decision list</li>
+<li><code class="sourceCode bash"><span class="kw">-channel</span> type</code> – apply option to select image channels</li>
+<li><code class="sourceCode bash"><span class="kw">-charcoal</span> radius</code> – simulate a charcoal drawing</li>
+<li><code class="sourceCode bash"><span class="kw">-chop</span> geometry</code> – remove pixels from the image interior</li>
+<li><code class="sourceCode bash"><span class="kw">-clamp</span></code> – restrict colors from 0 to the quantum depth</li>
+<li><code class="sourceCode bash"><span class="kw">-clip</span></code> – clip along the first path from the 8BIM profile</li>
+<li><code class="sourceCode bash"><span class="kw">-clip-mask</span> filename</code> – associate clip mask with the image</li>
+<li><code class="sourceCode bash"><span class="kw">-clip-path</span> id</code> – clip along a named path from the 8BIM profile</li>
+<li><code class="sourceCode bash"><span class="kw">-clone</span> index</code> – clone an image</li>
+<li><code class="sourceCode bash"><span class="kw">-clut</span></code> – apply a color lookup table to the image</li>
+<li><code class="sourceCode bash"><span class="kw">-contrast-stretch</span> geometry</code> – improve the contrast in an image by ‘stretching’ the range of intensity value</li>
+<li><code class="sourceCode bash"><span class="kw">-coalesce</span></code> – merge a sequence of images</li>
+<li><code class="sourceCode bash"><span class="kw">-colorize</span> value</code> – colorize the image with the fill color</li>
+<li><code class="sourceCode bash"><span class="kw">-color-matrix</span> matrix</code> – apply color correction to the image.</li>
+<li><code class="sourceCode bash"><span class="kw">-colors</span> value</code> – preferred number of colors in the image</li>
+<li><code class="sourceCode bash"><span class="kw">-colorspace</span> type</code> – set image colorspace</li>
+<li><code class="sourceCode bash"><span class="kw">-combine</span></code> – combine a sequence of images</li>
+<li><code class="sourceCode bash"><span class="kw">-comment</span> string</code> – annotate image with comment</li>
+<li><code class="sourceCode bash"><span class="kw">-compose</span> operator</code> – set image composite operator</li>
+<li><code class="sourceCode bash"><span class="kw">-composite</span></code> – composite image</li>
+<li><code class="sourceCode bash"><span class="kw">-compress</span> type</code> – image compression type</li>
+<li><code class="sourceCode bash"><span class="kw">-contrast</span></code> – enhance or reduce the image contrast</li>
+<li><code class="sourceCode bash"><span class="kw">-convolve</span> coefficients</code> – apply a convolution kernel to the image</li>
+<li><code class="sourceCode bash"><span class="kw">-crop</span> geometry</code> – crop the image</li>
+<li><code class="sourceCode bash"><span class="kw">-cycle</span> amount</code> – cycle the image colormap</li>
+<li><code class="sourceCode bash"><span class="kw">-decipher</span> filename</code> – convert cipher pixels to plain</li>
+<li><code class="sourceCode bash"><span class="kw">-debug</span> events</code> – display copious debugging information</li>
+<li><code class="sourceCode bash"><span class="kw">-define</span> format:option</code> – define one or more image format options</li>
+<li><code class="sourceCode bash"><span class="kw">-deconstruct</span></code> – break down an image sequence into constituent parts</li>
+<li><code class="sourceCode bash"><span class="kw">-delay</span> value</code> – display the next image after pausing</li>
+<li><code class="sourceCode bash"><span class="kw">-delete</span> index</code> – delete the image from the image sequence</li>
+<li><code class="sourceCode bash"><span class="kw">-density</span> geometry</code> – horizontal and vertical density of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-depth</span> value</code> – image depth</li>
+<li><code class="sourceCode bash"><span class="kw">-despeckle</span></code> – reduce the speckles within an image</li>
+<li><code class="sourceCode bash"><span class="kw">-direction</span> type</code> – render text right-to-left or left-to-right</li>
+<li><code class="sourceCode bash"><span class="kw">-display</span> server</code> – get image or font from this X server</li>
+<li><code class="sourceCode bash"><span class="kw">-dispose</span> method</code> – layer disposal method</li>
+<li><code class="sourceCode bash"><span class="kw">-distort</span> type coefficients</code> – distort image</li>
+<li><code class="sourceCode bash"><span class="kw">-dither</span> method</code> – apply error diffusion to image</li>
+<li><code class="sourceCode bash"><span class="kw">-draw</span> string</code> – annotate the image with a graphic primitive</li>
+<li><code class="sourceCode bash"><span class="kw">-duplicate</span> count,indexes</code> – duplicate an image one or more times</li>
+<li><code class="sourceCode bash"><span class="kw">-edge</span> radius</code> – apply a filter to detect edges in the image</li>
+<li><code class="sourceCode bash"><span class="kw">-emboss</span> radius</code> – emboss an image</li>
+<li><code class="sourceCode bash"><span class="kw">-encipher</span> filename</code> – convert plain pixels to cipher pixels</li>
+<li><code class="sourceCode bash"><span class="kw">-encoding</span> type</code> – text encoding type</li>
+<li><code class="sourceCode bash"><span class="kw">-endian</span> type</code> – endianness (MSB or LSB) of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-enhance</span></code> – apply a digital filter to enhance a noisy image</li>
+<li><code class="sourceCode bash"><span class="kw">-equalize</span></code> – perform histogram equalization to an image</li>
+<li><code class="sourceCode bash"><span class="kw">-evaluate</span> operator value</code> – evaluate an arithmetic, relational, or logical expression</li>
+<li><code class="sourceCode bash"><span class="kw">-evaluate-sequence</span> operator</code> – evaluate an arithmetic, relational, or logical expression for an image sequence</li>
+<li><code class="sourceCode bash"><span class="kw">-extent</span> geometry</code> – set the image size</li>
+<li><code class="sourceCode bash"><span class="kw">-extract</span> geometry</code> – extract area from image</li>
+<li><code class="sourceCode bash"><span class="kw">-family</span> name</code> – render text with this font family</li>
+<li><code class="sourceCode bash"><span class="kw">-fft</span></code> – implments the discrete Fourier transform (DFT)</li>
+<li><code class="sourceCode bash"><span class="kw">-fill</span> color</code> – color to use when filling a graphic primitive</li>
+<li><code class="sourceCode bash"><span class="kw">-filter</span> type</code> – use this filter when resizing an image</li>
+<li><code class="sourceCode bash"><span class="kw">-flatten</span></code> – flatten a sequence of images</li>
+<li><code class="sourceCode bash"><span class="kw">-flip</span></code> – flip image in the vertical direction</li>
+<li><code class="sourceCode bash"><span class="kw">-floodfill</span> geometry color</code> – floodfill the image with color</li>
+<li><code class="sourceCode bash"><span class="kw">-flop</span></code> – flop image in the horizontal direction</li>
+<li><code class="sourceCode bash"><span class="kw">-font</span> name</code> – render text with this font</li>
+<li><code class="sourceCode bash"><span class="kw">-format</span> string</code> – output formatted image characteristics</li>
+<li><code class="sourceCode bash"><span class="kw">-frame</span> geometry</code> – surround image with an ornamental border</li>
+<li><code class="sourceCode bash"><span class="kw">-function</span> name</code> – apply a function to the image</li>
+<li><code class="sourceCode bash"><span class="kw">-fuzz</span> distance</code> – colors within this distance are considered equal</li>
+<li><code class="sourceCode bash"><span class="kw">-fx</span> expression</code> – apply mathematical expression to an image channel(s)</li>
+<li><code class="sourceCode bash"><span class="kw">-gamma</span> value</code> – level of gamma correction</li>
+<li><code class="sourceCode bash"><span class="kw">-gaussian-blur</span> geometry</code> – reduce image noise and reduce detail levels</li>
+<li><code class="sourceCode bash"><span class="kw">-geometry</span> geometry</code> – preferred size or location of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-gravity</span> type</code> – horizontal and vertical text placement</li>
+<li><code class="sourceCode bash"><span class="kw">-green-primary</span> point</code> – chromaticity green primary point</li>
+<li><code class="sourceCode bash"><span class="kw">-help</span></code> – print program options</li>
+<li><code class="sourceCode bash"><span class="kw">-identify</span></code> – identify the format and characteristics of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-ift</span></code> – implements the inverse discrete Fourier transform (DFT)</li>
+<li><code class="sourceCode bash"><span class="kw">-implode</span> amount</code> – implode image pixels about the center</li>
+<li><code class="sourceCode bash"><span class="kw">-insert</span> index</code> – insert last image into the image sequence</li>
+<li><code class="sourceCode bash"><span class="kw">-intent</span> type</code> – type of rendering intent when managing the image color</li>
+<li><code class="sourceCode bash"><span class="kw">-interlace</span> type</code> – type of image interlacing scheme</li>
+<li><code class="sourceCode bash"><span class="kw">-interline-spacing</span> value</code> – the space between two text lines</li>
+<li><code class="sourceCode bash"><span class="kw">-interpolate</span> method</code> – pixel color interpolation method</li>
+<li><code class="sourceCode bash"><span class="kw">-interword-spacing</span> value</code> – the space between two words</li>
+<li><code class="sourceCode bash"><span class="kw">-kerning</span> value</code> – the space between two characters</li>
+<li><code class="sourceCode bash"><span class="kw">-label</span> string</code> – assign a label to an image</li>
+<li><code class="sourceCode bash"><span class="kw">-lat</span> geometry</code> – local adaptive thresholding</li>
+<li><code class="sourceCode bash"><span class="kw">-layers</span> method</code> – optimize or compare image layers</li>
+<li><code class="sourceCode bash"><span class="kw">-level</span> value</code> – adjust the level of image contrast</li>
+<li><code class="sourceCode bash"><span class="kw">-limit</span> type value</code> – pixel cache resource limit</li>
+<li><code class="sourceCode bash"><span class="kw">-linear-stretch</span> geometry</code> – linear with saturation histogram stretch</li>
+<li><code class="sourceCode bash"><span class="kw">-liquid-rescale</span> geometry</code> – rescale image with seam-carving</li>
+<li><code class="sourceCode bash"><span class="kw">-log</span> format</code> – format of debugging information</li>
+<li><code class="sourceCode bash"><span class="kw">-loop</span> iterations</code> – add Netscape loop extension to your GIF animation</li>
+<li><code class="sourceCode bash"><span class="kw">-mask</span> filename</code> – associate a mask with the image</li>
+<li><code class="sourceCode bash"><span class="kw">-mattecolor</span> color</code> – frame color</li>
+<li><code class="sourceCode bash"><span class="kw">-median</span> radius</code> – apply a median filter to the image</li>
+<li><code class="sourceCode bash"><span class="kw">-mode</span> radius</code> – make each pixel the ’predominant color’ of the neighborhood</li>
+<li><code class="sourceCode bash"><span class="kw">-modulate</span> value</code> – vary the brightness, saturation, and hue</li>
+<li><code class="sourceCode bash"><span class="kw">-monitor</span></code> – monitor progress</li>
+<li><code class="sourceCode bash"><span class="kw">-monochrome</span></code> – transform image to black and white</li>
+<li><code class="sourceCode bash"><span class="kw">-morph</span> value</code> – morph an image sequence</li>
+<li><code class="sourceCode bash"><span class="kw">-morphology</span> method kernel</code> – apply a morphology method to the image</li>
+<li><code class="sourceCode bash"><span class="kw">-motion-blur</span> geometry</code> – simulate motion blur</li>
+<li><code class="sourceCode bash"><span class="kw">-negate</span></code> – replace each pixel with its complementary color</li>
+<li><code class="sourceCode bash"><span class="kw">-noise</span> radius</code> – add or reduce noise in an image</li>
+<li><code class="sourceCode bash"><span class="kw">-normalize</span></code> – transform image to span the full range of colors</li>
+<li><code class="sourceCode bash"><span class="kw">-opaque</span> color</code> – change this color to the fill color</li>
+<li><code class="sourceCode bash"><span class="kw">-ordered-dither</span> NxN</code> – ordered dither the image</li>
+<li><code class="sourceCode bash"><span class="kw">-orient</span> type</code> – image orientation</li>
+<li><code class="sourceCode bash"><span class="kw">-page</span> geometry</code> – size and location of an image canvas (setting)</li>
+<li><code class="sourceCode bash"><span class="kw">-paint</span> radius</code> – simulate an oil painting</li>
+<li><code class="sourceCode bash"><span class="kw">-ping</span></code> – efficiently determine image attributes</li>
+<li><code class="sourceCode bash"><span class="kw">-pointsize</span> value</code> – font point size</li>
+<li><code class="sourceCode bash"><span class="kw">-polaroid</span> angle</code> – simulate a Polaroid picture</li>
+<li><code class="sourceCode bash"><span class="kw">-posterize</span> levels</code> – reduce the image to a limited number of color levels</li>
+<li><code class="sourceCode bash"><span class="kw">-precision</span> value</code> – set the maximum number of significant digits to be printed</li>
+<li><code class="sourceCode bash"><span class="kw">-preview</span> type</code> – image preview type</li>
+<li><code class="sourceCode bash"><span class="kw">-print</span> string</code> – interpret string and print to console</li>
+<li><code class="sourceCode bash"><span class="kw">-process</span> image-filter</code> – process the image with a custom image filter</li>
+<li><code class="sourceCode bash"><span class="kw">-profile</span> filename</code> – add, delete, or apply an image profile</li>
+<li><code class="sourceCode bash"><span class="kw">-quality</span> value</code> – JPEG/MIFF/PNG compression level</li>
+<li><code class="sourceCode bash"><span class="kw">-quantize</span> colorspace</code> – reduce image colors in this colorspace</li>
+<li><code class="sourceCode bash"><span class="kw">-quiet</span></code> – suppress all warning messages</li>
+<li><code class="sourceCode bash"><span class="kw">-radial-blur</span> angle</code> – radial blur the image</li>
+<li><code class="sourceCode bash"><span class="kw">-raise</span> value</code> – lighten/darken image edges to create a 3-D effect</li>
+<li><code class="sourceCode bash"><span class="kw">-random-threshold</span> low,high</code> – random threshold the image</li>
+<li><code class="sourceCode bash"><span class="kw">-red-primary</span> point</code> – chromaticity red primary point</li>
+<li><code class="sourceCode bash"><span class="kw">-regard-warnings</span></code> – pay attention to warning messages.</li>
+<li><code class="sourceCode bash"><span class="kw">-region</span> geometry</code> – apply options to a portion of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-remap</span> filename</code> – transform image colors to match this set of colors</li>
+<li><code class="sourceCode bash"><span class="kw">-render</span></code> – render vector graphics</li>
+<li><code class="sourceCode bash"><span class="kw">-repage</span> geometry</code> – size and location of an image canvas</li>
+<li><code class="sourceCode bash"><span class="kw">-resample</span> geometry</code> – change the resolution of an image</li>
+<li><code class="sourceCode bash"><span class="kw">-resize</span> geometry</code> – resize the image</li>
+<li><code class="sourceCode bash"><span class="kw">-respect-parentheses</span></code> – settings remain in effect until parenthesis boundary.</li>
+<li><code class="sourceCode bash"><span class="kw">-roll</span> geometry</code> – roll an image vertically or horizontally</li>
+<li><code class="sourceCode bash"><span class="kw">-rotate</span> degrees</code> – apply Paeth rotation to the image</li>
+<li><code class="sourceCode bash"><span class="kw">-sample</span> geometry</code> – scale image with pixel sampling</li>
+<li><code class="sourceCode bash"><span class="kw">-sampling-factor</span> geometry</code> – horizontal and vertical sampling factor</li>
+<li><code class="sourceCode bash"><span class="kw">-scale</span> geometry</code> – scale the image</li>
+<li><code class="sourceCode bash"><span class="kw">-scene</span> value</code> – image scene number</li>
+<li><code class="sourceCode bash"><span class="kw">-seed</span> value</code> – seed a new sequence of pseudo-random numbers</li>
+<li><code class="sourceCode bash"><span class="kw">-segment</span> values</code> – segment an image</li>
+<li><code class="sourceCode bash"><span class="kw">-selective-blur</span> geometry</code> – selectively blur pixels within a contrast threshold</li>
+<li><code class="sourceCode bash"><span class="kw">-separate</span></code> – separate an image channel into a grayscale image</li>
+<li><code class="sourceCode bash"><span class="kw">-sepia-tone</span> threshold</code> – simulate a sepia-toned photo</li>
+<li><code class="sourceCode bash"><span class="kw">-set</span> attribute value</code> – set an image attribute</li>
+<li><code class="sourceCode bash"><span class="kw">-shade</span> degrees</code> – shade the image using a distant light source</li>
+<li><code class="sourceCode bash"><span class="kw">-shadow</span> geometry</code> – simulate an image shadow</li>
+<li><code class="sourceCode bash"><span class="kw">-sharpen</span> geometry</code> – sharpen the image</li>
+<li><code class="sourceCode bash"><span class="kw">-shave</span> geometry</code> – shave pixels from the image edges</li>
+<li><code class="sourceCode bash"><span class="kw">-shear</span> geometry</code> – slide one edge of the image along the X or Y axis</li>
+<li><code class="sourceCode bash"><span class="kw">-sigmoidal-contrast</span> geometry</code> – increase the contrast without saturating highlights or shadows</li>
+<li><code class="sourceCode bash"><span class="kw">-smush</span> offset</code> – smush an image sequence together</li>
+<li><code class="sourceCode bash"><span class="kw">-size</span> geometry</code> – width and height of image</li>
+<li><code class="sourceCode bash"><span class="kw">-sketch</span> geometry</code> – simulate a pencil sketch</li>
+<li><code class="sourceCode bash"><span class="kw">-solarize</span> threshold</code> – negate all pixels above the threshold level</li>
+<li><code class="sourceCode bash"><span class="kw">-splice</span> geometry</code> – splice the background color into the image</li>
+<li><code class="sourceCode bash"><span class="kw">-spread</span> radius</code> – displace image pixels by a random amount</li>
+<li><code class="sourceCode bash"><span class="kw">-statistic</span> type geometry</code> – replace each pixel with corresponding statistic from the neighborhood</li>
+<li><code class="sourceCode bash"><span class="kw">-strip</span></code> – strip image of all profiles and comments</li>
+<li><code class="sourceCode bash"><span class="kw">-stroke</span> color</code> – graphic primitive stroke color</li>
+<li><code class="sourceCode bash"><span class="kw">-strokewidth</span> value</code> – graphic primitive stroke width</li>
+<li><code class="sourceCode bash"><span class="kw">-stretch</span> type</code> – render text with this font stretch</li>
+<li><code class="sourceCode bash"><span class="kw">-style</span> type</code> – render text with this font style</li>
+<li><code class="sourceCode bash"><span class="kw">-swap</span> indexes</code> – swap two images in the image sequence</li>
+<li><code class="sourceCode bash"><span class="kw">-swirl</span> degrees</code> – swirl image pixels about the center</li>
+<li><code class="sourceCode bash"><span class="kw">-synchronize</span></code> – synchronize image to storage device</li>
+<li><code class="sourceCode bash"><span class="kw">-taint</span></code> – mark the image as modified</li>
+<li><code class="sourceCode bash"><span class="kw">-texture</span> filename</code> – name of texture to tile onto the image background</li>
+<li><code class="sourceCode bash"><span class="kw">-threshold</span> value</code> – threshold the image</li>
+<li><code class="sourceCode bash"><span class="kw">-thumbnail</span> geometry</code> – create a thumbnail of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-tile</span> filename</code> – tile image when filling a graphic primitive</li>
+<li><code class="sourceCode bash"><span class="kw">-tile-offset</span> geometry</code> – set the image tile offset</li>
+<li><code class="sourceCode bash"><span class="kw">-tint</span> value</code> – tint the image with the fill color</li>
+<li><code class="sourceCode bash"><span class="kw">-transform</span></code> – affine transform image</li>
+<li><code class="sourceCode bash"><span class="kw">-transparent</span> color</code> – make this color transparent within the image</li>
+<li><code class="sourceCode bash"><span class="kw">-transparent-color</span> color</code> – transparent color</li>
+<li><code class="sourceCode bash"><span class="kw">-transpose</span></code> – flip image in the vertical direction and rotate 90 degrees</li>
+<li><code class="sourceCode bash"><span class="kw">-transverse</span></code> – flop image in the horizontal direction and rotate 270 degrees</li>
+<li><code class="sourceCode bash"><span class="kw">-treedepth</span> value</code> – color tree depth</li>
+<li><code class="sourceCode bash"><span class="kw">-trim</span></code> – trim image edges</li>
+<li><code class="sourceCode bash"><span class="kw">-type</span> type</code> – image type</li>
+<li><code class="sourceCode bash"><span class="kw">-undercolor</span> color</code> – annotation bounding box color</li>
+<li><code class="sourceCode bash"><span class="kw">-unique-colors</span></code> – discard all but one of any pixel color.</li>
+<li><code class="sourceCode bash"><span class="kw">-units</span> type</code> – the units of image resolution</li>
+<li><code class="sourceCode bash"><span class="kw">-unsharp</span> geometry</code> – sharpen the image</li>
+<li><code class="sourceCode bash"><span class="kw">-verbose</span></code> – print detailed information about the image</li>
+<li><code class="sourceCode bash"><span class="kw">-version</span></code> – print version information</li>
+<li><code class="sourceCode bash"><span class="kw">-view</span></code> – FlashPix viewing transforms</li>
+<li><code class="sourceCode bash"><span class="kw">-vignette</span> geometry</code> – soften the edges of the image in vignette style</li>
+<li><code class="sourceCode bash"><span class="kw">-virtual-pixel</span> method</code> – access method for pixels outside the boundaries of the image</li>
+<li><code class="sourceCode bash"><span class="kw">-wave</span> geometry</code> – alter an image along a sine wave</li>
+<li><code class="sourceCode bash"><span class="kw">-weight</span> type</code> – render text with this font weight</li>
+<li><code class="sourceCode bash"><span class="kw">-white-point</span> point</code> – chromaticity white point</li>
+<li><code class="sourceCode bash"><span class="kw">-white-threshold</span> value</code> – force all pixels above the threshold into white</li>
+<li><code class="sourceCode bash"><span class="kw">-write</span> filename</code> – write images to this file</li>
+</ul>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
