@@ -6,7 +6,7 @@ number: 4
 ---
 
 # Relacyjne bazy danych w interpretacji MySQL -  podstawy
-## Ćwiczenie 4 i 5
+## Ćwiczenie 4
 
 ### Połączenie z serwerem MySQL
 1. Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).
