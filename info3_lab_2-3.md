@@ -84,13 +84,15 @@ Napisz program `obrazek.c` zawierający poniższy kod:
 
 int main() {
   int i;
-  char *tab;
-  tab = malloc(N * M * sizeof(char));
+  unsigned char *tab;
+  
+  tab = malloc(N * M * sizeof(unsigned char));
+  
   for (i = 0; i < N * M; i++) {
     tab[i] = 255 * i / (N * M - 1);
   }
 
-  fwrite(tab, sizeof(char), N * M, stdout);
+  fwrite(tab, sizeof(unsigned char), N * M, stdout);
   free(tab);
 
   return 0;
@@ -108,7 +110,7 @@ i wykonaj
 Mamy teraz plik binarny zawierający liczby typu char (1 bajt) od 0 do 255.
 Możemy dokonać jego konwersji na obrazek `JPG` wpisując:
 ```{.bash}
-convert -size 100x100 gray:obrazek obrazek.jpg
+convert -size 100x100 -depth 8 gray:obrazek obrazek.jpg
 ```
 Uwaga: Zamiast typu "char" moglibyśmy użyć tablicy typu "float" i liczb z przedziału $[0, 1]$.
 Wtedy jednak musielibyśmy skonwertować obrazek za pomocą polecenia:
@@ -129,4 +131,5 @@ convert -size 100x100 -depth 32 -define quantum:format=floating-point gray:obraz
     - dla każdej wczytanej liczby `x` znajdzie wartość przeciwną `−x`,
     - wynik przekształcenia wyśle do standardowego wyjścia.
 - Spróbuj przepuścić wybrany obrazek przez taki "filtr" i sprawdź wynik.
+  Pamiętaj, że informacje możemy wysłać na standardowe wejście programu za pomocą `<`{.bash}. 
 - Napisz skrypt, który wszystkie pliki z aktualnego katalogu zmniejszy do rozmiaru 100 na 100 pikseli, przekonwertuje je na pliki binarne, przepuści przez filtr i zapisze wyniki w postaci plików `JPG`.
