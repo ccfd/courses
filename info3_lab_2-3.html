@@ -615,13 +615,15 @@ div.tocify {
 
 <span class="dt">int</span> main() {
   <span class="dt">int</span> i;
-  <span class="dt">char</span> *tab;
-  tab = malloc(N * M * <span class="kw">sizeof</span>(<span class="dt">char</span>));
+  <span class="dt">unsigned</span> <span class="dt">char</span> *tab;
+  
+  tab = malloc(N * M * <span class="kw">sizeof</span>(<span class="dt">unsigned</span> <span class="dt">char</span>));
+  
   <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; N * M; i++) {
     tab[i] = <span class="dv">255</span> * i / (N * M - <span class="dv">1</span>);
   }
 
-  fwrite(tab, <span class="kw">sizeof</span>(<span class="dt">char</span>), N * M, stdout);
+  fwrite(tab, <span class="kw">sizeof</span>(<span class="dt">unsigned</span> <span class="dt">char</span>), N * M, stdout);
   free(tab);
 
   <span class="kw">return</span> <span class="dv">0</span>;
@@ -631,7 +633,7 @@ div.tocify {
 <p>i wykonaj</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">./obrazek.out</span> <span class="kw">&gt;</span> obrazek</code></pre></div>
 <p>Mamy teraz plik binarny zawierający liczby typu char (1 bajt) od 0 do 255. Możemy dokonać jego konwersji na obrazek <code>JPG</code> wpisując:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 100x100 gray:obrazek obrazek.jpg</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 100x100 -depth 8 gray:obrazek obrazek.jpg</code></pre></div>
 <p>Uwaga: Zamiast typu “char” moglibyśmy użyć tablicy typu “float” i liczb z przedziału <span class="math inline">\([0, 1]\)</span>. Wtedy jednak musielibyśmy skonwertować obrazek za pomocą polecenia:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 100x100 -depth 32 -define quantum:format=floating-point gray:obrazek obrazek.jpg</code></pre></div>
 <div id="cwiczenia-1" class="section level3">
@@ -647,7 +649,7 @@ gdzie: <code>*ptr</code> to wskaźnik na tablicę, <code>size</code> to rozmiar 
 <li>dla każdej wczytanej liczby <code>x</code> znajdzie wartość przeciwną <code>−x</code>,</li>
 <li>wynik przekształcenia wyśle do standardowego wyjścia.</li>
 </ul></li>
-<li>Spróbuj przepuścić wybrany obrazek przez taki “filtr” i sprawdź wynik.</li>
+<li>Spróbuj przepuścić wybrany obrazek przez taki “filtr” i sprawdź wynik. Pamiętaj, że informacje możemy wysłać na standardowe wejście programu za pomocą <code class="sourceCode bash"><span class="kw">&lt;</span></code>.</li>
 <li>Napisz skrypt, który wszystkie pliki z aktualnego katalogu zmniejszy do rozmiaru 100 na 100 pikseli, przekonwertuje je na pliki binarne, przepuści przez filtr i zapisze wyniki w postaci plików <code>JPG</code>.</li>
 </ul>
 </div>
