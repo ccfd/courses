@@ -88,7 +88,7 @@ convert -size 90x60 canvas:white -size 90x30 gradient: -append -rotate 90 \
 Przeanalizuj powyższy przykład i napisz skrypt, który stworzy obrazek ze wszystkich plików zawartych w określonym katalogu.
 W tym celu skrypt powinien:
 
-- generować skrypt `tmp.sh` zawierający komendę analogiczną do powyższej, tylko dla większej liczby obrazów (użyj echo "linia" > tmp dla pierwszej linii i echo "kolejna linia" >> tmp dla każdej następnej),
+- generować skrypt `tmp.sh` zawierający komendę analogiczną do powyższej, tylko dla większej liczby obrazów (użyj `echo linia > tmp`{.bash} dla pierwszej linii i `echo kolejna linia`{.bash} >> tmp dla każdej następnej),
 - nadawać uprawnienia do wykonywania dla skryptu `tmp.sh`,
 - uruchamiać go.
 
