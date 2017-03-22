@@ -603,6 +603,22 @@ div.tocify {
 <li>W sposób analogiczny, połączy obrazy z katalogu <code>drop</code> w jeden duży obraz. Obrazy powinny być połączone tak aby tworzyły szachownicę 10 na 10 obrazów.</li>
 <li>Rozłoży animację <code>GIF</code> na pojedyncze obrazy <code>JPG</code>. Do każdego z otrzymanych obrazów dopisze tekst, a następnie złoży je w nową animację <code>GIF</code>. Skrypt powinien skasować pliki tymczasowe (tzn. pojedyncze obrazy otrzymane przez rozłożenie pierwotnej animacji).</li>
 </ul>
+<p>Czasem napisanie skryptu może być żmudne. Dotyczy to zwłaszcza sytuacji, w których skrypt musi być rozbudowany a jednocześnie zostanie wykorzystany tylko raz. Przykładowo, poniższy skrypt generuje obrazek złożony z trzech nakładających się obrazów: czarno-białego tła oraz dwóch plików <code>1.jpg</code> i <code>2.jpg</code>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+
+<span class="kw">convert</span> -size 90x60 canvas:white -size 90x30 gradient: -append -rotate 90 \
+<span class="dt">\(</span> 1.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
++matte -composite -repage +60+0 <span class="dt">\)</span> \
+<span class="dt">\(</span> 2.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
++matte -composite -repage +120+0 <span class="dt">\)</span> \
+-compose Over -mosaic overlap_series.jpg</code></pre></div>
+<p>“spacja” i “ukośnik” na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii.</p>
+<p>Przeanalizuj powyższy przykład i napisz skrypt, który stworzy obrazek ze wszystkich plików zawartych w określonym katalogu. W tym celu skrypt powinien:</p>
+<ul>
+<li>generować skrypt <code>tmp.sh</code> zawierający komendę analogiczną do powyższej, tylko dla większej liczby obrazów (użyj <code class="sourceCode bash"><span class="kw">echo</span> linia <span class="kw">&gt;</span> tmp</code> dla pierwszej linii i <code class="sourceCode bash"><span class="kw">echo</span> kolejna linia</code> &gt;&gt; tmp dla każdej następnej),</li>
+<li>nadawać uprawnienia do wykonywania dla skryptu <code>tmp.sh</code>,</li>
+<li>uruchamiać go.</li>
+</ul>
 </div>
 <div id="wczytywanie-danych-binarnych" class="section level2">
 <h2>Wczytywanie danych binarnych</h2>
@@ -650,7 +666,7 @@ gdzie: <code>*ptr</code> to wskaźnik na tablicę, <code>size</code> to rozmiar 
 <li>wynik przekształcenia wyśle do standardowego wyjścia.</li>
 </ul></li>
 <li>Spróbuj przepuścić wybrany obrazek przez taki “filtr” i sprawdź wynik. Pamiętaj, że informacje możemy wysłać na standardowe wejście programu za pomocą <code class="sourceCode bash"><span class="kw">&lt;</span></code>.</li>
-<li>Napisz skrypt, który wszystkie pliki z aktualnego katalogu zmniejszy do rozmiaru 100 na 100 pikseli, przekonwertuje je na pliki binarne, przepuści przez filtr i zapisze wyniki w postaci plików <code>JPG</code>.</li>
+<li>Napisz skrypt, który wszystkie pliki z aktualnego katalogu zmniejszy do rozmiaru 100 na 100 pikseli, dokona konwersji na pliki binarne, przepuści przez filtr i zapisze wyniki w postaci plików <code>JPG</code>.</li>
 </ul>
 </div>
 </div>
