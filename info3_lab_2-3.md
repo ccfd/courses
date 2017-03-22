@@ -128,7 +128,7 @@ convert -size 100x100 -depth 32 -define quantum:format=floating-point gray:obraz
     size_t fread(void *ptr, size_t size, size_t count, FILE *stream);
     ```
     gdzie: `*ptr` to wskaźnik na tablicę, `size` to rozmiar elementu tablicy, `count` to liczba elementów do wczytania, a `*stream` to wskaźnik do pliku, na którym wykonywana jest operacja,
-    - dla każdej wczytanej liczby `x` znajdzie wartość przeciwną `−x`,
+    - dla każdej wczytanej liczby `x` znajdzie wartość, która pozwoli na odwrócenie odpowiadającego jej koloru (zauważ, że dla liczb typu `char` kolor czarny to 0, a kolor biały to 255),
     - wynik przekształcenia wyśle do standardowego wyjścia.
 - Spróbuj przepuścić wybrany obrazek przez taki "filtr" i sprawdź wynik.
   Pamiętaj, że informacje możemy wysłać na standardowe wejście programu za pomocą `<`{.bash}. 
