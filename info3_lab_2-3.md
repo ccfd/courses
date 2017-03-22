@@ -70,6 +70,28 @@ Obrazy powinny być połączone tak aby tworzyły szachownicę 10 na 10 obrazów
 - Rozłoży animację `GIF` na pojedyncze obrazy `JPG`. Do każdego z otrzymanych obrazów dopisze tekst, a następnie złoży je w nową animację `GIF`.
 Skrypt powinien skasować pliki tymczasowe (tzn. pojedyncze obrazy otrzymane przez rozłożenie pierwotnej animacji).
 
+Czasem napisanie skryptu może być żmudne.
+Dotyczy to zwłaszcza sytuacji, w których skrypt musi być rozbudowany a jednocześnie zostanie wykorzystany tylko raz.
+Przykładowo, poniższy skrypt generuje obrazek złożony z trzech nakładających się obrazów: czarno-białego tła oraz dwóch plików `1.jpg` i `2.jpg`.
+```{.bash}
+#!/bin/bash
+
+convert -size 90x60 canvas:white -size 90x30 gradient: -append -rotate 90 \
+\( 1.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
++matte -composite -repage +60+0 \) \
+\( 2.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
++matte -composite -repage +120+0 \) \
+-compose Over -mosaic overlap_series.jpg
+```
+"spacja" i "ukośnik" na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii.
+
+Przeanalizuj powyższy przykład i napisz skrypt, który stworzy obrazek ze wszystkich plików zawartych w określonym katalogu.
+W tym celu skrypt powinien:
+
+- generować skrypt `tmp.sh` zawierający komendę analogiczną do powyższej, tylko dla większej liczby obrazów (użyj echo "linia" > tmp dla pierwszej linii i echo "kolejna linia" >> tmp dla każdej następnej),
+- nadawać uprawnienia do wykonywania dla skryptu `tmp.sh`,
+- uruchamiać go.
+
 ## Wczytywanie danych binarnych
 
 Program `convert` może wczytać dane binarne interpretując je jako obrazek.
@@ -132,4 +154,4 @@ convert -size 100x100 -depth 32 -define quantum:format=floating-point gray:obraz
     - wynik przekształcenia wyśle do standardowego wyjścia.
 - Spróbuj przepuścić wybrany obrazek przez taki "filtr" i sprawdź wynik.
   Pamiętaj, że informacje możemy wysłać na standardowe wejście programu za pomocą `<`{.bash}. 
-- Napisz skrypt, który wszystkie pliki z aktualnego katalogu zmniejszy do rozmiaru 100 na 100 pikseli, przekonwertuje je na pliki binarne, przepuści przez filtr i zapisze wyniki w postaci plików `JPG`.
+- Napisz skrypt, który wszystkie pliki z aktualnego katalogu zmniejszy do rozmiaru 100 na 100 pikseli, dokona konwersji na pliki binarne, przepuści przez filtr i zapisze wyniki w postaci plików `JPG`.
