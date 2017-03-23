@@ -149,19 +149,13 @@ Utwórz teraz zagnieżdżoną listę:
 
 Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
 W $\LaTeX u$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
-Pierwszy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
+Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
 ```{.tex}
   wzór $E=mc^2$ powstał \ldots
 ```
 Kolejny sposób to wykorzystanie otoczenia, które pozwala na wyświetlenie równania w osobnym wierszu, np.
 ```{.tex}
 dla trójkąta prostokątnego zachodzi:
-\begin{displaymath}
-  c ^ 2 = a ^ 2 + b ^ 2
-\end{displaymath}
-```
-Aby nie zapisywać pełnej nazwy otoczenia piszemy skrótowo
-```{.tex}
 \[
   c ^ 2 = a ^ 2 + b ^ 2
 \]
@@ -187,83 +181,57 @@ Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę n
 
 Indeksy górne i dolne otrzymuje się przez użycie symboli `^` i `_`:
 ```{.tex}
-\[
-  n^3=m^{a^2-d}
-\]
-\[
-  \alpha_{1,2}=x_1+y_{1,2}
-\]
+\[ n^3=m^{a^2-d} \]
+\[ \alpha_{1,2}=x_1+y_{1,2} \]
 ```
 
 Zapis pierwiastków wymaga z kolei instrukcji `\sqrt{}`{.tex} 
 ```{.tex}
-\[
-  R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2}
-\]
+\[ R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2} \]
 ```
 
 Symbol wektora uzyskuje się przez
 ```{.tex}
-\[
-  \vec{z} = \vec{x} \times \vec{y}
-\]
+\[ \vec{z} = \vec{x} \times \vec{y} \]
 ```
 
 Podkreślenia i klamry wykorzystywane do komentowania poszczególnych części wzorów:
 ```{.tex}
-\[
-  \overline{x + i \cdot y}\cdot\underline{v - i \cdot w}
-\]
-\[
-  \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0}
-\]
+\[ \overline{x + i \cdot y}\cdot\underline{v - i \cdot w} \]
+\[ \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0} \]
 ```
 
 Nazwy funkcji powinny być zapisane zwykłą czcionką:
 ```{.tex}
-\[
-  1 = \sin^2(x) + \cos^2(x)
-\]
+\[ 1 = \sin^2(x) + \cos^2(x) \]
 ```
 a nie pochyloną:
 ```{.tex}
-\[
-  1 = sin^2(x) + cos^2(x)
-\]
+\[ 1 = sin^2(x) + cos^2(x) \]
 ```
 
 Ułamki piętrowe uzyskujemy przez
 ```{.tex}
-\[
-  \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1}
-\]
+\[ \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1} \]
 ```
 
 Nawiasy możemy wprowadzić wprost
 ```{.tex}
-\[
-  y=((\frac{1}{1 + x})^2 - 1)
-\]
+\[ y=((\frac{1}{1 + x})^2 - 1) \]
 ```
 Nie jest to jednak elegancki sposób.
 W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest napisać
 ```{.tex}
-\[
-  y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right)
-\]
+\[ y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right) \]
 ```
 
 Całki zapisujemy:
 ```{.tex}
-\[
-  \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx
-\]
+\[ \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx \]
 ```
 Natomiast sumy:
 ```{.tex}
-\[
-  S=\sum_{n=1}^{\inf} a \cdot q^{n-1}
-\]
+\[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]
 ```
 
 Macierze zapisujemy stosując otoczenie `array`{.tex}
