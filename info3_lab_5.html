@@ -655,15 +655,11 @@ div.tocify {
 </div>
 <div id="wzory-i-rownania-matematyczne" class="section level1">
 <h1>Wzory i równania matematyczne</h1>
-<p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej). W <span class="math inline">\(\LaTeX u\)</span> istnieje kilka sposobów dodawania wyrażeń matematycznych. Pierwszy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się <em>inline</em>)</p>
+<p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej). W <span class="math inline">\(\LaTeX u\)</span> istnieje kilka sposobów dodawania wyrażeń matematycznych. Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się <em>inline</em>)</p>
 <pre class="tex"><code>  wzór $E=mc^2$ powstał \ldots</code></pre>
 <p>Kolejny sposób to wykorzystanie otoczenia, które pozwala na wyświetlenie równania w osobnym wierszu, np.</p>
 <pre class="tex"><code>dla trójkąta prostokątnego zachodzi:
-\begin{displaymath}
-  c ^ 2 = a ^ 2 + b ^ 2
-\end{displaymath}</code></pre>
-<p>Aby nie zapisywać pełnej nazwy otoczenia piszemy skrótowo</p>
-<pre class="tex"><code>\[
+\[
   c ^ 2 = a ^ 2 + b ^ 2
 \]</code></pre>
 <p>Dla utrzymania porządku często warto numerować równania</p>
@@ -677,55 +673,29 @@ div.tocify {
   \]</code></pre>
 <p>Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę na dużą pierwszej litery danej nazwy (np. <code class="tex">\alpha</code> -&gt; <code class="tex">\Alpha</code>).</p>
 <p>Indeksy górne i dolne otrzymuje się przez użycie symboli <code>^</code> i <code>_</code>:</p>
-<pre class="tex"><code>\[
-  n^3=m^{a^2-d}
-\]
-\[
-  \alpha_{1,2}=x_1+y_{1,2}
-\]</code></pre>
+<pre class="tex"><code>\[ n^3=m^{a^2-d} \]
+\[ \alpha_{1,2}=x_1+y_{1,2} \]</code></pre>
 <p>Zapis pierwiastków wymaga z kolei instrukcji <code class="tex">\sqrt{}</code></p>
-<pre class="tex"><code>\[
-  R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2}
-\]</code></pre>
+<pre class="tex"><code>\[ R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2} \]</code></pre>
 <p>Symbol wektora uzyskuje się przez</p>
-<pre class="tex"><code>\[
-  \vec{z} = \vec{x} \times \vec{y}
-\]</code></pre>
+<pre class="tex"><code>\[ \vec{z} = \vec{x} \times \vec{y} \]</code></pre>
 <p>Podkreślenia i klamry wykorzystywane do komentowania poszczególnych części wzorów:</p>
-<pre class="tex"><code>\[
-  \overline{x + i \cdot y}\cdot\underline{v - i \cdot w}
-\]
-\[
-  \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0}
-\]</code></pre>
+<pre class="tex"><code>\[ \overline{x + i \cdot y}\cdot\underline{v - i \cdot w} \]
+\[ \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0} \]</code></pre>
 <p>Nazwy funkcji powinny być zapisane zwykłą czcionką:</p>
-<pre class="tex"><code>\[
-  1 = \sin^2(x) + \cos^2(x)
-\]</code></pre>
+<pre class="tex"><code>\[ 1 = \sin^2(x) + \cos^2(x) \]</code></pre>
 <p>a nie pochyloną:</p>
-<pre class="tex"><code>\[
-  1 = sin^2(x) + cos^2(x)
-\]</code></pre>
+<pre class="tex"><code>\[ 1 = sin^2(x) + cos^2(x) \]</code></pre>
 <p>Ułamki piętrowe uzyskujemy przez</p>
-<pre class="tex"><code>\[
-  \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1}
-\]</code></pre>
+<pre class="tex"><code>\[ \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1} \]</code></pre>
 <p>Nawiasy możemy wprowadzić wprost</p>
-<pre class="tex"><code>\[
-  y=((\frac{1}{1 + x})^2 - 1)
-\]</code></pre>
+<pre class="tex"><code>\[ y=((\frac{1}{1 + x})^2 - 1) \]</code></pre>
 <p>Nie jest to jednak elegancki sposób. W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest napisać</p>
-<pre class="tex"><code>\[
-  y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right)
-\]</code></pre>
+<pre class="tex"><code>\[ y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right) \]</code></pre>
 <p>Całki zapisujemy:</p>
-<pre class="tex"><code>\[
-  \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx
-\]</code></pre>
+<pre class="tex"><code>\[ \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx \]</code></pre>
 <p>Natomiast sumy:</p>
-<pre class="tex"><code>\[
-  S=\sum_{n=1}^{\inf} a \cdot q^{n-1}
-\]</code></pre>
+<pre class="tex"><code>\[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]</code></pre>
 <p>Macierze zapisujemy stosując otoczenie <code class="tex">array</code></p>
 <pre class="tex"><code>\[
   \left|
