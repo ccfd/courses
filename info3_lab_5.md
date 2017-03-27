@@ -62,10 +62,6 @@ Ale co to?
 Okazuje się, że brakuje kilku liter!
 Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
 
-Istnieje wiele nakładek graficznych do środowiska $\LaTeX $.
-Popularnością cieszy się Texmaker, dostępny zarówno pod Windowsa jak i Linuxa.
-Do łatwej obsługi pakietów warto zainstalować managera pakietów, np MikTex.
-
 ### Pakiety
 
 Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety.
@@ -384,9 +380,3 @@ W przypadku grafiki będzie to otoczenie `figure`:
     \caption{Rysunek.}
 \end{figure}
 ```
-
-
-# Na pewno się przyda...
-
-Do tworzenia profesjonalnych prezentacji w $\LaTeX u$ wykorzystuje się template - 'beamer'.
-Innym przydatnym narzędziem jest serwis https://www.overleaf.com/ pozwalający na tworzenie dokomentów on-line przez wielu użytkowników jednocześnie.
