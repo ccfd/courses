@@ -45,13 +45,11 @@ mysql> SELECT Name, Region FROM Country;
 ```
 * Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:
 ```sql
-mysql> SELECT Name, LifeExpectancy FROM Country
--> WHERE Continent='Europe';
+mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent='Europe';
 ```
 * Wyświetl nazwy wszystkich państw leżących w Europie i Azji wraz z długością życia ich mieszkańców:
 ```sql
-mysql> SELECT Name, LifeExpectancy FROM Country
--> WHERE Continent IN ('Europe', 'Asia');
+mysql> SELECT Name, LifeExpectancy FROM Country WHERE Continent IN ('Europe', 'Asia');
 ```
 * Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości
 życia (dodaj do poprzedniej komendy frazę - `ORDER BY LifeExpectancy`).
@@ -73,8 +71,7 @@ mysql> SELECT * FROM City WHERE CountryCode = 'FIN';
 ```
 * Wyświetl wszystkie informacje o miastach w Polsce (CountryCode Polski to POL) i posortuj je według województw:
 ```sql
-mysql> SELECT * FROM City WHERE CountryCode = 'POL'
--> ORDER BY District;
+mysql> SELECT * FROM City WHERE CountryCode = 'POL' ORDER BY District;
 ```
 * Wyświetl nazwy krajów, które uzyskały niepodległość po roku 1980. Wyświetl również rok uzyskania niepodległości.
 ```sql
@@ -83,58 +80,58 @@ mysql> SELECT Name, IndepYear FROM Country WHERE IndepYear > 1980;
 * Wyświetl nazwy krajów Ameryki Północnej, które uzyskały niepodległość pomiędzy rokiem 1800 a rokiem 1900. Wyświetl również rok uzyskania niepodległości. Posortuj dane według tej daty:
 ```sql
 mysql> SELECT Name, IndepYear from Country
--> WHERE Continent = 'North America' AND
--> IndepYear > 1800 AND
--> IndepYear < 1900
--> ORDER BY IndepYear;
+ WHERE Continent = 'North America' AND
+ IndepYear > 1800 AND
+ IndepYear < 1900
+ ORDER BY IndepYear;
 ```
 3. Zapytania bardziej zaawansowane
 * Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji (w przypadku alfabetu, kolejnosc malejaca oznacza porzadek od Z do A):
 ```sql
 mysql> SELECT Name, CountryCode, Population FROM City
--> WHERE Population > 3000000
--> ORDER BY CountryCode DESC, Population DESC;
+ WHERE Population > 3000000
+ ORDER BY CountryCode DESC, Population DESC;
 ```
 * Wyświetl wszystkie miasta w Norwegii (załóż, że nie znasz wartości *CountryCode* tego państwa):
 ```sql
 mysql> SELECT * FROM City WHERE CountryCode=
--> (SELECT Code FROM Country WHERE Name='Norway');
+ (SELECT Code FROM Country WHERE Name='Norway');
 ```
 * Wyświetl nazwę najbardziej zaludnionego państwa w Ameryce południowej; obok nazwy wyświetl liczbę jego ludności:
 ```sql
 mysql> SELECT Name, Population FROM Country
--> WHERE Population=
--> (SELECT MAX(Population) FROM Country
--> WHERE Continent='South America');
+ WHERE Population=
+ (SELECT MAX(Population) FROM Country
+ WHERE Continent='South America');
 ```
 * Wyświetl liczbę państw leżących na każdym kontynencie:
 ```sql
 mysql> SELECT Continent, Count(*) AS 'Total Population'
--> FROM Country GROUP BY Continent;
+ FROM Country GROUP BY Continent;
 ```
 * Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna *ID* w tabeli *City* odpowiada kolumnie *Capital* w tabeli *Country*):
 ```sql
 mysql> SELECT Name FROM City WHERE ID IN
--> (SELECT Capital FROM Country WHERE Continent='Europe');
+ (SELECT Capital FROM Country WHERE Continent='Europe');
 ```
 Tak skonstruowane zapytanie działa bardzo wolno ponieważ sprowadza się do wielokrotnego przeszukiwania tabeli *Country*. W takich przypadkach należy posłużyć się konstrukcją `tab1 INNER JOIN tab2 ON condition`
 ```sql
 mysql> SELECT City.Name FROM City INNER JOIN Country
--> ON City.ID=Country.Capital
--> WHERE Continent='Europe';
+ ON City.ID=Country.Capital
+ WHERE Continent='Europe';
 ```
 * Wyświetl informacje o językach używanych w europejskich państwach:
 ```sql
 mysql> SELECT Country.Name, CountryLanguage.Language FROM Country
--> INNER JOIN CountryLanguage
--> ON Country.Code=CountryLanguage.CountryCode
--> WHERE Country.Continent='Europe';
+ INNER JOIN CountryLanguage
+ ON Country.Code=CountryLanguage.CountryCode
+ WHERE Country.Continent='Europe';
 ```
 * Wyświetl nazwę i powierzchnię najmniejszego państwa na świecie:
 ```sql
 mysql> SELECT Name, SurfaceArea FROM Country
--> WHERE SurfaceArea =
--> (SELECT MIN(SurfaceArea) FROM Country);
+ WHERE SurfaceArea =
+ (SELECT MIN(SurfaceArea) FROM Country);
 ```
 * Wyświetl nazwę i powierzchnię najmniejszego państwa w Afryce.
 * Wyświetl nazwy państw i nazwy ich stolic.
@@ -167,7 +164,7 @@ mysql> SELECT Country.Name, City.Name FROM Country, City;
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
 mysql> SELECT Country.Name, City.Name FROM Country, City
-->	WHERE Country.Name = ’Poland’;
+	WHERE Country.Name = ’Poland’;
 ```
 * Wyświetl wszystkie miasta w Europie i nazwę państwa w którym leżą.
 * Wyświetl wszystkie miasta w Norwegii. Załóż, że nie znasz wartości CountryCode.
