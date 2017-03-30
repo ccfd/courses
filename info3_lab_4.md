@@ -171,7 +171,7 @@ mysql> SELECT Country.Name, City.Name FROM Country, City;
 * Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
 mysql> SELECT Country.Name, City.Name FROM Country, City
-	WHERE Country.Name = ’Poland’;
+	WHERE Country.Name = 'Poland';
 ```
 * Wyświetl wszystkie miasta w Europie i nazwę państwa w którym leżą.
 * Wyświetl wszystkie miasta w Norwegii. Załóż, że nie znasz wartości CountryCode.
