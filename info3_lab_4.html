@@ -627,7 +627,7 @@ div.tocify {
  (<span class="kw">SELECT</span> <span class="fu">MAX</span>(Population) <span class="kw">FROM</span> Country
  <span class="kw">WHERE</span> Continent=<span class="st">&#39;South America&#39;</span>);</code></pre></div></li>
 <li><p>Wyświetl liczbę państw leżących na każdym kontynencie:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Continent, <span class="fu">Count</span>(*) <span class="kw">AS</span> <span class="st">&#39;Total Population&#39;</span>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Continent, <span class="fu">Count</span>(*) <span class="kw">AS</span> <span class="st">&#39;Number of Countries&#39;</span>
  <span class="kw">FROM</span> Country <span class="kw">GROUP</span> <span class="kw">BY</span> Continent;</code></pre></div></li>
 <li><p>Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna <em>ID</em> w tabeli <em>City</em> odpowiada kolumnie <em>Capital</em> w tabeli <em>Country</em>):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name <span class="kw">FROM</span> City <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="kw">IN</span>
