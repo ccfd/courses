@@ -24,8 +24,8 @@ mysql > SHOW DATABASES;
 mysql > USE test;
 ```
 
-## Baza danych *test*
-1. Sprawdż jakie tabele zawarte są w bazie danych *test*:
+# Baza danych *test*
+## Sprawdż jakie tabele zawarte są w bazie danych *test*:
 ```sql
 mysql> SHOW TABLES;
 ```
@@ -34,7 +34,7 @@ Okaże się, że są to: *City*, *Country* i *CountryLanguage*. Informacje jakie
 mysql> DESCRIBE City;
 ```
 Sprawdź jakie wartości przechowują poszczególne tabele.
-2. Podstawowe zapytania (zapytanie - *query*)
+## Podstawowe zapytania (zapytanie - *query*)
 * Wyświetl wszystkie informacje zawarte w tabeli Country:
 ```sql
 SELECT * FROM Country;
@@ -85,7 +85,7 @@ mysql> SELECT Name, IndepYear from Country
  IndepYear < 1900
  ORDER BY IndepYear;
 ```
-3. Zapytania bardziej zaawansowane
+### Zapytania bardziej zaawansowane
 * Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji (w przypadku alfabetu, kolejnosc malejaca oznacza porzadek od Z do A):
 ```sql
 mysql> SELECT Name, CountryCode, Population FROM City
@@ -142,7 +142,9 @@ mysql> SELECT Name, SurfaceArea FROM Country
 * Wyświetl jakimi językami posługują się mieszkańcy Hiszpanii.
 * Wyświetl nazwy państw, które uzyskały niepodległość po roku 1900, w których to państwach językiem oficjalnym jest hiszpański.
 * Powtórz powyższe zapytanie dla języków: francuskiego i angielskiego.
-4. Pytania dodatkowe:
+
+## Pytania dodatkowe:
+
 * Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od 70 lat.
 * Policz liczbę Europejskich krajów, w których czas życia jest dłuższy od 70 lat.
 * Wyświetl średni czas życia na świecie.
@@ -299,6 +301,8 @@ mysql> SELECT * INTO OUTFILE 'res.txt' FIELDS TERMINATED BY ','
 mysql> DELETE FROM Person WHERE Surname = 'Kowalski';
 ```
 Odtwórz tabelę *Person* i usuń z tabeli *Phone* wszystkie telefony Kowalskiego (musisz połączyć instrukcję `DELETE` z instrukcją `SELECT` w celu pozyskania identyfikatora Kowalskiego).
+
+# Schematy tabel
 
 ## Schemat tabel zawartych w bazie danych *test*
 
