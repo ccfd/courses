@@ -555,10 +555,12 @@ div.tocify {
 
 <div id="relacyjne-bazy-danych-w-interpretacji-mysql---podstawy" class="section level1">
 <h1>Relacyjne bazy danych w interpretacji MySQL - podstawy</h1>
-<div id="cwiczenie-4" class="section level2">
-<h2>Ćwiczenie 4</h2>
-<div id="poaczenie-z-serwerem-mysql" class="section level3">
-<h3>Połączenie z serwerem MySQL</h3>
+<div id="cwiczenie-4" class="section level3">
+<h3>Ćwiczenie 4</h3>
+</div>
+</div>
+<div id="poaczenie-z-serwerem-mysql" class="section level1">
+<h1>Połączenie z serwerem MySQL</h1>
 <ol style="list-style-type: decimal">
 <li>Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).</li>
 <li><p>Klient MySQL’a urchamia komenda: <code>mysql -u mysql</code> Program wita nas krótkim komunikatem oraz znakiem zachęty:</p>
@@ -568,9 +570,8 @@ div.tocify {
 <li><p>Jest ich dużo. My chcemy skorzystać z bazy danych o nazwie <em>test</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt; <span class="kw">USE</span> test;</code></pre></div></li>
 </ol>
-</div>
-<div id="baza-danych-test" class="section level3">
-<h3>Baza danych <em>test</em></h3>
+<div id="baza-danych-test" class="section level2">
+<h2>Baza danych <em>test</em></h2>
 <ol style="list-style-type: decimal">
 <li><p>Sprawdż jakie tabele zawarte są w bazie danych <em>test</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; SHOW <span class="kw">TABLES</span>;</code></pre></div>
@@ -690,8 +691,9 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li><p>Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: VAT), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.</p></li>
 </ul>
 </div>
-<div id="tworzenie-i-uzywanie-nowych-baz-danych" class="section level3">
-<h3>Tworzenie i używanie nowych baz danych</h3>
+</div>
+<div id="tworzenie-i-uzywanie-nowych-baz-danych" class="section level1">
+<h1>Tworzenie i używanie nowych baz danych</h1>
 <ol start="0" style="list-style-type: decimal">
 <li><p>Utwórz własną bazę danych <code>studxy</code> (<em>xy</em> to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">DATABASE</span> studxy;</code></pre></div>
@@ -782,9 +784,8 @@ Jak widać po liście pól (tutaj *) należy użyć instrukcji <code>INTO OUTFIL
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">DELETE</span> <span class="kw">FROM</span> Person <span class="kw">WHERE</span> Surname = <span class="st">&#39;Kowalski&#39;</span>;</code></pre></div>
 <p>Odtwórz tabelę <em>Person</em> i usuń z tabeli <em>Phone</em> wszystkie telefony Kowalskiego (musisz połączyć instrukcję <code>DELETE</code> z instrukcją <code>SELECT</code> w celu pozyskania identyfikatora Kowalskiego).</p></li>
 </ol>
-</div>
-<div id="schemat-tabel-zawartych-w-bazie-danych-test" class="section level3">
-<h3>Schemat tabel zawartych w bazie danych <em>test</em></h3>
+<div id="schemat-tabel-zawartych-w-bazie-danych-test" class="section level2">
+<h2>Schemat tabel zawartych w bazie danych <em>test</em></h2>
 <div class="figure">
 <img src="figures/info3_lab_4-5_test_base.png" title="Baza danych Test" alt="" />
 
@@ -795,15 +796,16 @@ Jak widać po liście pól (tutaj *) należy użyć instrukcji <code>INTO OUTFIL
 <p>Pola: <code>ID</code> (<code>City</code>), <code>Code</code> (<code>Country</code>), <code>CountryCode</code> (<code>City</code>, <code>CountryLanguage</code>) muszą zawsze być wypełnione, to znaczy, że możemy mieć pewność, że odpowiednie powiązania będą istnieć. Pomiędzy tabelami <code>Country</code> i <code>City</code> istnieje jeszcze jedno powiązanie oznaczone linią przerywaną: <code>Capital</code> - <code>ID</code>. Każde państwo może posiadać stolicę. Kod miasta będącego stolicą przechowywany jest w polu <code>Capital</code>. Pole to może mieć wartość <code>NULL</code>, ponieważ są pewne obszary globu (zazwyczaj jednak zależne od pewnych państw) nie posiadające wyraźnych struktur państwowych. Wystarczy sprawdzić jakie to terytoria:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Capital <span class="kw">IS</span> <span class="kw">NULL</span>;</code></pre></div>
 </div>
-<div id="schemat-tabel-person-i-phone" class="section level3">
-<h3>Schemat tabel <code>Person</code> i <code>Phone</code></h3>
+<div id="schemat-tabel-person-i-phone" class="section level2">
+<h2>Schemat tabel <code>Person</code> i <code>Phone</code></h2>
 <div class="figure">
 <img src="figures/info3_lab_4-5_twoja_base.png" title="Twoja Baza danych" alt="" />
 
 </div>
 </div>
-<div id="sciagawka" class="section level3">
-<h3>Ściągawka</h3>
+</div>
+<div id="sciagawka" class="section level1">
+<h1>Ściągawka</h1>
 <table style="width:112%;">
 <colgroup>
 <col width="55%" />
@@ -966,8 +968,6 @@ Jak widać po liście pól (tutaj *) należy użyć instrukcji <code>INTO OUTFIL
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 </div>
 
 <!-- Dummy footer -->
