@@ -6,9 +6,9 @@ number: 4
 ---
 
 # Relacyjne bazy danych w interpretacji MySQL -  podstawy
-## Ćwiczenie 4
+### Ćwiczenie 4
 
-### Połączenie z serwerem MySQL
+# Połączenie z serwerem MySQL
 1. Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).
 2. Klient MySQL'a urchamia komenda: `mysql -u mysql`
 Program wita nas krótkim komunikatem oraz znakiem zachęty:
@@ -24,7 +24,7 @@ mysql > SHOW DATABASES;
 mysql > USE test;
 ```
 
-### Baza danych *test*
+## Baza danych *test*
 1. Sprawdż jakie tabele zawarte są w bazie danych *test*:
 ```sql
 mysql> SHOW TABLES;
@@ -179,7 +179,7 @@ mysql> SELECT Country.Name, City.Name FROM Country, City
 * Jak w punkcie wyżej tylko przy każdym mieście wyświetlić państwo w którym leży.
 * Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: VAT), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
 
-### Tworzenie i używanie nowych baz danych
+# Tworzenie i używanie nowych baz danych
 0. Utwórz własną bazę danych `studxy` (*xy* to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:
 ```sql
 CREATE DATABASE studxy;
@@ -303,7 +303,7 @@ mysql> DELETE FROM Person WHERE Surname = 'Kowalski';
 ```
 Odtwórz tabelę *Person* i usuń z tabeli *Phone* wszystkie telefony Kowalskiego (musisz połączyć instrukcję `DELETE` z instrukcją `SELECT` w celu pozyskania identyfikatora Kowalskiego).
 
-### Schemat tabel zawartych w bazie danych *test*
+## Schemat tabel zawartych w bazie danych *test*
 
 ![](figures/info3_lab_4-5_test_base.png "Baza danych Test")
 
@@ -318,11 +318,11 @@ Pola: `ID` (`City`), `Code` (`Country`), `CountryCode` (`City`, `CountryLanguage
 mysql> SELECT Name FROM Country WHERE Capital IS NULL;
 ```
 
-### Schemat tabel `Person` i `Phone`
+## Schemat tabel `Person` i `Phone`
 
 ![](figures/info3_lab_4-5_twoja_base.png "Twoja Baza danych")
 
-### Ściągawka
+# Ściągawka
 
 Komenda                                | Rezultat 
 ---------------------------------------|----------------------------------------
