@@ -111,7 +111,7 @@ mysql> SELECT Name, Population FROM Country
 ```
 * Wyświetl liczbę państw leżących na każdym kontynencie:
 ```sql
-mysql> SELECT Continent, Count(*) AS 'Total Population'
+mysql> SELECT Continent, Count(*) AS 'Number of Countries'
  FROM Country GROUP BY Continent;
 ```
 * Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna *ID* w tabeli *City* odpowiada kolumnie *Capital* w tabeli *Country*):
