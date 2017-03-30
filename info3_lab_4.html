@@ -570,19 +570,17 @@ div.tocify {
 <li><p>Jest ich dużo. My chcemy skorzystać z bazy danych o nazwie <em>test</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql &gt; <span class="kw">USE</span> test;</code></pre></div></li>
 </ol>
-<div id="baza-danych-test" class="section level2">
-<h2>Baza danych <em>test</em></h2>
-<ol style="list-style-type: decimal">
-<li><p>Sprawdż jakie tabele zawarte są w bazie danych <em>test</em>:</p>
+</div>
+<div id="baza-danych-test" class="section level1">
+<h1>Baza danych <em>test</em></h1>
+<div id="sprawdz-jakie-tabele-zawarte-sa-w-bazie-danych-test" class="section level2">
+<h2>Sprawdż jakie tabele zawarte są w bazie danych <em>test</em>:</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; SHOW <span class="kw">TABLES</span>;</code></pre></div>
 <p>Okaże się, że są to: <em>City</em>, <em>Country</em> i <em>CountryLanguage</em>. Informacje jakie są przechowywane w poszczególnych tabelach (definicję tabeli) wyświetli poniższe polecenie, np. dla tabeli <em>City</em>:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; DESCRIBE City;</code></pre></div>
-Sprawdź jakie wartości przechowują poszczególne tabele.</li>
-<li>Podstawowe zapytania (zapytanie - <em>query</em>)</li>
-</ol>
+<p>Sprawdź jakie wartości przechowują poszczególne tabele. ## Podstawowe zapytania (zapytanie - <em>query</em>) * Wyświetl wszystkie informacje zawarte w tabeli Country:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> * <span class="kw">FROM</span> Country;</code></pre></div>
 <ul>
-<li><p>Wyświetl wszystkie informacje zawarte w tabeli Country:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> * <span class="kw">FROM</span> Country;</code></pre></div></li>
 <li><p>Wyświetl wartości wszystkich rekordów dwóch pól (kolumn) (np. Name, Region):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, Region <span class="kw">FROM</span> Country;</code></pre></div></li>
 <li><p>Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:</p>
@@ -607,12 +605,8 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
  <span class="kw">WHERE</span> Continent = <span class="st">&#39;North America&#39;</span> <span class="kw">AND</span>
  IndepYear &gt; <span class="dv">1800</span> <span class="kw">AND</span>
  IndepYear &lt; <span class="dv">1900</span>
- <span class="kw">ORDER</span> <span class="kw">BY</span> IndepYear;</code></pre></div></li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Zapytania bardziej zaawansowane</li>
-</ol>
-<ul>
+ <span class="kw">ORDER</span> <span class="kw">BY</span> IndepYear;</code></pre></div>
+<h3 id="zapytania-bardziej-zaawansowane">Zapytania bardziej zaawansowane</h3></li>
 <li><p>Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji (w przypadku alfabetu, kolejnosc malejaca oznacza porzadek od Z do A):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">SELECT</span> Name, CountryCode, Population <span class="kw">FROM</span> City
  <span class="kw">WHERE</span> Population &gt; <span class="dv">3000000</span>
@@ -652,11 +646,11 @@ Sprawdź jakie wartości przechowują poszczególne tabele.</li>
 <li>Wyświetl wszystkie państwa, w których ludzie mówią po Polsku.</li>
 <li>Wyświetl jakimi językami posługują się mieszkańcy Hiszpanii.</li>
 <li>Wyświetl nazwy państw, które uzyskały niepodległość po roku 1900, w których to państwach językiem oficjalnym jest hiszpański.</li>
-<li>Powtórz powyższe zapytanie dla języków: francuskiego i angielskiego.</li>
+<li><p>Powtórz powyższe zapytanie dla języków: francuskiego i angielskiego.</p></li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Pytania dodatkowe:</li>
-</ol>
+</div>
+<div id="pytania-dodatkowe" class="section level2">
+<h2>Pytania dodatkowe:</h2>
 <ul>
 <li>Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od 70 lat.</li>
 <li>Policz liczbę Europejskich krajów, w których czas życia jest dłuższy od 70 lat.</li>
@@ -781,6 +775,9 @@ Jak widać po liście pól (tutaj *) należy użyć instrukcji <code>INTO OUTFIL
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">mysql&gt; <span class="kw">DELETE</span> <span class="kw">FROM</span> Person <span class="kw">WHERE</span> Surname = <span class="st">&#39;Kowalski&#39;</span>;</code></pre></div>
 <p>Odtwórz tabelę <em>Person</em> i usuń z tabeli <em>Phone</em> wszystkie telefony Kowalskiego (musisz połączyć instrukcję <code>DELETE</code> z instrukcją <code>SELECT</code> w celu pozyskania identyfikatora Kowalskiego).</p></li>
 </ol>
+</div>
+<div id="schematy-tabel" class="section level1">
+<h1>Schematy tabel</h1>
 <div id="schemat-tabel-zawartych-w-bazie-danych-test" class="section level2">
 <h2>Schemat tabel zawartych w bazie danych <em>test</em></h2>
 <div class="figure">
