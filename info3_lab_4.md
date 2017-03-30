@@ -25,7 +25,8 @@ mysql > USE test;
 ```
 
 # Baza danych *test*
-## Sprawdż jakie tabele zawarte są w bazie danych *test*:
+### Sprawdż jakie tabele zawarte są w bazie danych *test*:
+
 ```sql
 mysql> SHOW TABLES;
 ```
@@ -34,7 +35,9 @@ Okaże się, że są to: *City*, *Country* i *CountryLanguage*. Informacje jakie
 mysql> DESCRIBE City;
 ```
 Sprawdź jakie wartości przechowują poszczególne tabele.
+
 ## Podstawowe zapytania (zapytanie - *query*)
+
 * Wyświetl wszystkie informacje zawarte w tabeli Country:
 ```sql
 SELECT * FROM Country;
@@ -85,7 +88,9 @@ mysql> SELECT Name, IndepYear from Country
  IndepYear < 1900
  ORDER BY IndepYear;
 ```
+
 ### Zapytania bardziej zaawansowane
+
 * Wyświetl nazwy miast o ludności przekraczającej 3 000 000. Wyświetl również kody państw, w których te miasta leżą i liczbę ludności. Posortuj dane w kolejności malejącej według kodu kraju, a następnie populacji (w przypadku alfabetu, kolejnosc malejaca oznacza porzadek od Z do A):
 ```sql
 mysql> SELECT Name, CountryCode, Population FROM City
@@ -178,7 +183,9 @@ mysql> SELECT Country.Name, City.Name FROM Country, City
 * Jak w punkcie wyżej tylko przy każdym mieście wyświetlić państwo w którym leży.
 * Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: VAT), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
 
+
 # Tworzenie i używanie nowych baz danych
+
 0. Utwórz własną bazę danych `studxy` (*xy* to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:
 ```sql
 CREATE DATABASE studxy;
