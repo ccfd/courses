@@ -718,6 +718,7 @@ div.tocify {
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Zapisz poniższe równania wykorzystując system <span class="math inline">\(\LaTeX\)</span>. Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej. W sieci Internet można znaleźć listy dostępnych symboli. W naszej pracowni można skorzystać ze strony: <a href="https://www.sharelatex.com/learn/Mathematical_expressions" class="uri">https://www.sharelatex.com/learn/Mathematical_expressions</a></p>
+<p>Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów. Przykładowo, symbol całki podwójnej <code class="tex">\iint</code> uzyskamy po dołączeniu pakietu <code class="tex">amsmath</code>.</p>
 <p><span class="math display">\[
   i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
 \]</span></p>
@@ -732,7 +733,8 @@ div.tocify {
 \]</span></p>
 <p><span class="math display">\[
 \mathrm{Var} \left(\hat{Z}(x_0)-Z(x_0)\right) =
-\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
+\]</span> <span class="math display">\[
+=\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
 \underbrace{
 \left(
 \begin{array}{c}
@@ -801,7 +803,7 @@ c(x_n,x_0)
 </div>
 <div id="grafika" class="section level1">
 <h1>Grafika</h1>
-<p>Wstawienie grafiki w <span class="math inline">\(LaTeX u\)</span> ogranicza się do użycia instrukcji <code class="tex">\includegraphics[parametry]{sciezka_do_grafiki}</code>. Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa <code>95%</code> szerokości tekstu napiszemy:</p>
+<p>Wstawienie grafiki w <span class="math inline">\(LaTeX u\)</span> ogranicza się do dołączenia pakietu <code class="tex">\usepackage{graphicx}</code> oraz użycia instrukcji <code class="tex">\includegraphics[parametry]{sciezka_do_grafiki}</code>. Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa <code>95%</code> szerokości tekstu napiszemy:</p>
 <pre class="tex"><code>\includegraphics[width=.95\textwidth]{rysunek.pdf}</code></pre>
 <p>Podobnie jak to było w przypadku tabel, kontrolę nad położeniem rysunku i możliwość dodawania podpisów otrzymamy po zastosowaniu specjalnego otoczenia. W przypadku grafiki będzie to otoczenie <code>figure</code>:</p>
 <pre class="tex"><code>\begin{figure}[!h]
