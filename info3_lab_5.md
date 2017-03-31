@@ -266,6 +266,9 @@ Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej.
 W sieci Internet można znaleźć listy dostępnych symboli.
 W naszej pracowni można skorzystać ze strony: https://www.sharelatex.com/learn/Mathematical_expressions
 
+Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów.
+Przykładowo, symbol całki podwójnej `\iint`{.tex} uzyskamy po dołączeniu pakietu `amsmath`{.tex}.
+
 $$
   i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
 $$
@@ -283,7 +286,9 @@ $$
 
 $$
 \mathrm{Var} \left(\hat{Z}(x_0)-Z(x_0)\right) =
-\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
+$$
+$$
+=\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
 \underbrace{
 \left(
 \begin{array}{c}
@@ -366,7 +371,7 @@ Wykonaj poniższą tabelę:
 
 # Grafika
 
-Wstawienie grafiki w $LaTeX u$ ogranicza się do użycia instrukcji `\includegraphics[parametry]{sciezka_do_grafiki}`{.tex}.
+Wstawienie grafiki w $LaTeX u$ ogranicza się do dołączenia pakietu `\usepackage{graphicx}`{.tex} oraz użycia instrukcji `\includegraphics[parametry]{sciezka_do_grafiki}`{.tex}.
 Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa `95%` szerokości tekstu napiszemy:
 ```{.tex}
 \includegraphics[width=.95\textwidth]{rysunek.pdf}
