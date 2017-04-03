@@ -1,5 +1,7 @@
 ---
-author: "M. Dzikowski, rev. K. Marchlewski"
+author:
+- M. Dzikowski
+- rev. K. Marchlewski
 course: Informatyka III
 material: Instrukcja 1
 number: 1
