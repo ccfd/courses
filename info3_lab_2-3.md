@@ -60,7 +60,7 @@ Napisz skrypt, który:
 - Na każde zdjęcie naniesie tekst wykorzystując argument
 ```{.bash}
 -pointsize rozmiar -draw "text x, y 'Tekst'"
-```.
+```
 - Na każde zdjęcie naniesie ramkę (argument `-border 20x20`{.bash}) z aktualną datą (komenda `date`{.bash}).
 - Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć za pomocą komendy `stat -c %y plik`{.bash}).
 - Zmniejszy wszystkie obrazki z katalogu "drop" i połączy je w animację za pomocą komendy `convert *.jpg animacja.gif`{.bash}.
