@@ -9,7 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ł. Łaniewski-Wołłk, M. Dzikowski, rev. K. Marchlewski" />
+<meta name="author" content="M. Dzikowski" />
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+<meta name="author" content="rev. K. Marchlewski" />
 
 
 <title></title>
@@ -575,7 +577,10 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100 plik2.jpg</code> – zmniejsza obrazek, tak aby krótszy wymiar był równy 100 pikseli,</li>
 <li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100 plik2.jpg</code> – zmniejsza obrazek tak, aby mieścił się w kwadracie o wymiarze 100 na 100 pikseli,</li>
 <li><code class="sourceCode bash"><span class="kw">convert</span> plik1.jpg -resize 100x100\! plik2.jpg</code> – zmniejsza obrazek dokładnie do rozmiaru 100 na 100 pikseli,</li>
-<li><code class="sourceCode bash"><span class="kw">convert</span> -size 320x85 canvas:none -pointsize 72 -fill red -draw <span class="st">&quot;text 20, 55 &#39;Magick&#39;&quot;</span> magick.jpg</code> – stworzy obrazek <code>magick.jpg</code>, z naniesionym tekstem “Magick”.</li>
+<li><p>polecenie</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 320x85 canvas:none -pointsize 72 -fill red \
+-draw <span class="st">&quot;text 20, 55 &#39;Magick&#39;&quot;</span> magick.jpg</code></pre></div>
+<p>– stworzy obrazek <code>magick.jpg</code>, z naniesionym tekstem “Magick” (znaki “spacji” i “ukośnika” na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii).</p></li>
 </ul>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
@@ -586,7 +591,7 @@ div.tocify {
 <li>Dokona konwersji wszystkich plików <code>.jpg</code> na <code>.gif</code>, dodając końcówkę (<code>plik.jpg</code> -&gt; <code>plik.jpg.gif</code>).</li>
 <li>Dokona konwersji wszystkich plików <code>.jpg</code> na <code>.gif</code>, zmieniając końcówkę (<code>plik.jpg</code> -&gt; <code>plik.gif</code>).</li>
 <li>Na każde zdjęcie naniesie tekst wykorzystując argument <code class="sourceCode bash"><span class="kw">-pointsize</span> rozmiar -draw <span class="st">&quot;text x, y &#39;Tekst&#39;&quot;</span></code>.</li>
-<li>Na każde zdjęcie naniesie aktualną datę (komenda <code class="sourceCode bash"><span class="kw">date</span></code>).</li>
+<li>Na każde zdjęcie naniesie ramkę (argument <code class="sourceCode bash"><span class="kw">-border</span> 20x20</code>) z aktualną datą (komenda <code class="sourceCode bash"><span class="kw">date</span></code>).</li>
 <li>Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć za pomocą komendy <code class="sourceCode bash"><span class="kw">stat</span> -c %y plik</code>).</li>
 <li>Zmniejszy wszystkie obrazki z katalogu “drop” i połączy je w animację za pomocą komendy <code class="sourceCode bash"><span class="kw">convert</span> *.jpg animacja.gif</code>.</li>
 </ul>
@@ -599,20 +604,20 @@ div.tocify {
 <li>Doda do obrazka ramkę i wypisze na niej wybraną informację <code>EXIF</code>. Informację tę można wyciągnąć za pomocą polecenia <code class="sourceCode bash"><span class="kw">identify</span> -format <span class="st">&quot;%[EXIF:*]&quot;</span> plik.jpg</code>. Może to być np. modelu aparatu, którym wykonano zdjęcie.</li>
 <li>Wypisze na ekran liczby od 0 do 10 za pomocą pętli.</li>
 <li>Wypisze na ekran liczby od 0 do pewnej liczby podanej jako argument skryptu.</li>
-<li>Połączy wszystkie obrazki w danym katalogu, zmniejszone do rozmiaru 10 na 10 pikseli, w jeden duży obraz <code>JPG</code>. Argument <code class="sourceCode bash"><span class="kw">-append</span></code> łączy obrazy w pionie, a argument <code class="sourceCode bash"><span class="kw">+append</span></code> w poziomie.</li>
-<li>W sposób analogiczny, połączy obrazy z katalogu <code>drop</code> w jeden duży obraz. Obrazy powinny być połączone tak aby tworzyły szachownicę 10 na 10 obrazów.</li>
+<li>Połączy wszystkie obrazki w danym katalogu, zmniejszone do rozmiaru 10 na 10 pikseli, w jeden duży obraz <code>JPG</code>. Argument <code class="sourceCode bash"><span class="kw">-append</span></code> łączy obrazy w pionie, a argument <code class="sourceCode bash"><span class="kw">+append</span></code> w poziomie. Przykładowo, komenda <code class="sourceCode bash"><span class="kw">convert</span> 1.jpg 2.jpg 3.jpg +append 4.jpg</code> złączy poziomo trzy obrazki w jeden.</li>
+<li>W sposób analogiczny, połączy obrazy z katalogu <code>drop</code> w jeden duży obraz. Obrazy powinny być połączone tak aby tworzyły szachownicę 10 na 10 obrazów. Podpowiedź: połącz obrazki <code>drop-00*.jpg</code> w poziomie, później <code>drop-01*.jpg</code>, itd. Następnie wszystkie te podłużne obrazki połącz w całość w pionie.</li>
 <li>Rozłoży animację <code>GIF</code> na pojedyncze obrazy <code>JPG</code>. Do każdego z otrzymanych obrazów dopisze tekst, a następnie złoży je w nową animację <code>GIF</code>. Skrypt powinien skasować pliki tymczasowe (tzn. pojedyncze obrazy otrzymane przez rozłożenie pierwotnej animacji).</li>
 </ul>
 <p>Czasem napisanie skryptu może być żmudne. Dotyczy to zwłaszcza sytuacji, w których skrypt musi być rozbudowany a jednocześnie zostanie wykorzystany tylko raz. Przykładowo, poniższy skrypt generuje obrazek złożony z trzech nakładających się obrazów: czarno-białego tła oraz dwóch plików <code>1.jpg</code> i <code>2.jpg</code>.</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
 
-<span class="kw">convert</span> -size 90x60 canvas:white -size 90x30 gradient: -append -rotate 90 \
+<span class="kw">convert</span> -size 90x60 canvas:white \
+-size 90x30 gradient: -append -rotate 90 \
 <span class="dt">\(</span> 1.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
 +matte -composite -repage +60+0 <span class="dt">\)</span> \
 <span class="dt">\(</span> 2.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
 +matte -composite -repage +120+0 <span class="dt">\)</span> \
 -compose Over -mosaic overlap_series.jpg</code></pre></div>
-<p>“spacja” i “ukośnik” na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii.</p>
 <p>Przeanalizuj powyższy przykład i napisz skrypt, który stworzy obrazek ze wszystkich plików zawartych w określonym katalogu. W tym celu skrypt powinien:</p>
 <ul>
 <li>generować skrypt <code>tmp.sh</code> zawierający komendę analogiczną do powyższej, tylko dla większej liczby obrazów (użyj <code class="sourceCode bash"><span class="kw">echo</span> linia <span class="kw">&gt;</span> tmp</code> dla pierwszej linii i <code class="sourceCode bash"><span class="kw">echo</span> kolejna linia</code> &gt;&gt; tmp dla każdej następnej),</li>
@@ -651,7 +656,8 @@ div.tocify {
 <p>Mamy teraz plik binarny zawierający liczby typu char (1 bajt) od 0 do 255. Możemy dokonać jego konwersji na obrazek <code>JPG</code> wpisując:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 100x100 -depth 8 gray:obrazek obrazek.jpg</code></pre></div>
 <p>Uwaga: Zamiast typu “char” moglibyśmy użyć tablicy typu “float” i liczb z przedziału <span class="math inline">\([0, 1]\)</span>. Wtedy jednak musielibyśmy skonwertować obrazek za pomocą polecenia:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 100x100 -depth 32 -define quantum:format=floating-point gray:obrazek obrazek.jpg</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">convert</span> -size 100x100 -depth 32 \
+-define quantum:format=floating-point gray:obrazek obrazek.jpg</code></pre></div>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
@@ -661,7 +667,7 @@ div.tocify {
 <ul>
 <li><p>wczyta ze standardowego wejścia tablicę (służy do tego funkcja “fread”),</p>
 <div class="sourceCode"><pre class="sourceCode C"><code class="sourceCode c">size_t fread(<span class="dt">void</span> *ptr, size_t size, size_t count, FILE *stream);</code></pre></div>
-gdzie: <code>*ptr</code> to wskaźnik na tablicę, <code>size</code> to rozmiar elementu tablicy, <code>count</code> to liczba elementów do wczytania, a <code>*stream</code> to wskaźnik do pliku, na którym wykonywana jest operacja,</li>
+gdzie: <code>*ptr</code> to wskaźnik na tablicę, <code>size</code> to rozmiar elementu tablicy, <code>count</code> to liczba elementów do wczytania, a <code>*stream</code> to wskaźnik do strumienia, na którym wykonywana jest operacja (w naszym przypadku będzie to <code>stdin</code>),</li>
 <li>dla każdej wczytanej liczby <code>x</code> znajdzie wartość, która pozwoli na odwrócenie odpowiadającego jej koloru (zauważ, że dla liczb typu <code>char</code> kolor czarny to 0, a kolor biały to 255),</li>
 <li>wynik przekształcenia wyśle do standardowego wyjścia.</li>
 </ul></li>
