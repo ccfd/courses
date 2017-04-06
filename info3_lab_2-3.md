@@ -1,5 +1,8 @@
 ---
-author: "Ł. Łaniewski-Wołłk, M. Dzikowski, rev. K. Marchlewski"
+author:
+- M. Dzikowski
+- Ł. Łaniewski-Wołłk
+- rev. K. Marchlewski
 course: Informatyka III
 material: Instrukcja 2-3
 number: 2, 3
@@ -39,7 +42,12 @@ Wykonaj poniższe operacje i sprawdź efekty.
 - `convert plik1.jpg -resize 100 plik2.jpg`{.bash} -- zmniejsza obrazek, tak aby krótszy wymiar był równy 100 pikseli,
 - `convert plik1.jpg -resize 100x100 plik2.jpg`{.bash} -- zmniejsza obrazek tak, aby mieścił się w kwadracie o wymiarze 100 na 100 pikseli,
 - `convert plik1.jpg -resize 100x100\! plik2.jpg`{.bash} -- zmniejsza obrazek dokładnie do rozmiaru 100 na 100 pikseli,
-- `convert -size 320x85 canvas:none -pointsize 72 -fill red -draw "text 20, 55 'Magick'" magick.jpg`{.bash} -- stworzy obrazek `magick.jpg`, z naniesionym tekstem "Magick".
+- polecenie
+```bash
+convert -size 320x85 canvas:none -pointsize 72 -fill red \
+-draw "text 20, 55 'Magick'" magick.jpg
+```
+-- stworzy obrazek `magick.jpg`, z naniesionym tekstem "Magick" (znaki "spacji" i "ukośnika" na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii).
 
 ### Ćwiczenia
 
@@ -49,8 +57,8 @@ Napisz skrypt, który:
 - Zmniejszy wszystkie pliki `.jpg` zawarte w tym samym katalogu, w którym znajduje się skrypt i umieści je w innym katalogu.
 - Dokona konwersji wszystkich plików `.jpg` na `.gif`, dodając końcówkę (`plik.jpg` -> `plik.jpg.gif`).
 - Dokona konwersji wszystkich plików `.jpg` na `.gif`, zmieniając końcówkę (`plik.jpg` -> `plik.gif`).
-- Na każde zdjęcie naniesie tekst wykorzystując argument `-pointsize rozmiar -draw "text x, y 'Tekst'"`{.bash}.
-- Na każde zdjęcie naniesie aktualną datę (komenda `date`{.bash}).
+- Na każde zdjęcie naniesie tekst wykorzystując argument ```-pointsize rozmiar -draw "text x, y 'Tekst'"```{.bash}.
+- Na każde zdjęcie naniesie ramkę (argument `-border 20x20`{.bash}) z aktualną datą (komenda `date`{.bash}).
 - Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć za pomocą komendy `stat -c %y plik`{.bash}).
 - Zmniejszy wszystkie obrazki z katalogu "drop" i połączy je w animację za pomocą komendy `convert *.jpg animacja.gif`{.bash}.
 
@@ -65,8 +73,11 @@ Może to być np. modelu aparatu, którym wykonano zdjęcie.
 - Wypisze na ekran liczby od 0 do pewnej liczby podanej jako argument skryptu.
 - Połączy wszystkie obrazki w danym katalogu, zmniejszone do rozmiaru 10 na 10 pikseli, w jeden duży obraz `JPG`.
 Argument `-append`{.bash} łączy obrazy w pionie, a argument `+append`{.bash} w poziomie.
+Przykładowo, komenda `convert 1.jpg 2.jpg 3.jpg +append 4.jpg`{.bash} złączy poziomo trzy obrazki w jeden. 
 - W sposób analogiczny, połączy obrazy z katalogu `drop` w jeden duży obraz.
 Obrazy powinny być połączone tak aby tworzyły szachownicę 10 na 10 obrazów.
+Podpowiedź: połącz obrazki `drop-00*.jpg` w poziomie, później `drop-01*.jpg`, itd.
+Następnie wszystkie te podłużne obrazki połącz w całość w pionie.
 - Rozłoży animację `GIF` na pojedyncze obrazy `JPG`. Do każdego z otrzymanych obrazów dopisze tekst, a następnie złoży je w nową animację `GIF`.
 Skrypt powinien skasować pliki tymczasowe (tzn. pojedyncze obrazy otrzymane przez rozłożenie pierwotnej animacji).
 
@@ -76,14 +87,14 @@ Przykładowo, poniższy skrypt generuje obrazek złożony z trzech nakładający
 ```{.bash}
 #!/bin/bash
 
-convert -size 90x60 canvas:white -size 90x30 gradient: -append -rotate 90 \
+convert -size 90x60 canvas:white \
+-size 90x30 gradient: -append -rotate 90 \
 \( 1.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
 +matte -composite -repage +60+0 \) \
 \( 2.jpg -resize 90x90\! -clone 0 -compose CopyOpacity \
 +matte -composite -repage +120+0 \) \
 -compose Over -mosaic overlap_series.jpg
 ```
-"spacja" i "ukośnik" na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii.
 
 Przeanalizuj powyższy przykład i napisz skrypt, który stworzy obrazek ze wszystkich plików zawartych w określonym katalogu.
 W tym celu skrypt powinien:
@@ -137,7 +148,8 @@ convert -size 100x100 -depth 8 gray:obrazek obrazek.jpg
 Uwaga: Zamiast typu "char" moglibyśmy użyć tablicy typu "float" i liczb z przedziału $[0, 1]$.
 Wtedy jednak musielibyśmy skonwertować obrazek za pomocą polecenia:
 ```{.bash}
-convert -size 100x100 -depth 32 -define quantum:format=floating-point gray:obrazek obrazek.jpg
+convert -size 100x100 -depth 32 \
+-define quantum:format=floating-point gray:obrazek obrazek.jpg
 ```
 
 ### Ćwiczenia
@@ -149,7 +161,7 @@ convert -size 100x100 -depth 32 -define quantum:format=floating-point gray:obraz
     ```{.C}
     size_t fread(void *ptr, size_t size, size_t count, FILE *stream);
     ```
-    gdzie: `*ptr` to wskaźnik na tablicę, `size` to rozmiar elementu tablicy, `count` to liczba elementów do wczytania, a `*stream` to wskaźnik do pliku, na którym wykonywana jest operacja,
+    gdzie: `*ptr` to wskaźnik na tablicę, `size` to rozmiar elementu tablicy, `count` to liczba elementów do wczytania, a `*stream` to wskaźnik do strumienia, na którym wykonywana jest operacja (w naszym przypadku będzie to `stdin`),
     - dla każdej wczytanej liczby `x` znajdzie wartość, która pozwoli na odwrócenie odpowiadającego jej koloru (zauważ, że dla liczb typu `char` kolor czarny to 0, a kolor biały to 255),
     - wynik przekształcenia wyśle do standardowego wyjścia.
 - Spróbuj przepuścić wybrany obrazek przez taki "filtr" i sprawdź wynik.
