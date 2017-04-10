@@ -43,7 +43,7 @@ Wykonaj poniższe operacje i sprawdź efekty.
 - `convert plik1.jpg -resize 100x100 plik2.jpg`{.bash} -- zmniejsza obrazek tak, aby mieścił się w kwadracie o wymiarze 100 na 100 pikseli,
 - `convert plik1.jpg -resize 100x100\! plik2.jpg`{.bash} -- zmniejsza obrazek dokładnie do rozmiaru 100 na 100 pikseli,
 - polecenie
-```bash
+```{.bash}
 convert -size 320x85 canvas:none -pointsize 72 -fill red \
 -draw "text 20, 55 'Magick'" magick.jpg
 ```
@@ -57,7 +57,10 @@ Napisz skrypt, który:
 - Zmniejszy wszystkie pliki `.jpg` zawarte w tym samym katalogu, w którym znajduje się skrypt i umieści je w innym katalogu.
 - Dokona konwersji wszystkich plików `.jpg` na `.gif`, dodając końcówkę (`plik.jpg` -> `plik.jpg.gif`).
 - Dokona konwersji wszystkich plików `.jpg` na `.gif`, zmieniając końcówkę (`plik.jpg` -> `plik.gif`).
-- Na każde zdjęcie naniesie tekst wykorzystując argument ```-pointsize rozmiar -draw "text x, y 'Tekst'"```{.bash}.
+- Na każde zdjęcie naniesie tekst wykorzystując argument
+```{.bash}
+-pointsize rozmiar -draw "text x, y 'Tekst'"
+```
 - Na każde zdjęcie naniesie ramkę (argument `-border 20x20`{.bash}) z aktualną datą (komenda `date`{.bash}).
 - Na każde zdjęcie naniesie datę utworzenia tego zdjęcia (można ją wyciągnąć za pomocą komendy `stat -c %y plik`{.bash}).
 - Zmniejszy wszystkie obrazki z katalogu "drop" i połączy je w animację za pomocą komendy `convert *.jpg animacja.gif`{.bash}.
