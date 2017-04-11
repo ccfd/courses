@@ -225,10 +225,10 @@ USE studxy;
 1. Utwórz pierwszą tabelę, która zawierać będzie informacje o osobach:
 ```sql
 CREATE TABLE Person (
--> ID int,
--> Surname varchar(30) NOT NULL,
--> FirstName varchar(30) DEFAULT 'brak',
--> PRIMARY KEY (ID) );
+ID int,
+Surname varchar(30) NOT NULL,
+FirstName varchar(30) DEFAULT 'brak',
+PRIMARY KEY (ID) );
 ```
 Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surname będzie zawierało nazwisko osoby. Może ono przechowywać maksymalnie 30 znaków i musi być podane przy dodawaniu nowej osoby (NOT NULL), choć może być podane puste! Pole FirstName będzie przechowywać imię. Załóżmy, że można imienia nie podać i jeśli się tego nie zrobi to domyślnie zostanie wprowadzony tekst ‘brak’. Na koniec musimy podać, które pole będzie używane jako klucz główny. W naszym przypadku będzie to pole ID – każdy użytkownik musi mieć numer unikatowy.
 - Sprawdź czy utworzona tabela ma poprawną postać: 
