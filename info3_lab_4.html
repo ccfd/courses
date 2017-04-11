@@ -712,10 +712,10 @@ IndepYear &lt; <span class="dv">1900</span>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">USE</span> studxy;</code></pre></div></li>
 <li><p>Utwórz pierwszą tabelę, która zawierać będzie informacje o osobach:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> Person (
--&gt; <span class="kw">ID</span> <span class="dt">int</span>,
--&gt; Surname <span class="dt">varchar</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,
--&gt; FirstName <span class="dt">varchar</span>(<span class="dv">30</span>) <span class="kw">DEFAULT</span> <span class="st">&#39;brak&#39;</span>,
--&gt; <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">ID</span>) );</code></pre></div>
+<span class="kw">ID</span> <span class="dt">int</span>,
+Surname <span class="dt">varchar</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,
+FirstName <span class="dt">varchar</span>(<span class="dv">30</span>) <span class="kw">DEFAULT</span> <span class="st">&#39;brak&#39;</span>,
+<span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">ID</span>) );</code></pre></div>
 Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surname będzie zawierało nazwisko osoby. Może ono przechowywać maksymalnie 30 znaków i musi być podane przy dodawaniu nowej osoby (NOT NULL), choć może być podane puste! Pole FirstName będzie przechowywać imię. Załóżmy, że można imienia nie podać i jeśli się tego nie zrobi to domyślnie zostanie wprowadzony tekst ‘brak’. Na koniec musimy podać, które pole będzie używane jako klucz główny. W naszym przypadku będzie to pole ID – każdy użytkownik musi mieć numer unikatowy.</li>
 </ol>
 <ul>
