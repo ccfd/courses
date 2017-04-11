@@ -191,7 +191,7 @@ WHERE SurfaceArea =
 39. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
 40. Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
 41. Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
-W tym celu skorzystaj z funkcji `ISNULL(wiersz)`{.sql}.
+W tym celu skorzystaj z funkcji `ISNULL(kolumna)`{.sql}.
 42. Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
 43. Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
