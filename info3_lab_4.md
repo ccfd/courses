@@ -205,10 +205,14 @@ WHERE Country.Name = 'Poland';
 45. Wyświetl wszystkie miasta w Europie i nazwę państwa w którym leżą.
 46. Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.
 47. Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.
-48. Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa. Użyj samo-złączenia (czyli złączenia tabeli samej ze sobą).
+48. Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa.
+Użyj samo-złączenia (czyli złączenia tabeli samej ze sobą).
 49. Znajdź liczbę wystąpień każdego miasta na świecie.
-50. Znajdź liczbę wystąpień każdego miasta na świecie. Wyświetl jedynie te miasta, które występują przynajmniej 3 razy. Wyniki posortuj.
-51. Jak w punkcie wyżej tylko przy każdym mieście wyświetlić państwo w którym leży.
+50. Znajdź liczbę wystąpień każdego miasta na świecie.
+Wyświetl jedynie te miasta, które występują przynajmniej 3 razy.
+Wyniki posortuj.
+51. Wyświetl tabelę zawierającą listę miast, które występują przynajmniej 3 razy na świecie oraz nazwę państwa, w którym dane miasto leży.
+Czy miasta o powtarzających się nazwach leżą w jednym państwie?
 52. Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: "VAT"), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
 
 # Tworzenie i używanie nowych baz danych
