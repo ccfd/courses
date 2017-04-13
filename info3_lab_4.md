@@ -185,13 +185,13 @@ WHERE SurfaceArea =
 33. Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia w Europie.
 34. Wyświetl nazwę najbardziej zaludnionego państwa w Ameryce południowej; obok nazwy wyświetl liczbę jego ludności.
 35. Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).
-36. Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia.
+36. Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia (`NULL`).
+W tym celu skorzystaj z funkcji `ISNULL(wiersz)`{.sql}.
 37. Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.
 38. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
 39. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
 40. Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
 41. Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
-W tym celu skorzystaj z funkcji `ISNULL(kolumna)`{.sql}.
 42. Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
 43. Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
