@@ -146,7 +146,7 @@ $$ ds = \sqrt{f'(x)^2 + 1} dx$$
 W związku z tym długość łuku to:
 $$ \int_{x_0}^{x_1}{ds} = \int_{x_0}^{x_1}{\sqrt{f'(x)^2 + 1} dx} $$
 Po podstawieniu funkcji opisującej północne ogrodzenie dostaniemy:
-$$ \int_{x_0}^{x_1}{\sqrt{(0.5\cdot sin(\frac{x}{10}))^2 + 1} dx} $$
+$$ \int_{x_0}^{x_1}{\sqrt{(0.5\cdot cos(\frac{x}{10}))^2 + 1} dx} $$
 
 Zatem schemat rozwiązania zadania będzie następujący:
 
