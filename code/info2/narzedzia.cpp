@@ -147,6 +147,11 @@ double styczna(double x0, double(*fun)(double), double(*poch)(double), double ep
         deltaX = - fun(x0)/poch(x0);
         x0 = x0 + deltaX;
         (*n_iter)++;
+        if(*n_iter > 1e3)
+        {
+            *n_iter=-1;
+            return x0;
+        }
     }
     return x0;
 }

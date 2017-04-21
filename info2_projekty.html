@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="?, rev. W. Gryglas" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_inst06b.html">Instrukcja VIb</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="info2_projekty.pdf">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    Download PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info2_projekty.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Edit on GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="zadanie-domowe" class="section level1">
+<h1>Zadanie domowe</h1>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>Dany jest układ: <img src="figures/info2/homework/zad-01.png" title="Zadanie 01" alt="" /></p>
+<p>a sprężyna ma charakterystykę nieliniową: <span class="math inline">\(F = k_1(1+k_2 \cdot x^2)\)</span></p>
+<div id="w-ramach-zadania-nalezy" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(x_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-02.png" title="Zadanie 02" alt="" />
+
+</div>
+<div id="w-ramach-zadania-nalezy-1" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(\alpha(t), \omega(t), \omega(\alpha)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-1" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(\alpha_0 \neq 0, \omega_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-03.png" title="Zadanie 03" alt="" />
+
+</div>
+<p>wahadło matematyczne; duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span></p>
+<div id="w-ramach-zadania-nalezy-2" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(\alpha(t), \omega(t), \omega(\alpha)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-2" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(\alpha_0 \neq 0, \omega_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-04.png" title="Zadanie 04" alt="" />
+
+</div>
+<div id="w-ramach-zadania-nalezy-3" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t), y(x)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-3" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0 , y_0\)</span> – zależnie od wprowadzonego układu, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-05.png" title="Zadanie 05" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-4" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(z(t), v_z(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-4" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(z_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-6" class="section level2">
+<h2>Zadanie 6</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-06.png" title="Zadanie 06" alt="" />
+
+</div>
+<p>duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span>; uproszczenie: siła od sprężyny działa zawsze poziomo</p>
+<div id="w-ramach-zadania-nalezy-5" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(\alpha(t), \omega(t), \omega(\alpha)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-5" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(\alpha_0 \neq 0, \omega_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-7" class="section level2">
+<h2>Zadanie 7</h2>
+<p>Dany jest układ:</p>
+<p><img src="figures/info2/homework/zad-07.png" title="Zadanie 07" alt="" /> duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span>; uproszczenie: siła od sprężyny działa zawsze poziomo</p>
+<div id="w-ramach-zadania-nalezy-6" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(\alpha(t), \omega(t), \omega(\alpha)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-6" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(\alpha_0 \neq 0, \omega_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-8" class="section level2">
+<h2>Zadanie 8</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-08.png" title="Zadanie 08" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-7" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(\alpha(t), \omega(t), \omega(\alpha)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-7" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(\alpha_0 \neq 0, \omega_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-9" class="section level2">
+<h2>Zadanie 9</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-09.png" title="Zadanie 09" alt="" />
+
+</div>
+<p>sprężyna o charakterystyce nieliniowej: <span class="math inline">\(F = k1 (1+k_2 \cdot x^2)\)</span></p>
+<div id="w-ramach-zadania-nalezy-8" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-8" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(x_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-10" class="section level2">
+<h2>Zadanie 10</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-10.png" title="Zadanie 10" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-9" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-9" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-11" class="section level2">
+<h2>Zadanie 11</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-11.png" title="Zadanie 11" alt="" />
+
+</div>
+<p>Stożek w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał zanurzeniu do <span class="math inline">\(\frac{2}{3}\)</span> wysokości. W celu uproszczenia problemu należy wziąć pod uwage jedyni siły hydrostatyczne.</p>
+<div id="w-ramach-zadania-nalezy-10" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(z(t), v_z(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-10" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(z_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-12" class="section level2">
+<h2>Zadanie 12</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-12.png" title="Zadanie 12" alt="" />
+
+</div>
+<p>Kula w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał zanurzeniu do <span class="math inline">\(\frac{1}{2}\)</span> wysokości. W celu uproszczenia problemu należy wziąć pod uwage jedyni siły hydrostatyczne.</p>
+<div id="w-ramach-zadania-nalezy-11" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(z(t), v_z(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-11" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(z_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-13" class="section level2">
+<h2>Zadanie 13</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-13.png" title="Zadanie 13" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-12" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-12" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-14" class="section level2">
+<h2>Zadanie 14</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-14.png" title="Zadanie 14" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-13" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-13" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-15" class="section level2">
+<h2>Zadanie 15</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-15.png" title="Zadanie 15" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-14" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-14" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-16" class="section level2">
+<h2>Zadanie 16</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-16.png" title="Zadanie 16" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-15" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-15" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-17" class="section level2">
+<h2>Zadanie 17</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-17.png" title="Zadanie 17" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-16" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-16" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-18" class="section level2">
+<h2>Zadanie 18</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-18.png" title="Zadanie 18" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-17" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-17" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-19" class="section level2">
+<h2>Zadanie 19</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-19.png" title="Zadanie 19" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-18" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-18" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-20" class="section level2">
+<h2>Zadanie 20</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-20.png" title="Zadanie 20" alt="" />
+
+</div>
+<p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-19" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t), y(t), v_y(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-19" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>warunki początkowe: <span class="math inline">\(x_0, y_0\)</span> zależnie od wprowadzonego układu współrzędnych, <span class="math inline">\(v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-21" class="section level2">
+<h2>Zadanie 21</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-21.png" title="Zadanie 21" alt="" />
+
+</div>
+<p>Ruch masy może odbywać się tylko w pionie, sprężyna o charakterystyce nieliniowej: <span class="math inline">\(F = k_1(1 + k_2 \cdot x^2)\)</span>.</p>
+<div id="w-ramach-zadania-nalezy-20" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(z(t), v_z(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-20" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(z_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-22" class="section level2">
+<h2>Zadanie 22</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-22.png" title="Zadanie 22" alt="" />
+
+</div>
+<p>Ruch masy może odbywać się tylko w pionie.</p>
+<div id="w-ramach-zadania-nalezy-21" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(z(t), v_z(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-21" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(z_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-23" class="section level2">
+<h2>Zadanie 23</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-23.png" title="Zadanie 23" alt="" />
+
+</div>
+<div id="w-ramach-zadania-nalezy-22" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(x(t), v_x(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-22" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(x_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="zadanie-24" class="section level2">
+<h2>Zadanie 24</h2>
+<p>Dany jest układ:</p>
+<div class="figure">
+<img src="figures/info2/homework/zad-24.png" title="Zadanie 24" alt="" />
+
+</div>
+<p>Ruch masy może odbywać się tylko w pionie, opór powietrza wyraża się wzorem: <span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
+<div id="w-ramach-zadania-nalezy-23" class="section level4">
+<h4>W ramach zadania należy:</h4>
+<ol style="list-style-type: decimal">
+<li>Wykonać rysunek (<strong>porządny!</strong>), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).</li>
+<li>Wyprowadzić różniczkowe równania ruchu.</li>
+<li>Sprowadzić ww. równania do układu równań I rzędu.</li>
+<li>Układ równań rozwiązać numerycznie za pomocą procedury <code>vrk4</code>.</li>
+<li>Sporządzić wykresy: <span class="math inline">\(z(t), v_z(t)\)</span>.</li>
+<li>Sporządzić wykres energii mechanicznej w czasie <span class="math inline">\(E_{MECH}(t)\)</span>.</li>
+</ol>
+</div>
+<div id="uwagi-23" class="section level4">
+<h4>Uwagi</h4>
+<ul>
+<li>Wszystkie stałe wymagane do rozwiązania zadania (warunki początkowe, wymiary, itp.) proszę zadawać z klawiatury</li>
+<li>Warunki początkowe: <span class="math inline">\(z_0 \neq 0, v_0 \neq 0\)</span></li>
+<li>Wykresy sporządzić dla przykładowego zestawu danych (<strong>dane te należy zapisać razem z wykresem</strong>)</li>
+<li>Wyprowadzenia, rysunki i wykresy należy oddawać w formie pisemnej</li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
