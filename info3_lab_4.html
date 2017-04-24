@@ -377,9 +377,6 @@ div.tocify {
     <li>
       <a href="info2_training_exercises.html">Zadania treningowe</a>
     </li>
-    <li>
-      <a href="info2_projekty.html">Zadania domowe</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -601,9 +598,9 @@ oznaczający, że oczekiwany jest ciąg dalszy polecenia.</li>
 <span class="kw">WHERE</span> Continent <span class="kw">IN</span> (<span class="st">&#39;Europe&#39;</span>, <span class="st">&#39;Asia&#39;</span>);</code></pre></div></li>
 <li>Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości życia (dodaj do poprzedniej komendy frazę – <code class="sourceCode sql"><span class="kw">ORDER</span> <span class="kw">BY</span> LifeExpectancy</code>).</li>
 <li><p>Wyświetl liczbę ludności żyjącej w Europie:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="fu">sum</span>(Population) <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="fu">SUM</span>(Population) <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
 <li><p>Znajdź średnie zaludnienie krajów w Europie:</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="fu">avg</span>(Population) <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="fu">AVG</span>(Population) <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Continent=<span class="st">&#39;Europe&#39;</span>;</code></pre></div></li>
 <li><p>Znajdź nazwy i kody wszystkich państw, których nazwy zaczynaj się od “Ch”:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Name, Code <span class="kw">FROM</span> Country <span class="kw">WHERE</span> Name <span class="kw">LIKE</span> <span class="st">&#39;Ch%&#39;</span>;</code></pre></div></li>
 <li><p>Wyświetl wszystkie informacje o miastach w Finlandii (<em>CountryCode</em> Finlandii to “FIN”):</p>
@@ -636,7 +633,7 @@ IndepYear &lt; <span class="dv">1900</span>
 <span class="kw">WHERE</span> Population=
 (<span class="kw">SELECT</span> <span class="fu">MAX</span>(Population) <span class="kw">FROM</span> Country
 <span class="kw">WHERE</span> Continent=<span class="st">&#39;South America&#39;</span>);</code></pre></div>
-<p>W tym przypadku otrzymamy Brazylię jako jedyny wynik. Przedstawione rozwiązanie nie jest jednak jednoznacze! Mogło by się zdażyć, że otrzymana maksymalna wartość populacji występuje nie tylko na kontynencie południowoamerykańskim. Wynik należy uściślić:</p>
+<p>W tym przypadku otrzymamy Brazylię jako jedyny wynik. Przedstawione rozwiązanie nie jest jednak jednoznaczne! Mogło by się zdarzyć, że otrzymana maksymalna wartość populacji występuje nie tylko na kontynencie południowoamerykańskim. Wynik należy uściślić:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Name, Population <span class="kw">FROM</span> Country
 <span class="kw">WHERE</span> Population=
 (<span class="kw">SELECT</span> <span class="fu">MAX</span>(Population) <span class="kw">FROM</span> Country
@@ -680,7 +677,6 @@ IndepYear &lt; <span class="dv">1900</span>
 <li>Wyświetl średni czas życia na świecie.</li>
 <li>Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia na świecie.</li>
 <li>Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia w Europie.</li>
-<li>Wyświetl nazwę najbardziej zaludnionego państwa w Ameryce południowej; obok nazwy wyświetl liczbę jego ludności.</li>
 <li>Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).</li>
 <li>Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia (<code>NULL</code>). W tym celu skorzystaj z funkcji <code class="sourceCode sql">ISNULL(wiersz)</code>.</li>
 <li>Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.</li>

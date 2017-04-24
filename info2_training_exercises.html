@@ -379,9 +379,6 @@ div.tocify {
     <li>
       <a href="info2_training_exercises.html">Zadania treningowe</a>
     </li>
-    <li>
-      <a href="info2_projekty.html">Zadania domowe</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -568,14 +565,14 @@ div.tocify {
 <li><a href="http://ccfd.github.io/courses/code/info2/narzedzia.cpp">Plik nagłówkowy narzedzia.cpp</a></li>
 </ul>
 <p>W tych plikach znajdują się zebrane wszystkie funkcje numeryczne implementujące poznane przez nas metody. Dodatkowo zamieszczona zosatła tam funkcja rysuj_wykres która rysuje wykres na podstawie przekazanych tablic x oraz y. Narzędzia z tych plików mogą Państwo dołączyć do projektu i dodać dyrektywę <code>#include &quot;narzedzia.h&quot;</code> lub tylko przekopiować odpowiednie funkcje wprost do pliku roboczego <code>main.cpp</code>.</p>
-<p>Zadania od 1-5 są zadaniami z zakresu materiału dotyczącego 3 pierwszych ćwiczeń laboratoryjnych.</p>
+<p>Zadania od 1-4 są zadaniami z zakresu materiału dotyczącego 3 pierwszych ćwiczeń laboratoryjnych.</p>
 </div>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
 <p>Samolot lecący na pewnej wysokości został uszkodzony i uległ wypadkowi. Większość systemów sterowania i narzędzi pomiarowych przestało działać. Jedyne co udało się zarejestrować to przeciążenia działające na samolot w zależności od położenia i wysokości nad ziemią:</p>
 <p><span class="math display">\[\vec{a} = [a_x(x,y), a_y(x,y)]\]</span></p>
 <p>Oprócz przebiegu przeciążeń udało się także zarejestrować prędkość <span class="math inline">\(V=V_0\)</span> w momencie uszkodzenia oraz wysokości na jakiej znajdował się samolot w czasie spadania: <span class="math display">\[y=f(x)\]</span></p>
-<p>Ponieważ nic więcej nie udało się zarejestrować komisja badająca wypadek nie potrafi wyznaczyć prędkości z jaką samolot uderzył w ziemię. Twoim zadaniem jest im pomóc i wyznaczyć prędkość wiedząc, że zarejestrowane przeciążenie to: <span class="math display">\[\vec{a} = \left[10^{-2} \cdot (0.8+sin(x \cdot 10^{-2}), 10 \cdot (0.8+sin(y)) \right] \left[\frac{m}{s^2}\right]\]</span> Masa samolotu to <span class="math display">\[m=50 \cdot 10^3\]</span> wysokość samolotu w funkcji położenia: <span class="math display">\[y=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318) [m]\]</span> a prędkość na początku awarii: <span class="math display">\[v(x=0)=85 [\frac{m}{s}]\]</span></p>
+<p>Ponieważ nic więcej nie udało się zarejestrować komisja badająca wypadek nie potrafi wyznaczyć prędkości z jaką samolot uderzył w ziemię. Twoim zadaniem jest im pomóc i wyznaczyć prędkość wiedząc, że zarejestrowane przeciążenie to: <span class="math display">\[\vec{a} = \left[\frac{x^2}{10^5}, \frac{x^2}{10^3}sin(y)\right] \left[\frac{m}{s^2}\right]\]</span> Masa samolotu to <span class="math display">\[m=50 \cdot 10^3\]</span> wysokość samolotu w funkcji położenia: <span class="math display">\[y=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318) [m]\]</span> a prędkość na początku awarii: <span class="math display">\[v(x=0)=85 [\frac{m}{s}]\]</span></p>
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
@@ -584,7 +581,7 @@ div.tocify {
 <img src="figures/info2/training/fence.png" title="Ogrodzenie" alt="" />
 
 </div>
-<p>Górną krawędź opisuje funkcja <span class="math display">\[2 \cdot sin(\frac{x}{10})\]</span> gdzie <span class="math inline">\(x=0\)</span> odpowiada lewemu bokowi. Pomóż Panu Januszowi i oblicz ile metrów siatki potrzebuje aby ogrodzić swoją działkę.</p>
+<p>Górną krawędź opisuje funkcja <span class="math display">\[5 \cdot sin(\frac{x}{10})\]</span> gdzie <span class="math inline">\(x=0\)</span> odpowiada lewemu bokowi. Pomóż Panu Januszowi i oblicz ile metrów siatki potrzebuje aby ogrodzić swoją działkę.</p>
 </div>
 <div id="zadanie-3" class="section level2">
 <h2>Zadanie 3</h2>
@@ -593,7 +590,7 @@ div.tocify {
 <img src="figures/info2/training/mechanism.png" title="Mechanizm" alt="" />
 
 </div>
-<p>Mechanizm ten ma 1 stopień swobody(można jedynie przesuwać górny punkt wzdłuż linii kreskowej). Górna końcówka przemieszcza się w czasie zgodnie z następującym równaniem: <span class="math display">\[ x = 2 \cdot sin(t) + 2 \]</span> Wymiary mechanizmu to: <span class="math display">\[
+<p>Mechanizm ten ma 1 stopień swobody(można jedynie przesuwać górny punkt wzdłuż linii kreskowej). Górna końcówka przemieszcza się w czasie zgodnie z następującym równaniem: <span class="math display">\[ x = 5 \cdot sin(t) + 2 \]</span> Wymiary mechanizmu to: <span class="math display">\[
 h = 10 \\
 l_1 = 5 \\
 l_2 = 8
@@ -624,37 +621,18 @@ l_2 = 8
 <div id="wersja-zaawansowana-zadania" class="section level3">
 <h3>Wersja zaawansowana zadania</h3>
 <ol style="list-style-type: decimal">
-<li><p>Zmodyfikuj funkcję obliczającą miejsca zerowe oraz funkcję całkującą tak, aby przyjmowała wskaźnik do funkcji dwuargumentowej (typu <code>double funkcja(double x, double a)</code>) oraz dodatkowy parametr typu <code>double a</code>.<br />
+<li><p>Zmodyfikuj funkcję obliczającą miejsca zerowe oraz funkcję całkującą tak, aby przyjmowała wskaźnik do funkcji dwuargumentowej (typu <code>double funkcja(doublex, double a)</code>) oraz dodatkowy parametr typu <code>double a</code>.<br />
 <strong>Uwaga</strong> Należy pamiętać aby wewnątrz odpowiedniej funkcji podczas wywołania przekazanej funkcji wykorzystać także dodany parametr <code>a</code>.</p></li>
 <li><p>Znajdź 2 miejsca zerowe przedstawionej na początku funkcji dla zakresu parametrów <span class="math inline">\(a=1,2,\dots, 10\)</span>.</p></li>
-<li><p>Dla parametrów <span class="math inline">\(a=1,2,\dots, 10\)</span> oblicz całkę w granicach pomiędzy pomiędzy pierwszym a drugim pierwiastkiem (<span class="math inline">\([x_{01}; x_{02}]\)</span>, wyznaczonymi w poprzednim podpunkcie) odpowiednim dla poszczególnych wartości parametru <span class="math inline">\(a\)</span>.</p></li>
+<li><p>Dla parametrów <span class="math inline">\(a=1,2,\dots, 10\)</span> oblicz całkę w granicach pomiędzy pomiędzy pierwszym a drugim pierwiastkiem ($[x_{01}; x_{02}], wyznaczonymi w poprzednim podpunkcie) odpowiednim dla poszczególnych wartości parametru <span class="math inline">\(a\)</span>.</p></li>
 <li><p>Zapisz poszczególne wartości parametru <span class="math inline">\(a\)</span> oraz obliczone wartości całki w dwóch oddzielnych tablicach.</p></li>
-<li><p>Dokonaj interpolacji funkcji <span class="math inline">\(Całka=f(a)\)</span> metodą wielomianową i przedstaw wynik w punktach: <span class="math inline">\(a=1, 1.1, 1.2, \dots, 9.9, 10\)</span> na wykresie wykorzystując bibliotekę graficzną.</p></li>
+<li><p>Dokonaj interpolacji funkcji <span class="math inline">\(Całka=f(a)\)</span> metodą wielomianową i przedstaw wynik w punktach: <span class="math inline">\(a=1, 1.1, 1.2, \dots, 9.8, 9.8\)</span> na wykresie wykorzystując bibliotekę graficzną.</p></li>
 </ol>
-<p><strong>Mała podpowiedź:</strong> Pierwiastki równania <span class="math inline">\(−x \cdot sinh(x) + a\)</span> dla <span class="math inline">\(a=1, \dots, 10\)</span> to liczby z zakresów: <span class="math display">\[ 
+<p><strong>Podpowiedź</strong> Pierwiastki równania <span class="math inline">\(−x \cdot sinh(x) + a\)</span> dla <span class="math inline">\(a=1, \dots, 10\)</span> to liczby z zakresów: <span class="math display">\[ 
 x_{01} = [-0.5, -2.5] \\
 x_{01} = [0.5, 2.5]
 \]</span></p>
 </div>
-</div>
-<div id="zadanie-5" class="section level2">
-<h2>Zadanie 5</h2>
-<p>Zarejestrowano prędkość poruszającego się samochodu w przedziale czasu <span class="math inline">\(t \in &lt;0, 3&gt;\)</span> sekund. Okazało się, że prędkość tą opisuje następująca funkcja: <span class="math display">\[
-\newcommand{\tmax}{3}
-\newcommand{\seekdistance}{5}
-\newcommand{\rhsfunction}{sin(t) \cdot cosh(t)}
-\newcommand{\rhsfunctionlong}{sin(t) \cdot \frac{e^t+e^{-t}}{2}}
-\newcommand{\rhsfunctionlongTau}{sin(\tau) \cdot \frac{e^\tau+e^{-\tau}}{2}}
-v(t) = \rhsfunction = \rhsfunctionlong \quad [\frac{m}{s}]
-\]</span></p>
-<p>Twoim zadaniem jest znalezienie takiej wartości czasu <span class="math inline">\(t\)</span> po której samochód przejedzie <span class="math inline">\(\seekdistance[m]\)</span>. W celu rozwiązania tego problemu <strong>musisz skorzystać</strong> z metod poznanych na poprzednich zajęciach:</p>
-<ul>
-<li>całkowania numerycznego,</li>
-<li>interpolacji wielomianowej,</li>
-<li>rozwiązywania równań nieliniowych.</li>
-</ul>
-<p><strong>Mała podpowiedź:</strong> Aby rozwiązać to zadanie należy rozwiązać równanie nieliniowe <span class="math display">\[x(t)-5=0\]</span> Funkcja <span class="math inline">\(x(t)\)</span> powinna być określona za pomocą wielomianu interpolacyjnego rozpiętego na punktach <span class="math inline">\((t_i, x_i)\)</span> wyznczonych za pomocą całek: <span class="math display">\[ x_i = int_0^{t_i} \rhsfunctionlongTau d\tau \]</span> gdzie wartości <span class="math inline">\(t_i\)</span> powinny być punktami z przedziału <span class="math inline">\(t\in&lt;0,3&gt;\)</span>.</p>
-<hr />
 </div>
 </div>
 <div id="podpowiedzi-do-zadan" class="section level1">
@@ -662,21 +640,13 @@ v(t) = \rhsfunction = \rhsfunctionlong \quad [\frac{m}{s}]
 <p>Poniżej zamieszczamy znaczące podopiedzi pokazujące jak należy rozwiązać powyższe zadania. Zanim z nich skorzystasz spróbuj własnych sił. Zadania są tak skonstruowane abyś przećwiczył samodzielne definiowanie problemu oraz rozwiązywanie go za pomocą metod numerycznych poznanych na zajęciach.</p>
 <div id="zadanie-1-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Rozwiązanie tego zadania polega na skorzystaniu z zasady zachowania energii. Znamy prędkość początkową, znamy tor ruchu oraz znamy przeciążenie. Za pomocą przeciążenia możemy obliczyć siłę wypadkową działającą na samolot. Czyli znamy tor i siłę, a zatem możemy obliczyć pracę sił wypadkowych. Podsumowując możemy napisać: <span class="math display">\[E_0 = \frac{m\cdot v_0^2}{2}\]</span> <span class="math display">\[ W = \int_{x_0}^{x_1}{\vec{F}(x,y(x)) \cdot \vec{ds}} \]</span> a <span class="math inline">\(y\)</span> mamy z danych zadania: <span class="math display">\[y=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318)\]</span> <span class="math display">\[ E_k = E_0 + W \quad \to \quad  v_k = \sqrt{2 (\frac{mv_0^2}{2} + \int_{x_0}^{x_1}{\vec{F}\cdot \vec{ds}})} \]</span> Pozostaje obliczyć całkę z iloczynu skalarnego. W tym wypadku jedyne rzeczy których nie znamy to <span class="math inline">\(\vec{ds}\)</span> i <span class="math inline">\(\vec{F}\)</span>. Jeśli znamy krzywą po której porusza się samolot to wektor przyrostu drogi to nic innego jak: <span class="math display">\[ \vec{ds} = \left[dx, y&#39;dx\right]\]</span> gdzie <span class="math inline">\(y&#39;\)</span> to pochodna która jest równa: <span class="math display">\[
-\frac{dy}{dx} = -0.1 \cdot ( sin(\frac{x}{10^4}-4.91318) + (\frac{x}{10^4} - 4.91318) \cdot cos(\frac{x}{10^4} - 4.91318) )
-\]</span></p>
-<p>Z kolei siła to: <span class="math display">\[ \vec{F} = m \cdot \vec{a} = m \cdot \left[10^{-2} \cdot (0.8+sin(x \cdot 10^{-2}), 10 \cdot (0.8+sin(y)) \right] \left[\frac{m}{s^2}\right] \]</span> Ostatecznie całka którą należy obliczyć to: <span class="math display">\[ 
-\begin{aligned}
-    m\cdot \int_{x_0}^{x_1} \vec{a} \cdot \vec{ds} = m\cdot \int_{x_0}^{x_1} [1, y&#39;] \cdot \left[10^{-2} \cdot (0.8+sin(x \cdot 10^{-2}), 10 \cdot (0.8+sin(y)) \right] dx
-\end{aligned}
-\]</span></p>
+<p>Rozwiązanie tego zadania polega na skorzystaniu z zasady zachowania energii. Znamy prędkość początkową, znamy tor ruchu oraz znamy przeciążenie. Za pomocą przeciążenia możemy obliczyć siłę wypadkową działającą na samolot. Czyli znamy tor i siłę, a zatem możemy obliczyć pracę sił wypadkowych. Podsumowując możemy napisać: <span class="math display">\[E_0 = \frac{m\cdot v_0^2}{2}\]</span> <span class="math display">\[ W = \int_{x_0}^{x_1}{\vec{F}(x,y(x)) \cdot \vec{ds}} \]</span> a <span class="math inline">\(y\)</span> mamy z danych zadania: <span class="math display">\[y=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318)\]</span> <span class="math display">\[ E_k = E_0 + W \quad \to \quad  v_k = \sqrt{2 (\frac{mv_0^2}{2} + \int_{x_0}^{x_1}{\vec{F}\cdot \vec{ds}})} \]</span> Pozostaje obliczyć całkę z iloczynu skalarnego. W tym wypadku jedyne rzeczy których nie znamy to <span class="math inline">\(\vec{ds}\)</span> i <span class="math inline">\(\vec{F}\)</span>. Jeśli znamy krzywą po której porusza się samolot to wektor przyrostu drogi to nic innego jak: <span class="math display">\[ \vec{ds} = \left[dx, y&#39;dx\right]\]</span> a siła (przeciwnie skierowana do zarejestrowanego przeciążenia): <span class="math display">\[ \vec{F} = m \cdot \vec{a} = m \cdot \left[ - \frac{x^2}{10^5}, - \frac{x^2}{10^3} \cdot sin(y)  \right] \]</span> Ostatecznie całka którą należy obliczyć to: <span class="math display">\[ m \cdot \int_{x_0}^{x_1} \frac{x^2}{10^5}dx - \frac{x^2}{10^3}\sin(y)y&#39;dx \]</span></p>
 <p>Jedyna rzecz której nie posiadamy to koniec przedziału całkowania. Jak wiemy końcem będzie moment zderzenia samolotu z ziemią, czyli y=0 . Ponieważ równanie to jest nieliniowe, to wypada skorzystać w tym miejscu z jakiejś metody do rozwiązywania równań nieliniowych. Jak będziemy znali ten ostatni parametr to pozostaje scałkować numerycznie (np. metodą trapezów) pracę i można obliczyć ostatecznie wartość prędkości.</p>
 <p>Schemat rozwiązania:</p>
 <ol style="list-style-type: decimal">
 <li><p>Przygotuj funkcję obliczającą wysokość w zależności od <span class="math inline">\(x\)</span> <span class="math display">\[y(x)=-10^3 \cdot (\frac{x}{10^4}-4.91318) \cdot sin(\frac{x}{10^4}-4.91318)\]</span></p></li>
-<li><p>Rozwiąż równianie nieliniowe(metodą bisekcji/siecznych/stycznych) i znajdź współrzędną <span class="math inline">\(x\)</span> zderzenia (warunek <span class="math inline">\(y=0\)</span>). Rozwiązanie widać od razu w równaniu <span class="math inline">\(x = 49131.8\)</span>, lecz zaleca się przetestowanie działania różnych metod, poniweważ <span class="math inline">\(y(x)=0\)</span> ma wiele miejsc zerowych, a my jesteśmy zainteresowani tylko tym najbliższym 0 i dodatnim.</p></li>
-<li><p>Przygotuj funkcję obliczającą pochodną <span class="math inline">\(\frac{dy}{dx}\)</span> (możesz ją zastosować także do metody newtona).</p></li>
-<li><p>Przygotuj funkcję obliczającą funkcję podcałkową określającą pracę sił wypadkowych (skorzystaj z funkcji z pkt. 3).</p></li>
+<li><p>Rozwiąż równianie nieliniowe(metodą bisekcji/siecznych/stycznych) i znajdź współrzędną <span class="math inline">\(x\)</span> zderzenia ( warunek <span class="math inline">\(y=0\)</span>).</p></li>
+<li><p>Przygotuj funkcję obliczającą funkcję podcałkową określającą pracę sił wypadkowych.</p></li>
 <li><p>Oblicz całkę stosując metodę trapezów lub simpsona.</p></li>
 <li><p>Oblicz energię kinetyczną początkową.</p></li>
 <li><p>Oblicz ostateczną wartość prędkości.</p></li>
@@ -699,366 +669,17 @@ v(t) = \rhsfunction = \rhsfunctionlong \quad [\frac{m}{s}]
 <h2>Zadanie 3</h2>
 <p>Przyjmijmy, że dolny punkt znajduje się w punkcie <span class="math inline">\([0,0]\)</span>. Wtedy możemy napisać 2 równania opisujące ten mechanizm: <span class="math display">\[ 
 x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad ponieważ \quad y_1 &gt; 0 \\
-(x_2 − x_1)^2 +(h − y_1)^2 =l_2^2
-\]</span> a po podstawieniu (<span class="math inline">\(x_2\)</span> wynika z danych): <span class="math display">\[ (2 \cdot sin(t) + 2 − x_1)^2 +(h − \sqrt{l_1^2 - x_1^2} )^2 =l_2^2 \]</span></p>
-<p>Mamy zatem jedno równanie nieliniowe opisujące ruch dolnej korby mechanizmu, gdzie niewiadoma to <span class="math inline">\(x_1\)</span>. Czas w tym równaniu występuje tylko jako parametr, który będzie się zmieniał co zadany krok przy kolejnych rozwiązaniach tego równania. W związku z tym najwygodniej bedzie czas zadeklarować jako zmienną globalną, tak aby nie trzeba było modyfikować funkcji znajdujących się w plikach narzedzia.h i narzedzia.cpp. Pozostaje rozwiązać to równanie wykorzystując np. metodę siecznych.</p>
+(5 \cdot sin(t) + 2 − x_1)^2 +(h − y_1)^2 =l_2^2
+\]</span> a po podstawieniu: <span class="math display">\[ (5 \cdot sin(t) + 2 − x_1)^2 +(h − \sqrt{l_1^2 - x_1^2} )^2 =l_2^2 \]</span></p>
+<p>Mamy zatem jedno równanie nieliniowe opisujące ruch dolnej korby mechanizmu. Pozostaje je rozwiązać wykorzystując np. metodę siecznych.</p>
 <p>Schemat rozwiązania:</p>
 <ol style="list-style-type: decimal">
-<li><p>Utwórz tablice do przechowywania 11 czasów oraz 11 kątów <span class="math inline">\(\alpha\)</span></p></li>
+<li><p>Utwórz tablice do przechowywania 10 czasów oraz 10 kątów <span class="math inline">\(\alpha\)</span></p></li>
 <li><p>Utwórz pętlę w której będziesz zmieniał czas od <span class="math inline">\(t=0, \dots, 4.5\)</span> co <span class="math inline">\(0.5\)</span></p></li>
 <li><p>W pętli wywołaj metodę bisekcji/siecznych/stycznych aby znaleźć rozwiązanie równania opisującego współrzędną <span class="math inline">\(x_1\)</span> . Oblicz następnie współrzędną <span class="math inline">\(y_1\)</span>.</p></li>
 <li><p>Mając wsp. <span class="math inline">\(x_1\)</span> , <span class="math inline">\(y_1\)</span> oblicz kąt <span class="math inline">\(\alpha\)</span> używając np.: funkcji <span class="math inline">\(atan(x)\)</span> i zapisz w tablicy nową chwilę czasową oraz nowy kąt <span class="math inline">\(\alpha\)</span>.</p></li>
 <li><p>Otwórz nową pętlę która będzie iterowała od <span class="math inline">\(0, \dots, 99\)</span>. Następnie używając funkcji „lagrange” dokonaj interpolacji kata <span class="math inline">\(\alpha\)</span> dla chwil czasowych <span class="math inline">\(0.00, 0.05, 0.1, 0.15 , \dots, 4.5\)</span>. Dla każdej chwili czasowej narysuj na wykresie punkt o współrzędnych <span class="math inline">\(\left[t_i , \alpha_(t_i )\right]\)</span></p></li>
 </ol>
-</div>
-<div id="zadanie-5-1" class="section level2">
-<h2>Zadanie 5</h2>
-<p>Aby znaleźć czas dla którego przebyta odległość jest równa <span class="math inline">\(\seekdistance[m]\)</span> należy znaleźć zależność: <span class="math display">\[ x = x(t) \qquad gdzie \quad t \in &lt;0,\tmax&gt; \]</span></p>
-<p>Znając ją można następnie ułożyć równanie: <span class="math display">\[ x(t) - \seekdistance = 0 \]</span></p>
-<p>którego rozwiązaniem będzie poszukiwany czas <span class="math inline">\(t\)</span>.</p>
-<p>Skąd zatem wziąć funkcję <span class="math inline">\(x = x(t)\)</span>? Należy skorzystać ze informacji jaką niesie prędkość pojazdu. Biorąc pod uwagę równanie określające prędkość można sformułować następujące zagadnienie:</p>
-<p><span class="math display">\[
-\begin{align*}
-    &amp;\frac{dx}{dt} = \rhsfunction \\
-    &amp;x|_{t=0} = 0 \\
-    &amp;t \in &lt;0, \tmax&gt;
-\end{align*}
-\]</span></p>
-<p>Powyższy problem to nic innego jak poszukiwanie całki nieoznaczonej funkcji <span class="math inline">\(\frac{dx}{dt}=v(t)\)</span>. Ale jak to zrobić za pomocą poznanych narzędzi? Otóż należy połączyć 2 metody - całkowanie numeryczne oraz interpolację. Poznane metody całkowania pozwalają wyznaczyć całkę oznaczoną postaci:</p>
-<p><span class="math display">\[ C = \int_a^b f(\tau)d\tau \]</span></p>
-<p>Z kolei całka nieoznaczona to w praktyce funkcja określona jako:</p>
-<p><span class="math display">\[ F(t) = \int_{t_0}^t f(\tau)d\tau \]</span></p>
-<p>Co w naszym przypadku sprowadza się do:</p>
-<p><span class="math display">\[ x(t) = \int_0^t v(\tau)d\tau=\int_0^t \rhsfunctionlongTau d\tau \]</span></p>
-<p>Z racji tego, że poznane przez nas metody pozwalają na obliczenie całki z funkcji na <strong>konkretnym przedziale</strong> to musimy wykonać pewne przybliżenie, które będzie polegało na obliczeniu wartości funkcji <span class="math inline">\(x(t)\)</span> w skończonej liczbie punktów, czyli:</p>
-<p><span class="math display">\[ x_0=x(0), x_1=x(h), x_2=x(2 \cdot h), \dots , x_{N-1}=x((N-1)\cdot h = 3)\]</span></p>
-<p>a następnie na dokonaniu interpolacji za pomocą wielomianów Lagrange’a tak, aby przybliżenie funkcji <span class="math inline">\(x=x(t)\)</span> przechodziło przez wyznaczone punkty <span class="math inline">\((t_i, x_i)\)</span>.</p>
-<p>Podsumowując algorytm rozwiązania problemu będzie następujący:</p>
-<ul>
-<li>Oblicz szereg całek <span class="math inline">\(\int_0^t v(\tau) d\tau\)</span> aby wyznaczyć wartości <span class="math inline">\(x_i\)</span>.</li>
-<li>Przygotuj funkcję która będzie potrafiła zwrócić wartość <span class="math inline">\(x=x(t)\)</span> dla dowolnego parametru <span class="math inline">\(t\)</span> wykorzystując “pod spodem” interpolację wielomianową.</li>
-<li>Wykorzystaj funkcję z poprzedniego punktu aby rozwiązać równanie <span class="math inline">\(x=x(t)\)</span> wybraną metodą i znaleźć poszukiwany czas <span class="math inline">\(t\)</span>.</li>
-</ul>
-<div id="krok-1" class="section level3">
-<h3>Krok 1</h3>
-<p>Oblicz <span class="math inline">\(N\)</span> poniższych całek dowolnie wybraną metodą numeryczną: <span class="math display">\[ x_i = \int_{0}^{t_i} \rhsfunctionlongTau dt \]</span> gdzie: <span class="math display">\[ t_i=i \cdot h, \quad h=\frac{\tmax}{N-1}, \quad i=0, 1, \dots, N-1 \]</span> Wartości całek zapisz w tablicy X a wartości czasów dla których całki są obliczone w tablicy T (tablice mogą być zadeklarowana statycznie). <span class="math inline">\(N\)</span> wybierz dowolne, na początek możesz zacząć od <span class="math inline">\(N=10\)</span>.</p>
-</div>
-<div id="krok-2" class="section level3">
-<h3>Krok 2</h3>
-<p>Utwórz funkcję “polozenia” która będzie przyjmowała jako argument jedną (dowolną) liczbę <span class="math inline">\(t\)</span> i zwracała wartość położenia wykorzystując interpolację wielomianową i wartości <span class="math inline">\(x_i\)</span> obliczone dla czasów <span class="math inline">\(t=0, h, 2h, \dots\)</span> w poprzednim zadaniu.</p>
-<p><strong><em>Uwaga</em></strong> Tablice do przechowywania całek i czasów zadeklaruj jako zmienne globalne (najlepiej przed wszystkimi funkcjami) tak aby z poziomu funkcji obliczającej wartości funkcji <span class="math inline">\(x=x(t)\)</span> mieć do nich dostęp.</p>
-</div>
-<div id="krok-3" class="section level3">
-<h3>Krok 3</h3>
-<p>Wykorzystaj znaną Ci metodę rozwiązywania równań nieliniowych i znajdź rozwiązanie równania: <span class="math display">\[ x(t) - \seekdistance = 0 \]</span></p>
-<p>Pierwiastek tego równania znajduje się w przedziale <span class="math inline">\(0-3\)</span>. Sprawdź jak rozwiązanie zmienia się wraz ze zmianą <span class="math inline">\(N\)</span> z zadania 1.</p>
-<hr />
-</div>
-</div>
-</div>
-<div id="rozwiazania-zadan" class="section level1">
-<h1>Rozwiązania zadań</h1>
-<div id="zadanie-1-2" class="section level2">
-<h2>Zadanie 1</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">const</span> <span class="dt">double</span> m = <span class="fl">5e4</span>, v0 = <span class="dv">85</span>;
-
-<span class="dt">double</span> y(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">-1e3</span>*(x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>)*sin(x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>);
-}
-
-<span class="dt">double</span> dydx(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">-0.</span><span class="dv">1</span>*( sin(x/<span class="fl">1e4-4.</span><span class="dv">91318</span>) + (x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>)*cos(x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>) );
-}
-
-<span class="dt">double</span> dWdx(<span class="dt">double</span> x)
-{
-    <span class="dt">double</span> F[] = { -m*(sin(x/<span class="fl">1e2</span>)<span class="fl">+0.</span><span class="dv">8</span>)/<span class="fl">1e2</span>, - m*<span class="dv">10</span>*(<span class="fl">0.</span><span class="dv">8</span>+sin(y(x))) };
-    <span class="dt">double</span> ds[] = {<span class="dv">1</span>, dydx(x)};
-
-    <span class="kw">return</span> F[<span class="dv">0</span>]*ds[<span class="dv">0</span>] + F[<span class="dv">1</span>]*ds[<span class="dv">1</span>];
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">int</span> iter;
-
-    <span class="dt">double</span> x0 = styczna(<span class="fl">4e4</span>,y, dydx, <span class="fl">1e-4</span>, &amp;iter);
-
-    printf(<span class="st">&quot;x0=</span><span class="ch">%e\t</span><span class="st">y(x0)=</span><span class="ch">%e\t</span><span class="st">Niter=</span><span class="ch">%d\n</span><span class="st">&quot;</span>, x0, y(x0),iter);
-
-    <span class="dt">double</span> praca = trapez(<span class="dv">0</span>, x0, dWdx, <span class="fl">1e3</span>);
-    <span class="dt">double</span> E0 = m*v0*v0/<span class="dv">2</span>;
-
-    printf(<span class="st">&quot;praca=</span><span class="ch">%e\t</span><span class="st">E0=</span><span class="ch">%e\n</span><span class="st">&quot;</span>, praca, E0);
-
-    <span class="dt">double</span> v = sqrt( <span class="dv">2</span>*( E0 + praca )/m );
-
-    printf(<span class="st">&quot;v=</span><span class="ch">%e\n</span><span class="st">&quot;</span>, v);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-</div>
-<div id="zadanie-2-2" class="section level2">
-<h2>Zadanie 2</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">double</span> fun(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> sqrt( pow(<span class="fl">0.</span><span class="dv">5</span>*cos(x/<span class="dv">10</span>),<span class="dv">2</span>) + <span class="dv">1</span>);
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">double</span> calka = simpson(<span class="dv">0</span>,<span class="dv">100</span>,fun, <span class="dv">100</span>);
-
-    <span class="dt">double</span> ogrodzenie = <span class="dv">100</span> + <span class="dv">50</span>*<span class="dv">2</span> + calka;
-
-    printf(<span class="st">&quot;dlugosc ogrodzenia to </span><span class="ch">%.2lf</span><span class="st">[m]</span><span class="ch">\n</span><span class="st">&quot;</span>, ogrodzenie);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-</div>
-<div id="zadanie-3-2" class="section level2">
-<h2>Zadanie 3</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#define _CRTP_USE_SECURE_NO_WARNINGS</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-<span class="ot">#include &quot;winbgi2.h&quot;</span>
-
-<span class="dt">double</span> time=<span class="dv">0</span>;
-<span class="dt">const</span> <span class="dt">double</span> h = <span class="dv">10</span>;
-<span class="dt">const</span> <span class="dt">double</span> l1 = <span class="dv">5</span>;
-<span class="dt">const</span> <span class="dt">double</span> l2 = <span class="dv">8</span>;
-<span class="dt">const</span> <span class="dt">int</span> N = <span class="dv">10</span>;
-<span class="dt">const</span> <span class="dt">int</span> M = <span class="dv">100</span>;
-
-<span class="dt">double</span> equation(<span class="dt">double</span> x1)
-{
-    <span class="kw">return</span> pow(<span class="dv">2</span>*sin(time) + <span class="dv">2</span> - x1, <span class="dv">2</span>) + pow(h - sqrt( l1*l1-x1*x1 ), <span class="dv">2</span>) - l2*l2;
-}
-
-<span class="dt">const</span> <span class="dt">double</span> pi = <span class="fl">4.</span>*atan(<span class="fl">1.</span>);
-<span class="dt">double</span> degree(<span class="dt">double</span> radian)
-{
-    <span class="kw">return</span> <span class="fl">180.</span> / pi* radian;
-}
-
-
-<span class="dt">int</span> main()
-{
-    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);
-
-    setbkcolor(WHITE);
-    
-    <span class="co">//Set black color for frame drawing</span>
-    setgray(<span class="fl">0.</span>);
-    scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">60</span>);
-    title(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;angle&quot;</span>, <span class="st">&quot;alpha(t)&quot;</span>);
-
-    <span class="co">//Solution</span>
-    <span class="dt">double</span> alpha[N];
-    <span class="dt">double</span> times[N];
-    <span class="dt">int</span> itr;
-    <span class="dt">double</span> dt = <span class="fl">5.</span>/(N<span class="dv">-1</span>);
-    <span class="dt">double</span> xs=<span class="dv">0</span>;
-    <span class="dt">double</span> xe=<span class="dv">5</span>;
-    <span class="dt">double</span> x1 = <span class="dv">0</span>;
-
-
-    setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>);
-
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)
-    {
-        x1 = bisec(<span class="dv">0</span>, <span class="dv">5</span>, equation, <span class="fl">1e-3</span>, &amp;itr);
-        <span class="dt">double</span> y1 = sqrt(l1*l1 - x1*x1);
-
-        alpha[i] = atan(y1/x1);
-        times[i] = time;
-   
-        time += dt;
-
-        circle(times[i], degree(alpha[i]), <span class="dv">5</span>);
-    }
-
-    <span class="co">//Interpolation</span>
-    <span class="dt">double</span> alpha2[M];
-    <span class="dt">double</span> times2[M];
-    dt = <span class="fl">5.</span>/(M<span class="dv">-1</span>);
-    time = <span class="dv">0</span>;
-
-    setcolor(<span class="fl">0.</span><span class="dv">9</span>);
-
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i)
-    {
-       alpha2[i] = lagrange(times, alpha, N, time);
-       times2[i] = time;
-
-       time += dt;  
-
-       <span class="kw">if</span> (i &gt; <span class="dv">0</span>)
-       {
-           line(times2[i<span class="dv">-1</span>], degree(alpha2[i<span class="dv">-1</span>]), times2[i], degree(alpha2[i]));
-       }
-    }
-    wait();
-
-    <span class="co">//Animate mechanism</span>
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M &amp;&amp; animate(<span class="dv">15</span>); ++i)
-    {
-        clear();
-
-        setgray(<span class="fl">0.</span>);
-        setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>);
-        scale(<span class="dv">-3</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>);
-        
-        <span class="co">//draw 2 parts of mechanism</span>
-        setgray(<span class="fl">0.</span><span class="dv">5</span>);
-        setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>);
-        line(<span class="dv">0</span>, <span class="dv">0</span>, l1*cos(alpha2[i]), l1*sin(alpha2[i]));
-        line(l1*cos(alpha2[i]), l1*sin(alpha2[i]), <span class="dv">5</span> * sin(times2[i]) + <span class="dv">2</span>, h);
-
-
-        <span class="co">//Draw the guide </span>
-        setcolor(<span class="fl">0.</span><span class="dv">9</span>);
-        setlinestyle(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);
-        line(<span class="dv">-3</span>, h, <span class="dv">10</span>, h);
-
-    }
-
-    wait();
-}</code></pre></div>
-</div>
-<div id="zadanie-4" class="section level2">
-<h2>Zadanie 4</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">double</span> trapezParam(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> parameter, <span class="dt">double</span>(*fun)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">int</span> n)
-{
-    <span class="dt">int</span> i;
-    <span class="dt">double</span> h=(b-a)/(n<span class="dv">-1</span>), calka=<span class="dv">0</span>, x1, x2;
-    <span class="kw">for</span>(i=<span class="dv">0</span>; i&lt;n<span class="dv">-1</span>; ++i)
-    {
-        x1 = a + i*h;
-        x2 = a + (i<span class="dv">+1</span>)*h;
-        calka += ( fun(x1, parameter) + fun(x2, parameter) )/<span class="dv">2</span> * h;
-    }
-    <span class="kw">return</span> calka;
-}
-
-<span class="dt">double</span> stycznaParam(<span class="dt">double</span> x0, <span class="dt">double</span> parameter, <span class="dt">double</span>(*fun)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">double</span>(*poch)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *n_iter)
-{
-    <span class="dt">double</span> deltaX=<span class="dv">1</span>;
-    *n_iter = <span class="dv">0</span>;
-    <span class="kw">while</span>(fabs(fun(x0, parameter)) &gt; eps &amp;&amp; fabs(deltaX) &gt; eps)
-    {
-        deltaX = - fun(x0, parameter)/poch(x0, parameter);
-        x0 = x0 + deltaX;
-        (*n_iter)++;
-        <span class="kw">if</span>(*n_iter &gt; <span class="fl">1e3</span>)
-        {
-            *n_iter=<span class="dv">-1</span>;
-            <span class="kw">return</span> x0;
-        }
-    }
-    <span class="kw">return</span> x0;
-}
-
-<span class="dt">double</span> funkcja(<span class="dt">double</span> x, <span class="dt">double</span> a)
-{
-    <span class="kw">return</span> -x*sinh(x) + a;
-}
-
-<span class="dt">double</span> pochodna(<span class="dt">double</span> x, <span class="dt">double</span> a)
-{
-    <span class="kw">return</span> -sinh(x) - x*cosh(x);
-}
-
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">const</span> <span class="dt">int</span> N = <span class="dv">10</span>;
-    <span class="dt">const</span> <span class="dt">int</span> M = <span class="dv">100</span>;
-
-    <span class="dt">double</span> x01[N], x02[N], C[N], parametry[N];
-    <span class="dt">int</span> iter;
-
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)
-    {
-        parametry[i] = i<span class="dv">+1</span>;
-
-        x01[i] = stycznaParam(<span class="dv">-1</span>, i<span class="dv">+1</span>, funkcja, pochodna, <span class="fl">1e-4</span>, &amp;iter);
-        x02[i] = stycznaParam(<span class="dv">1</span>, i<span class="dv">+1</span>, funkcja, pochodna, <span class="fl">1e-4</span>, &amp;iter);
-
-        C[i] = trapezParam(x01[i], x02[i], i<span class="dv">+1</span>, funkcja, <span class="dv">100</span>);
-    }
-
-    <span class="dt">double</span> da = <span class="fl">9.</span>/(M<span class="dv">-1</span>);
-    <span class="dt">double</span> a = <span class="dv">1</span>;
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i, a+=da)
-    {
-        <span class="dt">double</span> ci = lagrange(parametry, C, N, a);
-
-        printf(<span class="st">&quot;dla a=</span><span class="ch">%.3lf</span><span class="st"> calka=</span><span class="ch">%.3lf\n</span><span class="st">&quot;</span>, a, ci);
-    }
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-</div>
-<div id="zadanie-5-2" class="section level2">
-<h2>Zadanie 5</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">const</span> <span class="dt">int</span> N=<span class="dv">10</span>;
-<span class="dt">double</span> T[N];
-<span class="dt">double</span> X[N];
-
-<span class="dt">double</span> predkosc(<span class="dt">double</span> t)
-{
-    <span class="kw">return</span> sin(t)*(exp(t)+exp(-t))/<span class="dv">2</span>;
-}
-
-<span class="dt">double</span> polozenia(<span class="dt">double</span> t)
-{
-    <span class="kw">return</span> lagrange(T, X, N, t);
-}
-
-<span class="dt">double</span> rownanie(<span class="dt">double</span> t)
-{
-    <span class="kw">return</span> polozenia(t) - <span class="dv">5</span>;
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">double</span> h = <span class="fl">3.</span>/(N);
-    X[<span class="dv">0</span>]=<span class="dv">0</span>;
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>; i&lt;N; ++i)
-    {
-        X[i] = trapez(<span class="dv">0</span>, i*h, predkosc, <span class="dv">10</span>);
-        T[i] = i*h;
-    }
-
-    <span class="dt">int</span> itr;
-    <span class="dt">double</span> t0 = bisec(<span class="dv">0</span>, <span class="dv">3</span>, rownanie, <span class="fl">1e-4</span>, &amp;itr);
-
-    printf(<span class="st">&quot;Polozenie 5m zostaje osiagniete po </span><span class="ch">%e</span><span class="st"> sekundach</span><span class="ch">\n</span><span class="st">Iter=</span><span class="ch">%d\n</span><span class="st">&quot;</span>, t0, itr);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
 </div>
 </div>
 

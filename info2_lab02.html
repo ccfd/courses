@@ -378,9 +378,6 @@ div.tocify {
     <li>
       <a href="info2_training_exercises.html">Zadania treningowe</a>
     </li>
-    <li>
-      <a href="info2_projekty.html">Zadania domowe</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -629,7 +626,7 @@ Aby zrealizować zadanie z punktu 1, wykonaj następujące czynności:</li>
 <div id="dla-dociekliwych" class="section level2">
 <h2>3. Dla dociekliwych</h2>
 <p>Procedury trapezów i Simpsona to dość elementarne procedury. W programach obliczeniowych, które wymagają wykonywania całkowań wielokrotnie (często wiele milionów razy - o takich metodach, np. metodzie elementów skończonych - stosowanej choćby w wytrzymałości konstrukcji - będziesz się uczyć na wyższych latach) trzeba używać procedur najbardziej wydajnych obliczeniowo. Jedną klasę takich metod, które osiągają dużą dokładność przy niewielkiej liczbie punktów, w których obliczana jest funkcja podcałkowa (o tych punktach mówimy węzły kwadratury) stanowią kwadratury Gaussa.</p>
-<p>Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale <span class="math inline">\(x = [−1, 1]\)</span>). <span class="math display">\[ I = \int_{-1}^{1}{f(x)dx} \]</span> Całkę w sposób przybliżony oblicza się wg następującego wzoru: <span class="math display">\[ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}\]</span> gdzie <span class="math inline">\(w_i\)</span> to kolejne wagi kwadratury, <span class="math inline">\(x_i\)</span> to węzły kwadratury, a <span class="math inline">\(n\)</span> oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości <span class="math inline">\(n\)</span> można je znaleźć w internecie<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Położenia węzłów i wartości wag dla <span class="math inline">\(n = 5\)</span> są podane w poniższej tabeli:</p>
+<p>Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale <span class="math inline">\(x = [−1, 1]\)</span>). <span class="math display">\[ I = \int_{-1}^{1}{f(x)dx} \]</span> Całkę w sposób przybliżony oblicza się wg następującego wzoru: <span class="math display">\[ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}\]</span> gdzie <span class="math inline">\(w_i\)</span> to kolejne wagi kwadratury, <span class="math inline">\(x_i\)</span> to węzły kwadratury, a <span class="math inline">\(n\)</span> oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości <span class="math inline">\(n\)</span> można je znaleźć w internecie (Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się je znaleźć choćby pod <a href="http://holoborodko.com/pavel/numerical-methods/numerical-%20integration/">adresem</a>). Położenia węzłów i wartości wag dla <span class="math inline">\(n = 5\)</span> są podane w poniższej tabeli:</p>
 <table>
 <thead>
 <tr class="header">
@@ -665,12 +662,6 @@ Aby zrealizować zadanie z punktu 1, wykonaj następujące czynności:</li>
 <p>Zaimplementuj w dowolny sposób (choćby w pętli - niekoniecznie w osobnej procedurze) metodę całkowania za pomocą kwadratury Gaussa. Porównaj ją z poprzednimi metodami. Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadaturę Gaussa opartą na pięciu węzłach?</p>
 </div>
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się je znaleźć choćby pod <a href="http://holoborodko.com/pavel/numerical-methods/numerical-%20integration/">adresem</a><a href="#fnref1">↩</a></p></li>
-</ol>
 </div>
 
 <!-- Dummy footer -->
