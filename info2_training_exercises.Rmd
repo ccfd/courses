@@ -124,8 +124,51 @@ Twoim zadaniem jest znalezienie takiej wartości czasu $t$ po której samochód 
 **Mała podpowiedź:** Aby rozwiązać to zadanie należy rozwiązać równanie nieliniowe 
 $$x(t)-5=0$$ 
 Funkcja $x(t)$ powinna być określona za pomocą wielomianu interpolacyjnego rozpiętego na punktach $(t_i, x_i)$ wyznczonych za pomocą całek:
-$$ x_i = int_0^{t_i} \rhsfunctionlongTau d\tau $$
+$$ x_i = \int_0^{t_i} \rhsfunctionlongTau d\tau $$
 gdzie wartości $t_i$ powinny być punktami z przedziału $t\in<0,3>$.
+
+
+## Zadanie 6
+
+Grubość belki $h$ o przekroju kwadratowym w zależności od położenia $x$ opisują następujące funkcje:
+$$
+\newcommand{\grubosc}{0.1}
+\newcommand{\dlugosc}{5}
+\newcommand{\aOne}{0.025}
+\newcommand{\aTwo}{0.05}
+\newcommand{\aThree}{0.075}
+\newcommand{\mGnacySkala}{1000000}
+\newcommand{\mGnacySkalaText}{10^6}
+h(x) = 2\cdot \delta(x) [m]
+$$
+
+$$
+\delta(x) = \mathbf{a} \cdot (l - x) \cdot x + \frac{\delta_0}{2} [m]
+$$
+
+gdzie $\mathbf{a}$ jest parametrem funkcji i może zmieniać się w zakresie $<0, 0.1>$. $\delta_0$ jest minimalną grubością równą $0.1 [m]$.
+
+
+![](figures/info2/training/exemplary_bars.png "Przykladowe belki")
+
+Belka jest obciążona w taki sposób, że moment gnący opisuje poniższa funkcja:
+$$
+	M(x) = \mGnacySkalaText \cdot sinh(\frac{x}{l}) \cdot sin(\frac{x\cdot \pi}{l}) [N \cdot m]
+$$
+gdzie długość belki $l = 5$.
+Twoim zadaniem jest znalezienie optymalnej wartości parametru $\mathbf{a}$ dla którego maksymalna wartość naprężenia w belce, pod zadanym obciążeniem, będzie równe $\sigma_{max} = 200 [MPa]$. Maksymalne naprężenie w dowolnym przekroju to:
+$$
+	\sigma(x) = \frac{M(x)}{W_x(x)}
+$$
+gdzie $W_x$ to wskaźnik wytrzymałości, który dla belki o przekroju kwadratowym jest równy:
+$$
+	W_x(x) = \frac{h(x)^3}{6}
+$$
+
+W celu rozwiązania tego zadania należy wykorzystać poznane metody:
+
+* Interpolacji wielomianowej,
+* Rozwiązywania równań nieliniowych.
 
 ------------------
 
@@ -290,6 +333,62 @@ $$ x(t) - \seekdistance = 0 $$
 
 Pierwiastek tego równania znajduje się w przedziale $0-3$. Sprawdź jak rozwiązanie zmienia się wraz ze zmianą $N$ z zadania 1.
 
+
+## Zadanie 6
+
+Aby rozwiązać ten problem należy znaleźć funkcję która będzie przedstawiała zależność największego naprężenia w belce od parametru $\mathbf{a}$:
+$$
+	\sigma_{max} = \sigma_{max}(\mathbf{a})
+$$
+
+a następnie należy znaleźć takie $\mathbf{a}$ dla którego zachodzi:
+$$
+	\sigma_{max}(\mathbf{a}) = 200 \cdot 10^6
+$$
+czyli należy rozwiązać równanie nieliniowe. Pozostaje znalezienie nieznanej funkcji $\sigma_{max}(\mathbf{a})$. Funkcja ta opisuje wartość największego naprężenia w całej belce. A zatem, zanim je obliczymy należy znaleźć taki przekrój $x$ dla którego wartość $\sigma$ osiągnie największą wartość - czyli należy znaleźć miejsce w którym pierwsza pochodna $\sigma$ jest równa 0:
+$$
+	\frac{d\sigma}{dx} = 0 \qquad \Rightarrow \qquad \frac{d}{dx} \left(\frac{M(x)}{W_x(x)}\right) = 0
+$$
+
+a po podstawieniu $W_x = \frac{h(x)^3}{6}$ i zróżniczkowaniu otrzymamy:
+$$
+\begin{align}
+	\frac{d\sigma}{dx} &= \frac{3}{4} \cdot \frac{M' \delta - 3 \cdot M \delta'}{\delta^4}\\
+    M' &= \frac{1}{l} \left(cosh(\frac{x}{l})sin(x\cdot\frac{\pi}{x}) + \pi sinh(\frac{x}{l})cos(x\cdot\frac{\pi}{x})\right)\\
+    \delta' &= a \cdot (l - 2 \cdot x)
+\end{align}
+$$
+
+Znając przekrój można wyznaczyć wartość $\sigma_{max}(\mathbf{a})$. Trudno jest jednak wygenerować pary $(\mathbf{a}, \sigma_{max})$ dla wszystkich dopuszczalnych wartości parametru $\mathbf{a}$. Dlatego należy wykonać powyższe obliczenia dla pewnego zbioru konkretnych wartości tego parametru, np. $\mathbf{a} = 0, 0.01, ..., 0.1$, a następnie dokonać interpolacji funkcji $\sigma_{max}=\sigma_{max}(\mathbf{a})$ za pomocą wielomianów Lagrange'a. Ostatecznie, posiadając wymaganą funkcję w postaci interpolacji, pozostaje rozwiązać równanie $\frac{d\sigma}{dx} = 0$. 
+
+### Krok 1
+Przygotuj zestaw danych opisujących parametry w zadaniu (zadeklaruj wszystkie zmienne jako globalne, nawet zmienną przechowującą parametr $\mathbf{a}$). Następnie przygotuj funkcje obliczające poniższe wyrażenia:
+
+* $M(x)$
+* $\frac{dM}{dx}(x)$
+* $\delta (x)$
+* $\frac{d \delta}{dx} (x)$
+* $W_x(x)$
+* $\sigma(x)$
+* $\frac{d \sigma} {dx} (x)$
+
+### Krok 2
+Dodaj do zmiennych globalnych tablice zadeklarowane statycznie o rozmiarze $N=10$, które posłużą do przechowywania zbioru założonych parametrów $\mathbf{a}$ oraz wartości  $\sigma_{max}$ obliczonych dla $x$ odpowiadającego największemu naprężeniu. Następnie w funkcji "main" uzupełnij te tablice obliczając wartość $\sigma_{max}=\sigma(x_{max})$ po uprzednim rozwiązaniu równania \eqref{row_najw_naprezenie} dla kolejnych wartości parametru $\mathbf{a}$ z zakresu $<0, 0.1>$
+
+**Uwaga** Pamiętaj, że wszystkie funkcje z zadania pierwszego są oparte o globalny parametr $\mathbf{a}$, dlatego musisz zadbać o jego poprawną wartość w trakcie obliczania kolejnych $\sigma_{max}$
+
+### Krok 3 
+Wykorzystaj tablice wyznaczone w poprzednim zadaniu i przygotuj funkcję
+```c++
+double interpSigmaMax(double a)
+{
+   ....
+}
+```
+która dokona interpolacji wielomianowej funkcji $\sigma_{max}(\mathbf{a})$ i zwróci wartość obliczoną dla dowolnego $a$.
+
+### Krok 4
+Rozwiąż równanie \eqref{row_najw_naprezenie} wykorzystując funkcję z poprzedniego zadania. W wyniku otrzymasz optymalną wartość parametru $\mathbf{a}$. Dla tej wartości parametru utwórz wykres funkcji $\sigma = \sigma(x)$ wykorzystując bibliotekę graficzną. 
 ------------------
 
 # Rozwiązania zadań
@@ -608,6 +707,132 @@ int main()
     double t0 = bisec(0, 3, rownanie, 1e-4, &itr);
 
     printf("Polozenie 5m zostaje osiagniete po %e sekundach\nIter=%d\n", t0, itr);
+
+    return 0;
+}
+```
+
+## Zadanie 6
+```c++
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "winbgi2.h"
+#include "narzedzia.h"
+
+double a=0;
+const double aMax = 0.1;
+const double delta0 = 0.1;
+const double l = 5;
+const double pi = 4*atan(1.);
+const double Mmag = 1e6;
+
+const int N=50;
+double sigmaMax[N];
+double parA[N];
+
+double M(double x)
+{
+       return Mmag * sinh(x/l)*sin(x*pi/l);
+}
+
+double dM(double x)
+{
+       return Mmag * (cosh(x/l)*sin(x*pi/l) + pi* sinh(x/l)*cos(x*pi/l))/l;
+}
+
+double delta(double x)
+{
+    return a*(l-x)*x + delta0/2;
+}
+
+double dDelta(double x)
+{
+    return a*(l - 2*x);
+}
+
+double Wx(double x)
+{
+    return 4./3*pow(delta(x),3);
+}
+
+double sigma(double x)
+{
+    return M(x)/Wx(x);
+}
+
+double dSigmadx(double x)
+{
+    return 3./4 * (dM(x)*delta(x) - 3*M(x)*dDelta(x)) / pow(delta(x),4);
+}
+
+double interpSigmaMax(double a)
+{
+    return lagrange(parA, sigmaMax, N, a);
+}
+
+double equation(double a)
+{
+    return interpSigmaMax(a) - 200*1e6;
+}
+
+int main()
+{
+    int iter;
+	double da = aMax / (N - 1);
+	double x_sigmaMax;
+
+    a = 0;
+    for(int i=0; i<N; ++i)
+    {
+		//Find x for maximal stress
+		x_sigmaMax = bisec(0, l, dSigmadx, 1e-4, &iter);
+
+		//Assign stress and parameter into tables
+        parA[i] = a;
+        sigmaMax[i] = sigma(x_sigmaMax);
+
+		//increase a parameter
+        a+=da;
+    }
+
+	// Calculate optimal a 
+    double a_opt = bisec(0, aMax, equation, 1e-4, &iter);
+
+	//Display results and find for a_opt corresponding x_max and value of sigma_max
+    a = a_opt;
+    x_sigmaMax = bisec(0, l, dSigmadx, 1e-4, &iter);
+    printf("Optymalna wartosc a=%e\t dla ktorego sigma max(%.3lf)=%e\n", a_opt, x_sigmaMax, M(x_sigmaMax)/Wx(x_sigmaMax), iter);
+
+	
+	//Plot stress for optimal a
+	graphics(1000, 1000);
+	setbkcolor(WHITE); //change background to white
+	setgray(0.); //change foreground to black
+	scale(0, 0, l, 250);
+
+	int M = 200;
+	double dx = l / (M-1);
+    for(int i=0; i<M; ++i)
+    {
+        double x = dx*i;
+		circle(x, sigma(x)/1e6, 3);
+    }
+
+	//Draw reference lines
+	setlinestyle(1, 1, 1);
+	setcolor(0.9);
+	line(0, 200, x_sigmaMax, 200);
+	line(x_sigmaMax, 0, x_sigmaMax, 200);
+
+	//Format and add title:
+	setgray(0);
+	char * titleStr= (char*)malloc(50 * sizeof(char));
+	sprintf(titleStr, "Naprezenia dla a=%.3lf", a);
+	title( "x", "sigma[MPa]", titleStr);
+
+	wait();
 
     return 0;
 }
