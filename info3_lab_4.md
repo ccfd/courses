@@ -67,11 +67,11 @@ WHERE Continent IN ('Europe', 'Asia');
 5. Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości życia (dodaj do poprzedniej komendy frazę -- `ORDER BY LifeExpectancy`{.sql}).
 6. Wyświetl liczbę ludności żyjącej w Europie:
 ```sql
-SELECT sum(Population) FROM Country WHERE Continent='Europe';
+SELECT SUM(Population) FROM Country WHERE Continent='Europe';
 ```
 7. Znajdź średnie zaludnienie krajów w Europie:
 ```sql
-SELECT avg(Population) FROM Country WHERE Continent='Europe';
+SELECT AVG(Population) FROM Country WHERE Continent='Europe';
 ```
 8. Znajdź nazwy i kody wszystkich państw, których nazwy zaczynaj się od "Ch":
 ```sql
@@ -126,8 +126,8 @@ WHERE Population=
 WHERE Continent='South America');
 ```
 W tym przypadku otrzymamy Brazylię jako jedyny wynik.
-Przedstawione rozwiązanie nie jest jednak jednoznacze!
-Mogło by się zdażyć, że otrzymana maksymalna wartość populacji występuje nie tylko na kontynencie południowoamerykańskim.
+Przedstawione rozwiązanie nie jest jednak jednoznaczne!
+Mogło by się zdarzyć, że otrzymana maksymalna wartość populacji występuje nie tylko na kontynencie południowoamerykańskim.
 Wynik należy uściślić:
 ```sql
 SELECT Name, Population FROM Country
@@ -183,37 +183,36 @@ WHERE SurfaceArea =
 31. Wyświetl średni czas życia na świecie.
 32. Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia na świecie.
 33. Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia w Europie.
-34. Wyświetl nazwę najbardziej zaludnionego państwa w Ameryce południowej; obok nazwy wyświetl liczbę jego ludności.
-35. Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).
-36. Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia (`NULL`).
+34. Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).
+35. Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia (`NULL`).
 W tym celu skorzystaj z funkcji `ISNULL(wiersz)`{.sql}.
-37. Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.
-38. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
-39. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
-40. Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
-41. Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
-42. Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
-43. Wykonaj poniższe zapytanie i zinterpretuj wynik:
+36. Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.
+37. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
+38. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
+39. Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
+40. Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
+41. Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
+42. Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
 SELECT Country.Name, City.Name FROM Country, City;
 ```
-44. Wykonaj poniższe zapytanie i zinterpretuj wynik:
+43. Wykonaj poniższe zapytanie i zinterpretuj wynik:
 ```sql
 SELECT Country.Name, City.Name FROM Country, City
 WHERE Country.Name = 'Poland';
 ```
-45. Wyświetl wszystkie miasta w Europie i nazwę państwa w którym leżą.
-46. Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.
-47. Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.
-48. Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa.
+44. Wyświetl wszystkie miasta w Europie i nazwę państwa w którym leżą.
+45. Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.
+46. Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.
+47. Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa.
 Użyj samo-złączenia (czyli złączenia tabeli samej ze sobą).
+48. Znajdź liczbę wystąpień każdego miasta na świecie.
 49. Znajdź liczbę wystąpień każdego miasta na świecie.
-50. Znajdź liczbę wystąpień każdego miasta na świecie.
 Wyświetl jedynie te miasta, które występują przynajmniej 3 razy.
 Wyniki posortuj.
-51. Wyświetl tabelę zawierającą listę miast, które występują przynajmniej 3 razy na świecie oraz nazwę państwa, w którym dane miasto leży.
+50. Wyświetl tabelę zawierającą listę miast, które występują przynajmniej 3 razy na świecie oraz nazwę państwa, w którym dane miasto leży.
 Czy miasta o powtarzających się nazwach leżą w jednym państwie?
-52. Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: "VAT"), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
+51. Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: "VAT"), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
 
 # Tworzenie i używanie nowych baz danych
 
