@@ -478,9 +478,11 @@ int main()
 
 ## Zadanie 4
 ```c++
+#define _CRT_SECURE_NO_WARNINGS
 #include <math.h>
 #include <stdio.h>
 #include "narzedzia.h"
+#include "winbgi2.h"
 
 double trapezParam(double a, double b, double parameter, double(*fun)(double, double), int n)
 {
@@ -523,7 +525,6 @@ double pochodna(double x, double a)
     return -sinh(x) - x*cosh(x);
 }
 
-
 int main()
 {
     const int N = 10;
@@ -542,14 +543,24 @@ int main()
         C[i] = trapezParam(x01[i], x02[i], i+1, funkcja, 100);
     }
 
-    double da = 9./(M-1);
-    double a = 1;
-    for(int i=0; i<M; ++i, a+=da)
-    {
-        double ci = lagrange(parametry, C, N, a);
+    
+	graphics(1000, 1000);
+	//Ustaw kolor tla na bialy i czcionki na czarny
+	setbkcolor(WHITE);
+	setgray(0);
+	scale(0, 0, 10, 40);
 
-        printf("dla a=%.3lf calka=%.3lf\n", a, ci);
-    }
+	double da = 9. / (M - 1);
+	double a = 1;
+	for (int i = 0; i<M; ++i, a += da)
+	{
+		//Zinterpoluj wynik
+		double ci = lagrange(parametry, C, N, a);
+
+		circle(a, ci, 3);
+	}
+
+	wait();
 
     return 0;
 }
