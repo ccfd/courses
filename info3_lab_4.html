@@ -733,7 +733,7 @@ Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surna
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">ADD</span> <span class="dt">Number</span> <span class="dt">varchar</span>(<span class="dv">16</span>) <span class="kw">DEFAULT</span> <span class="st">&#39;&#39;</span>;</code></pre></div></li>
 <li><p>W przypadku pomyłki możesz usunąć kolumnę z tabeli:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">DROP</span> <span class="kw">COLUMN</span> <span class="dt">Number</span>;</code></pre></div></li>
-<li><p>Dodaj kolejną kolumnę z zawierającą ID osoby, do której należy dany numer telefonu:</p>
+<li><p>Dodaj kolejną kolumnę zawierającą ID osoby, do której należy dany numer telefonu:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">ADD</span> PersonID <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</code></pre></div></li>
 <li><p>Załóżmy, że numery telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">ALTER</span> <span class="kw">TABLE</span> Phone <span class="kw">ADD</span> <span class="kw">UNIQUE</span> (<span class="dt">Number</span>);</code></pre></div></li>
