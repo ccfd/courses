@@ -250,7 +250,7 @@ ALTER TABLE Phone ADD Number varchar(16) DEFAULT '';
 ```sql
 ALTER TABLE Phone DROP COLUMN Number;
 ```
-- Dodaj kolejną kolumnę z zawierającą ID osoby, do której należy dany numer telefonu:
+- Dodaj kolejną kolumnę zawierającą ID osoby, do której należy dany numer telefonu:
 ```sql
 ALTER TABLE Phone ADD PersonID int NOT NULL;
 ```
