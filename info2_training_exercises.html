@@ -653,40 +653,7 @@ v(t) = \rhsfunction = \rhsfunctionlong \quad [\frac{m}{s}]
 <li>interpolacji wielomianowej,</li>
 <li>rozwiązywania równań nieliniowych.</li>
 </ul>
-<p><strong>Mała podpowiedź:</strong> Aby rozwiązać to zadanie należy rozwiązać równanie nieliniowe <span class="math display">\[x(t)-5=0\]</span> Funkcja <span class="math inline">\(x(t)\)</span> powinna być określona za pomocą wielomianu interpolacyjnego rozpiętego na punktach <span class="math inline">\((t_i, x_i)\)</span> wyznczonych za pomocą całek: <span class="math display">\[ x_i = \int_0^{t_i} \rhsfunctionlongTau d\tau \]</span> gdzie wartości <span class="math inline">\(t_i\)</span> powinny być punktami z przedziału <span class="math inline">\(t\in&lt;0,3&gt;\)</span>.</p>
-</div>
-<div id="zadanie-6" class="section level2">
-<h2>Zadanie 6</h2>
-<p>Grubość belki <span class="math inline">\(h\)</span> o przekroju kwadratowym w zależności od położenia <span class="math inline">\(x\)</span> opisują następujące funkcje: <span class="math display">\[
-\newcommand{\grubosc}{0.1}
-\newcommand{\dlugosc}{5}
-\newcommand{\aOne}{0.025}
-\newcommand{\aTwo}{0.05}
-\newcommand{\aThree}{0.075}
-\newcommand{\mGnacySkala}{1000000}
-\newcommand{\mGnacySkalaText}{10^6}
-h(x) = 2\cdot \delta(x) [m]
-\]</span></p>
-<p><span class="math display">\[
-\delta(x) = \mathbf{a} \cdot (l - x) \cdot x + \frac{\delta_0}{2} [m]
-\]</span></p>
-<p>gdzie <span class="math inline">\(\mathbf{a}\)</span> jest parametrem funkcji i może zmieniać się w zakresie <span class="math inline">\(&lt;0, 0.1&gt;\)</span>. <span class="math inline">\(\delta_0\)</span> jest minimalną grubością równą <span class="math inline">\(0.1 [m]\)</span>.</p>
-<div class="figure">
-<img src="figures/info2/training/exemplary_bars.png" title="Przykladowe belki" alt="" />
-
-</div>
-<p>Belka jest obciążona w taki sposób, że moment gnący opisuje poniższa funkcja: <span class="math display">\[
-    M(x) = \mGnacySkalaText \cdot sinh(\frac{x}{l}) \cdot sin(\frac{x\cdot \pi}{l}) [N \cdot m]
-\]</span> gdzie długość belki <span class="math inline">\(l = 5\)</span>. Twoim zadaniem jest znalezienie optymalnej wartości parametru <span class="math inline">\(\mathbf{a}\)</span> dla którego maksymalna wartość naprężenia w belce, pod zadanym obciążeniem, będzie równe <span class="math inline">\(\sigma_{max} = 200 [MPa]\)</span>. Maksymalne naprężenie w dowolnym przekroju to: <span class="math display">\[
-    \sigma(x) = \frac{M(x)}{W_x(x)}
-\]</span> gdzie <span class="math inline">\(W_x\)</span> to wskaźnik wytrzymałości, który dla belki o przekroju kwadratowym jest równy: <span class="math display">\[
-    W_x(x) = \frac{h(x)^3}{6}
-\]</span></p>
-<p>W celu rozwiązania tego zadania należy wykorzystać poznane metody:</p>
-<ul>
-<li>Interpolacji wielomianowej,</li>
-<li>Rozwiązywania równań nieliniowych.</li>
-</ul>
+<p><strong>Mała podpowiedź:</strong> Aby rozwiązać to zadanie należy rozwiązać równanie nieliniowe <span class="math display">\[x(t)-5=0\]</span> Funkcja <span class="math inline">\(x(t)\)</span> powinna być określona za pomocą wielomianu interpolacyjnego rozpiętego na punktach <span class="math inline">\((t_i, x_i)\)</span> wyznczonych za pomocą całek: <span class="math display">\[ x_i = int_0^{t_i} \rhsfunctionlongTau d\tau \]</span> gdzie wartości <span class="math inline">\(t_i\)</span> powinny być punktami z przedziału <span class="math inline">\(t\in&lt;0,3&gt;\)</span>.</p>
 <hr />
 </div>
 </div>
@@ -785,59 +752,8 @@ x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad poniewa
 <h3>Krok 3</h3>
 <p>Wykorzystaj znaną Ci metodę rozwiązywania równań nieliniowych i znajdź rozwiązanie równania: <span class="math display">\[ x(t) - \seekdistance = 0 \]</span></p>
 <p>Pierwiastek tego równania znajduje się w przedziale <span class="math inline">\(0-3\)</span>. Sprawdź jak rozwiązanie zmienia się wraz ze zmianą <span class="math inline">\(N\)</span> z zadania 1.</p>
+<hr />
 </div>
-</div>
-<div id="zadanie-6-1" class="section level2">
-<h2>Zadanie 6</h2>
-<p>Aby rozwiązać ten problem należy znaleźć funkcję która będzie przedstawiała zależność największego naprężenia w belce od parametru <span class="math inline">\(\mathbf{a}\)</span>: <span class="math display">\[
-    \sigma_{max} = \sigma_{max}(\mathbf{a})
-\]</span></p>
-<p>a następnie należy znaleźć takie <span class="math inline">\(\mathbf{a}\)</span> dla którego zachodzi: <span class="math display">\[
-    \sigma_{max}(\mathbf{a}) = 200 \cdot 10^6
-\]</span> czyli należy rozwiązać równanie nieliniowe. Pozostaje znalezienie nieznanej funkcji <span class="math inline">\(\sigma_{max}(\mathbf{a})\)</span>. Funkcja ta opisuje wartość największego naprężenia w całej belce. A zatem, zanim je obliczymy należy znaleźć taki przekrój <span class="math inline">\(x\)</span> dla którego wartość <span class="math inline">\(\sigma\)</span> osiągnie największą wartość - czyli należy znaleźć miejsce w którym pierwsza pochodna <span class="math inline">\(\sigma\)</span> jest równa 0: <span class="math display">\[
-    \frac{d\sigma}{dx} = 0 \qquad \Rightarrow \qquad \frac{d}{dx} \left(\frac{M(x)}{W_x(x)}\right) = 0
-\]</span></p>
-<p>a po podstawieniu <span class="math inline">\(W_x = \frac{h(x)^3}{6}\)</span> i zróżniczkowaniu otrzymamy: <span class="math display">\[
-\begin{align}
-    \frac{d\sigma}{dx} &amp;= \frac{3}{4} \cdot \frac{M&#39; \delta - 3 \cdot M \delta&#39;}{\delta^4}\\
-    M&#39; &amp;= \frac{1}{l} \left(cosh(\frac{x}{l})sin(x\cdot\frac{\pi}{x}) + \pi sinh(\frac{x}{l})cos(x\cdot\frac{\pi}{x})\right)\\
-    \delta&#39; &amp;= a \cdot (l - 2 \cdot x)
-\end{align}
-\]</span></p>
-<p>Znając przekrój można wyznaczyć wartość <span class="math inline">\(\sigma_{max}(\mathbf{a})\)</span>. Trudno jest jednak wygenerować pary <span class="math inline">\((\mathbf{a}, \sigma_{max})\)</span> dla wszystkich dopuszczalnych wartości parametru <span class="math inline">\(\mathbf{a}\)</span>. Dlatego należy wykonać powyższe obliczenia dla pewnego zbioru konkretnych wartości tego parametru, np. <span class="math inline">\(\mathbf{a} = 0, 0.01, ..., 0.1\)</span>, a następnie dokonać interpolacji funkcji <span class="math inline">\(\sigma_{max}=\sigma_{max}(\mathbf{a})\)</span> za pomocą wielomianów Lagrange’a. Ostatecznie, posiadając wymaganą funkcję w postaci interpolacji, pozostaje rozwiązać równanie <span class="math inline">\(\frac{d\sigma}{dx} = 0\)</span>.</p>
-<div id="krok-1-1" class="section level3">
-<h3>Krok 1</h3>
-<p>Przygotuj zestaw danych opisujących parametry w zadaniu (zadeklaruj wszystkie zmienne jako globalne, nawet zmienną przechowującą parametr <span class="math inline">\(\mathbf{a}\)</span>). Następnie przygotuj funkcje obliczające poniższe wyrażenia:</p>
-<ul>
-<li><span class="math inline">\(M(x)\)</span></li>
-<li><span class="math inline">\(\frac{dM}{dx}(x)\)</span></li>
-<li><span class="math inline">\(\delta (x)\)</span></li>
-<li><span class="math inline">\(\frac{d \delta}{dx} (x)\)</span></li>
-<li><span class="math inline">\(W_x(x)\)</span></li>
-<li><span class="math inline">\(\sigma(x)\)</span></li>
-<li><span class="math inline">\(\frac{d \sigma} {dx} (x)\)</span></li>
-</ul>
-</div>
-<div id="krok-2-1" class="section level3">
-<h3>Krok 2</h3>
-<p>Dodaj do zmiennych globalnych tablice zadeklarowane statycznie o rozmiarze <span class="math inline">\(N=10\)</span>, które posłużą do przechowywania zbioru założonych parametrów <span class="math inline">\(\mathbf{a}\)</span> oraz wartości <span class="math inline">\(\sigma_{max}\)</span> obliczonych dla <span class="math inline">\(x\)</span> odpowiadającego największemu naprężeniu. Następnie w funkcji “main” uzupełnij te tablice obliczając wartość <span class="math inline">\(\sigma_{max}=\sigma(x_{max})\)</span> po uprzednim rozwiązaniu równania  dla kolejnych wartości parametru <span class="math inline">\(\mathbf{a}\)</span> z zakresu <span class="math inline">\(&lt;0, 0.1&gt;\)</span></p>
-<p><strong>Uwaga</strong> Pamiętaj, że wszystkie funkcje z zadania pierwszego są oparte o globalny parametr <span class="math inline">\(\mathbf{a}\)</span>, dlatego musisz zadbać o jego poprawną wartość w trakcie obliczania kolejnych <span class="math inline">\(\sigma_{max}\)</span></p>
-</div>
-<div id="krok-3-1" class="section level3">
-<h3>Krok 3</h3>
-<p>Wykorzystaj tablice wyznaczone w poprzednim zadaniu i przygotuj funkcję</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> interpSigmaMax(<span class="dt">double</span> a)
-{
-   ....
-}</code></pre></div>
-<p>która dokona interpolacji wielomianowej funkcji <span class="math inline">\(\sigma_{max}(\mathbf{a})\)</span> i zwróci wartość obliczoną dla dowolnego <span class="math inline">\(a\)</span>.</p>
-</div>
-<div id="krok-4" class="section level3">
-<h3>Krok 4</h3>
-</div>
-</div>
-<div id="rozwiaz-rownanie-wykorzystujac-funkcje-z-poprzedniego-zadania.-w-wyniku-otrzymasz-optymalna-wartosc-parametru-mathbfa.-dla-tej-wartosci-parametru-utworz-wykres-funkcji-sigma-sigmax-wykorzystujac-biblioteke-graficzna." class="section level2">
-<h2>Rozwiąż równanie  wykorzystując funkcję z poprzedniego zadania. W wyniku otrzymasz optymalną wartość parametru <span class="math inline">\(\mathbf{a}\)</span>. Dla tej wartości parametru utwórz wykres funkcji <span class="math inline">\(\sigma = \sigma(x)\)</span> wykorzystując bibliotekę graficzną.</h2>
 </div>
 </div>
 <div id="rozwiazania-zadan" class="section level1">
@@ -1151,131 +1067,6 @@ x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad poniewa
     <span class="dt">double</span> t0 = bisec(<span class="dv">0</span>, <span class="dv">3</span>, rownanie, <span class="fl">1e-4</span>, &amp;itr);
 
     printf(<span class="st">&quot;Polozenie 5m zostaje osiagniete po </span><span class="ch">%e</span><span class="st"> sekundach</span><span class="ch">\n</span><span class="st">Iter=</span><span class="ch">%d\n</span><span class="st">&quot;</span>, t0, itr);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-</div>
-<div id="zadanie-6-2" class="section level2">
-<h2>Zadanie 6</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#define _CRT_SECURE_NO_WARNINGS</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &quot;winbgi2.h&quot;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">double</span> a=<span class="dv">0</span>;
-<span class="dt">const</span> <span class="dt">double</span> aMax = <span class="fl">0.</span><span class="dv">1</span>;
-<span class="dt">const</span> <span class="dt">double</span> delta0 = <span class="fl">0.</span><span class="dv">1</span>;
-<span class="dt">const</span> <span class="dt">double</span> l = <span class="dv">5</span>;
-<span class="dt">const</span> <span class="dt">double</span> pi = <span class="dv">4</span>*atan(<span class="fl">1.</span>);
-<span class="dt">const</span> <span class="dt">double</span> Mmag = <span class="fl">1e6</span>;
-
-<span class="dt">const</span> <span class="dt">int</span> N=<span class="dv">50</span>;
-<span class="dt">double</span> sigmaMax[N];
-<span class="dt">double</span> parA[N];
-
-<span class="dt">double</span> M(<span class="dt">double</span> x)
-{
-       <span class="kw">return</span> Mmag * sinh(x/l)*sin(x*pi/l);
-}
-
-<span class="dt">double</span> dM(<span class="dt">double</span> x)
-{
-       <span class="kw">return</span> Mmag * (cosh(x/l)*sin(x*pi/l) + pi* sinh(x/l)*cos(x*pi/l))/l;
-}
-
-<span class="dt">double</span> delta(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> a*(l-x)*x + delta0/<span class="dv">2</span>;
-}
-
-<span class="dt">double</span> dDelta(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> a*(l - <span class="dv">2</span>*x);
-}
-
-<span class="dt">double</span> Wx(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">4.</span>/<span class="dv">3</span>*pow(delta(x),<span class="dv">3</span>);
-}
-
-<span class="dt">double</span> sigma(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> M(x)/Wx(x);
-}
-
-<span class="dt">double</span> dSigmadx(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">3.</span>/<span class="dv">4</span> * (dM(x)*delta(x) - <span class="dv">3</span>*M(x)*dDelta(x)) / pow(delta(x),<span class="dv">4</span>);
-}
-
-<span class="dt">double</span> interpSigmaMax(<span class="dt">double</span> a)
-{
-    <span class="kw">return</span> lagrange(parA, sigmaMax, N, a);
-}
-
-<span class="dt">double</span> equation(<span class="dt">double</span> a)
-{
-    <span class="kw">return</span> interpSigmaMax(a) - <span class="dv">200</span>*<span class="fl">1e6</span>;
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">int</span> iter;
-    <span class="dt">double</span> da = aMax / (N - <span class="dv">1</span>);
-    <span class="dt">double</span> x_sigmaMax;
-
-    a = <span class="dv">0</span>;
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)
-    {
-        <span class="co">//Find x for maximal stress</span>
-        x_sigmaMax = bisec(<span class="dv">0</span>, l, dSigmadx, <span class="fl">1e-4</span>, &amp;iter);
-
-        <span class="co">//Assign stress and parameter into tables</span>
-        parA[i] = a;
-        sigmaMax[i] = sigma(x_sigmaMax);
-
-        <span class="co">//increase a parameter</span>
-        a+=da;
-    }
-
-    <span class="co">// Calculate optimal a </span>
-    <span class="dt">double</span> a_opt = bisec(<span class="dv">0</span>, aMax, equation, <span class="fl">1e-4</span>, &amp;iter);
-
-    <span class="co">//Display results and find for a_opt corresponding x_max and value of sigma_max</span>
-    a = a_opt;
-    x_sigmaMax = bisec(<span class="dv">0</span>, l, dSigmadx, <span class="fl">1e-4</span>, &amp;iter);
-    printf(<span class="st">&quot;Optymalna wartosc a=</span><span class="ch">%e\t</span><span class="st"> dla ktorego sigma max(</span><span class="ch">%.3lf</span><span class="st">)=</span><span class="ch">%e\n</span><span class="st">&quot;</span>, a_opt, x_sigmaMax, M(x_sigmaMax)/Wx(x_sigmaMax), iter);
-
-    
-    <span class="co">//Plot stress for optimal a</span>
-    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);
-    setbkcolor(WHITE); <span class="co">//change background to white</span>
-    setgray(<span class="fl">0.</span>); <span class="co">//change foreground to black</span>
-    scale(<span class="dv">0</span>, <span class="dv">0</span>, l, <span class="dv">250</span>);
-
-    <span class="dt">int</span> M = <span class="dv">200</span>;
-    <span class="dt">double</span> dx = l / (M<span class="dv">-1</span>);
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i)
-    {
-        <span class="dt">double</span> x = dx*i;
-        circle(x, sigma(x)/<span class="fl">1e6</span>, <span class="dv">3</span>);
-    }
-
-    <span class="co">//Draw reference lines</span>
-    setlinestyle(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);
-    setcolor(<span class="fl">0.</span><span class="dv">9</span>);
-    line(<span class="dv">0</span>, <span class="dv">200</span>, x_sigmaMax, <span class="dv">200</span>);
-    line(x_sigmaMax, <span class="dv">0</span>, x_sigmaMax, <span class="dv">200</span>);
-
-    <span class="co">//Format and add title:</span>
-    setgray(<span class="dv">0</span>);
-    <span class="dt">char</span> * titleStr= (<span class="dt">char</span>*)malloc(<span class="dv">50</span> * <span class="kw">sizeof</span>(<span class="dt">char</span>));
-    sprintf(titleStr, <span class="st">&quot;Naprezenia dla a=</span><span class="ch">%.3lf</span><span class="st">&quot;</span>, a);
-    title( <span class="st">&quot;x&quot;</span>, <span class="st">&quot;sigma[MPa]&quot;</span>, titleStr);
-
-    wait();
 
     <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre></div>
