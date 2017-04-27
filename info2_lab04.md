@@ -35,7 +35,9 @@ y(t_0 ) &= y_0
 $$
 Rozwiązanie dokładne ma postać:
 $$ y(t) = y_0 · e^{\lambda(t−t_0)} $$
+
 1. Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu Eulera
 2. Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu RK4
-3. Dla obu przypadków wyświetl na monitorze kolejne wartości t, y oraz
-względną wartość błędu:
+3. Dla obu przypadków wyświetl na monitorze kolejne wartości t, y oraz względną wartość błędu: $\varepsilon = \frac{|y-y_\text{analityczne}|}{|y_\text{analityczne}|}$
+4. Zmodyfikuj program tak aby wykonywał obliczenia jedna i druga metoda dla zadanego tk i ilości kroków: $2^0$, $2^1$, \ldots, $2^6$. Wydrukuj do pliku: ilość kroków, h, bład metody Eulera i bład metody RK4 dla ostatniego kroku czasowego.
+5. Sporzadzic wykres błędu metody w funkcji h i oszacuj rząd zbierzności.
