@@ -33,7 +33,7 @@ Każde tego typu równanie można przedstawić w równoważnej formie układu r�
 $$ 
 \begin{aligned}
 \frac{dv_x}{dt} &= f_1(t, x, v_x) \\
-\frac{dx}{dt} &= f_1(t, x, v_x)
+\frac{dx}{dt} &= v_x
 \end{aligned}
 $$
 Powyższy układ jest tożsamy z równanie drugiego rzędu i znalezienie przebiegu funkcji $x=x(t)$ będzie odpowiadało scałkowaniu rówania drugiego rzędu. Tego typu problemem zajmiemy się w drugiej części tego ćwiczenia. 
