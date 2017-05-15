@@ -1,6 +1,6 @@
 ---
 author: "K. Marchlewski"
-course: Informatyka III
+course: Informatyka 3
 material: Instrukcja 5
 number: 5
 ---
@@ -72,12 +72,12 @@ Przykładowo, kompletną obsługę języka polskiego włączamy dodając pakiety
 * `\usepackage[english, polish]{babel}`{.tex} - definiuje język dokumentu,
 * `\usepackage{polski}`{.tex} - wymusza polskie reguły składu dokumentu. 
 
-Pakiety, z których planujemy korzystać umieszczamy za instrukcją `\documentclass`.
+Pakiety, z których planujemy korzystać umieszczamy w t.zw. *preambule*: za instrukcją `\documentclass`, a przed instrukcją `\begin{document}`.
 Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
 
 ### Strona tytułowa
 
-Ponieważ teraz tekst wygląda elegancko, warto pochwalić się swoim osiągnięciem światu.
+Ponieważ tekst wygląda teraz elegancko, warto pochwalić się swoim osiągnięciem światu.
 Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
 ```{.tex}
 \author{Gall Anonim}
@@ -171,13 +171,17 @@ Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię.
 Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\LaTeX u$ przy wpisywaniu równań matematycznych.
 
 Greckie litery są jednym z podstawowych elementów.
-Są dość łatwe do zapamiętania ze względu na zapis fonetyczny:
+Są dość łatwe do zapamiętania ze względu na zapis "fonetyczny":
 ```{.tex}
   \[
     \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
   \]
 ```
-Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę na dużą pierwszej litery danej nazwy (np. `\alpha`{.tex} -> `\Alpha`{.tex}).
+```{.tex}
+  \[
+    \Gamma, \Delta, \Theta, \Lambda, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega
+  \]
+```
 
 Indeksy górne i dolne otrzymuje się przez użycie symboli `^` i `_`:
 ```{.tex}
@@ -234,7 +238,7 @@ Natomiast sumy:
 \[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]
 ```
 
-Macierze zapisujemy stosując otoczenie `array`{.tex}
+Tablice (macierze, wyznaczniki itd\ldots) zapisujemy stosując otoczenie `array`{.tex}.
 ```{.tex}
 \[
   \left|
@@ -246,6 +250,8 @@ Macierze zapisujemy stosując otoczenie `array`{.tex}
   \right|
 \]
 ```
+Parametry `{ccc}`{.tex} oznaczają, że utworzona tablica będzie miała trzy kolumny, z których każda będzie zawierała tekst wyrównany do środka.
+Dwie pozostałe możliwości to `r` -- wyrównanie do prawej i `l` -- wyrównanie do lewej.
 
 Otoczenie te można także wykorzystać do zapisu warunków
 ```{.tex}
@@ -271,11 +277,6 @@ Przykładowo, symbol całki podwójnej `\iint`{.tex} uzyskamy po dołączeniu pa
 
 $$
   i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
-$$
-
-$$
-  \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla\mathbf{u} =
-  -\frac{1}{\rho}\nabla p+\nu \nabla^{2}\mathbf{u} + \frac{1}{3}\nu \nabla (\nabla \cdot \mathbf{u}) + \mathbf{g}
 $$
 
 $$
@@ -321,14 +322,14 @@ Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokośc
 Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania.
 Przeanalizuj poniższy kod:
 ```{.tex}
-  \begin{tabular}{c||c|c|c}
+  \begin{tabular}{l||c|c|c}
      & symb. & symb. & symb. \\ \hline \hline
     symb. & X & O & O \\ \hline
     symb. & O & X & X \\ \hline
     symb. & X & O & X \\
   \end{tabular}
 ```
-Jaki wpływ na wygląd tabeli mają parametry `{c||c|c|c}`{.tex}?
+Jaki wpływ na wygląd tabeli ma parametr `{l||c|c|c}`{.tex}?
 
 Otoczenie `tabular` pozwala także na tworzenie wielokolumnowych rubryk.
 Służy do tego polecenie `\multicolumn{l_kolumn}{justowanie}{tekst}`{.tex}.
