@@ -19,19 +19,19 @@ Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwag�
 Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych.
 Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.
 
-Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program $\LaTeX$ (wł. zestaw makr i instrukcji do obsługi programu $\TeX$).
-Nazwę $\LaTeX$ czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
+Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program $\textrm{\LaTeX}$ (wł. zestaw makr i instrukcji do obsługi programu $\TeX$).
+Nazwę $\textrm{\LaTeX}$ czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
 
-Pisanie w $\LaTeX u$ w pewnym stopniu przypomina pisanie w języku HTML.
+Pisanie w $\textrm{\LaTeX u}$ w pewnym stopniu przypomina pisanie w języku HTML.
 "Program" składa się z właściwego tekstu i zestawu instrukcji, które mówią o tym jak nasz tekst ma wyglądać po "kompilacji".
-Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie $\LaTeX$ można tworzyć wiele różnych typów dokumentów.
+Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie $\textrm{\LaTeX}$ można tworzyć wiele różnych typów dokumentów.
 Na dzisiejszych zajęciach skorzystamy z podstawowego typu `article`.
 
-W celu poszerzenia wiedzy, autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu $\LaTeX 2_{\varepsilon}$*.
+W celu poszerzenia wiedzy, autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu $\textrm{\LaTeX} 2_{\varepsilon}$*.
 
 # Pierwszy dokument
 
-Przejdziemy teraz do stworzenia pierwszego dokumentu w $\LaTeX u$.
+Przejdziemy teraz do stworzenia pierwszego dokumentu w $\textrm{\LaTeX u}$.
 Najpierw musimy zadeklarować klasę dokumentu.
 Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`{.tex}, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
 
@@ -60,7 +60,7 @@ Kompilator utworzy kilka plików, m. in. plik `dokument.pdf`, który zawiera nas
 Otwórz plik `dokument.pdf` i naciesz oczy wynikiem swojej pracy.
 Ale co to?
 Okazuje się, że brakuje kilku liter!
-Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
+Podstawowe możliwości $\textrm{\LaTeX a}$ nie sięgają bowiem języka polskiego.
 
 ### Pakiety
 
@@ -97,7 +97,7 @@ Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włą
 
 Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
 Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie.
-W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
+W $\textrm{\LaTeX u}$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
 ```{.tex}
 \section{Nazwa}
 \subsection{Nazwa}
@@ -148,7 +148,7 @@ Utwórz teraz zagnieżdżoną listę:
 # Wzory i równania matematyczne
 
 Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
-W $\LaTeX u$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
+W $\textrm{\LaTeX u}$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
 Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
 ```{.tex}
   wzór $E=mc^2$ powstał \ldots
@@ -168,15 +168,18 @@ Dla utrzymania porządku często warto numerować równania
 ```
 
 Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię.
-Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\LaTeX u$ przy wpisywaniu równań matematycznych.
+Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\textrm{\LaTeX u}$ przy wpisywaniu równań matematycznych.
 
 Greckie litery są jednym z podstawowych elementów.
-Są dość łatwe do zapamiętania ze względu na zapis "fonetyczny":
+Są dość łatwe do zapamiętania ze względu na zapis "fonetyczny".
+Małe litery uzyskamy stosując:
 ```{.tex}
   \[
     \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
   \]
 ```
+
+Duże, natomiast:
 ```{.tex}
   \[
     \Gamma, \Delta, \Theta, \Lambda, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega
@@ -267,7 +270,7 @@ Otoczenie te można także wykorzystać do zapisu warunków
 
 ## Ćwiczenia
 
-Zapisz poniższe równania wykorzystując system $\LaTeX$.
+Zapisz poniższe równania wykorzystując system $\textrm{\LaTeX}$.
 Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej.
 W sieci Internet można znaleźć listy dostępnych symboli.
 W naszej pracowni można skorzystać ze strony: https://www.sharelatex.com/learn/Mathematical_expressions
@@ -316,7 +319,7 @@ $$
 
 # Tabele
 
-Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie $\LaTeX$.
+Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie $\textrm{\LaTeX}$.
 Pokarzemy najprostszy przykład z wykorzystaniem otoczenia `tabular`.
 Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości.
 Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania.
