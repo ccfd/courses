@@ -19,7 +19,7 @@ Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwag�
 Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych.
 Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.
 
-Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program $\textrm{\LaTeX}$ (wł. zestaw makr i instrukcji do obsługi programu $\TeX$).
+Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program $\textrm{\LaTeX}$ (wł. zestaw makr i instrukcji do obsługi programu $\textrm{\TeX}$).
 Nazwę $\textrm{\LaTeX}$ czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
 
 Pisanie w $\textrm{\LaTeX u}$ w pewnym stopniu przypomina pisanie w języku HTML.
