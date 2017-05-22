@@ -613,18 +613,11 @@ div.tocify {
 <div id="cwiczenie-4" class="section level3">
 <h3>Ćwiczenie 4</h3>
 <p>Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z <span class="math inline">\(a\)</span>. Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Reduce(
-    <span class="dt">void</span>* source,
-    <span class="dt">void</span>* destination,
-    <span class="dt">int</span> count,
-    MPI_Datatype datatype,
-    MPI_Op operation,
-    <span class="dt">int</span> root,
-    MPI_Comm communicator)
-    </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Reduce(source, destination, count, datatype, operation, root,
+           MPI_COMM_WORLD);</code></pre></div>
 <ul>
 <li><code>source</code> to <strong>wskaźnik</strong> do danych, które mamy np. zsumować.</li>
-<li><code>destination</code> to <strong>wskaźnik</strong> do miejsca, gdzie ma być umieszczony wynik.</li>
+<li><code>destination</code> to wskaźnik do miejsca, gdzie ma być umieszczony wynik.</li>
 <li><code>count</code> to liczba elementów danych do zsumowania. Czyli np. <code>1</code> jeśli dane to jedna liczba.</li>
 <li><code>datatype</code> to typ danych, które sumujemy: <code>MPI_INT</code> lub <code>MPI_DOUBLE</code>.</li>
 <li><code>operation</code> to operacja, którą wykonujemy, np: <code>MPI_SUM</code> lub <code>MPI_MAX</code>.</li>
@@ -633,13 +626,8 @@ div.tocify {
 </ul>
 <p>Użyj tej funkcji aby obliczyć globalne statystyki, a następnie wyświetl je (pamietaj, że mają one sens tylko na węźle <code>root</code>). Weź pod uwagę, że globalne <code>n</code> jest inne niż <code>n</code> lokalne.</p>
 <p>Bliźniaczą do funkcji <code>MPI_Reduce</code> jest funkcja <code>MPI_Allreduce</code>. Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu <code>root</code>.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Allreduce(
-    <span class="dt">void</span>* source,
-    <span class="dt">void</span>* destination,
-    <span class="dt">int</span> count,
-    MPI_Datatype datatype,
-    MPI_Op operation,
-    MPI_Comm communicator)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">MPI_Allreduce(source, destination, count, datatype, operation,
+              MPI_COMM_WORLD);</code></pre></div>
 </div>
 <div id="cwiczenie" class="section level3">
 <h3>Ćwiczenie *</h3>
