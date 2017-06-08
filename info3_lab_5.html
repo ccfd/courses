@@ -561,13 +561,13 @@ div.tocify {
 <h1>Wstęp</h1>
 <p>Statystyczny użytkownik myszki komputerowej żyje w przekonaniu, iż stworzenie dokumentu tekstowego wysokiej jakości jest stosunkowo proste. Jest prawdopodobne, że przekonanie to zostało mu zaszczepione przez edytory typu WYSWIG (What You See is What You Get). Klasycznym przykładem takiego programu jest MS Word. Umożliwia on m. in. modyfikację kroju czcionki oraz rozmiaru marginesów w taki sposób aby dokument był przyjemny dla oka. Czy wizualna atrakcyjność dokumentu oznacza jednak, że dokument jest wysokiej jakości? Ciężko powiedzieć… nie napisaliśmy jeszcze co to znaczy “dokument wysokiej jakości”.</p>
 <p>Otóż, dokument powinien być tak sformatowany, aby umożliwić czytelnikowi całkowite skupienie się na tekście. Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwagę od tego co jest najważniejsze – od treści. Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych. Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.</p>
-<p>Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program <span class="math inline">\(\textrm{\LaTeX}\)</span> (wł. zestaw makr i instrukcji do obsługi programu <span class="math inline">\(\textrm{\TeX}\)</span>). Nazwę <span class="math inline">\(\textrm{\LaTeX}\)</span> czytamy <code>la-tech</code>. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.</p>
-<p>Pisanie w <span class="math inline">\(\textrm{\LaTeX u}\)</span> w pewnym stopniu przypomina pisanie w języku HTML. “Program” składa się z właściwego tekstu i zestawu instrukcji, które mówią o tym jak nasz tekst ma wyglądać po “kompilacji”. Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie <span class="math inline">\(\textrm{\LaTeX}\)</span> można tworzyć wiele różnych typów dokumentów. Na dzisiejszych zajęciach skorzystamy z podstawowego typu <code>article</code>.</p>
-<p>W celu poszerzenia wiedzy, autorzy polecają pozycję: <em>Nie za krótkie wprowadzenie do systemu <span class="math inline">\(\textrm{\LaTeX} 2_{\varepsilon}\)</span></em>.</p>
+<p>Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program <code>LaTeX</code> (wł. zestaw makr i instrukcji do obsługi programu <code>TeX</code>). Nazwę <code>LaTeX</code> czytamy <code>la-tech</code>. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.</p>
+<p>Pisanie w <code>LaTeXu</code> w pewnym stopniu przypomina pisanie w języku HTML. “Program” składa się z właściwego tekstu i zestawu instrukcji, które mówią o tym jak nasz tekst ma wyglądać po “kompilacji”. Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie <code>LaTeX</code> można tworzyć wiele różnych typów dokumentów. Na dzisiejszych zajęciach skorzystamy z podstawowego typu <code>article</code>.</p>
+<p>W celu poszerzenia wiedzy, autorzy polecają pozycję: <em>Nie za krótkie wprowadzenie do systemu <code>LaTeX</code><span class="math inline">\(2_{\varepsilon}\)</span></em>.</p>
 </div>
 <div id="pierwszy-dokument" class="section level1">
 <h1>Pierwszy dokument</h1>
-<p>Przejdziemy teraz do stworzenia pierwszego dokumentu w <span class="math inline">\(\textrm{\LaTeX u}\)</span>. Najpierw musimy zadeklarować klasę dokumentu. Robimy to za pomocą polecenia <code class="tex">\documentclass[opcje]{typ}</code>, które umożliwia nam wybranie typu dokumentu (<code>article</code>, <code>report</code>, <code>book</code>, <code>letter</code>) oraz dodatkowych opcji, np.</p>
+<p>Przejdziemy teraz do stworzenia pierwszego dokumentu w <code>LaTeXu</code>. Najpierw musimy zadeklarować klasę dokumentu. Robimy to za pomocą polecenia <code class="tex">\documentclass[opcje]{typ}</code>, które umożliwia nam wybranie typu dokumentu (<code>article</code>, <code>report</code>, <code>book</code>, <code>letter</code>) oraz dodatkowych opcji, np.</p>
 <ul>
 <li>rozmiaru pisma (<code>10pt</code>, <code>11pt</code>, itp.),</li>
 <li>rozmiaru papieru (<code>a4paper</code>, <code>letterpaper</code>),</li>
@@ -585,7 +585,7 @@ div.tocify {
 <p>zapisz go w pliku z rozszerzeniem <code>.tex</code>, np. <code>dokument.tex</code> i skompiluj za pomocą polecenia</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pdflatex</span> dokument.tex</code></pre></div>
 <p>Kompilator utworzy kilka plików, m. in. plik <code>dokument.pdf</code>, który zawiera nasz tekst.</p>
-<p>Otwórz plik <code>dokument.pdf</code> i naciesz oczy wynikiem swojej pracy. Ale co to? Okazuje się, że brakuje kilku liter! Podstawowe możliwości <span class="math inline">\(\textrm{\LaTeX a}\)</span> nie sięgają bowiem języka polskiego.</p>
+<p>Otwórz plik <code>dokument.pdf</code> i naciesz oczy wynikiem swojej pracy. Ale co to? Okazuje się, że brakuje kilku liter! Podstawowe możliwości <code>LaTeXa</code> nie sięgają bowiem języka polskiego.</p>
 <div id="pakiety" class="section level3">
 <h3>Pakiety</h3>
 <p>Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety. Przykładowo, kompletną obsługę języka polskiego włączamy dodając pakiety:</p>
@@ -612,7 +612,7 @@ div.tocify {
 <h1>Podział logiczny dokumentu</h1>
 <div id="sekcje" class="section level3">
 <h3>Sekcje</h3>
-<p>Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej. Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie. W <span class="math inline">\(\textrm{\LaTeX u}\)</span> podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:</p>
+<p>Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej. Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie. W <code>LaTeXu</code> podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:</p>
 <pre class="tex"><code>\section{Nazwa}
 \subsection{Nazwa}
 \subsubsection{Nazwa}
@@ -658,7 +658,7 @@ div.tocify {
 </div>
 <div id="wzory-i-rownania-matematyczne" class="section level1">
 <h1>Wzory i równania matematyczne</h1>
-<p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej). W <span class="math inline">\(\textrm{\LaTeX u}\)</span> istnieje kilka sposobów dodawania wyrażeń matematycznych. Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się <em>inline</em>)</p>
+<p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej). W <code>LaTeXu</code> istnieje kilka sposobów dodawania wyrażeń matematycznych. Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się <em>inline</em>)</p>
 <pre class="tex"><code>  wzór $E=mc^2$ powstał \ldots</code></pre>
 <p>Kolejny sposób to wykorzystanie otoczenia, które pozwala na wyświetlenie równania w osobnym wierszu, np.</p>
 <pre class="tex"><code>dla trójkąta prostokątnego zachodzi:
@@ -669,7 +669,7 @@ div.tocify {
 <pre class="tex"><code>\begin{equation}
   c ^ 2 = a ^ 2 + b ^ 2
 \end{equation}</code></pre>
-<p>Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię. Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w <span class="math inline">\(\textrm{\LaTeX u}\)</span> przy wpisywaniu równań matematycznych.</p>
+<p>Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię. Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w <code>LaTeXu</code> przy wpisywaniu równań matematycznych.</p>
 <p>Greckie litery są jednym z podstawowych elementów. Są dość łatwe do zapamiętania ze względu na zapis “fonetyczny”. Małe litery uzyskamy stosując:</p>
 <pre class="tex"><code>  \[
     \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
@@ -724,7 +724,7 @@ div.tocify {
 \]</code></pre>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>Zapisz poniższe równania wykorzystując system <span class="math inline">\(\textrm{\LaTeX}\)</span>. Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej. W sieci Internet można znaleźć listy dostępnych symboli. W naszej pracowni można skorzystać ze strony: <a href="https://www.sharelatex.com/learn/Mathematical_expressions" class="uri">https://www.sharelatex.com/learn/Mathematical_expressions</a></p>
+<p>Zapisz poniższe równania wykorzystując system <code>LaTeX</code>. Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej. W sieci Internet można znaleźć listy dostępnych symboli. W naszej pracowni można skorzystać ze strony: <a href="https://www.sharelatex.com/learn/Mathematical_expressions" class="uri">https://www.sharelatex.com/learn/Mathematical_expressions</a></p>
 <p>Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów. Przykładowo, symbol całki podwójnej <code class="tex">\iint</code> uzyskamy po dołączeniu pakietu <code class="tex">amsmath</code>.</p>
 <p><span class="math display">\[
   i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
@@ -765,7 +765,7 @@ c(x_n,x_0)
 </div>
 <div id="tabele" class="section level1">
 <h1>Tabele</h1>
-<p>Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie <span class="math inline">\(\textrm{\LaTeX}\)</span>. Pokarzemy najprostszy przykład z wykorzystaniem otoczenia <code>tabular</code>. Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości. Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania. Przeanalizuj poniższy kod:</p>
+<p>Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie <code>LaTeX</code>. Pokarzemy najprostszy przykład z wykorzystaniem otoczenia <code>tabular</code>. Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości. Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania. Przeanalizuj poniższy kod:</p>
 <pre class="tex"><code>  \begin{tabular}{l||c|c|c}
      &amp; symb. &amp; symb. &amp; symb. \\ \hline \hline
     symb. &amp; X &amp; O &amp; O \\ \hline
@@ -813,6 +813,30 @@ c(x_n,x_0)
     \includegraphics[width=.95\textwidth]{rysunek.pdf}
     \caption{Rysunek.}
 \end{figure}</code></pre>
+</div>
+<div id="odwoania" class="section level1">
+<h1>Odwołania</h1>
+<p>System <code>LaTeX</code> umożliwia wstawienie odwołania do niemal każdego obiektu posiadającego numer. Oznacza to, że możemy odwołać się do dowolnego rozdziału, równania, tabeli czy rysunku. Obiekt, do którego planujemy się odwołać oznaczamy za pomocą polecenia <code>\label{nazwa_obiektu}</code>. Natomiast w miejscu, w którym odwołujemy się, wstawiamy polecenie <code>\ref{nazwa_obiektu}</code>. Zamiast numeru obiektu, możemy podać stronę, na której znajduje się dany element. W tym celu stosujemy polecenie <code>\pageref{nazwa_obiektu}</code>. Stosując indywidualne nazwy obiektów, nie musimy martwić się o ewentualne zmiany numeracji wynikające z pracy nad tekstem. <code>LaTeX</code> zajmie się koniecznymi modyfikacjami.<br />
+Przykładowo, aby odwołać się do rozdziału piszemy:</p>
+<pre class="tex"><code>\section{Rodzaje sznurówek}\label{sznu}
+W rozdziale \ref{sznu} opiszemy problem doboru sznurówek.</code></pre>
+<p>W celu odwołania się do tabeli:</p>
+<pre class="tex"><code>\begin{table}[h]
+  \begin{tabular}{c|c|c}
+    X &amp; O &amp; O \\ \hline
+    O &amp; X &amp; X \\ \hline
+    X &amp; O &amp; X \\
+  \end{tabular}
+  \caption{Kółko i krzyżyk.}
+  \label{kik}
+\end{table}
+
+Tabela \ref{kik} zawiera przykładową partię w kółko i krzyżyk.
+Znajduje się ona na stronie \pageref{kik}.</code></pre>
+<div id="cwiczenia-2" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Stwórz odwołania do pozostałych obiektów użytych w trakcie ćwiczeń (równań i rysunków).</p>
+</div>
 </div>
 
 <!-- Dummy footer -->
