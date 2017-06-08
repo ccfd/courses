@@ -107,11 +107,18 @@ text(0.1,cumsum(tms[,4]),"Barrier", adj=c(0,-0.2))
 
 Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z $a$. Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:
 ```c++
-MPI_Reduce(source, destination, count, datatype, operation, root,
-           MPI_COMM_WORLD);
+MPI_Reduce(
+    void* source,
+    void* destination,
+    int count,
+    MPI_Datatype datatype,
+    MPI_Op operation,
+    int root,
+    MPI_Comm communicator)
+    
 ```
 - `source` to **wskaźnik** do danych, które mamy np. zsumować.
-- `destination` to wskaźnik do miejsca, gdzie ma być umieszczony wynik.
+- `destination` to **wskaźnik** do miejsca, gdzie ma być umieszczony wynik.
 - `count` to liczba elementów danych do zsumowania. Czyli np. `1` jeśli dane to jedna liczba.
 - `datatype` to typ danych, które sumujemy: `MPI_INT` lub `MPI_DOUBLE`.
 - `operation` to operacja, którą wykonujemy, np: `MPI_SUM` lub `MPI_MAX`.
@@ -121,9 +128,14 @@ MPI_Reduce(source, destination, count, datatype, operation, root,
 Użyj tej funkcji aby obliczyć globalne statystyki, a następnie wyświetl je (pamietaj, że mają one sens tylko na węźle `root`). Weź pod uwagę, że globalne `n` jest inne niż `n` lokalne.
 
 Bliźniaczą do funkcji `MPI_Reduce` jest funkcja `MPI_Allreduce`. Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu `root`.
-```c++
-MPI_Allreduce(source, destination, count, datatype, operation,
-              MPI_COMM_WORLD);
+```c++              
+MPI_Allreduce(
+    void* source,
+    void* destination,
+    int count,
+    MPI_Datatype datatype,
+    MPI_Op operation,
+    MPI_Comm communicator)
 ```
 
 ### Ćwiczenie \*
