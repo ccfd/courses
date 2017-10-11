@@ -559,33 +559,29 @@ div.tocify {
 
 <div id="funkcje" class="section level1">
 <h1>Funkcje</h1>
-<p>Pewne zestawy operacji, zależne od zmiennych, możemy zebrać w grupki (funkcje) i wywoływać jak <code>circle</code> i <code>line</code>. Przykład z poprzedniego paragrafu możemy zamknąć w funkcji:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> obrazek(<span class="dt">int</span> h, <span class="dt">int</span> r)
-{
-    line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, h);
-    line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span>*r, h);
-    circle( <span class="dv">10</span>+r, h, r);
+<p>Pewne zestawy operacji, przykładowo zależne od zmiennych, możemy zebrać w grupy (funkcje) i wywoływać tak jak <code>circle()</code> i <code>line()</code>. Przykład z poprzedniego ćwiczenia możemy zamknąć w funkcji:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> obrazek(<span class="dt">int</span> h, <span class="dt">int</span> r) {
+  line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">0</span>, h);
+  line( <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">2</span> * r, h);
+  circle( <span class="dv">10</span> + r, h, r);
 }</code></pre></div>
-<p>Pierwsza linia deklaruje funkcję, która jest zależna od dwóch parametrów: <code>h,r</code>. Taką funkcję, możemy wywołać dla przykładu tak: <code>obrazek(100,50);</code>. Spowoduje to wykonanie powyższych trzech operacji przy <span class="math inline">\(h=100\)</span> i <span class="math inline">\(r=50\)</span>.</p>
-<p><em>Pamiętaj:</em> Nową funkcję napisz przed funkcją <code>main</code></p>
+<p>Pierwsza linia deklaruje funkcję, która jest zależna od dwóch parametrów: <code>h</code> i <code>r</code>. Taką funkcję, możemy przykładowo wywołać tak: <code>obrazek(100, 50);</code>. Spowoduje to wykonanie powyższych trzech operacji dla <span class="math inline">\(h = 100\)</span> i <span class="math inline">\(r = 50\)</span>.</p>
+<p><em>Pamiętaj:</em> Nową funkcję napisz przed funkcją <code>main</code>.</p>
 <p>W funkcji <code>main</code> wywołujemy funkcję <code>obrazek</code>, tak jak <code>circle</code> czy <code>line</code>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
-{
-    graphics(<span class="dv">200</span>,<span class="dv">200</span>);
-    obrazek(<span class="dv">100</span>,<span class="dv">50</span>);    
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
+    graphics(<span class="dv">200</span>, <span class="dv">200</span>);
+    obrazek(<span class="dv">100</span>, <span class="dv">50</span>);   
     wait();
 }</code></pre></div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Napisz i wywołaj dowolne dwie z poniższych funkcji:</p>
 <ul>
-<li><code>prostokat(x,y,a,b)</code> — Narysuje prostokąt o bokach <code>a</code> i <code>b</code> i środku w (<code>x</code>, <code>y</code>)</li>
-<li><code>kwadrat(x,y,r)</code> — Narysuje kwadrat o boku <span class="math inline">\(2r\)</span> i wpisane koło o promieniu <span class="math inline">\(r\)</span>.</li>
-<li><code>ludzik(x,y,h)</code> — Narysuje ludzika wysokości <code>h</code> i środku głowy w (<code>x</code>, <code>y</code>)</li>
-<li><code>olimpiada(x,y)</code> — Narysuje koła olimpijskie o środku w (<code>x</code>, <code>y</code>)</li>
-<li><ul>
-<li><code>okno(a)</code> — Używając funkcji do rysowania prostokąta narysuje okno o boku <span class="math inline">\(a\)</span>.</li>
-</ul></li>
+<li><code>prostokat(x, y, a, b)</code> — Rysuje prostokąt o bokach <span class="math inline">\(a\)</span> i <span class="math inline">\(b\)</span> i środku w <span class="math inline">\((x, y)\)</span>.</li>
+<li><code>kwadrat(x, y, r)</code> — Rysuje kwadrat o boku <span class="math inline">\(2r\)</span>, środku w <span class="math inline">\((x, y)\)</span> i wpisane koło o promieniu <span class="math inline">\(r\)</span>.</li>
+<li><code>ludzik(x, y, h)</code> — Rysuje ludzika o wysokości <span class="math inline">\(h\)</span> i środku głowy w <span class="math inline">\((x, y)\)</span>.</li>
+<li><code>olimpiada(x,y)</code> — Rysuje koła olimpijskie o środku w <span class="math inline">\((x, y)\)</span>.</li>
+<li><code>okno(a)</code> — Używając funkcji do rysowania prostokąta rysuje okno o boku <span class="math inline">\(a\)</span>.</li>
 </ul>
 </div>
 </div>
@@ -594,43 +590,48 @@ div.tocify {
 <p>Omówmy pewne rzeczy trochę dokładniej.</p>
 <div id="typy" class="section level2">
 <h2>Typy</h2>
-<p>W C i C++ <em>musimy</em> deklarować zmienne, tzn. powiedzieć, jakich będziemy używać zmiennych i jakich one będą typów. Deklaracje piszemy ‘typ zmienna1,zmienna2, …;’. Najważniejsze typy to: - <code>int</code> — Liczba całkowita (32-bitowa, od <span class="math inline">\(-2^{31}\)</span> do <span class="math inline">\(2^{31}\)</span>) - <code>float</code> — Liczba zmienno-przecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity) - <code>double</code> — Liczba zmienno-przecinkowa. Ma 16 cyfr znaczących (64-bity)</p>
+<p>W C i C++ <em>musimy</em> deklarować zmienne, tzn. musimy powiedzieć, jakich będziemy używać zmiennych i jakich będą one typów. Deklaracje piszemy <code>typ zmienna1, zmienna2, ...;</code>. Najważniejsze typy to:</p>
+<ul>
+<li><code>int</code> — Liczba całkowita (32-bitowa, od <span class="math inline">\(-2^{31}\)</span> do <span class="math inline">\(2^{31}\)</span>).</li>
+<li><code>float</code> — Liczba zmiennoprzecinkowa. Może opisywać ułamki dziesiętne z ok. 7 cyframi znaczącymi (32-bity)</li>
+<li><code>double</code> — Liczba zmiennoprzecinkowa. Ma 16 cyfr znaczących (64-bity).</li>
+</ul>
 <p><em>Pamiętaj:</em> Jeśli używasz liczb rzeczywistych (a nie całkowitych), używaj typu <code>double.</code></p>
 <p>Pierwszym przykładem niech będzie:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
 a = <span class="dv">0</span>;
-<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.</span><span class="dv">14</span>)
-{
+
+<span class="kw">while</span> (a &lt; <span class="dv">2</span> * <span class="fl">3.</span><span class="dv">14</span>) {
     circle(a * <span class="dv">100</span>, sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
     a = a + <span class="fl">0.</span><span class="bn">001</span>;
 }</code></pre></div>
-<p>Ten program narysuje wykres sinusa przeskalowany o 100, za pomocą kółek o promieniu 3.</p>
+<p>Program ten, za pomocą kółek o promieniu 3, narysuje wykres funkcji sinus przeskalowany o 100.</p>
 </div>
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań:</p>
 <ul>
-<li>Narysuj wykres <span class="math inline">\(a^2\)</span>.</li>
-<li>Narysuj punkty o współrzędnych <span class="math inline">\(x=100\sin{a}+100\)</span> i <span class="math inline">\(y=100\cos{a}+100\)</span>.</li>
-<li>Narysuj punkty o współrzędnych <span class="math inline">\(x=100\sin{a}\cos{4a}+100\)</span> i <span class="math inline">\(y=100\cos{a}\cos{4a}+100\)</span>.</li>
-<li>Narysuj punkty o współrzędnych <span class="math inline">\(x=100r\sin{a}+100\)</span> i <span class="math inline">\(y=100r\cos{a}+100\)</span>, gdzie <span class="math inline">\(r = \frac{\cos{a}+2}{3}\)</span> (niech <span class="math inline">\(r\)</span> będzie kolejną zmienną).</li>
+<li>Narysuj wykres <span class="math inline">\(a ^ 2\)</span>.</li>
+<li>Narysuj punkty o współrzędnych <span class="math inline">\(x = 100\cdot\sin{a} + 100\)</span> i <span class="math inline">\(y=100\cdot\cos{a} + 100\)</span>.</li>
+<li>Narysuj punkty o współrzędnych <span class="math inline">\(x = 100\cdot\sin{a}\cos{4a} + 100\)</span> i <span class="math inline">\(y = 100\cos{a}\cos{4a} + 100\)</span>.</li>
+<li>Narysuj punkty o współrzędnych <span class="math inline">\(x = 100\cdot r\cdot\sin{a} + 100\)</span> i <span class="math inline">\(y = 100\cdot r\cdot\cos{a} + 100\)</span>, gdzie <span class="math inline">\(r = \frac{\cos{a} + 2}{3}\)</span> (niech <span class="math inline">\(r\)</span> będzie kolejną zmienną).</li>
 </ul>
 </div>
 <div id="typy-puapki" class="section level2">
 <h2>Typy — pułapki</h2>
-<p>Ważne, by pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania jak dla liczb całkowitych. Dlatego <code>1/4</code> da jako wynik 0! Bo wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać <code>1.0/4</code> lub jeszcze lepiej <code>1.0/4.0</code>. Możemy także bezpośrednio ‘zrzutować’ zmienne z <code>int</code> na <code>double</code> pisząc: <code>(double) zmienna</code>.</p>
-<p><em>Pamiętaj:</em> Wszędzie, gdzie robisz obliczenia, używaj <code>double</code>. Unikaj mieszania liczb całkowitych i zmienno-przecinkowych. Nigdy nie pisz ułamków jako 1/3</p>
+<p>Ważne, aby pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania tak jak dla liczb całkowitych. Dlatego <code>1/4</code> da jako wynik 0! Wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać <code>1.0/4</code> lub jeszcze lepiej <code>1.0/4.0</code>. Możemy także bezpośrednio ‘rzutować’ zmienną z typu <code>int</code> na typ <code>double</code> pisząc: <code>(double) zmienna</code>.</p>
+<p><em>Pamiętaj:</em> Wszędzie, gdzie robisz obliczenia, używaj <code>double</code>. Unikaj mieszania liczb całkowitych i zmiennoprzecinkowych. Nigdy nie pisz ułamków jako 1/3!</p>
 </div>
 <div id="cwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Przeanalizuj (i przetestuj) wynik tego programu. Które linie nie dadzą pożądanego efektu?</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
 a = <span class="dv">0</span>;
-<span class="kw">while</span> (a &lt; <span class="dv">2</span>)
-{
-    circle(a * <span class="dv">100</span>, sin( a * <span class="fl">3.</span><span class="dv">14</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
-    circle(a * <span class="dv">100</span>, sin( a * (<span class="dv">314</span> / <span class="dv">100</span>) ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
-    circle(a * <span class="dv">100</span>, sin( (a * <span class="dv">314</span>) / <span class="dv">100</span> ) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+
+<span class="kw">while</span> (a &lt; <span class="dv">2</span>) {
+    circle(a * <span class="dv">100</span>, sin(a * <span class="fl">3.</span><span class="dv">14</span>) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    circle(a * <span class="dv">100</span>, sin(a * (<span class="dv">314</span> / <span class="dv">100</span>)) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
+    circle(a * <span class="dv">100</span>, sin((a * <span class="dv">314</span>) / <span class="dv">100</span>) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">3</span>);
     a = a + <span class="fl">0.</span><span class="bn">001</span>;
 }</code></pre></div>
 </div>
@@ -638,78 +639,77 @@ a = <span class="dv">0</span>;
 <div id="funkcje-po-raz-drugi" class="section level1">
 <h1>Funkcje po raz drugi</h1>
 <p>Zestawy operacji, które powtarzamy w programie wielokrotnie, możemy zamknąć w funkcjach. Taka funkcja ,,połyka’’ parametry i coś z nimi robi. Dla przykładu:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> kreski(<span class="dt">int</span> n, <span class="dt">double</span> r)
-{
-    <span class="dt">int</span> i;
-    i = <span class="dv">0</span>;
-    <span class="kw">while</span> (i &lt; n)
-    {
-        line(i, <span class="dv">0</span>, i, r * i);
-        i = i + <span class="dv">1</span>;
-    }
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> kreski(<span class="dt">int</span> n, <span class="dt">double</span> r) {
+  <span class="dt">int</span> i;
+  i = <span class="dv">0</span>;
+  
+  <span class="kw">while</span> (i &lt; n) {
+    line(i, <span class="dv">0</span>, i, r * i);
+    i = i + <span class="dv">1</span>;
+  }
 }</code></pre></div>
 <p>W pierwszej linii mówimy:</p>
 <ul>
-<li>jak nazywa się funkcja — <code>kreski</code></li>
-<li>jakie ma parametry — <code>n</code> typu <code>int</code> i <code>r</code> typu <code>double</code></li>
-<li>jakiego typu zwraca wartość —w naszym wypadku <code>void</code> oznacza, że nic nie zwraca</li>
+<li>jak nazywa się funkcja — <code>kreski</code>,</li>
+<li>jakie ma parametry — <code>n</code> typu <code>int</code> i <code>r</code> typu <code>double</code>,</li>
+<li>jakiego typu zwraca wartość — w naszym wypadku <code>void</code> oznacza, że nic nie zwraca.</li>
 </ul>
-<p>Gdy gdziekolwiek w funkcji <code>main</code> użyjemy wywołania <code>kreski( 20, 0.4);</code> jako efekt działania funkcji otrzymamy 20 pionowych kresek o długości od <span class="math inline">\(0\)</span> do <span class="math inline">\(0.4\cdot 19\)</span> (dlaczego <span class="math inline">\(19\)</span> a nie <span class="math inline">\(20\)</span>?).</p>
+<p>Gdy gdziekolwiek w funkcji <code>main</code> użyjemy wywołania <code>kreski(20, 0.4);</code> jako efekt działania funkcji otrzymamy 20 pionowych kresek o długości od <span class="math inline">\(0\)</span> do <span class="math inline">\(0.4\cdot 19\)</span> (dlaczego <span class="math inline">\(19\)</span> a nie <span class="math inline">\(20\)</span>?).</p>
 <p>Taką funkcję możemy wykonać wielokrotnie dla różnych wartości <span class="math inline">\(n\)</span> i <span class="math inline">\(r\)</span>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
-{
-    graphics(<span class="dv">200</span>,<span class="dv">200</span>);
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
+  graphics(<span class="dv">200</span>,<span class="dv">200</span>);
 
-    kreski( <span class="dv">10</span>, <span class="fl">1.</span><span class="bn">000</span>); 
-    kreski( <span class="dv">20</span>, <span class="fl">0.</span><span class="dv">500</span>); 
-    kreski( <span class="dv">30</span>, <span class="fl">0.</span><span class="dv">333</span>); 
-    kreski( <span class="dv">40</span>, <span class="fl">0.</span><span class="dv">250</span>); 
-    
-    wait();
+  kreski(<span class="dv">10</span>, <span class="fl">1.</span><span class="bn">000</span>);    
+  kreski(<span class="dv">20</span>, <span class="fl">0.</span><span class="dv">500</span>);    
+  kreski(<span class="dv">30</span>, <span class="fl">0.</span><span class="dv">333</span>);    
+  kreski(<span class="dv">40</span>, <span class="fl">0.</span><span class="dv">250</span>);    
+
+  wait();
 }</code></pre></div>
 <div id="cwiczenia-3" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>Napisz i wywołaj dwie sposród niżej wymienionych funkcji:</p>
+<p>Napisz i wywołaj dwie spośród niżej wymienionych funkcji:</p>
 <ul>
-<li>Funkcję, która narysuje ludzika wysokości <code>h</code> i środku głowy w (<code>x</code>, <code>y</code>).</li>
-<li>Funkcję, która w pętli narysuje tłum (używając poprzedniej funkcji).</li>
-<li>Funkcję, która narysuje <code>n</code> kółek w punkcie (<code>x</code>,<code>y</code>) o coraz większych promieniach.</li>
-<li><ul>
-<li>Funkcję, która narysuje wielokąt foremny o <code>n</code> bokach.</li>
-</ul></li>
+<li>Funkcja, która narysuje ludzika wysokości <span class="math inline">\(h\)</span> i środku głowy w <span class="math inline">\((x, y)\)</span>.</li>
+<li>Funkcja, która w pętli narysuje tłum (używając poprzedniej funkcji).</li>
+<li>Funkcja, która narysuje <span class="math inline">\(n\)</span> kółek w punkcie <span class="math inline">\((x, y)\)</span> o coraz większych promieniach.</li>
+<li>Funkcję, która narysuje wielokąt foremny o <span class="math inline">\(n\)</span> bokach.</li>
 </ul>
 </div>
 </div>
 <div id="instrukcja-warunkowa" class="section level1">
 <h1>Instrukcja warunkowa</h1>
-<p>Kolejnym bloczkiem składowym programowania, jest instrukcja warunkowa. Sprawdza ona warunek i wykonuje pewną część kodu, tylko gdy warunek jest spełniony.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">x = <span class="fl">2.</span><span class="dv">0</span>;
-<span class="kw">if</span> ( x &gt; <span class="dv">0</span> ) {
-    y = sqrt(x);
+<p>Kolejnym bloczkiem składowym programowania, jest instrukcja warunkowa. Sprawdza ona warunek i wykonuje pewną część kodu, gdy tylko warunek jest spełniony.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x, y;
+x = <span class="fl">2.</span><span class="dv">0</span>;
+
+<span class="kw">if</span> (x &gt; <span class="dv">0</span>) {
+  y = sqrt(x);
 } <span class="kw">else</span> {
-    y = <span class="dv">0</span>;
+  y = <span class="dv">0</span>;
 }</code></pre></div>
-<p>Instrukcja ta sprawdza czy <span class="math inline">\(x &gt; 0\)</span> i jeśli jest to prawdą, to wstawia <span class="math inline">\(\sqrt{x}\)</span> do zmiennej <span class="math inline">\(y\)</span>. Gdy warunek nie jest spełniony, wykonywana jest część po <code>else</code>, więc wstawiane jest <span class="math inline">\(0\)</span> do <span class="math inline">\(y\)</span>. W ten sposób możemy zabezpieczyć się na przykład przed niemożliwymi obliczeniami, albo uzależnić działanie programu od jakiś wartości.</p>
+<p>Instrukcje te sprawdzają czy <span class="math inline">\(x &gt; 0\)</span> i jeśli jest to prawdą, wstawiają <span class="math inline">\(\sqrt{x}\)</span> do zmiennej <span class="math inline">\(y\)</span>. Gdy warunek nie jest spełniony, wykonywana jest część po <code>else</code>, więc wstawiane jest <span class="math inline">\(0\)</span> do <span class="math inline">\(y\)</span>. W ten sposób możemy zabezpieczyć się na przykład przed niemożliwymi obliczeniami, albo uzależnić działanie programu od jakiś wartości.</p>
 <p>Zobaczmy prosty przykład:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a;
 a = <span class="dv">0</span>;
-<span class="kw">while</span> (a &lt; <span class="dv">2</span>*<span class="fl">3.</span><span class="dv">14</span>)
-{
-    <span class="kw">if</span> (a &lt; <span class="dv">2</span>) {
-        circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">5</span>);
-    } <span class="kw">else</span> {
-        circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">10</span>);
-    }
-    a = a + <span class="fl">0.</span><span class="bn">001</span>;
+
+<span class="kw">while</span> (a &lt; <span class="dv">2</span> * <span class="fl">3.</span><span class="dv">14</span>) {
+  <span class="kw">if</span> (a &lt; <span class="dv">2</span>) {
+    circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">5</span>);
+  } <span class="kw">else</span> {
+    circle(sin(a) * <span class="dv">100</span> + <span class="dv">100</span>, cos(a) * <span class="dv">100</span> + <span class="dv">100</span>, <span class="dv">10</span>);
+  }
+  
+  a = a + <span class="fl">0.</span><span class="bn">001</span>;
 }</code></pre></div>
-<p>Gdyby nie instrukcja <code>if</code>, ten program narysował by koło z małych kółek. Teraz, gdy kąt <code>a</code> przekroczy <span class="math inline">\(2\)</span> radiany zmieni promień kółeczka z <span class="math inline">\(5\)</span> na <span class="math inline">\(10\)</span></p>
+<p>Gdyby nie instrukcja <code>if</code>, ten program narysował by koło z małych kółek. Teraz, gdy kąt <code>a</code> przekroczy <span class="math inline">\(2\)</span> radiany, zmieni promień kółeczka z <span class="math inline">\(5\)</span> na <span class="math inline">\(10\)</span></p>
 <div id="cwiczenia-4" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Napisz program który:</p>
 <ul>
-<li>Dla parametru <span class="math inline">\(w\)</span> rysuje wykres <span class="math inline">\(x^2-w\)</span>, przeskalowany o 100 w obu kierunkach i przesunięty na środek (patrz poprzedni przykład).</li>
-<li>Wyrysuje większe kółka w miejscach przecięcia wykresu z osią <span class="math inline">\(x\)</span> (<em>jeżeli</em> przecina).</li>
-<li>Zmodyfikuj program by działał dla dowolnych <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> i funkcji <span class="math inline">\(ax^2+bx+c\)</span>.</li>
+<li>Dla parametru <span class="math inline">\(w\)</span> rysuje wykres <span class="math inline">\(x^2 - w\)</span>, przeskalowany o 100 w obu kierunkach i przesunięty na środek okna (patrz poprzedni przykład).</li>
+<li>Narysuje większe kółka w miejscach przecięcia wykresu z osią <span class="math inline">\(x\)</span> (<em>jeżeli</em> przecina).</li>
+<li>Zmodyfikuj program aby działał dla dowolnych <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> i funkcji <span class="math inline">\(a\cdot x^2 + b\cdot x+c\)</span>.</li>
 </ul>
 </div>
 </div>
