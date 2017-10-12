@@ -559,36 +559,38 @@ div.tocify {
 
 <div id="instrukcje-wejsciawyjscia" class="section level1">
 <h1>Instrukcje wejścia/wyjścia</h1>
-<p>Praktyczny program powinien mieć możliwość interaktywnej komunikacji z użytkownikiem. Do drukowania informacji dla użytkownika służy najczęściej standardowe wyjście (monitor). W nowym projekcie pakietu MS Visual Studio (poproś prowadzącego, aby pokazał, jak stworzyć <strong>pusty</strong> projekt), napisz program, który wydrukuje tekst <em>Witaj na trzecim laboratorium!</em></p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
-{
+<p>Praktyczny program powinien mieć możliwość interaktywnej komunikacji z użytkownikiem. W celu drukowania informacji dla użytkownika często wykorzystywane jest standardowe wyjście (monitor).</p>
+<p>Utwórz nowy projekt pakietu MS Visual Studio i napisz program, który wydrukuje tekst <em>Witaj na trzecim laboratorium!</em></p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
    printf(<span class="st">&quot;Witaj na trzecim laboratorium!&quot;</span>);
 }</code></pre></div>
-<p>Instrukcja <code>printf</code> służy do wypisywania tekstu na ekran. Jako argument przyjmuje zmienną typu tekstowego. Do formatowania tekstu służą <em>sekwencje formatujące</em>, które pozwalają wprowadzić znak nowej linii, tabulacji itp. Umieszczona wewnątrz tekstu sekwencja znaków:</p>
+<p>Funkcja <code>printf()</code> służy do wypisywania tekstu na ekran. Jako argument przyjmuje sformatowany strumień tekstowy. Do formatowania tekstu służą <em>sekwencje formatujące</em>, które pozwalają wprowadzić znak nowej linii, tabulacji itp. Przykładowo, umieszczona wewnątrz tekstu sekwencja znaków:</p>
 <ul>
 <li><code>&quot;\n&quot;</code> — wprowadza znak nowej linii,</li>
-<li><code>&quot;\t&quot;</code> — wprowadzan znak tabulacji.</li>
+<li><code>&quot;\t&quot;</code> — wprowadza znak tabulacji.</li>
 </ul>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>Używając <strong>jednej</strong> instrukcji <code>printf</code> oraz odpowiednich sekwencji formatujących, wygeneruj tekst identyczny z poniższym:</p>
+<p>Używając <strong>pojedynczej</strong> funkcji <code>printf()</code> oraz odpowiednich sekwencji formatujących, wygeneruj tekst identyczny z poniższym:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">To jest pierwsze zdanie w mojej instrukcji.
 To jest tuz po znaku nowej linii.      Zas ten fragment
                                        oddzielony jest znakiem
                                        tabulacji!
-Za to w ponizszej linii wszystkie liczby oddzielono tabulatorami.
+W ponizszej linii wszystkie liczby oddzielono tabulatorami:
 <span class="fl">5.</span><span class="dv">2</span>    <span class="fl">3.</span><span class="dv">14</span>    <span class="dv">-7</span>    <span class="dv">8</span></code></pre></div>
 </div>
 <div id="uwaga" class="section level2">
-<h2>Uwaga</h2>
-<p>Oczywiście wprowadzenie długiego tekstu (np. kilku komunikatów dla użytkownika) w jednej instrukcji <code>printf</code> jest nonsensem. Spróbuj osiągnąć ten sam efekt, co powyżej, ale tym razem użyj osobnej instrukcji <code>printf</code> dla każdego ze zdań. Czy coś cię zaskakuje? Czy nowa instrukcja <code>printf</code> wymusza przejście do nowej linii?</p>
-<p>W instrukcji <code>printf</code> nie używaj polskich znaków diakrytycznych. Da się to zrobić, jednak wymaga pewnych komplikacji i w prostych programach nie jest praktykowane. Jeśli bardzo cię męczy ciekawość, w wolnej chwili poszukaj rozwiązań w książkach, bądź internecie.</p>
+<h2>Uwaga!</h2>
+<p>Wprowadzenie długiego tekstu (np. kilku komunikatów dla użytkownika) w jednej instrukcji <code>printf</code> jest nieeleganckie. Spróbuj osiągnąć ten sam efekt, co powyżej, ale tym razem użyj osobnej instrukcji <code>printf</code> dla każdego ze zdań. Czy coś cię zaskakuje? Czy nowa instrukcja <code>printf</code> wymusza przejście do nowej linii?</p>
+<p>W instrukcji <code>printf</code> nie używaj polskich znaków diakrytycznych. Da się to zrobić, jednak wymaga dodatkowych komplikacji i w prostych programach nie jest praktykowane. Jeśli bardzo cię męczy ciekawość, w wolnej chwili poszukaj rozwiązań w książkach, bądź Internecie.</p>
 </div>
 <div id="dalej-o-printf" class="section level2">
-<h2>Dalej o <code>printf</code></h2>
-<p>Pewne znaki specjalne są w języku C zarezerwowane na potrzeby konkretnych instrukcji. Wiele z nich poznasz wkrótce. Dobrymi przykładami takich znaków są % czy backslash . Nie mogą one być użyte wprost, gdyż mają swoje funkcje w języku C. Jeśli chcesz, by się pojawiły na ekranie, musisz poprzedzić je dodatkowym znakiem . - Dopisz do swojego programu intstrukcję, która wydrukuje następujący tekst:</p>
+<h2>Dalej o <code>printf()</code></h2>
+<p>Pewne znaki specjalne są w języku C zarezerwowane na potrzeby konkretnych instrukcji. Wiele z nich poznasz wkrótce. Dobrymi przykładami takich znaków są ,,%‘’ czy backslash ,,\’’. Nie mogą one być użyte wprost, gdyż mają swoje funkcje w języku C. Jeśli chcesz, aby się pojawiły na ekranie, musisz poprzedzić je dodatkowym znakiem \.</p>
+<p>Dopisz do swojego programu instrukcję, która wydrukuje następujący tekst:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dv">82</span>% dysku C:\ jest w uzyciu!</code></pre></div>
-<p>Program o znaczeniu inżynierskim musi jednak mieć możliwość drukowania na ekran liczb i wyników przeprowadzonych działań. - Przepisz do funkcji main następujące instrukcje:</p>
+<p>Program o znaczeniu inżynierskim musi mieć możliwość drukowania na ekranie liczb i wyników przeprowadzonych działań.</p>
+<p>Przepisz do funkcji main następujące instrukcje:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a = <span class="dv">5</span>;
 <span class="dt">double</span> c = <span class="fl">8.</span><span class="dv">2</span>;
 
@@ -597,24 +599,29 @@ printf(<span class="st">&quot;Zmienna a ma wartosc </span><span class="ch">%d</s
 c = c + <span class="fl">7.</span><span class="dv">5</span>;
 c -= a;
 a = <span class="dv">1</span>;
-c -= <span class="dv">2</span>*a;
+c -= <span class="dv">2</span> * a;
 
 printf(<span class="st">&quot;Po dodaniu do zmienej c wartosci 7.5, odjeciu a</span>
         oraz odjeciu dwukrotnosci zmodyfikowanej
         wartosci a zmienna c = %lf\n<span class="st">&quot;, c);</span></code></pre></div>
 <ul>
 <li>Przeanalizuj dokładnie kod. Pojawiają się w nim nowe instrukcje arytmetyczne!</li>
-<li>Między wszystkimi instrukcjami arytmetycznymi dodaj po jednej linijce kodu, który wydrukuje na ekran bieżącą wartość przechowywaną w zmiennych a i c. Pojawiły się też nowe elementy. Do drukowania wartości przechowywanych w zmiennych służą <em>sekwencje formatujące</em> lub inaczej <em>specyfikatory formatu</em>. Są one następujące:</li>
+<li><p>Między wszystkimi instrukcjami arytmetycznymi dodaj po jednej linijce kodu, który wydrukuje na ekran bieżącą wartość przechowywaną w zmiennych a i c. Pojawiły się też nowe elementy. Do drukowania wartości przechowywanych w zmiennych służą <em>sekwencje formatujące</em> lub inaczej <em>specyfikatory formatu</em>. Są one następujące:</p>
+<ul>
 <li>%lf — dla zmiennych typu <code>double</code></li>
 <li>%d — dla zmiennych typu <code>int</code></li>
-<li>%f — dla zmiennych typu <code>float</code> Dodatkowo, dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych i ogromnych wartościach użyj poniższych sekwencji i zobacz, jaki będzie efekt działania.</li>
+<li>%f — dla zmiennych typu <code>float</code></li>
+</ul></li>
+</ul>
+<p>Dodatkowo, dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych i ogromnych wartościach użyj poniższych sekwencji i zobacz, jaki będzie efekt działania.</p>
+<ul>
 <li>%lg, %e, %.2lf, %.4lf (dla zmiennych typu <code>double</code>),</li>
 <li>%.3f (dla zmiennych typu <code>float</code>).</li>
 </ul>
 </div>
 <div id="czytanie-z-klawiatury" class="section level2">
 <h2>Czytanie z klawiatury</h2>
-<p>Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest instrukcja <code>scanf</code>. Przykłady jej użycia wyglądają następująco:</p>
+<p>Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest funkcja <code>scanf()</code>. Przykłady jej użycia wyglądają następująco:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a;
 scanf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a);
 
@@ -624,61 +631,64 @@ scanf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st">
 <span class="dt">int</span> b, d;
 <span class="dt">double</span> g, h;
 scanf(<span class="st">&quot;</span><span class="ch">%lf%d%d%lf</span><span class="st">&quot;</span>, &amp;g, &amp;d, &amp;b, &amp;h);</code></pre></div>
-<p><strong>Uwaga:</strong> Zwróć szczególną uwagę na znak &amp; występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten <strong>nigdy</strong> nie występuje w intrukcji <code>printf</code>, za to zawsze jest potrzebny w instrukcji <code>scanf</code>.\ Zauważ również, że używając jednej instrukcji <code>scanf</code> możesz wczytać wiele liczb. Sekwencje formatujące nie muszą być oddzielone spacjami, za to wartości muszą być podane z klawiatury w odpowiedniej kolejności - takiej, w jakiej zmienne na liście argumentów, do których te wartości mają trafić.</p>
+<p><strong>Uwaga:</strong> Zwróć szczególną uwagę na znak ,,&amp;’’ występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten <strong>nigdy</strong> nie występuje w instrukcji <code>printf</code>, za to zawsze jest potrzebny w instrukcji <code>scanf</code>.</p>
+<p>Zauważ również, że używając jednej instrukcji <code>scanf</code> możesz wczytać wiele liczb. Sekwencje formatujące nie muszą być oddzielone spacjami, za to wartości muszą być podane z klawiatury w odpowiedniej kolejności - takiej, w jakiej zmienne na liście argumentów, do których te wartości mają trafić.</p>
 </div>
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie. Odejmowanie i dzielenie oczywiście nie jest przemienne. Policz zatem każdą z możliwych różnic czy ilorazów. Wydrukuj wszystkie wyniki na ekran.</p>
+<p>Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie. Odejmowanie i dzielenie oczywiście nie jest przemienne. Policz zatem każdą z możliwych różnic i ilorazów. Wydrukuj wszystkie wyniki na ekran.</p>
 </div>
 </div>
 <div id="jeszcze-troche-o-funkcjach" class="section level1">
 <h1>Jeszcze trochę o funkcjach</h1>
-<p>Funkcje nie tylko grupują pewne logicznie wydzielone bloki instrukcji, których używamy wielokrotnie (jak funkcja rysująca ludzika z kółek i kresek, bądź funkcja rysująca tłum z użyciem funkcji <code>ludzik</code>). Do tej pory ich deklaracje i definicje wyglądały odpowiednio tak:</p>
+<p>Do tej pory, funkcje deklarowaliśmy i definiowaliśmy w tym samym samym miejscu (przed funkcją <code>main()</code>). W przypadku gdy kod programu jest długi lub ma być wykorzystany przez innego użytkownika rozdziela się deklarację od definicji. Instrukcja:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2);</code></pre></div>
+<p>jest deklaracją (zauważ, że kończy się średnikiem).</p>
+<p>Instrukcja:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2) {
+  <span class="co">// Tu znajduje sie cialo funkcji.</span>
+}</code></pre></div>
+<p>jest definicją i może być umieszczona także za funkcją <code>main()</code>.</p>
+<p>Funkcje nie tylko grupują pewne logicznie wydzielone bloki instrukcji, których używamy wielokrotnie (jak funkcja rysująca ludzika z kółek i kresek, bądź funkcja rysująca tłum z użyciem funkcji <code>ludzik</code>). Do tej pory ich deklaracje i definicje rozpoczynały się od słowa kluczowego <code>void</code>:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2);
 
-<span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2)
-{
+<span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2) {
     <span class="co">// Tu sie znajduje cialo funkcji</span>
 }</code></pre></div>
-<p>Funkcje mogą bowiem zwracać wartość. Typ zmiennej, jaką zwracają jest zawsze identyczny z typem funkcji. Nie musi za to być zgodny z typami argumentów, których typy mogą być zupełnie inne. Weźmy dla przykładu funkcję, która przyjmie dwie wartości (jedną typu <code>double</code>, drugą typu <code>float</code>) i zwróci liczbę całkowitą równą 5, gdy większą wartość ma pierwszy argument lub wartość 10 w przeciwnym razie. Przeanalizujmy odpowiednio deklarację i kod takiej funkcji.</p>
+<p>Funkcje mogą zwracać także wartość. Typ zmiennej, jaka jest zwracana znajduje się przed nazwą funkcji. Nie musi być zgodny z typami argumentów, których typy mogą być zupełnie inne. Weźmy dla przykładu funkcję, która przyjmie dwie wartości (jedną typu <code>double</code>, drugą typu <code>float</code>) i zwróci liczbę całkowitą równą 5, gdy większą wartość ma pierwszy argument lub wartość 10 w przeciwnym razie. Przeanalizujmy odpowiednio deklarację i kod takiej funkcji.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b);
 
-<span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b)
-{
+<span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b) {
    <span class="dt">int</span> Wynik;
 
-   <span class="kw">if</span>(a &gt; b)
-   {
+   <span class="kw">if</span>(a &gt; b) {
       Wynik = <span class="dv">5</span>;
    }
-   <span class="kw">else</span>
-   {
+   <span class="kw">else</span> {
       Wynik = <span class="dv">10</span>;
    }
    <span class="kw">return</span> Wynik;
 }</code></pre></div>
-<p>Zwróć uwagę na instrukcję <code>return</code>, która zwraca z funkcji <strong>wartość przechowywaną w konkretnej zmiennej</strong>. To ważne! Funkcja nigdy nie zwraca zmiennej. Zwraca tylko wartość, jaka była w tej zmiennej przechowywana. Ponadto zmienna zadeklarowana w danej funkcji będzie dla programu widoczna <strong>tylko i wyłącznie wewnątrz tej funkcji</strong>, a nie będzie rozpoznawana w innych fragmentach kodu (np. funkcji <code>main</code>). Prześledźmy jeszcze kod funkcji <code>main</code>, w której występuje wywołanie naszej funkcji.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
-{
-   <span class="dt">float</span> c = <span class="fl">8.</span><span class="dv">14</span>;
-   <span class="dt">double</span> d = <span class="fl">-7.</span><span class="dv">3814</span>;
-   <span class="dt">int</span> InnaZmienna = <span class="dv">15</span>;
-   
-   KtoryWiekszy(d, c);
-   InnaZmienna = KtoryWiekszy(d, c);
-   InnaZmienna = KtoryWiekszy(<span class="fl">12.</span><span class="dv">5</span>, c);
+<p>Zwróć uwagę na instrukcję <code>return</code>, która zwraca z funkcji <strong>wartość przechowywaną w konkretnej zmiennej</strong>. To ważne! Funkcja nigdy nie zwraca zmiennej. Zwraca tylko wartość, jaka była w tej zmiennej przechowywana. Ponadto zmienna zadeklarowana w danej funkcji będzie dla programu widoczna <strong>tylko i wyłącznie wewnątrz tej funkcji</strong>, a nie będzie rozpoznawana w innych fragmentach kodu (np. funkcji <code>main</code>). Prześledźmy jeszcze kod funkcji <code>main()</code>, w której występuje wywołanie naszej funkcji.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
+  <span class="dt">float</span> c = <span class="fl">8.</span><span class="dv">14</span>;
+  <span class="dt">double</span> d = <span class="fl">-7.</span><span class="dv">3814</span>;
+  <span class="dt">int</span> InnaZmienna = <span class="dv">15</span>;
+ 
+  KtoryWiekszy(d, c);
+  InnaZmienna = KtoryWiekszy(d, c);
+  InnaZmienna = KtoryWiekszy(<span class="fl">12.</span><span class="dv">5</span>, c);
 }</code></pre></div>
 <p>Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu funkcji <code>KtoryWiekszy</code> wydrukują wartość aktualnie przechowywaną w zmiennej <code>InnaZmienna</code>. Zastanów się, jaki będzie wynik i sprawdź, czy masz rację.</p>
-<p>Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje <code>Sumuj</code>, <code>Odejmij</code>, <code>Pomnoz</code>, <code>Podziel</code>. Funkcje te musisz napisać samodzielnie.</p>
+<p>Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje <code>Sumuj</code>, <code>Odejmij</code>, <code>Pomnoz</code> i <code>Podziel</code>. Funkcje te musisz napisać samodzielnie.</p>
 </div>
 <div id="cos-na-deser" class="section level1">
 <h1>Coś na deser *</h1>
-<p>Drukowanie tekstów na ekran nie musi sprowadzać się tylko do drukowania napisów, które są na twardo zdefiniowane w kodzie źródłowym lub wartości przechowywanych w zmiennych liczbowych. Język C ma również odpowiedni typ na przechowywanie zmiennych tekstowych, których zawartość może dynamicznie się zmieniać w trakcie wykonywania programu. Spróbuj zrozumieć i skompilować poniższy kod. Więcej szczegółów stanie się dla Ciebie jasnych, gdy omówione zostaną <em>tablice</em>.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
-{
-   <span class="dt">char</span> tekst[] = <span class="st">&quot;To jest moj tekst</span><span class="ch">\n</span><span class="st">&quot;</span>;
+<p>Drukowanie tekstów na ekranie nie musi sprowadzać się tylko do drukowania napisów, które są na twardo zdefiniowane w kodzie źródłowym lub wartości przechowywanych w zmiennych liczbowych. Język C ma również odpowiedni typ na przechowywanie zmiennych tekstowych, których zawartość może dynamicznie się zmieniać w trakcie wykonywania programu. Spróbuj zrozumieć i skompilować poniższy kod. Więcej szczegółów stanie się dla Ciebie jasnych, gdy omówione zostaną <em>tablice</em>.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
+  <span class="dt">char</span> tekst[] = <span class="st">&quot;To jest moj tekst</span><span class="ch">\n</span><span class="st">&quot;</span>;
 
-   printf(tekst);
+  printf(tekst);
 }</code></pre></div>
 <p>Istnieje również szereg funkcji, które pozwalają łączyć teksty, porównywać je ze sobą, przekształcać zmienne liczbowe do postaci zmiennych tekstowych. Zainteresowanych odsyłamy do zewnętrznych materiałów poświęconych <em>zmiennym łańcuchowym (ang. string)</em>.</p>
 </div>
