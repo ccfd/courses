@@ -561,65 +561,65 @@ div.tocify {
 <div id="liczby-losowe" class="section level1">
 <h1>Liczby losowe</h1>
 <p>Generacja liczb losowych jest bardzo przydatna w wielu obszarach począwszy od komputerowych gier w kości a na skomplikowanych symulacjach mechanicznych i kryptografii skończywszy. Poniższe zadania przedstawiają mechanizm generacji liczb pseudolosowych w języku C/C++<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
-<p>Generatory liczb pseudolosowych wymagają zastosowania tzw. ziarna czyli liczby, która posłuży do inicjalizacji procesu losowania kolejnych liczb. Zazwyczaj do inicjalizacji generatora używa się czasu sczytywanego z procesora komputera, więc konieczne będzie dołączenie biblioteki <code>time.h</code> Poniższy program generuje losową liczbę całkowitą z przedziału 0 do RAND_MAX. RAND_MAX jest zdefiniowane w bibliotece <code>stdlib.h</code>, jest ono postaci <span class="math inline">\(2^{n-1}\)</span> np. 32767.</p>
+<p>Generatory liczb pseudolosowych wymagają zastosowania tzw. ziarna czyli liczby, która posłuży do inicjalizacji procesu losowania kolejnych liczb. Zazwyczaj do inicjalizacji generatora używa się czasu odczytywanego z komputera, więc konieczne będzie dołączenie biblioteki <code>time.h</code></p>
+<p>Poniższy program generuje losową liczbę całkowitą z przedziału 0 do RAND_MAX. Wartość RAND_MAX jest zdefiniowana w bibliotece <code>stdlib.h</code> i jest postaci <span class="math inline">\(2^{n-1}\)</span>, np. 32767.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdio.h&gt;</span>
 <span class="ot">#include &lt;math.h&gt;</span>
 <span class="ot">#include &lt;stdlib.h&gt;</span>
 <span class="ot">#include &lt;time.h&gt;</span>
 
-<span class="dt">void</span> main()
-{
-     <span class="dt">int</span> i;
+<span class="dt">void</span> main() {
+  <span class="dt">int</span> i;
 
-     srand ( time(NULL) );        <span class="co">//inicjalizacja generatora</span>
-     i = rand();                  <span class="co">//funkcja losująca liczbę</span>
-     printf(<span class="st">&quot; Wylosowana liczba to </span><span class="ch">%d\n</span><span class="st">&quot;</span>, i);
+  srand(time(NULL));          <span class="co">//inicjalizacja generatora</span>
+  i = rand();                 <span class="co">//funkcja losujaca liczbe</span>
+  printf(<span class="st">&quot; Wylosowana liczba to </span><span class="ch">%d\n</span><span class="st">&quot;</span>, i);
 }</code></pre></div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Wykonaj powyższy program kilka razy z rzędu. Co możesz powiedzieć o wyniku?</li>
 <li>Zastąp ziarno generatora <code>time(NULL)</code> stałą liczbą. Co się wówczas stanie?</li>
-<li>Zmodyfikuj program tak, by losował ciąg 40 liczb psedudolosowych i wypisywał je na ekran.</li>
+<li>Zmodyfikuj program tak, aby losował ciąg 40 liczb pseudolosowych i wypisywał je na ekran.</li>
 <li>Wypisz na ekran wartość RAND_MAX.</li>
 </ul>
-<p>Zazwyczaj interesuje nas konkretny przedział liczb. Aby określić kres dolny oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach: Po prostu bierzemy wyłącznie resztę z dzielenia przez zadaną długość przedziału i dodajemy kres dolny jak w poniższym fragmencie kodu:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">//  kod losuje liczby z przedzialu [ 20 do 50 ]</span>
+<p>Zazwyczaj interesuje nas konkretny przedział liczb. Aby określić kres dolny oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach: Jedną z metod jest wzięcie wyłącznie reszty z dzielenia przez zadaną długość przedziału i dodanie kresu dolnego. Przykładowo:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="co">// kod losuje liczby z przedzialu [ 20 do 50 ]</span>
     
     <span class="dt">int</span> min = <span class="dv">20</span>;
     <span class="dt">int</span> max = <span class="dv">50</span>;
     <span class="dt">int</span> L = max - min + <span class="dv">1</span>;
 
-    i = rand()%L + min;</code></pre></div>
-<p>operator % liczy resztę z dzielenia jednej liczby przez drugą. Tutaj, licząc resztę z dzielenia wyniku losowania przez 31, otrzymujemy liczbę z przedziału 0 do 30.</p>
+  i = rand()%L + min;</code></pre></div>
+<p>operator ,,%’’ umożliwia wyznaczenie reszty z dzielenia jednej liczby przez drugą. Tutaj, licząc resztę z dzielenia wyniku losowania przez 31, otrzymujemy liczbę z przedziału 0 do 30.</p>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
-<p>Czy taki wzór będzie generował liczby losowe o rokładzie równomiernym? W domu zastanów się nad lepszym rozwiązaniem, a poniżej wykorzystaj to najprostsze.</p>
+<p>Czy taki wzór będzie generował liczby losowe o rozkładzie równomiernym? Czy możesz podać lepsze rozwiązanie?</p>
 </div>
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od 0 do 100.</li>
-<li>Wybierz krótki przedział (rzędu kilku możliwych do wylosowania liczb) i wykonaj 1000 oraz 10000 losowań. W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę.</li>
+<li>Wybierz krótki przedział (rzędu kilku możliwych do wylosowania liczb) i wykonaj 1000 oraz 10000 losowań. W obu przypadkach zliczaj, ile razy wylosowano każdą z liczb.</li>
 <li>Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie. Co możesz powiedzieć o rozkładzie tego losowania?</li>
 </ul>
 </div>
 </div>
 <div id="liczby-losowe-typu-rzeczywistego-rzutowanie" class="section level1">
 <h1>Liczby losowe typu rzeczywistego, rzutowanie</h1>
-<p>Do tej pory losowane liczby były liczbami całkowitymi. Często potrzebujemy liczb zmiennoprzecinkowych. W tym celu po prostu przeskalujemy wylosowaną liczbę tak, aby zawsze należała do przedziału 0-1. Wystarczy podzielić wylosowaną liczbę przez RAND_MAX. Dodatkowo należy pamiętać, że wylosowana liczba jest typu całkowitego <code>int</code>, więc dzielenie przez RAND_MAX da nam zazwyczaj 0. Aby tego uniknąć, musimy przekonwertować typ <code>int</code> na typ zmiennoprzecinkowy <code>double</code>. Taką operację nazywamy rzutowaniem. Rzutowanie ma bardzo szerokie zastosowanie i odnosi się nie tylko do operacji na liczbach. Poniższy kod losuje liczbę z przedziału 0-1:</p>
+<p>Do tej pory losowane liczby były liczbami całkowitymi. Często potrzebujemy liczb zmiennoprzecinkowych. Aby je otrzymać, przeskalujemy wylosowaną liczbę tak, aby zawsze należała do przedziału <span class="math inline">\([0, 1]\)</span>. Wystarczy podzielić wylosowaną liczbę przez RAND_MAX. Dodatkowo należy pamiętać, że wylosowana liczba jest typu całkowitego <code>int</code>, więc dzielenie przez RAND_MAX da nam zazwyczaj 0. Aby tego uniknąć, musimy prze-konwertować typ <code>int</code> na typ zmiennoprzecinkowy <code>double</code>. Taką operację nazywamy rzutowaniem. Rzutowanie ma bardzo szerokie zastosowanie i odnosi się nie tylko do operacji na liczbach. Poniższy kod losuje liczbę z przedziału <span class="math inline">\([0, 1]\)</span>:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    <span class="dt">double</span> x;
-    srand(  time  (NULL)  );
+    srand(time(NULL));
 
-    <span class="co">// instrukcja (double) rzutuje typ int na double</span>
-    x = (<span class="dt">double</span>)rand()/RAND_MAX;</code></pre></div>
+    <span class="co">// wyrazenie (double), rzutuje typ na double</span>
+    x = (<span class="dt">double</span>) rand() / RAND_MAX;</code></pre></div>
 <div id="cwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
-<li>Napisz funkcję <code>isInCircle</code> typu <code>bool</code>, która będzie losowała punkt w kwadracie <span class="math inline">\([0,1]\times[0,1]\)</span> i zwracała wartość ‘true’, jeśli punkt znajduje się wewnątrz koła o promieniu 1. Jeśli punkt jest poza kołem, niech funkcja zwraca ‘false’.</li>
-<li>W programie głównym sprawdź, czy punkt wylosowany przez daną funkcję jest w obszarze koła, czy nie. Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję. Funkcja zwraca tylko wartość logiczną.</li>
-<li>Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie. Jeśli jest on wewnątrz koła, niech oznacza go kółkiem. Jeśli jest na zewnątrz, niech oznacza go krzyżykiem. Najwygodniej będzie przeskalować dane zaznaczenie 200-krotnie. Dodatkowo, narysuj na ekranie ćwiartkę koła o promieniu 200 oraz kwadrat <span class="math inline">\([0,200]\times[0,200]\)</span>, aby było widać, że wylosowany punkt rzeczysićie jest wewnatrz koła.</li>
+<li>Napisz funkcję <code>isInCircle()</code>, która będzie losowała punkt w kwadracie o wymiarach <span class="math inline">\([0, 1] \times [0, 1]\)</span> i zwracała wartość ,,1’‘jeśli punkt znajduje się wewnątrz koła o promieniu <span class="math inline">\(R = 1\)</span>. Jeśli punkt jest poza kołem, niech funkcja zwraca ,,0’’.</li>
+<li>W programie głównym sprawdź czy punkt wylosowany przez daną funkcję leży w obszarze koła, czy nie i wyświetl stosowny komunikat. Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję. Funkcja zwraca tylko zero lub jedynkę.</li>
+<li>Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie. Jeśli jest on wewnątrz koła, niech oznacza go kółkiem. Jeśli jest na zewnątrz, niech oznacza go krzyżykiem. Ponieważ wylosowane punkty znajdują się w obszarze kwadratu o wymiarach <span class="math inline">\([0, 1] \times [0, 1]\)</span>, najwygodniej będzie przeskalować współrzędne 200-krotnie. Dodatkowo, narysuj na ekranie odpowiednio przeskalowaną ćwiartkę koła oraz kwadrat, tak aby było widać, że wylosowany punkt rzeczywiście jest wewnątrz koła.</li>
 <li>Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>. Wynik działania powinien przypominać rysunek poniżej.</li>
 </ul>
 <p><img src="info1_lab04_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
@@ -627,15 +627,13 @@ div.tocify {
 </div>
 <div id="liczenie-przyblizen-liczby-pi-metoda-monte-carlo" class="section level1">
 <h1>Liczenie przybliżeń liczby <span class="math inline">\(\pi\)</span> metodą Monte Carlo</h1>
-<p>Koło wpisane w jednostkowy kwadrat ma powierzchnię równą <span class="math inline">\(\pi/4\)</span>. Toteż losując punkty w kwadracie z prawdopodobieństwem <span class="math inline">\(\pi/4\)</span> trafiamy w obszar koła. Dzięki temu, zliczając odsetek wylosowanych punktów, które trafiły do wnętrza koła, możemy określić przybliżenie liczby <span class="math inline">\(\pi\)</span>. Taka metoda zalicza się do metod Monte Carlo<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<p>Koło wpisane w jednostkowy kwadrat ma powierzchnię równą <span class="math inline">\(\pi/4\)</span>. Toteż losując punkty w kwadracie, z prawdopodobieństwem <span class="math inline">\(\pi/4\)</span> trafiamy w obszar koła. Dzięki temu, zliczając wylosowane punkty, które trafiły do wnętrza koła, możemy określić przybliżenie liczby <span class="math inline">\(\pi\)</span>. Taka metoda zalicza się do metod Monte Carlo<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
 <div id="cwiczenia-3" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Przy użyciu poprzedniej funkcji policz przybliżenie liczby <span class="math inline">\(\pi\)</span>. Wykonaj 10000 losowań.</li>
-<li>Sprawdź, jak zmienia się dokładność przybliżeń, gdy wykonujemy coraz więcej losowań. Wykonaj 100, 1000 i 100000 losowań.</li>
-<li><ul>
-<li>Wydrukuj na ekran zależność względnego błędu przybliżenia <span class="math inline">\(\pi\)</span> od potęgi liczby 2 w zakresie <span class="math inline">\(2^{8}\)</span> do <span class="math inline">\(2^{32}\)</span>.</li>
-</ul></li>
+<li>Sprawdź, jak zmienia się dokładność przybliżeń, gdy wykonujemy więcej losowań. Wykonaj 100, 1000 i 100000 losowań.</li>
+<li>Wydrukuj na ekranie zależność względnego błędu przybliżenia <span class="math inline">\(\pi\)</span> od potęgi liczby 2 w zakresie <span class="math inline">\(2^{8}\)</span> do <span class="math inline">\(2^{32}\)</span>.</li>
 </ul>
 </div>
 </div>
@@ -643,7 +641,7 @@ div.tocify {
 <hr />
 <ol>
 <li id="fn1"><p>Mówimy, że generowane liczby są pseudolosowe, gdyż niemożliwe jest wygenerowanie prawdziwie losowego ciągu liczb. W praktyce świetnym źródłem ciągów liczb losowych są dane uzyskiwane z natury np. dane meteorologiczne (www.random.org).<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Funkcję zwracajacą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. <code>a = isInCircle()</code> jak i po prostu wywołać ją w programie bez przypisania, pisząc po prostu <code>isInCircle()</code>. Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane<a href="#fnref2">↩</a></p></li>
+<li id="fn2"><p>Funkcję zwracającą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. <code>a = isInCircle()</code> jak i po prostu wywołać ją w programie bez przypisania, pisząc <code>isInCircle()</code>. Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>w Monte Carlo mieści się bodaj najsłynniejsze w Europie kasyno, stąd taka nazwa dla metod losowych<a href="#fnref3">↩</a></p></li>
 </ol>
 </div>
