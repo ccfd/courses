@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
 
 
 <title></title>
@@ -24,9 +23,51 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -488,14 +529,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info2_lab05.pdf">
+  <a href="info1_tworzenie_projektu.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info2_lab05.Rmd">
+  <a href="https://github.com/ccfd/courses/edit/master/info1_tworzenie_projektu.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -521,104 +562,109 @@ div.tocify {
 </div>
 
 
-<div id="cakowanie-numeryczne-ukadow-rownan" class="section level1">
-<h1>Całkowanie numeryczne układów równań</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
+<div id="tworzenie-nowego-projektu-w-programie-microsoft-visual-studio-2013" class="section level1">
+<h1>Tworzenie nowego projektu w programie Microsoft Visual Studio 2013</h1>
+<p>Instrukcja opisuje w jaki sposób stworzyć nowy projekt w programie Microsoft Visual Studio 2013 wraz z biblioteką graficzną <code>winbgi2</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Otwórz program Microsoft Visual Studio.</li>
+<li>Uruchom link <em>New project</em> znajdujący się pod nagłówkiem <em>Start</em>. Jeśli strona startowa nie wyświetli się, wybierz z menu głównego <em>File</em> -&gt; <em>New Project</em>.
 <ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Plik nagłówkowy rk4.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Plik źródłowy rk4.cpp</a></li>
-</ul>
-<div id="wstep" class="section level2">
-<h2>1. Wstęp</h2>
-<p>Z poprzednich ćwiczeń dowiedzieliśmy się jak można dokonać całkowania równań różniczkowych zwyczajnych (z ang. Ordinary Differential Equations, ODE). Opisane metody pozwalają na znalezienie konkretnej funkcji spełniającej dowolne równanie pierwszego rzędu, tj. postaci: <span class="math display">\[ \frac{dy}{dt} = f(t, y(t)) \]</span> Jednak świat który opisujemy za pomocą równań różniczkowych nie jest niestety tak prosty. W wielu zagadnieniach napotykamy na sytuacje gdy należy “jednocześnie” rozwiązać dwa równania różniczkowe. Mówiąc “jednocześnie” mamy tutaj na myśli sytuację, w której w obu równaniach pojawiają się nieznane(których poszukujemy rozwiązując równania różniczkowe) funkcje, np.: <span class="math display">\[ 
-\begin{aligned}
-\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
-\end{aligned}
-\]</span></p>
-<p>Jak widać w powyższym układzie równań poszukiwane funkcje to <span class="math inline">\(x = x(t)\)</span> i <span class="math inline">\(y=y(t)\)</span>. Obie są funkcjami zmiennej niezależnej <span class="math inline">\(t\)</span>. W obu równaniach pojawia się jednak zarówno funkcja <span class="math inline">\(x\)</span> jak i <span class="math inline">\(y\)</span>. Równania te są sprzężone, a zatem nie da się w ogólności rozwiązać (scałkować) tego układu w sposób skwencyjny, tj. znaleźć najpierw pierwszą funkcję, a potem oddzielnie drugą. W szczególnych przypadkach można się pokusić o transofrmację wyjściowych równań, tak aby wyrugować jedną ze zmiennych. Jednak w ogólnym przypadku, gdy mamy doczynienia z silnie uwikłanymi funkcjami prawych stron, taki zabieg jest nie możliwy. Dlatego aby znaleźć poszukiwane rozwiązania należy całkować równocześnie wszystkie równania. Takim zagadnieniem zajemiemy się w poniższym ćwiczeniu. Postaramy się zastosować poznane metody z poprzednich zajęć do rozwiązania układów równań pierwszego rzędu.</p>
-<p>Problem rozwiązywania układów rówań pierwszego rzędu bardzo często pojawia się w związku z problemami opisanymi równaniami różniczkowymi zwyczajnymi wyżych rzędów. Równanie różniczkowe zwyczajne drugiego rzędu są jednymi z bardziej rozpowszechnionych równań w mechanice, ponieważ służą do opisu dynamiki, np. ruchu bryły sztywnej pod działaniem sił zewnętrznych. Równanie te przyjmują następującą postać: <span class="math display">\[ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) \]</span> Każde tego typu równanie można przedstawić w równoważnej formie układu rówań <strong>pierwszego</strong> rzędu: <span class="math display">\[ 
-\begin{aligned}
-\frac{dv_x}{dt} &amp;= f_1(t, x, v_x) \\
-\frac{dx}{dt} &amp;= v_x
-\end{aligned}
-\]</span> Powyższy układ jest tożsamy z równanie drugiego rzędu i znalezienie przebiegu funkcji <span class="math inline">\(x=x(t)\)</span> będzie odpowiadało scałkowaniu rówania drugiego rzędu. Tego typu problemem zajmiemy się w drugiej części tego ćwiczenia.</p>
+<li>Po rozwinięciu listy <em>Templates</em> wybierz <em>Visual C++</em>. W głównej części ekranu pojawią się cztery typy projektów. Wybierz <em>Win32 Console Application</em></li>
+<li>Uzupełnij pole <em>Name</em> wybraną nazwą projektu i pole <em>Location</em> ścieżką do swojego katalogu. Okno programu powinno wyglądać tak, jak poniżej:</li>
+</ul></li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_1.png" title="Uzupełnione okno wyboru typu projektu." alt="" />
+
 </div>
-<div id="cakowanie-ukadow-rowan" class="section level2">
-<h2>2. Całkowanie układów rówań</h2>
-<p>Na poprzednich zajęciach poznaliśmy dwie metody jawnego całkowania równań różniczkowych zwyczajnych pierwszego rzędu:</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Kliknij <em>OK</em>, a w kolejnym oknie <em>Next &gt;</em>. Wyświetlone zostanie okno <em>Application Settings</em>, w którym:
 <ul>
-<li>Eulera</li>
-<li>Rungego-Kutty</li>
-</ul>
-<p>Metody te należą do klasy metod iteracyjnych i pozwalają znaleź przebieg poszukiwanej funkcji obliczając jej wartość w kolejnych krokach czasowych. W przypadku układów równań czynimy podbnie, tj. obliczamy nowe wartości funkcji bazując na poprzednim rozwiązaniu. Różnica w tym przypadku polega na tym, że musimy kolejny krok całkowania wykonać dla wszystkich równań układu. Weźmy pod uwagę przykładowy układ równań ze wstępu do tych ćwiczeń: <span class="math display">\[ 
-\begin{aligned}
-\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
-\end{aligned}
-\]</span> z warunkami początkowymi: <span class="math display">\[
-x(t=0) = 0 \\
-y(t=0) = 0
-\]</span> Dla tagiego układu równań całkowanie metodą Eulera można opisać za pomocą następującego algorytmu:</p>
-<ol style="list-style-type: decimal">
-<li>Ustaw <span class="math inline">\(x_0 = x(t=0)\)</span>, <span class="math inline">\(y_0 = y(t=0)\)</span>, wartość czasu <span class="math inline">\(t=0\)</span> oraz wybierz krok całkowania <span class="math inline">\(dt\)</span>, np. <span class="math inline">\(dt = 0.001\)</span>.</li>
-<li>Oblicz pochodne funkcji <span class="math inline">\(x\)</span> i <span class="math inline">\(y\)</span> wykorzystując znane wielkości <span class="math inline">\(x_0, y_0, t\)</span>, w tym przypadku: <span class="math display">\[
-dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
-dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
-\]</span></li>
-<li>Wykorzystując wartości pochodnych dla czasu <span class="math inline">\(t=0\)</span> oblicz nowe wartości funkcji <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>: <span class="math display">\[
-x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
-y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
-\]</span></li>
-<li>Zaktualizuj zmienne podstawiając: <span class="math display">\[
-x_0 = x = 0
-y_0 = y = 0.001
-t = t + dh = 0.001
-\]</span></li>
-<li>Przejdź do punktu 2 i potórz operacje aż zmienna <span class="math inline">\(t\)</span> osiągnie wartość końcową <span class="math inline">\(t_k\)</span></li>
+<li>Na liście <em>Application type</em> sprawdź czy zaznaczona jest opcja <em>Console application</em>.</li>
+<li>Na liście <em>Additional options</em> zaznacz opcję <em>Empty project</em> i odznacz opcję <em>Security Development (…)</em>. Okno programu powinno wyglądać tak, jak poniżej:</li>
+</ul></li>
 </ol>
-<p>Korzystając z powyższego algorytmu można uzyskać następujący wynik dla czasu w zakresie [0,1] <img src="info2_lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Powyższy algorytm bedzie bardzo podobny dla metody Rungego-Kutty. Różnica będzie jedynie polegała na zastąpieniu sposobu obliczania wartości funkcji parawych stron, tj. w tym przypadku zmiennych <span class="math inline">\(dxdt\)</span> oraz <span class="math inline">\(dydt\)</span>.</p>
-<div id="cwiczenia" class="section level3">
-<h3>Ćwiczenia</h3>
-<ol style="list-style-type: decimal">
-<li>Zaimplementuj opisany algorytm i dokonaj całkowania układu równań przedstawionego powyżej.</li>
-<li>Wartości rozwiązania dla kolejnych kroków zapisz w tablicach X, Y.</li>
-<li>Wyświetl wartości funkcji X(t) oraz Y(t) na spólnym wykresie używając biblioteki graficznej.</li>
-<li>Zmodyfikuj program tak aby całkowanie odbywało się przy wykorzystaniu metody Rungego-Kutty.</li>
+<div class="figure">
+<img src="figures/info1/page_2.png" title="Uzupełnione okno opcji projektu." alt="" />
+
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Kliknij <em>Finish</em>. W katalogu, który wybrałeś jako miejsce dla utworzenia projektu, powstał folder o wybranej przez Ciebie nazwie. Otwórz go. Znajdują się w nim pliki, które w tym momencie nas nie interesują, oraz katalog o nazwie takiej samej jak nazwa katalogu nadrzędnego. Otwórz go. Znajdujesz się teraz w katalogu projektu, który zawiera tylko dwa pliki <em>*.wcxproj</em> i <em>*.wcxproj.filters</em>.</p></li>
+<li><p>Wybierz pliki biblioteki graficznej <em>winbgi2.cpp</em> oraz <em>winbgi2.h</em> i skopiuj je do katalogu projektu. Katalog powinien wyglądać następująco:</p></li>
 </ol>
+<div class="figure">
+<img src="figures/info1/page_3.png" title="Katalog projektu z plikami biblioteki graficznej" alt="" />
+
 </div>
-</div>
-<div id="sprowadzanie-rownan-wyzszego-rzedu-do-ukadow-rownan" class="section level2">
-<h2>3. Sprowadzanie równań wyższego rzędu do układów równań</h2>
-<p>Teraz przejdźmy do kolejnego zagadnienia. Aby zastosować poznane metody do problemów opisanych równaniami wyższych rzędów należy przekształcić wyjściowy problem do układu równań pierwszego rzędu. Aby przeanalizować ten proces weźmy pod uwagę następujące zagadnienie: <img src="figures/info2/inst5/carriage.png" title="Problem do rozwiązania" alt="Wózek" /></p>
-<p>Ruch wózka, zakładając, że w pozycji wyjściowej sprężyna jest nierozciągnięta oraz masa kół jest pomijalna, można opisać za pomocą prostego równania dynamiki bazując na III zasadzie dynamiki Newtona: <span class="math display">\[ F_{wózek} = - k\cdot x = m \cdot a\]</span> wiedząc, że przyśpieszenie to druga pochodna przemieszczenia po czasie możemy ostatecznie zapisać: <span class="math display">\[ \frac{d^2x}{dt^2} = - \frac{k}{m} \cdot x \]</span></p>
-<p>Oprócz równania potrzebujemy jeszcze warunków początkowych. Z racji tego, że jest to równanie drugiego rzędu będziemy potrzebowali dwóch takich warunków. W tym przypadku możemy wprost założyć, że startowe położenie wózka jest w początku układu współrzędnych, czyli: <span class="math display">\[ x(t=0) = 0 \]</span> oraz, że na początku wózek jest w spoczynku: <span class="math display">\[ \frac{dx}{dt}(t=0)=0 \]</span> Teraz musimy przekształcić ten problem do problemu opisanego układem dwóch równań różniczkowych pierwszego rzędu. Można to uczynić na kilka sposobów. Jednym z nich jest skorzystanie z równań kanonicznych, które opsiują ruch ciała za pomocą pary [pęd, położenie]. Innym podjeściem, które najłatwiej w tej chwili zrealizować, bedzie przekształcenie równania wyjściowego przez wprowadzenie nowej zmiennej - <span class="math inline">\(v\)</span> i zastosowanie prostego podstawienia: <span class="math display">\[ v = \frac{dx}{dt} \]</span> Powyższe podstawienie automatycznie definiuje nam nowe równanie, które wiąże prędkość i położenie. Teraz, pozostaje tylko zastosować powyższe podstawienie w kontekście równania wyjściowego: <span class="math display">\[ \frac{d^2x}{dt^2} = \frac{d}{dt} (\frac{dx}{dt}) = \frac{dv}{dt} = -\frac{k}{m}x \]</span> Oprócz równań podobnie należy uczynić z warunkami początkowymi. Ostatcznie otrzymujemy następujący układ równań: <span class="math display">\[
-\frac{dv}{dt} = -\frac{k}{m} x \\
-\frac{dx}{dt} = v \\
-x(t=0) = 0 \\
-v(t=0) = 0
-\]</span></p>
-<div id="cwiczenia-1" class="section level3">
-<h3>Ćwiczenia</h3>
-<p>Ruch wahadła matematycznego opisuje równanie różniczkowe z warunkami początkowymi (pomijamy opór powietrza, nić jest nieważka i nierozciągliwa): <span class="math display">\[
-\begin{aligned}
-\frac{d^2\alpha}{dt^2} &amp;= -\frac{g}{l}sin(\alpha) \\
-\alpha(t_0) &amp;= \alpha_0 \\
-\frac{d\alpha}{dt}(t_0) &amp;= \omega_0
-\end{aligned}
-\]</span> gdzie:</p>
-<p><span class="math inline">\(\alpha\)</span> - kąt wychylenia wahadła z położenia równowagi,</p>
-<p><span class="math inline">\(g\)</span> - przyśpieszenie ziemskie,</p>
-<p><span class="math inline">\(l\)</span> - długość wahadła,</p>
-<p><span class="math inline">\(m\)</span> - masa kuli zaczepionej na końcu wahadła.</p>
-<ol style="list-style-type: decimal">
-<li>Sprowadzić powyższe równanie różniczkowe rzędu drugiego do układu równań różniczkowych rzędu pierwszego.</li>
-<li>Napisać program który używając metody Rungego-Kutty wyznacza zależność kąta wychylenia wahadła od czasu <span class="math inline">\(\alpha(t)\)</span> oraz prędkość kątową <span class="math inline">\(\omega = \frac{d\alpha}{dt}\)</span> dla czasu <span class="math inline">\(t \in \left[0,10\right]\)</span></li>
-<li>Dodatkowo wyznaczyć zależność energii całkowitej wahadła od czasu <span class="math inline">\(E(t)\)</span>, energia całkowita wahadła wyraża się wzorem: <span class="math display">\[E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))\]</span> <strong>Uwaga</strong>: Przy braku dyssypacji, energia mechaniczna powinna być stała.</li>
-<li>Powtórzyć obliczenia dla różnych kroków czasowych.</li>
+<ol start="6" style="list-style-type: decimal">
+<li>Wróć do programu Miscrosoft Visual Studio i zarejestruj pliki biblioteki graficznej. W tym celu znajdź panel <em>Solution Explorer</em>. Zawiera on pliki należące do Twojego projektu. Kliknij na <em>Header Files</em>, wybierz <em>Add</em> a następnie <em>Existing Item</em>.</li>
 </ol>
+<div class="figure">
+<img src="figures/info1/page_4.png" title="Dodawanie do projektu pliku nagłówkowego." alt="" />
+
 </div>
+<ol start="7" style="list-style-type: decimal">
+<li>Otworzy się okno eksploratora, w którym należy wybrać plik nagłówkowy <em>winbgi2.h</em>.</li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_5.png" title="Wybór pliku nagłówkowego." alt="" />
+
+</div>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Wykonaj tą samą procedurę dla pliku źródłowego. Tym razem kliknij na <em>Source Files</em> i wybierz dodawanie nowego pliku. Po otwarciu eksploratora wskaż <em>winbgi2.cpp</em>.</p></li>
+<li><p>Ostatnim krokiem będzie dodanie pliku źródłowego, w którym będzie znajdował się kod naszego programu. Kliknij na <em>Source Files</em>, wybierz <em>Add</em> i <em>New Item</em>. Otworzy się okno wyboru typu pliku, w którym należy wskazać <em>C++ File (.cpp)</em>. W polu <em>Name</em> wpisz wybraną nazwę (przykładowo <strong>program.cpp</strong>) i kliknij <em>Add</em>.</p></li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_6.png" title="Tworzenie nowego pliku źródłowego." alt="" />
+
+</div>
+<ol start="10" style="list-style-type: decimal">
+<li>Ostatecznie okno projektu powinno wyglądać następująco:</li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_7.png" title="Okno projektu z dołączonymi plikami." alt="" />
+
+</div>
+<ol start="11" style="list-style-type: decimal">
+<li>Kliknij na plik źródłowy z kodem programu (w naszym przykładzie <strong>program.cpp</strong>) i wpisz przykładowy kod:</li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_8.png" title="Przykładowy kod wykorzystujący bibliotekę winbgi2." alt="" />
+
+</div>
+<p>Instrukcje oznaczają odpowiednio:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#define _CRT_SECURE_NO_WARNINGS  </span><span class="co">// Wylaczenie ostrzezen dotyczacych funkcji </span>
+                                 <span class="co">// scanf(), printf(), itd.</span>
+<span class="ot">#include &lt;stdio.h&gt;               </span><span class="co">// Dolaczenie biblioteki z funkcjami wejscia/wyjscia</span>
+<span class="ot">#include &lt;math.h&gt;                </span><span class="co">// Dolaczenie biblioteki z funkcjami matematycznymi</span>
+<span class="ot">#include &quot;winbgi2.h&quot;             </span><span class="co">// Dolaczenie biblioteki graficznej</span>
+
+<span class="dt">void</span> main() {
+  graphics(<span class="dv">220</span>, <span class="dv">220</span>);            <span class="co">// Otworzenie okna do rysowania</span>
+  circle(<span class="dv">110</span>, <span class="dv">110</span>, <span class="dv">25</span>);          <span class="co">// Narysowanie kolka</span>
+  wait();                        <span class="co">// Oczekiwanie z zamknieciem okna do momentu gdy</span>
+                                 <span class="co">// uzytkownik nacisnie dowolny klawisz</span>
+}</code></pre></div>
+<ol start="12" style="list-style-type: decimal">
+<li>Biblioteka graficzna wymaga zmiany jednego ze standardowych ustawień. W tym celu klikamy na <em>PROJECT</em> a następnie na <em>Nazwa Projektu Properties</em>.</li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_9.png" title="Wybór opcji projektu." alt="" />
+
+</div>
+<ol start="13" style="list-style-type: decimal">
+<li>W nowo otwartym oknie rozwijamy listę <em>Configuration Properties</em>, wybieramy opcję <em>General</em>, klikamy w prostokąt obok pola <em>Character Set</em> – pojawi się strzałka symbolizująca listę, rozwijamy ją i wybieramy opcję <em>Use Multi-Byte Character Set</em>. Wybór zatwierdzamy klikając <em>OK</em>.</li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_10.png" title="Modyfikacja opcji." alt="" />
+
+</div>
+<ol start="14" style="list-style-type: decimal">
+<li>Program jest gotowy do skompilowania i uruchomienia. Robimy to przez kliknięcie klawiszy <code>Ctrl</code> + <code>F5</code> lub przez rozwinięcie menu <em>DEBUG</em> i kliknięcie <em>Start Without Debbuging</em>. Po kompilacji program automatycznie się uruchamia:</li>
+</ol>
+<div class="figure">
+<img src="figures/info1/page_11.png" title="Uruchomiony projekt testowy." alt="" />
+
 </div>
 </div>
 

@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
 
 
 <title></title>
@@ -488,14 +488,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info2_lab05.pdf">
+  <a href="info1_lab10.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info2_lab05.Rmd">
+  <a href="https://github.com/ccfd/courses/edit/master/info1_lab10.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -521,105 +521,8 @@ div.tocify {
 </div>
 
 
-<div id="cakowanie-numeryczne-ukadow-rownan" class="section level1">
-<h1>Całkowanie numeryczne układów równań</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
-<ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Plik nagłówkowy rk4.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Plik źródłowy rk4.cpp</a></li>
-</ul>
-<div id="wstep" class="section level2">
-<h2>1. Wstęp</h2>
-<p>Z poprzednich ćwiczeń dowiedzieliśmy się jak można dokonać całkowania równań różniczkowych zwyczajnych (z ang. Ordinary Differential Equations, ODE). Opisane metody pozwalają na znalezienie konkretnej funkcji spełniającej dowolne równanie pierwszego rzędu, tj. postaci: <span class="math display">\[ \frac{dy}{dt} = f(t, y(t)) \]</span> Jednak świat który opisujemy za pomocą równań różniczkowych nie jest niestety tak prosty. W wielu zagadnieniach napotykamy na sytuacje gdy należy “jednocześnie” rozwiązać dwa równania różniczkowe. Mówiąc “jednocześnie” mamy tutaj na myśli sytuację, w której w obu równaniach pojawiają się nieznane(których poszukujemy rozwiązując równania różniczkowe) funkcje, np.: <span class="math display">\[ 
-\begin{aligned}
-\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
-\end{aligned}
-\]</span></p>
-<p>Jak widać w powyższym układzie równań poszukiwane funkcje to <span class="math inline">\(x = x(t)\)</span> i <span class="math inline">\(y=y(t)\)</span>. Obie są funkcjami zmiennej niezależnej <span class="math inline">\(t\)</span>. W obu równaniach pojawia się jednak zarówno funkcja <span class="math inline">\(x\)</span> jak i <span class="math inline">\(y\)</span>. Równania te są sprzężone, a zatem nie da się w ogólności rozwiązać (scałkować) tego układu w sposób skwencyjny, tj. znaleźć najpierw pierwszą funkcję, a potem oddzielnie drugą. W szczególnych przypadkach można się pokusić o transofrmację wyjściowych równań, tak aby wyrugować jedną ze zmiennych. Jednak w ogólnym przypadku, gdy mamy doczynienia z silnie uwikłanymi funkcjami prawych stron, taki zabieg jest nie możliwy. Dlatego aby znaleźć poszukiwane rozwiązania należy całkować równocześnie wszystkie równania. Takim zagadnieniem zajemiemy się w poniższym ćwiczeniu. Postaramy się zastosować poznane metody z poprzednich zajęć do rozwiązania układów równań pierwszego rzędu.</p>
-<p>Problem rozwiązywania układów rówań pierwszego rzędu bardzo często pojawia się w związku z problemami opisanymi równaniami różniczkowymi zwyczajnymi wyżych rzędów. Równanie różniczkowe zwyczajne drugiego rzędu są jednymi z bardziej rozpowszechnionych równań w mechanice, ponieważ służą do opisu dynamiki, np. ruchu bryły sztywnej pod działaniem sił zewnętrznych. Równanie te przyjmują następującą postać: <span class="math display">\[ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) \]</span> Każde tego typu równanie można przedstawić w równoważnej formie układu rówań <strong>pierwszego</strong> rzędu: <span class="math display">\[ 
-\begin{aligned}
-\frac{dv_x}{dt} &amp;= f_1(t, x, v_x) \\
-\frac{dx}{dt} &amp;= v_x
-\end{aligned}
-\]</span> Powyższy układ jest tożsamy z równanie drugiego rzędu i znalezienie przebiegu funkcji <span class="math inline">\(x=x(t)\)</span> będzie odpowiadało scałkowaniu rówania drugiego rzędu. Tego typu problemem zajmiemy się w drugiej części tego ćwiczenia.</p>
-</div>
-<div id="cakowanie-ukadow-rowan" class="section level2">
-<h2>2. Całkowanie układów rówań</h2>
-<p>Na poprzednich zajęciach poznaliśmy dwie metody jawnego całkowania równań różniczkowych zwyczajnych pierwszego rzędu:</p>
-<ul>
-<li>Eulera</li>
-<li>Rungego-Kutty</li>
-</ul>
-<p>Metody te należą do klasy metod iteracyjnych i pozwalają znaleź przebieg poszukiwanej funkcji obliczając jej wartość w kolejnych krokach czasowych. W przypadku układów równań czynimy podbnie, tj. obliczamy nowe wartości funkcji bazując na poprzednim rozwiązaniu. Różnica w tym przypadku polega na tym, że musimy kolejny krok całkowania wykonać dla wszystkich równań układu. Weźmy pod uwagę przykładowy układ równań ze wstępu do tych ćwiczeń: <span class="math display">\[ 
-\begin{aligned}
-\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
-\end{aligned}
-\]</span> z warunkami początkowymi: <span class="math display">\[
-x(t=0) = 0 \\
-y(t=0) = 0
-\]</span> Dla tagiego układu równań całkowanie metodą Eulera można opisać za pomocą następującego algorytmu:</p>
-<ol style="list-style-type: decimal">
-<li>Ustaw <span class="math inline">\(x_0 = x(t=0)\)</span>, <span class="math inline">\(y_0 = y(t=0)\)</span>, wartość czasu <span class="math inline">\(t=0\)</span> oraz wybierz krok całkowania <span class="math inline">\(dt\)</span>, np. <span class="math inline">\(dt = 0.001\)</span>.</li>
-<li>Oblicz pochodne funkcji <span class="math inline">\(x\)</span> i <span class="math inline">\(y\)</span> wykorzystując znane wielkości <span class="math inline">\(x_0, y_0, t\)</span>, w tym przypadku: <span class="math display">\[
-dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
-dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
-\]</span></li>
-<li>Wykorzystując wartości pochodnych dla czasu <span class="math inline">\(t=0\)</span> oblicz nowe wartości funkcji <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>: <span class="math display">\[
-x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
-y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
-\]</span></li>
-<li>Zaktualizuj zmienne podstawiając: <span class="math display">\[
-x_0 = x = 0
-y_0 = y = 0.001
-t = t + dh = 0.001
-\]</span></li>
-<li>Przejdź do punktu 2 i potórz operacje aż zmienna <span class="math inline">\(t\)</span> osiągnie wartość końcową <span class="math inline">\(t_k\)</span></li>
-</ol>
-<p>Korzystając z powyższego algorytmu można uzyskać następujący wynik dla czasu w zakresie [0,1] <img src="info2_lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Powyższy algorytm bedzie bardzo podobny dla metody Rungego-Kutty. Różnica będzie jedynie polegała na zastąpieniu sposobu obliczania wartości funkcji parawych stron, tj. w tym przypadku zmiennych <span class="math inline">\(dxdt\)</span> oraz <span class="math inline">\(dydt\)</span>.</p>
-<div id="cwiczenia" class="section level3">
-<h3>Ćwiczenia</h3>
-<ol style="list-style-type: decimal">
-<li>Zaimplementuj opisany algorytm i dokonaj całkowania układu równań przedstawionego powyżej.</li>
-<li>Wartości rozwiązania dla kolejnych kroków zapisz w tablicach X, Y.</li>
-<li>Wyświetl wartości funkcji X(t) oraz Y(t) na spólnym wykresie używając biblioteki graficznej.</li>
-<li>Zmodyfikuj program tak aby całkowanie odbywało się przy wykorzystaniu metody Rungego-Kutty.</li>
-</ol>
-</div>
-</div>
-<div id="sprowadzanie-rownan-wyzszego-rzedu-do-ukadow-rownan" class="section level2">
-<h2>3. Sprowadzanie równań wyższego rzędu do układów równań</h2>
-<p>Teraz przejdźmy do kolejnego zagadnienia. Aby zastosować poznane metody do problemów opisanych równaniami wyższych rzędów należy przekształcić wyjściowy problem do układu równań pierwszego rzędu. Aby przeanalizować ten proces weźmy pod uwagę następujące zagadnienie: <img src="figures/info2/inst5/carriage.png" title="Problem do rozwiązania" alt="Wózek" /></p>
-<p>Ruch wózka, zakładając, że w pozycji wyjściowej sprężyna jest nierozciągnięta oraz masa kół jest pomijalna, można opisać za pomocą prostego równania dynamiki bazując na III zasadzie dynamiki Newtona: <span class="math display">\[ F_{wózek} = - k\cdot x = m \cdot a\]</span> wiedząc, że przyśpieszenie to druga pochodna przemieszczenia po czasie możemy ostatecznie zapisać: <span class="math display">\[ \frac{d^2x}{dt^2} = - \frac{k}{m} \cdot x \]</span></p>
-<p>Oprócz równania potrzebujemy jeszcze warunków początkowych. Z racji tego, że jest to równanie drugiego rzędu będziemy potrzebowali dwóch takich warunków. W tym przypadku możemy wprost założyć, że startowe położenie wózka jest w początku układu współrzędnych, czyli: <span class="math display">\[ x(t=0) = 0 \]</span> oraz, że na początku wózek jest w spoczynku: <span class="math display">\[ \frac{dx}{dt}(t=0)=0 \]</span> Teraz musimy przekształcić ten problem do problemu opisanego układem dwóch równań różniczkowych pierwszego rzędu. Można to uczynić na kilka sposobów. Jednym z nich jest skorzystanie z równań kanonicznych, które opsiują ruch ciała za pomocą pary [pęd, położenie]. Innym podjeściem, które najłatwiej w tej chwili zrealizować, bedzie przekształcenie równania wyjściowego przez wprowadzenie nowej zmiennej - <span class="math inline">\(v\)</span> i zastosowanie prostego podstawienia: <span class="math display">\[ v = \frac{dx}{dt} \]</span> Powyższe podstawienie automatycznie definiuje nam nowe równanie, które wiąże prędkość i położenie. Teraz, pozostaje tylko zastosować powyższe podstawienie w kontekście równania wyjściowego: <span class="math display">\[ \frac{d^2x}{dt^2} = \frac{d}{dt} (\frac{dx}{dt}) = \frac{dv}{dt} = -\frac{k}{m}x \]</span> Oprócz równań podobnie należy uczynić z warunkami początkowymi. Ostatcznie otrzymujemy następujący układ równań: <span class="math display">\[
-\frac{dv}{dt} = -\frac{k}{m} x \\
-\frac{dx}{dt} = v \\
-x(t=0) = 0 \\
-v(t=0) = 0
-\]</span></p>
-<div id="cwiczenia-1" class="section level3">
-<h3>Ćwiczenia</h3>
-<p>Ruch wahadła matematycznego opisuje równanie różniczkowe z warunkami początkowymi (pomijamy opór powietrza, nić jest nieważka i nierozciągliwa): <span class="math display">\[
-\begin{aligned}
-\frac{d^2\alpha}{dt^2} &amp;= -\frac{g}{l}sin(\alpha) \\
-\alpha(t_0) &amp;= \alpha_0 \\
-\frac{d\alpha}{dt}(t_0) &amp;= \omega_0
-\end{aligned}
-\]</span> gdzie:</p>
-<p><span class="math inline">\(\alpha\)</span> - kąt wychylenia wahadła z położenia równowagi,</p>
-<p><span class="math inline">\(g\)</span> - przyśpieszenie ziemskie,</p>
-<p><span class="math inline">\(l\)</span> - długość wahadła,</p>
-<p><span class="math inline">\(m\)</span> - masa kuli zaczepionej na końcu wahadła.</p>
-<ol style="list-style-type: decimal">
-<li>Sprowadzić powyższe równanie różniczkowe rzędu drugiego do układu równań różniczkowych rzędu pierwszego.</li>
-<li>Napisać program który używając metody Rungego-Kutty wyznacza zależność kąta wychylenia wahadła od czasu <span class="math inline">\(\alpha(t)\)</span> oraz prędkość kątową <span class="math inline">\(\omega = \frac{d\alpha}{dt}\)</span> dla czasu <span class="math inline">\(t \in \left[0,10\right]\)</span></li>
-<li>Dodatkowo wyznaczyć zależność energii całkowitej wahadła od czasu <span class="math inline">\(E(t)\)</span>, energia całkowita wahadła wyraża się wzorem: <span class="math display">\[E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))\]</span> <strong>Uwaga</strong>: Przy braku dyssypacji, energia mechaniczna powinna być stała.</li>
-<li>Powtórzyć obliczenia dla różnych kroków czasowych.</li>
-</ol>
-</div>
-</div>
+<div id="in-progress" class="section level1">
+<h1>In progress…</h1>
 </div>
 
 <!-- Dummy footer -->
