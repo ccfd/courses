@@ -78,7 +78,7 @@ Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na k
 ```
 
 Zauważmy, że funkcja `init` pobiera 2 wskaźniki do wektorów (`x` oraz `y`) oraz jedną wartość -- 10.
-Dzięki temu, funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać^[Zasady działania na wskaźnikach opisano w Instrukcji 5.]. 
+Dzięki temu, funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać. 
 
 ## Uwaga
 Ponieważ `x` oraz `y` są wskaźnikami do pierwszych (dokładnie rzecz ujmując - zerowych) elementów tablic, można użyć mechanizmu wyłuskania wartości ze wskaźników i iterować się po wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:
