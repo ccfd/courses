@@ -5,10 +5,18 @@ material: Instrukcja 3
 number: 3
 ---
 
+Niniejsza instrukcja poświęcona jest trzem zagadnieniom:
+
+- Obsłudze standardowego wejścia i wyjścia,
+- Wprowadzeniu do wskaźników,
+- Zwracaniu wartości przez funkcje.
+
 # Instrukcje wejścia/wyjścia
 
 Praktyczny program powinien mieć możliwość interaktywnej komunikacji z użytkownikiem.
-W celu drukowania informacji dla użytkownika często wykorzystywane jest standardowe wyjście (monitor).
+W celu drukowania informacji często wykorzystywane jest standardowe wyjście (ekran).
+
+## Drukowanie tekstu
 
 Utwórz nowy projekt pakietu MS Visual Studio i napisz program, który wydrukuje tekst *Witaj na trzecim laboratorium!*
 ```c++
@@ -18,14 +26,14 @@ void main() {
 ```
 Funkcja `printf()` służy do wypisywania tekstu na ekran.
 Jako argument przyjmuje sformatowany strumień tekstowy.
-Do formatowania tekstu służą *sekwencje formatujące*, które pozwalają wprowadzić znak nowej linii, tabulacji itp.
+Do formatowania tekstu służą *kody sterujące*, które pozwalają wprowadzić znak nowej linii, tabulacji itp.
 Przykładowo, umieszczona wewnątrz tekstu sekwencja znaków:
 
-- `"\n"` --- wprowadza znak nowej linii,
-- `"\t"` --- wprowadza znak tabulacji.
+- `"\n"` -- wprowadza znak nowej linii,
+- `"\t"` -- wprowadza znak tabulacji.
 
-## Ćwiczenia
-Używając **pojedynczej** funkcji `printf()` oraz odpowiednich sekwencji formatujących, wygeneruj tekst identyczny z poniższym:
+### Ćwiczenia
+Używając **pojedynczej** funkcji `printf()` oraz odpowiednich kodów sterujących, wygeneruj tekst identyczny z poniższym:
 ```c++
 To jest pierwsze zdanie w mojej instrukcji.
 To jest tuz po znaku nowej linii.      Zas ten fragment
@@ -34,64 +42,67 @@ To jest tuz po znaku nowej linii.      Zas ten fragment
 W ponizszej linii wszystkie liczby oddzielono tabulatorami:
 5.2    3.14    -7    8
 ```
+**Uwaga:** jeśli instrukcja jest długa, a przez to mało czytelna, warto kontunować ją w nowej linii.
+W tym celu należy posłużyć się ukośnikiem wstecznym ,,\\''.
+Przykładowo:
+```c++
+printf("Ta instrukcja kontynuowana jest \
+w kolejnej linii\n);
+```
 
-## Uwaga!
-Wprowadzenie długiego tekstu (np. kilku komunikatów dla użytkownika) w jednej instrukcji `printf` jest nieeleganckie.
 Spróbuj osiągnąć ten sam efekt, co powyżej, ale tym razem użyj osobnej instrukcji `printf` dla każdego ze zdań.
-Czy coś cię zaskakuje? Czy nowa instrukcja `printf` wymusza przejście do nowej linii?
 
-W instrukcji `printf` nie używaj polskich znaków diakrytycznych.
-Da się to zrobić, jednak wymaga dodatkowych komplikacji i w prostych programach nie jest praktykowane.
-Jeśli bardzo cię męczy ciekawość, w wolnej chwili poszukaj rozwiązań w książkach, bądź Internecie.
+W instrukcji `printf()` nie używaj polskich znaków diakrytycznych.
+Można to zrobić, jednak ze względu na przenośność w prostych programach nie jest praktykowane.
 
-## Dalej o `printf()`
-Pewne znaki specjalne są w języku C zarezerwowane na potrzeby konkretnych instrukcji. Wiele z nich poznasz wkrótce.
+## Znaki specjalne
+
+Pewne znaki są w języku C zarezerwowane na potrzeby wykonania konkretnych operacji.
+Jeśli chcemy je wydrukować na ekran, nie mogą być użyte wprost.
 Dobrymi przykładami takich znaków są ,,%'' czy backslash ,,\\''.
-Nie mogą one być użyte wprost, gdyż mają swoje funkcje w języku C.
-Jeśli chcesz, aby się pojawiły na ekranie, musisz poprzedzić je dodatkowym znakiem \\.
+Jeśli chcesz, aby pojawiły się na ekranie, musisz poprzedzić je dodatkowym znakiem \\.
 
 Dopisz do swojego programu instrukcję, która wydrukuje następujący tekst:
 ```c++
 82% dysku C:\ jest w uzyciu!
 ```
-Program o znaczeniu inżynierskim musi mieć możliwość drukowania na ekranie liczb i wyników przeprowadzonych działań.
+
+## Drukowane liczb
 
 Przepisz do funkcji main następujące instrukcje:
 ```c++
 int a = 5;
-double c = 8.2;
+double b = 8.2, c = 7.5;
 
-printf("Zmienna a ma wartosc %d, zas zmienna c = %lf\n", a, c);
+printf("a = %d, b = %lf, c = %lf\n", a, b, c);
 
-c = c + 7.5;
+c += b;
 c -= a;
 a = 1;
-c -= 2 * a;
 
-printf("Po dodaniu do zmienej c wartosci 7.5, odjeciu a
-        oraz odjeciu dwukrotnosci zmodyfikowanej
-        wartosci a zmienna c = %lf\n", c);
+printf("a = %d, b = %lf, c = %lf\n", a, b, c);
 ```
 
-- Przeanalizuj dokładnie kod.
-Pojawiają się w nim nowe instrukcje arytmetyczne!
-- Między wszystkimi instrukcjami arytmetycznymi dodaj po jednej linijce kodu, który wydrukuje na ekran bieżącą wartość przechowywaną w zmiennych a i c.
-Pojawiły się też nowe elementy.
-Do drukowania wartości przechowywanych w zmiennych służą *sekwencje formatujące* lub inaczej *specyfikatory formatu*.
-Są one następujące:
+Zauważ, że do drukowania wartości przechowywanych w zmiennych służą tzw. *specyfikatory formatu*.
+Na zajęciach najczęściej będą używane:
 
     - %lf --- dla zmiennych typu `double`
     - %d --- dla zmiennych typu `int`
     - %f --- dla zmiennych typu `float`
+    - %c --- dla zmiennych typu `char`
 
-Dodatkowo, dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych i ogromnych wartościach użyj poniższych sekwencji i zobacz, jaki będzie efekt działania.
+### Ćwiczenia
 
-- %lg, %e, %.2lf, %.4lf (dla zmiennych typu `double`),
-- %.3f (dla zmiennych typu `float`).
+- Dodaj po linijce kodu, który wydrukuje na ekran bieżącą wartość przechowywaną w zmiennych.
+Co oznaczają operatory `+=` i `-=`?
+- Dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych i ogromnych wartościach użyj poniższych sekwencji i zobacz, jaki będzie efekt działania:
+    - %lg, %e, %.2lf, %.4lf (dla zmiennych typu `double`),
+    - %.3f (dla zmiennych typu `float`).
 
 ## Czytanie z klawiatury
+
 Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest funkcja `scanf()`.
-Przykłady jej użycia wyglądają następująco:
+Przykład jej użycia wygląda następująco:
 ```c++
 int a;
 scanf("%d", &a);
@@ -101,21 +112,32 @@ scanf("%lf", &c);
 
 int b, d;
 double g, h;
-scanf("%lf%d%d%lf", &g, &d, &b, &h);
+scanf("%lf %d %d %lf", &g, &d, &b, &h);
 ```
-**Uwaga:** Zwróć szczególną uwagę na znak ,,&'' występujący przed nazwami zmiennych, do których wczytujemy wartości.
-Znak ten **nigdy** nie występuje w instrukcji `printf`, za to zawsze jest potrzebny w instrukcji `scanf`.
+**Uwaga:**
 
-Zauważ również, że używając jednej instrukcji `scanf` możesz wczytać wiele liczb.
-Sekwencje formatujące nie muszą być oddzielone spacjami, za to wartości muszą być podane z klawiatury w odpowiedniej kolejności - takiej, w jakiej zmienne na liście argumentów, do których te wartości mają trafić.
+- Zwróć szczególną uwagę na znak ,,&'' występujący przed nazwami zmiennych, do których wczytujemy wartości.
+Znak ten służy do ustalenia zmiennej występującej za raz po nim.
+Funkcja `scanf()` wczytuje dane z klawiatury, które musi gdzieś zapisać.
+Stosując znak ,,&'' dostarczamy informacji o tym gdzie znajduje się zmienna, do której należy zapisać wczytaną wartość.
+- Zauważ również, że używając pojedynczej instrukcji `scanf` możesz wczytać wiele liczb.
+Należy przy tym pamiętać o podaniu specyfikatorów formatu w takiej kolejności jak zmienne na liście argumentów.
+Powinno się unikać stosowania innych symboli niż spacje i specyfikatory formatu.
+Inaczej należy pamiętać o podaniu liczb razem z tymi dodatkowymi symbolami. 
 
-## Ćwiczenia
+### Ćwiczenia
 Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie.
-Odejmowanie i dzielenie oczywiście nie jest przemienne.
-Policz zatem każdą z możliwych różnic i ilorazów.
+Pamiętaj, że odejmowanie i dzielenie nie jest przemienne -- policz zatem każdą z możliwych różnic i ilorazów.
 Wydrukuj wszystkie wyniki na ekran.
 
-# Jeszcze trochę o funkcjach
+# Wskaźniki
+
+
+<--- tutaj będzie tekst o wskaźnikach --->
+
+
+# Funkcje i zwracanie argumentu
+
 Do tej pory, funkcje deklarowaliśmy i definiowaliśmy w tym samym samym miejscu (przed funkcją `main()`).
 W przypadku gdy kod programu jest długi lub ma być wykorzystany przez innego użytkownika rozdziela się deklarację od definicji.
 Instrukcja:
@@ -182,18 +204,3 @@ Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu funkcji `Ktor
 Zastanów się, jaki będzie wynik i sprawdź, czy masz rację.
 
 Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania, odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje `Sumuj`, `Odejmij`, `Pomnoz` i `Podziel`. Funkcje te musisz napisać samodzielnie.
-
-# Coś na deser \*
-Drukowanie tekstów na ekranie nie musi sprowadzać się tylko do drukowania napisów, które są na twardo zdefiniowane w kodzie źródłowym lub wartości przechowywanych w zmiennych liczbowych.
-Język C ma również odpowiedni typ na przechowywanie zmiennych tekstowych, których zawartość może dynamicznie się zmieniać w trakcie wykonywania programu.
-Spróbuj zrozumieć i skompilować poniższy kod.
-Więcej szczegółów stanie się dla Ciebie jasnych, gdy omówione zostaną *tablice*.
-```c++
-void main() {
-  char tekst[] = "To jest moj tekst\n";
-
-  printf(tekst);
-}
-```
-Istnieje również szereg funkcji, które pozwalają łączyć teksty, porównywać je ze sobą, przekształcać zmienne liczbowe do postaci zmiennych tekstowych.
-Zainteresowanych odsyłamy do zewnętrznych materiałów poświęconych *zmiennym łańcuchowym (ang. string)*.
