@@ -6,16 +6,17 @@ number: 0
 
 # Tworzenie nowego projektu w programie Microsoft Visual Studio 2013
 
-Instrukcja opisuje w jaki sposób stworzyć nowy projekt w programie Microsoft Visual Studio 2013 wraz z biblioteką graficzną `winbgi2`.
+Instrukcja opisuje w jaki sposób stworzyć projekt wykorzystujący bibliotekę `winbgi2` w programie Microsoft Visual Studio 2013.
 
 1. Otwórz program Microsoft Visual Studio.
-2. Uruchom link *New project* znajdujący się pod nagłówkiem *Start*.
-Jeśli strona startowa nie wyświetli się, wybierz z menu głównego *File* -> *New Project*.
-    - Po rozwinięciu listy *Templates* wybierz *Visual C++*.
+2. Na stronie startowej, pod nagłówkiem *Start* znajduje się link *New project*.
+Uruchom go.
+(Jeśli strona startowa nie wyświetli się, wybierz z menu głównego *File* -> *New Project*.)
+    - Rozwiń listę *Templates* i wybierz szablon *Visual C++*.
     W głównej części ekranu pojawią się cztery typy projektów.
     Wybierz *Win32 Console Application*
     - Uzupełnij pole *Name* wybraną nazwą projektu i pole *Location* ścieżką do swojego katalogu.
-Okno programu powinno wyglądać tak, jak poniżej:
+Okno *New Project* powinno wyglądać tak, jak poniżej:
 
 ![](figures/info1/page_1.png "Uzupełnione okno wyboru typu projektu.")
 
@@ -29,19 +30,23 @@ Okno programu powinno wyglądać tak, jak poniżej:
 
 4. Kliknij *Finish*.
 W katalogu, który wybrałeś jako miejsce dla utworzenia projektu, powstał folder o wybranej przez Ciebie nazwie.
-Otwórz go.
-Znajdują się w nim pliki, które w tym momencie nas nie interesują, oraz katalog o nazwie takiej samej jak nazwa katalogu nadrzędnego.
+Otwórz go za pomocą eksploratora Windows.
+Znajdują się w nim pewne pliki (które w tym momencie nas nie interesują) oraz katalog o nazwie takiej samej jak nazwa katalogu nadrzędnego.
 Otwórz go.
 Znajdujesz się teraz w katalogu projektu, który zawiera tylko dwa pliki *\*.wcxproj* i *\*.wcxproj.filters*.
 
-5. Wybierz pliki biblioteki graficznej *winbgi2.cpp* oraz *winbgi2.h* i skopiuj je do katalogu projektu.
+5. Pliki biblioteki graficznej można pobrać ze  [strony](https://codeload.github.com/ccfd/courses_graphics/zip/master).
+Rozpakuj archiwum i wybierz pliki *winbgi2.cpp* oraz *winbgi2.h*.
+Skopiuj je do katalogu projektu.
+
 Katalog powinien wyglądać następująco:
 
 ![](figures/info1/page_3.png "Katalog projektu z plikami biblioteki graficznej")
 
-6. Wróć do programu Miscrosoft Visual Studio i zarejestruj pliki biblioteki graficznej.
+6. Wróć do programu Microsoft Visual Studio i zarejestruj pliki biblioteki graficznej.
 W tym celu znajdź panel *Solution Explorer*.
-Zawiera on pliki należące do Twojego projektu.
+(Jeśli panel jest zamknięty, użyj kombinacji klawiszy `Ctrl` + `Alt` + `L`.)
+Panel zawiera on pliki należące do Twojego projektu.
 Kliknij na *Header Files*, wybierz *Add* a następnie *Existing Item*.
 
 ![](figures/info1/page_4.png "Dodawanie do projektu pliku nagłówkowego.")
@@ -61,11 +66,12 @@ W polu *Name* wpisz wybraną nazwę (przykładowo **program.cpp**) i kliknij *Ad
 
 ![](figures/info1/page_6.png "Tworzenie nowego pliku źródłowego.")
 
-10. Ostatecznie okno projektu powinno wyglądać następująco:
+10. Ostatecznie, okno projektu powinno wyglądać następująco:
 
 ![](figures/info1/page_7.png "Okno projektu z dołączonymi plikami.")
 
-11. Kliknij na plik źródłowy z kodem programu (w naszym przykładzie **program.cpp**) i wpisz przykładowy kod:
+11. Jeśli nowy plik źródłowy nie otworzył się od razu, kliknij jego nazwę (w naszym przykładzie **program.cpp**) na karcie *Solution Explorer*.
+Wpisz przykładowy kod:
 
 ![](figures/info1/page_8.png "Przykładowy kod wykorzystujący bibliotekę winbgi2.")
 
@@ -86,20 +92,17 @@ void main() {
 ```
 
 12. Biblioteka graficzna wymaga zmiany jednego ze standardowych ustawień.
-W tym celu klikamy na *PROJECT* a następnie na *Nazwa Projektu Properties*.
+W tym celu klikamy na menu *PROJECT* a następnie na *Nazwa Projektu Properties*.
 
 ![](figures/info1/page_9.png "Wybór opcji projektu.")
 
 13. W nowo otwartym oknie rozwijamy listę *Configuration Properties*, wybieramy opcję *General*, klikamy w prostokąt obok pola *Character Set* -- pojawi się strzałka symbolizująca listę, rozwijamy ją i wybieramy opcję *Use Multi-Byte Character Set*.
-Wybór zatwierdzamy klikając *OK*.
+Wybór zatwierdź klikając *OK*.
 
 ![](figures/info1/page_10.png "Modyfikacja opcji.")
 
 14. Program jest gotowy do skompilowania i uruchomienia.
 Robimy to przez kliknięcie klawiszy `Ctrl` + `F5` lub przez rozwinięcie menu *DEBUG* i kliknięcie *Start Without Debbuging*.
-Po kompilacji program automatycznie się uruchamia:
+Po kompilacji program automatycznie się uruchomi:
 
 ![](figures/info1/page_11.png "Uruchomiony projekt testowy.")
-
-
-
