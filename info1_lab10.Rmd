@@ -38,7 +38,7 @@ Funkcja `recursiveDraw` rysuje okrąg o zadanych parametrach oraz wywołuje sam�
 
 W wypadku trójkąta Sierpińskiego, napiszemy funkcję, która generuje fraktal do pewnej ,,głębokości''.
 Głębokość $1$ oznacza pojedynczy trójkąt, $2$ -- trzy trójkąty, $3$ -- dziewięć, itd.
-Funkcję taką można napisać zauważając, że trójkąt o głębokości $n$ składa się z trzech trójkątów o głębokości $n − 1$.
+Funkcję taką można napisać zauważając, że trójkąt o głębokości $n$ składa się z trzech trójkątów o głębokości $n - 1$.
 
 ### Ćwiczenia
 
@@ -48,7 +48,7 @@ Napisz funkcję `sierpinski(x, y, d, n)`, która:
 2. Dla $n > 1$ wywoła trzy razy funkcję `sierpinski()` z:
     - odpowiednio zmienionymi współrzędnymi $(x, y)$,
     - dwa razy zmniejszonym $d$,
-    - głębokością $n − 1$.
+    - głębokością $n - 1$.
 3. Na początku funkcji umieść wywołanie `animate()` i zobacz w jakiej kolejności rysowane są trójkąty.
 
 # Zbiór Julii, zbiór Mandelbrota
@@ -62,7 +62,7 @@ Zaś zbiór takich $c$ (dla $z_0 = 0$) -- zbiorem *Mandelbrota*.
 ## Mapa kolorów
 
 Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli.
-Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie $x \in [−4, 4]$ i $y \in [−3, 3]$.
+Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie $x \in [-4, 4]$ i $y \in [-3, 3]$.
 Używając funkcji `setcolor()`, możemy narysować wykres funkcji $\sin(x^2 + y^2)$.
 
 Funkcja `setcolor()` jako argument przyjmuje liczbę z przedziału od $0$ do $1$ i ustawia kolor rysowania.
@@ -96,16 +96,16 @@ Stwórz funkcję `divergence(zR, zC, cR, cC)`, która wyznacza elementy ciągu $
 Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której $|z_n| > 2$ podzieloną przez $600$.
 Za maksymalną liczbę iteracji przyjmij $600$.
 Jeżeli ciąg jest zbieżny (tzn. po $600$ iteracjach nadal $|z_n| < 2$), niech funkcja zwraca $0$.
-**Przypomnienie:** Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że $i^2 = −1$.
+**Przypomnienie:** Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że $i^2 = -1$.
 
 ### Ćwiczenia
 
 - Pokoloruj piksele tak jak w poprzednim podpunkcie, zgodnie z `divergence(x, y, -0.3, 0.63)` (możesz umieścić to wywołanie wewnątrz `fun(x, y)` albo bezpośrednio wpisać jego wynik do zmiennej $r$).
-- Zobacz, jak wygląda zbiór dla innych $c$, np $c = −0.1 + 0.65 \cdot i$, $c = 0$, $c = 1$, zmieniając liczbę iteracji jeśli zajdzie potrzeba.
+- Zobacz, jak wygląda zbiór dla innych $c$, np $c = -0.1 + 0.65 \cdot i$, $c = 0$, $c = 1$, zmieniając liczbę iteracji jeśli zajdzie potrzeba.
 - Pokoloruj piksele zgodnie z `divergence(0, 0, x, y)`.
 Powinieneś otrzymać zbiór *Mandelbrota*.
 - Zmodyfikuj funkcję tak, aby zwracała logarytm z liczby iteracji.
-- Zmodyfikuj kod tak, aby zobaczyć obszar o środku w punkcie $(−0.345, 0.635)$.
+- Zmodyfikuj kod tak, aby zobaczyć obszar o środku w punkcie $(-0.345, 0.635)$.
 - Powiększ obszar $200$ razy.
 
 ## \* Antyaliasing - dla dociekliwych
@@ -116,7 +116,7 @@ Jeśli zaczernimy tylko piksele wewnątrz krzywej, uzyskamy bardzo nienaturalny 
 Jeśli jednak użyjemy odcienia szarości, proporcjonalnego do ,,pola'' przykrytego tą literą, uzyskamy ładną, gładką czcionkę.
 Wyobraźmy sobie, że mamy obraz składający się z dużej liczby gęsto ułożonych czarnych linii na białym tle.
 Chcąc taki obraz zmniejszyć, możemy wziąć np. co trzeci piksel w każdą stronę.
-Jednak takie podejście spowoduje, że raz trafimy na w pełni czarny, a raz na w pełni biały piksel.\
+Jednak takie podejście spowoduje, że raz trafimy na w pełni czarny, a raz na w pełni biały piksel.
 Ostatecznie uzyskamy biało-czarną kaszę.
 Drugim podejściem byłoby wyznaczenie średniej z każdej kostki $3 \times 3$.
 Takie podejście da nam pożądany efekt rozmazania zbyt małych struktur i kolor szary w miejscu losowej kaszy.
@@ -129,7 +129,7 @@ Taki zabieg wygładzi obraz i usunie ,,odstające'' piksele.
 - Stwórz funkcję `fun2(x, y)`, która liczy średnią wartość funkcji `fun` w czterech punktach: $(x, y)$, $(x + s, y)$, $(x, y + s)$ i $(x + s, y + s)$, gdzie $s = 1/800$.
 Pokoloruj piksele za jej pomocą.
 - Pokoloruj połowę obrazu z antyaliasingiem, a połowę bez
-(Np. zbiór Julii dla $c = −0.1 + 0.65 \cdot i$).
+(Np. zbiór Julii dla $c = -0.1 + 0.65 \cdot i$).
 Czy widać różnicę?
 - \* Spróbuj uogólnić technikę z $k = 2$ na dowolne $k$.
 - \* Zamiast średniej oblicz maksimum lub minimum.
