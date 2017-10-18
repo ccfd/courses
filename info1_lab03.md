@@ -132,6 +132,34 @@ Wydrukuj wszystkie wyniki na ekran.
 
 # Wskaźniki
 
+Każdy element programu musi być zapisany gdzieś w pamięci komputera.
+Oznacza to, że musi też mieć swój adres.
+Adres ten można zapisać w pewnej zmiennej i posłużyć się nim w programie.
+Zmienną zawierającą adres innej zmiennej nazywamy **wskaźnikiem**.
+Wskaźniki mogą zawierać adresy różnych elementów (zmiennych, tablic, funkcji, ...).
+Z tego powodu będą pojawiały się na różnych etapach tego kursu.
+W tej instrukcji opiszemy jedynie podstawy.
+
+Jak już wspomnieliśmy, każda zmienna ma swój adres.
+Można go uzyskać stosując operator & i zapisać w zmiennej typu wskaźnikowego.
+Wskaźnik zawierający adres zmiennej danego typu zapisujemy `typ *wskaznik;`.
+Wskaźnik pozwala nam
+
+Przykładowo:
+```c++
+double x;              // Deklaracja zmiennej typu double
+x = 4.2;               // Definicja - nadanie zmiennej wartosci
+
+double *wsk_x;         // Deklaracja wskaznika mogacego przechowac
+                       // adres zmiennej typu double
+wsk_x = &x;            // Definicja - nadanie zmiennej wartosci
+                       // bedacej adresem zmiennej x
+printf("%p", wsk_x);   // wydrukowanie adresu na ekran
+printf("%lf", *wsk_x); // wydrukowanie wartosci zmiennej, ktorej
+                       // adres przechowuje wskaznik
+printf("%lf", x);      // wydrukowanie wartosci zmiennej x
+```
+
 
 <--- tutaj będzie tekst o wskaźnikach --->
 
