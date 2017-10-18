@@ -27,6 +27,49 @@
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -488,7 +531,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info1_lab10.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -521,8 +564,116 @@ div.tocify {
 </div>
 
 
-<div id="in-progress" class="section level1">
-<h1>In progress…</h1>
+<p>Na dzisiejszych zajęciach będziemy zajmować się fraktalami. Fraktale to zbiory matematyczne charakteryzujące się tzw. samopodobieństwem – w każdym powiększeniu wyglądają identycznie<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<div id="trojkat-sierpinskiego" class="section level1">
+<h1>Trójkąt Sierpińskiego</h1>
+<p>Idea trójkąta Sierpińskiego polega na tym, że każdy trójkąt zawiera w sobie trzy takie same trójkąty o dwukrotnie krótszych bokach (patrz Rys. 1).</p>
+<div class="figure">
+<img src="figures/info1/trojkatSierpinskiego.png" title="Trójkąt Sierpińskiego." alt="Rys.1. Trójkąt Sierpińskiego." />
+<p class="caption">Rys.1. Trójkąt Sierpińskiego.</p>
+</div>
+<p>Trójkąt Sierpińskiego można stworzyć na różne sposoby. My wykorzystamy <strong>rekurencję</strong>.</p>
+<div id="rekurencyjne-wywoywanie-funkcji" class="section level2">
+<h2>Rekurencyjne wywoływanie funkcji</h2>
+<p>Rekurencyjne wywoływanie funkcji polega na tym, że dana funkcja wywołuje samą siebie. Jak łatwo się domyśleć, takie wywoływanie trwałoby w nieskończoność. Aby tego uniknąć, nakłada się warunek na wywołanie funkcji.</p>
+<p>Cały mechanizm, ilustruje to poniższy przykład:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> recursiveDraw(<span class="dt">double</span> x, <span class="dt">double</span> y, <span class="dt">double</span> R) {
+  circle(x, y, R);
+  
+  <span class="kw">if</span>(x &lt; <span class="dv">500</span>) {
+    recursiveDraw(x + <span class="dv">5</span>, y + <span class="dv">5</span>, <span class="fl">0.</span><span class="dv">88</span> * R);
+  }
+}</code></pre></div>
+<p>Funkcja <code>recursiveDraw</code> rysuje okrąg o zadanych parametrach oraz wywołuje samą siebie z innymi wartościami argumentów, dopóki wartość <span class="math inline">\(x\)</span> nie przekroczy <span class="math inline">\(500\)</span>.</p>
+<p>W wypadku trójkąta Sierpińskiego, napiszemy funkcję, która generuje fraktal do pewnej ,,głębokości’’. Głębokość <span class="math inline">\(1\)</span> oznacza pojedynczy trójkąt, <span class="math inline">\(2\)</span> – trzy trójkąty, <span class="math inline">\(3\)</span> – dziewięć, itd. Funkcję taką można napisać zauważając, że trójkąt o głębokości <span class="math inline">\(n\)</span> składa się z trzech trójkątów o głębokości <span class="math inline">\(n − 1\)</span>.</p>
+<div id="cwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Napisz funkcję <code>sierpinski(x, y, d, n)</code>, która:</p>
+<ol style="list-style-type: decimal">
+<li>Dla <span class="math inline">\(n = 1\)</span> tworzy trójkąt równoboczny o wysokości <span class="math inline">\(d\)</span> oraz lewym dolnym wierzchołku w punkcie <span class="math inline">\((x, y)\)</span></li>
+<li>Dla <span class="math inline">\(n &gt; 1\)</span> wywoła trzy razy funkcję <code>sierpinski()</code> z:
+<ul>
+<li>odpowiednio zmienionymi współrzędnymi <span class="math inline">\((x, y)\)</span>,</li>
+<li>dwa razy zmniejszonym <span class="math inline">\(d\)</span>,</li>
+<li>głębokością <span class="math inline">\(n − 1\)</span>.</li>
+</ul></li>
+<li>Na początku funkcji umieść wywołanie <code>animate()</code> i zobacz w jakiej kolejności rysowane są trójkąty.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="zbior-julii-zbior-mandelbrota" class="section level1">
+<h1>Zbiór Julii, zbiór Mandelbrota</h1>
+<p>Wyobraźmy sobie ciąg liczb zespolonych takich, że każdy wyraz zależy od poprzedniego zgodnie ze wzorem: <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>. Taki ciąg ma bardzo nietypowe własności. Między innymi, jego rozbieżność zależy w bardzo złożony sposób od wyrazu początkowego <span class="math inline">\(z_0\)</span> i stałej <span class="math inline">\(c\)</span>. Zbiór takich <span class="math inline">\(z_0\)</span>, dla których ciąg ten nie jest rozbieżny nazwany został zbiorem <em>Julii</em> (zależy on od <span class="math inline">\(c\)</span>). Zaś zbiór takich <span class="math inline">\(c\)</span> (dla <span class="math inline">\(z_0 = 0\)</span>) – zbiorem <em>Mandelbrota</em>.</p>
+<div id="mapa-kolorow" class="section level2">
+<h2>Mapa kolorów</h2>
+<p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [−4, 4]\)</span> i <span class="math inline">\(y \in [−3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span>.</p>
+<p>Funkcja <code>setcolor()</code> jako argument przyjmuje liczbę z przedziału od <span class="math inline">\(0\)</span> do <span class="math inline">\(1\)</span> i ustawia kolor rysowania.</p>
+<p>Przeanalizuj poniższy program:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> fun(<span class="dt">double</span> x, <span class="dt">double</span> y) {
+  <span class="kw">return</span> (sin((x * x + y * y) * <span class="fl">50.</span><span class="dv">0</span>) + <span class="fl">1.</span><span class="dv">0</span>) / <span class="fl">2.</span><span class="dv">0</span>;
+}
+
+<span class="dt">void</span> main() {
+  <span class="dt">double</span> r;
+  <span class="dt">int</span> i, j;
+  
+  graphics(<span class="dv">810</span>, <span class="dv">610</span>);
+  
+  <span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">800</span>; i++)
+    <span class="kw">for</span>(j = <span class="dv">0</span>; j &lt; <span class="dv">600</span>; j++) {
+      r = fun(i / <span class="fl">200.</span><span class="dv">0</span> - <span class="fl">2.</span><span class="dv">0</span>, j / <span class="fl">200.</span><span class="dv">0</span> - <span class="fl">1.</span><span class="dv">5</span>);
+      setcolor(r);
+      point(i, j);
+    }
+    
+  wait();
+}</code></pre></div>
+</div>
+<div id="rozbieznosc" class="section level2">
+<h2>Rozbieżność</h2>
+<p>Stwórz funkcję <code>divergence(zR, zC, cR, cC)</code>, która wyznacza elementy ciągu <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>, gdzie <span class="math inline">\(z_0 = zR + zC \cdot i\)</span>, zaś <span class="math inline">\(c = cR + cC \cdot i\)</span>. Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której <span class="math inline">\(|z_n| &gt; 2\)</span> podzieloną przez <span class="math inline">\(600\)</span>. Za maksymalną liczbę iteracji przyjmij <span class="math inline">\(600\)</span>. Jeżeli ciąg jest zbieżny (tzn. po <span class="math inline">\(600\)</span> iteracjach nadal <span class="math inline">\(|z_n| &lt; 2\)</span>), niech funkcja zwraca <span class="math inline">\(0\)</span>. <strong>Przypomnienie:</strong> Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że <span class="math inline">\(i^2 = −1\)</span>.</p>
+<div id="cwiczenia-1" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Pokoloruj piksele tak jak w poprzednim podpunkcie, zgodnie z <code>divergence(x, y, -0.3, 0.63)</code> (możesz umieścić to wywołanie wewnątrz <code>fun(x, y)</code> albo bezpośrednio wpisać jego wynik do zmiennej <span class="math inline">\(r\)</span>).</li>
+<li>Zobacz, jak wygląda zbiór dla innych <span class="math inline">\(c\)</span>, np <span class="math inline">\(c = −0.1 + 0.65 \cdot i\)</span>, <span class="math inline">\(c = 0\)</span>, <span class="math inline">\(c = 1\)</span>, zmieniając liczbę iteracji jeśli zajdzie potrzeba.</li>
+<li>Pokoloruj piksele zgodnie z <code>divergence(0, 0, x, y)</code>. Powinieneś otrzymać zbiór <em>Mandelbrota</em>.</li>
+<li>Zmodyfikuj funkcję tak, aby zwracała logarytm z liczby iteracji.</li>
+<li>Zmodyfikuj kod tak, aby zobaczyć obszar o środku w punkcie <span class="math inline">\((−0.345, 0.635)\)</span>.</li>
+<li>Powiększ obszar <span class="math inline">\(200\)</span> razy.</li>
+</ul>
+</div>
+</div>
+<div id="antyaliasing---dla-dociekliwych" class="section level2">
+<h2>* Antyaliasing - dla dociekliwych</h2>
+<p>Antyaliasing ma na celu usunięcie efektów reprezentacji ze skończoną rozdzielczością. Dla przykładu, jeśli mamy literę, to jej krawędź jest gładką krzywą, która przechodzi tylko częściowo przez piksel. Jeśli zaczernimy tylko piksele wewnątrz krzywej, uzyskamy bardzo nienaturalny efekt. Jeśli jednak użyjemy odcienia szarości, proporcjonalnego do ,,pola’‘przykrytego tą literą, uzyskamy ładną, gładką czcionkę. Wyobraźmy sobie, że mamy obraz składający się z dużej liczby gęsto ułożonych czarnych linii na białym tle. Chcąc taki obraz zmniejszyć, możemy wziąć np. co trzeci piksel w każdą stronę. Jednak takie podejście spowoduje, że raz trafimy na w pełni czarny, a raz na w pełni biały piksel.<br />
+Ostatecznie uzyskamy biało-czarną kaszę. Drugim podejściem byłoby wyznaczenie średniej z każdej kostki <span class="math inline">\(3 \times 3\)</span>. Takie podejście da nam pożądany efekt rozmazania zbyt małych struktur i kolor szary w miejscu losowej kaszy. Taki rodzaj antyaliasingu nazywany jest super-samplingiem. W wypadku obrazów takich jak zbiór <em>Mandelbrota</em> czy zbiór <em>Julii</em>, możemy dla każdego piksela obliczyć <span class="math inline">\(k \times k\)</span> wartości funkcji <code>fun()</code> i uśrednić wynik. Taki zabieg wygładzi obraz i usunie ,,odstające’’ piksele.</p>
+<div id="cwiczenia-2" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Stwórz funkcję <code>fun2(x, y)</code>, która liczy średnią wartość funkcji <code>fun</code> w czterech punktach: <span class="math inline">\((x, y)\)</span>, <span class="math inline">\((x + s, y)\)</span>, <span class="math inline">\((x, y + s)\)</span> i <span class="math inline">\((x + s, y + s)\)</span>, gdzie <span class="math inline">\(s = 1/800\)</span>. Pokoloruj piksele za jej pomocą.</li>
+<li>Pokoloruj połowę obrazu z antyaliasingiem, a połowę bez (Np. zbiór Julii dla <span class="math inline">\(c = −0.1 + 0.65 \cdot i\)</span>). Czy widać różnicę?</li>
+<li>* Spróbuj uogólnić technikę z <span class="math inline">\(k = 2\)</span> na dowolne <span class="math inline">\(k\)</span>.</li>
+<li>* Zamiast średniej oblicz maksimum lub minimum.</li>
+<li>Zamień funkcję <code>setcolor()</code> na <code>setgray()</code>.</li>
+</ul>
+<div class="figure">
+<img src="figures/info1/julia.png" title="Zbiór Julii." alt="Rys.2. Zbiór Julii." />
+<p class="caption">Rys.2. Zbiór Julii.</p>
+</div>
+<div class="figure">
+<img src="figures/info1/mandelbrot.png" title="Zbiór Mandelbrota." alt="Rys.3. Zbiór Mandelbrota." />
+<p class="caption">Rys.3. Zbiór Mandelbrota.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Z tego powodu wydają się bardzo skomplikowane. Okazuje się jednak, że fraktale stanowią całkiem niezły sposób opisu przyrody – wystarczy spojrzeć na kawałek wybrzeża Wielkiej Brytanii albo na gałąź choinki, żeby stwierdzić, że przypominają całość, tylko w pomniejszeniu.<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
 <!-- Dummy footer -->
