@@ -531,7 +531,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="info1_lab10.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -585,7 +585,7 @@ div.tocify {
   }
 }</code></pre></div>
 <p>Funkcja <code>recursiveDraw</code> rysuje okrąg o zadanych parametrach oraz wywołuje samą siebie z innymi wartościami argumentów, dopóki wartość <span class="math inline">\(x\)</span> nie przekroczy <span class="math inline">\(500\)</span>.</p>
-<p>W wypadku trójkąta Sierpińskiego, napiszemy funkcję, która generuje fraktal do pewnej ,,głębokości’’. Głębokość <span class="math inline">\(1\)</span> oznacza pojedynczy trójkąt, <span class="math inline">\(2\)</span> – trzy trójkąty, <span class="math inline">\(3\)</span> – dziewięć, itd. Funkcję taką można napisać zauważając, że trójkąt o głębokości <span class="math inline">\(n\)</span> składa się z trzech trójkątów o głębokości <span class="math inline">\(n − 1\)</span>.</p>
+<p>W wypadku trójkąta Sierpińskiego, napiszemy funkcję, która generuje fraktal do pewnej ,,głębokości’’. Głębokość <span class="math inline">\(1\)</span> oznacza pojedynczy trójkąt, <span class="math inline">\(2\)</span> – trzy trójkąty, <span class="math inline">\(3\)</span> – dziewięć, itd. Funkcję taką można napisać zauważając, że trójkąt o głębokości <span class="math inline">\(n\)</span> składa się z trzech trójkątów o głębokości <span class="math inline">\(n - 1\)</span>.</p>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Napisz funkcję <code>sierpinski(x, y, d, n)</code>, która:</p>
@@ -595,7 +595,7 @@ div.tocify {
 <ul>
 <li>odpowiednio zmienionymi współrzędnymi <span class="math inline">\((x, y)\)</span>,</li>
 <li>dwa razy zmniejszonym <span class="math inline">\(d\)</span>,</li>
-<li>głębokością <span class="math inline">\(n − 1\)</span>.</li>
+<li>głębokością <span class="math inline">\(n - 1\)</span>.</li>
 </ul></li>
 <li>Na początku funkcji umieść wywołanie <code>animate()</code> i zobacz w jakiej kolejności rysowane są trójkąty.</li>
 </ol>
@@ -607,7 +607,7 @@ div.tocify {
 <p>Wyobraźmy sobie ciąg liczb zespolonych takich, że każdy wyraz zależy od poprzedniego zgodnie ze wzorem: <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>. Taki ciąg ma bardzo nietypowe własności. Między innymi, jego rozbieżność zależy w bardzo złożony sposób od wyrazu początkowego <span class="math inline">\(z_0\)</span> i stałej <span class="math inline">\(c\)</span>. Zbiór takich <span class="math inline">\(z_0\)</span>, dla których ciąg ten nie jest rozbieżny nazwany został zbiorem <em>Julii</em> (zależy on od <span class="math inline">\(c\)</span>). Zaś zbiór takich <span class="math inline">\(c\)</span> (dla <span class="math inline">\(z_0 = 0\)</span>) – zbiorem <em>Mandelbrota</em>.</p>
 <div id="mapa-kolorow" class="section level2">
 <h2>Mapa kolorów</h2>
-<p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [−4, 4]\)</span> i <span class="math inline">\(y \in [−3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span>.</p>
+<p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [-4, 4]\)</span> i <span class="math inline">\(y \in [-3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span>.</p>
 <p>Funkcja <code>setcolor()</code> jako argument przyjmuje liczbę z przedziału od <span class="math inline">\(0\)</span> do <span class="math inline">\(1\)</span> i ustawia kolor rysowania.</p>
 <p>Przeanalizuj poniższy program:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> fun(<span class="dt">double</span> x, <span class="dt">double</span> y) {
@@ -632,28 +632,27 @@ div.tocify {
 </div>
 <div id="rozbieznosc" class="section level2">
 <h2>Rozbieżność</h2>
-<p>Stwórz funkcję <code>divergence(zR, zC, cR, cC)</code>, która wyznacza elementy ciągu <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>, gdzie <span class="math inline">\(z_0 = zR + zC \cdot i\)</span>, zaś <span class="math inline">\(c = cR + cC \cdot i\)</span>. Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której <span class="math inline">\(|z_n| &gt; 2\)</span> podzieloną przez <span class="math inline">\(600\)</span>. Za maksymalną liczbę iteracji przyjmij <span class="math inline">\(600\)</span>. Jeżeli ciąg jest zbieżny (tzn. po <span class="math inline">\(600\)</span> iteracjach nadal <span class="math inline">\(|z_n| &lt; 2\)</span>), niech funkcja zwraca <span class="math inline">\(0\)</span>. <strong>Przypomnienie:</strong> Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że <span class="math inline">\(i^2 = −1\)</span>.</p>
+<p>Stwórz funkcję <code>divergence(zR, zC, cR, cC)</code>, która wyznacza elementy ciągu <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>, gdzie <span class="math inline">\(z_0 = zR + zC \cdot i\)</span>, zaś <span class="math inline">\(c = cR + cC \cdot i\)</span>. Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której <span class="math inline">\(|z_n| &gt; 2\)</span> podzieloną przez <span class="math inline">\(600\)</span>. Za maksymalną liczbę iteracji przyjmij <span class="math inline">\(600\)</span>. Jeżeli ciąg jest zbieżny (tzn. po <span class="math inline">\(600\)</span> iteracjach nadal <span class="math inline">\(|z_n| &lt; 2\)</span>), niech funkcja zwraca <span class="math inline">\(0\)</span>. <strong>Przypomnienie:</strong> Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że <span class="math inline">\(i^2 = -1\)</span>.</p>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Pokoloruj piksele tak jak w poprzednim podpunkcie, zgodnie z <code>divergence(x, y, -0.3, 0.63)</code> (możesz umieścić to wywołanie wewnątrz <code>fun(x, y)</code> albo bezpośrednio wpisać jego wynik do zmiennej <span class="math inline">\(r\)</span>).</li>
-<li>Zobacz, jak wygląda zbiór dla innych <span class="math inline">\(c\)</span>, np <span class="math inline">\(c = −0.1 + 0.65 \cdot i\)</span>, <span class="math inline">\(c = 0\)</span>, <span class="math inline">\(c = 1\)</span>, zmieniając liczbę iteracji jeśli zajdzie potrzeba.</li>
+<li>Zobacz, jak wygląda zbiór dla innych <span class="math inline">\(c\)</span>, np <span class="math inline">\(c = -0.1 + 0.65 \cdot i\)</span>, <span class="math inline">\(c = 0\)</span>, <span class="math inline">\(c = 1\)</span>, zmieniając liczbę iteracji jeśli zajdzie potrzeba.</li>
 <li>Pokoloruj piksele zgodnie z <code>divergence(0, 0, x, y)</code>. Powinieneś otrzymać zbiór <em>Mandelbrota</em>.</li>
 <li>Zmodyfikuj funkcję tak, aby zwracała logarytm z liczby iteracji.</li>
-<li>Zmodyfikuj kod tak, aby zobaczyć obszar o środku w punkcie <span class="math inline">\((−0.345, 0.635)\)</span>.</li>
+<li>Zmodyfikuj kod tak, aby zobaczyć obszar o środku w punkcie <span class="math inline">\((-0.345, 0.635)\)</span>.</li>
 <li>Powiększ obszar <span class="math inline">\(200\)</span> razy.</li>
 </ul>
 </div>
 </div>
 <div id="antyaliasing---dla-dociekliwych" class="section level2">
 <h2>* Antyaliasing - dla dociekliwych</h2>
-<p>Antyaliasing ma na celu usunięcie efektów reprezentacji ze skończoną rozdzielczością. Dla przykładu, jeśli mamy literę, to jej krawędź jest gładką krzywą, która przechodzi tylko częściowo przez piksel. Jeśli zaczernimy tylko piksele wewnątrz krzywej, uzyskamy bardzo nienaturalny efekt. Jeśli jednak użyjemy odcienia szarości, proporcjonalnego do ,,pola’‘przykrytego tą literą, uzyskamy ładną, gładką czcionkę. Wyobraźmy sobie, że mamy obraz składający się z dużej liczby gęsto ułożonych czarnych linii na białym tle. Chcąc taki obraz zmniejszyć, możemy wziąć np. co trzeci piksel w każdą stronę. Jednak takie podejście spowoduje, że raz trafimy na w pełni czarny, a raz na w pełni biały piksel.<br />
-Ostatecznie uzyskamy biało-czarną kaszę. Drugim podejściem byłoby wyznaczenie średniej z każdej kostki <span class="math inline">\(3 \times 3\)</span>. Takie podejście da nam pożądany efekt rozmazania zbyt małych struktur i kolor szary w miejscu losowej kaszy. Taki rodzaj antyaliasingu nazywany jest super-samplingiem. W wypadku obrazów takich jak zbiór <em>Mandelbrota</em> czy zbiór <em>Julii</em>, możemy dla każdego piksela obliczyć <span class="math inline">\(k \times k\)</span> wartości funkcji <code>fun()</code> i uśrednić wynik. Taki zabieg wygładzi obraz i usunie ,,odstające’’ piksele.</p>
+<p>Antyaliasing ma na celu usunięcie efektów reprezentacji ze skończoną rozdzielczością. Dla przykładu, jeśli mamy literę, to jej krawędź jest gładką krzywą, która przechodzi tylko częściowo przez piksel. Jeśli zaczernimy tylko piksele wewnątrz krzywej, uzyskamy bardzo nienaturalny efekt. Jeśli jednak użyjemy odcienia szarości, proporcjonalnego do ,,pola’‘przykrytego tą literą, uzyskamy ładną, gładką czcionkę. Wyobraźmy sobie, że mamy obraz składający się z dużej liczby gęsto ułożonych czarnych linii na białym tle. Chcąc taki obraz zmniejszyć, możemy wziąć np. co trzeci piksel w każdą stronę. Jednak takie podejście spowoduje, że raz trafimy na w pełni czarny, a raz na w pełni biały piksel. Ostatecznie uzyskamy biało-czarną kaszę. Drugim podejściem byłoby wyznaczenie średniej z każdej kostki <span class="math inline">\(3 \times 3\)</span>. Takie podejście da nam pożądany efekt rozmazania zbyt małych struktur i kolor szary w miejscu losowej kaszy. Taki rodzaj antyaliasingu nazywany jest super-samplingiem. W wypadku obrazów takich jak zbiór <em>Mandelbrota</em> czy zbiór <em>Julii</em>, możemy dla każdego piksela obliczyć <span class="math inline">\(k \times k\)</span> wartości funkcji <code>fun()</code> i uśrednić wynik. Taki zabieg wygładzi obraz i usunie ,,odstające’’ piksele.</p>
 <div id="cwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Stwórz funkcję <code>fun2(x, y)</code>, która liczy średnią wartość funkcji <code>fun</code> w czterech punktach: <span class="math inline">\((x, y)\)</span>, <span class="math inline">\((x + s, y)\)</span>, <span class="math inline">\((x, y + s)\)</span> i <span class="math inline">\((x + s, y + s)\)</span>, gdzie <span class="math inline">\(s = 1/800\)</span>. Pokoloruj piksele za jej pomocą.</li>
-<li>Pokoloruj połowę obrazu z antyaliasingiem, a połowę bez (Np. zbiór Julii dla <span class="math inline">\(c = −0.1 + 0.65 \cdot i\)</span>). Czy widać różnicę?</li>
+<li>Pokoloruj połowę obrazu z antyaliasingiem, a połowę bez (Np. zbiór Julii dla <span class="math inline">\(c = -0.1 + 0.65 \cdot i\)</span>). Czy widać różnicę?</li>
 <li>* Spróbuj uogólnić technikę z <span class="math inline">\(k = 2\)</span> na dowolne <span class="math inline">\(k\)</span>.</li>
 <li>* Zamiast średniej oblicz maksimum lub minimum.</li>
 <li>Zamień funkcję <code>setcolor()</code> na <code>setgray()</code>.</li>
