@@ -599,7 +599,7 @@ div.tocify {
 </ul>
 <p>Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na których ma ona działać oraz długość tych wektorów:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  init(x, y, <span class="dv">10</span>);</code></pre></div>
-<p>Zauważmy, że funkcja <code>init</code> pobiera 2 wskaźniki do wektorów (<code>x</code> oraz <code>y</code>) oraz jedną wartość – 10. Dzięki temu, funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
+<p>Zauważmy, że funkcja <code>init</code> pobiera 2 wskaźniki do wektorów (<code>x</code> oraz <code>y</code>) oraz jedną wartość – 10. Dzięki temu, funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać.</p>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
@@ -622,7 +622,7 @@ a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</spa
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Napisz funkcję, która wylosuje początkowe prędkości piłek. Wylosuj je tak, aby wartość prędkości wynosiła 1 (najłatwiej będzie wylosować dowolną liczbę i jej sinus i cosinus przypisać jako składowe prędkości piłki)</li>
-<li>Napisz funkcję , która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>:</li>
+<li>Napisz funkcję , która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>:</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">     <span class="kw">for</span> ( i=<span class="dv">0</span>; i &lt; N; ++i){
           x[i] += cx[i];
@@ -663,8 +663,7 @@ a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</spa
 <li id="fn1"><p>bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>tablice zazwyczaj będziemy nazywać wektorami, ze względu na fakt, że określenie ,,tablica’’ kojarzą się z obiektem o większej liczbie wymiarów np. z macierzą<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>Zasady działania na wskaźnikach opisano w Instrukcji 5.<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>piłki poruszają się ze stałą prędkością, toteż $x(t+t) = x(t) + vt $, a dla uproszczenia symulacji czas jest jednostkowy zatem <span class="math inline">\(x(t+1) = x(t) + v\)</span><a href="#fnref5">↩</a></p></li>
+<li id="fn4"><p>piłki poruszają się ze stałą prędkością, toteż $x(t+t) = x(t) + vt $, a dla uproszczenia symulacji czas jest jednostkowy zatem <span class="math inline">\(x(t+1) = x(t) + v\)</span><a href="#fnref4">↩</a></p></li>
 </ol>
 </div>
 
