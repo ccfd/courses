@@ -25,7 +25,7 @@ void main() {
 }
 ```
 Funkcja `printf()` służy do wypisywania tekstu na ekran.
-Jako argument przyjmuje sformatowany strumień tekstowy.
+Jako pierwszy argument przyjmuje sformatowany tekst.
 Do formatowania tekstu służą *kody sterujące*, które pozwalają wprowadzić znak nowej linii, tabulacji itp.
 Przykładowo, umieszczona wewnątrz tekstu sekwencja znaków:
 
@@ -59,8 +59,7 @@ Można to zrobić, jednak ze względu na przenośność w prostych programach ni
 
 Pewne znaki są w języku C zarezerwowane na potrzeby wykonania konkretnych operacji.
 Jeśli chcemy je wydrukować na ekran, nie mogą być użyte wprost.
-Dobrymi przykładami takich znaków są ,,%'' czy backslash ,,\\''.
-Jeśli chcesz, aby pojawiły się na ekranie, musisz poprzedzić je dodatkowym znakiem \\.
+Przykładowo, jeśli chcemy za pomocą funkcji `printf()` wydrukować znaki ,,%'' i ,,\\'' należy je zapisać podwójnie, tzn. ,,%%'' i ,,\\\\''.
 
 Dopisz do swojego programu instrukcję, która wydrukuje następujący tekst:
 ```c++
@@ -86,10 +85,10 @@ printf("a = %d, b = %lf, c = %lf\n", a, b, c);
 Zauważ, że do drukowania wartości przechowywanych w zmiennych służą tzw. *specyfikatory formatu*.
 Na zajęciach najczęściej będą używane:
 
-    - %lf --- dla zmiennych typu `double`
-    - %d --- dla zmiennych typu `int`
-    - %f --- dla zmiennych typu `float`
-    - %c --- dla zmiennych typu `char`
+    - %lf -- dla zmiennych typu `double`
+    - %d -- dla zmiennych typu `int`
+    - %f -- dla zmiennych typu `float`
+    - %c -- dla zmiennych typu `char`
 
 ### Ćwiczenia
 
@@ -106,13 +105,16 @@ Przykład jej użycia wygląda następująco:
 ```c++
 int a;
 scanf("%d", &a);
+printf("Wczytana liczba: %d\n", a);
 
 double c;
 scanf("%lf", &c);
+printf("Wczytana liczba: %lf\n", c);
 
 int b, d;
 double g, h;
 scanf("%lf %d %d %lf", &g, &d, &b, &h);
+printf("Wczytane liczby: %lf %d %d %lf\n", g, d, b, h);
 ```
 **Uwaga:**
 
@@ -167,14 +169,14 @@ Podsumowując:
 
 - `&x` -- pobiera adres zmiennej,
 - `*wsk_k`-- pobiera wartość zmiennej, na którą wskazuje wskaźnik,
-- `"%p"` -- informuje, że wyświetlana wartość to adres.
+- `"%p"` -- informuje funkcję `printf()`, że wyświetlana wartość to adres.
 
 ### Ćwiczenia
 
 - Stwórz trzy zmienne `a`, `b` i `c` tego samego typu.
 - Do zmiennej `a` wczytaj liczbę.
 - Utwórz dwa wskaźniki na pozostałe zmienne.
-- Wykorzystaj wskaźniki do zapisania wartości wczytanej do zmiennej `a` do pozostałych zmiennych. 
+- Wykorzystaj wskaźniki do *przepisania* wartości wczytanej do zmiennej `a` do pozostałych zmiennych. 
 - Dla sprawdzenia, wyświetl zawartość wszystkich zmiennych.
 
 # Funkcje i zwracanie argumentu
