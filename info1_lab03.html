@@ -578,7 +578,7 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
    printf(<span class="st">&quot;Witaj na trzecim laboratorium!&quot;</span>);
 }</code></pre></div>
-<p>Funkcja <code>printf()</code> służy do wypisywania tekstu na ekran. Jako argument przyjmuje sformatowany strumień tekstowy. Do formatowania tekstu służą <em>kody sterujące</em>, które pozwalają wprowadzić znak nowej linii, tabulacji itp. Przykładowo, umieszczona wewnątrz tekstu sekwencja znaków:</p>
+<p>Funkcja <code>printf()</code> służy do wypisywania tekstu na ekran. Jako pierwszy argument przyjmuje sformatowany tekst. Do formatowania tekstu służą <em>kody sterujące</em>, które pozwalają wprowadzić znak nowej linii, tabulacji itp. Przykładowo, umieszczona wewnątrz tekstu sekwencja znaków:</p>
 <ul>
 <li><code>&quot;\n&quot;</code> – wprowadza znak nowej linii,</li>
 <li><code>&quot;\t&quot;</code> – wprowadza znak tabulacji.</li>
@@ -601,7 +601,7 @@ W ponizszej linii wszystkie liczby oddzielono tabulatorami:
 </div>
 <div id="znaki-specjalne" class="section level2">
 <h2>Znaki specjalne</h2>
-<p>Pewne znaki są w języku C zarezerwowane na potrzeby wykonania konkretnych operacji. Jeśli chcemy je wydrukować na ekran, nie mogą być użyte wprost. Dobrymi przykładami takich znaków są ,,%‘’ czy backslash ,,\’’. Jeśli chcesz, aby pojawiły się na ekranie, musisz poprzedzić je dodatkowym znakiem \.</p>
+<p>Pewne znaki są w języku C zarezerwowane na potrzeby wykonania konkretnych operacji. Jeśli chcemy je wydrukować na ekran, nie mogą być użyte wprost. Przykładowo, jeśli chcemy za pomocą funkcji <code>printf()</code> wydrukować znaki ,,%‘’ i ,,\’‘należy je zapisać podwójnie, tzn. ,,%%’‘i ,,\\’’.</p>
 <p>Dopisz do swojego programu instrukcję, która wydrukuje następujący tekst:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dv">82</span>% dysku C:\ jest w uzyciu!</code></pre></div>
 </div>
@@ -619,10 +619,10 @@ a = <span class="dv">1</span>;
 
 printf(<span class="st">&quot;a = </span><span class="ch">%d</span><span class="st">, b = </span><span class="ch">%lf</span><span class="st">, c = </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, a, b, c);</code></pre></div>
 <p>Zauważ, że do drukowania wartości przechowywanych w zmiennych służą tzw. <em>specyfikatory formatu</em>. Na zajęciach najczęściej będą używane:</p>
-<pre><code>- %lf --- dla zmiennych typu `double`
-- %d --- dla zmiennych typu `int`
-- %f --- dla zmiennych typu `float`
-- %c --- dla zmiennych typu `char`</code></pre>
+<pre><code>- %lf -- dla zmiennych typu `double`
+- %d -- dla zmiennych typu `int`
+- %f -- dla zmiennych typu `float`
+- %c -- dla zmiennych typu `char`</code></pre>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
@@ -640,13 +640,16 @@ printf(<span class="st">&quot;a = </span><span class="ch">%d</span><span class="
 <p>Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest funkcja <code>scanf()</code>. Przykład jej użycia wygląda następująco:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a;
 scanf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a);
+printf(<span class="st">&quot;Wczytana liczba: </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
 
 <span class="dt">double</span> c;
 scanf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st">&quot;</span>, &amp;c);
+printf(<span class="st">&quot;Wczytana liczba: </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, c);
 
 <span class="dt">int</span> b, d;
 <span class="dt">double</span> g, h;
-scanf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%lf</span><span class="st">&quot;</span>, &amp;g, &amp;d, &amp;b, &amp;h);</code></pre></div>
+scanf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%lf</span><span class="st">&quot;</span>, &amp;g, &amp;d, &amp;b, &amp;h);
+printf(<span class="st">&quot;Wczytane liczby: </span><span class="ch">%lf</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, g, d, b, h);</code></pre></div>
 <p><strong>Uwaga:</strong></p>
 <ul>
 <li>Zwróć szczególną uwagę na znak ,,&amp;‘’ występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten służy do ustalenia zmiennej występującej za raz po nim. Funkcja <code>scanf()</code> wczytuje dane z klawiatury, które musi gdzieś zapisać. Stosując znak ,,&amp;’’ dostarczamy informacji o tym gdzie znajduje się zmienna, do której należy zapisać wczytaną wartość.</li>
@@ -679,7 +682,7 @@ printf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st"
 <ul>
 <li><code>&amp;x</code> – pobiera adres zmiennej,</li>
 <li><code>*wsk_k</code>– pobiera wartość zmiennej, na którą wskazuje wskaźnik,</li>
-<li><code>&quot;%p&quot;</code> – informuje, że wyświetlana wartość to adres.</li>
+<li><code>&quot;%p&quot;</code> – informuje funkcję <code>printf()</code>, że wyświetlana wartość to adres.</li>
 </ul>
 <div id="cwiczenia-3" class="section level3">
 <h3>Ćwiczenia</h3>
@@ -687,7 +690,7 @@ printf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st"
 <li>Stwórz trzy zmienne <code>a</code>, <code>b</code> i <code>c</code> tego samego typu.</li>
 <li>Do zmiennej <code>a</code> wczytaj liczbę.</li>
 <li>Utwórz dwa wskaźniki na pozostałe zmienne.</li>
-<li>Wykorzystaj wskaźniki do zapisania wartości wczytanej do zmiennej <code>a</code> do pozostałych zmiennych.</li>
+<li>Wykorzystaj wskaźniki do <em>przepisania</em> wartości wczytanej do zmiennej <code>a</code> do pozostałych zmiennych.</li>
 <li>Dla sprawdzenia, wyświetl zawartość wszystkich zmiennych.</li>
 </ul>
 </div>
