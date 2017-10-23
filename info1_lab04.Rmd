@@ -40,8 +40,8 @@ Co się wówczas stanie?
 - Wypisz na ekran wartość RAND\_MAX.
 
 Zazwyczaj interesuje nas konkretny przedział liczb.
-Aby określić kres dolny oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach:
-Jedną z metod jest wzięcie wyłącznie reszty z dzielenia przez zadaną długość przedziału i dodanie kresu dolnego.
+Aby określić wartość minimalną oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach.
+Jedną z metod jest wzięcie wyłącznie reszty z dzielenia przez zadaną długość przedziału i dodanie wartości minimalnej
 Przykładowo:
 ```c++
   // kod losuje liczby z przedzialu [ 20 do 50 ]
@@ -62,11 +62,14 @@ Czy możesz podać lepsze rozwiązanie?
 
 ## Ćwiczenia
 
-- Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od 0 do 100.
-- Wybierz krótki przedział (rzędu kilku możliwych do wylosowania liczb) i wykonaj 1000 oraz 10000 losowań.
-W obu przypadkach zliczaj, ile razy wylosowano każdą z liczb.
+- Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od $1$ do $8$.
+- Wykonaj $1000$ oraz $10000$ losowań.
+W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę z ustalonego zakresu (tzn. od $1$ do $8$).
 - Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie.
 Co możesz powiedzieć o rozkładzie tego losowania?
+- Napisz funkcję, która losuje $5$ liczb z zakresu od $1$ do $8$. W
+Wylosowane wartości powinny być zapisane pod adresami podanymi jako argumenty funkcji.
+
 
 # Liczby losowe typu rzeczywistego, rzutowanie
 Do tej pory losowane liczby były liczbami całkowitymi.
