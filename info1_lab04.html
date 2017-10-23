@@ -589,7 +589,7 @@ div.tocify {
 <li>Zmodyfikuj program tak, aby losował ciąg 40 liczb pseudolosowych i wypisywał je na ekran.</li>
 <li>Wypisz na ekran wartość RAND_MAX.</li>
 </ul>
-<p>Zazwyczaj interesuje nas konkretny przedział liczb. Aby określić kres dolny oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach: Jedną z metod jest wzięcie wyłącznie reszty z dzielenia przez zadaną długość przedziału i dodanie kresu dolnego. Przykładowo:</p>
+<p>Zazwyczaj interesuje nas konkretny przedział liczb. Aby określić wartość minimalną oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach. Jedną z metod jest wzięcie wyłącznie reszty z dzielenia przez zadaną długość przedziału i dodanie wartości minimalnej Przykładowo:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="co">// kod losuje liczby z przedzialu [ 20 do 50 ]</span>
     
     <span class="dt">int</span> min = <span class="dv">20</span>;
@@ -606,9 +606,10 @@ div.tocify {
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
-<li>Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od 0 do 100.</li>
-<li>Wybierz krótki przedział (rzędu kilku możliwych do wylosowania liczb) i wykonaj 1000 oraz 10000 losowań. W obu przypadkach zliczaj, ile razy wylosowano każdą z liczb.</li>
+<li>Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od <span class="math inline">\(1\)</span> do <span class="math inline">\(8\)</span>.</li>
+<li>Wykonaj <span class="math inline">\(1000\)</span> oraz <span class="math inline">\(10000\)</span> losowań. W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę z ustalonego zakresu (tzn. od <span class="math inline">\(1\)</span> do <span class="math inline">\(8\)</span>).</li>
 <li>Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie. Co możesz powiedzieć o rozkładzie tego losowania?</li>
+<li>Napisz funkcję, która losuje <span class="math inline">\(5\)</span> liczb z zakresu od <span class="math inline">\(1\)</span> do <span class="math inline">\(8\)</span>. W Wylosowane wartości powinny być zapisane pod adresami podanymi jako argumenty funkcji.</li>
 </ul>
 </div>
 </div>
