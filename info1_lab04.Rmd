@@ -6,7 +6,7 @@ number: 4
 ---
 
 # Liczby losowe
-Generacja liczb losowych jest bardzo przydatna w wielu obszarach począwszy od komputerowych gier w kości a na skomplikowanych symulacjach mechanicznych i kryptografii skończywszy.
+Generacja liczb losowych jest bardzo przydatna w wielu obszarach -- począwszy od komputerowych gier w kości a na skomplikowanych symulacjach mechanicznych i kryptografii skończywszy.
 Poniższe zadania przedstawiają mechanizm generacji liczb pseudolosowych w języku C/C++^[Mówimy, że generowane liczby są pseudolosowe, gdyż niemożliwe jest wygenerowanie prawdziwie losowego ciągu liczb. W praktyce świetnym źródłem ciągów liczb losowych są dane uzyskiwane z natury  np. dane meteorologiczne (www.random.org).].
 
 Generatory liczb pseudolosowych wymagają zastosowania tzw. ziarna czyli liczby, która posłuży do inicjalizacji procesu losowania kolejnych liczb.
@@ -67,7 +67,7 @@ Czy możesz podać lepsze rozwiązanie?
 W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę z ustalonego zakresu (tzn. od $1$ do $8$).
 - Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie.
 Co możesz powiedzieć o rozkładzie tego losowania?
-- Napisz funkcję, która losuje $5$ liczb z zakresu od $1$ do $8$. W
+- Napisz funkcję, która losuje $5$ liczb z zakresu od $1$ do $8$.
 Wylosowane wartości powinny być zapisane pod adresami podanymi jako argumenty funkcji.
 
 
@@ -92,15 +92,15 @@ Poniższy kod losuje liczbę z przedziału $[0, 1]$:
 
 ## Ćwiczenia
 
-- Napisz funkcję `isInCircle()`, która będzie losowała punkt w kwadracie o wymiarach $[0, 1] \times [0, 1]$ i zwracała wartość ,,1'' jeśli punkt znajduje się wewnątrz koła o promieniu $R = 1$.
-Jeśli punkt jest poza kołem, niech funkcja zwraca ,,0''.
+- Napisz funkcję `isInCircle()`, która będzie losowała punkt w kwadracie o wymiarach $[0, 1] \times [0, 1]$ i zwracała wartość $1$ jeśli punkt znajduje się wewnątrz koła o promieniu $R = 1$.
+Jeśli punkt jest poza kołem, niech funkcja zwraca $0$.
 - W programie głównym sprawdź czy punkt wylosowany przez daną funkcję leży w obszarze koła, czy nie i wyświetl stosowny komunikat.
 Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję.
 Funkcja zwraca tylko zero lub jedynkę.
 - Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie.
 Jeśli jest on wewnątrz koła, niech oznacza go kółkiem.
 Jeśli jest na zewnątrz, niech oznacza go krzyżykiem.
-Ponieważ wylosowane punkty znajdują się w obszarze kwadratu o wymiarach $[0, 1] \times [0, 1]$, najwygodniej będzie przeskalować współrzędne 200-krotnie.
+Ponieważ wylosowane punkty znajdują się w obszarze kwadratu o wymiarach $[0, 1] \times [0, 1]$, wygodnie będzie przeskalować współrzędne 200-krotnie.
 Dodatkowo, narysuj na ekranie odpowiednio przeskalowaną ćwiartkę koła oraz kwadrat, tak aby było widać, że wylosowany punkt rzeczywiście jest wewnątrz koła.
 - Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa^[Funkcję zwracającą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. `a = isInCircle()` jak i po prostu wywołać ją w programie bez przypisania, pisząc `isInCircle()`.
 Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane ].
@@ -121,8 +121,9 @@ lines(cbind(c(0, 0, 1, 1, 0), c(0, 1, 1, 0, 0)))
 
 # Liczenie przybliżeń liczby $\pi$ metodą Monte Carlo
 Koło wpisane w jednostkowy kwadrat ma powierzchnię równą  $\pi/4$.
-Toteż losując punkty w kwadracie, z prawdopodobieństwem $\pi/4$ trafiamy w obszar koła. 
-Dzięki temu, zliczając wylosowane punkty, które trafiły do wnętrza koła, możemy określić przybliżenie liczby $\pi$.
+Toteż losując punkty w kwadracie, z prawdopodobieństwem $\pi/4$ trafiamy w obszar koła.
+Wiedząc to, możemy wyznaczyć przybliżenie liczby $\pi$.
+Obliczamy iloraz liczby punktów, które znalazły się wewnątrz koła do całkowitej liczby punktów i mnożymy przez $4$.
 Taka metoda zalicza się do metod Monte Carlo^[w Monte Carlo mieści się bodaj najsłynniejsze w Europie kasyno, stąd taka nazwa dla metod losowych]. 
 
 ## Ćwiczenia
@@ -131,4 +132,5 @@ Taka metoda zalicza się do metod Monte Carlo^[w Monte Carlo mieści się bodaj 
 Wykonaj 10000 losowań.
 - Sprawdź, jak zmienia się dokładność przybliżeń, gdy wykonujemy więcej losowań.
 Wykonaj 100, 1000 i 100000 losowań.
-- Wydrukuj na ekranie zależność względnego błędu przybliżenia $\pi$ od potęgi liczby 2 w zakresie  $2^{8}$ do $2^{32}$.
+- Wydrukuj na ekranie zależność względnego błędu przybliżenia liczby $\pi$ od liczby losowań.
+Niech liczba losowań będzie równa potędze liczby 2 w zakresie $2^{8}$ do $2^{32}$.
