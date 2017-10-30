@@ -5,36 +5,44 @@ material: Instrukcja 5
 author: "W. Regulski"
 ---
 
-```{r, echo=FALSE}
+```{r, echo = FALSE}
 set.seed(14) # Set seed for all the pictures to be reproducible
 ```
 
 # Tablice
-Celem zajęć jest wprowadzenie do tablic w języku C.
-Tablicą (ang. *array*) nazywamy ciąg zmiennych zgromadzony pod jedną globalną nazwą, które są identyfikowane indeksami.
-Na tych zajęciach zajmiemy się tylko tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji^[bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć].
-Tablicę statyczną deklarujemy tak, jak zwykłą zmienną, przy czym dodatkowo określamy jej długość.
-Wszystko wygląda, jak w przykładowym kodzie poniżej:
+Celem dzisiejszych zajęć jest wprowadzenie do tablic w języku C.
+Tablicą (ang. *array*) nazywamy ciąg zmiennych tego samego typu, które zajmują kolejne komórki pamięci.
+Aby dostać się do zadanego elementu, używamy nazwy tablicy i indeksu identyfikującego element.
+Na tych zajęciach zajmiemy się tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji^[bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć].
+Tablicę statyczną deklarujemy tak jak zwykłą zmienną, przy czym dodatkowo określamy jej długość (czyli liczbę elementów).
+Przykładowo:
 
 ```c++
-  double a[4];    	// deklaracja tablicy
+  double a[4];     // deklaracja tablicy
 
-  a[0] = 5.5;		   // przypisanie wartosci do zmiennych
+  a[0] = 5.5;      // definicja - przypisanie wartosci do zmiennych
   a[1] = 3.521;
   a[2] = 6.45;
   a[3] = 4.51;
 
 ```
-Zwróć uwagę, że elementy tablicy sa indeksowane od $0$ do $n - 1$, gdzie $n$ to rozmiar tablicy.
-Można również zainicjalizować wszystkie elementy tablicy natychmiast (taki mechanizm jest użyteczny, jeśli tablice są stosunkowo krótkie):
+Zwróć uwagę, że elementy tablicy sa indeksowane liczbami od $0$ do $N - 1$, gdzie $N$ to rozmiar tablicy.
+Elementy tablicy można również zainicjalizować natychmiast -- w momencie deklaracji:
 ```c++
-  double b[3] = { 1.2, 2.4, -4.3};
+  double b[3] = {1.2, 2.4, -4.3};  // wartosci zawarte w nawiasach "{" i "}" definiuja tablice
+  double c[5] = {0};               // wszystkie elementy tablicy zostana uzupelnione zerami
 ```
 
 # Gra w kulki
-Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji.
-Ekran początkowy jest widoczny na Rysunku 1.
-```{r, echo=FALSE}
+Zadanie polegać będzie na:
+
+- wygenerowaniu w oknie graficznym zestawu małych piłeczek,
+- wprawieniu ich w ruch,
+- implementacji zasad kolizji ze ścianami oraz
+- implementacji wzajamnych zderzeń piłeczek. 
+
+Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono poglądowo).
+```{r, echo = FALSE}
 n = 5
 p = matrix(runif(n * 2), n, 2)
 v = matrix(runif(n * 2), n, 2) / 5
@@ -43,60 +51,75 @@ arrows(p[, 1], p[, 2], (p + v)[, 1], (p + v)[, 2])
 lines(cbind(c(0, 0, 1, 1, 0), c(0, 1, 1, 0, 0)))
 ```
 
-Nasze piłki będą przychowywane tylko jako zestawy współrzędnych oraz prędkości.
-Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, po prostu użyjemy funkcji `circle()`.
-Toteż w symulacji będą potrzebne następujące wektory^[tablice zazwyczaj będziemy nazywać wektorami, ze względu na fakt, że określenie ,,tablica'' kojarzą się z obiektem o większej liczbie wymiarów np. z macierzą]:
+Nasze piłki przychowywane będą jako zestawy współrzędnych $(x, y)$ oraz prędkości $(xV, yV)$.
+Oznacza to, że będą potrzebne następujące tablice:
 ```c++ 
-double x[10], y[10];        // współrzędne piłek
-double cx[10], cy[10];      // składowe prędkości piłek
+double x[10], y[10];        // wspolrzedne pilek
+double xV[10], yV[10];      // skladowe predkosci pilek
+```
+Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji `circle()`, podając jako argumenty numery elementów tablic.
+Przykładowo:
+```c++ 
+circle(x[0], y[0], 5);
 ```
 
 ## Pętla `for`
 
-Większość operacji na tych zmiennych będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej wektory jako argumenty.
-Funkcje będą musiały mieć podaną długość wektorów tak, aby można było wykonać pewne operacje dla każdego z elementów tego wektora.
-Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością $0$, piszemy funkcję następującej treści:
-
+Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty.
+Funkcje będą musiały także pobierać długość tablic tak, aby pewne operacje można było wykonać dla każdego z jej elementów.
+Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością $0$, napiszemy funkcję:
 ```c++
 void init(double *x, double *y, int N) {
-  for (int i = 0; i < N; i++) {
+  int i;
+  
+  for (i = 0; i < N; i++) {
     x[i] = 0.0;
     y[i] = 0.0;
   }
 }
 ```
 
-Wykorzystaliśmy tutaj pętlę `for`, która pobiera 3 argumenty:
+Wykorzystaliśmy tutaj pętlę `for`, która pobiera $3$ argumenty:
 
-- wartość startową,
-- warunek działania (pętle działa, dopóki warunek $i<N$ jest spełniony),
-- operację na argumencie (tutaj zwiększamy $i$ o 1, co będzie najpowszechniejszą praktyką^[Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli]).
+- wartość startową licznika $i = 0$,
+- warunek stopu (pętla działa, dopóki $i < N$ ),
+- operację na liczniku (tutaj zwiększamy $i$ o $1$, co będzie najpowszechniejszą praktyką^[Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli]).
 
-Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na których ma ona działać oraz długość tych wektorów:
+Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na których ma działać oraz ich długość:
 ```c++
   init(x, y, 10);
 ```
 
-Zauważmy, że funkcja `init` pobiera 2 wskaźniki do wektorów (`x` oraz `y`) oraz jedną wartość -- 10.
-Dzięki temu, funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać. 
+Czytelnik zauważy, że funkcja `init` pobiera dwa wskaźniki do tablic (u nas do tablicy `x` oraz `y`).
+Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic.
+My podaliśmy jedynie ich nazwy (`x` i `y`) -- wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.
+
+Warto podkreślić, że wykorzystanie wskaźnika to jedyny sposób przekazania tablicy do funkcji.
+Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych zmiennych'' (`int`, `double`, itd.).
 
 ## Uwaga
-Ponieważ `x` oraz `y` są wskaźnikami do pierwszych (dokładnie rzecz ujmując - zerowych) elementów tablic, można użyć mechanizmu wyłuskania wartości ze wskaźników i iterować się po wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:
+Ponieważ `x` oraz `y` są wskaźnikami do pierwszych elementów tablic, można wykorzystać mechanizm działań na wskaźnikach.
+Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:
 
 ```c++
 double a[3];
-// po wartościach:
-a[0] = 1.2;         a[1] = 3.13;         a[2] = 0.22;
-//albo na wskaźnikach:
-*(a)   = 1.2;           *(a+1) = 3.13;        *(a+2) = 0.22;
+
+a[0] = 1.2;       // inicjalizacja klasyczna z wykorzystaniem "[" i "]"
+a[1] = 3.13;
+a[2] = 0.22;
+
+*(a + 0) = 1.2;  // inicjalizacja z wykorzstaniem wskaznikow
+*(a + 1) = 3.13;
+*(a + 2) = 0.22;
 ```
 
-
 ## Ćwiczenia
-Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę \verb|winbgi2.h|, gdyż będziemy korzystać z grafiki.
-- Zadeklaruj wymienione wyżej wektory o długości 10.
-- Zadeklaruj okno graficzne o wymiarach $Lx \times Ly$.
-- Napisz funkcję \verb|init|, która wylosuje współrzędne położcsaeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji \verb|rand()| znanej z poprzednich zajęć.
+Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę `winbgi2.h` -- będziemy korzystać z grafiki.
+
+- Zadeklaruj wymienione wyżej tablice (`x`, `y`, `xV` i `yV`) o długości $10$.
+- Otwórz okno graficzne o wymiarach $L_x \times L_y = 400 \times 400$.
+- Napisz funkcję `init`, która losuje położenia początkowe kulek tak, aby kółka mieściły się one w oknie graficznym.
+Użyj funkcji `rand()` z biblioteki `stdlib.h` (patrz zajęcia $4$).
 - Napisz funkcję `display`, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja \verb|init|).
 
 
