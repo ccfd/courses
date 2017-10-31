@@ -1,8 +1,10 @@
 ---
-number: 5
+author:
+- W. Regulski
+- K. Marchlewski
 course: Informatyka I
 material: Instrukcja 5
-author: "W. Regulski"
+number: 5
 ---
 
 ```{r, echo = FALSE}
@@ -95,11 +97,11 @@ Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tab
 My podaliśmy jedynie ich nazwy (`x` i `y`) -- wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.
 
 Warto podkreślić, że wykorzystanie wskaźnika to jedyny sposób przekazania tablicy do funkcji.
-Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych zmiennych'' (`int`, `double`, itd.).
+Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych'' zmiennych (`int`, `double`, itd.).
 
 ## Uwaga
 Ponieważ `x` oraz `y` są wskaźnikami do pierwszych elementów tablic, można wykorzystać mechanizm działań na wskaźnikach.
-Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:
+Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości zawartej w tablicy:
 
 ```c++
 double a[3];
@@ -108,65 +110,102 @@ a[0] = 1.2;       // inicjalizacja klasyczna z wykorzystaniem "[" i "]"
 a[1] = 3.13;
 a[2] = 0.22;
 
-*(a + 0) = 1.2;  // inicjalizacja z wykorzstaniem wskaznikow
+*(a + 0) = 1.2;   // inicjalizacja z wykorzstaniem wskaznikow
 *(a + 1) = 3.13;
 *(a + 2) = 0.22;
 ```
 
 ## Ćwiczenia
-Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę `winbgi2.h` -- będziemy korzystać z grafiki.
+Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę `winbgi2.h`.
 
 - Zadeklaruj wymienione wyżej tablice (`x`, `y`, `xV` i `yV`) o długości $10$.
 - Otwórz okno graficzne o wymiarach $L_x \times L_y = 400 \times 400$.
-- Napisz funkcję `init`, która losuje położenia początkowe kulek tak, aby kółka mieściły się one w oknie graficznym.
+- Napisz funkcję `initPositions`, która losuje położenia początkowe kółek tak, aby mieściły się w oknie graficznym.
 Użyj funkcji `rand()` z biblioteki `stdlib.h` (patrz zajęcia $4$).
-- Napisz funkcję `display`, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja \verb|init|).
-
+- Napisz funkcję `display`, która wyświetli w oknie graficznym aktulne położenia kółek
+    - funkcja powina przyjmować te same argumenty co funkcja `init`,
+    - przyjmij, że promienie kółek są równe $R = 20$.
+- Napisz funkcję `showTable`, która drukuje w terminalu zawartość tablic (tym razem funkcja będzie pobierała cztery wskaźniki i liczbę).
 
 # Ruch
 
-Oczywiście piłeczki mają się poruszać, zatem konieczne będzie określenie wartości prędkości początkowych oraz zaprogramowanie ruchu piłeczek.
+Piłeczki powinny poruszać się, musimy zatem:
 
+- określić ich prędkości początkowe oraz
+- ustalić prawo ruchu piłeczek.
 
 ## Ćwiczenia
 
-- Napisz funkcję, która wylosuje początkowe prędkości piłek. Wylosuj je tak, aby wartość prędkości wynosiła 1 
-   (najłatwiej będzie wylosować dowolną liczbę i jej sinus i cosinus przypisać jako składowe prędkości piłki)
-- Napisz funkcję \verb|run|, która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość^[piłki poruszają się ze stałą prędkością, toteż $x(t+\Delta t) = x(t) + v\Delta t $, a dla uproszczenia symulacji czas jest jednostkowy zatem $x(t+1) = x(t) + v$]:
-
+- Napisz funkcję, która losuje prędkości początkowe piłeczek.
+Składowe prędkości (`xV` orax `yV`) wylosuj tak, aby ich wartości znalazły się w przedziale $[-1, 1]$.
+- Za pomocą funkcji `showTable` sprawdź czy wylosowane wartości są prawidłowe.
+- Napisz funkcję `move`, która wykona przesunięcie każdej z piłeczek.
+Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości.
+Piłki poruszają się ze stałą prędkością, zatem $\mathbf{x} (t + \Delta t) = \mathbf{x} + \mathbf{v} \Delta t$.
+Dla uproszczenia symulacji przyjmiemy, że czas jest jednostkowy.
+Zatem $\mathbf{x}(t + 1) = \mathbf{x}(t) + \mathbf{v}$.
 ```c++
-     for ( i=0; i < N; ++i){
-          x[i] += cx[i];
-          y[i] += cy[i];
-     }
+for (i = 0; i < N; i++) {
+  x[i] += xV[i];
+  y[i] += yV[i];
+}
 ```
+- W funkcji `main` napisz pętlę `for`, która wykona $i = 50$ wywołań funkcji `move`.
+Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe położenia piłek.
+W ciele pętli koniecznie użyj funkcji `animate(100);`.
+Spowolni ona wykonywanie kolejnych kroków pętli.
+Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.
 
-- W głównym programie napisz pętlę \verb|while|, która wykona 50 kroków iteracji programu. Niech przy każdym kroku wyświetla położenie każdej piłki. W ciele pętli użyj funkcji \verb|animate(100)| - spowolni ona wykonywanie kolejnych kroków pętli. Jej użycie wyglądało następująco.
+Użycie funkcji `aimate` wygląda następująco:
 
 ```c++
-while(animate(100)) {
-   clear(); // wyczysci okno graficzne dla nowej klatki
-   // Dalsza czesc ciala petli
+for(i = 0; i < 50; i++) {
+  animate(100);   // oczkiwanie przez 100 ms
+  clear();        // czyszczenie okna dla nowej klatki
+                  // pozostale instrukcje...
 }
 ```
 
-
 # Kolizje ze ścianami
-Chcielibyśmy, aby piłeczki miały wbudowany jakiś mechanizm kolizji ze ścianami. 
-Zderzenia będą doskonale sprężyste, kąt padania na przeszkodę będzie zatem równy kątowi odbicia od niej. Kąty mierzone względem normalnej do ściany.
+Chcielibyśmy, aby piłeczki miały wbudowany mechanizm kolizji ze ścianami.
+Zderzenia są doskonale sprężyste, zatem w układzie współrzędnych związanym ze ścianami, kąt padania będzie równy równy kątowi odbicia.
 
 ## Ćwiczenia
-- Do funkcji \verb|run| dopisz warunek, który sprawdza, czy piłka zderzyła się ze ścianą. W przypadku kolizji należy zastosować prawo odbicia, które będzie miało prostą formę:
-Jeśli uderzamy w ścianę poziomą, wystarczy zmienić składową prędkości $cy$ na przeciwną. Analogicznie przy kolizji ze ścianą pionową, zmieniamy składową $cx$ na przeciwną.
-Sprawdź, jak działa program np. dla 5000 kroków.
-- Napisz funkcję `showEnergy`, która będzie wyświetlała na ekranie wartość całkowitej energii kinetycznej układu.
 
-
+- Napisz funkcję `collideWall`, która sprawdza czy piłka zderzyła się ze ścianą.
+W przypadku kolizji należy zastosować prawo odbicia, które sprowadza się do:
+    - przy uderzeniu w ścianę poziomą, zamiany składowej prędkości $yV$ na przeciwną.
+    Składowa $xV$ pozostaje bez zmian.
+    - przy kolizji ze ścianą pionową, zamiany składowej $xV$ na przeciwną.
+    Składowa $yV$ pozostaje bez zmian.
+- Dodaj funkcję do pętli i sprawdź, działanie programu dla np. $3000$ kroków.
+- Napisz funkcję `showEnergy`, która w terminalu  będzie wyświetlała wartość całkowitej energii kinetycznej układu.
 
 # Kolizje z piłkami
+Napisz funkcję `collideBall`, która sprawdza czy piłki zderzają się ze sobą nawzajem.
+W celu dokonania tego sprawdzenia, dla każdej pary piłek będzie trzeba wyznaczyć odległość i sprawdzić czy jest mniejsza niż $2\cdot R = 40$ (przyjęliśmy wcześniej, że promień piłki to $20$).
 
-Dopisz funkcję `searchAndCollide`, która sprawdza, czy piłki zderzają się ze sobą nawzajem.
-Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała.
+Następnie należy zmodyfikować prędkości piłek zgodnie z poniższymi wzorami.
+
+ - $\mathbf{v}'$ to prędkość piłki po zderzeniu.
+ - $\Delta \mathbf{v}$ to zmiana predkości.
+ - $\mathbf{r}_1$ i $\mathbf{r}_2$ to promienie wodzące piłek (współrzędne).
+ - $C$ co to pewna stała, ułatwiająca wyprowadzenie i zapis wzorów.
+ 
+$$\mathbf{v}'_1= \mathbf{v}_1 + \Delta \mathbf{v}$$
+$$\mathbf{v}'_2= \mathbf{v}_2 - \Delta \mathbf{v}$$
+$$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{1} - \mathbf{r}_{2})$$
+gdzie:
+$$C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}$$
+
+
+
+# Wyprowadzenie wzoru na prędkości piłek po zderzeniu
+
+
+
+# stare...
+
 Weźmy dwie kulki 1 i 2 o prędkościach przed zderzeniem odpowiednio $v_{1}$ i $v_{2}$ oraz położeniach $p_{1}$ i $p_{2}$.
 Przyjmijmy, że kulki mają te same masy. Z zasady zachowania pędu wynika, że prędkości po zderzeniu będą wynosić:
 $$
