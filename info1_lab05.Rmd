@@ -31,8 +31,10 @@ Przykładowo:
 Zwróć uwagę, że elementy tablicy są indeksowane liczbami od $0$ do $N - 1$, gdzie $N$ to rozmiar tablicy.
 Elementy tablicy można również zainicjalizować natychmiast -- w momencie deklaracji:
 ```c++
-  double b[3] = {1.2, 2.4, -4.3};  // wartosci zawarte w nawiasach "{" i "}" definiuja tablice
-  double c[5] = {0};               // wszystkie elementy tablicy zostana uzupelnione zerami
+  double b[3] = {1.2, 2.4, -4.3};  // wartosci zawarte w nawiasach
+                                   // "{" i "}" definiuja tablice
+  double c[5] = {0};               // wszystkie elementy tablicy zostana
+                                   // uzupelnione zerami
 ```
 
 # Gra w kulki
@@ -44,6 +46,7 @@ Zadanie polegać będzie na:
 - implementacji wzajemnych zderzeń piłeczek. 
 
 Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono poglądowo).
+
 ```{r, echo = FALSE}
 n <- 10
 R <- 0.1
@@ -63,12 +66,12 @@ double x[10], y[10];        // wspolrzedne pilek
 double xV[10], yV[10];      // skladowe predkosci pilek
 ```
 Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji `circle()`, podając jako argumenty numery elementów tablic.
-Przykładowo:
+Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:
 ```c++ 
 circle(x[0], y[0], 5);
 ```
 
-## Pętla `for`
+## Modyfikacja tablic -- pętla `for`
 
 Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty.
 Funkcje będą musiały także pobierać długość tablic tak, aby pewne operacje można było wykonać dla każdego z jej elementów.
@@ -97,7 +100,7 @@ Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na któ
 
 Czytelnik zauważy, że funkcja `init` pobiera dwa wskaźniki do tablic (u nas do tablicy `x` oraz `y`).
 Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic.
-My podaliśmy jedynie ich nazwy (`x` i `y`) -- wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.
+My podaliśmy jedynie ich nazwy (`x` i `y`) -- wynika stąd, że nazwa tablicy jest jednocześnie jej adresami.
 
 Warto podkreślić, że wykorzystanie wskaźnika to jedyny sposób przekazania tablicy do funkcji.
 Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych'' zmiennych (`int`, `double`, itd.).
@@ -123,19 +126,19 @@ Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę `winbgi2.h`
 
 - Zadeklaruj wymienione wyżej tablice (`x`, `y`, `xV` i `yV`) o długości $10$.
 - Otwórz okno graficzne o wymiarach $L_x \times L_y = 400 \times 400$.
-- Napisz funkcję `initPositions`, która losuje położenia początkowe kółek tak, aby mieściły się w oknie graficznym.
+- Napisz funkcję `initPositions`, która losuje położenia początkowe kulek tak, aby mieściły się w oknie graficznym.
 Użyj funkcji `rand()` z biblioteki `stdlib.h` (patrz zajęcia $4$).
-- Napisz funkcję `display`, która wyświetli w oknie graficznym aktualne położenia kółek
+- Napisz funkcję `display`, która wyświetli w oknie graficznym aktualne położenia kulek
     - funkcja powinna przyjmować te same argumenty co funkcja `init`,
-    - przyjmij, że promienie kółek są równe $R = 20$.
+    - przyjmij, że promienie kulek są równe $R = 20$.
 - Napisz funkcję `showTable`, która drukuje w terminalu zawartość tablic (tym razem funkcja będzie pobierała cztery wskaźniki i liczbę).
 
 # Ruch
 
-Piłeczki powinny poruszać się, musimy zatem:
+Kulki powinny poruszać się, musimy zatem:
 
 - określić ich prędkości początkowe oraz
-- ustalić prawo ruchu piłeczek.
+- ustalić prawo opisujące ich ruch.
 
 ## Ćwiczenia
 
@@ -143,7 +146,7 @@ Piłeczki powinny poruszać się, musimy zatem:
 Składowe prędkości (`xV` oraz `yV`) wylosuj tak, aby ich wartości znalazły się w przedziale $[-1, 1]$.
 - Za pomocą funkcji `showTable` sprawdź czy wylosowane wartości są prawidłowe.
 - Napisz funkcję `move`, która wykona przesunięcie każdej z piłeczek.
-Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości.
+Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości.  
 Piłki poruszają się ze stałą prędkością, zatem $\mathbf{x} (t + \Delta t) = \mathbf{x} + \mathbf{v} \Delta t$.
 Dla uproszczenia symulacji przyjmiemy, że czas jest jednostkowy.
 Zatem $\mathbf{x}(t + 1) = \mathbf{x}(t) + \mathbf{v}$.
@@ -155,12 +158,10 @@ for (i = 0; i < N; i++) {
 ```
 - W funkcji `main` napisz pętlę `for`, która wykona $i = 50$ wywołań funkcji `move`.
 Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe położenia piłek.
-W ciele pętli koniecznie użyj funkcji `animate(100);`.
+W ciele pętli koniecznie użyj funkcji `animate(100)`.
 Spowolni ona wykonywanie kolejnych kroków pętli.
-Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.
-
+Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.  
 Użycie funkcji `aimate` wygląda następująco:
-
 ```c++
 for(i = 0; i < 50; i++) {
   animate(100);   // oczkiwanie przez 100 ms
@@ -186,9 +187,9 @@ W przypadku kolizji należy zastosować prawo odbicia, które sprowadza się do:
 
 # Kolizje z piłkami
 Napisz funkcję `collideBall`, która sprawdza czy piłki zderzają się ze sobą nawzajem.
-W celu dokonania tego sprawdzenia, dla każdej pary piłek należy wyznaczyć odległość i sprawdzić czy jest mniejsza niż $2\cdot R = 40$ (przyjęliśmy wcześniej, że promień piłki to $R = 20$).
+W celu wykonania tego sprawdzenia, należy wyznaczyć odległość dla każdej pary piłek i sprawdzić czy jest mniejsza niż $2\cdot R = 40$ (przyjęliśmy wcześniej, że promień piłki to $R = 20$).
 
-Następnie należy zmodyfikować prędkości piłek zgodnie z poniższymi wzorami.
+Następnie należy zmodyfikować prędkości piłek zgodnie z poniższymi wzorami.  
 Oznaczenia:
 
  - $\mathbf{v}'$ -- prędkość piłki po zderzeniu.
@@ -200,7 +201,7 @@ $$\mathbf{v}'_1= \mathbf{v}_1 + \Delta \mathbf{v}$$
 $$\mathbf{v}'_2= \mathbf{v}_2 - \Delta \mathbf{v}$$
 $$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})$$
 gdzie:
-$$C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}$$
+$$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}$$
 
 # Przykładowa animacja
 
@@ -216,7 +217,7 @@ Założenia:
 
 Analiza:
 
-1. Z poczynionych założeń (1. i 2.) wynika, że w momencie zderzenia na kulki będzie działać siła o kierunku takim samym jak wektor łączący środki kulek.
+1. Z założeń 1. i 2. wynika, że w momencie zderzenia na kulki będzie działać siła o kierunku takim samym jak wektor łączący środki kulek.
 W naszym przypadku, wektorem tym będzie
 $$\Delta \mathbf{r} = \mathbf{r}_{2} - \mathbf{r}_{1}.$$
 Siłę możemy więc zapisać jako proporcjonalną do tego wektora
@@ -239,7 +240,7 @@ $$
 $$
 
 3. W tym momencie mamy $7$ niewiadomych ($\mathbf{p}'_1$, $\mathbf{p}'_2$, $\Delta \mathbf{p}$, B) i $6$ równań ($3$ r-nia wektorowe).
-Musimy skorzystać także z równania zachowania energii:
+Musimy więc skorzystać także z równania zachowania energii:
 $$
 \frac{m_1|\mathbf{v}_1|^2}{2} + \frac{m_2|\mathbf{v}_2|^2}{2} = \frac{m_1|\mathbf{v}'_1|^2}{2} + \frac{m_2|\mathbf{v}'_2|^2}{2}
 $$
@@ -261,7 +262,7 @@ $$
 0 = |\Delta \mathbf{v}|^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
 $$
 Do równania (4) wstawiamy równanie (1) i otrzymujemy wzór na $C$:
-$$C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2} \textrm{ (5)}$$
+$$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2} \textrm{ (5)}$$
 Otrzymaną stałą możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.
 
 Zderzenie piłek ilustruje poniższy schemat:
