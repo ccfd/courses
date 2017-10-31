@@ -28,7 +28,7 @@ Przykładowo:
   a[3] = 4.51;
 
 ```
-Zwróć uwagę, że elementy tablicy sa indeksowane liczbami od $0$ do $N - 1$, gdzie $N$ to rozmiar tablicy.
+Zwróć uwagę, że elementy tablicy są indeksowane liczbami od $0$ do $N - 1$, gdzie $N$ to rozmiar tablicy.
 Elementy tablicy można również zainicjalizować natychmiast -- w momencie deklaracji:
 ```c++
   double b[3] = {1.2, 2.4, -4.3};  // wartosci zawarte w nawiasach "{" i "}" definiuja tablice
@@ -41,19 +41,22 @@ Zadanie polegać będzie na:
 - wygenerowaniu w oknie graficznym zestawu małych piłeczek,
 - wprawieniu ich w ruch,
 - implementacji zasad kolizji ze ścianami oraz
-- implementacji wzajamnych zderzeń piłeczek. 
+- implementacji wzajemnych zderzeń piłeczek. 
 
 Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono poglądowo).
 ```{r, echo = FALSE}
-n = 5
-p = matrix(runif(n * 2), n, 2)
-v = matrix(runif(n * 2), n, 2) / 5
-plot(p, xlim = c(0, 1), ylim = c(0, 1), xlab = "X", ylab = "Y", asp = 1, cex  = 3)
-arrows(p[, 1], p[, 2], (p + v)[, 1], (p + v)[, 2])
+n <- 10
+R <- 0.1
+p <- matrix(runif(n * 2), n, 2) * (1 - 2 * R) + R
+v <- (matrix(runif(n * 2), n, 2) * 2 - 1) / 5
+
+plot(p, xlim = c(0, 1), ylim = c(0, 1), xlab = "X", ylab = "Y",
+     asp = 1, cex  = 3, bty = "n")
+arrows(p[, 1], p[, 2], (p + v)[, 1], (p + v)[, 2], angle = 10, length = 0.2)
 lines(cbind(c(0, 0, 1, 1, 0), c(0, 1, 1, 0, 0)))
 ```
 
-Nasze piłki przychowywane będą jako zestawy współrzędnych $(x, y)$ oraz prędkości $(xV, yV)$.
+Nasze piłki przechowywane będą jako zestawy współrzędnych $(x, y)$ oraz prędkości $(xV, yV)$.
 Oznacza to, że będą potrzebne następujące tablice:
 ```c++ 
 double x[10], y[10];        // wspolrzedne pilek
@@ -122,8 +125,8 @@ Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę `winbgi2.h`
 - Otwórz okno graficzne o wymiarach $L_x \times L_y = 400 \times 400$.
 - Napisz funkcję `initPositions`, która losuje położenia początkowe kółek tak, aby mieściły się w oknie graficznym.
 Użyj funkcji `rand()` z biblioteki `stdlib.h` (patrz zajęcia $4$).
-- Napisz funkcję `display`, która wyświetli w oknie graficznym aktulne położenia kółek
-    - funkcja powina przyjmować te same argumenty co funkcja `init`,
+- Napisz funkcję `display`, która wyświetli w oknie graficznym aktualne położenia kółek
+    - funkcja powinna przyjmować te same argumenty co funkcja `init`,
     - przyjmij, że promienie kółek są równe $R = 20$.
 - Napisz funkcję `showTable`, która drukuje w terminalu zawartość tablic (tym razem funkcja będzie pobierała cztery wskaźniki i liczbę).
 
@@ -137,7 +140,7 @@ Piłeczki powinny poruszać się, musimy zatem:
 ## Ćwiczenia
 
 - Napisz funkcję, która losuje prędkości początkowe piłeczek.
-Składowe prędkości (`xV` orax `yV`) wylosuj tak, aby ich wartości znalazły się w przedziale $[-1, 1]$.
+Składowe prędkości (`xV` oraz `yV`) wylosuj tak, aby ich wartości znalazły się w przedziale $[-1, 1]$.
 - Za pomocą funkcji `showTable` sprawdź czy wylosowane wartości są prawidłowe.
 - Napisz funkcję `move`, która wykona przesunięcie każdej z piłeczek.
 Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości.
@@ -183,71 +186,114 @@ W przypadku kolizji należy zastosować prawo odbicia, które sprowadza się do:
 
 # Kolizje z piłkami
 Napisz funkcję `collideBall`, która sprawdza czy piłki zderzają się ze sobą nawzajem.
-W celu dokonania tego sprawdzenia, dla każdej pary piłek będzie trzeba wyznaczyć odległość i sprawdzić czy jest mniejsza niż $2\cdot R = 40$ (przyjęliśmy wcześniej, że promień piłki to $20$).
+W celu dokonania tego sprawdzenia, dla każdej pary piłek należy wyznaczyć odległość i sprawdzić czy jest mniejsza niż $2\cdot R = 40$ (przyjęliśmy wcześniej, że promień piłki to $R = 20$).
 
 Następnie należy zmodyfikować prędkości piłek zgodnie z poniższymi wzorami.
+Oznaczenia:
 
- - $\mathbf{v}'$ to prędkość piłki po zderzeniu.
- - $\Delta \mathbf{v}$ to zmiana predkości.
- - $\mathbf{r}_1$ i $\mathbf{r}_2$ to promienie wodzące piłek (współrzędne).
- - $C$ co to pewna stała, ułatwiająca wyprowadzenie i zapis wzorów.
+ - $\mathbf{v}'$ -- prędkość piłki po zderzeniu.
+ - $\Delta \mathbf{v}$ -- zmiana prędkości wynikła ze zderzenia.
+ - $\mathbf{r}_1$ i $\mathbf{r}_2$ -- promienie wodzące piłek (współrzędne).
+ - $C$ -- stała, ułatwiająca wyprowadzenie i zapis wzorów.
  
 $$\mathbf{v}'_1= \mathbf{v}_1 + \Delta \mathbf{v}$$
 $$\mathbf{v}'_2= \mathbf{v}_2 - \Delta \mathbf{v}$$
-$$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{1} - \mathbf{r}_{2})$$
+$$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})$$
 gdzie:
 $$C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}$$
 
+# Przykładowa animacja
 
+![](figures/info1/kulki.gif "Kulki w ruchu.")
 
 # Wyprowadzenie wzoru na prędkości piłek po zderzeniu
 
+Założenia:
 
+1. Zderzenia są niesprężyste,
+2. Zjawisko tarcia nie występuje,
+3. Kulki mają ten sam promień $R$ oraz masę $m$.
 
-# stare...
+Analiza:
 
-Weźmy dwie kulki 1 i 2 o prędkościach przed zderzeniem odpowiednio $v_{1}$ i $v_{2}$ oraz położeniach $p_{1}$ i $p_{2}$.
-Przyjmijmy, że kulki mają te same masy. Z zasady zachowania pędu wynika, że prędkości po zderzeniu będą wynosić:
-$$
-\hat v_{1}= v_{1}+\Delta v
-$$
-$$
-\hat v_{2}= v_{2}-\Delta v
-$$
-gdzie $\Delta v$ to pęd którym wymieniły się kulki. Jedyny kierunek w którym następuje wymiana pędem (zakładamy tu brak tarcia) to kierunek prostopadły do płaszczyzny zderzenia:
-$$\Delta v=C(p_{1}-p_{2})$$
-Teraz wystarczy jedynie spełnić zasadę zachowania energii. Znów przyjmując równe masy otrzymujemy:
-$$\newcommand{\abs}[1]{\left|#1\right|}\abs{v_1}^2+\abs{v_2}^2 = \abs{\hat v_1}^2 + \abs{\hat v_2}^2$$
-$$0 = 2\abs{\Delta v}^2 + 2\Delta v\cdot (v_1-v_2)$$
-$$0 = C^2\abs{p_{1}-p_{2}}^2 + C(p_{1}-p_{2})\cdot (v_1-v_2)$$
-$$C = - \frac{(p_{1}-p_{2})\cdot (v_1-v_2)}{\abs{p_{1}-p_{2}}^2}$$
-Warto zauważyć, że znak iloczynu skalarnego $(p_{1}-p_{2})\cdot (v_1-v_2)$ mówi nam czy kulki lecą do siebie czy od siebie. Ostatecznie można powiedzieć że zderzenie następuje tylko gdy $C>0$.
+1. Z poczynionych założeń (1. i 2.) wynika, że w momencie zderzenia na kulki będzie działać siła o kierunku takim samym jak wektor łączący środki kulek.
+W naszym przypadku, wektorem tym będzie
+$$\Delta \mathbf{r} = \mathbf{r}_{2} - \mathbf{r}_{1}.$$
+Siłę możemy więc zapisać jako proporcjonalną do tego wektora
+$$\mathbf{F} = A \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\textrm{, gdzie}$$
+$A$ to pewna stała, która nie zmieni kierunku wektora ale zmieni jego zwrot i wartość.
 
-```{R echo=FALSE}
-plot(NA,xlim=c(-2,4),ylim=c(-1,2),asp=1,axes = FALSE,xlab="",ylab="")
-a = seq(0,2*pi,len=100)
-p = 2*c(cos(0.3),sin(0.3))
-v1 = c(-0.5,1.2)
-v2 = c(0.5,1.6)
-lines(cos(a),sin(a))
-lines(cos(a)+p[1],sin(a)+p[2])
-arrows2 = function(...) arrows(...,angle=15)
-arrows2(0,0,p[1],p[2],lty=2)
-text(0,0,labels = expression(p[2]),lwd=2,adj=c(-.2,1))
-text(p[1],p[2],labels = expression(p[1]),lwd=2,adj=c(-.2,1))
-text(p[1]/3,p[2]/3,labels = expression(p[1]-p[2]),lwd=2,adj=c(-.2,1))
-text(p[1]/3,p[2]/3,labels = expression(p[1]-p[2]),lwd=2,adj=c(-.2,1))
-arrows2(0,0,v2[1],v2[2],lwd=2)
-text(v2[1]/2,v2[2]/2,labels = expression(v[2]),lwd=2,adj=c(-.2,1))
-arrows2(p[1],p[2],p[1]+v1[1],p[2]+v1[2],lwd=2)
-text(p[1]+v1[1]/2,p[2]+v1[2]/2,labels = expression(v[1]),lwd=2,adj=c(1.2,1))
-C = -sum((v1-v2)*p)/sum(p*p)
-arrows2(v2[1],v2[2],v2[1]-C*p[1],v2[2]-C*p[2])
-text(v2[1]-C*p[1]/2,v2[2]-C*p[2]/2,labels = expression(Delta*v),lwd=2,adj=c(.5,-0.2))
-arrows2(p[1]+v1[1],p[2]+v1[2],p[1]+v1[1]+C*p[1],p[2]+v1[2]+C*p[2])
-text(p[1]+v1[1]+C*p[1]/2,p[2]+v1[2]+C*p[2]/2,labels = expression(Delta*v),lwd=2,adj=c(.5,-0.2))
-v1=v1+C*p
-v2=v2-C*p
-arrows2(0,0,v2[1],v2[2])
-arrows2(p[1],p[2],p[1]+v1[1],p[2]+v1[2])
+2. Z II zasady dynamiki wiemy, że zmiana pędu będzie proporcjonalna do przyłożonej siły.
+Zatem:
+$$\Delta \mathbf{p} = B \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{, gdzie}$$
+rola stałej $B$ jest taka sama jak stałej $A$.
+Informacja ta upraszcza równania zasady zachowania pędu.
+Możemy teraz zapisać, że nowe pędy kulek to stare wartości $\pm$ zmiana pędu:
+$$
+\left\{
+\begin{array}{rcl}
+    \mathbf{p}'_1 & = & \mathbf{p}_1 + \Delta \mathbf{p} \\
+    \mathbf{p}'_2 & = & \mathbf{p}_2 - \Delta \mathbf{p}
+\end{array}
+\right.
+$$
+
+3. W tym momencie mamy $7$ niewiadomych ($\mathbf{p}'_1$, $\mathbf{p}'_2$, $\Delta \mathbf{p}$, B) i $6$ równań ($3$ r-nia wektorowe).
+Musimy skorzystać także z równania zachowania energii:
+$$
+\frac{m_1|\mathbf{v}_1|^2}{2} + \frac{m_2|\mathbf{v}_2|^2}{2} = \frac{m_1|\mathbf{v}'_1|^2}{2} + \frac{m_2|\mathbf{v}'_2|^2}{2}
+$$
+4. Biorąc pod uwagę, że masy piłek są takie same równania możemy uprościć:
+$$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{ (1)}$$
+$$
+\left\{
+\begin{array}{rcl}
+    \mathbf{v}'_1 & = & \mathbf{v}_1 + \Delta \mathbf{v} \\
+    \mathbf{v}'_2 & = & \mathbf{v}_2 - \Delta \mathbf{v}
+\end{array}
+\right. \textrm{ (2)}
+$$
+$$
+|\mathbf{v}_1|^2 + |\mathbf{v}_2|^2 = |\mathbf{v}'_1|^2 + |\mathbf{v}'_2|^2 \mathrm{ (3)}
+$$
+Podstawiamy teraz równanie (2) do (3) otrzymując:
+$$
+0 = |\Delta \mathbf{v}|^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
+$$
+Do równania (4) wstawiamy równanie (1) i otrzymujemy wzór na $C$:
+$$C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2} \textrm{ (5)}$$
+Otrzymaną stałą możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.
+
+Zderzenie piłek ilustruje poniższy schemat:
+
+```{R echo = FALSE}
+arrows2 = function(...) arrows(..., angle = 10, length = 0.2)
+a <- seq(0, 2 * pi, len = 100)
+p <- 2 * c(cos(0.3), sin(0.3))
+v1 <- c(-0.5, 1.2)
+v2 <- c(0.5, 1.6)
+C <- sum((v1-v2) * (-p)) / sum(p * p)
+
+plot(NA, xlim = c(-2, 4), ylim = c(-1, 2), asp = 1,
+     axes = FALSE, xlab = "", ylab = "")
+lines(cos(a), sin(a))
+lines(cos(a) + p[1], sin(a) + p[2])
+arrows2(0, 0, p[1], p[2], lty = 2)
+text(0, 0, labels = expression(r[2]), lwd = 2,adj = c(-.2, 1))
+text(p[1], p[2], labels = expression(r[1]), lwd = 2, adj = c(-.2, 1))
+text(p[1]/3, p[2]/3, labels = expression(r[1] - r[2]), lwd = 2, adj = c(-.2, 1))
+text(p[1]/3, p[2]/3, labels = expression(r[1] - r[2]), lwd = 2, adj = c(-.2, 1))
+arrows2(0, 0, v2[1], v2[2], lwd = 2)
+text(v2[1]/2, v2[2]/2, labels = expression(v[2]), lwd = 2, adj = c(-.2, 1))
+arrows2(p[1], p[2], p[1] + v1[1], p[2] + v1[2], lwd=2)
+text(p[1] + v1[1]/2, p[2] + v1[2]/2, labels = expression(v[1]), lwd = 2, adj = c(1.2, 1))
+arrows2(v2[1], v2[2], v2[1] - C * p[1], v2[2] - C * p[2])
+text(v2[1] - C * p[1]/2, v2[2] - C * p[2]/2, labels = expression(Delta * v), lwd = 2, adj = c(.5,-0.2))
+arrows2(p[1] + v1[1], p[2] + v1[2], p[1] + v1[1] + C * p[1], p[2] + v1[2] + C * p[2])
+text(p[1] + v1[1] + C * p[1]/2, p[2] + v1[2] + C * p[2]/2, labels = expression(Delta * v), lwd = 2, adj = c(.5, -0.2))
+v1 <- v1 + C * p
+v2 <- v2 - C * p
+arrows2(0, 0, v2[1], v2[2])
+arrows2(p[1], p[2], p[1] + v1[1], p[2] + v1[2])
 ```
+
