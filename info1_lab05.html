@@ -10,6 +10,7 @@
 
 
 <meta name="author" content="W. Regulski" />
+<meta name="author" content="K. Marchlewski" />
 
 
 <title></title>
@@ -531,7 +532,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="info1_lab05.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -566,104 +567,188 @@ div.tocify {
 
 <div id="tablice" class="section level1">
 <h1>Tablice</h1>
-<p>Celem zajęć jest wprowadzenie do tablic w języku C. Tablicą (ang. <em>array</em>) nazywamy ciąg zmiennych zgromadzony pod jedną globalną nazwą, które są identyfikowane indeksami. Na tych zajęciach zajmiemy się tylko tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tablicę statyczną deklarujemy tak, jak zwykłą zmienną, przy czym dodatkowo określamy jej długość. Wszystko wygląda, jak w przykładowym kodzie poniżej:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> a[<span class="dv">4</span>];      <span class="co">// deklaracja tablicy</span>
+<p>Celem dzisiejszych zajęć jest wprowadzenie do tablic w języku C. Tablicą (ang. <em>array</em>) nazywamy ciąg zmiennych tego samego typu, które zajmują kolejne komórki pamięci. Aby dostać się do zadanego elementu, używamy nazwy tablicy i indeksu identyfikującego element. Na tych zajęciach zajmiemy się tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tablicę statyczną deklarujemy tak jak zwykłą zmienną, przy czym dodatkowo określamy jej długość (czyli liczbę elementów). Przykładowo:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> a[<span class="dv">4</span>];     <span class="co">// deklaracja tablicy</span>
 
-  a[<span class="dv">0</span>] = <span class="fl">5.</span><span class="dv">5</span>;          <span class="co">// przypisanie wartosci do zmiennych</span>
+  a[<span class="dv">0</span>] = <span class="fl">5.</span><span class="dv">5</span>;      <span class="co">// definicja - przypisanie wartosci do zmiennych</span>
   a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">521</span>;
   a[<span class="dv">2</span>] = <span class="fl">6.</span><span class="dv">45</span>;
   a[<span class="dv">3</span>] = <span class="fl">4.</span><span class="dv">51</span>;</code></pre></div>
-<p>Zwróć uwagę, że elementy tablicy sa indeksowane od <span class="math inline">\(0\)</span> do <span class="math inline">\(n - 1\)</span>, gdzie <span class="math inline">\(n\)</span> to rozmiar tablicy. Można również zainicjalizować wszystkie elementy tablicy natychmiast (taki mechanizm jest użyteczny, jeśli tablice są stosunkowo krótkie):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> b[<span class="dv">3</span>] = { <span class="fl">1.</span><span class="dv">2</span>, <span class="fl">2.</span><span class="dv">4</span>, <span class="fl">-4.</span><span class="dv">3</span>};</code></pre></div>
+<p>Zwróć uwagę, że elementy tablicy są indeksowane liczbami od <span class="math inline">\(0\)</span> do <span class="math inline">\(N - 1\)</span>, gdzie <span class="math inline">\(N\)</span> to rozmiar tablicy. Elementy tablicy można również zainicjalizować natychmiast – w momencie deklaracji:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> b[<span class="dv">3</span>] = {<span class="fl">1.</span><span class="dv">2</span>, <span class="fl">2.</span><span class="dv">4</span>, <span class="fl">-4.</span><span class="dv">3</span>};  <span class="co">// wartosci zawarte w nawiasach &quot;{&quot; i &quot;}&quot; definiuja tablice</span>
+  <span class="dt">double</span> c[<span class="dv">5</span>] = {<span class="dv">0</span>};               <span class="co">// wszystkie elementy tablicy zostana uzupelnione zerami</span></code></pre></div>
 </div>
 <div id="gra-w-kulki" class="section level1">
 <h1>Gra w kulki</h1>
-<p>Zadanie polegać będzie na wygenerowaniu zestawu małych piłeczek w oknie graficznym, wprawieniu ich w ruch oraz implementacji prostych zasad kolizji. Ekran początkowy jest widoczny na Rysunku 1. <img src="info1_lab05_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Nasze piłki będą przychowywane tylko jako zestawy współrzędnych oraz prędkości. Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, po prostu użyjemy funkcji <code>circle()</code>. Toteż w symulacji będą potrzebne następujące wektory<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x[<span class="dv">10</span>], y[<span class="dv">10</span>];        <span class="co">// współrzędne piłek</span>
-<span class="dt">double</span> cx[<span class="dv">10</span>], cy[<span class="dv">10</span>];      <span class="co">// składowe prędkości piłek</span></code></pre></div>
+<p>Zadanie polegać będzie na:</p>
+<ul>
+<li>wygenerowaniu w oknie graficznym zestawu małych piłeczek,</li>
+<li>wprawieniu ich w ruch,</li>
+<li>implementacji zasad kolizji ze ścianami oraz</li>
+<li>implementacji wzajemnych zderzeń piłeczek.</li>
+</ul>
+<p>Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono poglądowo). <img src="info1_lab05_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Nasze piłki przechowywane będą jako zestawy współrzędnych <span class="math inline">\((x, y)\)</span> oraz prędkości <span class="math inline">\((xV, yV)\)</span>. Oznacza to, że będą potrzebne następujące tablice:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x[<span class="dv">10</span>], y[<span class="dv">10</span>];        <span class="co">// wspolrzedne pilek</span>
+<span class="dt">double</span> xV[<span class="dv">10</span>], yV[<span class="dv">10</span>];      <span class="co">// skladowe predkosci pilek</span></code></pre></div>
+<p>Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji <code>circle()</code>, podając jako argumenty numery elementów tablic. Przykładowo:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">circle(x[<span class="dv">0</span>], y[<span class="dv">0</span>], <span class="dv">5</span>);</code></pre></div>
 <div id="petla-for" class="section level2">
 <h2>Pętla <code>for</code></h2>
-<p>Większość operacji na tych zmiennych będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej wektory jako argumenty. Funkcje będą musiały mieć podaną długość wektorów tak, aby można było wykonać pewne operacje dla każdego z elementów tego wektora. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, piszemy funkcję następującej treści:</p>
+<p>Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty. Funkcje będą musiały także pobierać długość tablic tak, aby pewne operacje można było wykonać dla każdego z jej elementów. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, napiszemy funkcję:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N) {
-  <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; i++) {
+  <span class="dt">int</span> i;
+  
+  <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; N; i++) {
     x[i] = <span class="fl">0.</span><span class="dv">0</span>;
     y[i] = <span class="fl">0.</span><span class="dv">0</span>;
   }
 }</code></pre></div>
-<p>Wykorzystaliśmy tutaj pętlę <code>for</code>, która pobiera 3 argumenty:</p>
+<p>Wykorzystaliśmy tutaj pętlę <code>for</code>, która pobiera <span class="math inline">\(3\)</span> argumenty:</p>
 <ul>
-<li>wartość startową,</li>
-<li>warunek działania (pętle działa, dopóki warunek <span class="math inline">\(i&lt;N\)</span> jest spełniony),</li>
-<li>operację na argumencie (tutaj zwiększamy <span class="math inline">\(i\)</span> o 1, co będzie najpowszechniejszą praktyką<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>).</li>
+<li>wartość startową licznika <span class="math inline">\(i = 0\)</span>,</li>
+<li>warunek stopu (pętla działa, dopóki <span class="math inline">\(i &lt; N\)</span> ),</li>
+<li>operację na liczniku (tutaj zwiększamy <span class="math inline">\(i\)</span> o <span class="math inline">\(1\)</span>, co będzie najpowszechniejszą praktyką<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>).</li>
 </ul>
-<p>Taką funkcję wywołujemy w programie głównym, podając nazwy wektorów, na których ma ona działać oraz długość tych wektorów:</p>
+<p>Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na których ma działać oraz ich długość:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  init(x, y, <span class="dv">10</span>);</code></pre></div>
-<p>Zauważmy, że funkcja <code>init</code> pobiera 2 wskaźniki do wektorów (<code>x</code> oraz <code>y</code>) oraz jedną wartość – 10. Dzięki temu, funkcja operuje bezpośrednio na wektorach, na których ma operować i niczego nie musi zwracać.</p>
+<p>Czytelnik zauważy, że funkcja <code>init</code> pobiera dwa wskaźniki do tablic (u nas do tablicy <code>x</code> oraz <code>y</code>). Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic. My podaliśmy jedynie ich nazwy (<code>x</code> i <code>y</code>) – wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.</p>
+<p>Warto podkreślić, że wykorzystanie wskaźnika to jedyny sposób przekazania tablicy do funkcji. Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych’’ zmiennych (<code>int</code>, <code>double</code>, itd.).</p>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
-<p>Ponieważ <code>x</code> oraz <code>y</code> są wskaźnikami do pierwszych (dokładnie rzecz ujmując - zerowych) elementów tablic, można użyć mechanizmu wyłuskania wartości ze wskaźników i iterować się po wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości z tablicy:</p>
+<p>Ponieważ <code>x</code> oraz <code>y</code> są wskaźnikami do pierwszych elementów tablic, można wykorzystać mechanizm działań na wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości zawartej w tablicy:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a[<span class="dv">3</span>];
-<span class="co">// po wartościach:</span>
-a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</span>;         a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">13</span>;         a[<span class="dv">2</span>] = <span class="fl">0.</span><span class="dv">22</span>;
-<span class="co">//albo na wskaźnikach:</span>
-*(a)   = <span class="fl">1.</span><span class="dv">2</span>;           *(a<span class="dv">+1</span>) = <span class="fl">3.</span><span class="dv">13</span>;        *(a<span class="dv">+2</span>) = <span class="fl">0.</span><span class="dv">22</span>;</code></pre></div>
+
+a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</span>;       <span class="co">// inicjalizacja klasyczna z wykorzystaniem &quot;[&quot; i &quot;]&quot;</span>
+a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">13</span>;
+a[<span class="dv">2</span>] = <span class="fl">0.</span><span class="dv">22</span>;
+
+*(a + <span class="dv">0</span>) = <span class="fl">1.</span><span class="dv">2</span>;   <span class="co">// inicjalizacja z wykorzstaniem wskaznikow</span>
+*(a + <span class="dv">1</span>) = <span class="fl">3.</span><span class="dv">13</span>;
+*(a + <span class="dv">2</span>) = <span class="fl">0.</span><span class="dv">22</span>;</code></pre></div>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>Przed wykonaniem ćwiczeń upewnij się, że załączono bibliotekę , gdyż będziemy korzystać z grafiki. - Zadeklaruj wymienione wyżej wektory o długości 10. - Zadeklaruj okno graficzne o wymiarach <span class="math inline">\(Lx \times Ly\)</span>. - Napisz funkcję , która wylosuje współrzędne położcsaeń początkowych tak, aby powstałe kółka mieściły się w oknie graficznym. Użyj funkcji  znanej z poprzednich zajęć. - Napisz funkcję <code>display</code>, która wyświetli położenie kółek (funkcja powina mieć tę samą strukturę, co funkcja ).</p>
+<p>Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę <code>winbgi2.h</code>.</p>
+<ul>
+<li>Zadeklaruj wymienione wyżej tablice (<code>x</code>, <code>y</code>, <code>xV</code> i <code>yV</code>) o długości <span class="math inline">\(10\)</span>.</li>
+<li>Otwórz okno graficzne o wymiarach <span class="math inline">\(L_x \times L_y = 400 \times 400\)</span>.</li>
+<li>Napisz funkcję <code>initPositions</code>, która losuje położenia początkowe kółek tak, aby mieściły się w oknie graficznym. Użyj funkcji <code>rand()</code> z biblioteki <code>stdlib.h</code> (patrz zajęcia <span class="math inline">\(4\)</span>).</li>
+<li>Napisz funkcję <code>display</code>, która wyświetli w oknie graficznym aktualne położenia kółek
+<ul>
+<li>funkcja powinna przyjmować te same argumenty co funkcja <code>init</code>,</li>
+<li>przyjmij, że promienie kółek są równe <span class="math inline">\(R = 20\)</span>.</li>
+</ul></li>
+<li>Napisz funkcję <code>showTable</code>, która drukuje w terminalu zawartość tablic (tym razem funkcja będzie pobierała cztery wskaźniki i liczbę).</li>
+</ul>
 </div>
 </div>
 <div id="ruch" class="section level1">
 <h1>Ruch</h1>
-<p>Oczywiście piłeczki mają się poruszać, zatem konieczne będzie określenie wartości prędkości początkowych oraz zaprogramowanie ruchu piłeczek.</p>
+<p>Piłeczki powinny poruszać się, musimy zatem:</p>
+<ul>
+<li>określić ich prędkości początkowe oraz</li>
+<li>ustalić prawo ruchu piłeczek.</li>
+</ul>
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
-<li>Napisz funkcję, która wylosuje początkowe prędkości piłek. Wylosuj je tak, aby wartość prędkości wynosiła 1 (najłatwiej będzie wylosować dowolną liczbę i jej sinus i cosinus przypisać jako składowe prędkości piłki)</li>
-<li>Napisz funkcję , która będzie wykonwać przesunięcie każdej z piłek. Przemieszczenie będzie po prostu polegać na zwiększeniu każdej współrzędnej o składową prędkość<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>:</li>
+<li>Napisz funkcję, która losuje prędkości początkowe piłeczek. Składowe prędkości (<code>xV</code> oraz <code>yV</code>) wylosuj tak, aby ich wartości znalazły się w przedziale <span class="math inline">\([-1, 1]\)</span>.</li>
+<li>Za pomocą funkcji <code>showTable</code> sprawdź czy wylosowane wartości są prawidłowe.</li>
+<li><p>Napisz funkcję <code>move</code>, która wykona przesunięcie każdej z piłeczek. Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości. Piłki poruszają się ze stałą prędkością, zatem <span class="math inline">\(\mathbf{x} (t + \Delta t) = \mathbf{x} + \mathbf{v} \Delta t\)</span>. Dla uproszczenia symulacji przyjmiemy, że czas jest jednostkowy. Zatem <span class="math inline">\(\mathbf{x}(t + 1) = \mathbf{x}(t) + \mathbf{v}\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; N; i++) {
+  x[i] += xV[i];
+  y[i] += yV[i];
+}</code></pre></div></li>
+<li><p>W funkcji <code>main</code> napisz pętlę <code>for</code>, która wykona <span class="math inline">\(i = 50\)</span> wywołań funkcji <code>move</code>. Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe położenia piłek. W ciele pętli koniecznie użyj funkcji <code>animate(100);</code>. Spowolni ona wykonywanie kolejnych kroków pętli. Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">     <span class="kw">for</span> ( i=<span class="dv">0</span>; i &lt; N; ++i){
-          x[i] += cx[i];
-          y[i] += cy[i];
-     }</code></pre></div>
-<ul>
-<li>W głównym programie napisz pętlę , która wykona 50 kroków iteracji programu. Niech przy każdym kroku wyświetla położenie każdej piłki. W ciele pętli użyj funkcji  - spowolni ona wykonywanie kolejnych kroków pętli. Jej użycie wyglądało następująco.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">while</span>(animate(<span class="dv">100</span>)) {
-   clear(); <span class="co">// wyczysci okno graficzne dla nowej klatki</span>
-   <span class="co">// Dalsza czesc ciala petli</span>
+<p>Użycie funkcji <code>aimate</code> wygląda następująco:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">50</span>; i++) {
+  animate(<span class="dv">100</span>);   <span class="co">// oczkiwanie przez 100 ms</span>
+  clear();        <span class="co">// czyszczenie okna dla nowej klatki</span>
+                  <span class="co">// pozostale instrukcje...</span>
 }</code></pre></div>
 </div>
 </div>
 <div id="kolizje-ze-scianami" class="section level1">
 <h1>Kolizje ze ścianami</h1>
-<p>Chcielibyśmy, aby piłeczki miały wbudowany jakiś mechanizm kolizji ze ścianami. Zderzenia będą doskonale sprężyste, kąt padania na przeszkodę będzie zatem równy kątowi odbicia od niej. Kąty mierzone względem normalnej do ściany.</p>
+<p>Chcielibyśmy, aby piłeczki miały wbudowany mechanizm kolizji ze ścianami. Zderzenia są doskonale sprężyste, zatem w układzie współrzędnych związanym ze ścianami, kąt padania będzie równy równy kątowi odbicia.</p>
 <div id="cwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
-<li>Do funkcji  dopisz warunek, który sprawdza, czy piłka zderzyła się ze ścianą. W przypadku kolizji należy zastosować prawo odbicia, które będzie miało prostą formę: Jeśli uderzamy w ścianę poziomą, wystarczy zmienić składową prędkości <span class="math inline">\(cy\)</span> na przeciwną. Analogicznie przy kolizji ze ścianą pionową, zmieniamy składową <span class="math inline">\(cx\)</span> na przeciwną. Sprawdź, jak działa program np. dla 5000 kroków.</li>
-<li>Napisz funkcję <code>showEnergy</code>, która będzie wyświetlała na ekranie wartość całkowitej energii kinetycznej układu.</li>
+<li>Napisz funkcję <code>collideWall</code>, która sprawdza czy piłka zderzyła się ze ścianą. W przypadku kolizji należy zastosować prawo odbicia, które sprowadza się do:
+<ul>
+<li>przy uderzeniu w ścianę poziomą, zamiany składowej prędkości <span class="math inline">\(yV\)</span> na przeciwną. Składowa <span class="math inline">\(xV\)</span> pozostaje bez zmian.</li>
+<li>przy kolizji ze ścianą pionową, zamiany składowej <span class="math inline">\(xV\)</span> na przeciwną. Składowa <span class="math inline">\(yV\)</span> pozostaje bez zmian.</li>
+</ul></li>
+<li>Dodaj funkcję do pętli i sprawdź, działanie programu dla np. <span class="math inline">\(3000\)</span> kroków.</li>
+<li>Napisz funkcję <code>showEnergy</code>, która w terminalu będzie wyświetlała wartość całkowitej energii kinetycznej układu.</li>
 </ul>
 </div>
 </div>
 <div id="kolizje-z-pikami" class="section level1">
 <h1>Kolizje z piłkami</h1>
-<p>Dopisz funkcję <code>searchAndCollide</code>, która sprawdza, czy piłki zderzają się ze sobą nawzajem. Trzeba będzie przeiterować się po wszystkich współrzędnych sąsiadów i sprawdzić, czy odległość piłek jest dostatecznie mała. Weźmy dwie kulki 1 i 2 o prędkościach przed zderzeniem odpowiednio <span class="math inline">\(v_{1}\)</span> i <span class="math inline">\(v_{2}\)</span> oraz położeniach <span class="math inline">\(p_{1}\)</span> i <span class="math inline">\(p_{2}\)</span>. Przyjmijmy, że kulki mają te same masy. Z zasady zachowania pędu wynika, że prędkości po zderzeniu będą wynosić: <span class="math display">\[
-\hat v_{1}= v_{1}+\Delta v
+<p>Napisz funkcję <code>collideBall</code>, która sprawdza czy piłki zderzają się ze sobą nawzajem. W celu dokonania tego sprawdzenia, dla każdej pary piłek należy wyznaczyć odległość i sprawdzić czy jest mniejsza niż <span class="math inline">\(2\cdot R = 40\)</span> (przyjęliśmy wcześniej, że promień piłki to <span class="math inline">\(R = 20\)</span>).</p>
+<p>Następnie należy zmodyfikować prędkości piłek zgodnie z poniższymi wzorami. Oznaczenia:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{v}&#39;\)</span> – prędkość piłki po zderzeniu.</li>
+<li><span class="math inline">\(\Delta \mathbf{v}\)</span> – zmiana prędkości wynikła ze zderzenia.</li>
+<li><span class="math inline">\(\mathbf{r}_1\)</span> i <span class="math inline">\(\mathbf{r}_2\)</span> – promienie wodzące piłek (współrzędne).</li>
+<li><span class="math inline">\(C\)</span> – stała, ułatwiająca wyprowadzenie i zapis wzorów.</li>
+</ul>
+<p><span class="math display">\[\mathbf{v}&#39;_1= \mathbf{v}_1 + \Delta \mathbf{v}\]</span> <span class="math display">\[\mathbf{v}&#39;_2= \mathbf{v}_2 - \Delta \mathbf{v}\]</span> <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\]</span> gdzie: <span class="math display">\[C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}\]</span></p>
+</div>
+<div id="przykadowa-animacja" class="section level1">
+<h1>Przykładowa animacja</h1>
+<div class="figure">
+<img src="figures/info1/kulki.gif" title="Kulki w ruchu." alt="" />
+
+</div>
+</div>
+<div id="wyprowadzenie-wzoru-na-predkosci-piek-po-zderzeniu" class="section level1">
+<h1>Wyprowadzenie wzoru na prędkości piłek po zderzeniu</h1>
+<p>Założenia:</p>
+<ol style="list-style-type: decimal">
+<li>Zderzenia są niesprężyste,</li>
+<li>Zjawisko tarcia nie występuje,</li>
+<li>Kulki mają ten sam promień <span class="math inline">\(R\)</span> oraz masę <span class="math inline">\(m\)</span>.</li>
+</ol>
+<p>Analiza:</p>
+<ol style="list-style-type: decimal">
+<li><p>Z poczynionych założeń (1. i 2.) wynika, że w momencie zderzenia na kulki będzie działać siła o kierunku takim samym jak wektor łączący środki kulek. W naszym przypadku, wektorem tym będzie <span class="math display">\[\Delta \mathbf{r} = \mathbf{r}_{2} - \mathbf{r}_{1}.\]</span> Siłę możemy więc zapisać jako proporcjonalną do tego wektora <span class="math display">\[\mathbf{F} = A \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\textrm{, gdzie}\]</span> <span class="math inline">\(A\)</span> to pewna stała, która nie zmieni kierunku wektora ale zmieni jego zwrot i wartość.</p></li>
+<li><p>Z II zasady dynamiki wiemy, że zmiana pędu będzie proporcjonalna do przyłożonej siły. Zatem: <span class="math display">\[\Delta \mathbf{p} = B \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{, gdzie}\]</span> rola stałej <span class="math inline">\(B\)</span> jest taka sama jak stałej <span class="math inline">\(A\)</span>. Informacja ta upraszcza równania zasady zachowania pędu. Możemy teraz zapisać, że nowe pędy kulek to stare wartości <span class="math inline">\(\pm\)</span> zmiana pędu: <span class="math display">\[
+\left\{
+\begin{array}{rcl}
+\mathbf{p}&#39;_1 &amp; = &amp; \mathbf{p}_1 + \Delta \mathbf{p} \\
+\mathbf{p}&#39;_2 &amp; = &amp; \mathbf{p}_2 - \Delta \mathbf{p}
+\end{array}
+\right.
+\]</span></p></li>
+<li>W tym momencie mamy <span class="math inline">\(7\)</span> niewiadomych (<span class="math inline">\(\mathbf{p}&#39;_1\)</span>, <span class="math inline">\(\mathbf{p}&#39;_2\)</span>, <span class="math inline">\(\Delta \mathbf{p}\)</span>, B) i <span class="math inline">\(6\)</span> równań (<span class="math inline">\(3\)</span> r-nia wektorowe). Musimy skorzystać także z równania zachowania energii: <span class="math display">\[
+\frac{m_1|\mathbf{v}_1|^2}{2} + \frac{m_2|\mathbf{v}_2|^2}{2} = \frac{m_1|\mathbf{v}&#39;_1|^2}{2} + \frac{m_2|\mathbf{v}&#39;_2|^2}{2}
+\]</span></li>
+<li><p>Biorąc pod uwagę, że masy piłek są takie same równania możemy uprościć: <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{ (1)}\]</span> <span class="math display">\[
+\left\{
+\begin{array}{rcl}
+\mathbf{v}&#39;_1 &amp; = &amp; \mathbf{v}_1 + \Delta \mathbf{v} \\
+\mathbf{v}&#39;_2 &amp; = &amp; \mathbf{v}_2 - \Delta \mathbf{v}
+\end{array}
+\right. \textrm{ (2)}
 \]</span> <span class="math display">\[
-\hat v_{2}= v_{2}-\Delta v
-\]</span> gdzie <span class="math inline">\(\Delta v\)</span> to pęd którym wymieniły się kulki. Jedyny kierunek w którym następuje wymiana pędem (zakładamy tu brak tarcia) to kierunek prostopadły do płaszczyzny zderzenia: <span class="math display">\[\Delta v=C(p_{1}-p_{2})\]</span> Teraz wystarczy jedynie spełnić zasadę zachowania energii. Znów przyjmując równe masy otrzymujemy: <span class="math display">\[\newcommand{\abs}[1]{\left|#1\right|}\abs{v_1}^2+\abs{v_2}^2 = \abs{\hat v_1}^2 + \abs{\hat v_2}^2\]</span> <span class="math display">\[0 = 2\abs{\Delta v}^2 + 2\Delta v\cdot (v_1-v_2)\]</span> <span class="math display">\[0 = C^2\abs{p_{1}-p_{2}}^2 + C(p_{1}-p_{2})\cdot (v_1-v_2)\]</span> <span class="math display">\[C = - \frac{(p_{1}-p_{2})\cdot (v_1-v_2)}{\abs{p_{1}-p_{2}}^2}\]</span> Warto zauważyć, że znak iloczynu skalarnego <span class="math inline">\((p_{1}-p_{2})\cdot (v_1-v_2)\)</span> mówi nam czy kulki lecą do siebie czy od siebie. Ostatecznie można powiedzieć że zderzenie następuje tylko gdy <span class="math inline">\(C&gt;0\)</span>.</p>
+|\mathbf{v}_1|^2 + |\mathbf{v}_2|^2 = |\mathbf{v}&#39;_1|^2 + |\mathbf{v}&#39;_2|^2 \mathrm{ (3)}
+\]</span> Podstawiamy teraz równanie (2) do (3) otrzymując: <span class="math display">\[
+0 = |\Delta \mathbf{v}|^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
+\]</span> Do równania (4) wstawiamy równanie (1) i otrzymujemy wzór na <span class="math inline">\(C\)</span>: <span class="math display">\[C = -\frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2} \textrm{ (5)}\]</span> Otrzymaną stałą możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.</p></li>
+</ol>
+<p>Zderzenie piłek ilustruje poniższy schemat:</p>
 <p><img src="info1_lab05_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>tablice zazwyczaj będziemy nazywać wektorami, ze względu na fakt, że określenie ,,tablica’’ kojarzą się z obiektem o większej liczbie wymiarów np. z macierzą<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>piłki poruszają się ze stałą prędkością, toteż $x(t+t) = x(t) + vt $, a dla uproszczenia symulacji czas jest jednostkowy zatem <span class="math inline">\(x(t+1) = x(t) + v\)</span><a href="#fnref4">↩</a></p></li>
+<li id="fn2"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref2">↩</a></p></li>
 </ol>
 </div>
 
