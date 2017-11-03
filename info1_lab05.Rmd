@@ -15,7 +15,7 @@ set.seed(14) # Set seed for all the pictures to be reproducible
 Celem dzisiejszych zajęć jest wprowadzenie do tablic w języku C.
 Tablicą (ang. *array*) nazywamy ciąg zmiennych tego samego typu, które zajmują kolejne komórki pamięci.
 Aby dostać się do zadanego elementu, używamy nazwy tablicy i indeksu identyfikującego element.
-Na tych zajęciach zajmiemy się tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji^[bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć].
+Na tych zajęciach zajmiemy się tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji^[Bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć].
 Tablicę statyczną deklarujemy tak jak zwykłą zmienną, przy czym dodatkowo określamy jej długość (czyli liczbę elementów).
 Przykładowo:
 
@@ -65,7 +65,8 @@ Oznacza to, że będą potrzebne następujące tablice:
 double x[10], y[10];        // wspolrzedne pilek
 double xV[10], yV[10];      // skladowe predkosci pilek
 ```
-Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji `circle()`, podając jako argumenty numery elementów tablic.
+Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji `circle()`.
+Jako argumenty podamy elementy tablic odpowiadające danej piłce.
 Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:
 ```c++ 
 circle(x[0], y[0], 5);
@@ -74,7 +75,7 @@ circle(x[0], y[0], 5);
 ## Modyfikacja tablic -- pętla `for`
 
 Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty.
-Funkcje będą musiały także pobierać długość tablic tak, aby pewne operacje można było wykonać dla każdego z jej elementów.
+Funkcje będą musiały także pobierać długość tablic tak, aby operacje można było wykonać dla każdego z jej elementów.
 Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością $0$, napiszemy funkcję:
 ```c++
 void init(double *x, double *y, int N) {
@@ -100,10 +101,11 @@ Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na któ
 
 Czytelnik zauważy, że funkcja `init` pobiera dwa wskaźniki do tablic (u nas do tablicy `x` oraz `y`).
 Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic.
-My podaliśmy jedynie ich nazwy (`x` i `y`) -- wynika stąd, że nazwa tablicy jest jednocześnie jej adresami.
+My podaliśmy jedynie ich nazwy (`x` i `y`) -- wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.
 
-Warto podkreślić, że wykorzystanie wskaźnika to jedyny sposób przekazania tablicy do funkcji.
+Warto podkreślić, że wykorzystanie wskaźnika to podstawowy sposób na przekazanie tablicy do funkcji.
 Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych'' zmiennych (`int`, `double`, itd.).
+Można ją przekazać jedynie przez wskaźnik^[Można wykorzystać struktury aby przekazać tablicę przez wartość -- temat ten wykracza jednak po za zakres ćwiczeń.].
 
 ## Uwaga
 Ponieważ `x` oraz `y` są wskaźnikami do pierwszych elementów tablic, można wykorzystać mechanizm działań na wskaźnikach.
@@ -195,13 +197,13 @@ Oznaczenia:
  - $\mathbf{v}'$ -- prędkość piłki po zderzeniu.
  - $\Delta \mathbf{v}$ -- zmiana prędkości wynikła ze zderzenia.
  - $\mathbf{r}_1$ i $\mathbf{r}_2$ -- promienie wodzące piłek (współrzędne).
- - $C$ -- stała, ułatwiająca wyprowadzenie i zapis wzorów.
+ - $C$ -- parametr, ułatwiający wyprowadzenie i zapis wzorów.
  
 $$\mathbf{v}'_1= \mathbf{v}_1 + \Delta \mathbf{v}$$
 $$\mathbf{v}'_2= \mathbf{v}_2 - \Delta \mathbf{v}$$
 $$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})$$
 gdzie:
-$$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}$$
+$$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}$$
 
 # Przykładowa animacja
 
@@ -222,12 +224,12 @@ W naszym przypadku, wektorem tym będzie
 $$\Delta \mathbf{r} = \mathbf{r}_{2} - \mathbf{r}_{1}.$$
 Siłę możemy więc zapisać jako proporcjonalną do tego wektora
 $$\mathbf{F} = A \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\textrm{, gdzie}$$
-$A$ to pewna stała, która nie zmieni kierunku wektora ale zmieni jego zwrot i wartość.
+$A$ to pewien parametr, który nie zmieni kierunku wektora ale zmieni jego zwrot i wartość.
 
 2. Z II zasady dynamiki wiemy, że zmiana pędu będzie proporcjonalna do przyłożonej siły.
 Zatem:
 $$\Delta \mathbf{p} = B \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{, gdzie}$$
-rola stałej $B$ jest taka sama jak stałej $A$.
+rola parametru $B$ jest taka sama jak parametru $A$.
 Informacja ta upraszcza równania zasady zachowania pędu.
 Możemy teraz zapisać, że nowe pędy kulek to stare wartości $\pm$ zmiana pędu:
 $$
@@ -239,10 +241,10 @@ $$
 \right.
 $$
 
-3. W tym momencie mamy $7$ niewiadomych ($\mathbf{p}'_1$, $\mathbf{p}'_2$, $\Delta \mathbf{p}$, B) i $6$ równań ($3$ r-nia wektorowe).
+3. W tym momencie mamy $7$ niewiadomych ($\mathbf{p}'_1$, $\mathbf{p}'_2$, $\Delta \mathbf{p}$, B) i $6$ równań ($3$ równania wektorowe).
 Musimy więc skorzystać także z równania zachowania energii:
 $$
-\frac{m_1|\mathbf{v}_1|^2}{2} + \frac{m_2|\mathbf{v}_2|^2}{2} = \frac{m_1|\mathbf{v}'_1|^2}{2} + \frac{m_2|\mathbf{v}'_2|^2}{2}
+\frac{m_1||\mathbf{v}_1||^2}{2} + \frac{m_2||\mathbf{v}_2||^2}{2} = \frac{m_1||\mathbf{v}'_1||^2}{2} + \frac{m_2||\mathbf{v}'_2||^2}{2}
 $$
 4. Biorąc pod uwagę, że masy piłek są takie same równania możemy uprościć:
 $$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{ (1)}$$
@@ -255,15 +257,15 @@ $$
 \right. \textrm{ (2)}
 $$
 $$
-|\mathbf{v}_1|^2 + |\mathbf{v}_2|^2 = |\mathbf{v}'_1|^2 + |\mathbf{v}'_2|^2 \mathrm{ (3)}
+||\mathbf{v}_1||^2 + ||\mathbf{v}_2||^2 = ||\mathbf{v}'_1||^2 + ||\mathbf{v}'_2||^2 \mathrm{ (3)}
 $$
 Podstawiamy teraz równanie (2) do (3) otrzymując:
 $$
-0 = |\Delta \mathbf{v}|^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
+0 = ||\Delta \mathbf{v}||^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
 $$
 Do równania (4) wstawiamy równanie (1) i otrzymujemy wzór na $C$:
-$$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2} \textrm{ (5)}$$
-Otrzymaną stałą możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.
+$$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2} \textrm{ (5)}$$
+Otrzymany parametr $C$ możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.
 
 Zderzenie piłek ilustruje poniższy schemat:
 
