@@ -594,11 +594,11 @@ div.tocify {
 <p>Nasze piłki przechowywane będą jako zestawy współrzędnych <span class="math inline">\((x, y)\)</span> oraz prędkości <span class="math inline">\((xV, yV)\)</span>. Oznacza to, że będą potrzebne następujące tablice:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x[<span class="dv">10</span>], y[<span class="dv">10</span>];        <span class="co">// wspolrzedne pilek</span>
 <span class="dt">double</span> xV[<span class="dv">10</span>], yV[<span class="dv">10</span>];      <span class="co">// skladowe predkosci pilek</span></code></pre></div>
-<p>Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji <code>circle()</code>, podając jako argumenty numery elementów tablic. Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:</p>
+<p>Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji <code>circle()</code>. Jako argumenty podamy elementy tablic odpowiadające danej piłce. Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">circle(x[<span class="dv">0</span>], y[<span class="dv">0</span>], <span class="dv">5</span>);</code></pre></div>
 <div id="modyfikacja-tablic-petla-for" class="section level2">
 <h2>Modyfikacja tablic – pętla <code>for</code></h2>
-<p>Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty. Funkcje będą musiały także pobierać długość tablic tak, aby pewne operacje można było wykonać dla każdego z jej elementów. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, napiszemy funkcję:</p>
+<p>Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty. Funkcje będą musiały także pobierać długość tablic tak, aby operacje można było wykonać dla każdego z jej elementów. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, napiszemy funkcję:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N) {
   <span class="dt">int</span> i;
   
@@ -615,8 +615,8 @@ div.tocify {
 </ul>
 <p>Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na których ma działać oraz ich długość:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  init(x, y, <span class="dv">10</span>);</code></pre></div>
-<p>Czytelnik zauważy, że funkcja <code>init</code> pobiera dwa wskaźniki do tablic (u nas do tablicy <code>x</code> oraz <code>y</code>). Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic. My podaliśmy jedynie ich nazwy (<code>x</code> i <code>y</code>) – wynika stąd, że nazwa tablicy jest jednocześnie jej adresami.</p>
-<p>Warto podkreślić, że wykorzystanie wskaźnika to jedyny sposób przekazania tablicy do funkcji. Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych’’ zmiennych (<code>int</code>, <code>double</code>, itd.).</p>
+<p>Czytelnik zauważy, że funkcja <code>init</code> pobiera dwa wskaźniki do tablic (u nas do tablicy <code>x</code> oraz <code>y</code>). Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic. My podaliśmy jedynie ich nazwy (<code>x</code> i <code>y</code>) – wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.</p>
+<p>Warto podkreślić, że wykorzystanie wskaźnika to podstawowy sposób na przekazanie tablicy do funkcji. Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych’’ zmiennych (<code>int</code>, <code>double</code>, itd.). Można ją przekazać jedynie przez wskaźnik<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
@@ -700,9 +700,9 @@ Oznaczenia:</p>
 <li><span class="math inline">\(\mathbf{v}&#39;\)</span> – prędkość piłki po zderzeniu.</li>
 <li><span class="math inline">\(\Delta \mathbf{v}\)</span> – zmiana prędkości wynikła ze zderzenia.</li>
 <li><span class="math inline">\(\mathbf{r}_1\)</span> i <span class="math inline">\(\mathbf{r}_2\)</span> – promienie wodzące piłek (współrzędne).</li>
-<li><span class="math inline">\(C\)</span> – stała, ułatwiająca wyprowadzenie i zapis wzorów.</li>
+<li><span class="math inline">\(C\)</span> – parametr, ułatwiający wyprowadzenie i zapis wzorów.</li>
 </ul>
-<p><span class="math display">\[\mathbf{v}&#39;_1= \mathbf{v}_1 + \Delta \mathbf{v}\]</span> <span class="math display">\[\mathbf{v}&#39;_2= \mathbf{v}_2 - \Delta \mathbf{v}\]</span> <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\]</span> gdzie: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2}\]</span></p>
+<p><span class="math display">\[\mathbf{v}&#39;_1= \mathbf{v}_1 + \Delta \mathbf{v}\]</span> <span class="math display">\[\mathbf{v}&#39;_2= \mathbf{v}_2 - \Delta \mathbf{v}\]</span> <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\]</span> gdzie: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}\]</span></p>
 </div>
 <div id="przykadowa-animacja" class="section level1">
 <h1>Przykładowa animacja</h1>
@@ -721,8 +721,8 @@ Oznaczenia:</p>
 </ol>
 <p>Analiza:</p>
 <ol style="list-style-type: decimal">
-<li><p>Z założeń 1. i 2. wynika, że w momencie zderzenia na kulki będzie działać siła o kierunku takim samym jak wektor łączący środki kulek. W naszym przypadku, wektorem tym będzie <span class="math display">\[\Delta \mathbf{r} = \mathbf{r}_{2} - \mathbf{r}_{1}.\]</span> Siłę możemy więc zapisać jako proporcjonalną do tego wektora <span class="math display">\[\mathbf{F} = A \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\textrm{, gdzie}\]</span> <span class="math inline">\(A\)</span> to pewna stała, która nie zmieni kierunku wektora ale zmieni jego zwrot i wartość.</p></li>
-<li><p>Z II zasady dynamiki wiemy, że zmiana pędu będzie proporcjonalna do przyłożonej siły. Zatem: <span class="math display">\[\Delta \mathbf{p} = B \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{, gdzie}\]</span> rola stałej <span class="math inline">\(B\)</span> jest taka sama jak stałej <span class="math inline">\(A\)</span>. Informacja ta upraszcza równania zasady zachowania pędu. Możemy teraz zapisać, że nowe pędy kulek to stare wartości <span class="math inline">\(\pm\)</span> zmiana pędu: <span class="math display">\[
+<li><p>Z założeń 1. i 2. wynika, że w momencie zderzenia na kulki będzie działać siła o kierunku takim samym jak wektor łączący środki kulek. W naszym przypadku, wektorem tym będzie <span class="math display">\[\Delta \mathbf{r} = \mathbf{r}_{2} - \mathbf{r}_{1}.\]</span> Siłę możemy więc zapisać jako proporcjonalną do tego wektora <span class="math display">\[\mathbf{F} = A \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\textrm{, gdzie}\]</span> <span class="math inline">\(A\)</span> to pewien parametr, który nie zmieni kierunku wektora ale zmieni jego zwrot i wartość.</p></li>
+<li><p>Z II zasady dynamiki wiemy, że zmiana pędu będzie proporcjonalna do przyłożonej siły. Zatem: <span class="math display">\[\Delta \mathbf{p} = B \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{, gdzie}\]</span> rola parametru <span class="math inline">\(B\)</span> jest taka sama jak parametru <span class="math inline">\(A\)</span>. Informacja ta upraszcza równania zasady zachowania pędu. Możemy teraz zapisać, że nowe pędy kulek to stare wartości <span class="math inline">\(\pm\)</span> zmiana pędu: <span class="math display">\[
 \left\{
 \begin{array}{rcl}
 \mathbf{p}&#39;_1 &amp; = &amp; \mathbf{p}_1 + \Delta \mathbf{p} \\
@@ -730,8 +730,8 @@ Oznaczenia:</p>
 \end{array}
 \right.
 \]</span></p></li>
-<li>W tym momencie mamy <span class="math inline">\(7\)</span> niewiadomych (<span class="math inline">\(\mathbf{p}&#39;_1\)</span>, <span class="math inline">\(\mathbf{p}&#39;_2\)</span>, <span class="math inline">\(\Delta \mathbf{p}\)</span>, B) i <span class="math inline">\(6\)</span> równań (<span class="math inline">\(3\)</span> r-nia wektorowe). Musimy więc skorzystać także z równania zachowania energii: <span class="math display">\[
-\frac{m_1|\mathbf{v}_1|^2}{2} + \frac{m_2|\mathbf{v}_2|^2}{2} = \frac{m_1|\mathbf{v}&#39;_1|^2}{2} + \frac{m_2|\mathbf{v}&#39;_2|^2}{2}
+<li>W tym momencie mamy <span class="math inline">\(7\)</span> niewiadomych (<span class="math inline">\(\mathbf{p}&#39;_1\)</span>, <span class="math inline">\(\mathbf{p}&#39;_2\)</span>, <span class="math inline">\(\Delta \mathbf{p}\)</span>, B) i <span class="math inline">\(6\)</span> równań (<span class="math inline">\(3\)</span> równania wektorowe). Musimy więc skorzystać także z równania zachowania energii: <span class="math display">\[
+\frac{m_1||\mathbf{v}_1||^2}{2} + \frac{m_2||\mathbf{v}_2||^2}{2} = \frac{m_1||\mathbf{v}&#39;_1||^2}{2} + \frac{m_2||\mathbf{v}&#39;_2||^2}{2}
 \]</span></li>
 <li><p>Biorąc pod uwagę, że masy piłek są takie same równania możemy uprościć: <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{ (1)}\]</span> <span class="math display">\[
 \left\{
@@ -741,10 +741,10 @@ Oznaczenia:</p>
 \end{array}
 \right. \textrm{ (2)}
 \]</span> <span class="math display">\[
-|\mathbf{v}_1|^2 + |\mathbf{v}_2|^2 = |\mathbf{v}&#39;_1|^2 + |\mathbf{v}&#39;_2|^2 \mathrm{ (3)}
+||\mathbf{v}_1||^2 + ||\mathbf{v}_2||^2 = ||\mathbf{v}&#39;_1||^2 + ||\mathbf{v}&#39;_2||^2 \mathrm{ (3)}
 \]</span> Podstawiamy teraz równanie (2) do (3) otrzymując: <span class="math display">\[
-0 = |\Delta \mathbf{v}|^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
-\]</span> Do równania (4) wstawiamy równanie (1) i otrzymujemy wzór na <span class="math inline">\(C\)</span>: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|\mathbf{r}_{1}-\mathbf{r}_{2}|^2} \textrm{ (5)}\]</span> Otrzymaną stałą możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.</p></li>
+0 = ||\Delta \mathbf{v}||^2 + (\mathbf{v}_1 - \mathbf{v}_2) \Delta \mathbf{v} \textrm{ (4)}
+\]</span> Do równania (4) wstawiamy równanie (1) i otrzymujemy wzór na <span class="math inline">\(C\)</span>: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2} \textrm{ (5)}\]</span> Otrzymany parametr <span class="math inline">\(C\)</span> możemy podstawić do równania (1), które z kolei podstawiamy do równania (2) otrzymując szukane wyrażenia na prędkości po zderzeniu.</p></li>
 </ol>
 <p>Zderzenie piłek ilustruje poniższy schemat:</p>
 <p><img src="info1_lab05_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
@@ -752,8 +752,9 @@ Oznaczenia:</p>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>Bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Można wykorzystać struktury aby przekazać tablicę przez wartość – temat ten wykracza jednak po za zakres ćwiczeń.<a href="#fnref3">↩</a></p></li>
 </ol>
 </div>
 
