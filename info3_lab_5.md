@@ -113,6 +113,13 @@ W tym celu dodaj instrukcję
 ```
 na początku ciała dokumentu.
 
+W celu automatycznego tworzenia zakładek oraz linków na podstawie spisu treści należy użyć pakietu:
+
+```{.tex}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue}
+```
+
 ### Listy i numeracje
 
 Wypunktowania i numeracje uzyskuje się wykorzystując tzw. otoczenia.
