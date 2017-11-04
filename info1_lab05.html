@@ -748,6 +748,35 @@ Oznaczenia:</p>
 </ol>
 <p>Zderzenie piłek ilustruje poniższy schemat:</p>
 <p><img src="info1_lab05_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="dla-dociekliwych" class="section level2">
+<h2>Dla dociekliwych</h2>
+<p>Celem lepszego zrozumienia działania stosu i statycznej alokacji pamięci przanalazuj poniższy kod. Jest on niepoprawny. Błędy tego typu, znane jako <a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow">stack buffer overflow</a> były wielokrotnie wykorzystywane przez twórców złośliwego oprogramowania. Sprawdź wynik uruchomienia programu w wersji ‘release/debug’ oraz ‘x84/x64’. Jak wytłumaczysz różnicę?</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> array_overflow()
+{
+    <span class="dt">int</span> a = <span class="dv">123456</span>;
+    <span class="dt">int</span> tab[<span class="dv">5</span>];
+    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
+
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){
+        tab[i] = i;
+    }
+
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){
+        printf(<span class="st">&quot;&amp;tab[</span><span class="ch">%d</span><span class="st">] = %p tab[</span><span class="ch">%d</span><span class="st">] = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st"> &quot;</span>, i, &amp;tab[i], i, tab[i]);
+    }
+
+    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
+}
+
+<span class="dt">int</span> main()
+{
+    array_overflow();
+    printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">---DONE---</span><span class="ch">\n</span><span class="st">&quot;</span>);
+    <span class="co">//system(&quot;pause&quot;);</span>
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+</div>
 </div>
 <div class="footnotes">
 <hr />
