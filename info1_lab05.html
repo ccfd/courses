@@ -748,35 +748,6 @@ Oznaczenia:</p>
 </ol>
 <p>Zderzenie piłek ilustruje poniższy schemat:</p>
 <p><img src="info1_lab05_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div id="dla-dociekliwych" class="section level2">
-<h2>Dla dociekliwych</h2>
-<p>Poniższy program ma błąd. Tego typu luka (stack buffer overflow) była wielokrotnie wykorzystywana przez twórców złośliwego oprogramowania<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Sprawdź jak różni się wynik uruchomienia programu wersji ‘release/debug’ oraz ‘x84/x64’. <a href="info1_lab07.html">Zaalokuj</a></p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> array()
-{
-    <span class="dt">int</span> a = <span class="dv">123456</span>;
-    <span class="dt">int</span> tab[<span class="dv">5</span>];
-    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
-
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){
-        tab[i] = i;
-    }
-
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){
-        printf(<span class="st">&quot;&amp;tab[</span><span class="ch">%d</span><span class="st">] = %p tab[</span><span class="ch">%d</span><span class="st">] = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st"> &quot;</span>, i, &amp;tab[i], i, tab[i]);
-    }
-
-    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
-}
-
-<span class="dt">int</span> main()
-{
-    array();
-    printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">---DONE---</span><span class="ch">\n</span><span class="st">&quot;</span>);
-    <span class="co">//system(&quot;pause&quot;);</span>
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
-</div>
 </div>
 <div class="footnotes">
 <hr />
@@ -784,7 +755,6 @@ Oznaczenia:</p>
 <li id="fn1"><p>Bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>Można wykorzystać struktury aby przekazać tablicę przez wartość – temat ten wykracza jednak po za zakres ćwiczeń.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>S(<a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow" class="uri">https://en.wikipedia.org/wiki/Stack_buffer_overflow</a>)<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>
 
