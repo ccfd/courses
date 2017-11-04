@@ -303,11 +303,13 @@ arrows2(p[1], p[2], p[1] + v1[1], p[2] + v1[2])
 
 ## Dla dociekliwych
 
-Poniższy program ma błąd. Tego typu luka (stack buffer overflow) była wielokrotnie wykorzystywana przez twórców złośliwego oprogramowania^[S(https://en.wikipedia.org/wiki/Stack_buffer_overflow)]. 
-Sprawdź jak różni się wynik uruchomienia programu wersji 'release/debug' oraz 'x84/x64'.  [Zaalokuj](info1_lab07.html)
+Celem lepszego zrozumienia działania stosu i statycznej alokacji pamięci przanalazuj poniższy kod.
+Jest on niepoprawny. Błędy tego typu, znane jako  [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow) były wielokrotnie wykorzystywane przez twórców złośliwego oprogramowania. 
+Sprawdź wynik uruchomienia programu w wersji 'release/debug' oraz 'x84/x64'. 
+Jak wytłumaczysz różnicę?
 
 ```c++
-void array()
+void array_overflow()
 {
 	int a = 123456;
 	int tab[5];
@@ -326,7 +328,7 @@ void array()
 
 int main()
 {
-	array();
+	array_overflow();
 	printf("\n---DONE---\n");
 	//system("pause");
 
