@@ -113,12 +113,18 @@ W tym celu dodaj instrukcję
 ```
 na początku ciała dokumentu.
 
-W celu automatycznego tworzenia zakładek oraz linków na podstawie spisu treści należy użyć pakietu:
-
+Tak otrzymany spis treści jest mało interaktywny -- możemy dowiedzieć się gdzie jest szukany rozdział, ale przejść do niego musimy sami.
+W celu automatycznego tworzenia zakładek oraz linków w obrębie spisu treści, które zaprowadzą nas do poszukiwanego fragmentu, należy użyć pakietu:
 ```{.tex}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue}
 ```
+Pakiet ten pozwala także na umieszczanie linków w tekście.
+Przykładowo, instrukcja:
+```{.tex}
+\href{https://google.com/}{Google}
+```
+zaprowadzi nas do popularnej wyszukiwarki.
 
 ### Listy i numeracje
 
