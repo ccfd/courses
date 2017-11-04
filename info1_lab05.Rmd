@@ -300,3 +300,37 @@ arrows2(0, 0, v2[1], v2[2])
 arrows2(p[1], p[2], p[1] + v1[1], p[2] + v1[2])
 ```
 
+
+## Dla dociekliwych
+
+Poniższy program ma błąd. Tego typu luka (stack buffer overflow) była wielokrotnie wykorzystywana przez twórców złośliwego oprogramowania^[S(https://en.wikipedia.org/wiki/Stack_buffer_overflow)]. 
+Sprawdź jak różni się wynik uruchomienia programu wersji 'release/debug' oraz 'x84/x64'.  [Zaalokuj](info1_lab07.html)
+
+```c++
+void array()
+{
+	int a = 123456;
+	int tab[5];
+	printf("Adress of &a = %p value of a = %d \n", &a, a);
+
+	for (int i = -10; i < 10; i++){
+		tab[i] = i;
+	}
+
+	for (int i = -10; i < 10; i++){
+		printf("&tab[%d] = %p tab[%d] = %d \n ", i, &tab[i], i, tab[i]);
+	}
+
+	printf("Adress of &a = %p value of a = %d \n", &a, a);
+}
+
+int main()
+{
+	array();
+	printf("\n---DONE---\n");
+	//system("pause");
+
+	return 0;
+}
+
+```
