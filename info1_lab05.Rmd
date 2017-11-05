@@ -205,11 +205,13 @@ $$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})$$
 gdzie:
 $$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}$$
 
-# Przykładowa animacja
+## Przykładowa animacja
 
 ![](figures/info1/kulki.gif "Kulki w ruchu.")
 
-# Wyprowadzenie wzoru na prędkości piłek po zderzeniu
+# Dla dociekliwych
+
+## Wyprowadzenie wzoru na prędkości piłek po zderzeniu
 
 Założenia:
 
@@ -301,21 +303,34 @@ arrows2(p[1], p[2], p[1] + v1[1], p[2] + v1[2])
 ```
 
 
-## Dla dociekliwych
+## Buffer overflow
 
 Celem lepszego zrozumienia działania stosu i statycznej alokacji pamięci przanalazuj poniższy kod.
-Jest on niepoprawny. Błędy tego typu, znane jako  [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow) były wielokrotnie wykorzystywane przez twórców złośliwego oprogramowania. 
+Jest on niepoprawny, ponieważ w pętli `for` wartości są wpisywane do komórek tablicy `tab` poza jej zadeklarowanym rozmiarem.
+Wyjście poza tablice może spowodować "bałagan" w pamięci skutkujący zupełnie nieoczekiwanym i trudnym do zdebugowania zachowaniem się programu. Częstym objawem są "niedeterministyczne" wyniki.
+
+Możliwość wyjścia poza tablice w przypadku programów użytkowych czy serwerów, może być wykorzystane do umyślnego nadpisania fragmentów pamięci. 
+Taki atak określany jest jako [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow).
+Najprostsze zabezpieczenie polega na określeniu maksymalnej ilości pamięci która może być wczytana/skopiowana do bufora.
+
 Sprawdź wynik uruchomienia programu w wersji 'release/debug' oraz 'x84/x64'. 
-Jak wytłumaczysz różnicę?
+
+- Czemu w wersji 'release' łatwiej (wystarczy wyjść tylko kawałek za tablicę) nadpisać `a` i `b`?
+- Czemu tylko wersja 'debug' sygnalizuje o nadpisaniu pamięci?
+- Czemu `b` zostaje nadpisane tylko w wersji 'release'?
+- Dla której z wersji 'x84/x64' `a` i `b` zaalokowane są "bliżej" tablicy `tab`?
+- Poeksperymtuj z różnymi rozmiarami tablicy `tab`.
 
 ```c++
-void array_overflow()
-{
-	int a = 123456;
-	int tab[5];
-	printf("Adress of &a = %p value of a = %d \n", &a, a);
 
-	for (int i = -10; i < 10; i++){
+void static_array_overflow()
+{
+	int a = 123;
+	int tab[5];
+	int b = 456;
+	printf("Adress of &a = %p value of a = %d \n", &a, a);
+	printf("Adress of &b = %p value of b = %d \n", &b, b);
+	for (int i = -10; i < 5; i++){
 		tab[i] = i;
 	}
 
@@ -324,15 +339,16 @@ void array_overflow()
 	}
 
 	printf("Adress of &a = %p value of a = %d \n", &a, a);
+	printf("Adress of &b = %p value of b = %d \n", &b, b);
 }
 
 int main()
 {
-	array_overflow();
+	static_array_overflow();
 	printf("\n---DONE---\n");
-	//system("pause");
 
 	return 0;
 }
+
 
 ```
