@@ -10,7 +10,6 @@
 
 
 <meta name="author" content="W. Regulski" />
-<meta name="author" content="K. Marchlewski" />
 
 
 <title></title>
@@ -703,18 +702,16 @@ Oznaczenia:</p>
 <li><span class="math inline">\(C\)</span> – parametr, ułatwiający wyprowadzenie i zapis wzorów.</li>
 </ul>
 <p><span class="math display">\[\mathbf{v}&#39;_1= \mathbf{v}_1 + \Delta \mathbf{v}\]</span> <span class="math display">\[\mathbf{v}&#39;_2= \mathbf{v}_2 - \Delta \mathbf{v}\]</span> <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\]</span> gdzie: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}\]</span></p>
-<div id="przykadowa-animacja" class="section level2">
-<h2>Przykładowa animacja</h2>
+</div>
+<div id="przykadowa-animacja" class="section level1">
+<h1>Przykładowa animacja</h1>
 <div class="figure">
 <img src="figures/info1/kulki.gif" title="Kulki w ruchu." alt="" />
 
 </div>
 </div>
-</div>
-<div id="dla-dociekliwych" class="section level1">
-<h1>Dla dociekliwych</h1>
-<div id="wyprowadzenie-wzoru-na-predkosci-piek-po-zderzeniu" class="section level2">
-<h2>Wyprowadzenie wzoru na prędkości piłek po zderzeniu</h2>
+<div id="wyprowadzenie-wzoru-na-predkosci-piek-po-zderzeniu" class="section level1">
+<h1>Wyprowadzenie wzoru na prędkości piłek po zderzeniu</h1>
 <p>Założenia:</p>
 <ol style="list-style-type: decimal">
 <li>Zderzenia są niesprężyste,</li>
@@ -750,48 +747,6 @@ Oznaczenia:</p>
 </ol>
 <p>Zderzenie piłek ilustruje poniższy schemat:</p>
 <p><img src="info1_lab05_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-</div>
-<div id="buffer-overflow" class="section level2">
-<h2>Buffer overflow</h2>
-<p>Celem lepszego zrozumienia działania stosu i statycznej alokacji pamięci przanalazuj poniższy kod. Jest on niepoprawny, ponieważ w pętli <code>for</code> wartości są wpisywane do komórek tablicy <code>tab</code> poza jej zadeklarowanym rozmiarem. Wyjście poza tablice może spowodować “bałagan” w pamięci skutkujący zupełnie nieoczekiwanym i trudnym do zdebugowania zachowaniem się programu. Częstym objawem są “niedeterministyczne” wyniki.</p>
-<p>Możliwość wyjścia poza tablice w przypadku programów użytkowych czy serwerów, może być wykorzystane do umyślnego nadpisania fragmentów pamięci. Taki atak określany jest jako <a href="https://en.wikipedia.org/wiki/Stack_buffer_overflow">stack buffer overflow</a>. Najprostsze zabezpieczenie polega na określeniu maksymalnej ilości pamięci która może być wczytana/skopiowana do bufora.</p>
-<p>Sprawdź wynik uruchomienia programu w wersji ‘release/debug’ oraz ‘x84/x64’.</p>
-<ul>
-<li>Czemu w wersji ‘release’ łatwiej (wystarczy wyjść tylko kawałek za tablicę) nadpisać <code>a</code> i <code>b</code>?</li>
-<li>Czemu tylko wersja ‘debug’ sygnalizuje o nadpisaniu pamięci?</li>
-<li>Czemu <code>b</code> zostaje nadpisane tylko w wersji ‘release’?</li>
-<li>Dla której z wersji ‘x84/x64’ <code>a</code> i <code>b</code> zaalokowane są “bliżej” tablicy <code>tab</code>?</li>
-<li>Poeksperymtuj z różnymi rozmiarami tablicy <code>tab</code>.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
-<span class="dt">void</span> static_array_overflow()
-{
-    <span class="dt">int</span> a = <span class="dv">123</span>;
-    <span class="dt">int</span> tab[<span class="dv">5</span>];
-    <span class="dt">int</span> b = <span class="dv">456</span>;
-    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
-    printf(<span class="st">&quot;Adress of &amp;b = %p value of b = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;b, b);
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">5</span>; i++){
-        tab[i] = i;
-    }
-
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){
-        printf(<span class="st">&quot;&amp;tab[</span><span class="ch">%d</span><span class="st">] = %p tab[</span><span class="ch">%d</span><span class="st">] = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st"> &quot;</span>, i, &amp;tab[i], i, tab[i]);
-    }
-
-    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
-    printf(<span class="st">&quot;Adress of &amp;b = %p value of b = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;b, b);
-}
-
-<span class="dt">int</span> main()
-{
-    static_array_overflow();
-    printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">---DONE---</span><span class="ch">\n</span><span class="st">&quot;</span>);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}
-</code></pre></div>
-</div>
 </div>
 <div class="footnotes">
 <hr />
