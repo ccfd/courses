@@ -203,11 +203,13 @@ $$\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})$$
 gdzie:
 $$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}$$
 
-# Przykładowa animacja
+## Przykładowa animacja
 
 ![](figures/info1/kulki.gif "Kulki w ruchu.")
 
-# Wyprowadzenie wzoru na prędkości piłek po zderzeniu
+# Dla dociekliwych
+
+## Wyprowadzenie wzoru na prędkości piłek po zderzeniu
 
 Założenia:
 
@@ -298,3 +300,64 @@ arrows2(0, 0, v2[1], v2[2])
 arrows2(p[1], p[2], p[1] + v1[1], p[2] + v1[2])
 ```
 
+
+## Buffer overflow
+
+Celem lepszego zrozumienia działania stosu i statycznej alokacji pamięci przanalazuj poniższy kod.
+Jest on niepoprawny, ponieważ w pętli `for` wartości są wpisywane do komórek tablicy `tab` poza jej zadeklarowanym rozmiarem.
+Wyjście poza tablice może spowodować "bałagan" w pamięci skutkujący zupełnie nieoczekiwanym i trudnym do zdebugowania zachowaniem się programu. Częstym objawem są "niedeterministyczne" wyniki.
+
+Możliwość wyjścia poza tablice w przypadku programów użytkowych czy serwerów, może być wykorzystane do umyślnego nadpisania fragmentów pamięci. 
+Taki atak określany jest jako [stack buffer overflow](https://en.wikipedia.org/wiki/Stack_buffer_overflow).
+Najprostsze zabezpieczenie polega na określeniu maksymalnej ilości pamięci która może być wczytana/skopiowana do bufora.
+
+Sprawdź wynik uruchomienia programu w wersji 'release/debug' oraz 'x84/x64'. 
+
+- Czemu w wersji 'release' łatwiej (wystarczy wyjść tylko kawałek za tablicę) nadpisać `a` i `b`?
+- Czemu tylko wersja 'debug' sygnalizuje o nadpisaniu pamięci?
+- Czemu `b` zostaje nadpisane tylko w wersji 'release'?
+- Dla której z wersji 'x84/x64' `a` i `b` zaalokowane są "bliżej" tablicy `tab`?
+- Poeksperymtuj z różnymi rozmiarami tablicy `tab`.
+
+```c++
+
+void static_array_overflow()
+{
+	int a = 123;
+	int tab[5];
+	int b = 456;
+	printf("Adress of &a = %p value of a = %d \n", &a, a);
+	printf("Adress of &b = %p value of b = %d \n", &b, b);
+	for (int i = -10; i < 5; i++){
+		tab[i] = i;
+	}
+
+	for (int i = -10; i < 10; i++){
+		printf("&tab[%d] = %p tab[%d] = %d \n ", i, &tab[i], i, tab[i]);
+	}
+
+	printf("Adress of &a = %p value of a = %d \n", &a, a);
+	printf("Adress of &b = %p value of b = %d \n", &b, b);
+}
+
+int main()
+{
+	static_array_overflow();
+	printf("\n---DONE---\n");
+
+	return 0;
+}
+
+
+```
+
+### Konfiguracja Debug/Release
+
+W konfiguracji 'release' kompilator dokonuje optymalizacji programu. 
+Dzięki temu działa on z pełną prędkością natomiast utrudnione jest jego debugowanie. 
+Przykładowo linie kodu mogą mieć zmienioną kolejność wykonywania, a niektóre funkcje mogą być rozwinięte (inline). 
+Inline oznacza zamienienie przez kompilator wywołania funkcji na jej bezpośrednie instrukcje. 
+Dzięki temu program nie musi 'skakać' po pamięci. 
+
+W konfiguracji 'debug' kompilator załącza informacje (w pliku .pdb) pozwalające określić które instrukcje assemblera odpowiadają konkretnej lini kodu. 
+Wadą jest zajmowanie przez program większej ilości pamięci i wolniejsze działanie.
