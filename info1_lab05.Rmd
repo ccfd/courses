@@ -352,3 +352,14 @@ int main()
 
 
 ```
+
+### Konfiguracja Debug/Release
+
+W konfiguracji 'release' kompilator dokonuje optymalizacji programu. 
+Dzięki temu działa on z pełną prędkością natomiast utrudnione jest jego debugowanie. 
+Przykładowo linie kodu mogą mieć zmienioną kolejność wykonywania, a niektóre funkcje mogą być rozwinięte (inline). 
+Inline oznacza zamienienie przez kompilator wywołania funkcji na jej bezpośrednie instrukcje. 
+Dzięki temu program nie musi 'skakać' po pamięci. 
+
+W konfiguracji 'debug' kompilator załącza informacje (w pliku .pdb) pozwalające określić które instrukcje assemblera odpowiadają konkretnej lini kodu. 
+Wadą jest zajmowanie przez program większej ilości pamięci i wolniejsze działanie.
