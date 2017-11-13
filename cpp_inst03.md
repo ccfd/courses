@@ -51,6 +51,7 @@ Utwórz klasę bazową `Pojazd`{.cpp} opisującą pewien pojazd
 
 ## Zadanie 3
 Utwórz klasę `Autobus`{.cpp} która jest klasą pochodną klasy `Pojazd`{.cpp}
+
 * Atrybut klasy to np. liczba pasażerów (typu int) umieszczony w sekcji `private`{.cpp}
 * Utwórz:
     * konstruktor domyślny: `Autobus()`{.cpp} – liczbę pasażerów zainicjuj zerem
