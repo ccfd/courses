@@ -611,9 +611,24 @@ div.tocify {
 </div>
 <div id="zadanie-3" class="section level2">
 <h2>Zadanie 3</h2>
-<p>Utwórz klasę <code class="sourceCode cpp">Autobus</code> która jest klasą pochodną klasy <code class="sourceCode cpp">Pojazd</code> * Atrybut klasy to np. liczba pasażerów (typu int) umieszczony w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code> * Utwórz: * konstruktor domyślny: <code class="sourceCode cpp">Autobus()</code> – liczbę pasażerów zainicjuj zerem * konstruktor <code class="sourceCode cpp">Autobus(<span class="dt">const</span> <span class="dt">int</span>&amp; m)</code> – liczbę pasażerów zainicjuj argumentem <code class="sourceCode cpp">m</code> * destruktor <code class="sourceCode cpp">~Autobus()</code> * Podobnie jak dla klasy <code class="sourceCode cpp">Pojazd</code> w konstruktorach i destruktorach drukuj informację o ich wykonaniu. * Utwórz metodę <code class="sourceCode cpp">GetLiPasazerow()</code> zwracającą wartość atrybutu przechowującego liczbę pasażerów. * Jeśli utworzysz zmienną typu <code class="sourceCode cpp">Autobus</code> jakie konstruktory będą wywoływane? W jakiej kolejności będą wołane konstruktory i destruktory? * Jaki przebieg ma zmienna typu <code class="sourceCode cpp">Autobus</code>? * Dodaj nowy konstruktor do klasy <code class="sourceCode cpp">Autobus</code>, który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie. * Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejednoznaczności?</p>
+<p>Utwórz klasę <code class="sourceCode cpp">Autobus</code> która jest klasą pochodną klasy <code class="sourceCode cpp">Pojazd</code></p>
+<ul>
+<li>Atrybut klasy to np. liczba pasażerów (typu int) umieszczony w sekcji <code class="sourceCode cpp"><span class="kw">private</span></code></li>
+<li>Utwórz:
+<ul>
+<li>konstruktor domyślny: <code class="sourceCode cpp">Autobus()</code> – liczbę pasażerów zainicjuj zerem</li>
+<li>konstruktor <code class="sourceCode cpp">Autobus(<span class="dt">const</span> <span class="dt">int</span>&amp; m)</code> – liczbę pasażerów zainicjuj argumentem <code class="sourceCode cpp">m</code></li>
+<li>destruktor <code class="sourceCode cpp">~Autobus()</code></li>
+</ul></li>
+<li>Podobnie jak dla klasy <code class="sourceCode cpp">Pojazd</code> w konstruktorach i destruktorach drukuj informację o ich wykonaniu.</li>
+<li>Utwórz metodę <code class="sourceCode cpp">GetLiPasazerow()</code> zwracającą wartość atrybutu przechowującego liczbę pasażerów.</li>
+<li>Jeśli utworzysz zmienną typu <code class="sourceCode cpp">Autobus</code> jakie konstruktory będą wywoływane? W jakiej kolejności będą wołane konstruktory i destruktory?</li>
+<li>Jaki przebieg ma zmienna typu <code class="sourceCode cpp">Autobus</code>?</li>
+<li>Dodaj nowy konstruktor do klasy <code class="sourceCode cpp">Autobus</code>, który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie.</li>
+<li><p>Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejednoznaczności?</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Autobus  bus;
-bus = <span class="dv">3</span>;</code></pre></div>
+bus = <span class="dv">3</span>;</code></pre></div></li>
+</ul>
 </div>
 <div id="zadanie-4" class="section level2">
 <h2>Zadanie 4</h2>
