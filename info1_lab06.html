@@ -569,7 +569,7 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f; <span class="co">// deklarujemy zmienną typu FILE o nazwie f</span>
          <span class="co">// tak naprawde to wskaznik (o tym jednak w pozniej)</span>
 
-errno_t err_f = fopen_s( &amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
+errno_t err_f = fopen_s(&amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
                             <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
                             <span class="co">// sujemy go do zmiennej o nazwie f</span>
                             <span class="co">// errno_t określa wynik otwarcia</span>
@@ -581,7 +581,7 @@ fclose(f); <span class="co">// zamykamy plik</span></code></pre></div>
 <p>Warto zwrócić uwagę na dwie kwestie. Po pierwsze, w funkcji <code>fprintf</code> (to samo dotyczy funkcji <code>fscanf</code> jako pierwszy argument trzeba podać <em>strumień</em> - de facto nazwę zmiennej typu <code>FILE</code>, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy <em>f</em>, bo tak właśnie nazwaliśmy naszą zmienną. Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
 FILE *f;
-errno_t err_f = fopen_s( &amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
+errno_t err_f = fopen_s(&amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
                             <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
                             <span class="co">// sujemy go do zmiennej o nazwie f</span>
                             <span class="co">// errno_t określa wynik otwarcia</span>
@@ -603,9 +603,9 @@ fclose(f);</code></pre></div>
    <span class="dt">int</span> a = <span class="dv">3</span>;
 
    FILE *f, *g, *InnyPlik;
-   errno_t err_f = fopen_s(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
-   errno_t err_h = fopen_s(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
-   errno_t err_InnyPlik = fopen_s(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
+   errno_t err_f = fopen_s(&amp;f, <span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
+   errno_t err_g = fopen_s(&amp;g, <span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
+   errno_t err_InnyPlik = fopen_s(&amp;InnyPlik, <span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
 
          <span class="kw">if</span> (err_f != <span class="dv">0</span> || errf_g != <span class="dv">0</span> || errf_InnyPlik != <span class="dv">0</span>)
          {
