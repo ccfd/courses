@@ -607,7 +607,7 @@ fclose(f);</code></pre></div>
    errno_t err_g = fopen_s(&amp;g, <span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
    errno_t err_InnyPlik = fopen_s(&amp;InnyPlik, <span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
 
-         <span class="kw">if</span> (err_f != <span class="dv">0</span> || errf_g != <span class="dv">0</span> || errf_InnyPlik != <span class="dv">0</span>)
+         <span class="kw">if</span> (err_f != <span class="dv">0</span> || errf_g != <span class="dv">0</span> || err_InnyPlik != <span class="dv">0</span>)
          {
                   printf(<span class="st">&quot;Nie udalo sie otwarcie choc jednego z plikow</span><span class="ch">\n</span><span class="st">&quot;</span>);
                   exit(<span class="dv">-1</span>);
@@ -651,8 +651,7 @@ fclose(f);</code></pre></div>
 <p>Zauważ, że każda suma daje się łatwo policzyć z użyciem pętli <code>for</code> w następujący sposób:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> suma = <span class="dv">0</span>;
 
-<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++)
-{
+<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++){
    suma += a[i];
 }</code></pre></div>
 <p>To tylko wskazówka. Oczywiście musisz zmodyfikować powyższy kod tak, aby liczył sumy z powyższych wzorów.</p>
