@@ -56,7 +56,7 @@ int main()
    errno_t err_g = fopen_s(&g, "plik2.dat", "wb"); // Zapis w trybie binarnym
    errno_t err_InnyPlik = fopen_s(&InnyPlik, "Dane.txt", "r"); // Czytanie z pliku
 
-         if (err_f != 0 || errf_g != 0 || errf_InnyPlik != 0)
+         if (err_f != 0 || errf_g != 0 || err_InnyPlik != 0)
          {
                   printf("Nie udalo sie otwarcie choc jednego z plikow\n");
                   exit(-1);
@@ -111,8 +111,7 @@ Zauważ, że każda suma daje się łatwo policzyć z użyciem pętli `for` w na
 ```c++
 double suma = 0;
 
-for(int i = 0; i<n; i++)
-{
+for(int i = 0; i<n; i++){
    suma += a[i];
 }
 ```
