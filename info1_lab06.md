@@ -14,7 +14,7 @@ W języku C komunikacja z plikami prowadzona jest niemalże identycznie, jak czy
 FILE *f; // deklarujemy zmienną typu FILE o nazwie f
          // tak naprawde to wskaznik (o tym jednak w pozniej)
 
-errno_t err_f = fopen_s( &f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
+errno_t err_f = fopen_s(&f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
                             // z zamiarem zapisu ("w") i przypi-
                             // sujemy go do zmiennej o nazwie f
                             // errno_t określa wynik otwarcia
@@ -28,7 +28,7 @@ Warto zwrócić uwagę na dwie kwestie. Po pierwsze, w funkcji `fprintf` (to sam
 ```c++
 
 FILE *f;
-errno_t err_f = fopen_s( &f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
+errno_t err_f = fopen_s(&f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
                             // z zamiarem zapisu ("w") i przypi-
                             // sujemy go do zmiennej o nazwie f
                             // errno_t określa wynik otwarcia
@@ -52,9 +52,9 @@ int main()
    int a = 3;
 
    FILE *f, *g, *InnyPlik;
-   errno_t err_f = fopen_s("plik1.txt", "wt"); // Zapis w trybie tekstowym
-   errno_t err_h = fopen_s("plik2.dat", "wb"); // Zapis w trybie binarnym
-   errno_t err_InnyPlik = fopen_s("Dane.txt", "r"); // Czytanie z pliku
+   errno_t err_f = fopen_s(&f, "plik1.txt", "wt"); // Zapis w trybie tekstowym
+   errno_t err_g = fopen_s(&g, "plik2.dat", "wb"); // Zapis w trybie binarnym
+   errno_t err_InnyPlik = fopen_s(&InnyPlik, "Dane.txt", "r"); // Czytanie z pliku
 
          if (err_f != 0 || errf_g != 0 || errf_InnyPlik != 0)
          {
