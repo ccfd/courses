@@ -7,13 +7,13 @@ author: "B. Górecki"
 
 # Współpraca z plikami
 Do tej pory posługiwaliśmy się danymi, które pochodziły ze standardowego wejścia (klawiatury) i były zapisywane do standardowego wyjścia (terminala).
-Często wykorzystywanie takich danych jest jednak niewygodne i nieefektywne (wyobraźmy sobie ilość pracy jaka by nas czekała przy podawaniu kilkudziesięciu parametrów za pomocą klawiatury, za każdym razem kiedy uruchamiamy program).
+Wykorzystywanie takich danych jest jednak często niewygodne i nieefektywne (wyobraźmy sobie ilość pracy jaka by nas czekała przy podawaniu kilkudziesięciu parametrów za pomocą klawiatury, za każdym razem kiedy uruchamiamy program).
 W takich przypadkach posługujemy się plikami.
 Pliki pozwalają na wczytanie i zapisanie dużych ilości przygotowanych wcześniej danych.
 
 W języku C, komunikacja z plikami przebiega niemalże identycznie, jak czytanie danych z klawiatury i drukowanie ich na ekranie.
 Odpowiednikiem funkcji `scanf()` jest `fscanf()` a funkcji `printf()` jest `fprintf()`. 
-Różnica polega na tym, że w przypadku funkcji służących obsłudze plików, jako pierwszy argument musimy podać wskaźnik zawierający adres pliku.  
+Różnica polega na tym, że w przypadku funkcji służących do obsługi plików, jako pierwszy argument musimy podać wskaźnik zawierający adres pliku.  
 Wskaźniki przechowujące adresy plików mają typ `FILE`, a sam adres można pobrać za pomocą funkcji `fopen()`.
 
 Przyjrzyjmy się przykładowemu kodowi źródłowemu:
@@ -30,9 +30,9 @@ fclose(f);            // zamykamy plik
 ```
 
 W tym momencie należy zwrócić uwagę na pewną kwestię.
-Funkcja `fopen` zgłasza żądanie otworzenia nowego pliku.
+Funkcja `fopen()` zgłasza żądanie otworzenia nowego pliku.
 Nie oznacza to jednak, że system operacyjny zawsze dysponuje odpowiednimi zasobami i takie żądanie zostanie spełnione.
-Jeśli system operacyjny nie przydzieli nam nowego pliku, do wskaźnika typu `FILE` zostanie przypisana wartość `NULL`.
+Jeśli system operacyjny nie przydzieli nam dostępu do pliku, do wskaźnika typu `FILE` zostanie przypisana wartość `NULL`.
 Dlatego należy koniecznie sprawdzić czy plik został poprawnie otworzony.
 Zmodyfikujmy odpowiednio nasze instrukcje.
 
@@ -54,7 +54,7 @@ fclose(f);
 ```
 
 Pliki można otwierać nie tylko w trybie zapisu *(ang. write)* `w` (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku *(ang. append)* `a` lub czytania z pliku *(ang. read)* `r`.
-Można również wybrać czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym, czy binarnym.
+Można również wybrać czy tworzony/odczytywany plik ma być obsługiwany w trybie tekstowym, czy binarnym.
 Aby móc obsługiwać plik binarny należy dodać literę `b` do trybu zapisu.
 
 Przykładowe instrukcje zaprezentowano poniżej.
@@ -92,7 +92,7 @@ W powyższym przykładzie, zaprezentowaliśmy użycie funkcji `fscanf()`, która
 Zapisywanie danych do pliku jest ,,względnie'' czasochłonną operacją.
 Jest to spowodowane różnicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD.
 Aby nie zapisywać co chwilę drobnych ilości danych na dysk, system operacyjny gromadzi je w buforze.
-Gdy uzna, że jest on już pełny, to przepisuje dane na dysk a sam bufor -- czyści. 
+Gdy uzna, że jest on już pełny, przepisuje dane na dysk a sam bufor -- czyści. 
 Funkcja `fclose(plik)` zapisuje dane z bufora do pliku, a następnie zamyka plik.
 Chcąc wywołać jedynie opróżnienie bufora, należy użyć funkcji `fflush(plik)`.
 
