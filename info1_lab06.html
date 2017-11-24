@@ -565,137 +565,135 @@ div.tocify {
 
 <div id="wspopraca-z-plikami" class="section level1">
 <h1>Współpraca z plikami</h1>
-<p>Praktyczny program (szczególnie inżynierski) bardzo często musi współpracować z plikami. Czasem, przy obliczeniach trwających wiele godzin lub dni wręcz zależy nam na tym, by program działał samodzielnie bez potrzeby interakcji ze strony użytkownika. Wróćmy jednak do plików. Najczęściej chodzi o możliwość wczytania danych wejściowych z jednego (bądź wielu) plików, przeprowadzenie obliczeń wewnątrz programu i zapisanie wyników do innego pliku (bądź wielu plików).\ W języku C komunikacja z plikami prowadzona jest niemalże identycznie, jak czytanie danych z klawiatury i wydruk na ekran, co realizowaliśmy za pomocą znanych już funkcji <code>scanf</code> oraz <code>printf</code>. Musimy jednak najpierw określić, jaki plik chcemy utworzyć bądź otworzyć i w jakim celu go tworzymy/otwieramy. Ponadto, analogiem instrukcji <code>printf</code> do zapisu do plików jest instrukcja <code>fprintf</code>, zaś funkcja <code>scanf</code> jest zastąpiona przez funkcję <code>fscanf</code>. Przyjrzyjmy się przykładowemu kodowi źródłowemu.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f; <span class="co">// deklarujemy zmienną typu FILE o nazwie f</span>
-         <span class="co">// tak naprawde to wskaznik (o tym jednak w pozniej)</span>
+<p>Do tej pory posługiwaliśmy się danymi, które pochodziły ze standardowego wejścia (klawiatury) i były zapisywane do standardowego wyjścia (terminala). Wykorzystywanie takich danych jest jednak często niewygodne i nieefektywne (wyobraźmy sobie ilość pracy jaka by nas czekała przy podawaniu kilkudziesięciu parametrów za pomocą klawiatury, za każdym razem kiedy uruchamiamy program). W takich przypadkach posługujemy się plikami. Pliki pozwalają na wczytanie i zapisanie dużych ilości przygotowanych wcześniej danych.</p>
+<p>W języku C, komunikacja z plikami przebiega niemalże identycznie, jak czytanie danych z klawiatury i drukowanie ich na ekranie. Odpowiednikiem funkcji <code>scanf()</code> jest <code>fscanf()</code> a funkcji <code>printf()</code> jest <code>fprintf()</code>. Różnica polega na tym, że w przypadku funkcji służących do obsługi plików, jako pierwszy argument musimy podać wskaźnik zawierający adres pliku.<br />
+Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adres można pobrać za pomocą funkcji <code>fopen()</code>.</p>
+<p>Przyjrzyjmy się przykładowemu kodowi źródłowemu:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f;              <span class="co">// deklarujemy wskaznik do typu FILE, o nazwie f</span>
 
-errno_t err_f = fopen_s(&amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
-                            <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
-                            <span class="co">// sujemy go do zmiennej o nazwie f</span>
-                            <span class="co">// errno_t określa wynik otwarcia</span>
-                            <span class="co">// kod err_f = 0 oznacza, że operacja przebiegła pomyślnie</span>
+f = fopen(<span class="st">&quot;dane.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);
+                      <span class="co">// otwieramy plik o nazwie dane.txt z zamiarem</span>
+                      <span class="co">// zapisu (&quot;w&quot;) a do zmiennej o nazwie f przypisujemy adres pliku</span>
 
 fprintf(f, <span class="st">&quot;Zapisujemy wlasnie ten tekst do pliku</span><span class="ch">\n</span><span class="st">&quot;</span>);
 
-fclose(f); <span class="co">// zamykamy plik</span></code></pre></div>
-<p>Warto zwrócić uwagę na dwie kwestie. Po pierwsze, w funkcji <code>fprintf</code> (to samo dotyczy funkcji <code>fscanf</code> jako pierwszy argument trzeba podać <em>strumień</em> - de facto nazwę zmiennej typu <code>FILE</code>, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy <em>f</em>, bo tak właśnie nazwaliśmy naszą zmienną. Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
-FILE *f;
-errno_t err_f = fopen_s(&amp;f, <span class="st">&quot;plik.txt&quot;</span>, <span class="st">&quot;w&quot;</span>); <span class="co">// otwieramy plik o nazwie plik.txt</span>
-                            <span class="co">// z zamiarem zapisu (&quot;w&quot;) i przypi-</span>
-                            <span class="co">// sujemy go do zmiennej o nazwie f</span>
-                            <span class="co">// errno_t określa wynik otwarcia</span>
-                            <span class="co">// kod err_f = 0 oznacza, że operacja przebiegła pomyślnie</span>
-<span class="kw">if</span>(err_f != <span class="dv">0</span>)
-{
-   printf(<span class="st">&quot;Blad otwarcia pliku </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, err_f); <span class="co">// możemy przeczytać kod błędnu i sprawdzic w google co jest jego przyczyna</span>
-   exit(<span class="dv">-1</span>); <span class="co">// zakonczenie programu</span>
+fclose(f);            <span class="co">// zamykamy plik</span></code></pre></div>
+<p>W tym momencie należy zwrócić uwagę na pewną kwestię. Funkcja <code>fopen()</code> zgłasza żądanie otworzenia nowego pliku. Nie oznacza to jednak, że system operacyjny zawsze dysponuje odpowiednimi zasobami i takie żądanie zostanie spełnione. Jeśli system operacyjny nie przydzieli nam dostępu do pliku, do wskaźnika typu <code>FILE</code> zostanie przypisana wartość <code>NULL</code>. Dlatego należy koniecznie sprawdzić czy plik został poprawnie otworzony. Zmodyfikujmy odpowiednio nasze instrukcje.</p>
+<p>Teraz wyglądają one tak:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f;
+f = fopen(<span class="st">&quot;dane.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);
+
+<span class="kw">if</span>(f == NULL) {
+   printf(<span class="st">&quot;Blad otwarcia pliku!</span><span class="ch">\n</span><span class="st">&quot;</span>);  <span class="co">// drukujemy komunikat o bledzie</span>
+   exit(<span class="dv">1</span>);                           <span class="co">// konczymy prace programu (funkcja exit()</span>
+                                      <span class="co">// znajduje sie w bibliotece stdlib.h)</span>
 }
 
-<span class="co">// Tu wykonujemy operacje na pliku (w naszym przypadku zapis)</span>
-<span class="co">// Gdy plik juz nie bedzie wiecej potrzebny w naszym programie,</span>
-<span class="co">// koniecznie go zamykamy!</span>
+<span class="co">// Tutaj wykonujemy operacje na pliku (w naszym przypadku zapis).</span>
+<span class="co">// Gdy plik nie bedzie juz wiecej potrzebny zamykamy go.</span>
 
 fclose(f);</code></pre></div>
-<p>Pliki można otworzyć nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać, czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym czy binarnym. Służą do tego odpowiednio sekwencje <code>t</code> i <code>b</code>. Przykładowe instrukcje zaprezentowano poniżej. Zauważmy też, że można otworzyć w tym samym czasie kilka plików.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
-{
-   <span class="dt">int</span> a = <span class="dv">3</span>;
+<p>Pliki można otwierać nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać czy tworzony/odczytywany plik ma być obsługiwany w trybie tekstowym, czy binarnym. Aby móc obsługiwać plik binarny należy dodać literę <code>b</code> do trybu zapisu.</p>
+<p>Przykładowe instrukcje zaprezentowano poniżej.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
+  <span class="dt">int</span> a;
+  FILE *f, *g, *innyPlik;
+  
+  f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);       <span class="co">// Zapis w trybie tekstowym</span>
+  g = fopen(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>);      <span class="co">// Zapis w trybie binarnym</span>
+  innyPlik = fopen(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
+  
+  <span class="kw">if</span> (f == NULL || g == NULL || innyPlik == NULL) {
+    printf(<span class="st">&quot;Nie udalo sie otworzyc co najmniej jednego pliku!</span><span class="ch">\n</span><span class="st">&quot;</span>);
+    exit(<span class="dv">1</span>);
+  }
 
-   FILE *f, *g, *InnyPlik;
-   errno_t err_f = fopen_s(&amp;f, <span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;wt&quot;</span>); <span class="co">// Zapis w trybie tekstowym</span>
-   errno_t err_g = fopen_s(&amp;g, <span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>); <span class="co">// Zapis w trybie binarnym</span>
-   errno_t err_InnyPlik = fopen_s(&amp;InnyPlik, <span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
+  fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
+  fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="ch">\n</span><span class="st">&quot;</span>);
+  
+  fscanf(innyPlik, <span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a);        <span class="co">// wczytujemy liczbe calkowita z pliku Dane.txt</span>
+                                     <span class="co">// i zapisujemy jej wartosc do zmiennej a</span>
 
-         <span class="kw">if</span> (err_f != <span class="dv">0</span> || errf_g != <span class="dv">0</span> || err_InnyPlik != <span class="dv">0</span>)
-         {
-                  printf(<span class="st">&quot;Nie udalo sie otwarcie choc jednego z plikow</span><span class="ch">\n</span><span class="st">&quot;</span>);
-                  exit(<span class="dv">-1</span>);
-         }
-
-   fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
-   fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="ch">\n</span><span class="st">&quot;</span>);
-   fscanf_s(InnyPlik, <span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a); <span class="co">// Wczytujemy z pliku Dane.txt</span>
-<span class="co">// liczbe calkowita i przypisujemy jej wartosc do zmiennej a</span>
-
-   <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span>
-   
-   fclose(f);
-   fclose(g);
-   fclose(InnyPlik);
-   
-   exit(<span class="dv">0</span>);
+  <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span>
+ 
+  fclose(f);
+  fclose(g);
+  fclose(innyPlik);
 }</code></pre></div>
-<p>W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji <code>fscanf</code>, która działa analogicznie do dobrze już znanej funkcji <code>scanf</code>.</p>
-<div id="bufor" class="section level3">
-<h3>Bufor</h3>
-<p>Zapisywanie danych do pliku jest “względnie” czasochłonną operacją. Jest to spowodowane róznicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD. Aby nie zapisywać co chwilę drobnych ilości danych na dysk system operacyjny zbiera je w buforze, a gdy uzna że jest on już odpowiednio pełny to czyści go przepisując dane na dysk. Funkcja <code>fclose(plik)</code> zapisuje dane z bufora do pliku, a następnie zamykana plik. Chcąc wywołać jedynie opróżnienie bufora należy użyć funkcji <code>fflush(plik)</code>.</p>
-<p>Process ten ma istotne konsekwencje:</p>
-<pre><code>     - jeżeli nastąpi &quot;crash&quot; programu przed wykonaniem komendy `fclose(plik)` może się zdarzyć, że żadne dane nie zostaną zapisane.
-     - wyjmując pendrive z komputera bez korzystania z opcji &quot;bezpieczne usuwanie sprzętu&quot; narażamy się na błędnie zapisanie pliku. Część danych może być jeszcze w buferze, mimo że okienko kopiowania zostało już formalnie zamknięte.</code></pre>
-</div>
-<div id="uwaga" class="section level2">
-<h2>Uwaga</h2>
-<p>Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece <code>cstdio</code>. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: <code>#include &lt;cstdio&gt;</code></p>
+<p>W powyższym przykładzie, zaprezentowaliśmy użycie funkcji <code>fscanf()</code>, która działa analogicznie do funkcji <code>scanf()</code>.</p>
+<div id="bufor" class="section level2">
+<h2>Bufor</h2>
+<p>Zapisywanie danych do pliku jest ,,względnie’’ czasochłonną operacją. Jest to spowodowane różnicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD. Aby nie zapisywać co chwilę drobnych ilości danych na dysk, system operacyjny gromadzi je w buforze. Gdy uzna, że jest on już pełny, przepisuje dane na dysk a sam bufor – czyści. Funkcja <code>fclose(plik)</code> zapisuje dane z bufora do pliku, a następnie zamyka plik. Chcąc wywołać jedynie opróżnienie bufora, należy użyć funkcji <code>fflush(plik)</code>.</p>
+<p>Opisane zachowanie ma istotne konsekwencje:</p>
+<ul>
+<li>Jeżeli przed wykonaniem komendy <code>fclose(plik)</code> nastąpi błąd programu, może się zdarzyć, że żadne dane nie zostaną zapisane.</li>
+<li>Wyjmując pendrive z komputera bez skorzystania z opcji ,,bezpieczne usuwanie sprzętu’’ narażamy się na błędne zapisanie pliku. Część danych może być jeszcze w buforze, mimo że okienko kopiowania zostało już formalnie zamknięte.</li>
+</ul>
+<p><strong>Uwaga:</strong> wszystkie funkcje związane z obsługą plików znajdują się w bibliotece <code>stdio.h</code>. W związku z tym, do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: <code>#include &lt;stdio.h&gt;</code></p>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
-<p>W praktyce inżynierskiej pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik <code>przebieg.txt</code> (<a href="data/przebieg.txt">do ściągnięcia tu</a>) zawiera fragment przebiegu czasowego wartości trzech składowych prędkości <em>(u, v, w)</em> pochodzących z symulacji przepływu powietrza przez dużą turbinę wiatrową. Chwilowe wartości tych składowych zostały zebrane z punktu znajdującego się tuż za turbiną. Napisz program, który: - Otworzy plik. - Wczyta dane z pliku do trzech tablic <code>u</code>, <code>v</code>, <code>w</code> zadeklarowanych statycznie (każda o rozmiarze 2000 - za tydzień będzie o lepszej metodzie deklaracji dużych tablic). Czytanie zrealizuj z użyciem pętli <code>for</code>. Obejrzyj plik, aby przyjrzeć się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości <em>(u, v, w)</em>; kolejne wiersze odpowiadają kolejnym krokom czasowym). - Po wczytaniu wszystkich wartości do tablic obliczy średnią każdej ze składowych. Średnia wyrażona jest wzorem: <span class="math display">\[
-\bar{u} = \frac{\displaystyle{\sum_{i=1}^n u_i}}{n}
-\]</span> - Obliczy odchylenie standardowe dla każdej ze składowych. Odchylenie standardowe dane jest wzorem: <span class="math display">\[
-\displaystyle{\sigma = \sqrt{\frac{\displaystyle{\sum_{i=1}^n (u_i - \bar{u})^2}}{n-1}}}
-\]</span> - Zapisze do innego pliku raport z obliczeń, w którym poda wszystkie obliczone wielkości oraz wydrukuje to samo na ekran. - Wczytaj też plik <code>przebieg.txt</code> do arkusza kalkulacyjnego i utwórz wykres obrazujący te przebiegi. Oceń krytycznie wyniki uzyskane swoim programem na podstawie obserwacji wykresu. Czy średnie i odchylenia standardowe mają wiarygodne wartości?</p>
-</div>
-<div id="wskazowka" class="section level2">
-<h2>Wskazówka</h2>
-<p>Zauważ, że każda suma daje się łatwo policzyć z użyciem pętli <code>for</code> w następujący sposób:</p>
+<p>W praktyce inżynierskiej, pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik <a href="data/info1/przebieg.txt">przebieg.txt</a> zawiera fragment przebiegu czasowego dla wartości trzech składowych prędkości <span class="math inline">\((u, v, w)\)</span> pochodzących z symulacji przepływu powietrza przez turbinę wiatrową. Wartości tych składowych zostały zmierzone w punkcie znajdującym się tuż za turbiną. Otwórz i obejrzy plik, aby przekonać się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości <span class="math inline">\((u, v, w)\)</span> a kolejne wiersze odpowiadają kolejnym krokom czasowym).</p>
+<p>Napisz program, który:</p>
+<ul>
+<li>Otworzy plik <code>przebieg.txt</code>.</li>
+<li>Wczyta dane z pliku do trzech zadeklarowanych statycznie tablic <code>u</code>, <code>v</code> oraz <code>w</code>. Każda z tablic powinna mieć wymiar <span class="math inline">\(2000\)</span>. Odczytywanie danych z pliku zrealizuj za pomocą pętli <code>for</code>.</li>
+<li>Po wczytaniu wszystkich wartości do tablic, obliczy średnią dla każdej ze składowych. Średnia dana jest wzorem: <span class="math display">\[
+\mu = \frac{\displaystyle{\sum_{i=1}^n u_i}}{n}
+  \]</span></li>
+<li>Obliczy odchylenie standardowe dla każdej ze składowych. Odchylenie standardowe dane jest wzorem: <span class="math display">\[
+\sigma = \sqrt{\frac{\displaystyle{\sum_{i=1}^n (u_i - \mu)^2}}{n-1}}
+  \]</span></li>
+<li>Zapisze do innego pliku raport z obliczeń, w którym poda wszystkie obliczone wielkości.</li>
+<li>Wydrukuje na ekran to samo co w powyższym punkcie.</li>
+<li>Za pomocą biblioteki <code>winbgi2.h</code> narysuje wykres każdego z wczytanych przebiegów i zaznaczy na nim wartości <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\mu + \sigma\)</span> oraz <span class="math inline">\(\mu - \sigma\)</span>. Oceń krytycznie wyniki uzyskane swoim programem na podstawie obserwacji wykresu. Czy średnie i odchylenia standardowe mają wiarygodne wartości?</li>
+</ul>
+<p>Dla sprawdzenia wczytaj też plik <code>przebieg.txt</code> do arkusza kalkulacyjnego i utwórz wykres obrazujący te przebiegi.</p>
+<p><strong>Wskazówka:</strong> Zauważ, że każda suma daje się policzyć z wykorzystaniem pętli <code>for</code> w następujący sposób:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> suma = <span class="dv">0</span>;
+<span class="dt">int</span> i;
 
-<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++){
+<span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; n; i++) {
    suma += a[i];
 }</code></pre></div>
-<p>To tylko wskazówka. Oczywiście musisz zmodyfikować powyższy kod tak, aby liczył sumy z powyższych wzorów.</p>
-</div>
-</div>
-<div id="wazne-dalej-o-funkcjach" class="section level1">
-<h1>Ważne: Dalej o funkcjach</h1>
-<p>Wiemy, że funkcje mogą przyjmować argumenty. Dowiedzieliśmy się też, że funkcje mogą zwracać wartości. Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach <code>Srednia</code> i <code>OdchylenieStandardowe</code>. Powinny mieć takie nagłówki:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> Srednia(<span class="dt">double</span> *tablica, <span class="dt">int</span> n);
-<span class="dt">double</span> OdchStd(<span class="dt">double</span> *tablica, <span class="dt">double</span> WartoscSrednia, <span class="dt">int</span> n);</code></pre></div>
-<p>Następnie zmodyfikuj kod funkcji <code>main</code> tak, aby część dotycząca obliczeń dała się zwięźle zapisać w poniższej postaci:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main()
-{
-   (...) <span class="co">// Deklaracje i kod wczytujacy dane</span>
+<div id="wykozystanie-funkcji-do-poprawienia-przejrzystosci-programu" class="section level3">
+<h3>Wykożystanie funkcji do poprawienia przejrzystości programu</h3>
+<p>Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach <code>srednia()</code> i <code>odchStd()</code>. Funkcje te powinny mieć poniższe nagłówki:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> srednia(<span class="dt">double</span> tablica[], <span class="dt">int</span> n);
+<span class="dt">double</span> odchStd(<span class="dt">double</span> tablica[], <span class="dt">int</span> n, <span class="dt">double</span> wartoscSrednia);</code></pre></div>
+<p>Następnie zmodyfikuj kod funkcji <code>main()</code> tak, aby część dotycząca obliczeń dała się zwięźle zapisać w poniższej postaci:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
+   <span class="co">// deklaracje i kod wczytujacy dane</span>
 
-   um = Srednia(u, n);
-   vm = Srednia(v, n);
-   wm = Srednia(w, n);
+   um = srednia(u, n);
+   vm = srednia(v, n);
+   wm = srednia(w, n);
 
-   u_std = OdchStd(u, um, n);
-   v_std = OdchStd(v, vm, n);
-   w_std = OdchStd(w, wm, n);
+   u_std = odchStd(u, n, um);
+   v_std = odchStd(v, n, vm);
+   w_std = odchStd(w, n, wm);
 
-   (...) <span class="co">// Dalsza czesc programu zajmujaca sie raportowaniem wynikow</span>
+   <span class="co">// dalsza czesc programu zajmujaca sie raportowaniem wynikow</span>
 }</code></pre></div>
 </div>
+</div>
+</div>
 <div id="dla-dociekliwych" class="section level1">
-<h1>Dla dociekliwych *</h1>
-<p>Obliczenia na komputerze prowadzone są ze skończoną dokładnością. Zmodyfikuj swój kod tak, aby bieżąca wartość średniej była liczona ,,w locie’’ - w trakcie czytania danych z pliku (naturalnie będzie to średnia wartość przeczytanych dotąd elementów). Wystarczy, że zrobisz to dla jednej składowej prędkości (np. <em>u</em>). Możesz tę średnią też na bieżąco podczas czytania danych drukować na ekran. Na końcu porównaj wartość średniej uzyskanej w ten sposób z wartością policzoną <em>a posteriori</em> w poprzednim poleceniu.\ Pseudokod algorytmu znajdziesz poniżej. Zapisz go w sposób zrozumiały dla komputera, w języku C.</p>
+<h1>* Dla dociekliwych</h1>
+<p>Obliczenia na komputerze prowadzone są ze skończoną dokładnością. Zmodyfikuj swój kod tak, aby bieżąca wartość średniej była liczona ,,w locie’’ – w trakcie czytania danych z pliku (będzie to średnia wartość przeczytanych dotąd elementów). Wystarczy, że zrobisz to dla jednej składowej prędkości (np. <em>u</em>). Możesz średnią obliczaną podczas czytania danych drukować na bieżąco na ekran. Na końcu, porównaj wartość średniej uzyskanej w ten sposób z wartością policzoną w poprzednim poleceniu.<br />
+Pseudokod algorytmu znajdziesz poniżej. Zapisz go w sposób zrozumiały dla komputera, w języku C.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">biezaca_srednia = <span class="dv">0</span>
 
-Petla po i od <span class="dv">1</span> <span class="kw">do</span> n (czytajaca dane)
+petla po i od <span class="dv">1</span> <span class="kw">do</span> n (czytajaca dane)
 {
-   PrzeczytajNowyElementZPlikuIWpiszGoDoTablicy
+   przeczytajNowyElementZPlikuIWpiszGoDoTablicy
 
-   biezaca_srednia = (biezaca_srednia*(i<span class="dv">-1</span>) + u[i])/i
+   biezaca_srednia = (biezaca_srednia * (i - <span class="dv">1</span>) + u[i]) / i
 }
 
-<span class="co">// Po zakonczeniu petli biezaca_srednia to srednia z calego zbioru</span></code></pre></div>
-<p>Zastanów się, dlaczego taki algorytm liczenia średniej w sensie matematycznym prowadzi do tak samo zdefiniowanej średniej. Jeśli trudno ci go zrozumieć, wymyśl sobie zbiór czteroelementowy i wykonaj go krok po kroku na kartce.</p>
-<div id="pytanie" class="section level2">
-<h2>Pytanie</h2>
-<p>Czy obie średnie (policzone na komputerze dwoma sposobami) mają tę samą wartość? Czy coś się zmieni, gdy weźmiesz inną składową prędkości?</p>
-</div>
+<span class="co">// Po zakonczeniu petli, biezaca_srednia to srednia z calego zbioru</span></code></pre></div>
+<p>Zastanów się, dlaczego taki algorytm liczenia średniej w sensie matematycznym prowadzi do tak samo zdefiniowanej średniej. Jeśli trudno Ci go zrozumieć, wymyśl sobie zbiór 4-elementowy i zastosuj do niego powyższy algorytm krok po kroku na kartce.</p>
+<p><strong>Pytanie:</strong> Czy obie średnie (policzone na komputerze dwoma sposobami) mają tę samą wartość? Czy coś się zmieni, gdy uśrednisz inną składową prędkości?</p>
 </div>
 
 <!-- Dummy footer -->
