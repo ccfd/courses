@@ -118,62 +118,40 @@ Dlaczego poniższy kod nie działa poprawnie?
 
 ```c++
 
-void AllocateAndFillArrayBAD(int **A, int M, int N)
+void initialize_vect_BAD(int *ptr, int N)
 {
-	A = (int**)malloc(M * sizeof(int*));
-	for (int i = 0; i<M; ++i)
-		A[i] = (int*)malloc(N * sizeof(int));
+	ptr = (int*)malloc(N * sizeof(int));
+	for (int j = 0; j < N; ++j)
+		ptr[j] = 3 * j; // OR *(ptr+j)
 
-
-	// Tu mozemy wykonywac dowolne operacje na tablicy
-	int count = 0;
-	for (int i = 0; i < M; ++i)
-		for (int j = 0; j < N; ++j)
-			A[i][j] = ++count; // OR *(*(A+i)+j) = ++count
-
-	//drukuj
-	for (int i = 0; i < M; ++i)
-	{
-		printf_s("\n");
-		for (int j = 0; j < N; ++j)
-		{
-			printf_s(" %d ", A[i][j]);
-		}
+	printf("\n");
+	for (int j = 0; j < N; ++j) {
+		printf(" %d \n", ptr[j]);
 	}
-
-	printf_s("\n");
 }
 
 int main()
 {
-   int M = 4;
-	int N = 3;
-	int **A = nullptr;
-   
-   AllocateAndFillArrayBAD(A, M, N);
-   
-   //gdzie są dane?
-	for (int i = 0; i < M; ++i)
-	{
-		printf_s("\n");
-		for (int j = 0; j < N; ++j)
-		{
-			printf_s(" %d ", A[i][j]);
-		}
+	int N = 10;
+	int *v = nullptr;
+
+	initialize_vect_BAD(v, N);
+
+	printf("gdzie sa dane? \n");
+	for (int j = 0; j < N; ++j){
+		printf(" %d ", v[j]);
 	}
 	
-	
-	// Zwolnienie pamieci
-	for (int i = 0; i<M; ++i)
-		free(A[i]);
+	free(v); // Zwolnienie pamieci
 
-	free(A);
+	getchar();
 }
 ```
 
-Popraw deklarację i ciało funkcji `AllocateAndFillArrayBAD`. 
+Popraw deklarację i ciało funkcji `initialize_vect_BAD`. 
+
  - Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:  
-   `void AllocateAndFillArray(int ***A, int M, int N)`
+   `void initialize_vect_GOOD(int **ptr, int N)`
 
 
 # Dla ambitnych \*
