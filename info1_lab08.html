@@ -660,59 +660,39 @@ free(A);</code></pre></div>
 <h1>Alokacja wewnątrz funkcji</h1>
 <p>Dlaczego poniższy kod nie działa poprawnie?</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
-<span class="dt">void</span> AllocateAndFillArrayBAD(<span class="dt">int</span> **A, <span class="dt">int</span> M, <span class="dt">int</span> N)
+<span class="dt">void</span> initialize_vect_BAD(<span class="dt">int</span> *ptr, <span class="dt">int</span> N)
 {
-    A = (<span class="dt">int</span>**)malloc(M * <span class="kw">sizeof</span>(<span class="dt">int</span>*));
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
-        A[i] = (<span class="dt">int</span>*)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span>));
+    ptr = (<span class="dt">int</span>*)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span>));
+    <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
+        ptr[j] = <span class="dv">3</span> * j; <span class="co">// OR *(ptr+j)</span>
 
-
-    <span class="co">// Tu mozemy wykonywac dowolne operacje na tablicy</span>
-    <span class="dt">int</span> count = <span class="dv">0</span>;
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
-        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
-            A[i][j] = ++count; <span class="co">// OR *(*(A+i)+j) = ++count</span>
-
-    <span class="co">//drukuj</span>
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
-    {
-        printf_s(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
-        {
-            printf_s(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> &quot;</span>, A[i][j]);
-        }
+    printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+    <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {
+        printf(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, ptr[j]);
     }
-
-    printf_s(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
 }
 
 <span class="dt">int</span> main()
 {
-   <span class="dt">int</span> M = <span class="dv">4</span>;
-    <span class="dt">int</span> N = <span class="dv">3</span>;
-    <span class="dt">int</span> **A = <span class="kw">nullptr</span>;
-   
-   AllocateAndFillArrayBAD(A, M, N);
-   
-   <span class="co">//gdzie są dane?</span>
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M; ++i)
-    {
-        printf_s(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
-        {
-            printf_s(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> &quot;</span>, A[i][j]);
-        }
+    <span class="dt">int</span> N = <span class="dv">10</span>;
+    <span class="dt">int</span> *v = <span class="kw">nullptr</span>;
+
+    initialize_vect_BAD(v, N);
+
+    printf(<span class="st">&quot;gdzie sa dane? </span><span class="ch">\n</span><span class="st">&quot;</span>);
+    <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j){
+        printf(<span class="st">&quot; </span><span class="ch">%d</span><span class="st"> &quot;</span>, v[j]);
     }
     
-    
-    <span class="co">// Zwolnienie pamieci</span>
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i)
-        free(A[i]);
+    free(v); <span class="co">// Zwolnienie pamieci</span>
 
-    free(A);
+    getchar();
 }</code></pre></div>
-<p>Popraw deklarację i ciało funkcji <code>AllocateAndFillArrayBAD</code>. - Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:<br />
- <code>void AllocateAndFillArray(int ***A, int M, int N)</code></p>
+<p>Popraw deklarację i ciało funkcji <code>initialize_vect_BAD</code>.</p>
+<ul>
+<li>Wskazówka: prawidłowa deklaracja w języku C powinna wyglądać tak:<br />
+ <code>void initialize_vect_GOOD(int **ptr, int N)</code></li>
+</ul>
 </div>
 <div id="dla-ambitnych" class="section level1">
 <h1>Dla ambitnych *</h1>
