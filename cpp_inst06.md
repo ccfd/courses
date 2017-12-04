@@ -45,7 +45,7 @@ cout << *ritr <<endl;
 ##Zadanie 2
 Korzystanie ze standardowych algorytmów.
 
-* Posortuj rosnąco i wydrukuj zawartość tablicy `tab`{.cpp}. Skorzystaj z funkcji `sort`{.cpp} (pamiętaj o `#include <algorithm>`{.cpp}):
+* Posortuj rosnąco i wydrukuj zawartość tablicy `tab`{.cpp}. Skorzystaj z funkcji `sort`{.cpp} (pamiętaj o `#include <algorithm>`{.cpp} i `#include <functional>`{.cpp}):
 ```cpp
 sort( tab.begin(), tab.end() );
 Posortuj malejąco i wydrukuj zawartość tablicy tab:
