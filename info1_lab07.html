@@ -567,65 +567,68 @@ div.tocify {
 <h1>Dynamiczna alokacja pamięci</h1>
 <p>Do tej pory używaliśmy tablic, które miały z góry zadany rozmiar. Deklarowaliśmy je w bardzo prosty sposób:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x[<span class="dv">100</span>];</code></pre></div>
-<p>Oczywiście chcielibyśmy poszerzyć funkcjonalność naszego programu tak, aby była możliwa deklaracja tablic o długości określonej już w trakcie działania programu. Mówimy wówczas o tzw. dynamicznej (tzn. wykonywanej podczas działania programu, a nie podczas kompilacji) alokacji pamięci. Taki mechanizm jest jak najbardziej dopuszczalny w języku C, składa się na niego kilka etapów:</p>
+<p>lub też:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">const</span> <span class="dt">int</span> N = <span class="dv">100</span>;
+<span class="dt">double</span> x[N];</code></pre></div>
+<p>Chcielibyśmy poszerzyć funkcjonalność naszego programu tak, aby była możliwa deklaracja tablic o długości określanej dopiero w trakcie działania programu. Mówimy wówczas o tzw. dynamicznej (tzn. wykonywanej podczas działania programu, a nie podczas kompilacji) alokacji pamięci. W języku C, na taki mechanizm składa się kilka etapów:</p>
 <ul>
-<li>Deklaracja wskaźnika do nowotworzonej tablicy.</li>
-<li>Alokacja pamięci dla danej tablicy - używa się w tym celu funkcji <code>malloc()</code>.</li>
-<li>Zwolnienie pamięci - funkcja <code>free()</code>.</li>
+<li>Deklaracja wskaźnika, który będzie zawierał adres tworzonej tablicy.</li>
+<li>Alokacja pamięci dla danej tablicy – używa się w tym celu funkcji <code>malloc()</code>.</li>
+<li>Zwolnienie pamięci – funkcja <code>free()</code>.</li>
 </ul>
-<p>Nowe funkcje wymagają użycia biblioteki <code>stdlib.h</code>. Poniższy kawałek kodu ilustruje cały mechanizm:</p>
+<p>Nowe funkcje wymagają użycia biblioteki <code>stdlib.h</code>. Poniższy fragment kodu ilustruje cały mechanizm:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
 
-<span class="dt">void</span> main()
-{
-     <span class="dt">int</span> N=<span class="dv">100</span>;
-     <span class="dt">double</span> *x;        <span class="co">// wskaźnik do pierwszego elementu tablicy</span>
-     
-     x = (<span class="dt">double</span>*)malloc(N*<span class="kw">sizeof</span>(<span class="dt">double</span>));       <span class="co">// alokacja</span>
+<span class="dt">void</span> main() {
+     <span class="dt">int</span> N = <span class="dv">100</span>;
+     <span class="dt">double</span> *x;                                 <span class="co">// wskaznik do pierwszego</span>
+                                                <span class="co">// elementu tablicy</span>
+                                                
+     x = (<span class="dt">double</span>*)malloc(N * <span class="kw">sizeof</span>(<span class="dt">double</span>));   <span class="co">// alokacja tablicy</span>
 
-     free(x);          <span class="co">// zwolnienie pamięci</span>
+     free(x);                                   <span class="co">// zwolnienie pamieci</span>
 }</code></pre></div>
-<p>Kluczowym elementem całego mechanizmu jest właściwe zastosowanie funkcji <code>malloc</code>. Jej argumentem jest rozmiar pamięci, o którą wnioskujemy. Potrzebujemy <span class="math inline">\(N\)</span> razy rozmiar zajmowany przez zmienną typu <code>double</code> - stąd obecność funkcji <code>sizeof()</code>, która zwraca rozmiar danego typu zmiennych. Ponadto używamy mechanizmu rzutowania - przed funkcją <code>malloc</code> pojawia się rzutowanie na typ <code>double</code> poprzez wywołanie <code>(double*)</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Po pracy na tablicy należy pamiętać o zwolnieniu pamięci, którą ona zajmowała. Stąd funkcja <code>free()</code>.</p>
+<p>Kluczowym elementem mechanizmu jest właściwe zastosowanie funkcji <code>malloc()</code>. Jej argumentem jest rozmiar pamięci, o którą wnioskujemy. Potrzebujemy rozmiaru równego <span class="math inline">\(N\)</span> razy rozmiar zajmowany przez zmienną typu <code>double</code>. Stąd wynika obecność funkcji <code>sizeof()</code>, która zwraca rozmiar danego typu zmiennych. Ponadto używamy mechanizmu rzutowania – przed funkcją <code>malloc()</code> pojawia się rzutowanie na wskaźnik do typu. W naszym przypadku jest to wywołanie <code>(double *)</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Po pracy na tablicy, należy pamiętać o zwolnieniu pamięci, którą ona zajmowała. Służy do tego funkcja <code>free()</code>.</p>
 </div>
 <div id="wczytywanie-i-rysowanie-konturow" class="section level1">
 <h1>Wczytywanie i rysowanie konturów</h1>
-<p>Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w dwóch plikach, <code>plik1.txt</code> (<a href="data/plik1.txt">do ściągnięcia tu</a>) oraz <code>plik2.txt</code> (<a href="data/plik2.txt">do ściągnięcia tu</a>). Pliki mają następującą strukturę:</p>
+<p>Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w plikach: <a href="data/info1/plik1.txt">plik1.txt</a> oraz <a href="data/info1/plik2.txt">plik2.txt</a>. Pliki mają następującą strukturę:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dv">156</span>
 <span class="fl">12.</span><span class="dv">67</span>    <span class="fl">768.</span><span class="dv">3254</span>
 <span class="fl">14.</span><span class="dv">98</span>    <span class="fl">768.</span><span class="dv">3254</span>
 <span class="fl">17.</span><span class="dv">462</span>  <span class="fl">766.</span><span class="dv">51075</span>
 ...</code></pre></div>
-<p>Pierwsza linia pliku zawiera ilość punktów zapisanych w pliku. Poniżej współrzędne <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> są zapisane w oddzielnych kolumnach.</p>
+<p>Pierwsza linia pliku zawiera liczbę punktów zapisanych w pliku. Poniżej, współrzędne <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> są zapisane w oddzielnych kolumnach.</p>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Otwórz oba pliki w programie głównym.</li>
 <li>Wczytaj pierwsze linie obu plików do programu. Wydrukuj na ekran te wartości, aby upewnić się, że wykonano ten podpunkt bezbłędnie.</li>
-<li>Użyj wczytanych wartości do alokacji tablic, które będą przechowywać wspólrzędne punktów. Użyj mechanizmu alokacji dynamicznej.</li>
-<li>Wczytaj współrzędne z obu plików do wcześniej zadeklarowanych tablic. Upewnij się, czy wykonano to dobrze.</li>
-<li>Napisz funkcję <code>void PrintCoords(double *x, double *y, int N,int start, int end)</code>, która będzie drukować na ekranie zadany przedział współrzędnych z danej mapy. Funkcja ma informować, gdy zadany przedział nie może być wydrukowany (bo np. kres górny przekracza długość tablicy)</li>
-<li>napisz funkcję <code>void Display()</code>, która będzie rysować zadany kontur mapy na ekranie w oknie graficznym. Kontur ma być narysowany za pomocą linii, które będą łączyć kolejne punkty. Zwroć uwagę na to, by połączyć również ostatni punkt z pierwszym. Wyświetl oba kontury na jednym obrazku. Co to za mapy?</li>
-</ul>
+<li>Użyj wczytanych wartości w celu dynamicznej alokacji tablic, które będą przechowywać współrzędne punktów.</li>
+<li>Wczytaj współrzędne z obu plików do wcześniej zadeklarowanych tablic. Upewnij się, że dane wczytano dobrze.</li>
+<li>Napisz funkcję <code>void printCoords(double *x, double *y, int N, int start, int end)</code>, która będzie drukować na ekran zadany przedział współrzędnych z danej mapy. Funkcja ma informować, gdy zadany przedział nie może być wydrukowany (bo np. zmienna <code>end</code> przekracza długość tablicy).</li>
+<li>napisz funkcję <code>void display()</code>, która będzie rysować zadany kontur mapy na ekranie w oknie graficznym. Kontur ma być narysowany za pomocą linii, które będą łączyć kolejne punkty. Zwróć uwagę na to, aby połączyć również ostatni punkt z pierwszym. Wyświetl oba kontury na jednym obrazku. Co to za mapy?</li>
+</ol>
 </div>
 </div>
 <div id="troche-geografii" class="section level1">
 <h1>Trochę geografii</h1>
-<p>Mając już kontur, możemy policzyć kilka interesujących rzeczy:</p>
+<p>Mając kontur, możemy policzyć kilka interesujących rzeczy:</p>
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
-<ul>
-<li>Napisz funkcję <code>double Perimeter()</code>, która zwróci obwód zadanego konturu.</li>
-<li>Napisz funkcję <code>double Area()</code>, która policzy oraz zwróci powierzchnię danej mapy. Powierzchnię mapy należy policzyć jako sumę powierzchni trójkątów, których podstawy są kolejnymi odcinkmi konturu a wierzchołek jest zlokalizowany gdziekolwiek (najwygodzniej położyć go w zerze). Pole takiego trójkąta będzie po prostu połową modułu iloczynu wektorowego, gdzie wektorami są boki trójkąta: <span class="math display">\[
+<ol start="7" style="list-style-type: decimal">
+<li>Napisz funkcję <code>double perimeter()</code>, która zwraca obwód zadanego konturu.</li>
+<li>Napisz funkcję <code>double area()</code>, która zwraca powierzchnię danej mapy. Powierzchnię mapy należy policzyć jako sumę powierzchni trójkątów, których podstawy są kolejnymi odcinkami konturu a wierzchołek jest zlokalizowany gdziekolwiek (najwygodniej położyć go w zerze). Pole takiego trójkąta będzie po prostu połową modułu iloczynu wektorowego, gdzie wektorami są boki trójkąta: <span class="math display">\[
 S_{i}=\frac{1}{2} | \boldsymbol v_i\times \boldsymbol v_{i+1} | = \frac{1}{2} (x_iy_{i+1}-x_{i+1}y_i)
 \]</span> Pamiętaj o ostatnim i pierwszym punkcie. Zwróć uwagę, że otrzymane pole może być ujemne. Od czego to zależy?</li>
 <li>Policz rozciągłość południkową i równoleżnikową obu obszarów. Zaznacz najbardziej skrajne punkty na obu mapach za pomocą kółka.</li>
-</ul>
+</ol>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>programując w czystym C można by teoretycznie zrezygnować z rzutowania, wówczas <code>malloc</code> zwróci wskaźnik typu <code>void*</code>. Jednak powszechnie stosujemy kompilatory języka C++, który jest językiem o tzw. silnej kontroli typów i nie zezwala na to, by wskaźnik nie miał typu. Nie zagłębiając się bardziej w szczegóły, należy po prostu wyrobić w sobie nawyk rzutowania przed użyciem funkcji <code>malloc()</code>, aby uniknąć wielu nieprzyjemnych sytuacji w przyszłości.<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>programując w C można by zrezygnować z rzutowania, wówczas <code>malloc()</code> zwróci wskaźnik typu <code>void*</code>. Jednak powszechnie stosujemy kompilatory języka C++, który jest językiem o tzw. silnej kontroli typów i nie zezwala na to, by wskaźnik nie miał typu. Nie zagłębiając się w szczegóły, należy wyrobić sobie nawyk rzutowania wskaźnika zwracanego przez funkcję <code>malloc()</code>, aby uniknąć nieprzyjemnych sytuacji w przyszłości.<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
 
