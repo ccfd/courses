@@ -5,28 +5,30 @@ material: Instrukcja 8
 author: B. Górecki
 ---
 
-
 # Dynamiczna alokacja tablic wielowymiarowych
-Tydzień temu nauczyliśmy się dynamicznej alokacji pamięci dla tablic jednowymiarowych. Dynamiczna oznacza tyle, że rozmiar tablicy, jaką chcemy zaalokować, znamy dopiero w momencie wykonywania programu, tzn., że nie jesteśmy w stanie go określić statycznie (daną, konkretną liczbą) na etapie kompilacji. Kod do dynamicznej alokacji tablic jednowymiarowych wyglądał tak:
+Tydzień temu nauczyliśmy się jak dynamicznie zaalokować pamięć dla tablicy jednowymiarowej.
+Wyraz ,,dynamicznie'' oznacza tyle, że rozmiar tablicy, którą chcemy zaalokować, znamy dopiero w trakcie wykonywania programu i nie jesteśmy w stanie go określić (konkretną liczbą) na etapie kompilacji.
+Kod dokonujący dynamicznej alokacji tablicy jednowymiarowej wyglądał tak:
 ```c++
 #include <stdlib.h>
 
-void main()
-{
-   double *tab;
-   int n;
-   printf("Podaj n:\n");
-   scanf("%d, &n);
+void main() {
+  double *tab;
+  int n;
+  printf("Podaj n: ");
+  scanf("%d", &n);
 
-   tab = (double*)malloc(n*sizeof(double));
-   // Tu mozesz wykonywac operacje na tablicy
-   free(tab);
+  tab = (double *)malloc(n * sizeof(double));
+                                                // operacje na tablicy
+  free(tab);
 }
 ```
-Dziś nauczymy się dwóch nowych rzeczy: stosowania w języku C tablic wielowymiarowych (alokowanych statycznie) oraz ich dynamicznej alokacji.
+Dziś nauczymy się:
 
+- stosowania statycznych tablic wielowymiarowych oraz
+- dynamicznej alokacji tablic wielowymiarowych.
 
-# Tablice wielowymiarowe
+# Statyczne tablice wielowymiarowe
 Język C pozwala na stosowanie tablic wielowymiarowych. Do tej pory przez kilka tygodni używaliśmy jedynie tablic jednowymiarowych. Potocznie często określaliśmy je *wektorami*. Wyobraźmy sobie - tablica dwuwymiarowa doskonale nadaje się np. do przechowywania macierzy.^[Tak naprawdę wiele więcej struktur - często nawet zupełnie niematematycznych możemy trzymać w dwuwymiarowych tablicach - np. programując grę w szachy moglibyśmy użyć dwuwymiarowej tablicy o wymiarze 8 x 8 i w odpowiednie pola tej tablicy wpisywać liczby, które symbolizowałyby konkretne figurę. A gra w statki? Można podobnie. Z drugiej strony w praktycznych obliczeniach numerycznych wielkie macierze o rozmiarze rzędu kilkuset tysięcy do kilku milionów i większe przechowuje się w postaci wektora. W praktycznych zagadnieniach są to niemal zawsze macierze rzadkie, tzn. takie, które w stosunku do całkowitej liczby swoich elementów mają bardzo niewiele elementów, które nie są zerem. Taką macierz łatwo jest trzymać w pamięci jako wektor (przyjmując specjalny format, który pomija wszystkie zera - np. tzw. format CSR *(ang. compressed sparse row)* jest szeroko stosowanym formatem zapisania macierzy rzadkiej w trzech wektorach). Tak wielka macierz przechowywana jawnie najpewniej nie zmieściłaby się w pamięci żadnego dostępnego nam komputera.] Przyjrzyjmy się więc fragmentowi kodu, który zadeklaruje dwuwymiarową tablicę o wymiarze 3x4. Możemy to utożsamić z reprezentacją macierzy o takim samym wymiarze.
 ```c++
 void main()
