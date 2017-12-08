@@ -46,7 +46,7 @@ void main() {
 }
 ```
 
-Przypomnijmu, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania.
+Przypomnijmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania.
 Kompilator sam o to dba (tak jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy -- one też są automatycznie niszczone przez kompilator).
 Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez zapisanie dwunastu kolejnych linijek przypisań.
 Możemy to zrobić już w trakcie deklaracji tablicy, dzięki liście inicjalizującej.
@@ -89,7 +89,7 @@ Spójrzmy na poniższy kod:
 ```
 
 Przypomnijmy sobie, że jednowymiarową tablicę alokowaliśmy wykorzystując wskaźnik do typu `double`.
-Tym razem będziemy alokować wkaźnik do wskaźnika na typ `double`.
+Tym razem będziemy alokować wskaźnik do wskaźnika na typ `double`.
 Dlatego używamy ,,podwójnego'' wskaźnika.
 W instrukcji powyżej, adres zwracany przez funkcję `malloc()` rzutujemy więc na podwójny wskaźnik `double **`.
 Wywołując funkcję `malloc()` musimy wiedzieć, ile miejsca potrzebujemy.
