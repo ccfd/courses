@@ -9,7 +9,8 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
+<meta name="author" content="B. Górecki" />
+<meta name="author" content="W. Regulski" />
 
 
 <title></title>
@@ -24,51 +25,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -533,14 +492,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="cpp_inst06.pdf">
+  <a href="info1_projekty.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst06.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info1_projekty.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -566,46 +525,68 @@ div.tocify {
 </div>
 
 
-<p>Wprowadzenie do STL (Standard Template Library)</p>
-<div id="zadanie-1" class="section level2">
-<h2>Zadanie 1</h2>
-<p>Korzystanie ze struktur standardowych typu <code class="sourceCode cpp">vector</code> i <code class="sourceCode cpp">list</code>.</p>
-<ul>
-<li><p>Utwórz tablicę służącą do przechowywania liczb całkowitych. Wykorzystaj standardową strukturę vector np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;vector&gt;</span>
-<span class="kw">using</span> <span class="kw">namespace</span> std;
-vector&lt;<span class="dt">int</span>&gt; tab;</code></pre></div></li>
-<li><p>Wypełnij tablicę pewną ilością elementów wczytywanych z klawiatury lub generowanych losowo (funkcja <code class="sourceCode cpp">rand()</code>). Do wstawienia elementu do tablicy użyj metody <code class="sourceCode cpp">push_back</code> lub <code class="sourceCode cpp">insert</code> (sprawdź jak zmienia się rozmiar tablicy – funkcja <code class="sourceCode cpp">size</code>):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> d;
-tab.push_back( d);      lub tab.insert( tab.end(), d);
-cout &lt;&lt; tab.size() &lt;&lt; endl;</code></pre></div></li>
-<li><p>Wydrukuj zawartość tablicy na ekran używając obiektu <code class="sourceCode cpp">iterator</code>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">vector&lt;<span class="dt">int</span>&gt;::iterator   itr;
-<span class="kw">for</span> ( itr=tab.begin(); itr!=tab.end(); ++itr)
-cout &lt;&lt; *itr &lt;&lt;endl;</code></pre></div></li>
-<li><p>Wydrukuj od końca zawartość tablicy na ekran używając obiektu <code class="sourceCode cpp">reverse_iterator</code>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">vector&lt;<span class="dt">int</span>&gt;::reverse_iterator   ritr;
-<span class="kw">for</span> ( itr=tab.rbegin(); itr!=tab.rend(); ++ritr)
-cout &lt;&lt; *ritr &lt;&lt;endl;</code></pre></div></li>
-<li><p>Usuń wszystkie elementu z tablicy tab przez wykorzystanie metody <code class="sourceCode cpp">clear()</code>. Sprawdź czy tablica jest rzeczywiście pusta przez sprawdzenie rozmiaru (<code class="sourceCode cpp">size()</code>) i metody <code class="sourceCode cpp">empty()</code> – zwraca wartość <code class="sourceCode cpp"><span class="dt">bool</span></code> w zależności od tego czy tablica jest pusta czy też nie.</p></li>
-<li><p>Zmodyfikuj program tak aby zamiast kolekcji typu vector korzystać z kolekcji typu list (pamiętaj o include <list>).</p></li>
-</ul>
+<div id="projekty-domowe" class="section level1">
+<h1>Projekty Domowe</h1>
+<div id="gra-w-bilard" class="section level2">
+<h2>Gra w bilard</h2>
+<p>Napisz program, który będzie odzwierciedlał uproszczoną grę w bilard. Na prostokątnej planszy wylosuj położenia kilku bil. Jedna z nich powinna być w dowolny sposób wyróżniona (ma reprezentować biała bile). Użytkownik ma mieć możliwość w dowolny sposób (przez wpisanie składowych z klawiatury lub obsługę myszki – w pliku <code>winbgi.h</code> możesz odszukać przydatne funkcje) zadania kierunku, w jakim rozpędzi te bile. Będzie to odpowiadać uderzeniu kijem białej bili. Następnie symuluj ruch bili i zderzenia miedzy nimi oraz ściankami i sprawdzaj, czy któraś z rozpędzonych bil z odpowiednia dokładnością trafi w róg stołu (wykrywaj takie zdarzenie – bila powinna wtedy znikać). Odpowiednie wzory opisujące zderzenia dwóch bil znajdziesz w Instrukcji 5.</p>
 </div>
-<div id="zadanie-2" class="section level2">
-<h2>Zadanie 2</h2>
-<p>Korzystanie ze standardowych algorytmów.</p>
-<ul>
-<li><p>Posortuj rosnąco i wydrukuj zawartość tablicy <code class="sourceCode cpp">tab</code>. Skorzystaj z funkcji <code class="sourceCode cpp">sort</code> (pamiętaj o <code class="sourceCode cpp"><span class="ot">#include &lt;algorithm&gt;</span></code> i <code class="sourceCode cpp"><span class="ot">#include &lt;functional&gt;</span></code>):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">sort( tab.begin(), tab.end() );
-Posortuj malejąco i wydrukuj zawartość tablicy tab:
-sort( tab.begin(), tab.end(), greater&lt;<span class="dt">int</span>&gt;() );</code></pre></div></li>
-<li><p>Czy efekt z punktu poprzedniego można osiągnąć inaczej? Czy funkcja <code class="sourceCode cpp">sort</code> będzie działała dla kolekcji typu <code class="sourceCode cpp">list</code> (dlaczego)?</p></li>
-<li><p>Znajdź największy i najmniejszy element w tablicy <code class="sourceCode cpp">tab</code> (funkcje <code class="sourceCode cpp">max_element</code> i <code class="sourceCode cpp">min_element</code>).</p></li>
-<li><p>Czy możesz zastosować algorytm dla tablicy typowej dla języka C? Sprawdź działanie w programie..</p></li>
-<li><p>Utwórz kolekcję <code class="sourceCode cpp">vector</code> składającą się z obiektów typu <code class="sourceCode cpp">Wektor2D</code>. Współrzędne wektorów 2D generuj losowo.</p></li>
-<li><p>Wydrukuj wszystkie elementy kolekcji <code class="sourceCode cpp">vector</code> posortowane rosnąco.</p></li>
-<li><p>Poeksperymentuj z innym algorytmami STL (opis znajdziesz w helpie pod hasłem „Standard C++ Library, algorithms”)</p></li>
-</ul>
+<div id="wykres" class="section level2">
+<h2>Wykres</h2>
+<p>Napisz, korzystając z używanej na laboratorium biblioteki <code>winbgi2</code>, funkcje do rysowania wykresów. Funkcja powinna jako argumenty przyjmować wskaźniki do dwóch tablic (odpowiednio odciętych i rzędnych) oraz zmienna typu całkowitego określająca rozmiar tych tablic. Zadbaj o to, aby wykres był rysowany na ekranie linia ciągłą, odpowiednio generowane osie rzędnych i odciętych oraz zaznaczone wartości na tych osiach (możesz do tego użyć odpowiedniej funkcji z biblioteki <code>winbgi2</code>, która drukuje tekst do okna graficznego – znajdziesz jej nazwę w pliku nagłówkowym). Możesz również dodać możliwość przekazania do funkcji nazw (etykiet) obu osi. Przetestuj swoja funkcje dla kilku rożnych zestawów danych.</p>
+</div>
+<div id="burzenie-murow-zamku" class="section level2">
+<h2>Burzenie murów zamku</h2>
+<p>Napisz program, który będzie stanowił modyfikacje program z Laboratorium 9. Tym razem stwórz geometrie zamku z pojedynczych pikseli. Napisz odpowiednie funkcje, które stworzą zamek piksel po pikselu (najwygodniej napisać sobie dwie funkcje, które z pikseli będą potrafiły tworzyć prostokąt i trójkąt, a następnie z tych kształtów wygenerować zamek). Następnie program ma realizować ten sam algorytm ustawiania armaty i oddawania strzału, jednak w momencie, w którym kula znajdzie się na dowolnym pikselu należącym do zamku, zakończy swój lot i wytworzy w tym miejscu wyrwę w murze (tzn. usunie wszystkie piksele w promieniu np. 10 pikseli od miejsca uderzenia). Promień wyrwy uzależnij (np. liniowo) od prędkości, z jaka kula uderza w mur.</p>
+</div>
+<div id="koko-i-krzyzyk" class="section level2">
+<h2>Kółko i krzyzyk</h2>
+<p>Napisz program, który będzie z użytkownikiem grał w kółko i krzyżyk. Plansza ma być rysowana w oknie graficznym, komunikacja z użytkownikiem ma być prowadzona za pośrednictwem klawiatury. Opracuj dwa rożne algorytmy, według których program będzie wybierał kolejne pola do postawienia swojego markera. Najprostszy algorytm ma być algorytmem losowym, wiec komputer ma bez zastanawiania się nad ruchami losować dowolne, wolne miejsce do postawienia swojego znaku. Program ma wykrywać zwycięstwo, przegrana bądź remis. Drugi algorytm powinien zawierać analizę, czy dany ruch ma sens. Możesz np. analizować wszystkie możliwe ruchy wprzód i wybierać takie pole, które będzie dawało największe szanse wygranej. Możesz tez opracować swój autorski algorytm lub spróbować zaczerpnąć wiedzy na temat podstawowych, powszechnie stosowanych algorytmów gry w kółko i krzyżyk.</p>
+</div>
+<div id="gra-w-statki" class="section level2">
+<h2>Gra w statki</h2>
+<p>Napisz program, który będzie grał z użytkownikiem w statki. Na początku ma losować położenia statków na swojej planszy (pamiętamy, ze statki nie mogą się stykać ani rogiem ani bokiem) oraz pozwolić użytkownikowi wybrać miejsca, w których chce ustawić swoje statki. Następnie ma przeprowadzić grę w statki (zastanów się nad możliwie najsprytniejszym sposobem, w jaki komputer ma ostrzeliwać pole gracza) i wykrywać wygrana.</p>
+</div>
+<div id="liczenie-caki-metoda-monte-carlo" class="section level2">
+<h2>Liczenie całki metoda Monte Carlo</h2>
+<p>Napisz program liczący przybliżoną wartość całki <span class="math inline">\(R_b = \displaystyle{\int_a^b} f(x)dx\)</span> metoda Monte Carlo. Załóż, ze wartości funkcji podcałkowej są dodatnie. Metoda Monte Carlo obliczania całek oznaczonych działa w następujący sposób: znajdź pole prostokąta zawierającego wykres funkcji; generuj w sposób losowy punkty z tego prostokąta. Przybliżoną wartość całki jest równa polu prostokąta pomnożonemu przez ułamek określający, ile z wylosowanych punktów trafiło w obszar pod wykresem funkcji.</p>
+</div>
+<div id="kalkulator-pochodnych" class="section level2">
+<h2>Kalkulator pochodnych</h2>
+<p>Napisz program, który drukuje na ekranie wzór na pierwsza pochodna funkcji zadanej w pliku. Wzór funkcji w pliku jest postaci <span class="math inline">\(f(x) \cdot g(x)\)</span>, gdzie funkcje <span class="math inline">\(f(x)\)</span> i <span class="math inline">\(g(x)\)</span> to jedno z wyrażeń typu <span class="math inline">\(x^n\)</span>, <span class="math inline">\(\sin(a \cdot x)\)</span> lub <span class="math inline">\(cos(b \cdot x)\)</span>. Przykładowy wzór podany w pliku tekstowym to: <span class="math inline">\(x^7 \cdot \cos(\pi \cdot x)\)</span>.</p>
+</div>
+<div id="badzenie-losowe" class="section level2">
+<h2>Bładzenie losowe</h2>
+<p>Napisz program, który będzie wykonywał błądzenie losowe sporej grupy ludzi (np. 10000 osób) startujących z jednego punktu. Każda osoba wykonuje w każdym kroku czasowym przesuniecie w lewo albo w prawo z zadanym prawdopodobieństwem. Utwórz histogram, na którym będzie widać, jak daleko zaszło ile osób. Przetestuj to dla rożnych prawdopodobieństw wykonywania kroku w dana stronę. Dopuszczalne są tylko dwa ruchy: krok w lewo albo krok w prawo. Nie ma możliwości pozostanie w miejscu.</p>
+</div>
+<div id="szyfrowanie-i-deszyfrowanie" class="section level2">
+<h2>Szyfrowanie i deszyfrowanie</h2>
+<p>Napisz program, który pozwoli na zaszyfrowanie danego kawałka tekstu oraz złamanie danego szyfru. Zasada szyfrowania jest następująca: Wszystkie litery wiadomości nieszyfrowanej maja zostać przesunięte o pewna stała odległość. Np. dla przesunięcia 3 będzie to wyglądało tak: <span class="math inline">\(ALA MA KOTA -&gt; DOD PD NRXD\)</span>. Łamanie szyfru będzie się odbywać w oparciu o fakt, ze łamiący szyfr będzie posiadał bazę słów, spośród których któreś na pewno znajduje się w tekście. Dzięki temu, próbując wszystkich możliwości dekryptażu (a jest ich tyle, ile liter w alfabecie łacińskim), wybierze poprawna przez sprawdzenie czy znajduje się tam dane słowo. Oczywiście taki algorytm nie jest do końca jednoznaczny, jednak powinien działać rozsądnie przy krótkich wiadomościach. Wiadomość oryginalna, szyfrowana oraz baza danych słów-kluczy maja być wczytywane z pliku.</p>
+</div>
+<div id="histogram-z-zadana-podziaka" class="section level2">
+<h2>Histogram z zadana podziałka</h2>
+<p>Należy napisać program, który będzie rysować histogram z zadana podziałka w oparciu o dostarczony zbiór danych z pliku. Podziałka histogramu oznacza na ile sektorów należy podzielić wykres. Należy samemu zdobyć/wygenerować dane źródłowe (np. poprzez losowanie).</p>
+</div>
+<div id="dziaania-na-macierzach" class="section level2">
+<h2>Działania na macierzach</h2>
+<p>Należy napisać program, który wykonuje działania algebraiczne na macierzach: dodaje, odejmuje oraz mnoży je przez siebie. Macierze maja być wczytywane z plików, program ma sprawdzać, czy ich wymiary są odpowiednie do wykonania danych operacji, a następnie generować plik z wynikiem.</p>
+</div>
+<div id="gra-w-weza" class="section level2">
+<h2>Gra w weza</h2>
+<p>Należy napisać program, który będzie realizował grę w węza w oknie graficznym biblioteki <code>winbgi.h</code>. W najprostszej wersji waz może w każdym kroku czasowym upominać się o dane z klawiatury, w wersji zaawansowanej waz porusza się, a kierunki są przyjmowane w trakcie działania programu. Dane kierunku mogą być wprowadzane za pomocą myszki (funkcje <code>mouseclickx()</code>, <code>mouseclicky()</code> albo klawiatury (funkcja <code>getch()</code> i pokrewne). Waz oczywiście rośnie po zdobyciu pokarmu oraz umiera po zderzeniu sam ze sobą albo ze ścianą. Uwaga: interakcja z danymi z klawiatury staje się możliwa dopiero po kliknięciu myszą na działające okno grafiki i pozostawieniu kursora w tym obszarze.</p>
+</div>
+<div id="gra-w-zycie" class="section level2">
+<h2>Gra w zycie</h2>
+<p>Należy napisać program symulujący grę w życie wg klasycznych zasad Conway’a (patrz Wikipedia). Program ma wyświetlać stan populacji w każdym kroku ozywając biblioteki <code>winbgi.h</code>.</p>
+</div>
+<div id="ponacy-budynek" class="section level2">
+<h2>Płonacy budynek</h2>
+<p>Należy napisać program, który symuluje ucieczkę grupy ludzi z płonącego pomieszczenia: w momencie wybuchu pożaru ludzie (kółka w oknie graficznym) zaczynają się kierować w stronę wyjścia. Niestety biegną na oślep i mogą się ze sobą zderzyć (odbijają się wg schematu z Laboratorium 5), przez co przez chwile poruszają się bezwładnie, ale po kilku krokach orientują się w przestrzeni i znów nadają sobie prędkość w kierunku wyjścia. Może potem dojść do następnych zderzeń. Zbadaj, jak zależy możliwość ucieczki takiej grupy od rozmiarów pojedynczego człowieka oraz od ilości ludzi wewnątrz. Wyjście jest jedno, kółko po prostu znika, gdy do niego dotrze.</p>
+</div>
+<div id="totolotek-wymaga-sporo-pracy-sugeruje-sie-je-grupom-dwuosobowym" class="section level2">
+<h2>* Totolotek (wymaga sporo pracy, sugeruje sie je grupom dwuosobowym)</h2>
+<p>Należy napisać program symulujący maszynę do losowania używana w Totolotku. Program w dużej mierze opiera się na Laboratorium 5 (zderzenia ze ścianami, kolizje), lecz należny uwzględnić działanie pól siłowych: grawitacji (która po prostu powinna zmniejszać składowa y prędkości w każdym kroku funkcji run) oraz dmuchawy (w pewnym obszarze okna graficznego piłki powinny być przyspieszane w pewien sposób - tutaj jest miejsce na inwencje użytkownika). Dodatkowo należy dodać niewielka ilość dyssypacji energii do programu np. przy każdym zderzeniu niech piłki zachowują tylko 95% energii kinetycznej. Wreszcie konieczna jest współpraca z myszka/klawiatura: na pierwsze klikniecie następuje zwolnienie blokady (piłki wpadają do maszyny), na drugie zaczyna się dmuchanie, na trzecie następują zassanie piłek do boksu. Należy pamiętać, ze w boksie może być tylko jedna piłka. Oczywiście piłki powinny się ze sobą zderzać. Należy z miarę możliwości wprowadzić lekkie zaburzenia na początku działania programu (losowo rozmieścić piłki w boksie), by wynik był niedeterministyczny.</p>
+</div>
 </div>
 
 <!-- Dummy footer -->
