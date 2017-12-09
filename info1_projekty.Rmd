@@ -1,0 +1,126 @@
+---
+author:
+- "B. Górecki"
+- "W. Regulski"
+course: Informatyka 1
+material: Projekty
+number: 11
+---
+
+# Projekty Domowe
+
+## Gra w bilard
+Napisz program, który będzie odzwierciedlał uproszczoną grę w bilard.
+Na prostokątnej planszy wylosuj położenia kilku bil.
+Jedna z nich powinna być w dowolny sposób wyróżniona (ma reprezentować biała bile). 
+Użytkownik ma mieć możliwość w dowolny sposób (przez wpisanie składowych z klawiatury lub obsługę myszki -- w pliku `winbgi.h` możesz odszukać przydatne funkcje) zadania kierunku,
+w jakim rozpędzi te bile.
+Będzie to odpowiadać uderzeniu kijem białej bili.
+Następnie symuluj ruch bili i zderzenia miedzy nimi oraz ściankami
+i sprawdzaj, czy któraś z rozpędzonych bil z odpowiednia dokładnością trafi
+w róg stołu (wykrywaj takie zdarzenie -- bila powinna wtedy znikać).
+Odpowiednie wzory opisujące zderzenia dwóch bil znajdziesz w Instrukcji 5.
+
+## Wykres
+Napisz, korzystając z używanej na laboratorium biblioteki `winbgi2`, funkcje do
+rysowania wykresów.
+Funkcja powinna jako argumenty przyjmować wskaźniki do dwóch tablic (odpowiednio odciętych i rzędnych) oraz zmienna typu całkowitego określająca rozmiar tych tablic.
+Zadbaj o to, aby wykres był rysowany na ekranie linia ciągłą, odpowiednio generowane osie rzędnych i odciętych oraz zaznaczone wartości na tych osiach (możesz do tego użyć odpowiedniej funkcji z biblioteki `winbgi2`, która drukuje tekst do okna graficznego -- znajdziesz jej nazwę w pliku nagłówkowym).
+Możesz również dodać możliwość przekazania do funkcji nazw (etykiet) obu osi.
+Przetestuj swoja funkcje dla kilku rożnych zestawów danych.
+
+## Burzenie murów zamku
+Napisz program, który będzie stanowił modyfikacje program z Laboratorium 9.
+Tym razem stwórz geometrie zamku z pojedynczych pikseli.
+Napisz odpowiednie funkcje, które stworzą zamek piksel po pikselu (najwygodniej napisać sobie dwie funkcje, które z pikseli będą potrafiły tworzyć prostokąt i trójkąt, a następnie z tych kształtów wygenerować zamek).
+Następnie program ma realizować ten sam algorytm ustawiania armaty i oddawania strzału, jednak w momencie, w którym kula znajdzie się na dowolnym pikselu należącym do zamku, zakończy swój lot i wytworzy w tym miejscu wyrwę w murze (tzn. usunie wszystkie
+piksele w promieniu np. 10 pikseli od miejsca uderzenia).
+Promień wyrwy uzależnij (np. liniowo) od prędkości, z jaka kula uderza w mur.
+
+## Kółko i krzyzyk
+Napisz program, który będzie z użytkownikiem grał w kółko i krzyżyk.
+Plansza ma być rysowana w oknie graficznym, komunikacja z użytkownikiem ma
+być prowadzona za pośrednictwem klawiatury.
+Opracuj dwa rożne algorytmy, według których program będzie wybierał kolejne pola do postawienia swojego markera.
+Najprostszy algorytm ma być algorytmem losowym, wiec komputer ma bez zastanawiania się nad ruchami losować dowolne, wolne miejsce do postawienia swojego znaku.
+Program ma wykrywać zwycięstwo, przegrana bądź remis.
+Drugi algorytm powinien zawierać analizę, czy dany ruch ma sens.
+Możesz np. analizować wszystkie możliwe ruchy wprzód i wybierać takie pole, które będzie dawało największe szanse wygranej.
+Możesz tez opracować swój autorski algorytm lub spróbować zaczerpnąć wiedzy na temat podstawowych, powszechnie stosowanych algorytmów gry w kółko i krzyżyk.
+
+## Gra w statki
+Napisz program, który będzie grał z użytkownikiem w statki.
+Na początku ma losować położenia statków na swojej planszy (pamiętamy, ze statki nie mogą
+się stykać ani rogiem ani bokiem) oraz pozwolić użytkownikowi wybrać miejsca,
+w których chce ustawić swoje statki.
+Następnie ma przeprowadzić grę w statki (zastanów się nad możliwie najsprytniejszym sposobem, w jaki komputer ma ostrzeliwać pole gracza) i wykrywać wygrana.
+
+## Liczenie całki metoda Monte Carlo
+Napisz program liczący przybliżoną wartość całki $R_b = \displaystyle{\int_a^b} f(x)dx$ metoda Monte Carlo.
+Załóż, ze wartości funkcji podcałkowej są dodatnie.
+Metoda Monte Carlo obliczania całek oznaczonych działa w następujący sposób: znajdź pole prostokąta zawierającego wykres funkcji; generuj w sposób losowy punkty z tego prostokąta.
+Przybliżoną wartość całki jest równa polu prostokąta pomnożonemu przez ułamek określający, ile z wylosowanych punktów trafiło w obszar pod wykresem funkcji.
+
+## Kalkulator pochodnych
+Napisz program, który drukuje na ekranie wzór na pierwsza pochodna funkcji
+zadanej w pliku.
+Wzór funkcji w pliku jest postaci $f(x) \cdot g(x)$, gdzie funkcje $f(x)$ i $g(x)$ to jedno z wyrażeń typu $x^n$, $\sin(a \cdot x)$ lub $cos(b \cdot x)$.
+Przykładowy wzór podany w pliku tekstowym to: $x^7 \cdot \cos(\pi \cdot x)$.
+
+## Bładzenie losowe
+Napisz program, który będzie wykonywał błądzenie losowe sporej grupy ludzi
+(np. 10000 osób) startujących z jednego punktu.
+Każda osoba wykonuje w każdym kroku czasowym przesuniecie w lewo albo w prawo z zadanym prawdopodobieństwem.
+Utwórz histogram, na którym będzie widać, jak daleko zaszło
+ile osób.
+Przetestuj to dla rożnych prawdopodobieństw wykonywania kroku w dana stronę.
+Dopuszczalne są tylko dwa ruchy: krok w lewo albo krok w prawo.
+Nie ma możliwości pozostanie w miejscu.
+
+## Szyfrowanie i deszyfrowanie
+Napisz program, który pozwoli na zaszyfrowanie danego kawałka tekstu oraz złamanie danego szyfru.
+Zasada szyfrowania jest następująca: Wszystkie litery wiadomości nieszyfrowanej maja zostać przesunięte o pewna stała odległość.
+Np. dla przesunięcia 3 będzie to wyglądało tak: $ALA MA KOTA -> DOD PD NRXD$.
+Łamanie szyfru będzie się odbywać w oparciu o fakt, ze łamiący szyfr będzie posiadał bazę słów, spośród których któreś na pewno znajduje się w tekście.
+Dzięki temu, próbując wszystkich możliwości dekryptażu (a jest ich tyle, ile liter
+w alfabecie łacińskim), wybierze poprawna przez sprawdzenie czy znajduje się
+tam dane słowo.
+Oczywiście taki algorytm nie jest do końca jednoznaczny, jednak powinien działać rozsądnie przy krótkich wiadomościach.
+Wiadomość oryginalna, szyfrowana oraz baza danych słów-kluczy maja być wczytywane z pliku.
+
+## Histogram z zadana podziałka
+Należy napisać program, który będzie rysować histogram z zadana podziałka w oparciu o dostarczony zbiór danych z pliku.
+Podziałka histogramu oznacza na ile sektorów należy podzielić wykres.
+Należy samemu zdobyć/wygenerować dane źródłowe (np. poprzez losowanie).
+
+## Działania na macierzach
+Należy napisać program, który wykonuje działania algebraiczne na macierzach: dodaje, odejmuje oraz mnoży je przez siebie.
+Macierze maja być wczytywane z plików, program ma sprawdzać, czy ich wymiary są odpowiednie do wykonania danych operacji, a następnie generować plik z wynikiem.
+
+## Gra w weza
+Należy napisać program, który będzie realizował grę w węza w oknie graficznym biblioteki `winbgi.h`.
+W najprostszej wersji waz może w każdym kroku czasowym upominać się o dane z klawiatury, w wersji zaawansowanej waz porusza się, a kierunki są przyjmowane w trakcie działania programu.
+Dane kierunku mogą być wprowadzane za pomocą myszki (funkcje `mouseclickx()`, `mouseclicky()` albo klawiatury (funkcja `getch()` i pokrewne).
+Waz oczywiście rośnie po zdobyciu pokarmu oraz umiera po zderzeniu sam ze sobą albo
+ze ścianą.
+Uwaga: interakcja z danymi z klawiatury staje się możliwa dopiero po kliknięciu myszą na działające okno grafiki i pozostawieniu kursora w tym obszarze.
+
+## Gra w zycie
+Należy napisać program symulujący grę w życie wg klasycznych zasad Conway’a (patrz Wikipedia).
+Program ma wyświetlać stan populacji w każdym kroku ozywając biblioteki `winbgi.h`.
+
+## Płonacy budynek
+Należy napisać program, który symuluje ucieczkę grupy ludzi z płonącego pomieszczenia: w momencie wybuchu pożaru ludzie (kółka w oknie graficznym) zaczynają się kierować w stronę wyjścia.
+Niestety biegną na oślep i mogą się ze sobą zderzyć (odbijają się wg schematu z Laboratorium 5), przez co przez chwile poruszają się bezwładnie, ale po kilku krokach orientują się w przestrzeni i znów nadają sobie prędkość w kierunku wyjścia.
+Może potem dojść do następnych zderzeń.
+Zbadaj, jak zależy możliwość ucieczki takiej grupy od rozmiarów pojedynczego człowieka oraz od ilości ludzi wewnątrz.
+Wyjście jest jedno, kółko po prostu znika, gdy do niego dotrze.
+
+## \* Totolotek (wymaga sporo pracy, sugeruje sie je grupom dwuosobowym)
+Należy napisać program symulujący maszynę do losowania używana w Totolotku.
+Program w dużej mierze opiera się na Laboratorium 5 (zderzenia ze ścianami, kolizje), lecz należny uwzględnić działanie pól siłowych: grawitacji (która po prostu powinna zmniejszać składowa y prędkości w każdym kroku funkcji run) oraz dmuchawy (w pewnym obszarze okna graficznego piłki powinny być przyspieszane w pewien sposób - tutaj jest miejsce na inwencje użytkownika).
+Dodatkowo należy dodać niewielka ilość dyssypacji energii do programu np. przy każdym zderzeniu niech piłki zachowują tylko 95% energii kinetycznej.
+Wreszcie konieczna jest współpraca z myszka/klawiatura: na pierwsze klikniecie następuje zwolnienie blokady (piłki wpadają do maszyny), na drugie zaczyna się dmuchanie, na trzecie następują zassanie piłek do boksu.
+Należy pamiętać, ze w boksie może być tylko jedna piłka.
+Oczywiście piłki powinny się ze sobą zderzać.
+Należy z miarę możliwości wprowadzić lekkie zaburzenia na początku działania programu (losowo rozmieścić piłki w boksie), by wynik był niedeterministyczny.
