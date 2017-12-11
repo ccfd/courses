@@ -566,7 +566,7 @@ div.tocify {
 </div>
 
 
-<p>Tydzień temu nauczyliśmy się jak dynamicznie alokować pamięć dla tablicy jednowymiarowej. Wyraz ,,dynamicznie’’ oznaczał tyle, że rozmiar tablicy, którą chcemy zaalokować, poznamy dopiero w trakcie wykonywania programu i nie jesteśmy w stanie go określić (konkretną liczbą) na etapie kompilacji. Kod dokonujący dynamicznej alokacji tablicy jednowymiarowej wyglądał tak:</p>
+<p>Tydzień temu nauczyliśmy się jak dynamicznie alokować pamięć dla tablicy jednowymiarowej. Wyraz ,,dynamicznie’’ oznaczał tyle, że rozmiar tablicy, którą chcemy zaalokować, poznamy dopiero w trakcie wykonywania programu i nie jesteśmy w stanie go określić (konkretną liczbą) na etapie kompilacji. Kod dokonujący dynamicznej alokacji tablicy jednowymiarowej wygląda tak:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
 
 <span class="dt">void</span> main() {
@@ -576,7 +576,7 @@ div.tocify {
   scanf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;n);
 
   tab = (<span class="dt">double</span> *)malloc(n * <span class="kw">sizeof</span>(<span class="dt">double</span>));
-                                                <span class="co">// operacje na tablicy</span>
+  <span class="co">// ... operacje na tablicy</span>
   free(tab);
 }</code></pre></div>
 <p>Dziś nauczymy się:</p>
@@ -597,8 +597,10 @@ div.tocify {
    <span class="co">//...</span>
    A[<span class="dv">2</span>][<span class="dv">3</span>] = <span class="fl">8.</span>;
 }</code></pre></div>
-<p>Przypomnijmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania. Kompilator sam o to dba (tak jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy – one też są automatycznie niszczone przez kompilator). Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez zapisanie dwunastu kolejnych linijek przypisań. Możemy to zrobić już w trakcie deklaracji tablicy, dzięki liście inicjalizującej. Dokonuje się tego tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="fl">1.</span>, <span class="fl">1.</span><span class="dv">5</span>, <span class="fl">0.</span>, <span class="fl">-2.</span><span class="dv">7</span>}, {<span class="fl">-3.</span>, <span class="fl">2.</span><span class="dv">5</span>, <span class="fl">7.</span>, <span class="fl">0.</span>}, {<span class="fl">0.</span>, <span class="fl">1.</span>, <span class="fl">-3.</span>, <span class="fl">8.</span>}};</code></pre></div>
+<p>Przypomnijmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania. Kompilator sam o to dba (tak jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy – one też są automatycznie niszczone przez kompilator). Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez zapisanie dwunastu kolejnych linijek przypisań. Możemy to zrobić już w trakcie deklaracji tablicy, dzięki liście inicjalizującej. Dokonuje się tego tak (dla przypomnienia: znak ,,\’’ oznacza, że długa instrukcja będzie kontynuowana w następnej linii):</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="fl">1.</span>, <span class="fl">1.</span><span class="dv">5</span>, <span class="fl">0.</span>, <span class="fl">-2.</span><span class="dv">7</span>},\
+                  {<span class="fl">-3.</span>, <span class="fl">2.</span><span class="dv">5</span>, <span class="fl">7.</span>, <span class="fl">0.</span>},\
+                  {<span class="fl">0.</span>, <span class="fl">1.</span>, <span class="fl">-3.</span>, <span class="fl">8.</span>}};</code></pre></div>
 <p>W ten sposób stworzymy poniższą macierz: <span class="math display">\[
 \mathbf{A} = 
 \left(
@@ -609,7 +611,7 @@ div.tocify {
 \]</span> Pozostaje wytłumaczyć jeszcze, w jaki sposób odwołujemy się do elementów w dwuwymiarowej tablicy. Robimy to analogicznie do tablicy jednowymiarowej, tylko tym razem podajemy dwa indeksy. Wartość pierwszego indeksu to numer wiersza, drugiego – numer kolumny. Przykładowo, do elementu macierzy <span class="math inline">\(a_{32}\)</span> odwołamy się przez napisanie <code>a[2][1]</code>. W ten sposób możemy wyłuskać wartość przechowywaną pod tym elementem lub za pomocą operatora ,,=’’ przypisać temu elementowi nową wartość.</p>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
-<p>W funkcji <code>main()</code> napisz kod, w którym zadeklarujesz i zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe. Jedna ma przechowywać macierz kwadratową o wymiarze <span class="math inline">\(2 x 2\)</span>, a druga macierz kwadratową o wymiarze <span class="math inline">\(3 \times 3\)</span>. Napisz kod, który dla każdej z tych macierzy policzy wyznacznik.</p>
+<p>W funkcji <code>main()</code> napisz kod, w którym zadeklarujesz i zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe. Jedna ma przechowywać macierz kwadratową o wymiarze <span class="math inline">\(2 \times 2\)</span>, a druga macierz kwadratową o wymiarze <span class="math inline">\(3 \times 3\)</span>. Napisz kod, który dla każdej z tych macierzy policzy wyznacznik.</p>
 </div>
 </div>
 <div id="dynamiczna-alokacja-tablic-wielowymiarowych" class="section level1">
@@ -656,19 +658,22 @@ free(A);</code></pre></div>
 <li>jako argumenty przyjmuje: podwójny wskaźnik (wskaźnik do dynamicznie alokowanej tablicy dwuwymiarowej) oraz liczbę kolumn i liczbę wierszy macierzy,</li>
 <li>dokonuje wydruku macierzy na ekran w postaci do jakiej jesteśmy przyzwyczajeni z lekcji algebry.</li>
 </ul></li>
-<li>Napisz funkcję <code>maxElem</code>, która dla zadanej macierzy zwraca do funkcji <code>main</code> największy co do modułu element tej macierzy oraz jego indeksy <span class="math inline">\(i\)</span> i <span class="math inline">\(j\)</span>.</li>
-<li>Napisz w funkcji <code>main</code> kod, który dokona mnożenia macierzy <span class="math inline">\(A\)</span> przez wektor <span class="math inline">\(v1\)</span> a wynik zapisze do wektora <span class="math inline">\(v2\)</span>.</li>
-</ol>
-<p>Mnożenie macierzy przez wektor określone jest wzorem: <span class="math display">\[
+<li>Napisz funkcję <code>maxElem</code>, która dla zadanej macierzy zwraca do funkcji <code>main</code> wartość największego co do modułu elementu tej macierzy oraz jego indeksy <span class="math inline">\(i\)</span> i <span class="math inline">\(j\)</span>.</li>
+<li>Napisz w funkcji <code>main</code> kod, który dokona mnożenia macierzy <span class="math inline">\(A\)</span> przez wektor <span class="math inline">\(v1\)</span> a wynik zapisze do wektora <span class="math inline">\(v2\)</span>. Mnożenie macierzy przez wektor określone jest wzorem: <span class="math display">\[
 w_i = \sum\limits_{j=0}^{m-1}{a_{ij}v_j}
-\]</span> 5. Zamknij powyższe operacje w funkcji o nagłówku</p>
+\]</span></li>
+<li><p>Zamknij powyższe operacje w funkcji o nagłówku</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> matVecMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> *v1, <span class="dt">double</span> *v2, <span class="dt">int</span> n)</code></pre></div>
-<p>i dokonaj wywołania z funkcji <code>main</code>. 6. Zmodyfikuj powyższy program tak, aby rozmiar <span class="math inline">\(n\)</span> był wczytywany z klawiatury. Zaś elementy tablicy były generowane zgodnie ze wzorem <span class="math display">\[
+i dokonaj wywołania z funkcji <code>main</code>.</li>
+<li>Zmodyfikuj powyższy program tak, aby rozmiar <span class="math inline">\(n\)</span> był wczytywany z klawiatury. Zaś elementy tablicy były generowane zgodnie ze wzorem <span class="math display">\[
 a_{ij} = \frac{i+1}{j+1}, (i, j = 0, \ldots, n-1)
 \]</span> a elementy wektora według wzoru <span class="math display">\[
 v_i = i+1, (i = 0,\ldots,n-1)
-\]</span>. Następnie oblicz iloczyn tej macierzy przez ten wektor, korzystając ze swojej funkcji <code>matVecMultiply</code>. Wynik wyświetl na ekranie oraz sprawdź czy jest poprawny<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>. 7. Napisz funkcję</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">matMatMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> **B, <span class="dt">double</span> **C, <span class="dt">int</span> mA, <span class="dt">int</span> nA, <span class="dt">int</span> mB, <span class="dt">int</span> nB)</code></pre></div>
+\]</span> Następnie oblicz iloczyn tej macierzy przez ten wektor, korzystając ze swojej funkcji <code>matVecMultiply</code>. Wynik wyświetl na ekranie oraz sprawdź czy jest poprawny<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</li>
+<li><p>Napisz funkcję</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">matMatMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> **B, <span class="dt">double</span> **C,\
+           <span class="dt">int</span> nA, <span class="dt">int</span> mA, <span class="dt">int</span> nB, <span class="dt">int</span> mB)</code></pre></div></li>
+</ol>
 <p>służącą do mnożenia dwóch macierzy prostokątnych (<span class="math inline">\(\bf{A}\)</span> o wymiarze <span class="math inline">\(n_A \times m_A\)</span> i <span class="math inline">\(\bf{B}\)</span> o wymiarze <span class="math inline">\(n_B \times m_B\)</span>). Wynik powinien być zapisany do macierzy <span class="math inline">\(\bf{C}\)</span>. Zadbaj w funkcji <code>main</code> o to, aby pamięć zaalokowana dla macierzy <span class="math inline">\(\bf{C}\)</span> była odpowiedniej wielkości – zgodnej z regułami mnożenia macierzy. <strong>Uwaga:</strong> Pamiętaj, aby zwolnić dynamicznie alokowaną pamięć<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
 </div>
 </div>
@@ -683,7 +688,7 @@ v_i = i+1, (i = 0,\ldots,n-1)
   
   printf(<span class="st">&quot;Wewn. funkcji initialize:</span><span class="ch">\n</span><span class="st">&quot;</span>);
   <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {
-    printf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, ptr[j]);
+    printf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st"> &quot;</span>, ptr[j]);
   }
   printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
 }
