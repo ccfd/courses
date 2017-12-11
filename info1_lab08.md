@@ -7,7 +7,7 @@ author: B. Górecki
 
 Tydzień temu nauczyliśmy się jak dynamicznie alokować pamięć dla tablicy jednowymiarowej.
 Wyraz ,,dynamicznie'' oznaczał tyle, że rozmiar tablicy, którą chcemy zaalokować, poznamy dopiero w trakcie wykonywania programu i nie jesteśmy w stanie go określić (konkretną liczbą) na etapie kompilacji.
-Kod dokonujący dynamicznej alokacji tablicy jednowymiarowej wyglądał tak:
+Kod dokonujący dynamicznej alokacji tablicy jednowymiarowej wygląda tak:
 ```c++
 #include <stdlib.h>
 
@@ -18,7 +18,7 @@ void main() {
   scanf("%d", &n);
 
   tab = (double *)malloc(n * sizeof(double));
-                                                // operacje na tablicy
+  // ... operacje na tablicy
   free(tab);
 }
 ```
@@ -50,9 +50,11 @@ Przypomnijmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ic
 Kompilator sam o to dba (tak jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy -- one też są automatycznie niszczone przez kompilator).
 Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez zapisanie dwunastu kolejnych linijek przypisań.
 Możemy to zrobić już w trakcie deklaracji tablicy, dzięki liście inicjalizującej.
-Dokonuje się tego tak:
+Dokonuje się tego tak (dla przypomnienia: znak ,,\\'' oznacza, że długa instrukcja będzie kontynuowana w następnej linii):
 ```c++
-double A[3][4] = {{1., 1.5, 0., -2.7}, {-3., 2.5, 7., 0.}, {0., 1., -3., 8.}};
+double A[3][4] = {{1., 1.5, 0., -2.7},\
+                  {-3., 2.5, 7., 0.},\
+                  {0., 1., -3., 8.}};
 ```
 
 W ten sposób stworzymy poniższą macierz:
@@ -72,7 +74,7 @@ W ten sposób możemy wyłuskać wartość przechowywaną pod tym elementem lub 
 
 ### Ćwiczenia
 W funkcji `main()` napisz kod, w którym zadeklarujesz i zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe.
-Jedna ma przechowywać macierz kwadratową o wymiarze $2 x 2$, a druga macierz kwadratową o wymiarze $3 \times 3$.
+Jedna ma przechowywać macierz kwadratową o wymiarze $2 \times 2$, a druga macierz kwadratową o wymiarze $3 \times 3$.
 Napisz kod, który dla każdej z tych macierzy policzy wyznacznik.
 
 # Dynamiczna alokacja tablic wielowymiarowych
@@ -142,9 +144,8 @@ Wypełnij macierz i jeden z wektorów dowolnymi liczbami.
 2. Napisz funkcję `drukujMacierz`, która:
     - jako argumenty przyjmuje: podwójny wskaźnik (wskaźnik do dynamicznie alokowanej tablicy dwuwymiarowej) oraz liczbę kolumn i liczbę wierszy macierzy,
     - dokonuje wydruku macierzy na ekran w postaci do jakiej jesteśmy przyzwyczajeni z lekcji algebry.
-3. Napisz funkcję `maxElem`, która dla zadanej macierzy zwraca do funkcji `main` największy co do modułu element tej macierzy oraz jego indeksy $i$ i $j$.
+3. Napisz funkcję `maxElem`, która dla zadanej macierzy zwraca do funkcji `main` wartość największego co do modułu elementu tej macierzy oraz jego indeksy $i$ i $j$.
 4. Napisz w funkcji `main` kod, który dokona mnożenia macierzy $A$ przez wektor $v1$ a wynik zapisze do wektora $v2$.
-
 Mnożenie macierzy przez wektor określone jest wzorem:
 $$
 w_i = \sum\limits_{j=0}^{m-1}{a_{ij}v_j}
@@ -162,12 +163,13 @@ $$
 a elementy wektora według wzoru
 $$
 v_i = i+1, (i = 0,\ldots,n-1)
-$$.
+$$
 Następnie oblicz iloczyn tej macierzy przez ten wektor, korzystając ze swojej funkcji `matVecMultiply`.
 Wynik wyświetl na ekranie oraz sprawdź czy jest poprawny^[Dla takiej macierzy i takiego wektora łatwo jest wygenerować analityczny wynik. Zapisz sobie małą macierz według zadanego wzoru i odpowiadający wektor a na pewno szybko zauważysz prawidłowość. Będziesz wtedy wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.].
 7. Napisz funkcję
 ```c++
-matMatMultiply(double **A, double **B, double **C, int mA, int nA, int mB, int nB)
+matMatMultiply(double **A, double **B, double **C,\
+               int nA, int mA, int nB, int mB)
 ```
 
 służącą do mnożenia dwóch macierzy prostokątnych ($\bf{A}$ o wymiarze $n_A \times m_A$ i $\bf{B}$ o wymiarze $n_B \times m_B$).
@@ -185,7 +187,7 @@ void initialize_vec_BAD(int *ptr, int N) {
   
   printf("Wewn. funkcji initialize:\n");
   for (int j = 0; j < N; ++j) {
-    printf("%d", ptr[j]);
+    printf("%d ", ptr[j]);
   }
   printf("\n");
 }
