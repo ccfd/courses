@@ -133,5 +133,5 @@ Należy w miarę możliwości wprowadzić lekkie zaburzenia na początku działa
 
 ## Klawiatura
 
-- `kbhit()` -- funkcja zwraca $1$ jeśli naciśnięto jakiś klawisz i $0$ w przeciwnym wypadku
-- `getch()` -- funkcja zwraca kod $ASCI$ klikniętego klawisza (uwaga: dla niektórych klawiszy specjalnych -- np. strzałek, funkcja zwraca dwie wartości; druga wartość odpowiada naciśniętemu klawiszowi)
+- `kbhit()` -- funkcja zwraca $1$ jeśli naciśnięto klawisz klawiatury i $0$ w przeciwnym wypadku
+- `getch()` -- funkcja zwraca kod $ASCI$ klikniętego klawisza
