@@ -573,24 +573,24 @@ div.tocify {
 <p>Program powinien:</p>
 <ul>
 <li>Otwierać okno graficzne o wymiarach <span class="math inline">\(800 \times 600\)</span>.</li>
-<li>Rysować zamek, który będzie ostrzeliwany (kod funkcji rysującej zamek możesz znaleźć na końcu instrukcji).</li>
-<li>W pętli:
+<li>W pętli głównej:
 <ul>
-<li>wczytywać z klawiatury wartość prędkości wylotowej kuli <span class="math inline">\(V_0\)</span>, kąta odchylenia lufy od poziomu <span class="math inline">\(\alpha\)</span> oraz położenie armaty na osi <span class="math inline">\(x\)</span> (wylot armaty zawsze ma się znajdować <span class="math inline">\(50\)</span> pikseli powyżej poziomu ziemi).</li>
-<li>ustawiać i rysować schematycznie armatę jako jedną linię (należy sprawdzać czy w danym miejscu da się postawić armatę – mur zamku znajduje się w obszarze <span class="math inline">\(x \geq 550\)</span> (dla uproszczenia radzimy rysować armatę, jako linię o górnym wierzchołku w punkcie <span class="math inline">\((x, 50)\)</span> i dolnym wierzchołku zależnym od kąta wychylenia).</li>
-<li>wykonywać strzał kulą i rysować jej tor za pomocą gęsto rozłożonych okręgów o małym promieniu – użyj funkcji <code>animate()()</code> w celu uzyskania efektu płynnego ruchu kuli (przykład użycia funkcji <code>animate()</code> na końcu instrukcji). Tor rzutu ukośnego zadany jest wzorami: <span class="math display">\[
-x(t) = x_0 + V_0 sin(\alpha)t
+<li>wczytywać z klawiatury wartość prędkości wylotowej kuli <span class="math inline">\(V_0\)</span>, kąta odchylenia lufy od poziomu <span class="math inline">\(\alpha\)</span> oraz położenia armaty na osi <span class="math inline">\(x\)</span> (wylot armaty zawsze ma się znajdować <span class="math inline">\(50\)</span> pikseli powyżej poziomu ziemi).</li>
+<li>ustawiać i rysować schematycznie armatę jako linię (należy sprawdzać czy w danym miejscu da się postawić armatę – mur zamku znajduje się w obszarze <span class="math inline">\(x \geq 550\)</span> (dla uproszczenia radzimy rysować armatę, jako linię o górnym wierzchołku w punkcie <span class="math inline">\((x, 50)\)</span> i dolnym wierzchołku zależnym od kąta wychylenia).</li>
+<li>w wenętrznej pętli służącej do animacji strzału:
+<ul>
+<li>rysować zamek, który będzie ostrzeliwany (kod funkcji rysującej zamek możesz znaleźć na końcu instrukcji).</li>
+<li>wykonywać strzał kulą i rysować jej tor za pomocą gęsto rozłożonych okręgów o małym promieniu (użyj funkcji <code>animate()</code> w celu uzyskania efektu płynnego ruchu kuli – przykład użycia funkcji <code>animate()</code> znajdziesz na końcu instrukcji).<br />
+Tor rzutu ukośnego zadany jest wzorami: <span class="math display">\[
+x(t) = x_0 + V_0 \cos(\alpha)t
 \]</span> <span class="math display">\[
-y(t) = y_0 + V_0 cos(\alpha)t - \frac{gt^2}{2}.
-\]</span> Program powinien sprawdzać w pętli czy kula nie uderzyła w pierwszą, pionową ścianę zamku. Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu. W przeciwnym razie, program ma tak długo rysować ruch kuli, aż ta znajdzie się poniżej poziomu ziemii. Ściana zamku zawiera się w przedziale <span class="math inline">\(550 \leq x \leq 600\)</span> a jej górna powierzchnia ma współrzędną <span class="math inline">\(y = 300\)</span>.<br />
+y(t) = y_0 + V_0 \sin(\alpha)t - \frac{gt^2}{2}.
+\]</span> Program powinien sprawdzać w wewnętrznej pętli czy kula nie uderzyła w pierwszą, pionową ścianę zamku. Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu. W przeciwnym razie, program ma tak długo rysować ruch kuli, aż ta znajdzie się poniżej poziomu ziemi. Ściana zamku zawiera się w przedziale <span class="math inline">\(550 \leq x \leq 600\)</span> a jej górna powierzchnia ma współrzędną <span class="math inline">\(y = 300\)</span>.<br />
 Pamiętaj o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędną w układzie współrzędnych ekranu oraz przeliczeniu kąta podawanego w stopniach na kąt podany w radianach na potrzeby funkcji trygonometrycznych.</li>
-<li>zapytać, po wykonanym strzale, czy udało się trafić w zamek. Jeśli odpowiesz twierdząco, program powinien zakończyć działanie. Jeśli przecząco, program powinien pozwolić wybrać nowe parametry i pownowny strzał.</li>
+</ul></li>
+<li>zapytać, po wykonanym strzale, czy udało się trafić w zamek. Jeśli odpowiesz twierdząco, program powinien wyjść z pętli głównej i zakończyć działanie. Jeśli przecząco, program powinien pozwolić wybrać nowe parametry i pownowny strzał.</li>
 </ul></li>
 </ul>
-<div id="wskazowka" class="section level2">
-<h2>Wskazówka</h2>
-<p>W niniejszym programie nie musisz używać funkcji <code>wait()</code>. Program z dalszym wykonaniem będzie czekać na podanie nowego zestawu danych do funkcji <code>scanf()</code>.</p>
-</div>
 <div id="oczekiwany-wynik" class="section level2">
 <h2>Oczekiwany wynik</h2>
 <p>Spodziewamy się, że wynikiem działania Twojego programu będzie rysynek zbliżony do poniższego:</p>
@@ -598,23 +598,8 @@ Pamiętaj o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędn
 </div>
 <div id="dodatki" class="section level2">
 <h2>Dodatki</h2>
-<p>Funkcja <code>animate()</code> tak naprawdę jedynie spowalnia wykonywanie pętli <code>while</code> tak, aby kółka nie rysowały się zbyt szybko. Przykład jej użycia wygląda następująco:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/*</span>
-<span class="co">  wartosc 0 oznacza najszybsze mozliwe</span>
-<span class="co">  wykonanie (brak opoznienia)</span>
-<span class="co">*/</span>
-
-<span class="kw">while</span>(animate(<span class="dv">100</span>)) {
-
-  <span class="co">// Oblicz tu nowe wspolrzedne x i y</span>
-  <span class="co">// Narysuj okrag w odpowiednim miejscu</span>
-  <span class="co">// Zwieksz parametr t</span>
-  <span class="co">// Zawrzyj warunek przerwania petli, gdy kula uderza</span>
-  <span class="co">// w sciane lub spada na ziemie</span>
-
-}
-
-<span class="dt">void</span> RysujZamek() {
+<p>Funkcja rysująca zamek:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> RysujZamek() {
   line(<span class="dv">550</span>, <span class="dv">300</span>, <span class="dv">550</span>, <span class="dv">600</span>);
   line(<span class="dv">550</span>, <span class="dv">300</span>, <span class="dv">600</span>, <span class="dv">300</span>);
   line(<span class="dv">600</span>, <span class="dv">300</span>, <span class="dv">600</span>, <span class="dv">500</span>);
@@ -626,6 +611,27 @@ Pamiętaj o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędn
   line(<span class="dv">760</span>, <span class="dv">400</span>, <span class="dv">740</span>, <span class="dv">400</span>);
   line(<span class="dv">740</span>, <span class="dv">400</span>, <span class="dv">740</span>, <span class="dv">500</span>);
   line(<span class="dv">740</span>, <span class="dv">500</span>, <span class="dv">800</span>, <span class="dv">500</span>);
+}</code></pre></div>
+<p>Funkcja <code>animate()</code> tak naprawdę jedynie spowalnia wykonywanie pętli <code>while</code> tak, aby kółka nie rysowały się zbyt szybko. Argument funkcji to wartość mówiąca o liczbie wykonań ciała pętli w ciągu sekundy. Uwaga: wartość zero mówi o wykonaniu ciała pętli bez opóźnienia.</p>
+<p>Przykład jej użycia w naszym programie wygląda następująco:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">while</span>(<span class="dv">1</span>) {                     <span class="co">// petla glowna</span>
+
+  <span class="co">// wczytaj x0, V0 i kat alpha</span>
+
+  <span class="kw">while</span>(animate(<span class="dv">100</span>)) {        <span class="co">// petla animujaca lot kuli</span>
+  
+    <span class="co">// narysuj zamek i armate</span>
+    <span class="co">// oblicz nowe wspolrzedne x i y</span>
+    <span class="co">// narysuj okrag w odpowiednim miejscu</span>
+    <span class="co">// zwieksz parametr t</span>
+    <span class="co">// zawrzyj warunek przerwania petli animujacej,</span>
+    <span class="co">// gdy kula uderza w sciane lub spada na ziemie</span>
+  
+  }
+  
+  <span class="co">// zapytaj czy kula trafila w mur i jesli tak</span>
+  <span class="co">// wyjdz z petli glownej</span>
+  
 }</code></pre></div>
 </div>
 </div>
