@@ -13,30 +13,27 @@ Twoim zadaniem będzie napisanie programu, który będzie symulował ostrzał za
 Program powinien:
 
 - Otwierać okno graficzne o wymiarach $800 \times 600$.
-- Rysować zamek, który będzie ostrzeliwany (kod funkcji rysującej zamek możesz znaleźć na końcu instrukcji).
-- W pętli:
-    - wczytywać z klawiatury wartość prędkości wylotowej kuli $V_0$, kąta odchylenia lufy od poziomu $\alpha$ oraz położenie armaty na osi $x$ (wylot armaty zawsze ma się znajdować $50$ pikseli powyżej poziomu ziemi).
-    - ustawiać i rysować schematycznie armatę jako jedną linię (należy sprawdzać czy w danym miejscu da się postawić armatę -- mur zamku znajduje się w obszarze $x \geq 550$ (dla uproszczenia radzimy rysować armatę, jako linię o górnym wierzchołku w punkcie $(x, 50)$ i dolnym wierzchołku zależnym od kąta wychylenia).
-    - wykonywać strzał kulą i rysować jej tor za pomocą gęsto rozłożonych okręgów o małym promieniu -- użyj funkcji `animate()()` w celu uzyskania efektu płynnego ruchu kuli (przykład użycia funkcji `animate()` na końcu instrukcji).
-    Tor rzutu ukośnego zadany jest wzorami:
+- W pętli głównej:
+    - wczytywać z klawiatury wartość prędkości wylotowej kuli $V_0$, kąta odchylenia lufy od poziomu $\alpha$ oraz położenia armaty na osi $x$ (wylot armaty zawsze ma się znajdować $50$ pikseli powyżej poziomu ziemi).
+    - ustawiać i rysować schematycznie armatę jako linię (należy sprawdzać czy w danym miejscu da się postawić armatę -- mur zamku znajduje się w obszarze $x \geq 550$ (dla uproszczenia radzimy rysować armatę, jako linię o górnym wierzchołku w punkcie $(x, 50)$ i dolnym wierzchołku zależnym od kąta wychylenia).
+    - w wenętrznej pętli służącej do animacji strzału:
+        - rysować zamek, który będzie ostrzeliwany (kod funkcji rysującej zamek możesz znaleźć na końcu instrukcji).
+        - wykonywać strzał kulą i rysować jej tor za pomocą gęsto rozłożonych okręgów o małym promieniu (użyj funkcji `animate()` w celu uzyskania efektu płynnego ruchu kuli -- przykład użycia funkcji `animate()` znajdziesz na końcu instrukcji).  
+        Tor rzutu ukośnego zadany jest wzorami:
 $$
-x(t) = x_0 + V_0 sin(\alpha)t
+x(t) = x_0 + V_0 \cos(\alpha)t
 $$
 $$
-y(t) = y_0 + V_0 cos(\alpha)t - \frac{gt^2}{2}.
+y(t) = y_0 + V_0 \sin(\alpha)t - \frac{gt^2}{2}.
 $$
-Program powinien sprawdzać w pętli czy kula nie uderzyła w pierwszą, pionową ścianę zamku.
+Program powinien sprawdzać w wewnętrznej pętli czy kula nie uderzyła w pierwszą, pionową ścianę zamku.
 Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu.
-W przeciwnym razie, program ma tak długo rysować ruch kuli, aż ta znajdzie się poniżej poziomu ziemii.
+W przeciwnym razie, program ma tak długo rysować ruch kuli, aż ta znajdzie się poniżej poziomu ziemi.
 Ściana zamku zawiera się w przedziale $550 \leq x \leq 600$ a jej górna powierzchnia ma współrzędną $y = 300$.  
 Pamiętaj o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędną w układzie współrzędnych ekranu oraz przeliczeniu kąta podawanego w stopniach na kąt podany w radianach na potrzeby funkcji trygonometrycznych.
     - zapytać, po wykonanym strzale, czy udało się trafić w zamek.
-    Jeśli odpowiesz twierdząco, program powinien zakończyć działanie.
+    Jeśli odpowiesz twierdząco, program powinien wyjść z pętli głównej i zakończyć działanie.
     Jeśli przecząco, program powinien pozwolić wybrać nowe parametry i pownowny strzał.
-
-## Wskazówka
-W niniejszym programie nie musisz używać funkcji `wait()`.
-Program z dalszym wykonaniem będzie czekać na podanie nowego zestawu danych do funkcji `scanf()`.
 
 ## Oczekiwany wynik
 Spodziewamy się, że wynikiem działania Twojego programu będzie rysynek zbliżony do poniższego:
@@ -48,31 +45,26 @@ lines(c(0, 400, 400, 0, 0), c(0, 0, 300, 300, 0))
 lines(c(275, 275, 275, 300, 300, 300, 300, 330, 330, 330, 330, 320, 320, 350, 350, 380, 380, 370, 370, 370, 370, 400),
       c(150, 0, 150, 150, 150, 50, 50, 50, 50, 100, 100, 100, 100, 125, 125, 100, 100, 100, 100, 50, 50, 50))
 lines(c(10, 60), c(0,50))
+
 t <- seq(0, 5.3, len = 80)
 ball_x <- 60 + 40 * t
 ball_y <- 50 + 40 * t - 5 * t ^2
 lines(ball_x, ball_y, type = "p", pch = 1)
+
+t <- seq(0, 5.6, len = 80)
+ball_x <- 60 + 20 * t
+ball_y <- 50 + 20 * t - 5 * t ^2
+lines(ball_x, ball_y, type = "p", pch = 1)
+
+t <- seq(0, 6.9, len = 80)
+ball_x <- 60 + 28 * t
+ball_y <- 50 + 28 * t - 5 * t ^2
+lines(ball_x, ball_y, type = "p", pch = 1)
 ```
 
 ## Dodatki
-Funkcja `animate()` tak naprawdę jedynie spowalnia wykonywanie pętli `while` tak, aby kółka nie rysowały się zbyt szybko.
-Przykład jej użycia wygląda następująco:
+Funkcja rysująca zamek:
 ```c++
-/*
-  wartosc 0 oznacza najszybsze mozliwe
-  wykonanie (brak opoznienia)
-*/
-
-while(animate(100)) {
-
-  // Oblicz tu nowe wspolrzedne x i y
-  // Narysuj okrag w odpowiednim miejscu
-  // Zwieksz parametr t
-  // Zawrzyj warunek przerwania petli, gdy kula uderza
-  // w sciane lub spada na ziemie
-
-}
-
 void RysujZamek() {
   line(550, 300, 550, 600);
   line(550, 300, 600, 300);
@@ -85,5 +77,32 @@ void RysujZamek() {
   line(760, 400, 740, 400);
   line(740, 400, 740, 500);
   line(740, 500, 800, 500);
+}
+```
+
+Funkcja `animate()` tak naprawdę jedynie spowalnia wykonywanie pętli `while` tak, aby kółka nie rysowały się zbyt szybko.
+Argument funkcji to wartość mówiąca o liczbie wykonań ciała pętli w ciągu sekundy.
+Uwaga: wartość zero mówi o wykonaniu ciała pętli bez opóźnienia.
+
+Przykład jej użycia w naszym programie wygląda następująco:
+```c++
+while(1) {                     // petla glowna
+
+  // wczytaj x0, V0 i kat alpha
+
+  while(animate(100)) {        // petla animujaca lot kuli
+  
+    // narysuj zamek i armate
+    // oblicz nowe wspolrzedne x i y
+    // narysuj okrag w odpowiednim miejscu
+    // zwieksz parametr t
+    // zawrzyj warunek przerwania petli animujacej,
+    // gdy kula uderza w sciane lub spada na ziemie
+  
+  }
+  
+  // zapytaj czy kula trafila w mur i jesli tak
+  // wyjdz z petli glownej
+  
 }
 ```
