@@ -577,7 +577,7 @@ div.tocify {
 <ul>
 <li>wczytywać z klawiatury wartość prędkości wylotowej kuli <span class="math inline">\(V_0\)</span>, kąta odchylenia lufy od poziomu <span class="math inline">\(\alpha\)</span> oraz położenia armaty na osi <span class="math inline">\(x\)</span> (wylot armaty zawsze ma się znajdować <span class="math inline">\(50\)</span> pikseli powyżej poziomu ziemi).</li>
 <li>ustawiać i rysować schematycznie armatę jako linię (należy sprawdzać czy w danym miejscu da się postawić armatę – mur zamku znajduje się w obszarze <span class="math inline">\(x \geq 550\)</span> (dla uproszczenia radzimy rysować armatę, jako linię o górnym wierzchołku w punkcie <span class="math inline">\((x, 50)\)</span> i dolnym wierzchołku zależnym od kąta wychylenia).</li>
-<li>w wenętrznej pętli służącej do animacji strzału:
+<li>w wewnętrznej pętli służącej do animacji strzału:
 <ul>
 <li>rysować zamek, który będzie ostrzeliwany (kod funkcji rysującej zamek możesz znaleźć na końcu instrukcji).</li>
 <li>wykonywać strzał kulą i rysować jej tor za pomocą gęsto rozłożonych okręgów o małym promieniu (użyj funkcji <code>animate()</code> w celu uzyskania efektu płynnego ruchu kuli – przykład użycia funkcji <code>animate()</code> znajdziesz na końcu instrukcji).<br />
@@ -588,12 +588,12 @@ y(t) = y_0 + V_0 \sin(\alpha)t - \frac{gt^2}{2}.
 \]</span> Program powinien sprawdzać w wewnętrznej pętli czy kula nie uderzyła w pierwszą, pionową ścianę zamku. Jeśli tak, kula ma się na niej zatrzymać, a pętla ulec przerwaniu. W przeciwnym razie, program ma tak długo rysować ruch kuli, aż ta znajdzie się poniżej poziomu ziemi. Ściana zamku zawiera się w przedziale <span class="math inline">\(550 \leq x \leq 600\)</span> a jej górna powierzchnia ma współrzędną <span class="math inline">\(y = 300\)</span>.<br />
 Pamiętaj o przeliczeniu współrzędnych fizycznych (pionowej) na współrzędną w układzie współrzędnych ekranu oraz przeliczeniu kąta podawanego w stopniach na kąt podany w radianach na potrzeby funkcji trygonometrycznych.</li>
 </ul></li>
-<li>zapytać, po wykonanym strzale, czy udało się trafić w zamek. Jeśli odpowiesz twierdząco, program powinien wyjść z pętli głównej i zakończyć działanie. Jeśli przecząco, program powinien pozwolić wybrać nowe parametry i pownowny strzał.</li>
+<li>zapytać, po wykonanym strzale, czy udało się trafić w zamek. Jeśli odpowiesz twierdząco, program powinien wyjść z pętli głównej i zakończyć działanie. Jeśli przecząco, program powinien pozwolić wybrać nowe parametry i ponowny strzał.</li>
 </ul></li>
 </ul>
 <div id="oczekiwany-wynik" class="section level2">
 <h2>Oczekiwany wynik</h2>
-<p>Spodziewamy się, że wynikiem działania Twojego programu będzie rysynek zbliżony do poniższego:</p>
+<p>Spodziewamy się, że wynikiem działania Twojego programu będzie rysunek zbliżony do poniższego:</p>
 <p><img src="info1_lab09_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="dodatki" class="section level2">
