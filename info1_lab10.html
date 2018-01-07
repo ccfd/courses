@@ -578,7 +578,7 @@ div.tocify {
 <p>Trójkąt Sierpińskiego można stworzyć na różne sposoby. My wykorzystamy <strong>rekurencję</strong>.</p>
 <div id="rekurencyjne-wywoywanie-funkcji" class="section level2">
 <h2>Rekurencyjne wywoływanie funkcji</h2>
-<p>Rekurencyjne wywoływanie funkcji polega na tym, że dana funkcja wywołuje samą siebie. Jak łatwo się domyśleć, takie wywoływanie trwałoby w nieskończoność. Aby tego uniknąć, nakłada się warunek na wywołanie funkcji.</p>
+<p>Rekurencyjne wywoływanie funkcji polega na tym, że dana funkcja wywołuje samą siebie. Jak łatwo się domyślić, takie wywoływanie trwałoby w nieskończoność. Aby tego uniknąć, nakłada się warunek na wywołanie funkcji.</p>
 <p>Cały mechanizm, ilustruje to poniższy przykład:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> recursiveDraw(<span class="dt">double</span> x, <span class="dt">double</span> y, <span class="dt">double</span> R) {
   circle(x, y, R);
@@ -593,24 +593,24 @@ div.tocify {
 <h3>Ćwiczenia</h3>
 <p>Napisz funkcję <code>sierpinski(x, y, d, n)</code>, która:</p>
 <ol style="list-style-type: decimal">
-<li>Dla <span class="math inline">\(n = 1\)</span> tworzy trójkąt równoboczny o wysokości <span class="math inline">\(d\)</span> oraz lewym dolnym wierzchołku w punkcie <span class="math inline">\((x, y)\)</span></li>
-<li>Dla <span class="math inline">\(n &gt; 1\)</span> wywoła trzy razy funkcję <code>sierpinski()</code> z:
+<li>Dla <span class="math inline">\(n = 1\)</span> rysuje trójkąt równoboczny o wysokości <span class="math inline">\(d\)</span> oraz lewym dolnym wierzchołku w punkcie <span class="math inline">\((x, y)\)</span></li>
+<li>Dla <span class="math inline">\(n &gt; 1\)</span> wywołuje trzy razy funkcję <code>sierpinski()</code> z:
 <ul>
 <li>odpowiednio zmienionymi współrzędnymi <span class="math inline">\((x, y)\)</span>,</li>
 <li>dwa razy zmniejszonym <span class="math inline">\(d\)</span>,</li>
 <li>głębokością <span class="math inline">\(n - 1\)</span>.</li>
 </ul></li>
-<li>Na początku funkcji umieść wywołanie <code>animate()</code> i zobacz w jakiej kolejności rysowane są trójkąty.</li>
+<li>Na początku funkcji umieść instrukcję <code>animate()</code> w celu spowolnienia rysowania i zobacz w jakiej kolejności powstają kolejne trójkąty.</li>
 </ol>
 </div>
 </div>
 </div>
 <div id="zbior-julii-zbior-mandelbrota" class="section level1">
 <h1>Zbiór Julii, zbiór Mandelbrota</h1>
-<p>Wyobraźmy sobie ciąg liczb zespolonych takich, że każdy wyraz zależy od poprzedniego zgodnie ze wzorem: <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>. Taki ciąg ma bardzo nietypowe własności. Między innymi, jego rozbieżność zależy w bardzo złożony sposób od wyrazu początkowego <span class="math inline">\(z_0\)</span> i stałej <span class="math inline">\(c\)</span>. Zbiór takich <span class="math inline">\(z_0\)</span>, dla których ciąg ten nie jest rozbieżny nazwany został zbiorem <em>Julii</em> (zależy on od <span class="math inline">\(c\)</span>). Zaś zbiór takich <span class="math inline">\(c\)</span> (dla <span class="math inline">\(z_0 = 0\)</span>) – zbiorem <em>Mandelbrota</em>.</p>
+<p>Wyobraźmy sobie ciąg liczb zespolonych takich, że każdy wyraz zależy od poprzedniego zgodnie ze wzorem: <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>. Taki ciąg ma nietypowe własności. Między innymi, jego rozbieżność zależy w bardzo złożony sposób od wyrazu początkowego <span class="math inline">\(z_0\)</span> i stałej <span class="math inline">\(c\)</span>. Zbiór takich <span class="math inline">\(z_0\)</span>, dla których ciąg ten nie jest rozbieżny nazwany został zbiorem <em>Julii</em> (zależy on od <span class="math inline">\(c\)</span>). Zaś zbiór takich <span class="math inline">\(c\)</span>, dla których ciąg ten nie jest rozbieżny oraz <span class="math inline">\(z_0 = 0\)</span> – zbiorem <em>Mandelbrota</em>.</p>
 <div id="mapa-kolorow" class="section level2">
 <h2>Mapa kolorów</h2>
-<p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [-4, 4]\)</span> i <span class="math inline">\(y \in [-3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span>.</p>
+<p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [-4, 4]\)</span> i <span class="math inline">\(y \in [-3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span> dla tych współrzędnych.</p>
 <p>Funkcja <code>setcolor()</code> jako argument przyjmuje liczbę z przedziału od <span class="math inline">\(0\)</span> do <span class="math inline">\(1\)</span> i ustawia kolor rysowania.</p>
 <p>Przeanalizuj poniższy program:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> fun(<span class="dt">double</span> x, <span class="dt">double</span> y) {
@@ -621,7 +621,7 @@ div.tocify {
   <span class="dt">double</span> r;
   <span class="dt">int</span> i, j;
   
-  graphics(<span class="dv">810</span>, <span class="dv">610</span>);
+  graphics(<span class="dv">800</span>, <span class="dv">600</span>);
   
   <span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">800</span>; i++)
     <span class="kw">for</span>(j = <span class="dv">0</span>; j &lt; <span class="dv">600</span>; j++) {
@@ -635,11 +635,20 @@ div.tocify {
 </div>
 <div id="rozbieznosc" class="section level2">
 <h2>Rozbieżność</h2>
-<p>Stwórz funkcję <code>divergence(zR, zC, cR, cC)</code>, która wyznacza elementy ciągu <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>, gdzie <span class="math inline">\(z_0 = zR + zC \cdot i\)</span>, zaś <span class="math inline">\(c = cR + cC \cdot i\)</span>. Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której <span class="math inline">\(|z_n| &gt; 2\)</span> podzieloną przez <span class="math inline">\(600\)</span>. Za maksymalną liczbę iteracji przyjmij <span class="math inline">\(600\)</span>. Jeżeli ciąg jest zbieżny (tzn. po <span class="math inline">\(600\)</span> iteracjach nadal <span class="math inline">\(|z_n| &lt; 2\)</span>), niech funkcja zwraca <span class="math inline">\(0\)</span>. <strong>Przypomnienie:</strong> Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że <span class="math inline">\(i^2 = -1\)</span>.</p>
+<p>Napisz funkcję <code>divergence(zR, zI, cR, cI)</code>, która sprawdza czy ciąg opisany równaniem <span class="math display">\[
+\left\{
+\begin{array}{l}
+z_0 = zR + zI \cdot i \\
+z_{n+1} = z_n^2 + c \\
+c = cR + cI \cdot i 
+\end{array}
+\right.
+\]</span> jest zbieżny.</p>
+<p>Przyjmij, że maksymalna liczba iteracji to <span class="math inline">\(600\)</span>. Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której <span class="math inline">\(|z_n| &gt; 2\)</span> podzieloną przez <span class="math inline">\(600\)</span>. Jeżeli ciąg jest zbieżny (tzn. po <span class="math inline">\(600\)</span> iteracjach nadal <span class="math inline">\(|z_n| &lt; 2\)</span>), niech funkcja zwraca <span class="math inline">\(0\)</span>. <strong>Przypomnienie:</strong> Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że <span class="math inline">\(i^2 = -1\)</span>.</p>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
-<li>Pokoloruj piksele tak jak w poprzednim podpunkcie, zgodnie z <code>divergence(x, y, -0.3, 0.63)</code> (możesz umieścić to wywołanie wewnątrz <code>fun(x, y)</code> albo bezpośrednio wpisać jego wynik do zmiennej <span class="math inline">\(r\)</span>).</li>
+<li>Pokoloruj piksele, tak jak w przykładzie z funkcją <span class="math inline">\(\sin()\)</span>, wywołując <code>divergence(x, y, -0.3, 0.63)</code>. Dla ułatwienia, wywołanie to możesz umieścić wewnątrz <code>fun(x, y)</code> albo bezpośrednio wpisać jego wynik do zmiennej <span class="math inline">\(r\)</span>.</li>
 <li>Zobacz, jak wygląda zbiór dla innych <span class="math inline">\(c\)</span>, np <span class="math inline">\(c = -0.1 + 0.65 \cdot i\)</span>, <span class="math inline">\(c = 0\)</span>, <span class="math inline">\(c = 1\)</span>, zmieniając liczbę iteracji jeśli zajdzie potrzeba.</li>
 <li>Pokoloruj piksele zgodnie z <code>divergence(0, 0, x, y)</code>. Powinieneś otrzymać zbiór <em>Mandelbrota</em>.</li>
 <li>Zmodyfikuj funkcję tak, aby zwracała logarytm z liczby iteracji.</li>
@@ -654,7 +663,7 @@ div.tocify {
 <div id="cwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
-<li>Stwórz funkcję <code>fun2(x, y)</code>, która liczy średnią wartość funkcji <code>fun</code> w czterech punktach: <span class="math inline">\((x, y)\)</span>, <span class="math inline">\((x + s, y)\)</span>, <span class="math inline">\((x, y + s)\)</span> i <span class="math inline">\((x + s, y + s)\)</span>, gdzie <span class="math inline">\(s = 1/800\)</span>. Pokoloruj piksele za jej pomocą.</li>
+<li>Stwórz funkcję <code>fun2(x, y)</code>, która oblicza średnią wartość funkcji <code>fun</code> w czterech punktach: <span class="math inline">\((x, y)\)</span>, <span class="math inline">\((x + s, y)\)</span>, <span class="math inline">\((x, y + s)\)</span> i <span class="math inline">\((x + s, y + s)\)</span>, gdzie <span class="math inline">\(s = 1/800\)</span>. Pokoloruj piksele za jej pomocą.</li>
 <li>Pokoloruj połowę obrazu z antyaliasingiem, a połowę bez (Np. zbiór Julii dla <span class="math inline">\(c = -0.1 + 0.65 \cdot i\)</span>). Czy widać różnicę?</li>
 <li>* Spróbuj uogólnić technikę z <span class="math inline">\(k = 2\)</span> na dowolne <span class="math inline">\(k\)</span>.</li>
 <li>* Zamiast średniej oblicz maksimum lub minimum.</li>
