@@ -20,7 +20,7 @@ My wykorzystamy **rekurencję**.
 ## Rekurencyjne wywoływanie funkcji
 
 Rekurencyjne wywoływanie funkcji polega na tym, że dana funkcja wywołuje samą siebie.
-Jak łatwo się domyśleć, takie wywoływanie trwałoby w nieskończoność.
+Jak łatwo się domyślić, takie wywoływanie trwałoby w nieskończoność.
 Aby tego uniknąć, nakłada się warunek na wywołanie funkcji.
 
 Cały mechanizm, ilustruje to poniższy przykład:
@@ -44,26 +44,26 @@ Funkcję taką można napisać zauważając, że trójkąt o głębokości $n$ s
 
 Napisz funkcję `sierpinski(x, y, d, n)`, która:
 
-1. Dla $n = 1$ tworzy trójkąt równoboczny o wysokości $d$ oraz lewym dolnym wierzchołku w punkcie $(x, y)$
-2. Dla $n > 1$ wywoła trzy razy funkcję `sierpinski()` z:
+1. Dla $n = 1$ rysuje trójkąt równoboczny o wysokości $d$ oraz lewym dolnym wierzchołku w punkcie $(x, y)$
+2. Dla $n > 1$ wywołuje trzy razy funkcję `sierpinski()` z:
     - odpowiednio zmienionymi współrzędnymi $(x, y)$,
     - dwa razy zmniejszonym $d$,
     - głębokością $n - 1$.
-3. Na początku funkcji umieść wywołanie `animate()` i zobacz w jakiej kolejności rysowane są trójkąty.
+3. Na początku funkcji umieść instrukcję `animate()` w celu spowolnienia rysowania i zobacz w jakiej kolejności powstają kolejne trójkąty.
 
 # Zbiór Julii, zbiór Mandelbrota
 
 Wyobraźmy sobie ciąg liczb zespolonych takich, że każdy wyraz zależy od poprzedniego zgodnie ze wzorem: $z_{n+1} = z_n^2 + c$.
-Taki ciąg ma bardzo nietypowe własności.
+Taki ciąg ma nietypowe własności.
 Między innymi, jego rozbieżność zależy w bardzo złożony sposób od wyrazu początkowego $z_0$ i stałej $c$.
 Zbiór takich $z_0$, dla których ciąg ten nie jest rozbieżny nazwany został zbiorem *Julii* (zależy on od $c$).
-Zaś zbiór takich $c$ (dla $z_0 = 0$) -- zbiorem *Mandelbrota*.
+Zaś zbiór takich $c$, dla których ciąg ten nie jest rozbieżny oraz $z_0 = 0$ -- zbiorem *Mandelbrota*.
 
 ## Mapa kolorów
 
 Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli.
 Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie $x \in [-4, 4]$ i $y \in [-3, 3]$.
-Używając funkcji `setcolor()`, możemy narysować wykres funkcji $\sin(x^2 + y^2)$.
+Używając funkcji `setcolor()`, możemy narysować wykres funkcji $\sin(x^2 + y^2)$ dla tych współrzędnych.
 
 Funkcja `setcolor()` jako argument przyjmuje liczbę z przedziału od $0$ do $1$ i ustawia kolor rysowania.
 
@@ -77,7 +77,7 @@ void main() {
   double r;
   int i, j;
   
-  graphics(810, 610);
+  graphics(800, 600);
   
   for(i = 0; i < 800; i++)
     for(j = 0; j < 600; j++) {
@@ -92,15 +92,26 @@ void main() {
 
 ## Rozbieżność
 
-Stwórz funkcję `divergence(zR, zC, cR, cC)`, która wyznacza elementy ciągu $z_{n+1} = z_n^2 + c$, gdzie $z_0 = zR + zC \cdot i$, zaś $c = cR + cC \cdot i$.
+Napisz funkcję `divergence(zR, zI, cR, cI)`, która sprawdza czy ciąg opisany równaniem
+$$
+\left\{
+\begin{array}{l}
+z_0 = zR + zI \cdot i \\
+z_{n+1} = z_n^2 + c \\
+c = cR + cI \cdot i 
+\end{array}
+\right.
+$$
+jest zbieżny.
+
+Przyjmij, że maksymalna liczba iteracji to $600$.
 Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której $|z_n| > 2$ podzieloną przez $600$.
-Za maksymalną liczbę iteracji przyjmij $600$.
 Jeżeli ciąg jest zbieżny (tzn. po $600$ iteracjach nadal $|z_n| < 2$), niech funkcja zwraca $0$.
 **Przypomnienie:** Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że $i^2 = -1$.
 
 ### Ćwiczenia
 
-- Pokoloruj piksele tak jak w poprzednim podpunkcie, zgodnie z `divergence(x, y, -0.3, 0.63)` (możesz umieścić to wywołanie wewnątrz `fun(x, y)` albo bezpośrednio wpisać jego wynik do zmiennej $r$).
+- Pokoloruj piksele, tak jak w przykładzie z funkcją $\sin()$, wywołując `divergence(x, y, -0.3, 0.63)`. Dla ułatwienia, wywołanie to możesz umieścić wewnątrz `fun(x, y)` albo bezpośrednio wpisać jego wynik do zmiennej $r$.
 - Zobacz, jak wygląda zbiór dla innych $c$, np $c = -0.1 + 0.65 \cdot i$, $c = 0$, $c = 1$, zmieniając liczbę iteracji jeśli zajdzie potrzeba.
 - Pokoloruj piksele zgodnie z `divergence(0, 0, x, y)`.
 Powinieneś otrzymać zbiór *Mandelbrota*.
@@ -126,7 +137,7 @@ Taki zabieg wygładzi obraz i usunie ,,odstające'' piksele.
 
 ### Ćwiczenia
 
-- Stwórz funkcję `fun2(x, y)`, która liczy średnią wartość funkcji `fun` w czterech punktach: $(x, y)$, $(x + s, y)$, $(x, y + s)$ i $(x + s, y + s)$, gdzie $s = 1/800$.
+- Stwórz funkcję `fun2(x, y)`, która oblicza średnią wartość funkcji `fun` w czterech punktach: $(x, y)$, $(x + s, y)$, $(x, y + s)$ i $(x + s, y + s)$, gdzie $s = 1/800$.
 Pokoloruj piksele za jej pomocą.
 - Pokoloruj połowę obrazu z antyaliasingiem, a połowę bez
 (Np. zbiór Julii dla $c = -0.1 + 0.65 \cdot i$).
