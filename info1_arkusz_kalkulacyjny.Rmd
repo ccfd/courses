@@ -1,0 +1,81 @@
+---
+author:
+course: Informatyka I
+material: Instrukcja 11
+number: 11
+---
+
+Niniejsza instrukcja zawiera ćwiczenia dotyczące arkusza kalkulacyjnego.
+Można je wykonać wykorzystując darmowe oprogramowanie (np. *LibreOffice Calc* czy *WPS SpreadSheets* lub też komercyjne (np. *Microsoft Excel*).
+Składnia formuł we wszystkich wymienionych programach nie różni się znacznie.
+
+Dla wygody, każde zadanie powinno być rozwiązane w odrębnej karcie arkusza kalkulacyjnego.
+
+## Tabliczka mnożenia
+Stwórz tabelę zawierającą tabliczkę mnożenia do dziesięciu.
+
+- Skorzystaj z możliwości przeciągania formuł i blokowania wybranych adresów.
+Przykładowo, odwołanie `A$3` oznacza, że przy przeciągnięciu pionowo, numer wiersza nie ulegnie zmianie.
+Przy przeciągnięciu poziomo, zmianie ulegnie kolumna.
+- Tabelę sformatuj tak aby wyglądała tak jak na Rys. 1.
+
+![Rys.1. Tabela z tabliczką mnożenia.](figures/info1/excel_1.png "Tabliczka mnożenia.")
+
+## Sprzedaż aut
+Stwórz tabelę zawierającą informacje o sprzedaży pięciu modeli samochodów.
+
+- Kolumny $2$ -- $5$ uzupełnij wymyślonymi danymi.
+- W celu zsumowania zawartości komórek użyj funkcji `sum()`.
+- Tabelę sformatuj tak aby wyglądała tak jak na Rys. 2.
+
+![Rys.2. Tabela sprzedaży aut.](figures/info1/excel_2.png "Tabela sprzedaży aut.")
+
+## Wyniki z kolokwium
+Stwórz dwie tabele.
+Pierwsza powinna zawierać kolumny jak na Rys. 3.
+Kolumny należy uzupełnić wymyślonymi danymi.
+
+![Rys.3. Wyniki z kolokwium.](figures/info1/excel_3.png "Wyniki z kolokwium.")
+
+Druga tabela powinna zawierać dwie kolumny: `Nr indeksu` oraz `Imię i Nazwisko`.
+
+- Kolumnę `Nr indeksu` należy uzupełnić numerami indeksu z poprzedniej tabeli ale w innej kolejności.
+- Kolumnę `Imię i Nazwisko` należy wypełnić korzystając z funkcji `VLOOKUP()` i `CONCENATE()`.  
+Funkcja `VLOOKUP()` wyszukuje wiersz zawierający zadaną wartość w wybranej tabeli i zwraca wartość znajdującą się w wybranej kolumnie.  
+Funkcja `CONCENATE()` łączy wybrane ciągi znaków w jeden.
+
+## Wykres funkcji jednej zmiennej
+Stwórz wykres funkcji
+$$
+f(x) = \frac{1}{|x - 1| + 1}
+$$
+dla $x \in [-2,2]$.  
+W tym celu:
+
+- Utwórz dwie kolumny -- jedną z wartościami argumentu `x`, dla których ma być narysowany wykres, a drugą z wartościami funkcji `f(x)` (moduł liczby wyznacza funkcja `ABS()`).
+- Utwórz pole tekstowe lub obiekt typu *Microsoft Equation* w celu dodania wzoru funkcji.
+- Utwórz wykres i sformatuj go jak na Rys. 4.
+
+![Rys.4. Wykres funkcji jednej zmiennej.](figures/info1/excel_4.png "Wykres funkcji jednej zmiennej.")
+
+## Wykres funkcji dwóch zmiennych
+Utwórz wykres funkcji
+$$
+f(x, y) = |2 - (x^2 + y^2)|
+$$
+w obszarze $D={(x,y)|x\in[0,1.6] \wedge y\in[0,1.6]}$.
+Pierwszy wiersz powinien zawierać wartości argumentu `x` a pierwsza kolumna wartości argumentu `y`.
+Komórki znajdujące się ,,na przecięciu'' komórek zawierających współrzędne powinny zawierać wartości funkcji $f(x,y)$. 
+
+![Rys.5. Wykres funkcji dwóch zmiennych.](figures/info1/excel_5.png "Wykres funkcji dwóch zmiennych.")
+
+## Wyznaczanie pierwiastków funkcji kwadratowej
+Utwórz arkusz w celu wyznaczenia pierwiastków funkcji kwadratowej.
+W tym celu:
+
+- Wyznacz *deltę* na podstawie wartości w komórkach odpowiadających współczynnikom.
+- Wyznacz liczbę pierwiastków na podstawie wartości *delty* (użyj funkcji `IF()` w celu sprawdzenia warunków.)
+- Wyznacz wartości pierwiastków.
+Jeśli pierwiastek nie istnieje, niech w komórce znajdzie się napis ,,brak''.
+
+![Rys.6. Miejsca zerowe funkcji kwadratowej.](figures/info1/excel_6.png "Miejsca zerowe funkcji kwadratowej..")
