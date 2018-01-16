@@ -88,7 +88,7 @@ Przykładowo, formuła `IF(A1>0, A2, A3)` zwraca zawartość komórki `A2` jeśl
 - Wyznacz miejsca zerowe funkcji (formuła `SQRT()` zwraca pierwiastek kwadratowy z liczby).
 Uwzględnij przypadek, w którym dany pierwiastek nie istnieje (niech w takim przypadku w komórce wyświetli się napis ,,brak'').
 
-![Rys.6. Miejsca zerowe funkcji kwadratowej.](figures/info1/sheet_5.png "Miejsca zerowe funkcji kwadratowej.")
+![Rys.5. Miejsca zerowe funkcji kwadratowej.](figures/info1/sheet_5.png "Miejsca zerowe funkcji kwadratowej.")
 
 ## Importowanie danych z pliku
 Ściągnij przykładowy plik [wyniki.dat](data/info1/wyniki.dat) i przenieś go do katalogu z plikiem arkusza kalkulacyjnego.
@@ -117,4 +117,4 @@ w obszarze $D={(x,y)|x\in[0,1.6] \wedge y\in[0,1.6]}$.
 Pierwszy wiersz powinien zawierać wartości argumentu `x` a pierwsza kolumna wartości argumentu `y`.
 Komórki znajdujące się ,,na przecięciu'' komórek zawierających współrzędne powinny zawierać wartości funkcji $f(x,y)$. 
 
-![Rys.5. Wykres funkcji dwóch zmiennych.](figures/info1/sheet_7.png "Wykres funkcji dwóch zmiennych.")
+![Rys.7. Wykres funkcji dwóch zmiennych.](figures/info1/sheet_7.png "Wykres funkcji dwóch zmiennych.")
