@@ -91,7 +91,7 @@ Uwzględnij przypadek, w którym dany pierwiastek nie istnieje (niech w takim pr
 ![Rys.6. Miejsca zerowe funkcji kwadratowej.](figures/info1/sheet_5.png "Miejsca zerowe funkcji kwadratowej.")
 
 ## Importowanie danych z pliku
-Ściągnij przykładowy plik [wyniki.dat](data/info1/dane.dat) i przenieś go do katalogu z plikiem arkusza kalkulacyjnego.
+Ściągnij przykładowy plik [wyniki.dat](data/info1/wyniki.dat) i przenieś go do katalogu z plikiem arkusza kalkulacyjnego.
 Dane można zaimportować do nowej karty klikając *Sheet* -> *Insert Sheet From File* a następnie wybierając plik `wyniki.dat`.
 Otworzy się nowe okno, które pozwala wybrać opcje importu.
 Sekcja *Separator Options* pozwala wybrać w jaki sposób rozdzielone są dane.
@@ -117,4 +117,4 @@ w obszarze $D={(x,y)|x\in[0,1.6] \wedge y\in[0,1.6]}$.
 Pierwszy wiersz powinien zawierać wartości argumentu `x` a pierwsza kolumna wartości argumentu `y`.
 Komórki znajdujące się ,,na przecięciu'' komórek zawierających współrzędne powinny zawierać wartości funkcji $f(x,y)$. 
 
-![Rys.5. Wykres funkcji dwóch zmiennych.](figures/info1/excel.png "Wykres funkcji dwóch zmiennych.")
+![Rys.5. Wykres funkcji dwóch zmiennych.](figures/info1/sheet_7.png "Wykres funkcji dwóch zmiennych.")
