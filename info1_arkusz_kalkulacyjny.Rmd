@@ -17,7 +17,7 @@ Stwórz tabelę zawierającą tabliczkę mnożenia do dziesięciu.
 W tym celu:
 
 - Skorzystaj z możliwości przeciągania formuł.  
-Po zaznaczeniu komórki, w jej prawym dolnym rogu pojawi się mały kwadracik -- wystarczy kliknąć w niego i trzymając klawisz przeciągnąć pionowo lub poziomo.
+Po zaznaczeniu komórki, w jej prawym dolnym rogu pojawi się kwadracik -- wystarczy kliknąć w niego i trzymając klawisz myszy przeciągnąć pionowo lub poziomo.
 Akcja spowoduje skopiowanie formuły i zmianę używanych adresów.
 - Zablokuj wybrane adresy z użyciem symbolu ,,$".  
 Przykładowo, odwołanie `A$3` oznacza, że przy przeciągnięciu pionowo, numer wiersza nie ulegnie zmianie.
@@ -25,30 +25,31 @@ Przy przeciągnięciu poziomo, zmianie ulegnie kolumna.
 - W celu sformatowania tabeli zaznacz wybrane komórki, kliknij prawym klawiszem myszki i wybierz *Format Cells*.
 Wyświetlone zostaną zakładki umożliwiające zmianę wyglądu tabeli w szerokim zakresie (min. zakładka *Borders* umożliwia dodanie i edycję linii).
 
-![Rys.1. Tabela z tabliczką mnożenia.](figures/info1/excel_1.png "Tabliczka mnożenia.")
+![Rys.1. Tabela z tabliczką mnożenia.](figures/info1/sheet_1.png "Tabliczka mnożenia.")
 
 ## Sprzedaż samochodów
 Stwórz tabelę zawierającą informacje o sprzedaży pięciu modeli samochodów.
 
 - Kolumny $2$ -- $5$ uzupełnij wymyślonymi danymi.
-- W celu zsumowania zawartości komórek użyj funkcji `sum()`.  
+- W celu zsumowania zawartości komórek użyj funkcji `SUM()`.  
 Argumentem jest zakres komórek, których wartości należy zsumować.
-Przykładowo `sum(A1:A10)` zsumuje wartości w kolumnie `A` w wierszach od `1` do `10`.
+Przykładowo `SUM(A1:A10)` zsumuje wartości w kolumnie `A` w wierszach od `1` do `10`.
 - Tabelę sformatuj tak aby wyglądała jak na Rys. 2.
 
-![Rys.2. Tabela sprzedaży aut.](figures/info1/excel_2.png "Tabela sprzedaży aut.")
+![Rys.2. Tabela sprzedaży aut.](figures/info1/sheet_2.png "Tabela sprzedaży aut.")
 
 ## Wyniki z kolokwium
 Stwórz dwie tabele.
 Pierwsza z nich powinna zawierać kolumny o nazwach jak na Rys. 3.
 Tabelę należy uzupełnić wymyślonymi danymi.
 
-![Rys.3. Wyniki z kolokwium.](figures/info1/excel_3.png "Wyniki z kolokwium.")
+![Rys.3. Wyniki z kolokwium.](figures/info1/sheet_3.png "Wyniki z kolokwium.")
 
 Druga tabela powinna zawierać dwie kolumny: `Nr indeksu` oraz `Imię i Nazwisko`.
 
 - Kolumnę `Nr indeksu` należy uzupełnić numerami indeksu z poprzedniej tabeli ale w innej kolejności.
-- Kolumnę `Imię i Nazwisko` należy wypełnić korzystając z funkcji `CONCATENATE()` i `VLOOKUP()`. Funkcje można zagnieżdżać, np. wywołanie `VLOOKUP(CONCATENATE(...), CONCATENATE(...))` jest prawidłowe.  
+- Kolumnę `Imię i Nazwisko` należy wypełnić korzystając z funkcji `CONCATENATE()` i `VLOOKUP()`.
+Funkcje można zagnieżdżać, np. wywołanie `VLOOKUP(CONCATENATE(...), CONCATENATE(...))` jest prawidłowe.  
 Funkcja `CONCATENATE()` łączy wybrane ciągi znaków w jeden.
 Przykładowo, formuła `CONCATENATE(A1, " ", A2)` złączy napisy zawarte w komórkach *A1* i *A2* wstawiając między nie znak spacji.  
 Funkcja `VLOOKUP()` wyszukuje wiersz zawierający zadaną wartość w pierwszej kolumnie wybranej tabeli i zwraca wartość znajdującą się w wybranej kolumnie.
@@ -78,23 +79,25 @@ Sformatuj wykres tak jak na Rys. 4.
 Utwórz arkusz w celu wyznaczenia pierwiastków funkcji kwadratowej.
 W tym celu:
 
-- Dodaj obiekt typu formuła w celu zapisania równania.
+- Dodaj obiekt typu formuła aby zapisać równanie.
 - Wybierz komórki w celu przechowywania współczynników równania i uzupełnij je.
 - Wyznacz wartość *delty* na podstawie wartości w komórkach odpowiadających współczynnikom.
 - Wyznacz liczbę pierwiastków na podstawie wartości *delty*.
 Użyj funkcji `IF()` w celu sprawdzenia warunków na wartość *delty*.
 Przykładowo, formuła `IF(A1>0, A2, A3)` zwraca zawartość komórki `A2` jeśli wartość w komórce `A1` jest większa od zera i wartość komórki `A3` w przeciwnym przypadku.
-- Wyznacz wartości miejsc zerowych funkcji (formuła `SQRT()` zwraca pierwiastek kwadratowy z liczby).
-Uwzględnij przypadek, w którym pierwiastek nie istnieje (niech w takim przypadku w komórce znajdzie się napis ,,brak'').
+- Wyznacz miejsca zerowe funkcji (formuła `SQRT()` zwraca pierwiastek kwadratowy z liczby).
+Uwzględnij przypadek, w którym dany pierwiastek nie istnieje (niech w takim przypadku w komórce wyświetli się napis ,,brak'').
 
 ![Rys.6. Miejsca zerowe funkcji kwadratowej.](figures/info1/sheet_5.png "Miejsca zerowe funkcji kwadratowej.")
 
 ## Importowanie danych z pliku
-Ściągnij przykładowy plik [wyniki.dat](data/info1/dane.dat) i przenieś do katalogu z plikiem arkusza kalkulacyjnego.
-Dane można ściągnąć klikając *File* -> *Open* a następnie wybierając plik `wyniki.dat`.
-Otworzy się nowe okno, które pozwala wybrać opcje importu, min. sekcja *Separator Options* pozwala wybrać w jaki sposób rozdzielone są dane (zaznaczamy *Space*).
-Zaimportowane dane często wymagają zmiany separatora dziesiętnego.
-Klikamy *Edit* -> *Find and replace*, następnie w polu *Find* piszemy przecinek a w polu *Replace* kropkę i klikamy *Replace All*.
+Ściągnij przykładowy plik [wyniki.dat](data/info1/dane.dat) i przenieś go do katalogu z plikiem arkusza kalkulacyjnego.
+Dane można zaimportować do nowej karty klikając *Sheet* -> *Insert Sheet From File* a następnie wybierając plik `wyniki.dat`.
+Otworzy się nowe okno, które pozwala wybrać opcje importu.
+Sekcja *Separator Options* pozwala wybrać w jaki sposób rozdzielone są dane.
+Zaznaczamy *Space* i klikamy *OK*.
+Zaimportowane dane często wymagają zmiany separatora dziesiętnego na ten używany w arkuszu.
+Klikamy *Edit* -> *Find and replace*, następnie w polu *Find* wpisujemy przecinek a w polu *Replace* kropkę i klikamy *Replace All*.
 
 Dane są gotowe do dalszej obróbki.
 Dopasujemy do nich parabolę metodą najmniejszych kwadratów (tzw. linię trendu).
