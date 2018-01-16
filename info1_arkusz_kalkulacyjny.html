@@ -494,7 +494,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info1_arkusz_kalkulacyjny.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -527,46 +527,50 @@ div.tocify {
 </div>
 
 
-<p>Niniejsza instrukcja zawiera ćwiczenia dotyczące arkusza kalkulacyjnego. Można je wykonać wykorzystując darmowe oprogramowanie (np. <em>LibreOffice Calc</em> czy <em>WPS SpreadSheets</em> lub też komercyjne (np. <em>Microsoft Excel</em>). Składnia formuł we wszystkich wymienionych programach nie różni się znacznie.</p>
-<p>Dla wygody, każde zadanie powinno być rozwiązane w odrębnej karcie arkusza kalkulacyjnego.</p>
+<p>Niniejsza instrukcja zawiera ćwiczenia dotyczące arkusza kalkulacyjnego. Można je wykonać wykorzystując darmowe oprogramowanie (np. <em>LibreOffice Calc</em>, <em>OpenOffice Calc</em> czy <em>WPS SpreadSheets</em> lub też komercyjne (np. <em>Microsoft Excel</em>). Składnia formuł we wszystkich wymienionych programach nie różni się znacznie.</p>
+<p>Ćwiczenia zostały oparte o program <em>LibreOffice Calc</em>. Dla wygody, każde zadanie można rozwiązać w odrębnej karcie arkusza kalkulacyjnego.</p>
 <div id="tabliczka-mnozenia" class="section level2">
 <h2>Tabliczka mnożenia</h2>
-<p>Stwórz tabelę zawierającą tabliczkę mnożenia do dziesięciu.</p>
+<p>Stwórz tabelę zawierającą tabliczkę mnożenia do dziesięciu. W tym celu:</p>
 <ul>
-<li>Skorzystaj z możliwości przeciągania formuł i blokowania wybranych adresów. Przykładowo, odwołanie <code>A$3</code> oznacza, że przy przeciągnięciu pionowo, numer wiersza nie ulegnie zmianie. Przy przeciągnięciu poziomo, zmianie ulegnie kolumna.</li>
-<li>Tabelę sformatuj tak aby wyglądała tak jak na Rys. 1.</li>
+<li>Skorzystaj z możliwości przeciągania formuł.<br />
+Po zaznaczeniu komórki, w jej prawym dolnym rogu pojawi się kwadracik – wystarczy kliknąć w niego i trzymając klawisz myszy przeciągnąć pionowo lub poziomo. Akcja spowoduje skopiowanie formuły i zmianę używanych adresów.</li>
+<li>Zablokuj wybrane adresy z użyciem symbolu ,,$“.<br />
+Przykładowo, odwołanie <code>A$3</code> oznacza, że przy przeciągnięciu pionowo, numer wiersza nie ulegnie zmianie. Przy przeciągnięciu poziomo, zmianie ulegnie kolumna.</li>
+<li>W celu sformatowania tabeli zaznacz wybrane komórki, kliknij prawym klawiszem myszki i wybierz <em>Format Cells</em>. Wyświetlone zostaną zakładki umożliwiające zmianę wyglądu tabeli w szerokim zakresie (min. zakładka <em>Borders</em> umożliwia dodanie i edycję linii).</li>
 </ul>
 <div class="figure">
-<img src="figures/info1/excel_1.png" title="Tabliczka mnożenia." alt="Rys.1. Tabela z tabliczką mnożenia." />
+<img src="figures/info1/sheet_1.png" title="Tabliczka mnożenia." alt="Rys.1. Tabela z tabliczką mnożenia." />
 <p class="caption">Rys.1. Tabela z tabliczką mnożenia.</p>
 </div>
 </div>
-<div id="sprzedaz-aut" class="section level2">
-<h2>Sprzedaż aut</h2>
+<div id="sprzedaz-samochodow" class="section level2">
+<h2>Sprzedaż samochodów</h2>
 <p>Stwórz tabelę zawierającą informacje o sprzedaży pięciu modeli samochodów.</p>
 <ul>
 <li>Kolumny <span class="math inline">\(2\)</span> – <span class="math inline">\(5\)</span> uzupełnij wymyślonymi danymi.</li>
-<li>W celu zsumowania zawartości komórek użyj funkcji <code>sum()</code>.</li>
-<li>Tabelę sformatuj tak aby wyglądała tak jak na Rys. 2.</li>
+<li>W celu zsumowania zawartości komórek użyj funkcji <code>SUM()</code>.<br />
+Argumentem jest zakres komórek, których wartości należy zsumować. Przykładowo <code>SUM(A1:A10)</code> zsumuje wartości w kolumnie <code>A</code> w wierszach od <code>1</code> do <code>10</code>.</li>
+<li>Tabelę sformatuj tak aby wyglądała jak na Rys. 2.</li>
 </ul>
 <div class="figure">
-<img src="figures/info1/excel_2.png" title="Tabela sprzedaży aut." alt="Rys.2. Tabela sprzedaży aut." />
+<img src="figures/info1/sheet_2.png" title="Tabela sprzedaży aut." alt="Rys.2. Tabela sprzedaży aut." />
 <p class="caption">Rys.2. Tabela sprzedaży aut.</p>
 </div>
 </div>
 <div id="wyniki-z-kolokwium" class="section level2">
 <h2>Wyniki z kolokwium</h2>
-<p>Stwórz dwie tabele. Pierwsza powinna zawierać kolumny jak na Rys. 3. Kolumny należy uzupełnić wymyślonymi danymi.</p>
+<p>Stwórz dwie tabele. Pierwsza z nich powinna zawierać kolumny o nazwach jak na Rys. 3. Tabelę należy uzupełnić wymyślonymi danymi.</p>
 <div class="figure">
-<img src="figures/info1/excel_3.png" title="Wyniki z kolokwium." alt="Rys.3. Wyniki z kolokwium." />
+<img src="figures/info1/sheet_3.png" title="Wyniki z kolokwium." alt="Rys.3. Wyniki z kolokwium." />
 <p class="caption">Rys.3. Wyniki z kolokwium.</p>
 </div>
 <p>Druga tabela powinna zawierać dwie kolumny: <code>Nr indeksu</code> oraz <code>Imię i Nazwisko</code>.</p>
 <ul>
 <li>Kolumnę <code>Nr indeksu</code> należy uzupełnić numerami indeksu z poprzedniej tabeli ale w innej kolejności.</li>
-<li>Kolumnę <code>Imię i Nazwisko</code> należy wypełnić korzystając z funkcji <code>VLOOKUP()</code> i <code>CONCENATE()</code>.<br />
-Funkcja <code>VLOOKUP()</code> wyszukuje wiersz zawierający zadaną wartość w wybranej tabeli i zwraca wartość znajdującą się w wybranej kolumnie.<br />
-Funkcja <code>CONCENATE()</code> łączy wybrane ciągi znaków w jeden.</li>
+<li>Kolumnę <code>Imię i Nazwisko</code> należy wypełnić korzystając z funkcji <code>CONCATENATE()</code> i <code>VLOOKUP()</code>. Funkcje można zagnieżdżać, np. wywołanie <code>VLOOKUP(CONCATENATE(...), CONCATENATE(...))</code> jest prawidłowe.<br />
+Funkcja <code>CONCATENATE()</code> łączy wybrane ciągi znaków w jeden. Przykładowo, formuła <code>CONCATENATE(A1, &quot; &quot;, A2)</code> złączy napisy zawarte w komórkach <em>A1</em> i <em>A2</em> wstawiając między nie znak spacji.<br />
+Funkcja <code>VLOOKUP()</code> wyszukuje wiersz zawierający zadaną wartość w pierwszej kolumnie wybranej tabeli i zwraca wartość znajdującą się w wybranej kolumnie. Na przykład, formuła <code>VLOOKUP(A10, A1:D6, 3, 0)</code> wyszuka zawartość komórki <em>A10</em> w pierwszej kolumnie tabeli <em>A1:D6</em> i zwróci zawartość odpowiedniego wiersza w trzeciej kolumnie. Ostatni parametr funkcji – zero, oznacza, że pierwsza kolumna tabeli, w której wyszukujemy nie jest posortowana rosnąco.</li>
 </ul>
 </div>
 <div id="wykres-funkcji-jednej-zmiennej" class="section level2">
@@ -576,36 +580,51 @@ f(x) = \frac{1}{|x - 1| + 1}
 \]</span> dla <span class="math inline">\(x \in [-2,2]\)</span>.<br />
 W tym celu:</p>
 <ul>
-<li>Utwórz dwie kolumny – jedną z wartościami argumentu <code>x</code>, dla których ma być narysowany wykres, a drugą z wartościami funkcji <code>f(x)</code> (moduł liczby wyznacza funkcja <code>ABS()</code>).</li>
-<li>Utwórz pole tekstowe lub obiekt typu <em>Microsoft Equation</em> w celu dodania wzoru funkcji.</li>
-<li>Utwórz wykres i sformatuj go jak na Rys. 4.</li>
+<li>Utwórz dwie kolumny
+<ul>
+<li>pierwszą zawierającą wartości argumentu <code>x</code>, dla których ma być narysowany wykres,</li>
+<li>drugą z wartościami funkcji <code>f(x)</code> (moduł liczby wyznacza funkcja <code>ABS()</code>).</li>
+</ul></li>
+<li>Utwórz obiekt typu formuła (<em>Insert</em> -&gt; <em>Object</em> -&gt; <em>Formula</em> w programie <em>OpenOffice</em>) lub obiekt typu <em>Microsoft Equation</em> w celu dodania wzoru funkcji. Tło wzoru możesz zmienić na białe klikając prawym klawiszem myszki na pole i wybierając <em>Area</em>.</li>
+<li>Zaznacz utworzone kolumny i wybierz <em>Insert</em> -&gt; <em>Chart</em> w celu uruchomienia edytora wykresów. Po utworzeniu wykresu, kliknij na niego dwukrotnie w celu wejścia w tryb edycji poszczególnych elementów wykresu. Sformatuj wykres tak jak na Rys. 4.</li>
 </ul>
 <div class="figure">
-<img src="figures/info1/excel_4.png" title="Wykres funkcji jednej zmiennej." alt="Rys.4. Wykres funkcji jednej zmiennej." />
+<img src="figures/info1/sheet_4.png" title="Wykres funkcji jednej zmiennej." alt="Rys.4. Wykres funkcji jednej zmiennej." />
 <p class="caption">Rys.4. Wykres funkcji jednej zmiennej.</p>
-</div>
-</div>
-<div id="wykres-funkcji-dwoch-zmiennych" class="section level2">
-<h2>Wykres funkcji dwóch zmiennych</h2>
-<p>Utwórz wykres funkcji <span class="math display">\[
-f(x, y) = |2 - (x^2 + y^2)|
-\]</span> w obszarze <span class="math inline">\(D={(x,y)|x\in[0,1.6] \wedge y\in[0,1.6]}\)</span>. Pierwszy wiersz powinien zawierać wartości argumentu <code>x</code> a pierwsza kolumna wartości argumentu <code>y</code>. Komórki znajdujące się ,,na przecięciu’’ komórek zawierających współrzędne powinny zawierać wartości funkcji <span class="math inline">\(f(x,y)\)</span>.</p>
-<div class="figure">
-<img src="figures/info1/excel_5.png" title="Wykres funkcji dwóch zmiennych." alt="Rys.5. Wykres funkcji dwóch zmiennych." />
-<p class="caption">Rys.5. Wykres funkcji dwóch zmiennych.</p>
 </div>
 </div>
 <div id="wyznaczanie-pierwiastkow-funkcji-kwadratowej" class="section level2">
 <h2>Wyznaczanie pierwiastków funkcji kwadratowej</h2>
 <p>Utwórz arkusz w celu wyznaczenia pierwiastków funkcji kwadratowej. W tym celu:</p>
 <ul>
-<li>Wyznacz <em>deltę</em> na podstawie wartości w komórkach odpowiadających współczynnikom.</li>
-<li>Wyznacz liczbę pierwiastków na podstawie wartości <em>delty</em> (użyj funkcji <code>IF()</code> w celu sprawdzenia warunków.)</li>
-<li>Wyznacz wartości pierwiastków. Jeśli pierwiastek nie istnieje, niech w komórce znajdzie się napis ,,brak’’.</li>
+<li>Dodaj obiekt typu formuła aby zapisać równanie.</li>
+<li>Wybierz komórki w celu przechowywania współczynników równania i uzupełnij je.</li>
+<li>Wyznacz wartość <em>delty</em> na podstawie wartości w komórkach odpowiadających współczynnikom.</li>
+<li>Wyznacz liczbę pierwiastków na podstawie wartości <em>delty</em>. Użyj funkcji <code>IF()</code> w celu sprawdzenia warunków na wartość <em>delty</em>. Przykładowo, formuła <code>IF(A1&gt;0, A2, A3)</code> zwraca zawartość komórki <code>A2</code> jeśli wartość w komórce <code>A1</code> jest większa od zera i wartość komórki <code>A3</code> w przeciwnym przypadku.</li>
+<li>Wyznacz miejsca zerowe funkcji (formuła <code>SQRT()</code> zwraca pierwiastek kwadratowy z liczby). Uwzględnij przypadek, w którym dany pierwiastek nie istnieje (niech w takim przypadku w komórce wyświetli się napis ,,brak’’).</li>
 </ul>
 <div class="figure">
-<img src="figures/info1/excel_6.png" title="Miejsca zerowe funkcji kwadratowej.." alt="Rys.6. Miejsca zerowe funkcji kwadratowej." />
+<img src="figures/info1/sheet_5.png" title="Miejsca zerowe funkcji kwadratowej." alt="Rys.6. Miejsca zerowe funkcji kwadratowej." />
 <p class="caption">Rys.6. Miejsca zerowe funkcji kwadratowej.</p>
+</div>
+</div>
+<div id="importowanie-danych-z-pliku" class="section level2">
+<h2>Importowanie danych z pliku</h2>
+<p>Ściągnij przykładowy plik <a href="data/info1/dane.dat">wyniki.dat</a> i przenieś go do katalogu z plikiem arkusza kalkulacyjnego. Dane można zaimportować do nowej karty klikając <em>Sheet</em> -&gt; <em>Insert Sheet From File</em> a następnie wybierając plik <code>wyniki.dat</code>. Otworzy się nowe okno, które pozwala wybrać opcje importu. Sekcja <em>Separator Options</em> pozwala wybrać w jaki sposób rozdzielone są dane. Zaznaczamy <em>Space</em> i klikamy <em>OK</em>. Zaimportowane dane często wymagają zmiany separatora dziesiętnego na ten używany w arkuszu. Klikamy <em>Edit</em> -&gt; <em>Find and replace</em>, następnie w polu <em>Find</em> wpisujemy przecinek a w polu <em>Replace</em> kropkę i klikamy <em>Replace All</em>.</p>
+<p>Dane są gotowe do dalszej obróbki. Dopasujemy do nich parabolę metodą najmniejszych kwadratów (tzw. linię trendu). W tym celu tworzymy wykres i klikamy na niego dwukrotnie w celu edycji. Następnie wybieramy dowolny punkt (wszystkie punkty powinny się podświetlić na zielono) i z menu głównego wybieramy <em>Insert</em> -&gt; <em>Trend Lines</em>. W zakładce <em>Type</em> wybieramy regresję wielomianową (<em>polynomial</em>) stopnia drugiego, zaznaczamy opcje <em>Show Equation</em> i <em>Show Coefficient of Determination</em> i klikamy <em>OK</em>. Powinniśmy otrzymać wykres podobny do poniższego.</p>
+<div class="figure">
+<img src="figures/info1/sheet_6.png" title="Funkcja trendu." alt="Rys.6. Funkcja trendu." />
+<p class="caption">Rys.6. Funkcja trendu.</p>
+</div>
+</div>
+<div id="wykres-funkcji-dwoch-zmiennych-tylko-microsoft-excel" class="section level2">
+<h2>Wykres funkcji dwóch zmiennych (tylko Microsoft Excel)</h2>
+<p>Utwórz wykres funkcji <span class="math display">\[
+f(x, y) = |2 - (x^2 + y^2)|
+\]</span> w obszarze <span class="math inline">\(D={(x,y)|x\in[0,1.6] \wedge y\in[0,1.6]}\)</span>. Pierwszy wiersz powinien zawierać wartości argumentu <code>x</code> a pierwsza kolumna wartości argumentu <code>y</code>. Komórki znajdujące się ,,na przecięciu’’ komórek zawierających współrzędne powinny zawierać wartości funkcji <span class="math inline">\(f(x,y)\)</span>.</p>
+<div class="figure">
+<img src="figures/info1/excel.png" title="Wykres funkcji dwóch zmiennych." alt="Rys.5. Wykres funkcji dwóch zmiennych." />
+<p class="caption">Rys.5. Wykres funkcji dwóch zmiennych.</p>
 </div>
 </div>
 
