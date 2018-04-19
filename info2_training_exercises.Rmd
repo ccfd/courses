@@ -388,7 +388,11 @@ double interpSigmaMax(double a)
 która dokona interpolacji wielomianowej funkcji $\sigma_{max}(\mathbf{a})$ i zwróci wartość obliczoną dla dowolnego $a$.
 
 ### Krok 4
-Rozwiąż równanie \eqref{row_najw_naprezenie} wykorzystując funkcję z poprzedniego zadania. W wyniku otrzymasz optymalną wartość parametru $\mathbf{a}$. Dla tej wartości parametru utwórz wykres funkcji $\sigma = \sigma(x)$ wykorzystując bibliotekę graficzną. 
+
+Rozwiąż równanie \eqref{row_najw_naprezenie} wykorzystując funkcję z poprzedniego zadania. 
+W wyniku otrzymasz optymalną wartość parametru $\mathbf{a}$. 
+Dla tej wartości parametru utwórz wykres funkcji $\sigma = \sigma(x)$ wykorzystując bibliotekę graficzną.
+
 ------------------
 
 # Rozwiązania zadań
