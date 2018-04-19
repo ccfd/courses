@@ -528,33 +528,35 @@ div.tocify {
 
 <div id="cakowanie-numeryczne-rownan-rozniczkowych-zwyczajnych" class="section level1">
 <h1>Całkowanie numeryczne równań różniczkowych zwyczajnych</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
+<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Plik nagłówkowy rk4.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Plik źródłowy rk4.cpp</a></li>
 </ul>
 <div id="wstep" class="section level2">
 <h2>1. Wstęp</h2>
-<p>Celem dzisiejszych zajęć jest zapoznanie się z podstawowymi metodami całkowania numerycznego równań różniczkowych zwyczajnych pierwszego rzędu. Większość procesów fizycznych w otaczającym nas świecie można zamodelować, korzystając właśnie z równań różniczkowych. Niestety większości z wyprowadzonych przez nas równań nie da się rozwiązać w sposób analityczny (tj. podać rozwiązania w postaci jawnej). W szczególności największe problemy sprawiają równania zawierające człony nieliniowe. Świat, w którym żyjemy, jest silnie nieliniowy (inaczej życie byłoby nudne), dlatego większość problemów, które przyjdzie nam rozwiązywać, nie będzie posiadać rozwiązania… A przynajmniej rozwiązania w formie analitycznej. Stąd płynie nasza motywacja do zagłębienia się w magiczny świat całkowania numerycznego równań różniczkowych, który pozwoli nam lepiej zrozumieć otaczającą nas rzeczywistość! Jako pierwszą poznamy metodę pierwszego rzędu zwaną (od nazwiska odkrywcy) jawną metodą Eulera. Jest ona jednocześnie najprostszą i (niestety) bardzo niestabilną metodą. Drugą metodą, którą zastosujemy na dzisiejszych zajęciach, będzie metoda Rungego-Kutty 4-go rzędu. Jest to jawna metoda wieloetapową, która charakteryzuje się wysokim rzędem, łatwością w implementacji oraz relatywnie wysoką stabilnością.</p>
+<p>Celem dzisiejszych zajęć jest zapoznanie się z podstawowymi metodami całkowania numerycznego równań różniczkowych zwyczajnych pierwszego rzędu. Większość procesów fizycznych w otaczającym nas świecie można zamodelować, korzystając właśnie z równań różniczkowych. Niestety większości z wyprowadzonych przez nas równań nie da się rozwiązać w sposób analityczny (tj. podać rozwiązania w postaci jawnej). W szczególności, największe problemy sprawiają równania zawierające człony nieliniowe. Świat, w którym żyjemy, jest silnie nieliniowy (inaczej życie byłoby nudne), dlatego większość problemów, które przyjdzie nam rozwiązywać, nie będzie posiadać rozwiązania… A przynajmniej rozwiązania w formie analitycznej. Stąd płynie nasza motywacja do zagłębienia się w świat całkowania numerycznego równań różniczkowych, który pozwoli nam lepiej zrozumieć otaczającą nas rzeczywistość! Jako pierwszą poznamy metodę pierwszego rzędu zwaną (od nazwiska odkrywcy) jawną metodą Eulera. Jest ona jednocześnie najprostszą i (niestety) bardzo niestabilną metodą. Drugą metodą, którą zastosujemy na dzisiejszych zajęciach, będzie metoda Rungego-Kutty 4-go rzędu. Jest to jawna metoda wielokrokowa, która charakteryzuje się wysokim rzędem, łatwością w implementacji oraz relatywnie wysoką stabilnością.</p>
 </div>
 <div id="metoda-eulera" class="section level2">
 <h2>2. Metoda Eulera</h2>
-<p>Metodę Eulera będziemy wykorzystywać do rozwiązania zagadnienia początkowego w postaci: <span class="math display">\[ \frac{dy}{dt} = f(t,y) \]</span> <span class="math display">\[ y(t_0) = y_0 \]</span> Stosując następujący schemat iteracyjny: <span class="math display">\[ t_{i+1} = t_{i} + h \]</span> <span class="math display">\[ y_{i+1} = y_i + h \cdot f(t_i , y_i ) \]</span> Gdzie: <span class="math inline">\(h\)</span> - krok całkowania, <span class="math inline">\(y_{i+1}\)</span> - rozwiązanie, <span class="math inline">\(y_i\)</span> - rozwiązanie w kroku poprzednim, <span class="math inline">\(f\)</span> - funkcja obliczająca prawą stronę równania różniczkowego.</p>
+<p>Metodę Eulera wykorzystamy do rozwiązania zagadnienia początkowego w postaci: <span class="math display">\[ \frac{dy}{dt} = f(t,y) \]</span> <span class="math display">\[ y(t_0) = y_0 \]</span> Stosując następujący schemat iteracyjny: <span class="math display">\[ t_{i+1} = t_{i} + h \]</span> <span class="math display">\[ y_{i+1} = y_i + h \cdot f(t_i , y_i ) \]</span> Gdzie: <span class="math inline">\(h\)</span> – krok całkowania, <span class="math inline">\(y_{i+1}\)</span> – rozwiązanie, <span class="math inline">\(y_i\)</span> – rozwiązanie w kroku poprzednim, <span class="math inline">\(f\)</span> - funkcja obliczająca prawą stronę równania różniczkowego.</p>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>3. Ćwiczenia</h2>
 <p>Dane jest zagadnienie początkowe: <span class="math display">\[
-\begin{aligned}
-\frac{dy}{dt} &amp;= λ \cdot y(t) \\
-y(t_0 ) &amp;= y_0
-\end{aligned}
+\left\{
+\begin{array}{ccc}
+\frac{dy}{dt} &amp;=&amp; \lambda \cdot y(t) \\
+y(t_0) &amp;=&amp; y_0 \\
+\end{array}
+\right.
 \]</span> Rozwiązanie dokładne ma postać: <span class="math display">\[ y(t) = y_0 · e^{\lambda(t−t_0)} \]</span></p>
 <ol style="list-style-type: decimal">
-<li>Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu Eulera</li>
+<li>Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu Eulera.</li>
 <li>Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu RK4</li>
-<li>Dla obu przypadków wyświetl na monitorze kolejne wartości t, y oraz względną wartość błędu: <span class="math inline">\(\varepsilon = \frac{|y-y_\text{analityczne}|}{|y_\text{analityczne}|}\)</span></li>
-<li>Zmodyfikuj program tak aby wykonywał obliczenia jedna i druga metoda dla zadanego tk i ilości kroków: <span class="math inline">\(2^0\)</span>, <span class="math inline">\(2^1\)</span>, , <span class="math inline">\(2^6\)</span>. Wydrukuj do pliku: ilość kroków, h, bład metody Eulera i bład metody RK4 dla ostatniego kroku czasowego.</li>
-<li>Sporzadzic wykres błędu metody w funkcji h i oszacuj rząd zbierzności.</li>
+<li>Dla obu przypadków wyświetl na monitorze kolejne wartości <span class="math inline">\(t\)</span>, <span class="math inline">\(y\)</span> oraz względną wartość błędu: <span class="math inline">\(\varepsilon = \frac{|y-y_\text{analityczne}|}{|y_\text{analityczne}|}\)</span>.</li>
+<li>Zmodyfikuj program tak aby wykonywał obliczenia jedną i druga metodą dla zadanego <span class="math inline">\(t_k\)</span> i liczby kroków: <span class="math inline">\(2^0\)</span>, <span class="math inline">\(2^1\)</span>, , <span class="math inline">\(2^6\)</span>. Wydrukuj do pliku: liczbę kroków, <span class="math inline">\(h\)</span>, błąd metody Eulera i błąd metody RK4 dla ostatniego kroku czasowego.</li>
+<li>Sporządź wykres błędu metody w funkcji <span class="math inline">\(h\)</span> i oszacuj rząd zbieżności.</li>
 </ol>
 </div>
 </div>
