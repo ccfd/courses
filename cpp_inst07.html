@@ -702,7 +702,9 @@ div.tocify {
 
 <div id="stl-ciag-dalszy" class="section level1">
 <h1>STL ciąg dalszy</h1>
-<p>##Zadanie 1 Utwórz obiekt Record służący do przechowywania pewnych danych o osobach np.:</p>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>Utwórz obiekt Record służący do przechowywania pewnych danych o osobach np.:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> Record</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">public</span>:</a>
@@ -710,11 +712,26 @@ div.tocify {
 <a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="bu">std::</span>string mPhone;</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span>     mAge;</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">};</a></code></pre></div>
-<p>##Zadanie 2 Dopisz do powyższego obiektu konstruktory domyślny <code class="sourceCode cpp">Record()</code> i jednoargumentowy <code class="sourceCode cpp">Record(<span class="at">const</span> <span class="dt">char</span> c[])</code> który inicjalizuje atrybut <code class="sourceCode cpp">mName</code> wartością argumentu <code class="sourceCode cpp">c</code>.</p>
-<p>##Zadanie 3 W funkcji głównej programu zadeklaruj tablicę obiektów typu <code class="sourceCode cpp">Record</code> korzystając ze standardowego kontenera <code class="sourceCode cpp">vector</code>.</p>
-<p>##Zadanie 4 Wypełnij tablicę pewną ilością danych tak aby kilka razy powtórzyły się osoby o tym samym nazwisku np. „Nowak” i występowały inne nazwiska zaczynające się na literę <code class="sourceCode cpp">N</code>.</p>
-<p>##Zadanie 5 Skopiuj powyższą tablicę do innej tablicy tymczasowej tego samego typu korzystając z algorytmu <code class="sourceCode cpp">copy( itr_beg, itr_end, dest_itr_beg)</code> gdzie <code class="sourceCode cpp">itr_beg</code> i <code class="sourceCode cpp">itr_end</code> określając zakres źródła do skopiowania a <code class="sourceCode cpp">dest_itr_beg</code> określa początek kontenera gdzie mają być wstawiane elementy.</p>
-<p>##Zadanie 6 Wydrukuj zawartość tablicy na ekran korzystając z algorytmu <code class="sourceCode cpp">for_each(...)</code>. Ostatnim argumentem tego algorytmu jest funkcja lub obiekt funkcyjny dokonujący operacji na każdym z obiektów kolekcji znajdującym się pomiędzy podanymi iteratorami. Sprawdź działanie tego algorytmu korzystając zarówno z funkcji jak i z obiektu funkcyjnego. Przykładowy obiekt funkcyjny wygląda tak:</p>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Dopisz do powyższego obiektu konstruktory domyślny <code class="sourceCode cpp">Record()</code> i jednoargumentowy <code class="sourceCode cpp">Record(<span class="at">const</span> <span class="dt">char</span> c[])</code> który inicjalizuje atrybut <code class="sourceCode cpp">mName</code> wartością argumentu <code class="sourceCode cpp">c</code>.</p>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>W funkcji głównej programu zadeklaruj tablicę obiektów typu <code class="sourceCode cpp">Record</code> korzystając ze standardowego kontenera <code class="sourceCode cpp">vector</code>.</p>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Wypełnij tablicę pewną ilością danych tak aby kilka razy powtórzyły się osoby o tym samym nazwisku np. „Nowak” i występowały inne nazwiska zaczynające się na literę <code class="sourceCode cpp">N</code>.</p>
+</div>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
+<p>Skopiuj powyższą tablicę do innej tablicy tymczasowej tego samego typu korzystając z algorytmu <code class="sourceCode cpp">copy( itr_beg, itr_end, dest_itr_beg)</code> gdzie <code class="sourceCode cpp">itr_beg</code> i <code class="sourceCode cpp">itr_end</code> określając zakres źródła do skopiowania a <code class="sourceCode cpp">dest_itr_beg</code> określa początek kontenera gdzie mają być wstawiane elementy.</p>
+</div>
+<div id="zadanie-6" class="section level2">
+<h2>Zadanie 6</h2>
+<p>Wydrukuj zawartość tablicy na ekran korzystając z algorytmu <code class="sourceCode cpp">for_each(...)</code>. Ostatnim argumentem tego algorytmu jest funkcja lub obiekt funkcyjny dokonujący operacji na każdym z obiektów kolekcji znajdującym się pomiędzy podanymi iteratorami. Sprawdź działanie tego algorytmu korzystając zarówno z funkcji jak i z obiektu funkcyjnego. Przykładowy obiekt funkcyjny wygląda tak:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">class</span> Print</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span>:</a>
@@ -723,9 +740,19 @@ div.tocify {
 <a class="sourceLine" id="cb2-6" data-line-number="6">        <span class="co">// instrukcje które będą wykonywane</span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7">    }</a>
 <a class="sourceLine" id="cb2-8" data-line-number="8">};</a></code></pre></div>
-<p>##Zadanie 7 Wydrukuj zawartość tablicy do pliku korzystając ze strumienia <code class="sourceCode cpp">ofstream</code> i zmodyfikowanego obiektu funkcyjnego, który będzie dodatkowo przechowywał strumień (konieczny konstruktor!).</p>
-<p>##Zadanie 8 Znajdż w tablicy wszystkie wystąpienia osób z nazwiskiem „Nowak”. W tym celu posortuj (algorytm <code class="sourceCode cpp">sort</code>) tablicę a następnie skorzystaj z algorytmu <code class="sourceCode cpp">equal_range( itr_begin, itr_end, val)</code> który zwraca obiekt typu <code class="sourceCode cpp">pair&lt;iterator,iterator&gt;</code> a jego atrybuty <code class="sourceCode cpp">first</code> i <code class="sourceCode cpp">second</code> tej pary odpowiednio przechowują iteratory do pierwszego i znajdującego się za ostatnim obiektu równego <code class="sourceCode cpp">val</code>. Aby można było skorzystać z tego algorytmu niezbędne jest dopisanie operatora <code class="sourceCode cpp">&lt;</code> do obiektu <code class="sourceCode cpp">Record</code>. Wynik wydrukuj na ekran korzystając z <code class="sourceCode cpp">for_each</code>.</p>
-<p>##Zadanie 9 Znajdź wszystkie elementy tablicy dla których nazwisko osoby zaczyna się na literę <code class="sourceCode cpp">N</code>. Skorzystaj z algorytmu <code class="sourceCode cpp">lower_bound( itr_begin, itr_end, val)</code> który zwraca iterator do pierwszego elementu o wartości nie mniejszej niż <code class="sourceCode cpp">val</code>.</p>
+</div>
+<div id="zadanie-7" class="section level2">
+<h2>Zadanie 7</h2>
+<p>Wydrukuj zawartość tablicy do pliku korzystając ze strumienia <code class="sourceCode cpp">ofstream</code> i zmodyfikowanego obiektu funkcyjnego, który będzie dodatkowo przechowywał strumień (konieczny konstruktor!).</p>
+</div>
+<div id="zadanie-8" class="section level2">
+<h2>Zadanie 8</h2>
+<p>Znajdż w tablicy wszystkie wystąpienia osób z nazwiskiem „Nowak”. W tym celu posortuj (algorytm <code class="sourceCode cpp">sort</code>) tablicę a następnie skorzystaj z algorytmu <code class="sourceCode cpp">equal_range( itr_begin, itr_end, val)</code> który zwraca obiekt typu <code class="sourceCode cpp">pair&lt;iterator,iterator&gt;</code> a jego atrybuty <code class="sourceCode cpp">first</code> i <code class="sourceCode cpp">second</code> tej pary odpowiednio przechowują iteratory do pierwszego i znajdującego się za ostatnim obiektu równego <code class="sourceCode cpp">val</code>. Aby można było skorzystać z tego algorytmu niezbędne jest dopisanie operatora <code class="sourceCode cpp">&lt;</code> do obiektu <code class="sourceCode cpp">Record</code>. Wynik wydrukuj na ekran korzystając z <code class="sourceCode cpp">for_each</code>.</p>
+</div>
+<div id="zadanie-9" class="section level2">
+<h2>Zadanie 9</h2>
+<p>Znajdź wszystkie elementy tablicy dla których nazwisko osoby zaczyna się na literę <code class="sourceCode cpp">N</code>. Skorzystaj z algorytmu <code class="sourceCode cpp">lower_bound( itr_begin, itr_end, val)</code> który zwraca iterator do pierwszego elementu o wartości nie mniejszej niż <code class="sourceCode cpp">val</code>.</p>
+</div>
 </div>
 
 <!-- Dummy footer -->
