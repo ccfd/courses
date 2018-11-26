@@ -34,7 +34,7 @@ cout << *itr <<endl;
 * Wydrukuj od końca zawartość tablicy na ekran używając obiektu `reverse_iterator`{.cpp}:
 ```cpp
 vector<int>::reverse_iterator	ritr;
-for ( itr=tab.rbegin(); itr!=tab.rend(); ++ritr)
+for ( ritr=tab.rbegin(); ritr!=tab.rend(); ++ritr)
 cout << *ritr <<endl;
 ```
 
