@@ -726,7 +726,7 @@ div.tocify {
 <li>Wydrukuj od końca zawartość tablicy na ekran używając obiektu <code class="sourceCode cpp">reverse_iterator</code>:</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1">vector&lt;<span class="dt">int</span>&gt;::reverse_iterator   ritr;</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="cf">for</span> ( itr=tab.rbegin(); itr!=tab.rend(); ++ritr)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="cf">for</span> ( ritr=tab.rbegin(); ritr!=tab.rend(); ++ritr)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">cout &lt;&lt; *ritr &lt;&lt;endl;</a></code></pre></div>
 <ul>
 <li><p>Usuń wszystkie elementu z tablicy tab przez wykorzystanie metody <code class="sourceCode cpp">clear()</code>. Sprawdź czy tablica jest rzeczywiście pusta przez sprawdzenie rozmiaru (<code class="sourceCode cpp">size()</code>) i metody <code class="sourceCode cpp">empty()</code> – zwraca wartość <code class="sourceCode cpp"><span class="dt">bool</span></code> w zależności od tego czy tablica jest pusta czy też nie.</p></li>
