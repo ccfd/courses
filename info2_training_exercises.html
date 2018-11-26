@@ -12,7 +12,7 @@
 <meta name="author" content="W. Gryglas" />
 
 
-<title></title>
+<title>info2_training_exercises.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,46 +24,77 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -121,8 +152,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -138,7 +175,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -158,6 +194,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -179,18 +252,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -592,19 +724,13 @@ div.tocify {
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
 <p>Pan Janusz wymyślił sobie, że ogrodzi działkę od strony północnej na kształt sinusoidy. Jako, że nie uczęszczał na zajęcia z informatyki 2 to nie potrafi sam obliczyć jaką długość siatki powinien on zakupić w sklepie. Wymiary działki są następujące:</p>
-<div class="figure">
-<img src="figures/info2/training/fence.png" title="Ogrodzenie" alt="" />
-
-</div>
+<p><img src="figures/info2/training/fence.png" title="Ogrodzenie" /></p>
 <p>Górną krawędź opisuje funkcja <span class="math display">\[2 \cdot sin(\frac{x}{10})\]</span> gdzie <span class="math inline">\(x=0\)</span> odpowiada lewemu bokowi. Pomóż Panu Januszowi i oblicz ile metrów siatki potrzebuje aby ogrodzić swoją działkę.</p>
 </div>
 <div id="zadanie-3" class="section level2">
 <h2>Zadanie 3</h2>
 <p>Zamieszczony mechanizm na rysunku poniżej składa się z dwóch członów połączonych między sobą, z ziemią i szyną na górze parami obrotowymi.</p>
-<div class="figure">
-<img src="figures/info2/training/mechanism.png" title="Mechanizm" alt="" />
-
-</div>
+<p><img src="figures/info2/training/mechanism.png" title="Mechanizm" /></p>
 <p>Mechanizm ten ma 1 stopień swobody(można jedynie przesuwać górny punkt wzdłuż linii kreskowej). Górna końcówka przemieszcza się w czasie zgodnie z następującym równaniem: <span class="math display">\[ x = 2 \cdot sin(t) + 2 \]</span> Wymiary mechanizmu to: <span class="math display">\[
 h = 10 \\
 l_1 = 5 \\
@@ -613,13 +739,13 @@ l_2 = 8
 <div id="dla-zainteresowanych" class="section level3">
 <h3>Dla zainteresowanych</h3>
 <p>Wykonaj animację ruchu mechanizmu korzystając z biblioteki graficznej, funkcji <code>animate</code> oraz funkcji <code>clear</code> (funkcja <code>animate</code> wstrzymuje działanie programu na pewną chwilę, a funkcja <code>clear</code> czyści okno). Za pomocą tych funkcji można napisać prostą animację w następujący sposób:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> iter=<span class="dv">0</span>;
-<span class="kw">while</span>(animate(<span class="dv">15</span>) &amp;&amp; iter&lt;liczba_czasow)
-{
-    clear();
-    .... rysowanie mechanizmu...
-    iter++;
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">int</span> iter=<span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">while</span>(animate(<span class="dv">15</span>) &amp;&amp; iter&lt;liczba_czasow)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    clear();</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    .... rysowanie mechanizmu...</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    iter++;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">}</a></code></pre></div>
 </div>
 </div>
 <div id="zadanie-4-typu-kolokwialnego" class="section level2">
@@ -683,10 +809,7 @@ h(x) = 2\cdot \delta(x) [m]
 \delta(x) = \mathbf{a} \cdot (l - x) \cdot x + \frac{\delta_0}{2} [m]
 \]</span></p>
 <p>gdzie <span class="math inline">\(\mathbf{a}\)</span> jest parametrem funkcji i może zmieniać się w zakresie <span class="math inline">\(&lt;0, 0.1&gt;\)</span>. <span class="math inline">\(\delta_0\)</span> jest minimalną grubością równą <span class="math inline">\(0.1 [m]\)</span>.</p>
-<div class="figure">
-<img src="figures/info2/training/exemplary_bars.png" title="Przykladowe belki" alt="" />
-
-</div>
+<p><img src="figures/info2/training/exemplary_bars.png" title="Przykladowe belki" /></p>
 <p>Belka jest obciążona w taki sposób, że moment gnący opisuje poniższa funkcja: <span class="math display">\[
     M(x) = \mGnacySkalaText \cdot sinh(\frac{x}{l}) \cdot sin(\frac{x\cdot \pi}{l}) [N \cdot m]
 \]</span> gdzie długość belki <span class="math inline">\(l = 5\)</span>. Twoim zadaniem jest znalezienie optymalnej wartości parametru <span class="math inline">\(\mathbf{a}\)</span> dla którego maksymalna wartość naprężenia w belce, pod zadanym obciążeniem, będzie równe <span class="math inline">\(\sigma_{max} = 200 [MPa]\)</span>. Maksymalne naprężenie w dowolnym przekroju to: <span class="math display">\[
@@ -838,10 +961,10 @@ x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad poniewa
 <div id="krok-3-1" class="section level3">
 <h3>Krok 3</h3>
 <p>Wykorzystaj tablice wyznaczone w poprzednim zadaniu i przygotuj funkcję</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> interpSigmaMax(<span class="dt">double</span> a)
-{
-   ....
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> interpSigmaMax(<span class="dt">double</span> a)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">   ....</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">}</a></code></pre></div>
 <p>która dokona interpolacji wielomianowej funkcji <span class="math inline">\(\sigma_{max}(\mathbf{a})\)</span> i zwróci wartość obliczoną dla dowolnego <span class="math inline">\(a\)</span>.</p>
 </div>
 <div id="krok-4" class="section level3">
@@ -855,441 +978,441 @@ x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad poniewa
 <h1>Rozwiązania zadań</h1>
 <div id="zadanie-1-2" class="section level2">
 <h2>Zadanie 1</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">const</span> <span class="dt">double</span> m = <span class="fl">5e4</span>, v0 = <span class="dv">85</span>;
-
-<span class="dt">double</span> y(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">-1e3</span>*(x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>)*sin(x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>);
-}
-
-<span class="dt">double</span> dydx(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">-0.</span><span class="dv">1</span>*( sin(x/<span class="fl">1e4-4.</span><span class="dv">91318</span>) + (x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>)*cos(x/<span class="fl">1e4</span> - <span class="fl">4.</span><span class="dv">91318</span>) );
-}
-
-<span class="dt">double</span> dWdx(<span class="dt">double</span> x)
-{
-    <span class="dt">double</span> F[] = { -m*(sin(x/<span class="fl">1e2</span>)<span class="fl">+0.</span><span class="dv">8</span>)/<span class="fl">1e2</span>, - m*<span class="dv">10</span>*(<span class="fl">0.</span><span class="dv">8</span>+sin(y(x))) };
-    <span class="dt">double</span> ds[] = {<span class="dv">1</span>, dydx(x)};
-
-    <span class="kw">return</span> F[<span class="dv">0</span>]*ds[<span class="dv">0</span>] + F[<span class="dv">1</span>]*ds[<span class="dv">1</span>];
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">int</span> iter;
-
-    <span class="dt">double</span> x0 = styczna(<span class="fl">4e4</span>,y, dydx, <span class="fl">1e-4</span>, &amp;iter);
-
-    printf(<span class="st">&quot;x0=</span><span class="ch">%e\t</span><span class="st">y(x0)=</span><span class="ch">%e\t</span><span class="st">Niter=</span><span class="ch">%d\n</span><span class="st">&quot;</span>, x0, y(x0),iter);
-
-    <span class="dt">double</span> praca = trapez(<span class="dv">0</span>, x0, dWdx, <span class="fl">1e3</span>);
-    <span class="dt">double</span> E0 = m*v0*v0/<span class="dv">2</span>;
-
-    printf(<span class="st">&quot;praca=</span><span class="ch">%e\t</span><span class="st">E0=</span><span class="ch">%e\n</span><span class="st">&quot;</span>, praca, E0);
-
-    <span class="dt">double</span> v = sqrt( <span class="dv">2</span>*( E0 + praca )/m );
-
-    printf(<span class="st">&quot;v=</span><span class="ch">%e\n</span><span class="st">&quot;</span>, v);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="pp">#include </span><span class="im">&quot;narzedzia.h&quot;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="at">const</span> <span class="dt">double</span> m = <span class="fl">5e4</span>, v0 = <span class="dv">85</span>;</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="dt">double</span> y(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="cf">return</span> <span class="fl">-1e3</span>*(x/<span class="fl">1e4</span> - <span class="fl">4.91318</span>)*sin(x/<span class="fl">1e4</span> - <span class="fl">4.91318</span>);</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="dt">double</span> dydx(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="cf">return</span> <span class="fl">-0.1</span>*( sin(x/<span class="fl">1e4-4.91318</span>) + (x/<span class="fl">1e4</span> - <span class="fl">4.91318</span>)*cos(x/<span class="fl">1e4</span> - <span class="fl">4.91318</span>) );</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="dt">double</span> dWdx(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">    <span class="dt">double</span> F[] = { -m*(sin(x/<span class="fl">1e2</span>)<span class="dv">+0</span><span class="fl">.8</span>)/<span class="fl">1e2</span>, - m*<span class="dv">10</span>*(<span class="fl">0.8</span>+sin(y(x))) };</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">    <span class="dt">double</span> ds[] = {<span class="dv">1</span>, dydx(x)};</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="cf">return</span> F[<span class="dv">0</span>]*ds[<span class="dv">0</span>] + F[<span class="dv">1</span>]*ds[<span class="dv">1</span>];</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">{</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="dt">int</span> iter;</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">    <span class="dt">double</span> x0 = styczna(<span class="fl">4e4</span>,y, dydx, <span class="fl">1e-4</span>, &amp;iter);</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">    printf(<span class="st">&quot;x0=</span><span class="sc">%e\t</span><span class="st">y(x0)=</span><span class="sc">%e\t</span><span class="st">Niter=</span><span class="sc">%d\n</span><span class="st">&quot;</span>, x0, y(x0),iter);</a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">    <span class="dt">double</span> praca = trapez(<span class="dv">0</span>, x0, dWdx, <span class="fl">1e3</span>);</a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">    <span class="dt">double</span> E0 = m*v0*v0/<span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">    printf(<span class="st">&quot;praca=</span><span class="sc">%e\t</span><span class="st">E0=</span><span class="sc">%e\n</span><span class="st">&quot;</span>, praca, E0);</a>
+<a class="sourceLine" id="cb3-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">    <span class="dt">double</span> v = sqrt( <span class="dv">2</span>*( E0 + praca )/m );</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">    printf(<span class="st">&quot;v=</span><span class="sc">%e\n</span><span class="st">&quot;</span>, v);</a>
+<a class="sourceLine" id="cb3-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb3-42" data-line-number="42">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-43" data-line-number="43">}</a></code></pre></div>
 </div>
 <div id="zadanie-2-2" class="section level2">
 <h2>Zadanie 2</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">double</span> fun(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> sqrt( pow(<span class="fl">0.</span><span class="dv">5</span>*cos(x/<span class="dv">10</span>),<span class="dv">2</span>) + <span class="dv">1</span>);
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">double</span> calka = simpson(<span class="dv">0</span>,<span class="dv">100</span>,fun, <span class="dv">100</span>);
-
-    <span class="dt">double</span> ogrodzenie = <span class="dv">100</span> + <span class="dv">50</span>*<span class="dv">2</span> + calka;
-
-    printf(<span class="st">&quot;dlugosc ogrodzenia to </span><span class="ch">%.2lf</span><span class="st">[m]</span><span class="ch">\n</span><span class="st">&quot;</span>, ogrodzenie);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="pp">#include </span><span class="im">&quot;narzedzia.h&quot;</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="dt">double</span> fun(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="cf">return</span> sqrt( pow(<span class="fl">0.5</span>*cos(x/<span class="dv">10</span>),<span class="dv">2</span>) + <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="dt">double</span> calka = simpson(<span class="dv">0</span>,<span class="dv">100</span>,fun, <span class="dv">100</span>);</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">    <span class="dt">double</span> ogrodzenie = <span class="dv">100</span> + <span class="dv">50</span>*<span class="dv">2</span> + calka;</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">    printf(<span class="st">&quot;dlugosc ogrodzenia to </span><span class="sc">%.2lf</span><span class="st">[m]</span><span class="sc">\n</span><span class="st">&quot;</span>, ogrodzenie);</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">}</a></code></pre></div>
 </div>
 <div id="zadanie-3-2" class="section level2">
 <h2>Zadanie 3</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#define _CRTP_USE_SECURE_NO_WARNINGS</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-<span class="ot">#include &quot;winbgi2.h&quot;</span>
-
-<span class="dt">double</span> time=<span class="dv">0</span>;
-<span class="dt">const</span> <span class="dt">double</span> h = <span class="dv">10</span>;
-<span class="dt">const</span> <span class="dt">double</span> l1 = <span class="dv">5</span>;
-<span class="dt">const</span> <span class="dt">double</span> l2 = <span class="dv">8</span>;
-<span class="dt">const</span> <span class="dt">int</span> N = <span class="dv">10</span>;
-<span class="dt">const</span> <span class="dt">int</span> M = <span class="dv">100</span>;
-
-<span class="dt">double</span> equation(<span class="dt">double</span> x1)
-{
-    <span class="kw">return</span> pow(<span class="dv">2</span>*sin(time) + <span class="dv">2</span> - x1, <span class="dv">2</span>) + pow(h - sqrt( l1*l1-x1*x1 ), <span class="dv">2</span>) - l2*l2;
-}
-
-<span class="dt">const</span> <span class="dt">double</span> pi = <span class="fl">4.</span>*atan(<span class="fl">1.</span>);
-<span class="dt">double</span> degree(<span class="dt">double</span> radian)
-{
-    <span class="kw">return</span> <span class="fl">180.</span> / pi* radian;
-}
-
-
-<span class="dt">int</span> main()
-{
-    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);
-
-    setbkcolor(WHITE);
-    
-    <span class="co">//Set black color for frame drawing</span>
-    setgray(<span class="fl">0.</span>);
-    scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">60</span>);
-    title(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;angle&quot;</span>, <span class="st">&quot;alpha(t)&quot;</span>);
-
-    <span class="co">//Solution</span>
-    <span class="dt">double</span> alpha[N];
-    <span class="dt">double</span> times[N];
-    <span class="dt">int</span> itr;
-    <span class="dt">double</span> dt = <span class="fl">5.</span>/(N<span class="dv">-1</span>);
-    <span class="dt">double</span> xs=<span class="dv">0</span>;
-    <span class="dt">double</span> xe=<span class="dv">5</span>;
-    <span class="dt">double</span> x1 = <span class="dv">0</span>;
-
-
-    setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>);
-
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)
-    {
-        x1 = bisec(<span class="dv">0</span>, <span class="dv">5</span>, equation, <span class="fl">1e-3</span>, &amp;itr);
-        <span class="dt">double</span> y1 = sqrt(l1*l1 - x1*x1);
-
-        alpha[i] = atan(y1/x1);
-        times[i] = time;
-   
-        time += dt;
-
-        circle(times[i], degree(alpha[i]), <span class="dv">5</span>);
-    }
-
-    <span class="co">//Interpolation</span>
-    <span class="dt">double</span> alpha2[M];
-    <span class="dt">double</span> times2[M];
-    dt = <span class="fl">5.</span>/(M<span class="dv">-1</span>);
-    time = <span class="dv">0</span>;
-
-    setcolor(<span class="fl">0.</span><span class="dv">9</span>);
-
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i)
-    {
-       alpha2[i] = lagrange(times, alpha, N, time);
-       times2[i] = time;
-
-       time += dt;  
-
-       <span class="kw">if</span> (i &gt; <span class="dv">0</span>)
-       {
-           line(times2[i<span class="dv">-1</span>], degree(alpha2[i<span class="dv">-1</span>]), times2[i], degree(alpha2[i]));
-       }
-    }
-    wait();
-
-    <span class="co">//Animate mechanism</span>
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M &amp;&amp; animate(<span class="dv">15</span>); ++i)
-    {
-        clear();
-
-        setgray(<span class="fl">0.</span>);
-        setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>);
-        scale(<span class="dv">-3</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>);
-        
-        <span class="co">//draw 2 parts of mechanism</span>
-        setgray(<span class="fl">0.</span><span class="dv">5</span>);
-        setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>);
-        line(<span class="dv">0</span>, <span class="dv">0</span>, l1*cos(alpha2[i]), l1*sin(alpha2[i]));
-        line(l1*cos(alpha2[i]), l1*sin(alpha2[i]), <span class="dv">5</span> * sin(times2[i]) + <span class="dv">2</span>, h);
-
-
-        <span class="co">//Draw the guide </span>
-        setcolor(<span class="fl">0.</span><span class="dv">9</span>);
-        setlinestyle(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);
-        line(<span class="dv">-3</span>, h, <span class="dv">10</span>, h);
-
-    }
-
-    wait();
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="pp">#define _CRTP_USE_SECURE_NO_WARNINGS</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="pp">#include </span><span class="im">&quot;narzedzia.h&quot;</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="pp">#include </span><span class="im">&quot;winbgi2.h&quot;</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="dt">double</span> time=<span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="at">const</span> <span class="dt">double</span> h = <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="at">const</span> <span class="dt">double</span> l1 = <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="at">const</span> <span class="dt">double</span> l2 = <span class="dv">8</span>;</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="at">const</span> <span class="dt">int</span> N = <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="at">const</span> <span class="dt">int</span> M = <span class="dv">100</span>;</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="dt">double</span> equation(<span class="dt">double</span> x1)</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">    <span class="cf">return</span> pow(<span class="dv">2</span>*sin(time) + <span class="dv">2</span> - x1, <span class="dv">2</span>) + pow(h - sqrt( l1*l1-x1*x1 ), <span class="dv">2</span>) - l2*l2;</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="at">const</span> <span class="dt">double</span> pi = <span class="fl">4.</span>*atan(<span class="fl">1.</span>);</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="dt">double</span> degree(<span class="dt">double</span> radian)</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">    <span class="cf">return</span> <span class="fl">180.</span> / pi* radian;</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">{</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30">    setbkcolor(WHITE);</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">    </a>
+<a class="sourceLine" id="cb5-32" data-line-number="32">    <span class="co">//Set black color for frame drawing</span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33">    setgray(<span class="fl">0.</span>);</a>
+<a class="sourceLine" id="cb5-34" data-line-number="34">    scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">60</span>);</a>
+<a class="sourceLine" id="cb5-35" data-line-number="35">    title(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;angle&quot;</span>, <span class="st">&quot;alpha(t)&quot;</span>);</a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37">    <span class="co">//Solution</span></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38">    <span class="dt">double</span> alpha[N];</a>
+<a class="sourceLine" id="cb5-39" data-line-number="39">    <span class="dt">double</span> times[N];</a>
+<a class="sourceLine" id="cb5-40" data-line-number="40">    <span class="dt">int</span> itr;</a>
+<a class="sourceLine" id="cb5-41" data-line-number="41">    <span class="dt">double</span> dt = <span class="fl">5.</span>/(N<span class="dv">-1</span>);</a>
+<a class="sourceLine" id="cb5-42" data-line-number="42">    <span class="dt">double</span> xs=<span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb5-43" data-line-number="43">    <span class="dt">double</span> xe=<span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb5-44" data-line-number="44">    <span class="dt">double</span> x1 = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47">    setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>);</a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb5-49" data-line-number="49">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)</a>
+<a class="sourceLine" id="cb5-50" data-line-number="50">    {</a>
+<a class="sourceLine" id="cb5-51" data-line-number="51">        x1 = bisec(<span class="dv">0</span>, <span class="dv">5</span>, equation, <span class="fl">1e-3</span>, &amp;itr);</a>
+<a class="sourceLine" id="cb5-52" data-line-number="52">        <span class="dt">double</span> y1 = sqrt(l1*l1 - x1*x1);</a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54">        alpha[i] = atan(y1/x1);</a>
+<a class="sourceLine" id="cb5-55" data-line-number="55">        times[i] = time;</a>
+<a class="sourceLine" id="cb5-56" data-line-number="56">   </a>
+<a class="sourceLine" id="cb5-57" data-line-number="57">        time += dt;</a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59">        circle(times[i], degree(alpha[i]), <span class="dv">5</span>);</a>
+<a class="sourceLine" id="cb5-60" data-line-number="60">    }</a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62">    <span class="co">//Interpolation</span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63">    <span class="dt">double</span> alpha2[M];</a>
+<a class="sourceLine" id="cb5-64" data-line-number="64">    <span class="dt">double</span> times2[M];</a>
+<a class="sourceLine" id="cb5-65" data-line-number="65">    dt = <span class="fl">5.</span>/(M<span class="dv">-1</span>);</a>
+<a class="sourceLine" id="cb5-66" data-line-number="66">    time = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"></a>
+<a class="sourceLine" id="cb5-68" data-line-number="68">    setcolor(<span class="fl">0.9</span>);</a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i)</a>
+<a class="sourceLine" id="cb5-71" data-line-number="71">    {</a>
+<a class="sourceLine" id="cb5-72" data-line-number="72">       alpha2[i] = lagrange(times, alpha, N, time);</a>
+<a class="sourceLine" id="cb5-73" data-line-number="73">       times2[i] = time;</a>
+<a class="sourceLine" id="cb5-74" data-line-number="74"></a>
+<a class="sourceLine" id="cb5-75" data-line-number="75">       time += dt;  </a>
+<a class="sourceLine" id="cb5-76" data-line-number="76"></a>
+<a class="sourceLine" id="cb5-77" data-line-number="77">       <span class="cf">if</span> (i &gt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb5-78" data-line-number="78">       {</a>
+<a class="sourceLine" id="cb5-79" data-line-number="79">           line(times2[i<span class="dv">-1</span>], degree(alpha2[i<span class="dv">-1</span>]), times2[i], degree(alpha2[i]));</a>
+<a class="sourceLine" id="cb5-80" data-line-number="80">       }</a>
+<a class="sourceLine" id="cb5-81" data-line-number="81">    }</a>
+<a class="sourceLine" id="cb5-82" data-line-number="82">    wait();</a>
+<a class="sourceLine" id="cb5-83" data-line-number="83"></a>
+<a class="sourceLine" id="cb5-84" data-line-number="84">    <span class="co">//Animate mechanism</span></a>
+<a class="sourceLine" id="cb5-85" data-line-number="85">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; M &amp;&amp; animate(<span class="dv">15</span>); ++i)</a>
+<a class="sourceLine" id="cb5-86" data-line-number="86">    {</a>
+<a class="sourceLine" id="cb5-87" data-line-number="87">        clear();</a>
+<a class="sourceLine" id="cb5-88" data-line-number="88"></a>
+<a class="sourceLine" id="cb5-89" data-line-number="89">        setgray(<span class="fl">0.</span>);</a>
+<a class="sourceLine" id="cb5-90" data-line-number="90">        setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb5-91" data-line-number="91">        scale(<span class="dv">-3</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>);</a>
+<a class="sourceLine" id="cb5-92" data-line-number="92">        </a>
+<a class="sourceLine" id="cb5-93" data-line-number="93">        <span class="co">//draw 2 parts of mechanism</span></a>
+<a class="sourceLine" id="cb5-94" data-line-number="94">        setgray(<span class="fl">0.5</span>);</a>
+<a class="sourceLine" id="cb5-95" data-line-number="95">        setlinestyle(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>);</a>
+<a class="sourceLine" id="cb5-96" data-line-number="96">        line(<span class="dv">0</span>, <span class="dv">0</span>, l1*cos(alpha2[i]), l1*sin(alpha2[i]));</a>
+<a class="sourceLine" id="cb5-97" data-line-number="97">        line(l1*cos(alpha2[i]), l1*sin(alpha2[i]), <span class="dv">5</span> * sin(times2[i]) + <span class="dv">2</span>, h);</a>
+<a class="sourceLine" id="cb5-98" data-line-number="98"></a>
+<a class="sourceLine" id="cb5-99" data-line-number="99"></a>
+<a class="sourceLine" id="cb5-100" data-line-number="100">        <span class="co">//Draw the guide </span></a>
+<a class="sourceLine" id="cb5-101" data-line-number="101">        setcolor(<span class="fl">0.9</span>);</a>
+<a class="sourceLine" id="cb5-102" data-line-number="102">        setlinestyle(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb5-103" data-line-number="103">        line(<span class="dv">-3</span>, h, <span class="dv">10</span>, h);</a>
+<a class="sourceLine" id="cb5-104" data-line-number="104"></a>
+<a class="sourceLine" id="cb5-105" data-line-number="105">    }</a>
+<a class="sourceLine" id="cb5-106" data-line-number="106"></a>
+<a class="sourceLine" id="cb5-107" data-line-number="107">    wait();</a>
+<a class="sourceLine" id="cb5-108" data-line-number="108">}</a></code></pre></div>
 </div>
 <div id="zadanie-4" class="section level2">
 <h2>Zadanie 4</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#define _CRT_SECURE_NO_WARNINGS</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-<span class="ot">#include &quot;winbgi2.h&quot;</span>
-
-<span class="dt">double</span> trapezParam(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> parameter, <span class="dt">double</span>(*fun)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">int</span> n)
-{
-    <span class="dt">int</span> i;
-    <span class="dt">double</span> h=(b-a)/(n<span class="dv">-1</span>), calka=<span class="dv">0</span>, x1, x2;
-    <span class="kw">for</span>(i=<span class="dv">0</span>; i&lt;n<span class="dv">-1</span>; ++i)
-    {
-        x1 = a + i*h;
-        x2 = a + (i<span class="dv">+1</span>)*h;
-        calka += ( fun(x1, parameter) + fun(x2, parameter) )/<span class="dv">2</span> * h;
-    }
-    <span class="kw">return</span> calka;
-}
-
-<span class="dt">double</span> stycznaParam(<span class="dt">double</span> x0, <span class="dt">double</span> parameter, <span class="dt">double</span>(*fun)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">double</span>(*poch)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *n_iter)
-{
-    <span class="dt">double</span> deltaX=<span class="dv">1</span>;
-    *n_iter = <span class="dv">0</span>;
-    <span class="kw">while</span>(fabs(fun(x0, parameter)) &gt; eps &amp;&amp; fabs(deltaX) &gt; eps)
-    {
-        deltaX = - fun(x0, parameter)/poch(x0, parameter);
-        x0 = x0 + deltaX;
-        (*n_iter)++;
-        <span class="kw">if</span>(*n_iter &gt; <span class="fl">1e3</span>)
-        {
-            *n_iter=<span class="dv">-1</span>;
-            <span class="kw">return</span> x0;
-        }
-    }
-    <span class="kw">return</span> x0;
-}
-
-<span class="dt">double</span> funkcja(<span class="dt">double</span> x, <span class="dt">double</span> a)
-{
-    <span class="kw">return</span> -x*sinh(x) + a;
-}
-
-<span class="dt">double</span> pochodna(<span class="dt">double</span> x, <span class="dt">double</span> a)
-{
-    <span class="kw">return</span> -sinh(x) - x*cosh(x);
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">const</span> <span class="dt">int</span> N = <span class="dv">10</span>;
-    <span class="dt">const</span> <span class="dt">int</span> M = <span class="dv">100</span>;
-
-    <span class="dt">double</span> x01[N], x02[N], C[N], parametry[N];
-    <span class="dt">int</span> iter;
-
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)
-    {
-        parametry[i] = i<span class="dv">+1</span>;
-
-        x01[i] = stycznaParam(<span class="dv">-1</span>, i<span class="dv">+1</span>, funkcja, pochodna, <span class="fl">1e-4</span>, &amp;iter);
-        x02[i] = stycznaParam(<span class="dv">1</span>, i<span class="dv">+1</span>, funkcja, pochodna, <span class="fl">1e-4</span>, &amp;iter);
-
-        C[i] = trapezParam(x01[i], x02[i], i<span class="dv">+1</span>, funkcja, <span class="dv">100</span>);
-    }
-
-    
-    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);
-    <span class="co">//Ustaw kolor tla na bialy i czcionki na czarny</span>
-    setbkcolor(WHITE);
-    setgray(<span class="dv">0</span>);
-    scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">40</span>);
-
-    <span class="dt">double</span> da = <span class="fl">9.</span> / (M - <span class="dv">1</span>);
-    <span class="dt">double</span> a = <span class="dv">1</span>;
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i, a += da)
-    {
-        <span class="co">//Zinterpoluj wynik</span>
-        <span class="dt">double</span> ci = lagrange(parametry, C, N, a);
-
-        circle(a, ci, <span class="dv">3</span>);
-    }
-
-    wait();
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="pp">#define _CRT_SECURE_NO_WARNINGS</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="pp">#include </span><span class="im">&quot;narzedzia.h&quot;</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="pp">#include </span><span class="im">&quot;winbgi2.h&quot;</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="dt">double</span> trapezParam(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> parameter, <span class="dt">double</span>(*fun)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">int</span> n)</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">int</span> i;</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    <span class="dt">double</span> h=(b-a)/(n<span class="dv">-1</span>), calka=<span class="dv">0</span>, x1, x2;</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">    <span class="cf">for</span>(i=<span class="dv">0</span>; i&lt;n<span class="dv">-1</span>; ++i)</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">    {</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">        x1 = a + i*h;</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">        x2 = a + (i<span class="dv">+1</span>)*h;</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">        calka += ( fun(x1, parameter) + fun(x2, parameter) )/<span class="dv">2</span> * h;</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">    }</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">    <span class="cf">return</span> calka;</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="dt">double</span> stycznaParam(<span class="dt">double</span> x0, <span class="dt">double</span> parameter, <span class="dt">double</span>(*fun)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">double</span>(*poch)(<span class="dt">double</span>, <span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *n_iter)</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">    <span class="dt">double</span> deltaX=<span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23">    *n_iter = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">    <span class="cf">while</span>(fabs(fun(x0, parameter)) &gt; eps &amp;&amp; fabs(deltaX) &gt; eps)</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25">    {</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26">        deltaX = - fun(x0, parameter)/poch(x0, parameter);</a>
+<a class="sourceLine" id="cb6-27" data-line-number="27">        x0 = x0 + deltaX;</a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">        (*n_iter)++;</a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">        <span class="cf">if</span>(*n_iter &gt; <span class="fl">1e3</span>)</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30">        {</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">            *n_iter=<span class="dv">-1</span>;</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">            <span class="cf">return</span> x0;</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33">        }</a>
+<a class="sourceLine" id="cb6-34" data-line-number="34">    }</a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">    <span class="cf">return</span> x0;</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36">}</a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="dt">double</span> funkcja(<span class="dt">double</span> x, <span class="dt">double</span> a)</a>
+<a class="sourceLine" id="cb6-39" data-line-number="39">{</a>
+<a class="sourceLine" id="cb6-40" data-line-number="40">    <span class="cf">return</span> -x*sinh(x) + a;</a>
+<a class="sourceLine" id="cb6-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="dt">double</span> pochodna(<span class="dt">double</span> x, <span class="dt">double</span> a)</a>
+<a class="sourceLine" id="cb6-44" data-line-number="44">{</a>
+<a class="sourceLine" id="cb6-45" data-line-number="45">    <span class="cf">return</span> -sinh(x) - x*cosh(x);</a>
+<a class="sourceLine" id="cb6-46" data-line-number="46">}</a>
+<a class="sourceLine" id="cb6-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb6-49" data-line-number="49">{</a>
+<a class="sourceLine" id="cb6-50" data-line-number="50">    <span class="at">const</span> <span class="dt">int</span> N = <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb6-51" data-line-number="51">    <span class="at">const</span> <span class="dt">int</span> M = <span class="dv">100</span>;</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb6-53" data-line-number="53">    <span class="dt">double</span> x01[N], x02[N], C[N], parametry[N];</a>
+<a class="sourceLine" id="cb6-54" data-line-number="54">    <span class="dt">int</span> iter;</a>
+<a class="sourceLine" id="cb6-55" data-line-number="55"></a>
+<a class="sourceLine" id="cb6-56" data-line-number="56">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)</a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">    {</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58">        parametry[i] = i<span class="dv">+1</span>;</a>
+<a class="sourceLine" id="cb6-59" data-line-number="59"></a>
+<a class="sourceLine" id="cb6-60" data-line-number="60">        x01[i] = stycznaParam(<span class="dv">-1</span>, i<span class="dv">+1</span>, funkcja, pochodna, <span class="fl">1e-4</span>, &amp;iter);</a>
+<a class="sourceLine" id="cb6-61" data-line-number="61">        x02[i] = stycznaParam(<span class="dv">1</span>, i<span class="dv">+1</span>, funkcja, pochodna, <span class="fl">1e-4</span>, &amp;iter);</a>
+<a class="sourceLine" id="cb6-62" data-line-number="62"></a>
+<a class="sourceLine" id="cb6-63" data-line-number="63">        C[i] = trapezParam(x01[i], x02[i], i<span class="dv">+1</span>, funkcja, <span class="dv">100</span>);</a>
+<a class="sourceLine" id="cb6-64" data-line-number="64">    }</a>
+<a class="sourceLine" id="cb6-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb6-66" data-line-number="66">    </a>
+<a class="sourceLine" id="cb6-67" data-line-number="67">    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);</a>
+<a class="sourceLine" id="cb6-68" data-line-number="68">    <span class="co">//Ustaw kolor tla na bialy i czcionki na czarny</span></a>
+<a class="sourceLine" id="cb6-69" data-line-number="69">    setbkcolor(WHITE);</a>
+<a class="sourceLine" id="cb6-70" data-line-number="70">    setgray(<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb6-71" data-line-number="71">    scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">40</span>);</a>
+<a class="sourceLine" id="cb6-72" data-line-number="72"></a>
+<a class="sourceLine" id="cb6-73" data-line-number="73">    <span class="dt">double</span> da = <span class="fl">9.</span> / (M - <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb6-74" data-line-number="74">    <span class="dt">double</span> a = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb6-75" data-line-number="75">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;M; ++i, a += da)</a>
+<a class="sourceLine" id="cb6-76" data-line-number="76">    {</a>
+<a class="sourceLine" id="cb6-77" data-line-number="77">        <span class="co">//Zinterpoluj wynik</span></a>
+<a class="sourceLine" id="cb6-78" data-line-number="78">        <span class="dt">double</span> ci = lagrange(parametry, C, N, a);</a>
+<a class="sourceLine" id="cb6-79" data-line-number="79"></a>
+<a class="sourceLine" id="cb6-80" data-line-number="80">        circle(a, ci, <span class="dv">3</span>);</a>
+<a class="sourceLine" id="cb6-81" data-line-number="81">    }</a>
+<a class="sourceLine" id="cb6-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb6-83" data-line-number="83">    wait();</a>
+<a class="sourceLine" id="cb6-84" data-line-number="84"></a>
+<a class="sourceLine" id="cb6-85" data-line-number="85">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb6-86" data-line-number="86">}</a></code></pre></div>
 </div>
 <div id="zadanie-5-2" class="section level2">
 <h2>Zadanie 5</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">const</span> <span class="dt">int</span> N=<span class="dv">10</span>;
-<span class="dt">double</span> T[N];
-<span class="dt">double</span> X[N];
-
-<span class="dt">double</span> predkosc(<span class="dt">double</span> t)
-{
-    <span class="kw">return</span> sin(t)*(exp(t)+exp(-t))/<span class="dv">2</span>;
-}
-
-<span class="dt">double</span> polozenia(<span class="dt">double</span> t)
-{
-    <span class="kw">return</span> lagrange(T, X, N, t);
-}
-
-<span class="dt">double</span> rownanie(<span class="dt">double</span> t)
-{
-    <span class="kw">return</span> polozenia(t) - <span class="dv">5</span>;
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">double</span> h = <span class="fl">3.</span>/(N);
-    X[<span class="dv">0</span>]=<span class="dv">0</span>;
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>; i&lt;N; ++i)
-    {
-        X[i] = trapez(<span class="dv">0</span>, i*h, predkosc, <span class="dv">10</span>);
-        T[i] = i*h;
-    }
-
-    <span class="dt">int</span> itr;
-    <span class="dt">double</span> t0 = bisec(<span class="dv">0</span>, <span class="dv">3</span>, rownanie, <span class="fl">1e-4</span>, &amp;itr);
-
-    printf(<span class="st">&quot;Polozenie 5m zostaje osiagniete po </span><span class="ch">%e</span><span class="st"> sekundach</span><span class="ch">\n</span><span class="st">Iter=</span><span class="ch">%d\n</span><span class="st">&quot;</span>, t0, itr);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="pp">#include </span><span class="im">&quot;narzedzia.h&quot;</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="at">const</span> <span class="dt">int</span> N=<span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="dt">double</span> T[N];</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="dt">double</span> X[N];</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="dt">double</span> predkosc(<span class="dt">double</span> t)</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">    <span class="cf">return</span> sin(t)*(exp(t)+exp(-t))/<span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">}</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="dt">double</span> polozenia(<span class="dt">double</span> t)</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">    <span class="cf">return</span> lagrange(T, X, N, t);</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="dt">double</span> rownanie(<span class="dt">double</span> t)</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">    <span class="cf">return</span> polozenia(t) - <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">}</a>
+<a class="sourceLine" id="cb7-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb7-27" data-line-number="27">{</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">    <span class="dt">double</span> h = <span class="fl">3.</span>/(N);</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">    X[<span class="dv">0</span>]=<span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>; i&lt;N; ++i)</a>
+<a class="sourceLine" id="cb7-31" data-line-number="31">    {</a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">        X[i] = trapez(<span class="dv">0</span>, i*h, predkosc, <span class="dv">10</span>);</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">        T[i] = i*h;</a>
+<a class="sourceLine" id="cb7-34" data-line-number="34">    }</a>
+<a class="sourceLine" id="cb7-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36">    <span class="dt">int</span> itr;</a>
+<a class="sourceLine" id="cb7-37" data-line-number="37">    <span class="dt">double</span> t0 = bisec(<span class="dv">0</span>, <span class="dv">3</span>, rownanie, <span class="fl">1e-4</span>, &amp;itr);</a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39">    printf(<span class="st">&quot;Polozenie 5m zostaje osiagniete po </span><span class="sc">%e</span><span class="st"> sekundach</span><span class="sc">\n</span><span class="st">Iter=</span><span class="sc">%d\n</span><span class="st">&quot;</span>, t0, itr);</a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb7-41" data-line-number="41">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb7-42" data-line-number="42">}</a></code></pre></div>
 </div>
 <div id="zadanie-6-2" class="section level2">
 <h2>Zadanie 6</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#define _CRT_SECURE_NO_WARNINGS</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;math.h&gt;</span>
-<span class="ot">#include &quot;winbgi2.h&quot;</span>
-<span class="ot">#include &quot;narzedzia.h&quot;</span>
-
-<span class="dt">double</span> a=<span class="dv">0</span>;
-<span class="dt">const</span> <span class="dt">double</span> aMax = <span class="fl">0.</span><span class="dv">1</span>;
-<span class="dt">const</span> <span class="dt">double</span> delta0 = <span class="fl">0.</span><span class="dv">1</span>;
-<span class="dt">const</span> <span class="dt">double</span> l = <span class="dv">5</span>;
-<span class="dt">const</span> <span class="dt">double</span> pi = <span class="dv">4</span>*atan(<span class="fl">1.</span>);
-<span class="dt">const</span> <span class="dt">double</span> Mmag = <span class="fl">1e6</span>;
-
-<span class="dt">const</span> <span class="dt">int</span> N=<span class="dv">50</span>;
-<span class="dt">double</span> sigmaMax[N];
-<span class="dt">double</span> parA[N];
-
-<span class="dt">double</span> M(<span class="dt">double</span> x)
-{
-       <span class="kw">return</span> Mmag * sinh(x/l)*sin(x*pi/l);
-}
-
-<span class="dt">double</span> dM(<span class="dt">double</span> x)
-{
-       <span class="kw">return</span> Mmag * (cosh(x/l)*sin(x*pi/l) + pi* sinh(x/l)*cos(x*pi/l))/l;
-}
-
-<span class="dt">double</span> delta(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> a*(l-x)*x + delta0/<span class="dv">2</span>;
-}
-
-<span class="dt">double</span> dDelta(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> a*(l - <span class="dv">2</span>*x);
-}
-
-<span class="dt">double</span> Wx(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">4.</span>/<span class="dv">3</span>*pow(delta(x),<span class="dv">3</span>);
-}
-
-<span class="dt">double</span> sigma(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> M(x)/Wx(x);
-}
-
-<span class="dt">double</span> dSigmadx(<span class="dt">double</span> x)
-{
-    <span class="kw">return</span> <span class="fl">3.</span>/<span class="dv">4</span> * (dM(x)*delta(x) - <span class="dv">3</span>*M(x)*dDelta(x)) / pow(delta(x),<span class="dv">4</span>);
-}
-
-<span class="dt">double</span> interpSigmaMax(<span class="dt">double</span> a)
-{
-    <span class="kw">return</span> lagrange(parA, sigmaMax, N, a);
-}
-
-<span class="dt">double</span> equation(<span class="dt">double</span> a)
-{
-    <span class="kw">return</span> interpSigmaMax(a) - <span class="dv">200</span>*<span class="fl">1e6</span>;
-}
-
-<span class="dt">int</span> main()
-{
-    <span class="dt">int</span> iter;
-    <span class="dt">double</span> da = aMax / (N - <span class="dv">1</span>);
-    <span class="dt">double</span> x_sigmaMax;
-
-    a = <span class="dv">0</span>;
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)
-    {
-        <span class="co">//Find x for maximal stress</span>
-        x_sigmaMax = bisec(<span class="dv">0</span>, l, dSigmadx, <span class="fl">1e-4</span>, &amp;iter);
-
-        <span class="co">//Assign stress and parameter into tables</span>
-        parA[i] = a;
-        sigmaMax[i] = sigma(x_sigmaMax);
-
-        <span class="co">//increase a parameter</span>
-        a+=da;
-    }
-
-    <span class="co">// Calculate optimal a </span>
-    <span class="dt">double</span> a_opt = bisec(<span class="dv">0</span>, aMax, equation, <span class="fl">1e-4</span>, &amp;iter);
-
-    <span class="co">//Display results and find for a_opt corresponding x_max and value of sigma_max</span>
-    a = a_opt;
-    x_sigmaMax = bisec(<span class="dv">0</span>, l, dSigmadx, <span class="fl">1e-4</span>, &amp;iter);
-    printf(<span class="st">&quot;Optymalna wartosc a=</span><span class="ch">%e\t</span><span class="st"> dla ktorego sigma max(</span><span class="ch">%.3lf</span><span class="st">)=</span><span class="ch">%e\n</span><span class="st">&quot;</span>, a_opt, x_sigmaMax, M(x_sigmaMax)/Wx(x_sigmaMax), iter);
-
-    
-    <span class="co">//Plot stress for optimal a</span>
-    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);
-    setbkcolor(WHITE); <span class="co">//change background to white</span>
-    setgray(<span class="fl">0.</span>); <span class="co">//change foreground to black</span>
-    scale(<span class="dv">0</span>, <span class="dv">0</span>, l, <span class="dv">250</span>);
-
-    <span class="dt">int</span> M = <span class="dv">200</span>;
-    <span class="dt">double</span> dx = l / (M<span class="dv">-1</span>);
-    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i)
-    {
-        <span class="dt">double</span> x = dx*i;
-        circle(x, sigma(x)/<span class="fl">1e6</span>, <span class="dv">3</span>);
-    }
-
-    <span class="co">//Draw reference lines</span>
-    setlinestyle(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);
-    setcolor(<span class="fl">0.</span><span class="dv">9</span>);
-    line(<span class="dv">0</span>, <span class="dv">200</span>, x_sigmaMax, <span class="dv">200</span>);
-    line(x_sigmaMax, <span class="dv">0</span>, x_sigmaMax, <span class="dv">200</span>);
-
-    <span class="co">//Format and add title:</span>
-    setgray(<span class="dv">0</span>);
-    <span class="dt">char</span> * titleStr= (<span class="dt">char</span>*)malloc(<span class="dv">50</span> * <span class="kw">sizeof</span>(<span class="dt">char</span>));
-    sprintf(titleStr, <span class="st">&quot;Naprezenia dla a=</span><span class="ch">%.3lf</span><span class="st">&quot;</span>, a);
-    title( <span class="st">&quot;x&quot;</span>, <span class="st">&quot;sigma[MPa]&quot;</span>, titleStr);
-
-    wait();
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="pp">#define _CRT_SECURE_NO_WARNINGS</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="pp">#include </span><span class="im">&quot;winbgi2.h&quot;</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="pp">#include </span><span class="im">&quot;narzedzia.h&quot;</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="dt">double</span> a=<span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="at">const</span> <span class="dt">double</span> aMax = <span class="fl">0.1</span>;</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="at">const</span> <span class="dt">double</span> delta0 = <span class="fl">0.1</span>;</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="at">const</span> <span class="dt">double</span> l = <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="at">const</span> <span class="dt">double</span> pi = <span class="dv">4</span>*atan(<span class="fl">1.</span>);</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="at">const</span> <span class="dt">double</span> Mmag = <span class="fl">1e6</span>;</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="at">const</span> <span class="dt">int</span> N=<span class="dv">50</span>;</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="dt">double</span> sigmaMax[N];</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="dt">double</span> parA[N];</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="dt">double</span> M(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">       <span class="cf">return</span> Mmag * sinh(x/l)*sin(x*pi/l);</a>
+<a class="sourceLine" id="cb8-22" data-line-number="22">}</a>
+<a class="sourceLine" id="cb8-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="dt">double</span> dM(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb8-26" data-line-number="26">       <span class="cf">return</span> Mmag * (cosh(x/l)*sin(x*pi/l) + pi* sinh(x/l)*cos(x*pi/l))/l;</a>
+<a class="sourceLine" id="cb8-27" data-line-number="27">}</a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="dt">double</span> delta(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-30" data-line-number="30">{</a>
+<a class="sourceLine" id="cb8-31" data-line-number="31">    <span class="cf">return</span> a*(l-x)*x + delta0/<span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb8-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="dt">double</span> dDelta(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-35" data-line-number="35">{</a>
+<a class="sourceLine" id="cb8-36" data-line-number="36">    <span class="cf">return</span> a*(l - <span class="dv">2</span>*x);</a>
+<a class="sourceLine" id="cb8-37" data-line-number="37">}</a>
+<a class="sourceLine" id="cb8-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="dt">double</span> Wx(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-40" data-line-number="40">{</a>
+<a class="sourceLine" id="cb8-41" data-line-number="41">    <span class="cf">return</span> <span class="fl">4.</span>/<span class="dv">3</span>*pow(delta(x),<span class="dv">3</span>);</a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">}</a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="dt">double</span> sigma(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-45" data-line-number="45">{</a>
+<a class="sourceLine" id="cb8-46" data-line-number="46">    <span class="cf">return</span> M(x)/Wx(x);</a>
+<a class="sourceLine" id="cb8-47" data-line-number="47">}</a>
+<a class="sourceLine" id="cb8-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb8-49" data-line-number="49"><span class="dt">double</span> dSigmadx(<span class="dt">double</span> x)</a>
+<a class="sourceLine" id="cb8-50" data-line-number="50">{</a>
+<a class="sourceLine" id="cb8-51" data-line-number="51">    <span class="cf">return</span> <span class="fl">3.</span>/<span class="dv">4</span> * (dM(x)*delta(x) - <span class="dv">3</span>*M(x)*dDelta(x)) / pow(delta(x),<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb8-52" data-line-number="52">}</a>
+<a class="sourceLine" id="cb8-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb8-54" data-line-number="54"><span class="dt">double</span> interpSigmaMax(<span class="dt">double</span> a)</a>
+<a class="sourceLine" id="cb8-55" data-line-number="55">{</a>
+<a class="sourceLine" id="cb8-56" data-line-number="56">    <span class="cf">return</span> lagrange(parA, sigmaMax, N, a);</a>
+<a class="sourceLine" id="cb8-57" data-line-number="57">}</a>
+<a class="sourceLine" id="cb8-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb8-59" data-line-number="59"><span class="dt">double</span> equation(<span class="dt">double</span> a)</a>
+<a class="sourceLine" id="cb8-60" data-line-number="60">{</a>
+<a class="sourceLine" id="cb8-61" data-line-number="61">    <span class="cf">return</span> interpSigmaMax(a) - <span class="dv">200</span>*<span class="fl">1e6</span>;</a>
+<a class="sourceLine" id="cb8-62" data-line-number="62">}</a>
+<a class="sourceLine" id="cb8-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb8-64" data-line-number="64"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb8-65" data-line-number="65">{</a>
+<a class="sourceLine" id="cb8-66" data-line-number="66">    <span class="dt">int</span> iter;</a>
+<a class="sourceLine" id="cb8-67" data-line-number="67">    <span class="dt">double</span> da = aMax / (N - <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb8-68" data-line-number="68">    <span class="dt">double</span> x_sigmaMax;</a>
+<a class="sourceLine" id="cb8-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb8-70" data-line-number="70">    a = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb8-71" data-line-number="71">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; ++i)</a>
+<a class="sourceLine" id="cb8-72" data-line-number="72">    {</a>
+<a class="sourceLine" id="cb8-73" data-line-number="73">        <span class="co">//Find x for maximal stress</span></a>
+<a class="sourceLine" id="cb8-74" data-line-number="74">        x_sigmaMax = bisec(<span class="dv">0</span>, l, dSigmadx, <span class="fl">1e-4</span>, &amp;iter);</a>
+<a class="sourceLine" id="cb8-75" data-line-number="75"></a>
+<a class="sourceLine" id="cb8-76" data-line-number="76">        <span class="co">//Assign stress and parameter into tables</span></a>
+<a class="sourceLine" id="cb8-77" data-line-number="77">        parA[i] = a;</a>
+<a class="sourceLine" id="cb8-78" data-line-number="78">        sigmaMax[i] = sigma(x_sigmaMax);</a>
+<a class="sourceLine" id="cb8-79" data-line-number="79"></a>
+<a class="sourceLine" id="cb8-80" data-line-number="80">        <span class="co">//increase a parameter</span></a>
+<a class="sourceLine" id="cb8-81" data-line-number="81">        a+=da;</a>
+<a class="sourceLine" id="cb8-82" data-line-number="82">    }</a>
+<a class="sourceLine" id="cb8-83" data-line-number="83"></a>
+<a class="sourceLine" id="cb8-84" data-line-number="84">    <span class="co">// Calculate optimal a </span></a>
+<a class="sourceLine" id="cb8-85" data-line-number="85">    <span class="dt">double</span> a_opt = bisec(<span class="dv">0</span>, aMax, equation, <span class="fl">1e-4</span>, &amp;iter);</a>
+<a class="sourceLine" id="cb8-86" data-line-number="86"></a>
+<a class="sourceLine" id="cb8-87" data-line-number="87">    <span class="co">//Display results and find for a_opt corresponding x_max and value of sigma_max</span></a>
+<a class="sourceLine" id="cb8-88" data-line-number="88">    a = a_opt;</a>
+<a class="sourceLine" id="cb8-89" data-line-number="89">    x_sigmaMax = bisec(<span class="dv">0</span>, l, dSigmadx, <span class="fl">1e-4</span>, &amp;iter);</a>
+<a class="sourceLine" id="cb8-90" data-line-number="90">    printf(<span class="st">&quot;Optymalna wartosc a=</span><span class="sc">%e\t</span><span class="st"> dla ktorego sigma max(</span><span class="sc">%.3lf</span><span class="st">)=</span><span class="sc">%e\n</span><span class="st">&quot;</span>, a_opt, x_sigmaMax, M(x_sigmaMax)/Wx(x_sigmaMax), iter);</a>
+<a class="sourceLine" id="cb8-91" data-line-number="91"></a>
+<a class="sourceLine" id="cb8-92" data-line-number="92">    </a>
+<a class="sourceLine" id="cb8-93" data-line-number="93">    <span class="co">//Plot stress for optimal a</span></a>
+<a class="sourceLine" id="cb8-94" data-line-number="94">    graphics(<span class="dv">1000</span>, <span class="dv">1000</span>);</a>
+<a class="sourceLine" id="cb8-95" data-line-number="95">    setbkcolor(WHITE); <span class="co">//change background to white</span></a>
+<a class="sourceLine" id="cb8-96" data-line-number="96">    setgray(<span class="fl">0.</span>); <span class="co">//change foreground to black</span></a>
+<a class="sourceLine" id="cb8-97" data-line-number="97">    scale(<span class="dv">0</span>, <span class="dv">0</span>, l, <span class="dv">250</span>);</a>
+<a class="sourceLine" id="cb8-98" data-line-number="98"></a>
+<a class="sourceLine" id="cb8-99" data-line-number="99">    <span class="dt">int</span> M = <span class="dv">200</span>;</a>
+<a class="sourceLine" id="cb8-100" data-line-number="100">    <span class="dt">double</span> dx = l / (M<span class="dv">-1</span>);</a>
+<a class="sourceLine" id="cb8-101" data-line-number="101">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;M; ++i)</a>
+<a class="sourceLine" id="cb8-102" data-line-number="102">    {</a>
+<a class="sourceLine" id="cb8-103" data-line-number="103">        <span class="dt">double</span> x = dx*i;</a>
+<a class="sourceLine" id="cb8-104" data-line-number="104">        circle(x, sigma(x)/<span class="fl">1e6</span>, <span class="dv">3</span>);</a>
+<a class="sourceLine" id="cb8-105" data-line-number="105">    }</a>
+<a class="sourceLine" id="cb8-106" data-line-number="106"></a>
+<a class="sourceLine" id="cb8-107" data-line-number="107">    <span class="co">//Draw reference lines</span></a>
+<a class="sourceLine" id="cb8-108" data-line-number="108">    setlinestyle(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb8-109" data-line-number="109">    setcolor(<span class="fl">0.9</span>);</a>
+<a class="sourceLine" id="cb8-110" data-line-number="110">    line(<span class="dv">0</span>, <span class="dv">200</span>, x_sigmaMax, <span class="dv">200</span>);</a>
+<a class="sourceLine" id="cb8-111" data-line-number="111">    line(x_sigmaMax, <span class="dv">0</span>, x_sigmaMax, <span class="dv">200</span>);</a>
+<a class="sourceLine" id="cb8-112" data-line-number="112"></a>
+<a class="sourceLine" id="cb8-113" data-line-number="113">    <span class="co">//Format and add title:</span></a>
+<a class="sourceLine" id="cb8-114" data-line-number="114">    setgray(<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb8-115" data-line-number="115">    <span class="dt">char</span> * titleStr= (<span class="dt">char</span>*)malloc(<span class="dv">50</span> * <span class="kw">sizeof</span>(<span class="dt">char</span>));</a>
+<a class="sourceLine" id="cb8-116" data-line-number="116">    sprintf(titleStr, <span class="st">&quot;Naprezenia dla a=</span><span class="sc">%.3lf</span><span class="st">&quot;</span>, a);</a>
+<a class="sourceLine" id="cb8-117" data-line-number="117">    title( <span class="st">&quot;x&quot;</span>, <span class="st">&quot;sigma[MPa]&quot;</span>, titleStr);</a>
+<a class="sourceLine" id="cb8-118" data-line-number="118"></a>
+<a class="sourceLine" id="cb8-119" data-line-number="119">    wait();</a>
+<a class="sourceLine" id="cb8-120" data-line-number="120"></a>
+<a class="sourceLine" id="cb8-121" data-line-number="121">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb8-122" data-line-number="122">}</a></code></pre></div>
 </div>
 </div>
 

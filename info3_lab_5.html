@@ -12,7 +12,7 @@
 <meta name="author" content="K. Marchlewski" />
 
 
-<title></title>
+<title>info3_lab_5.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -579,7 +710,7 @@ div.tocify {
 </div>
 <div id="pierwszy-dokument" class="section level1">
 <h1>Pierwszy dokument</h1>
-<p>Przejdziemy teraz do stworzenia pierwszego dokumentu w <code>LaTeXu</code>. Najpierw musimy zadeklarować klasę dokumentu. Robimy to za pomocą polecenia <code class="tex">\documentclass[opcje]{typ}</code>, które umożliwia nam wybranie typu dokumentu (<code>article</code>, <code>report</code>, <code>book</code>, <code>letter</code>) oraz dodatkowych opcji, np.</p>
+<p>Przejdziemy teraz do stworzenia pierwszego dokumentu w <code>LaTeXu</code>. Najpierw musimy zadeklarować klasę dokumentu. Robimy to za pomocą polecenia <code class="sourceCode latex"><span class="bu">\documentclass</span>[opcje]{<span class="ex">typ</span>}</code>, które umożliwia nam wybranie typu dokumentu (<code>article</code>, <code>report</code>, <code>book</code>, <code>letter</code>) oraz dodatkowych opcji, np.</p>
 <ul>
 <li>rozmiaru pisma (<code>10pt</code>, <code>11pt</code>, itp.),</li>
 <li>rozmiaru papieru (<code>a4paper</code>, <code>letterpaper</code>),</li>
@@ -589,34 +720,34 @@ div.tocify {
 </ul>
 <p>Opcje ujęte w nawiasy kwadratowe (<code>[</code> i<code>]</code>) nie są obligatoryjne – jeśli nie zdefiniujemy żadnej, zostaną użyte wartości domyślne.</p>
 <p>W edytorze tekstu wpisz poniższy kod:</p>
-<pre class="tex"><code>\documentclass[11pt, a4paper, twoside]{article}
-
-\begin{document}
-  Stół z powyłamywanymi nogami!
-\end{document}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="bu">\documentclass</span>[11pt, a4paper, twoside]{<span class="ex">article</span>}</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">\begin</span>{<span class="ex">document</span>}</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  Stół z powyłamywanymi nogami!</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">\end</span>{<span class="ex">document</span>}</a></code></pre></div>
 <p>zapisz go w pliku z rozszerzeniem <code>.tex</code>, np. <code>dokument.tex</code> i skompiluj za pomocą polecenia</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pdflatex</span> dokument.tex</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ex">pdflatex</span> dokument.tex</a></code></pre></div>
 <p>Kompilator utworzy kilka plików, m. in. plik <code>dokument.pdf</code>, który zawiera nasz tekst.</p>
 <p>Otwórz plik <code>dokument.pdf</code> i naciesz oczy wynikiem swojej pracy. Ale co to? Okazuje się, że brakuje kilku liter! Podstawowe możliwości <code>LaTeXa</code> nie sięgają bowiem języka polskiego.</p>
 <div id="pakiety" class="section level3">
 <h3>Pakiety</h3>
 <p>Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety. Przykładowo, kompletną obsługę języka polskiego włączamy dodając pakiety:</p>
 <ul>
-<li><code class="tex">\usepackage[T1]{fontenc}</code> - zawiera czcionkę z polskimi znakami,</li>
-<li><code class="tex">\usepackage[utf8]{inputenc}</code> - definiuje kodowanie (<code>utf8</code> - Linux, <code>Cp1250</code> - Windows) znaków w pliku źródłowym,</li>
-<li><code class="tex">\usepackage[english, polish]{babel}</code> - definiuje język dokumentu,</li>
-<li><code class="tex">\usepackage{polski}</code> - wymusza polskie reguły składu dokumentu.</li>
+<li><code class="sourceCode latex"><span class="bu">\usepackage</span>[T1]{<span class="ex">fontenc</span>}</code> - zawiera czcionkę z polskimi znakami,</li>
+<li><code class="sourceCode latex"><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</code> - definiuje kodowanie (<code>utf8</code> - Linux, <code>Cp1250</code> - Windows) znaków w pliku źródłowym,</li>
+<li><code class="sourceCode latex"><span class="bu">\usepackage</span>[english, polish]{<span class="ex">babel</span>}</code> - definiuje język dokumentu,</li>
+<li><code class="sourceCode latex"><span class="bu">\usepackage</span>{<span class="ex">polski</span>}</code> - wymusza polskie reguły składu dokumentu.</li>
 </ul>
 <p>Pakiety, z których planujemy korzystać umieszczamy w t.zw. <em>preambule</em>: za instrukcją <code>\documentclass</code>, a przed instrukcją <code>\begin{document}</code>. Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.</p>
 </div>
 <div id="strona-tytuowa" class="section level3">
 <h3>Strona tytułowa</h3>
 <p>Ponieważ tekst wygląda teraz elegancko, warto pochwalić się swoim osiągnięciem światu. Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje “sterujące” jej zawartością, np.:</p>
-<pre class="tex"><code>\author{Gall Anonim}
-\title{Kroniki}
-\date{1113-1116}</code></pre>
-<p>W “ciele” dokumentu (między instrukcjami <code class="tex">\begin{document}</code> i <code class="tex">\end{document}</code>) umieść instrukcję</p>
-<pre class="tex"><code>\maketitle</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">\author</span>{Gall Anonim}</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="fu">\title</span>{Kroniki}</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="fu">\date</span>{1113-1116}</a></code></pre></div>
+<p>W “ciele” dokumentu (między instrukcjami <code class="sourceCode latex"><span class="kw">\begin</span>{<span class="ex">document</span>}</code> i <code class="sourceCode latex"><span class="kw">\end</span>{<span class="ex">document</span>}</code>) umieść instrukcję</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">\maketitle</span></a></code></pre></div>
 <p>i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.</p>
 </div>
 </div>
@@ -625,33 +756,33 @@ div.tocify {
 <div id="sekcje" class="section level3">
 <h3>Sekcje</h3>
 <p>Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej. Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie. W <code>LaTeXu</code> podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:</p>
-<pre class="tex"><code>\section{Nazwa}
-\subsection{Nazwa}
-\subsubsection{Nazwa}
-\paragraph{Nazwa}
-\subparagraph{Nazwa}</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">\section</span>{Nazwa}</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">\subsection</span>{Nazwa}</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">\subsubsection</span>{Nazwa}</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">\paragraph</span>{Nazwa}</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">\subparagraph</span>{Nazwa}</a></code></pre></div>
 <p>Podziel wybrany fragment tekstu za pomocą wymienionych poleceń i sprawdź jak działają. Zbuduj teraz spis treści odpowiadający utworzonym rozdziałom. W tym celu dodaj instrukcję</p>
-<pre class="tex"><code>\tableofcontents</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="fu">\tableofcontents</span></a></code></pre></div>
 <p>na początku ciała dokumentu.</p>
 <p>Tak otrzymany spis treści jest mało interaktywny – możemy dowiedzieć się gdzie jest szukany rozdział, ale przejść do niego musimy sami. W celu automatycznego tworzenia zakładek oraz linków w obrębie spisu treści, które zaprowadzą nas do poszukiwanego fragmentu, należy użyć pakietu:</p>
-<pre class="tex"><code>\usepackage{hyperref}
-\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue}</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="bu">\usepackage</span>{<span class="ex">hyperref</span>}</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="fu">\hypersetup</span>{colorlinks=true, urlcolor=blue, linkcolor=blue}</a></code></pre></div>
 <p>Pakiet ten pozwala także na umieszczanie linków w tekście. Przykładowo, instrukcja:</p>
-<pre class="tex"><code>\href{https://google.com/}{Google}</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">\href</span>{https://google.com/}{Google}</a></code></pre></div>
 <p>zaprowadzi nas do popularnej wyszukiwarki.</p>
 </div>
 <div id="listy-i-numeracje" class="section level3">
 <h3>Listy i numeracje</h3>
-<p>Wypunktowania i numeracje uzyskuje się wykorzystując tzw. otoczenia. Charakteryzują się one dwiema instrukcjami: otwierającą <code class="tex">\begin{}</code> i zamykającą <code class="tex">\end{}</code>. W przypadku listy nieuporządkowanej napiszemy:</p>
-<pre class="tex"><code>\begin{itemize}
-  \item A
-  \item B
-\end{itemize}</code></pre>
+<p>Wypunktowania i numeracje uzyskuje się wykorzystując tzw. otoczenia. Charakteryzują się one dwiema instrukcjami: otwierającą <code class="sourceCode latex"><span class="kw">\begin</span>{<span class="er">}</span></code> i zamykającą <code class="sourceCode latex"><span class="kw">\end</span>{<span class="er">}</span></code>. W przypadku listy nieuporządkowanej napiszemy:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">itemize</span>}</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="fu">\item</span> A</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="fu">\item</span> B</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">\end</span>{<span class="ex">itemize</span>}</a></code></pre></div>
 <p>Z kolei dla listy uporządkowanej</p>
-<pre class="tex"><code>\begin{enumerate}
-  \item A
-  \item B
-\end{enumerate}</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">enumerate</span>}</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="fu">\item</span> A</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="fu">\item</span> B</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">\end</span>{<span class="ex">enumerate</span>}</a></code></pre></div>
 <p>Utwórz teraz zagnieżdżoną listę:</p>
 <ol style="list-style-type: decimal">
 <li>A1</li>
@@ -677,73 +808,73 @@ div.tocify {
 <div id="wzory-i-rownania-matematyczne" class="section level1">
 <h1>Wzory i równania matematyczne</h1>
 <p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej). W <code>LaTeXu</code> istnieje kilka sposobów dodawania wyrażeń matematycznych. Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się <em>inline</em>)</p>
-<pre class="tex"><code>  wzór $E=mc^2$ powstał \ldots</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb11-1" data-line-number="1">  wzór <span class="ss">$E=mc^2$</span> powstał <span class="fu">\ldots</span></a></code></pre></div>
 <p>Kolejny sposób to wykorzystanie otoczenia, które pozwala na wyświetlenie równania w osobnym wierszu, np.</p>
-<pre class="tex"><code>dla trójkąta prostokątnego zachodzi:
-\[
-  c ^ 2 = a ^ 2 + b ^ 2
-\]</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb12-1" data-line-number="1">dla trójkąta prostokątnego zachodzi:</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="ss">\[</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="ss">  c ^ 2 = a ^ 2 + b ^ 2</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="ss">\]</span></a></code></pre></div>
 <p>Dla utrzymania porządku często warto numerować równania</p>
-<pre class="tex"><code>\begin{equation}
-  c ^ 2 = a ^ 2 + b ^ 2
-\end{equation}</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">equation</span>}</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="ss">  c ^ 2 = a ^ 2 + b ^ 2</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">\end</span>{<span class="ex">equation</span>}</a></code></pre></div>
 <p>Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię. Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w <code>LaTeXu</code> przy wpisywaniu równań matematycznych.</p>
 <p>Greckie litery są jednym z podstawowych elementów. Są dość łatwe do zapamiętania ze względu na zapis “fonetyczny”. Małe litery uzyskamy stosując:</p>
-<pre class="tex"><code>  \[
-    \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
-  \]</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb14-1" data-line-number="1">  <span class="ss">\[</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="ss">    </span><span class="sc">\alpha</span><span class="ss">, </span><span class="sc">\beta</span><span class="ss">, </span><span class="sc">\gamma</span><span class="ss">, </span><span class="sc">\delta</span><span class="ss">, </span><span class="sc">\epsilon</span><span class="ss">, </span><span class="sc">\varepsilon</span><span class="ss">, </span><span class="sc">\zeta</span><span class="ss">, </span><span class="sc">\eta</span><span class="ss">, </span><span class="sc">\theta</span><span class="ss">, </span><span class="sc">\vartheta</span><span class="ss">, </span><span class="sc">\kappa</span><span class="ss">, </span><span class="sc">\lambda</span><span class="ss">, </span><span class="sc">\mu</span><span class="ss">, </span><span class="sc">\nu</span><span class="ss">, </span><span class="sc">\xi</span><span class="ss">, </span><span class="sc">\pi</span><span class="ss">, </span><span class="sc">\rho</span><span class="ss">, </span><span class="sc">\varrho</span><span class="ss">, </span><span class="sc">\sigma</span><span class="ss">, </span><span class="sc">\tau</span><span class="ss">, </span><span class="sc">\upsilon</span><span class="ss">, </span><span class="sc">\phi</span><span class="ss">, </span><span class="sc">\varphi</span><span class="ss">, </span><span class="sc">\chi</span><span class="ss">, </span><span class="sc">\psi</span><span class="ss">, </span><span class="sc">\omega</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="ss">  \]</span></a></code></pre></div>
 <p>Duże, natomiast:</p>
-<pre class="tex"><code>  \[
-    \Gamma, \Delta, \Theta, \Lambda, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega
-  \]</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb15-1" data-line-number="1">  <span class="ss">\[</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="ss">    </span><span class="sc">\Gamma</span><span class="ss">, </span><span class="sc">\Delta</span><span class="ss">, </span><span class="sc">\Theta</span><span class="ss">, </span><span class="sc">\Lambda</span><span class="ss">, </span><span class="sc">\Pi</span><span class="ss">, </span><span class="sc">\Sigma</span><span class="ss">, </span><span class="sc">\Upsilon</span><span class="ss">, </span><span class="sc">\Phi</span><span class="ss">, </span><span class="sc">\Psi</span><span class="ss">, </span><span class="sc">\Omega</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="ss">  \]</span></a></code></pre></div>
 <p>Indeksy górne i dolne otrzymuje się przez użycie symboli <code>^</code> i <code>_</code>:</p>
-<pre class="tex"><code>\[ n^3=m^{a^2-d} \]
-\[ \alpha_{1,2}=x_1+y_{1,2} \]</code></pre>
-<p>Zapis pierwiastków wymaga z kolei instrukcji <code class="tex">\sqrt{}</code></p>
-<pre class="tex"><code>\[ R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2} \]</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="ss">\[ n^3=m^{a^2-d} \]</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="ss">\[ </span><span class="sc">\alpha</span><span class="ss">_{1,2}=x_1+y_{1,2} \]</span></a></code></pre></div>
+<p>Zapis pierwiastków wymaga z kolei instrukcji <code class="sourceCode latex"><span class="fu">\sqrt</span>{}</code></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="ss">\[ R = </span><span class="sc">\sqrt</span><span class="ss">{x ^ 2 + y ^ 2 + z ^ 2} \]</span></a></code></pre></div>
 <p>Symbol wektora uzyskuje się przez</p>
-<pre class="tex"><code>\[ \vec{z} = \vec{x} \times \vec{y} \]</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="ss">\[ </span><span class="sc">\vec</span><span class="ss">{z} = </span><span class="sc">\vec</span><span class="ss">{x} </span><span class="sc">\times</span><span class="ss"> </span><span class="sc">\vec</span><span class="ss">{y} \]</span></a></code></pre></div>
 <p>Podkreślenia i klamry wykorzystywane do komentowania poszczególnych części wzorów:</p>
-<pre class="tex"><code>\[ \overline{x + i \cdot y}\cdot\underline{v - i \cdot w} \]
-\[ \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0} \]</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="ss">\[ </span><span class="sc">\overline</span><span class="ss">{x + i </span><span class="sc">\cdot</span><span class="ss"> y}</span><span class="sc">\cdot\underline</span><span class="ss">{v - i </span><span class="sc">\cdot</span><span class="ss"> w} \]</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="ss">\[ </span><span class="sc">\underbrace</span><span class="ss">{M_{</span><span class="sc">\mu</span><span class="ss"> </span><span class="sc">\nu</span><span class="ss">} + 1}_{</span><span class="sc">\neq</span><span class="ss"> 0} </span><span class="sc">\Rightarrow</span><span class="ss"> </span><span class="sc">\overbrace</span><span class="ss">{N_{</span><span class="sc">\nu</span><span class="ss"> </span><span class="sc">\mu</span><span class="ss">}}^{= 0} \]</span></a></code></pre></div>
 <p>Nazwy funkcji powinny być zapisane zwykłą czcionką:</p>
-<pre class="tex"><code>\[ 1 = \sin^2(x) + \cos^2(x) \]</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="ss">\[ 1 = </span><span class="sc">\sin</span><span class="ss">^2(x) + </span><span class="sc">\cos</span><span class="ss">^2(x) \]</span></a></code></pre></div>
 <p>a nie pochyloną:</p>
-<pre class="tex"><code>\[ 1 = sin^2(x) + cos^2(x) \]</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="ss">\[ 1 = sin^2(x) + cos^2(x) \]</span></a></code></pre></div>
 <p>Ułamki piętrowe uzyskujemy przez</p>
-<pre class="tex"><code>\[ \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1} \]</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="ss">\[ </span><span class="sc">\frac</span><span class="ss">{x ^ 3 + </span><span class="sc">\sqrt</span><span class="ss">{x^2}}{x ^ 2 + x - 1} \]</span></a></code></pre></div>
 <p>Nawiasy możemy wprowadzić wprost</p>
-<pre class="tex"><code>\[ y=((\frac{1}{1 + x})^2 - 1) \]</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="ss">\[ y=((</span><span class="sc">\frac</span><span class="ss">{1}{1 + x})^2 - 1) \]</span></a></code></pre></div>
 <p>Nie jest to jednak elegancki sposób. W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest napisać</p>
-<pre class="tex"><code>\[ y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right) \]</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="ss">\[ y=</span><span class="sc">\left</span><span class="ss">( </span><span class="sc">\left</span><span class="ss">( </span><span class="sc">\frac</span><span class="ss">{1}{1 + x} </span><span class="sc">\right</span><span class="ss">)^2 - 1 </span><span class="sc">\right</span><span class="ss">) \]</span></a></code></pre></div>
 <p>Całki zapisujemy:</p>
-<pre class="tex"><code>\[ \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx \]</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="ss">\[ </span><span class="sc">\Gamma</span><span class="ss">(z)=</span><span class="sc">\int</span><span class="ss">_{0}^{</span><span class="sc">\inf</span><span class="ss">}x^{z-1} e^{-x} dx \]</span></a></code></pre></div>
 <p>Natomiast sumy:</p>
-<pre class="tex"><code>\[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]</code></pre>
-<p>Tablice (macierze, wyznaczniki itd) zapisujemy stosując otoczenie <code class="tex">array</code>.</p>
-<pre class="tex"><code>\[
-  \left|
-    \begin{array}{ccc}
-      a_{11} &amp; a_{12} &amp; a_{13} \\
-      a_{21} &amp; a_{22} &amp; a_{23} \\
-      a_{31} &amp; a_{32} &amp; a_{33} \\
-    \end{array}
-  \right|
-\]</code></pre>
-<p>Parametry <code class="tex">{ccc}</code> oznaczają, że utworzona tablica będzie miała trzy kolumny, z których każda będzie zawierała tekst wyrównany do środka. Dwie pozostałe możliwości to <code>r</code> – wyrównanie do prawej i <code>l</code> – wyrównanie do lewej.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="ss">\[ S=</span><span class="sc">\sum</span><span class="ss">_{n=1}^{</span><span class="sc">\inf</span><span class="ss">} a </span><span class="sc">\cdot</span><span class="ss"> q^{n-1} \]</span></a></code></pre></div>
+<p>Tablice (macierze, wyznaczniki itd) zapisujemy stosując otoczenie <code class="sourceCode latex">array</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="ss">\[</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="ss">  </span><span class="sc">\left</span><span class="ss">|</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="ss">    </span><span class="sc">\begin</span><span class="ss">{array}{ccc}</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="ss">      a_{11} &amp; a_{12} &amp; a_{13} </span><span class="sc">\\</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="ss">      a_{21} &amp; a_{22} &amp; a_{23} </span><span class="sc">\\</span></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="ss">      a_{31} &amp; a_{32} &amp; a_{33} </span><span class="sc">\\</span></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="ss">    </span><span class="sc">\end</span><span class="ss">{array}</span></a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="ss">  </span><span class="sc">\right</span><span class="ss">|</span></a>
+<a class="sourceLine" id="cb27-9" data-line-number="9"><span class="ss">\]</span></a></code></pre></div>
+<p>Parametry <code class="sourceCode latex">{ccc}</code> oznaczają, że utworzona tablica będzie miała trzy kolumny, z których każda będzie zawierała tekst wyrównany do środka. Dwie pozostałe możliwości to <code>r</code> – wyrównanie do prawej i <code>l</code> – wyrównanie do lewej.</p>
 <p>Otoczenie te można także wykorzystać do zapisu warunków</p>
-<pre class="tex"><code>\[
-  \delta(x)=\left\{
-    \begin{array}{lr}
-      0 &amp; x \ne 0 \\
-      +\infty &amp; x = 0 \\
-    \end{array}
-  \right.
-\]</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="ss">\[</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="ss">  </span><span class="sc">\delta</span><span class="ss">(x)=</span><span class="sc">\left\{</span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="ss">    </span><span class="sc">\begin</span><span class="ss">{array}{lr}</span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="ss">      0 &amp; x </span><span class="sc">\ne</span><span class="ss"> 0 </span><span class="sc">\\</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="ss">      +</span><span class="sc">\infty</span><span class="ss"> &amp; x = 0 </span><span class="sc">\\</span></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="ss">    </span><span class="sc">\end</span><span class="ss">{array}</span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"><span class="ss">  </span><span class="sc">\right</span><span class="ss">.</span></a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="ss">\]</span></a></code></pre></div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Zapisz poniższe równania wykorzystując system <code>LaTeX</code>. Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej. W sieci Internet można znaleźć listy dostępnych symboli. W naszej pracowni można skorzystać ze strony: <a href="https://www.sharelatex.com/learn/Mathematical_expressions" class="uri">https://www.sharelatex.com/learn/Mathematical_expressions</a></p>
-<p>Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów. Przykładowo, symbol całki podwójnej <code class="tex">\iint</code> uzyskamy po dołączeniu pakietu <code class="tex">amsmath</code>.</p>
+<p>Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów. Przykładowo, symbol całki podwójnej <code class="sourceCode latex"><span class="fu">\iint</span></code> uzyskamy po dołączeniu pakietu <code class="sourceCode latex">amsmath</code>.</p>
 <p><span class="math display">\[
   i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
 \]</span></p>
@@ -784,29 +915,29 @@ c(x_n,x_0)
 <div id="tabele" class="section level1">
 <h1>Tabele</h1>
 <p>Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie <code>LaTeX</code>. Pokarzemy najprostszy przykład z wykorzystaniem otoczenia <code>tabular</code>. Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości. Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania. Przeanalizuj poniższy kod:</p>
-<pre class="tex"><code>  \begin{tabular}{l||c|c|c}
-     &amp; symb. &amp; symb. &amp; symb. \\ \hline \hline
-    symb. &amp; X &amp; O &amp; O \\ \hline
-    symb. &amp; O &amp; X &amp; X \\ \hline
-    symb. &amp; X &amp; O &amp; X \\
-  \end{tabular}</code></pre>
-<p>Jaki wpływ na wygląd tabeli ma parametr <code class="tex">{l||c|c|c}</code>?</p>
-<p>Otoczenie <code>tabular</code> pozwala także na tworzenie wielokolumnowych rubryk. Służy do tego polecenie <code class="tex">\multicolumn{l_kolumn}{justowanie}{tekst}</code>.</p>
-<pre class="tex"><code>  \begin{tabular}{c|c|c}
-    \multicolumn{3}{c}{symb.} \\ \hline \hline
-    X &amp; O &amp; O \\ \hline
-    O &amp; X &amp; X \\ \hline
-    X &amp; O &amp; X \\
-  \end{tabular}</code></pre>
-<p>Użycie powyższej konstrukcji ma pewną wadę. Tabele dodane do dokumentu za pomocą otoczenia <code>tabular</code> nie zawsze znajdą się tam gdzie byśmy tego chcieli. Aby mieć kontrolę nad położeniem tabeli należy użyć otoczenia <code>table</code>, które ma jeden argument opcjonalny mówiący o tym gdzie na stronie ma się znaleźć wstawka z tabelą. Dodatkowo, otoczenie to pozwala na dodanie podpisu do naszej tabeli. Służy do tego instrukcja <code class="tex">\caption{podpis}</code>. Przykładowo, jeśli chcemy aby tabela znalazła się dokładnie w miejscu użycia, napiszemy:</p>
-<pre class="tex"><code>\begin{table}[h]
-  \begin{tabular}{c|c|c}
-    X &amp; O &amp; O \\ \hline
-    O &amp; X &amp; X \\ \hline
-    X &amp; O &amp; X \\
-  \end{tabular}
-  \caption{Kółko i krzyżyk.}
-\end{table}</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb29-1" data-line-number="1">  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{l||c|c|c}</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">     <span class="op">&amp;</span> symb. <span class="op">&amp;</span> symb. <span class="op">&amp;</span> symb. <span class="fu">\\</span> <span class="fu">\hline</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">    symb. <span class="op">&amp;</span> X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">    symb. <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">    symb. <span class="op">&amp;</span> X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">  <span class="kw">\end</span>{<span class="ex">tabular</span>}</a></code></pre></div>
+<p>Jaki wpływ na wygląd tabeli ma parametr <code class="sourceCode latex">{l||c|c|c}</code>?</p>
+<p>Otoczenie <code>tabular</code> pozwala także na tworzenie wielokolumnowych rubryk. Służy do tego polecenie <code class="sourceCode latex"><span class="fu">\multicolumn</span>{l_kolumn}{justowanie}{tekst}</code>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb30-1" data-line-number="1">  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c}</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">    <span class="fu">\multicolumn</span>{3}{c}{symb.} <span class="fu">\\</span> <span class="fu">\hline</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">    X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">    O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">    X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">  <span class="kw">\end</span>{<span class="ex">tabular</span>}</a></code></pre></div>
+<p>Użycie powyższej konstrukcji ma pewną wadę. Tabele dodane do dokumentu za pomocą otoczenia <code>tabular</code> nie zawsze znajdą się tam gdzie byśmy tego chcieli. Aby mieć kontrolę nad położeniem tabeli należy użyć otoczenia <code>table</code>, które ma jeden argument opcjonalny mówiący o tym gdzie na stronie ma się znaleźć wstawka z tabelą. Dodatkowo, otoczenie to pozwala na dodanie podpisu do naszej tabeli. Służy do tego instrukcja <code class="sourceCode latex"><span class="fu">\caption</span>{podpis}</code>. Przykładowo, jeśli chcemy aby tabela znalazła się dokładnie w miejscu użycia, napiszemy:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">table</span>}[h]</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c}</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">    X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">    O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">    X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="kw">\end</span>{<span class="ex">tabular</span>}</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">  <span class="fu">\caption</span>{Kółko i krzyżyk.}</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="kw">\end</span>{<span class="ex">table</span>}</a></code></pre></div>
 <p>Pozostałe parametry to:</p>
 <ul>
 <li><code>t</code> – umieść wstawkę na górze strony,</li>
@@ -816,41 +947,38 @@ c(x_n,x_0)
 <div id="cwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Wykonaj poniższą tabelę:</p>
-<div class="figure">
-<img src="figures/info3_lab_5_table.png" title="Tabela" alt="" />
-
-</div>
+<p><img src="figures/info3_lab_5_table.png" title="Tabela" /></p>
 </div>
 </div>
 <div id="grafika" class="section level1">
 <h1>Grafika</h1>
-<p>Wstawienie grafiki w <span class="math inline">\(LaTeX u\)</span> ogranicza się do dołączenia pakietu <code class="tex">\usepackage{graphicx}</code> oraz użycia instrukcji <code class="tex">\includegraphics[parametry]{sciezka_do_grafiki}</code>. Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa <code>95%</code> szerokości tekstu napiszemy:</p>
-<pre class="tex"><code>\includegraphics[width=.95\textwidth]{rysunek.pdf}</code></pre>
+<p>Wstawienie grafiki w <span class="math inline">\(LaTeX u\)</span> ogranicza się do dołączenia pakietu <code class="sourceCode latex"><span class="bu">\usepackage</span>{<span class="ex">graphicx</span>}</code> oraz użycia instrukcji <code class="sourceCode latex"><span class="bu">\includegraphics</span>[parametry]{<span class="ex">sciezka_do_grafiki</span>}</code>. Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa <code>95%</code> szerokości tekstu napiszemy:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="bu">\includegraphics</span>[width=.95<span class="fu">\textwidth</span>]{<span class="ex">rysunek.pdf</span>}</a></code></pre></div>
 <p>Podobnie jak to było w przypadku tabel, kontrolę nad położeniem rysunku i możliwość dodawania podpisów otrzymamy po zastosowaniu specjalnego otoczenia. W przypadku grafiki będzie to otoczenie <code>figure</code>:</p>
-<pre class="tex"><code>\begin{figure}[!h]
-    \includegraphics[width=.95\textwidth]{rysunek.pdf}
-    \caption{Rysunek.}
-\end{figure}</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">figure</span>}[!h]</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">    <span class="bu">\includegraphics</span>[width=.95<span class="fu">\textwidth</span>]{<span class="ex">rysunek.pdf</span>}</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">    <span class="fu">\caption</span>{Rysunek.}</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">\end</span>{<span class="ex">figure</span>}</a></code></pre></div>
 </div>
 <div id="odwoania" class="section level1">
 <h1>Odwołania</h1>
 <p>System <code>LaTeX</code> umożliwia wstawienie odwołania do niemal każdego obiektu posiadającego numer. Oznacza to, że możemy odwołać się do dowolnego rozdziału, równania, tabeli czy rysunku. Obiekt, do którego planujemy się odwołać oznaczamy za pomocą polecenia <code>\label{nazwa_obiektu}</code>. Natomiast w miejscu, w którym odwołujemy się, wstawiamy polecenie <code>\ref{nazwa_obiektu}</code>. Zamiast numeru obiektu, możemy podać stronę, na której znajduje się dany element. W tym celu stosujemy polecenie <code>\pageref{nazwa_obiektu}</code>. Stosując indywidualne nazwy obiektów, nie musimy martwić się o ewentualne zmiany numeracji wynikające z pracy nad tekstem. <code>LaTeX</code> zajmie się koniecznymi modyfikacjami.<br />
 Przykładowo, aby odwołać się do rozdziału piszemy:</p>
-<pre class="tex"><code>\section{Rodzaje sznurówek}\label{sznu}
-W rozdziale \ref{sznu} opiszemy problem doboru sznurówek.</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">\section</span>{Rodzaje sznurówek}<span class="fu">\label</span>{sznu}</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">W rozdziale <span class="fu">\ref</span>{sznu} opiszemy problem doboru sznurówek.</a></code></pre></div>
 <p>W celu odwołania się do tabeli:</p>
-<pre class="tex"><code>\begin{table}[h]
-  \begin{tabular}{c|c|c}
-    X &amp; O &amp; O \\ \hline
-    O &amp; X &amp; X \\ \hline
-    X &amp; O &amp; X \\
-  \end{tabular}
-  \caption{Kółko i krzyżyk.}
-  \label{kik}
-\end{table}
-
-Tabela \ref{kik} zawiera przykładową partię w kółko i krzyżyk.
-Znajduje się ona na stronie \pageref{kik}.</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">\begin</span>{<span class="ex">table</span>}[h]</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c}</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">    X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">    O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">    X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">  <span class="kw">\end</span>{<span class="ex">tabular</span>}</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">  <span class="fu">\caption</span>{Kółko i krzyżyk.}</a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">  <span class="kw">\label</span>{<span class="ex">kik</span>}</a>
+<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="kw">\end</span>{<span class="ex">table</span>}</a>
+<a class="sourceLine" id="cb35-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb35-11" data-line-number="11">Tabela <span class="kw">\ref</span>{<span class="ex">kik</span>} zawiera przykładową partię w kółko i krzyżyk.</a>
+<a class="sourceLine" id="cb35-12" data-line-number="12">Znajduje się ona na stronie <span class="kw">\pageref</span>{<span class="ex">kik</span>}.</a></code></pre></div>
 <div id="cwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Stwórz odwołania do pozostałych obiektów użytych w trakcie ćwiczeń (równań i rysunków).</p>

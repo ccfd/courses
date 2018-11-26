@@ -12,7 +12,7 @@
 <meta name="author" content="B. Górecki" />
 
 
-<title></title>
+<title>info1_lab08.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -570,18 +701,18 @@ div.tocify {
 
 
 <p>Tydzień temu nauczyliśmy się jak dynamicznie alokować pamięć dla tablicy jednowymiarowej. Wyraz ,,dynamicznie’’ oznaczał tyle, że rozmiar tablicy, którą chcemy zaalokować, poznamy dopiero w trakcie wykonywania programu i nie jesteśmy w stanie go określić (konkretną liczbą) na etapie kompilacji. Kod dokonujący dynamicznej alokacji tablicy jednowymiarowej wygląda tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
-
-<span class="dt">void</span> main() {
-  <span class="dt">double</span> *tab;
-  <span class="dt">int</span> n;
-  printf(<span class="st">&quot;Podaj n: &quot;</span>);
-  scanf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;n);
-
-  tab = (<span class="dt">double</span> *)malloc(n * <span class="kw">sizeof</span>(<span class="dt">double</span>));
-  <span class="co">// ... operacje na tablicy</span>
-  free(tab);
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">double</span> *tab;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">int</span> n;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  printf(<span class="st">&quot;Podaj n: &quot;</span>);</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">  scanf(<span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span>, &amp;n);</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">  tab = (<span class="dt">double</span> *)malloc(n * <span class="kw">sizeof</span>(<span class="dt">double</span>));</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">  <span class="co">// ... operacje na tablicy</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">  free(tab);</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
 <p>Dziś nauczymy się:</p>
 <ul>
 <li>stosowania statycznych tablic wielowymiarowych oraz</li>
@@ -589,21 +720,21 @@ div.tocify {
 </ul>
 <div id="statyczne-tablice-wielowymiarowe" class="section level1">
 <h1>Statyczne tablice wielowymiarowe</h1>
-<p>Język C pozwala na używanie tablic wielowymiarowych. Wyobraźmy sobie – tablica dwuwymiarowa doskonale nadaje się do przechowywania np. macierzy<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Przyjrzyjmy się więc fragmentowi kodu, który zadeklaruje dwuwymiarową tablicę o wymiarze <span class="math inline">\(3 \times 4\)</span>. Możemy ją utożsamić z macierzą o takim samym wymiarze.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
-   <span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>];        <span class="co">// deklaracja tablicy 2-wymiarowej</span>
-   
-   A[<span class="dv">0</span>][<span class="dv">0</span>] = <span class="fl">1.</span>;          <span class="co">// przypisanie wartosci</span>
-   A[<span class="dv">0</span>][<span class="dv">1</span>] = <span class="fl">1.</span><span class="dv">5</span>;         <span class="co">// poszczegolnym elementom</span>
-   A[<span class="dv">0</span>][<span class="dv">2</span>] = <span class="fl">0.</span>;
-   A[<span class="dv">0</span>][<span class="dv">3</span>] = <span class="fl">-2.</span><span class="dv">7</span>;
-   <span class="co">//...</span>
-   A[<span class="dv">2</span>][<span class="dv">3</span>] = <span class="fl">8.</span>;
-}</code></pre></div>
+<p>Język C pozwala na używanie tablic wielowymiarowych. Wyobraźmy sobie – tablica dwuwymiarowa doskonale nadaje się do przechowywania np. macierzy<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Przyjrzyjmy się więc fragmentowi kodu, który zadeklaruje dwuwymiarową tablicę o wymiarze <span class="math inline">\(3 \times 4\)</span>. Możemy ją utożsamić z macierzą o takim samym wymiarze.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">   <span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>];        <span class="co">// deklaracja tablicy 2-wymiarowej</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">   </a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">   A[<span class="dv">0</span>][<span class="dv">0</span>] = <span class="fl">1.</span>;          <span class="co">// przypisanie wartosci</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">   A[<span class="dv">0</span>][<span class="dv">1</span>] = <span class="fl">1.5</span>;         <span class="co">// poszczegolnym elementom</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">   A[<span class="dv">0</span>][<span class="dv">2</span>] = <span class="fl">0.</span>;</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">   A[<span class="dv">0</span>][<span class="dv">3</span>] = <span class="fl">-2.7</span>;</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">   <span class="co">//...</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">   A[<span class="dv">2</span>][<span class="dv">3</span>] = <span class="fl">8.</span>;</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">}</a></code></pre></div>
 <p>Przypomnijmy, że w przypadku tablic deklarowanych statycznie nie ma potrzeby ich zwalniania. Kompilator sam o to dba (tak jak w przypadku wszystkich zmiennych, które do tej pory deklarowaliśmy – one też są automatycznie niszczone przez kompilator). Powyższą macierz możemy też wypełnić wartościami w nieco zgrabniejszy sposób niż przez zapisanie dwunastu kolejnych linijek przypisań. Możemy to zrobić już w trakcie deklaracji tablicy, dzięki liście inicjalizującej. Dokonuje się tego tak (dla przypomnienia: znak ,,\’’ oznacza, że długa instrukcja będzie kontynuowana w następnej linii):</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="fl">1.</span>, <span class="fl">1.</span><span class="dv">5</span>, <span class="fl">0.</span>, <span class="fl">-2.</span><span class="dv">7</span>},\
-                  {<span class="fl">-3.</span>, <span class="fl">2.</span><span class="dv">5</span>, <span class="fl">7.</span>, <span class="fl">0.</span>},\
-                  {<span class="fl">0.</span>, <span class="fl">1.</span>, <span class="fl">-3.</span>, <span class="fl">8.</span>}};</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">double</span> A[<span class="dv">3</span>][<span class="dv">4</span>] = {{<span class="fl">1.</span>, <span class="fl">1.5</span>, <span class="fl">0.</span>, <span class="fl">-2.7</span>},\</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">                  {<span class="dv">-3</span>., <span class="fl">2.5</span>, <span class="fl">7.</span>, <span class="fl">0.</span>},\</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                  {<span class="fl">0.</span>, <span class="fl">1.</span>, <span class="fl">-3.</span>, <span class="fl">8.</span>}};</a></code></pre></div>
 <p>W ten sposób stworzymy poniższą macierz: <span class="math display">\[
 \mathbf{A} = 
 \left(
@@ -625,33 +756,33 @@ div.tocify {
 <li>dla każdego z elementów tej tablicy alokujemy blok o długości <span class="math inline">\(M\)</span> (będą to jednowymiarowe tablice do przechowywania wierszy).</li>
 </ul>
 <p>Podsumowując, będziemy mieli w pamięci <span class="math inline">\(N\)</span> bloków, każdy o długości <span class="math inline">\(M\)</span>. Spójrzmy na poniższy kod:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> **A;
-  A = (<span class="dt">double</span> **)malloc(N * <span class="kw">sizeof</span>(<span class="dt">double</span> *));</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1">  <span class="dt">double</span> **A;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  A = (<span class="dt">double</span> **)malloc(N * <span class="kw">sizeof</span>(<span class="dt">double</span> *));</a></code></pre></div>
 <p>Przypomnijmy sobie, że jednowymiarową tablicę alokowaliśmy wykorzystując wskaźnik do typu <code>double</code>. Tym razem będziemy alokować wskaźnik do wskaźnika na typ <code>double</code>. Dlatego używamy ,,podwójnego’’ wskaźnika. W instrukcji powyżej, adres zwracany przez funkcję <code>malloc()</code> rzutujemy więc na podwójny wskaźnik <code>double **</code>. Wywołując funkcję <code>malloc()</code> musimy wiedzieć, ile miejsca potrzebujemy. Przechowywać będziemy wskaźniki (do odpowiednich tablic jednowymiarowych przechowujących wiersze), dlatego jako argument funkcji <code>sizeof()</code> podajemy <code>double *</code>.</p>
 <p>Teraz możemy zaalokować tablice jednowymiarowe do przechowywania wierszy:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)
-  A[i] = (<span class="dt">double</span> *)malloc(M * <span class="kw">sizeof</span>(<span class="dt">double</span>));</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  A[i] = (<span class="dt">double</span> *)malloc(M * <span class="kw">sizeof</span>(<span class="dt">double</span>));</a></code></pre></div>
 <p>Każdemu z elementów pierwszej tablicy przyporządkowaliśmy tablicę do przechowywania każdego z wierszy. Tym razem adres zwrócony przez funkcję <code>malloc()</code> rzutujemy na typ <code>double *</code>, a argumentem funkcji <code>sizeof()</code> jest typ zmiennej przechowywanej w tej tablicy, czyli już zwykła zmienna <code>double</code>. Tablica dwuwymiarowa jest już gotowa – możemy jej używać.</p>
 <p>Po zakończeniu pracy z tablicą, trzeba koniecznie <strong>zwolnić pamięć</strong> wykorzystywaną przez nią. Najpierw zwalniamy tablice odpowiadające każdemu z wierszy, a na końcu zwalniamy pierwotną tablicę wskaźników do wierszy. Dokonuje tego poniższy kod:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)
-  free(A[i]);
-
-free(A);</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  free(A[i]);</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">free(A);</a></code></pre></div>
 <div id="podsumowanie" class="section level2">
 <h2>Podsumowanie</h2>
 <p>Zbierzmy wszystkie instrukcje w jednym miejscu. Chcemy zaalokować dwuwymiarową tablicę zmiennych typu <code>int</code>. Dokonujemy tego tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/* alokacja pamieci */</span>
-<span class="dt">int</span> **A;
-A = (<span class="dt">int</span> **)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span> *));
-<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)
-  A[i] = (<span class="dt">int</span> *)malloc(M * <span class="kw">sizeof</span>(<span class="dt">int</span>));
-
-<span class="co">/* wykonujemy dowolne operacje na tablicy */</span>
-
-<span class="co">/* zwalniamy pamiec */</span>
-<span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)
-  free(A[i]);
-free(A);</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co">/* alokacja pamieci */</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="dt">int</span> **A;</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">A = (<span class="dt">int</span> **)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span> *));</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  A[i] = (<span class="dt">int</span> *)malloc(M * <span class="kw">sizeof</span>(<span class="dt">int</span>));</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">/* wykonujemy dowolne operacje na tablicy */</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">/* zwalniamy pamiec */</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">  free(A[i]);</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">free(A);</a></code></pre></div>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
@@ -665,56 +796,54 @@ free(A);</code></pre></div>
 <li>Napisz w funkcji <code>main</code> kod, który dokona mnożenia macierzy <span class="math inline">\(A\)</span> przez wektor <span class="math inline">\(v1\)</span> a wynik zapisze do wektora <span class="math inline">\(v2\)</span>. Mnożenie macierzy przez wektor określone jest wzorem: <span class="math display">\[
 w_i = \sum\limits_{j=0}^{m-1}{a_{ij}v_j}
 \]</span></li>
-<li><p>Zamknij powyższe operacje w funkcji o nagłówku</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> matVecMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> *v1, <span class="dt">double</span> *v2, <span class="dt">int</span> n)</code></pre></div>
-i dokonaj wywołania z funkcji <code>main</code>.</li>
-<li>Zmodyfikuj powyższy program tak, aby rozmiar <span class="math inline">\(n\)</span> był wczytywany z klawiatury. Zaś elementy tablicy były generowane zgodnie ze wzorem <span class="math display">\[
+<li>Zamknij powyższe operacje w funkcji o nagłówku</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dt">void</span> matVecMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> *v1, <span class="dt">double</span> *v2, <span class="dt">int</span> n)</a></code></pre></div>
+<p>i dokonaj wywołania z funkcji <code>main</code>. 6. Zmodyfikuj powyższy program tak, aby rozmiar <span class="math inline">\(n\)</span> był wczytywany z klawiatury. Zaś elementy tablicy były generowane zgodnie ze wzorem <span class="math display">\[
 a_{ij} = \frac{i+1}{j+1}, (i, j = 0, \ldots, n-1)
 \]</span> a elementy wektora według wzoru <span class="math display">\[
 v_i = i+1, (i = 0,\ldots,n-1)
-\]</span> Następnie oblicz iloczyn tej macierzy przez ten wektor, korzystając ze swojej funkcji <code>matVecMultiply</code>. Wynik wyświetl na ekranie oraz sprawdź czy jest poprawny<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</li>
-<li><p>Napisz funkcję</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">matMatMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> **B, <span class="dt">double</span> **C,\
-           <span class="dt">int</span> nA, <span class="dt">int</span> mA, <span class="dt">int</span> nB, <span class="dt">int</span> mB)</code></pre></div></li>
-</ol>
-<p>służącą do mnożenia dwóch macierzy prostokątnych (<span class="math inline">\(\bf{A}\)</span> o wymiarze <span class="math inline">\(n_A \times m_A\)</span> i <span class="math inline">\(\bf{B}\)</span> o wymiarze <span class="math inline">\(n_B \times m_B\)</span>). Wynik powinien być zapisany do macierzy <span class="math inline">\(\bf{C}\)</span>. Zadbaj w funkcji <code>main</code> o to, aby pamięć zaalokowana dla macierzy <span class="math inline">\(\bf{C}\)</span> była odpowiedniej wielkości – zgodnej z regułami mnożenia macierzy. <strong>Uwaga:</strong> Pamiętaj, aby zwolnić dynamicznie alokowaną pamięć<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+\]</span> Następnie oblicz iloczyn tej macierzy przez ten wektor, korzystając ze swojej funkcji <code>matVecMultiply</code>. Wynik wyświetl na ekranie oraz sprawdź czy jest poprawny<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. 7. Napisz funkcję</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1">matMatMultiply(<span class="dt">double</span> **A, <span class="dt">double</span> **B, <span class="dt">double</span> **C,\</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">               <span class="dt">int</span> nA, <span class="dt">int</span> mA, <span class="dt">int</span> nB, <span class="dt">int</span> mB)</a></code></pre></div>
+<p>służącą do mnożenia dwóch macierzy prostokątnych (<span class="math inline">\(\bf{A}\)</span> o wymiarze <span class="math inline">\(n_A \times m_A\)</span> i <span class="math inline">\(\bf{B}\)</span> o wymiarze <span class="math inline">\(n_B \times m_B\)</span>). Wynik powinien być zapisany do macierzy <span class="math inline">\(\bf{C}\)</span>. Zadbaj w funkcji <code>main</code> o to, aby pamięć zaalokowana dla macierzy <span class="math inline">\(\bf{C}\)</span> była odpowiedniej wielkości – zgodnej z regułami mnożenia macierzy. <strong>Uwaga:</strong> Pamiętaj, aby zwolnić dynamicznie alokowaną pamięć<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 </div>
 </div>
 </div>
 <div id="alokacja-pamieci-wewnatrz-funkcji" class="section level1">
 <h1>Alokacja pamięci wewnątrz funkcji</h1>
 <p>Zastanów się dlaczego poniższy kod nie działa poprawnie?</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> initialize_vec_BAD(<span class="dt">int</span> *ptr, <span class="dt">int</span> N) {
-  ptr = (<span class="dt">int</span> *)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span>));
-  <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)
-    ptr[j] = <span class="dv">3</span> * j;
-  
-  printf(<span class="st">&quot;Wewn. funkcji initialize:</span><span class="ch">\n</span><span class="st">&quot;</span>);
-  <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {
-    printf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st"> &quot;</span>, ptr[j]);
-  }
-  printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
-}
-
-<span class="dt">int</span> main() {
-  <span class="dt">int</span> N = <span class="dv">10</span>;
-  <span class="dt">int</span> *v;
-  
-  initialize_vec_BAD(v, N);
-  
-  printf(<span class="st">&quot;Wewn. funkcji main:</span><span class="ch">\n</span><span class="st">&quot;</span>);
-  <span class="kw">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j){
-    printf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st"> &quot;</span>, v[j]);
-  }
-  printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
-  
-  free(v);
-  
-  getchar();
-}</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dt">void</span> initialize_vec_BAD(<span class="dt">int</span> *ptr, <span class="dt">int</span> N) {</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  ptr = (<span class="dt">int</span> *)malloc(N * <span class="kw">sizeof</span>(<span class="dt">int</span>));</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    ptr[j] = <span class="dv">3</span> * j;</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">  </a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">  printf(<span class="st">&quot;Wewn. funkcji initialize:</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">    printf(<span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span>, ptr[j]);</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">  printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">  <span class="dt">int</span> N = <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">  <span class="dt">int</span> *v;</a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">  </a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">  initialize_vec_BAD(v, N);</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">  </a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">  printf(<span class="st">&quot;Wewn. funkcji main:</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb10-20" data-line-number="20">  <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j){</a>
+<a class="sourceLine" id="cb10-21" data-line-number="21">    printf(<span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span>, v[j]);</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">  }</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">  printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">  </a>
+<a class="sourceLine" id="cb10-25" data-line-number="25">  free(v);</a>
+<a class="sourceLine" id="cb10-26" data-line-number="26">  </a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">  getchar();</a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">}</a></code></pre></div>
 <p>Popraw deklarację i ciało funkcji <code>initialize_vec_BAD</code>.</p>
 <p><strong>Wskazówka:</strong> prawidłowa deklaracja w języku C powinna wyglądać tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> initialize_vec(<span class="dt">int</span> **ptr, <span class="dt">int</span> N)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="dt">void</span> initialize_vec(<span class="dt">int</span> **ptr, <span class="dt">int</span> N)</a></code></pre></div>
 </div>
 <div id="dla-ambitnych" class="section level1">
 <h1>* Dla ambitnych</h1>
@@ -726,9 +855,9 @@ v_i = i+1, (i = 0,\ldots,n-1)
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Tak naprawdę, tablica może przechowywać o wiele więcej struktur. Przykładowo programując grę w szachy moglibyśmy użyć dwuwymiarowej tablicy o wymiarze <span class="math inline">\(8 x 8\)</span> i w odpowiednie pola tej tablicy wpisać liczby, które symbolizowałyby konkretną figurę. A gra w statki? Można podobnie. Z drugiej strony, w obliczeniach numerycznych wielkie macierze o rozmiarze rzędu kilkuset tysięcy do kilku milionów elementów i większe, przechowuje się w postaci tablicy jednowymiarowej. W zagadnieniach inżynierskich macierze są często rzadkie, tzn. takie, które w stosunku do całkowitej liczby swoich elementów mają bardzo niewiele elementów, które nie są zerem. Taką macierz efektywnie jest trzymać w pamięci jako tablicę jednowymiarową (przyjmując specjalny format, który pomija wszystkie zera – np. format CSR <em>(ang. Compressed Sparse Row)</em> jest szeroko stosowanym formatem zapisywania macierzy rzadkiej w trzech tablicach jednoelementowych). Tak wielka macierz przechowywana jawnie najpewniej nie zmieściłaby się w pamięci żadnego dostępnego nam komputera.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Dla takiej macierzy i takiego wektora łatwo jest wygenerować analityczny wynik. Zapisz sobie małą macierz według zadanego wzoru i odpowiadający wektor a na pewno szybko zauważysz prawidłowość. Będziesz wtedy wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.<a href="#fnref3">↩</a></p></li>
+<li id="fn1"><p>Tak naprawdę, tablica może przechowywać o wiele więcej struktur. Przykładowo programując grę w szachy moglibyśmy użyć dwuwymiarowej tablicy o wymiarze <span class="math inline">\(8 x 8\)</span> i w odpowiednie pola tej tablicy wpisać liczby, które symbolizowałyby konkretną figurę. A gra w statki? Można podobnie. Z drugiej strony, w obliczeniach numerycznych wielkie macierze o rozmiarze rzędu kilkuset tysięcy do kilku milionów elementów i większe, przechowuje się w postaci tablicy jednowymiarowej. W zagadnieniach inżynierskich macierze są często rzadkie, tzn. takie, które w stosunku do całkowitej liczby swoich elementów mają bardzo niewiele elementów, które nie są zerem. Taką macierz efektywnie jest trzymać w pamięci jako tablicę jednowymiarową (przyjmując specjalny format, który pomija wszystkie zera – np. format CSR <em>(ang. Compressed Sparse Row)</em> jest szeroko stosowanym formatem zapisywania macierzy rzadkiej w trzech tablicach jednoelementowych). Tak wielka macierz przechowywana jawnie najpewniej nie zmieściłaby się w pamięci żadnego dostępnego nam komputera.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Dla takiej macierzy i takiego wektora łatwo jest wygenerować analityczny wynik. Zapisz sobie małą macierz według zadanego wzoru i odpowiadający wektor a na pewno szybko zauważysz prawidłowość. Będziesz wtedy wiedzieć, jaki wynik powinien dać program. Tak się testuje programy na wczesnych etapach rozwoju.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Niezwolnienie pamięci prowadzi do jej wycieków i w przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do tego, że Twój program wykorzysta całą pamięć operacyjną komputera i przestanie działać.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

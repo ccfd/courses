@@ -12,7 +12,7 @@
 <meta name="author" content="W. Gryglas" />
 
 
-<title></title>
+<title>cpp_inst02.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -571,11 +702,11 @@ div.tocify {
 
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Utwórz klasę Pojemnik służącą do przechowywania obiektów typu <code class="sourceCode cpp">Wektor2D</code></p>
+<p>Utwórz klasę Pojemnik służącą do przechowywania obiektów typu <code class="sourceCode cpp">Wektor<span class="er">2D</span></code></p>
 <ul>
 <li><p>Atrybuty tej klasy to dynamiczna tablica typu <code class="sourceCode cpp">Wektor2D *mdata</code> i rozmiar tej tablicy <code class="sourceCode cpp">int msize</code>.</p></li>
 <li><p>Utwórz domyślny konstruktor oraz destruktor.</p></li>
-<li>Utwórz metodę <code class="sourceCode cpp">Dodaj(<span class="dt">const</span> Wektor2D&amp; v)</code> służącą do dodawania elementów do klasy <code class="sourceCode cpp">Pojemnik</code>. Konieczne jest w niej dynamiczne przealokowanie tablicy <code class="sourceCode cpp">mdata</code> (używaj operatorów <code class="sourceCode cpp"><span class="kw">new</span></code> i <code class="sourceCode cpp"><span class="kw">delete</span></code>). Przealokowanie możesz wykonać według następującego schematu:
+<li>Utwórz metodę <code class="sourceCode cpp">Dodaj(<span class="at">const</span> Wektor2D&amp; v)</code> służącą do dodawania elementów do klasy <code class="sourceCode cpp">Pojemnik</code>. Konieczne jest w niej dynamiczne przealokowanie tablicy <code class="sourceCode cpp">mdata</code> (używaj operatorów <code class="sourceCode cpp"><span class="kw">new</span></code> i <code class="sourceCode cpp"><span class="kw">delete</span></code>). Przealokowanie możesz wykonać według następującego schematu:
 <ul>
 <li>zadeklaruj wskaźnik do tablicy tymczasowej;</li>
 <li>przydziel niezbędną pamięć;</li>
@@ -584,12 +715,14 @@ div.tocify {
 <li>wstaw nowy element na odpowiednie miejsce w tablicy tymczasowej;</li>
 <li>przypisz tablicę tymczasową do odpowiedniego wskaźnika obiektu Pojemnik.</li>
 </ul></li>
-<li><p>W programie głównym uruchom następujący fragment kodu</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Pojemnik poj;
-poj.Dodaj( v1 );
-poj.Dodaj( v2 );
-poj.Dodaj( Wektor2D(<span class="dv">3</span>,<span class="dv">2</span>) );
-poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</code></pre></div></li>
+<li>W programie głównym uruchom następujący fragment kodu</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1">    Pojemnik poj;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    poj.Dodaj( v1 );</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    poj.Dodaj( v2 );</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    poj.Dodaj( Wektor2D(<span class="dv">3</span>,<span class="dv">2</span>) );</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</a></code></pre></div>
+<ul>
 <li>Sprawdź przy pomocy debuggera zawartość obiektu poj. W oknie watch użyj trzech różnych wpisów:
 <ul>
 <li><code class="sourceCode cpp">poj.mdata[<span class="dv">0</span>];</code></li>
@@ -600,11 +733,11 @@ poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</cod
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
-<p>Dodaj do klasy Pojemnik metodę <code class="sourceCode cpp"><span class="dt">void</span> DrukujWszystko()</code> drukującą zawartość wszystkich obiektów <code class="sourceCode cpp">Wektor2D</code> przechowywanych w tej klasie. Skorzystaj z metody <code class="sourceCode cpp">Drukuj()</code> z klasy <code class="sourceCode cpp">Wektor2D</code>.</p>
+<p>Dodaj do klasy Pojemnik metodę <code class="sourceCode cpp"><span class="dt">void</span> DrukujWszystko()</code> drukującą zawartość wszystkich obiektów <code class="sourceCode cpp">Wektor<span class="er">2D</span></code> przechowywanych w tej klasie. Skorzystaj z metody <code class="sourceCode cpp">Drukuj()</code> z klasy <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>.</p>
 </div>
 <div id="zadanie-3" class="section level2">
 <h2>Zadanie 3</h2>
-<p>Dodaj do klasy <code class="sourceCode cpp">Pojemnik</code> metodę klasy <code class="sourceCode cpp">Wektor2D</code> <code class="sourceCode cpp">Suma()</code> liczącą sumę wszystkich wektorów przechowywanych w klasie <code class="sourceCode cpp">Pojemnik</code>, korzystającą z operatorów zdefiniowanych dla klasy <code class="sourceCode cpp">Wektor2D</code>. Wynik funkcji wyświetl w programie głównym.</p>
+<p>Dodaj do klasy <code class="sourceCode cpp">Pojemnik</code> metodę klasy <code class="sourceCode cpp">Wektor<span class="er">2D</span></code> <code class="sourceCode cpp">Suma()</code> liczącą sumę wszystkich wektorów przechowywanych w klasie <code class="sourceCode cpp">Pojemnik</code>, korzystającą z operatorów zdefiniowanych dla klasy <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>. Wynik funkcji wyświetl w programie głównym.</p>
 <ul>
 <li>Spróbuj wywołać liczenie sumy i jej wyświetlanie w taki sposób aby były umieszczone w jednej instrukcji.</li>
 </ul>
@@ -613,32 +746,35 @@ poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</cod
 <h2>Zadanie 4</h2>
 <p>Dodaj do klasy <code class="sourceCode cpp">Wektor2D <span class="kw">operator</span> &lt;&lt;</code>.</p>
 <ul>
-<li><p>Operator powinien mieć postać:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> <span class="kw">operator</span>&lt;&lt;( ostream&amp; o, <span class="dt">const</span> Wektor2D&amp; w )</code></pre></div>
-<p>i powinien wykonywać te same operacje co funkcja <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor2D</code>.</p></li>
-<li><p>Wyświetl zawartość dowolnego wektora w programie głównym:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cout &lt;&lt; v1;</code></pre></div></li>
-<li><p>Przerób definicję operatora &lt;&lt; tak, aby można było wykonać następującą instrukcję:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cout &lt;&lt; v1 &lt;&lt; v2;</code></pre></div></li>
-<li><p>Dodaj do klasy Pojemnik nową wersję funkcji <code class="sourceCode cpp">DrukujWszystko()</code> (np. <code class="sourceCode cpp">DrukujWszystko2()</code>). Nowa funkcja powinna wykorzystywać <code class="sourceCode cpp"><span class="kw">operator</span> &lt;&lt;</code> zamiast funkcji <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor2D</code>.</p></li>
+<li>Operator powinien mieć postać:</li>
 </ul>
-</div>
-<div id="zadanie-5" class="section level2">
-<h2>Zadanie 5</h2>
-<p>Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">    <span class="dt">void</span> <span class="kw">operator</span>&lt;&lt;( ostream&amp; o, <span class="at">const</span> Wektor2D&amp; w )</a></code></pre></div>
+<p>i powinien wykonywać te same operacje co funkcja <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>.</p>
+<ul>
+<li>Wyświetl zawartość dowolnego wektora w programie głównym:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">    cout &lt;&lt; v1;</a></code></pre></div>
+<ul>
+<li>Przerób definicję operatora &lt;&lt; tak, aby można było wykonać następującą instrukcję:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1">cout &lt;&lt; v1 &lt;&lt; v2;</a></code></pre></div>
+<ul>
+<li>Dodaj do klasy Pojemnik nową wersję funkcji <code class="sourceCode cpp">DrukujWszystko()</code> (np. <code class="sourceCode cpp">DrukujWszystko2()</code>). Nowa funkcja powinna wykorzystywać <code class="sourceCode cpp"><span class="kw">operator</span> &lt;&lt;</code> zamiast funkcji <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>.</li>
+</ul>
+<p>##Zadanie 5 Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).</p>
 <ul>
 <li><p>W oknie <strong><em>Solution Explorer</em></strong> zaznacz nazwę projektu. W menu <strong><em>Project</em></strong> powinno pojawić się na samym dole podmenu <strong><em>Properties</em></strong>.</p></li>
 <li><p>W drzewku okna <strong><em>Property</em></strong> wybierz folder <strong><em>linker/debug</em></strong>. Teraz w polu <strong><em>Generate Map File</em></strong> wybierz <strong><em>Yes (/MAP)</em></strong>, a poniżel w polu <strong><em>Map File Name</em></strong> podaj nazwę pliku ****.map<strong><em>, np.: </em></strong>$(OutDir)/Test.map***.</p></li>
 <li><p>Przebuduj program i w katalogu <strong><em>debug</em></strong> projektu odszukaj plik <strong><em>Test.map</em></strong>.</p></li>
-<li><p>Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?) Spróbuj odnaleźć konstruktory i destruktory klas <code class="sourceCode cpp">Wektor2D</code> i <code class="sourceCode cpp">Pojemnik</code>. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?</p></li>
+<li><p>Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?) Spróbuj odnaleźć konstruktory i destruktory klas <code class="sourceCode cpp">Wektor<span class="er">2D</span></code> i <code class="sourceCode cpp">Pojemnik</code>. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?</p></li>
 <li><p>Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji <code class="sourceCode cpp">Pojemnik::Max()</code>)? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?</p></li>
 <li><p>Jak myślisz, czy wśród nazw znajdujących się w pliku ****.map*** mogą wystąpić dwie identyczne nazwy funkcji?</p></li>
 </ul>
 </div>
 <div id="zadanie-6" class="section level2">
 <h2>Zadanie 6</h2>
-<p>Dodaj do klasy Pojemnik funkcję <code class="sourceCode cpp">Max()</code> zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa <code class="sourceCode cpp">Wektor2D</code> a nie klasa <code class="sourceCode cpp">Pojemnik</code>. Zatem klasa <code class="sourceCode cpp">Pojemnik</code> powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie <code class="sourceCode cpp">Wektor2D</code>. Zdefiniuj również te operatory. Funkcja <code class="sourceCode cpp">Max()</code> powinna zadziałać w następujący sposób:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">    cout &lt;&lt; poj.Max();</code></pre></div>
+<p>Dodaj do klasy Pojemnik funkcję <code class="sourceCode cpp">Max()</code> zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa <code class="sourceCode cpp">Wektor<span class="er">2D</span></code> a nie klasa <code class="sourceCode cpp">Pojemnik</code>. Zatem klasa <code class="sourceCode cpp">Pojemnik</code> powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>. Zdefiniuj również te operatory. Funkcja <code class="sourceCode cpp">Max()</code> powinna zadziałać w następujący sposób:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1">    cout &lt;&lt; poj.Max();</a></code></pre></div>
 </div>
 <div id="zadanie-7" class="section level2">
 <h2>Zadanie 7</h2>
@@ -647,53 +783,53 @@ poj.Dodaj( Wektor2D(<span class="dv">8</span>,<span class="dv">4</span>) );</cod
 </div>
 <div id="dodatek-klasa-wektor2d-z-poprzednich-cwiczen" class="section level2">
 <h2>Dodatek (klasa Wektor2D z poprzednich ćwiczeń)</h2>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// -------------------------------------------------------------</span>
-<span class="co">// deklaracja klasy</span>
-<span class="kw">class</span> Wektor2D
-{
-<span class="kw">public</span>:
-    Wektor2D();
-    Wektor2D( <span class="dt">const</span> <span class="dt">double</span>&amp; xx, <span class="dt">const</span> <span class="dt">double</span>&amp; yy );
-    <span class="dt">void</span> <span class="kw">operator</span>+=( Wektor2D&amp; v );
-    <span class="dt">void</span> Drukuj();
-
-<span class="kw">private</span>:
-    <span class="dt">double</span> x;
-    <span class="dt">double</span> y;
-};
-<span class="co">// -------------------------------------------------------------</span>
-<span class="co">// konstruktor domyślny</span>
-Wektor2D::Wektor2D():x(<span class="dv">0</span>), y(<span class="dv">0</span>)
-{
-}
-<span class="co">// -------------------------------------------------------------</span>
-<span class="co">// konstruktor parametrowy</span>
-Wektor2D::Wektor2D( <span class="dt">const</span> <span class="dt">double</span>&amp; xx, <span class="dt">const</span> <span class="dt">double</span>&amp; yy ):x(xx), y(yy) 
-{
-}
-<span class="co">// -------------------------------------------------------------</span>
-<span class="co">// operator +=</span>
-<span class="dt">void</span> Wektor2D::<span class="kw">operator</span>+=( Wektor2D&amp; v )
-{
-    x += v.x;
-    y += v.y;
-}
-<span class="co">// ----------------------------------</span>
-<span class="co">// drukowanie wartości składowych klasy</span>
-<span class="dt">void</span> Wektor2D::Drukuj()
-{
-    cout.setf( ios::fixed );
-    cout &lt;&lt; <span class="st">&quot;wektor: [&quot;</span>;
-    cout.precision(<span class="dv">3</span>);
-   <span class="co">//   . . .</span>
-
-  <span class="co">//    . . .</span>
-  cout.width(<span class="dv">6</span>);
-  cout &lt;&lt; x &lt;&lt; <span class="st">&quot;,&quot;</span>;
-  cout.precision(<span class="dv">4</span>);
-  cout.width(<span class="dv">7</span>);
-  cout &lt;&lt; y &lt;&lt; <span class="st">&quot;]&quot;</span> &lt;&lt; endl;
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">// -------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">// deklaracja klasy</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">class</span> Wektor<span class="er">2D</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">    Wektor2D();</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    Wektor2D( <span class="at">const</span> <span class="dt">double</span>&amp; xx, <span class="at">const</span> <span class="dt">double</span>&amp; yy );</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">    <span class="dt">void</span> <span class="kw">operator</span>+=( Wektor2D&amp; v );</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="dt">void</span> Drukuj();</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">    <span class="dt">double</span> x;</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">    <span class="dt">double</span> y;</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">};</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">// -------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">// konstruktor domyślny</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">Wektor2D::Wektor2D():x(<span class="dv">0</span>), y(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">// -------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">// konstruktor parametrowy</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">Wektor2D::Wektor2D( <span class="at">const</span> <span class="dt">double</span>&amp; xx, <span class="at">const</span> <span class="dt">double</span>&amp; yy ):x(xx), y(yy) </a>
+<a class="sourceLine" id="cb6-23" data-line-number="23">{</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">}</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">// -------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">// operator +=</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="dt">void</span> Wektor2D::<span class="kw">operator</span>+=( Wektor2D&amp; v )</a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">    x += v.x;</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30">    y += v.y;</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">}</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">// ----------------------------------</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">// drukowanie wartości składowych klasy</span></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="dt">void</span> Wektor2D::Drukuj()</a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">{</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36">    cout.setf( ios::fixed );</a>
+<a class="sourceLine" id="cb6-37" data-line-number="37">    cout &lt;&lt; <span class="st">&quot;wektor: [&quot;</span>;</a>
+<a class="sourceLine" id="cb6-38" data-line-number="38">    cout.precision(<span class="dv">3</span>);</a>
+<a class="sourceLine" id="cb6-39" data-line-number="39">   <span class="co">//   . . .</span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41">  <span class="co">//    . . .</span></a>
+<a class="sourceLine" id="cb6-42" data-line-number="42">  cout.width(<span class="dv">6</span>);</a>
+<a class="sourceLine" id="cb6-43" data-line-number="43">  cout &lt;&lt; x &lt;&lt; <span class="st">&quot;,&quot;</span>;</a>
+<a class="sourceLine" id="cb6-44" data-line-number="44">  cout.precision(<span class="dv">4</span>);</a>
+<a class="sourceLine" id="cb6-45" data-line-number="45">  cout.width(<span class="dv">7</span>);</a>
+<a class="sourceLine" id="cb6-46" data-line-number="46">  cout &lt;&lt; y &lt;&lt; <span class="st">&quot;]&quot;</span> &lt;&lt; endl;</a>
+<a class="sourceLine" id="cb6-47" data-line-number="47">}</a></code></pre></div>
 </div>
 
 <!-- Dummy footer -->

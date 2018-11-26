@@ -12,7 +12,7 @@
 <meta name="author" content="?, rev. W. Gryglas" />
 
 
-<title></title>
+<title>info2_projekty.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 
@@ -78,8 +79,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -95,7 +102,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -115,6 +121,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -136,18 +179,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -531,7 +633,7 @@ div.tocify {
 <h1>Zadanie domowe</h1>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
-<p>Dany jest układ: <img src="figures/info2/homework/zad-01.png" title="Zadanie 01" alt="" /></p>
+<p>Dany jest układ: <img src="figures/info2/homework/zad-01.png" title="Zadanie 01" /></p>
 <p>a sprężyna ma charakterystykę nieliniową: <span class="math inline">\(k = k_1(1+k_2 \cdot x^2)\)</span></p>
 <div id="w-ramach-zadania-nalezy" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -557,10 +659,7 @@ div.tocify {
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-02.png" title="Zadanie 02" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-02.png" title="Zadanie 02" /></p>
 <div id="w-ramach-zadania-nalezy-1" class="section level4">
 <h4>W ramach zadania należy:</h4>
 <ol style="list-style-type: decimal">
@@ -586,10 +685,7 @@ div.tocify {
 <div id="zadanie-3" class="section level2">
 <h2>Zadanie 3</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-03.png" title="Zadanie 03" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-03.png" title="Zadanie 03" /></p>
 <p>wahadło matematyczne; duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span></p>
 <div id="w-ramach-zadania-nalezy-2" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -616,10 +712,7 @@ div.tocify {
 <div id="zadanie-4" class="section level2">
 <h2>Zadanie 4</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-04.png" title="Zadanie 04" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-04.png" title="Zadanie 04" /></p>
 <div id="w-ramach-zadania-nalezy-3" class="section level4">
 <h4>W ramach zadania należy:</h4>
 <ol style="list-style-type: decimal">
@@ -644,10 +737,7 @@ div.tocify {
 <div id="zadanie-5" class="section level2">
 <h2>Zadanie 5</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-05.png" title="Zadanie 05" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-05.png" title="Zadanie 05" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-4" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -673,10 +763,7 @@ div.tocify {
 <div id="zadanie-6" class="section level2">
 <h2>Zadanie 6</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-06.png" title="Zadanie 06" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-06.png" title="Zadanie 06" /></p>
 <p>duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span>; uproszczenie: siła od sprężyny działa zawsze poziomo</p>
 <div id="w-ramach-zadania-nalezy-5" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -703,7 +790,7 @@ div.tocify {
 <div id="zadanie-7" class="section level2">
 <h2>Zadanie 7</h2>
 <p>Dany jest układ:</p>
-<p><img src="figures/info2/homework/zad-07.png" title="Zadanie 07" alt="" /> duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span>; uproszczenie: siła od sprężyny działa zawsze poziomo</p>
+<p><img src="figures/info2/homework/zad-07.png" title="Zadanie 07" /> duże drgania, tzn. <span class="math inline">\(sin(\alpha) \neq \alpha\)</span>; uproszczenie: siła od sprężyny działa zawsze poziomo</p>
 <div id="w-ramach-zadania-nalezy-6" class="section level4">
 <h4>W ramach zadania należy:</h4>
 <ol style="list-style-type: decimal">
@@ -729,10 +816,7 @@ div.tocify {
 <div id="zadanie-8" class="section level2">
 <h2>Zadanie 8</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-08.png" title="Zadanie 08" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-08.png" title="Zadanie 08" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-7" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -759,10 +843,7 @@ div.tocify {
 <div id="zadanie-9" class="section level2">
 <h2>Zadanie 9</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-09.png" title="Zadanie 09" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-09.png" title="Zadanie 09" /></p>
 <p>sprężyna o charakterystyce nieliniowej: <span class="math inline">\(k = k1 (1+k_2 \cdot x^2)\)</span></p>
 <div id="w-ramach-zadania-nalezy-8" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -789,10 +870,7 @@ div.tocify {
 <div id="zadanie-10" class="section level2">
 <h2>Zadanie 10</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-10.png" title="Zadanie 10" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-10.png" title="Zadanie 10" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-9" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -818,10 +896,7 @@ div.tocify {
 <div id="zadanie-11" class="section level2">
 <h2>Zadanie 11</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-11.png" title="Zadanie 11" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-11.png" title="Zadanie 11" /></p>
 <p>Stożek w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał zanurzeniu do <span class="math inline">\(\frac{2}{3}\)</span> wysokości. W celu uproszczenia problemu należy wziąć pod uwage jedyni siły hydrostatyczne.</p>
 <div id="w-ramach-zadania-nalezy-10" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -848,10 +923,7 @@ div.tocify {
 <div id="zadanie-12" class="section level2">
 <h2>Zadanie 12</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-12.png" title="Zadanie 12" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-12.png" title="Zadanie 12" /></p>
 <p>Kula w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał zanurzeniu do <span class="math inline">\(\frac{1}{2}\)</span> wysokości. W celu uproszczenia problemu należy wziąć pod uwage jedyni siły hydrostatyczne.</p>
 <div id="w-ramach-zadania-nalezy-11" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -878,10 +950,7 @@ div.tocify {
 <div id="zadanie-13" class="section level2">
 <h2>Zadanie 13</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-13.png" title="Zadanie 13" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-13.png" title="Zadanie 13" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-12" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -907,10 +976,7 @@ div.tocify {
 <div id="zadanie-14" class="section level2">
 <h2>Zadanie 14</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-14.png" title="Zadanie 14" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-14.png" title="Zadanie 14" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-13" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -936,10 +1002,7 @@ div.tocify {
 <div id="zadanie-15" class="section level2">
 <h2>Zadanie 15</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-15.png" title="Zadanie 15" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-15.png" title="Zadanie 15" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-14" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -965,10 +1028,7 @@ div.tocify {
 <div id="zadanie-16" class="section level2">
 <h2>Zadanie 16</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-16.png" title="Zadanie 16" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-16.png" title="Zadanie 16" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-15" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -994,10 +1054,7 @@ div.tocify {
 <div id="zadanie-17" class="section level2">
 <h2>Zadanie 17</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-17.png" title="Zadanie 17" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-17.png" title="Zadanie 17" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-16" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -1023,10 +1080,7 @@ div.tocify {
 <div id="zadanie-18" class="section level2">
 <h2>Zadanie 18</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-18.png" title="Zadanie 18" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-18.png" title="Zadanie 18" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-17" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -1052,10 +1106,7 @@ div.tocify {
 <div id="zadanie-19" class="section level2">
 <h2>Zadanie 19</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-19.png" title="Zadanie 19" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-19.png" title="Zadanie 19" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-18" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -1081,10 +1132,7 @@ div.tocify {
 <div id="zadanie-20" class="section level2">
 <h2>Zadanie 20</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-20.png" title="Zadanie 20" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-20.png" title="Zadanie 20" /></p>
 <p><span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-19" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -1110,10 +1158,7 @@ div.tocify {
 <div id="zadanie-21" class="section level2">
 <h2>Zadanie 21</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-21.png" title="Zadanie 21" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-21.png" title="Zadanie 21" /></p>
 <p>Ruch masy może odbywać się tylko w pionie, sprężyna o charakterystyce nieliniowej: <span class="math inline">\(k = k_1(1 + k_2 \cdot x^2)\)</span>.</p>
 <div id="w-ramach-zadania-nalezy-20" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -1140,10 +1185,7 @@ div.tocify {
 <div id="zadanie-22" class="section level2">
 <h2>Zadanie 22</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-22.png" title="Zadanie 22" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-22.png" title="Zadanie 22" /></p>
 <p>Ruch masy może odbywać się tylko w pionie.</p>
 <div id="w-ramach-zadania-nalezy-21" class="section level4">
 <h4>W ramach zadania należy:</h4>
@@ -1170,10 +1212,7 @@ div.tocify {
 <div id="zadanie-23" class="section level2">
 <h2>Zadanie 23</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-23.png" title="Zadanie 23" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-23.png" title="Zadanie 23" /></p>
 <div id="w-ramach-zadania-nalezy-22" class="section level4">
 <h4>W ramach zadania należy:</h4>
 <ol style="list-style-type: decimal">
@@ -1199,10 +1238,7 @@ div.tocify {
 <div id="zadanie-24" class="section level2">
 <h2>Zadanie 24</h2>
 <p>Dany jest układ:</p>
-<div class="figure">
-<img src="figures/info2/homework/zad-24.png" title="Zadanie 24" alt="" />
-
-</div>
+<p><img src="figures/info2/homework/zad-24.png" title="Zadanie 24" /></p>
 <p>Ruch masy może odbywać się tylko w pionie, opór powietrza wyraża się wzorem: <span class="math display">\[ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C \]</span> gdzie: <span class="math inline">\(\rho\)</span>-gęstość powietrza, <span class="math inline">\(v\)</span>-prędkość kuli względem powietrza, <span class="math inline">\(S\)</span>-powierzchnia odniesienia i <span class="math inline">\(C\)</span>-stały współczynnik.</p>
 <div id="w-ramach-zadania-nalezy-23" class="section level4">
 <h4>W ramach zadania należy:</h4>

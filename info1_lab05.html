@@ -12,7 +12,7 @@
 <meta name="author" content="W. Regulski" />
 
 
-<title></title>
+<title>info1_lab05.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,46 +24,77 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -121,8 +152,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -138,7 +175,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -158,6 +194,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -179,18 +252,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -572,18 +704,18 @@ div.tocify {
 
 <div id="tablice" class="section level1">
 <h1>Tablice</h1>
-<p>Celem dzisiejszych zajęć jest wprowadzenie do tablic w języku C. Tablicą (ang. <em>array</em>) nazywamy ciąg zmiennych tego samego typu, które zajmują kolejne komórki pamięci. Aby dostać się do zadanego elementu, używamy nazwy tablicy i indeksu identyfikującego element. Na tych zajęciach zajmiemy się tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tablicę statyczną deklarujemy tak jak zwykłą zmienną, przy czym dodatkowo określamy jej długość (czyli liczbę elementów). Przykładowo:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> a[<span class="dv">4</span>];     <span class="co">// deklaracja tablicy</span>
-
-  a[<span class="dv">0</span>] = <span class="fl">5.</span><span class="dv">5</span>;      <span class="co">// definicja - przypisanie wartosci do zmiennych</span>
-  a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">521</span>;
-  a[<span class="dv">2</span>] = <span class="fl">6.</span><span class="dv">45</span>;
-  a[<span class="dv">3</span>] = <span class="fl">4.</span><span class="dv">51</span>;</code></pre></div>
+<p>Celem dzisiejszych zajęć jest wprowadzenie do tablic w języku C. Tablicą (ang. <em>array</em>) nazywamy ciąg zmiennych tego samego typu, które zajmują kolejne komórki pamięci. Aby dostać się do zadanego elementu, używamy nazwy tablicy i indeksu identyfikującego element. Na tych zajęciach zajmiemy się tablicami statycznymi, tzn. takimi, których rozmiar jest określany w momencie deklaracji<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Tablicę statyczną deklarujemy tak jak zwykłą zmienną, przy czym dodatkowo określamy jej długość (czyli liczbę elementów). Przykładowo:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1">  <span class="dt">double</span> a[<span class="dv">4</span>];     <span class="co">// deklaracja tablicy</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  a[<span class="dv">0</span>] = <span class="fl">5.5</span>;      <span class="co">// definicja - przypisanie wartosci do zmiennych</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  a[<span class="dv">1</span>] = <span class="fl">3.521</span>;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  a[<span class="dv">2</span>] = <span class="fl">6.45</span>;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  a[<span class="dv">3</span>] = <span class="fl">4.51</span>;</a></code></pre></div>
 <p>Zwróć uwagę, że elementy tablicy są indeksowane liczbami od <span class="math inline">\(0\)</span> do <span class="math inline">\(N - 1\)</span>, gdzie <span class="math inline">\(N\)</span> to rozmiar tablicy. Elementy tablicy można również zainicjalizować natychmiast – w momencie deklaracji:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  <span class="dt">double</span> b[<span class="dv">3</span>] = {<span class="fl">1.</span><span class="dv">2</span>, <span class="fl">2.</span><span class="dv">4</span>, <span class="fl">-4.</span><span class="dv">3</span>};  <span class="co">// wartosci zawarte w nawiasach</span>
-                                   <span class="co">// &quot;{&quot; i &quot;}&quot; definiuja tablice</span>
-  <span class="dt">double</span> c[<span class="dv">5</span>] = {<span class="dv">0</span>};               <span class="co">// wszystkie elementy tablicy zostana</span>
-                                   <span class="co">// uzupelnione zerami</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">  <span class="dt">double</span> b[<span class="dv">3</span>] = {<span class="fl">1.2</span>, <span class="fl">2.4</span>, <span class="fl">-4.3</span>};  <span class="co">// wartosci zawarte w nawiasach</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                                   <span class="co">// &quot;{&quot; i &quot;}&quot; definiuja tablice</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">double</span> c[<span class="dv">5</span>] = {<span class="dv">0</span>};               <span class="co">// wszystkie elementy tablicy zostana</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                                   <span class="co">// uzupelnione zerami</span></a></code></pre></div>
 </div>
 <div id="gra-w-kulki" class="section level1">
 <h1>Gra w kulki</h1>
@@ -597,44 +729,44 @@ div.tocify {
 <p>Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono poglądowo).</p>
 <p><img src="info1_lab05_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Nasze piłki przechowywane będą jako zestawy współrzędnych <span class="math inline">\((x, y)\)</span> oraz prędkości <span class="math inline">\((xV, yV)\)</span>. Oznacza to, że będą potrzebne następujące tablice:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x[<span class="dv">10</span>], y[<span class="dv">10</span>];        <span class="co">// wspolrzedne pilek</span>
-<span class="dt">double</span> xV[<span class="dv">10</span>], yV[<span class="dv">10</span>];      <span class="co">// skladowe predkosci pilek</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">double</span> x[<span class="dv">10</span>], y[<span class="dv">10</span>];        <span class="co">// wspolrzedne pilek</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">double</span> xV[<span class="dv">10</span>], yV[<span class="dv">10</span>];      <span class="co">// skladowe predkosci pilek</span></a></code></pre></div>
 <p>Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji <code>circle()</code>. Jako argumenty podamy elementy tablic odpowiadające danej piłce. Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">circle(x[<span class="dv">0</span>], y[<span class="dv">0</span>], <span class="dv">5</span>);</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1">circle(x[<span class="dv">0</span>], y[<span class="dv">0</span>], <span class="dv">5</span>);</a></code></pre></div>
 <div id="modyfikacja-tablic-petla-for" class="section level2">
 <h2>Modyfikacja tablic – pętla <code>for</code></h2>
 <p>Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty. Funkcje będą musiały także pobierać długość tablic tak, aby operacje można było wykonać dla każdego z jej elementów. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, napiszemy funkcję:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N) {
-  <span class="dt">int</span> i;
-  
-  <span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; N; i++) {
-    x[i] = <span class="fl">0.</span><span class="dv">0</span>;
-    y[i] = <span class="fl">0.</span><span class="dv">0</span>;
-  }
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N) {</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">int</span> i;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; N; i++) {</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    x[i] = <span class="fl">0.0</span>;</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    y[i] = <span class="fl">0.0</span>;</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  }</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">}</a></code></pre></div>
 <p>Wykorzystaliśmy tutaj pętlę <code>for</code>, która pobiera <span class="math inline">\(3\)</span> argumenty:</p>
 <ul>
 <li>wartość startową licznika <span class="math inline">\(i = 0\)</span>,</li>
 <li>warunek stopu (pętla działa, dopóki <span class="math inline">\(i &lt; N\)</span> ),</li>
-<li>operację na liczniku (tutaj zwiększamy <span class="math inline">\(i\)</span> o <span class="math inline">\(1\)</span>, co będzie najpowszechniejszą praktyką<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>).</li>
+<li>operację na liczniku (tutaj zwiększamy <span class="math inline">\(i\)</span> o <span class="math inline">\(1\)</span>, co będzie najpowszechniejszą praktyką<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>).</li>
 </ul>
 <p>Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na których ma działać oraz ich długość:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">  init(x, y, <span class="dv">10</span>);</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1">  init(x, y, <span class="dv">10</span>);</a></code></pre></div>
 <p>Czytelnik zauważy, że funkcja <code>init</code> pobiera dwa wskaźniki do tablic (u nas do tablicy <code>x</code> oraz <code>y</code>). Oznacza to, że w momencie wywołania funkcja oczekuje podania adresów tych tablic. My podaliśmy jedynie ich nazwy (<code>x</code> i <code>y</code>) – wynika stąd, że nazwa tablicy jest jednocześnie jej adresem.</p>
-<p>Warto podkreślić, że wykorzystanie wskaźnika to podstawowy sposób na przekazanie tablicy do funkcji. Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych’’ zmiennych (<code>int</code>, <code>double</code>, itd.). Można ją przekazać jedynie przez wskaźnik<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<p>Warto podkreślić, że wykorzystanie wskaźnika to podstawowy sposób na przekazanie tablicy do funkcji. Tablicy nie da się przekazać przez wartość, tak jak w przypadku ,,zwykłych’’ zmiennych (<code>int</code>, <code>double</code>, itd.). Można ją przekazać jedynie przez wskaźnik<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 </div>
 <div id="uwaga" class="section level2">
 <h2>Uwaga</h2>
 <p>Ponieważ <code>x</code> oraz <code>y</code> są wskaźnikami do pierwszych elementów tablic, można wykorzystać mechanizm działań na wskaźnikach. Poniższy fragment kodu pokazuje dwa równoważne sposoby dostępu do wartości zawartej w tablicy:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> a[<span class="dv">3</span>];
-
-a[<span class="dv">0</span>] = <span class="fl">1.</span><span class="dv">2</span>;       <span class="co">// inicjalizacja klasyczna z wykorzystaniem &quot;[&quot; i &quot;]&quot;</span>
-a[<span class="dv">1</span>] = <span class="fl">3.</span><span class="dv">13</span>;
-a[<span class="dv">2</span>] = <span class="fl">0.</span><span class="dv">22</span>;
-
-*(a + <span class="dv">0</span>) = <span class="fl">1.</span><span class="dv">2</span>;   <span class="co">// inicjalizacja z wykorzstaniem wskaznikow</span>
-*(a + <span class="dv">1</span>) = <span class="fl">3.</span><span class="dv">13</span>;
-*(a + <span class="dv">2</span>) = <span class="fl">0.</span><span class="dv">22</span>;</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dt">double</span> a[<span class="dv">3</span>];</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">a[<span class="dv">0</span>] = <span class="fl">1.2</span>;       <span class="co">// inicjalizacja klasyczna z wykorzystaniem &quot;[&quot; i &quot;]&quot;</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">a[<span class="dv">1</span>] = <span class="fl">3.13</span>;</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">a[<span class="dv">2</span>] = <span class="fl">0.22</span>;</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">*(a + <span class="dv">0</span>) = <span class="fl">1.2</span>;   <span class="co">// inicjalizacja z wykorzstaniem wskaznikow</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">*(a + <span class="dv">1</span>) = <span class="fl">3.13</span>;</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">*(a + <span class="dv">2</span>) = <span class="fl">0.22</span>;</a></code></pre></div>
 </div>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
@@ -664,20 +796,22 @@ a[<span class="dv">2</span>] = <span class="fl">0.</span><span class="dv">22</sp
 <ul>
 <li>Napisz funkcję, która losuje prędkości początkowe piłeczek. Składowe prędkości (<code>xV</code> oraz <code>yV</code>) wylosuj tak, aby ich wartości znalazły się w przedziale <span class="math inline">\([-1, 1]\)</span>.</li>
 <li>Za pomocą funkcji <code>showTable</code> sprawdź czy wylosowane wartości są prawidłowe.</li>
-<li><p>Napisz funkcję <code>move</code>, która wykona przesunięcie każdej z piłeczek. Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości.<br />
-Piłki poruszają się ze stałą prędkością, zatem <span class="math inline">\(\mathbf{x} (t + \Delta t) = \mathbf{x} + \mathbf{v} \Delta t\)</span>. Dla uproszczenia symulacji przyjmiemy, że czas jest jednostkowy. Zatem <span class="math inline">\(\mathbf{x}(t + 1) = \mathbf{x}(t) + \mathbf{v}\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span> (i = <span class="dv">0</span>; i &lt; N; i++) {
-  x[i] += xV[i];
-  y[i] += yV[i];
-}</code></pre></div></li>
-<li><p>W funkcji <code>main</code> napisz pętlę <code>for</code>, która wykona <span class="math inline">\(i = 50\)</span> wywołań funkcji <code>move</code>. Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe położenia piłek. W ciele pętli koniecznie użyj funkcji <code>animate(100)</code>. Spowolni ona wykonywanie kolejnych kroków pętli. Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.<br />
-Użycie funkcji <code>aimate</code> wygląda następująco:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">50</span>; i++) {
-  animate(<span class="dv">100</span>);   <span class="co">// oczkiwanie przez 100 ms</span>
-  clear();        <span class="co">// czyszczenie okna dla nowej klatki</span>
-              <span class="co">// pozostale instrukcje...</span>
-}</code></pre></div></li>
+<li>Napisz funkcję <code>move</code>, która wykona przesunięcie każdej z piłeczek. Przemieszczenie będzie polegać na zwiększeniu każdej współrzędnej o odpowiadającą jej składową prędkości.<br />
+Piłki poruszają się ze stałą prędkością, zatem <span class="math inline">\(\mathbf{x} (t + \Delta t) = \mathbf{x} + \mathbf{v} \Delta t\)</span>. Dla uproszczenia symulacji przyjmiemy, że czas jest jednostkowy. Zatem <span class="math inline">\(\mathbf{x}(t + 1) = \mathbf{x}(t) + \mathbf{v}\)</span>.</li>
 </ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="cf">for</span> (i = <span class="dv">0</span>; i &lt; N; i++) {</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  x[i] += xV[i];</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  y[i] += yV[i];</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">}</a></code></pre></div>
+<ul>
+<li>W funkcji <code>main</code> napisz pętlę <code>for</code>, która wykona <span class="math inline">\(i = 50\)</span> wywołań funkcji <code>move</code>. Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe położenia piłek. W ciele pętli koniecznie użyj funkcji <code>animate(100)</code>. Spowolni ona wykonywanie kolejnych kroków pętli. Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.<br />
+Użycie funkcji <code>aimate</code> wygląda następująco:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="cf">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">50</span>; i++) {</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  animate(<span class="dv">100</span>);   <span class="co">// oczkiwanie przez 100 ms</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  clear();        <span class="co">// czyszczenie okna dla nowej klatki</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">                  <span class="co">// pozostale instrukcje...</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">}</a></code></pre></div>
 </div>
 </div>
 <div id="kolizje-ze-scianami" class="section level1">
@@ -710,10 +844,7 @@ Oznaczenia:</p>
 <p><span class="math display">\[\mathbf{v}&#39;_1= \mathbf{v}_1 + \Delta \mathbf{v}\]</span> <span class="math display">\[\mathbf{v}&#39;_2= \mathbf{v}_2 - \Delta \mathbf{v}\]</span> <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\]</span> gdzie: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}\]</span></p>
 <div id="przykadowa-animacja" class="section level2">
 <h2>Przykładowa animacja</h2>
-<div class="figure">
-<img src="figures/info1/kulki.gif" title="Kulki w ruchu." alt="" />
-
-</div>
+<p><img src="figures/info1/kulki.gif" title="Kulki w ruchu." /></p>
 </div>
 </div>
 <div id="dla-dociekliwych" class="section level1">
@@ -732,8 +863,8 @@ Oznaczenia:</p>
 <li><p>Z II zasady dynamiki wiemy, że zmiana pędu będzie proporcjonalna do przyłożonej siły. Zatem: <span class="math display">\[\Delta \mathbf{p} = B \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{, gdzie}\]</span> rola parametru <span class="math inline">\(B\)</span> jest taka sama jak parametru <span class="math inline">\(A\)</span>. Informacja ta upraszcza równania zasady zachowania pędu. Możemy teraz zapisać, że nowe pędy kulek to stare wartości <span class="math inline">\(\pm\)</span> zmiana pędu: <span class="math display">\[
 \left\{
 \begin{array}{rcl}
-\mathbf{p}&#39;_1 &amp; = &amp; \mathbf{p}_1 + \Delta \mathbf{p} \\
-\mathbf{p}&#39;_2 &amp; = &amp; \mathbf{p}_2 - \Delta \mathbf{p}
+ \mathbf{p}&#39;_1 &amp; = &amp; \mathbf{p}_1 + \Delta \mathbf{p} \\
+ \mathbf{p}&#39;_2 &amp; = &amp; \mathbf{p}_2 - \Delta \mathbf{p}
 \end{array}
 \right.
 \]</span></p></li>
@@ -743,8 +874,8 @@ Oznaczenia:</p>
 <li><p>Biorąc pod uwagę, że masy piłek są takie same równania możemy uprościć: <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1}) \textrm{ (1)}\]</span> <span class="math display">\[
 \left\{
 \begin{array}{rcl}
-\mathbf{v}&#39;_1 &amp; = &amp; \mathbf{v}_1 + \Delta \mathbf{v} \\
-\mathbf{v}&#39;_2 &amp; = &amp; \mathbf{v}_2 - \Delta \mathbf{v}
+ \mathbf{v}&#39;_1 &amp; = &amp; \mathbf{v}_1 + \Delta \mathbf{v} \\
+ \mathbf{v}&#39;_2 &amp; = &amp; \mathbf{v}_2 - \Delta \mathbf{v}
 \end{array}
 \right. \textrm{ (2)}
 \]</span> <span class="math display">\[
@@ -768,34 +899,34 @@ Oznaczenia:</p>
 <li>Dla której z wersji ‘x84/x64’ <code>a</code> i <code>b</code> zaalokowane są “bliżej” tablicy <code>tab</code>?</li>
 <li>Poeksperymtuj z różnymi rozmiarami tablicy <code>tab</code>.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">
-<span class="dt">void</span> static_array_overflow()
-{
-    <span class="dt">int</span> a = <span class="dv">123</span>;
-    <span class="dt">int</span> tab[<span class="dv">5</span>];
-    <span class="dt">int</span> b = <span class="dv">456</span>;
-    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
-    printf(<span class="st">&quot;Adress of &amp;b = %p value of b = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;b, b);
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">5</span>; i++){
-        tab[i] = i;
-    }
-
-    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){
-        printf(<span class="st">&quot;&amp;tab[</span><span class="ch">%d</span><span class="st">] = %p tab[</span><span class="ch">%d</span><span class="st">] = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st"> &quot;</span>, i, &amp;tab[i], i, tab[i]);
-    }
-
-    printf(<span class="st">&quot;Adress of &amp;a = %p value of a = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;a, a);
-    printf(<span class="st">&quot;Adress of &amp;b = %p value of b = </span><span class="ch">%d</span><span class="st"> </span><span class="ch">\n</span><span class="st">&quot;</span>, &amp;b, b);
-}
-
-<span class="dt">int</span> main()
-{
-    static_array_overflow();
-    printf(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">---DONE---</span><span class="ch">\n</span><span class="st">&quot;</span>);
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}
-</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="dt">void</span> static_array_overflow()</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">    <span class="dt">int</span> a = <span class="dv">123</span>;</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">    <span class="dt">int</span> tab[<span class="dv">5</span>];</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">    <span class="dt">int</span> b = <span class="dv">456</span>;</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">    printf(<span class="st">&quot;Adress of &amp;a = </span><span class="sc">%p</span><span class="st"> value of a = </span><span class="sc">%d</span><span class="st"> </span><span class="sc">\n</span><span class="st">&quot;</span>, &amp;a, a);</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">    printf(<span class="st">&quot;Adress of &amp;b = </span><span class="sc">%p</span><span class="st"> value of b = </span><span class="sc">%d</span><span class="st"> </span><span class="sc">\n</span><span class="st">&quot;</span>, &amp;b, b);</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">5</span>; i++){</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">        tab[i] = i;</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">    }</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">-10</span>; i &lt; <span class="dv">10</span>; i++){</a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">        printf(<span class="st">&quot;&amp;tab[</span><span class="sc">%d</span><span class="st">] = </span><span class="sc">%p</span><span class="st"> tab[</span><span class="sc">%d</span><span class="st">] = </span><span class="sc">%d</span><span class="st"> </span><span class="sc">\n</span><span class="st"> &quot;</span>, i, &amp;tab[i], i, tab[i]);</a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">    }</a>
+<a class="sourceLine" id="cb10-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">    printf(<span class="st">&quot;Adress of &amp;a = </span><span class="sc">%p</span><span class="st"> value of a = </span><span class="sc">%d</span><span class="st"> </span><span class="sc">\n</span><span class="st">&quot;</span>, &amp;a, a);</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18">    printf(<span class="st">&quot;Adress of &amp;b = </span><span class="sc">%p</span><span class="st"> value of b = </span><span class="sc">%d</span><span class="st"> </span><span class="sc">\n</span><span class="st">&quot;</span>, &amp;b, b);</a>
+<a class="sourceLine" id="cb10-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb10-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb10-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb10-23" data-line-number="23">    static_array_overflow();</a>
+<a class="sourceLine" id="cb10-24" data-line-number="24">    printf(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">---DONE---</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">}</a>
+<a class="sourceLine" id="cb10-28" data-line-number="28"></a></code></pre></div>
 <div id="konfiguracja-debugrelease" class="section level3">
 <h3>Konfiguracja Debug/Release</h3>
 <p>W konfiguracji ‘release’ kompilator dokonuje optymalizacji programu. Dzięki temu działa on z pełną prędkością natomiast utrudnione jest jego debugowanie. Przykładowo linie kodu mogą mieć zmienioną kolejność wykonywania, a niektóre funkcje mogą być rozwinięte (inline). Inline oznacza zamienienie przez kompilator wywołania funkcji na jej bezpośrednie instrukcje. Dzięki temu program nie musi ‘skakać’ po pamięci.</p>
@@ -806,9 +937,9 @@ Oznaczenia:</p>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Można wykorzystać struktury aby przekazać tablicę przez wartość – temat ten wykracza jednak po za zakres ćwiczeń.<a href="#fnref3">↩</a></p></li>
+<li id="fn1"><p>Bardziej zaawansowany mechanizm alokacji tablic będzie tematem następnych zajęć<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Można wykorzystać struktury aby przekazać tablicę przez wartość – temat ten wykracza jednak po za zakres ćwiczeń.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

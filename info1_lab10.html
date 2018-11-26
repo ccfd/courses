@@ -12,7 +12,7 @@
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
 
 
-<title></title>
+<title>info1_lab10.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,46 +24,77 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -121,8 +152,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -138,7 +175,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -158,6 +194,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -179,18 +252,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -570,7 +702,7 @@ div.tocify {
 </div>
 
 
-<p>Na dzisiejszych zajęciach będziemy zajmować się fraktalami. Fraktale to zbiory matematyczne charakteryzujące się tzw. samopodobieństwem – w każdym powiększeniu wyglądają identycznie<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>.</p>
+<p>Na dzisiejszych zajęciach będziemy zajmować się fraktalami. Fraktale to zbiory matematyczne charakteryzujące się tzw. samopodobieństwem – w każdym powiększeniu wyglądają identycznie<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <div id="trojkat-sierpinskiego" class="section level1">
 <h1>Trójkąt Sierpińskiego</h1>
 <p>Idea trójkąta Sierpińskiego polega na tym, że każdy trójkąt zawiera w sobie trzy takie same trójkąty o dwukrotnie krótszych bokach (patrz Rys. 1).</p>
@@ -583,13 +715,13 @@ div.tocify {
 <h2>Rekurencyjne wywoływanie funkcji</h2>
 <p>Rekurencyjne wywoływanie funkcji polega na tym, że dana funkcja wywołuje samą siebie. Jak łatwo się domyślić, takie wywoływanie trwałoby w nieskończoność. Aby tego uniknąć, nakłada się warunek na wywołanie funkcji.</p>
 <p>Cały mechanizm, ilustruje to poniższy przykład:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> recursiveDraw(<span class="dt">double</span> x, <span class="dt">double</span> y, <span class="dt">double</span> R) {
-  circle(x, y, R);
-  
-  <span class="kw">if</span>(x &lt; <span class="dv">500</span>) {
-    recursiveDraw(x + <span class="dv">5</span>, y + <span class="dv">5</span>, <span class="fl">0.</span><span class="dv">88</span> * R);
-  }
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> recursiveDraw(<span class="dt">double</span> x, <span class="dt">double</span> y, <span class="dt">double</span> R) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  circle(x, y, R);</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="cf">if</span>(x &lt; <span class="dv">500</span>) {</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    recursiveDraw(x + <span class="dv">5</span>, y + <span class="dv">5</span>, <span class="fl">0.88</span> * R);</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  }</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">}</a></code></pre></div>
 <p>Funkcja <code>recursiveDraw</code> rysuje okrąg o zadanych parametrach oraz wywołuje samą siebie z innymi wartościami argumentów, dopóki wartość <span class="math inline">\(x\)</span> nie przekroczy <span class="math inline">\(500\)</span>.</p>
 <p>W wypadku trójkąta Sierpińskiego, napiszemy funkcję, która generuje fraktal do pewnej ,,głębokości’’. Głębokość <span class="math inline">\(1\)</span> oznacza pojedynczy trójkąt, <span class="math inline">\(2\)</span> – trzy trójkąty, <span class="math inline">\(3\)</span> – dziewięć, itd. Funkcję taką można napisać zauważając, że trójkąt o głębokości <span class="math inline">\(n\)</span> składa się z trzech trójkątów o głębokości <span class="math inline">\(n - 1\)</span>.</p>
 <div id="cwiczenia" class="section level3">
@@ -616,25 +748,25 @@ div.tocify {
 <p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [-4, 4]\)</span> i <span class="math inline">\(y \in [-3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span> dla tych współrzędnych.</p>
 <p>Funkcja <code>setcolor()</code> jako argument przyjmuje liczbę z przedziału od <span class="math inline">\(0\)</span> do <span class="math inline">\(1\)</span> i ustawia kolor rysowania.</p>
 <p>Przeanalizuj poniższy program:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> fun(<span class="dt">double</span> x, <span class="dt">double</span> y) {
-  <span class="kw">return</span> (sin((x * x + y * y) * <span class="fl">50.</span><span class="dv">0</span>) + <span class="fl">1.</span><span class="dv">0</span>) / <span class="fl">2.</span><span class="dv">0</span>;
-}
-
-<span class="dt">void</span> main() {
-  <span class="dt">double</span> r;
-  <span class="dt">int</span> i, j;
-  
-  graphics(<span class="dv">800</span>, <span class="dv">600</span>);
-  
-  <span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">800</span>; i++)
-    <span class="kw">for</span>(j = <span class="dv">0</span>; j &lt; <span class="dv">600</span>; j++) {
-      r = fun(i / <span class="fl">200.</span><span class="dv">0</span> - <span class="fl">2.</span><span class="dv">0</span>, j / <span class="fl">200.</span><span class="dv">0</span> - <span class="fl">1.</span><span class="dv">5</span>);
-      setcolor(r);
-      point(i, j);
-    }
-    
-  wait();
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> fun(<span class="dt">double</span> x, <span class="dt">double</span> y) {</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="cf">return</span> (sin((x * x + y * y) * <span class="fl">50.0</span>) + <span class="fl">1.0</span>) / <span class="fl">2.0</span>;</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">double</span> r;</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="dt">int</span> i, j;</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">  graphics(<span class="dv">800</span>, <span class="dv">600</span>);</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">  </a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">  <span class="cf">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">800</span>; i++)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">    <span class="cf">for</span>(j = <span class="dv">0</span>; j &lt; <span class="dv">600</span>; j++) {</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">      r = fun(i / <span class="fl">200.0</span> - <span class="fl">2.0</span>, j / <span class="fl">200.0</span> - <span class="fl">1.5</span>);</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">      setcolor(r);</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">      point(i, j);</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">    }</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">    </a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">  wait();</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">}</a></code></pre></div>
 </div>
 <div id="rozbieznosc" class="section level2">
 <h2>Rozbieżność</h2>
@@ -686,7 +818,7 @@ c = cR + cI \cdot i
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Z tego powodu wydają się bardzo skomplikowane. Okazuje się jednak, że fraktale stanowią całkiem niezły sposób opisu przyrody – wystarczy spojrzeć na kawałek wybrzeża Wielkiej Brytanii albo na gałąź choinki, żeby stwierdzić, że przypominają całość, tylko w pomniejszeniu.<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>Z tego powodu wydają się bardzo skomplikowane. Okazuje się jednak, że fraktale stanowią całkiem niezły sposób opisu przyrody – wystarczy spojrzeć na kawałek wybrzeża Wielkiej Brytanii albo na gałąź choinki, żeby stwierdzić, że przypominają całość, tylko w pomniejszeniu.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

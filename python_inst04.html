@@ -12,7 +12,7 @@
 <meta name="author" content="W. Gryglas" />
 
 
-<title></title>
+<title>python_inst04.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -569,84 +700,87 @@ div.tocify {
 </div>
 
 
-<div id="wprowadzenie" class="section level1">
-<h1>Wprowadzenie</h1>
+<p>#Wprowadzenie</p>
 <div id="numpy-array---zamiana-wymiarow" class="section level2">
 <h2>NumPy array - zamiana wymiarów</h2>
 <p>Jak wiemy z poprzednich zajęć, tablice numpy.array są stałego wymiaru. W przypadku np. dwu-wymiarowym są to zawsze tablice prostokątne, co oznacza, że nie nie może zdarzyć się sytuacja w której jeden z wierszy będzie krótszy. Aby zobaczyć wymiary tablicy korzystamy ze zmiennej “shape”:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-
-t <span class="op">=</span> np.ones((<span class="dv">2</span>,<span class="dv">3</span>))
-<span class="bu">print</span> t.shape <span class="co"># &gt;&gt; (2, 3)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">t <span class="op">=</span> np.ones((<span class="dv">2</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="bu">print</span> t.shape <span class="co"># &gt;&gt; (2, 3)</span></a></code></pre></div>
 <p>Czasami istnieje jednak potrzeba zamiany tablicy np. dwu-wymiarowej na jednowymiarową poprzez połączenie kolejnych wierszy w jeden wektor. Do tego celu służy funkcja “reshape”, którą możemy wywołać na dwa sposoby:</p>
 <ul>
 <li>Jako funkcja biblioteki numpy, tworząc nową tablicę</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-
-tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">2</span><span class="op">+</span>j <span class="cf">for</span> j <span class="op">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])
-<span class="co"># tab2D = [[0 1]</span>
-<span class="co">#                 [2 3]</span>
-<span class="co">#           [4 5]]</span>
-
-tab1D <span class="op">=</span> np.reshape(tab2D, (<span class="dv">6</span>, <span class="dv">1</span>))
-<span class="co"># tab1D = array([[0],</span>
-<span class="co">#                [1],</span>
-<span class="co">#                    [2],</span>
-<span class="co">#                    [3],</span>
-<span class="co">#                    [4],</span>
-<span class="co">#                    [5]])</span>
-
-tab1D <span class="op">=</span> np.reshape(tab2D, (<span class="dv">1</span>, <span class="dv">6</span>))
-<span class="co"># array([[0, 1, 2, 3, 4, 5]])</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">2</span><span class="op">+</span>j <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># tab2D = [[0 1]</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#                 [2 3]</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#           [4 5]]</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">tab1D <span class="op">=</span> np.reshape(tab2D, (<span class="dv">6</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># tab1D = array([[0],</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#                [1],</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#                    [2],</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#                    [3],</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#                    [4],</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#                    [5]])</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">tab1D <span class="op">=</span> np.reshape(tab2D, (<span class="dv">1</span>, <span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co"># array([[0, 1, 2, 3, 4, 5]])</span></a></code></pre></div>
 <p>Należy tutaj zwrócić uwagę, że nowo utworzona tablica jest także dwu-wymiarowa, ponieważ nowy “kształt” został przekazany jako tuple. Aby uzyskać w pełni jednowymiarową tablicę wystarczy podać wymiar jako tylko “6”:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">tab1D <span class="op">=</span> np.reshape(tab2D, <span class="dv">6</span>)
-<span class="co"># array([0, 1, 2, 3, 4, 5])</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1">tab1D <span class="op">=</span> np.reshape(tab2D, <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># array([0, 1, 2, 3, 4, 5])</span></a></code></pre></div>
 <ul>
-<li>Jako metoda obiektu tablica, tworząc także nową tablicę: ```python import numpy as np</li>
+<li>Jako metoda obiektu tablica, tworząc także nową tablicę:</li>
 </ul>
-<p>tab2D = np.array( [[ i*3+j for j in range(2)] for i in range(3)])</p>
-<p>tab1D = tab2D.reshape(6) # array([0, 1, 2, 3, 4, 5]) ```</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">3</span><span class="op">+</span>j <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">tab1D <span class="op">=</span> tab2D.reshape(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># array([0, 1, 2, 3, 4, 5])</span></a></code></pre></div>
 <p>Powyżej pokazaliśmy, jak zmienić kształt z tablicy 2D na 1D. Podobnie można uczynić w drugą stronę:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-
-tab1D <span class="op">=</span> np.array( [ i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">6</span>) ] )
-
-tab2D <span class="op">=</span> tab1D.reshape((<span class="dv">3</span>,<span class="dv">2</span>))
-<span class="co"># [[0 1]</span>
-<span class="co">#  [2 3]</span>
-<span class="co">#  [4 5]]</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">tab1D <span class="op">=</span> np.array( [ i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>) ] )</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">tab2D <span class="op">=</span> tab1D.reshape((<span class="dv">3</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co"># [[0 1]</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#  [2 3]</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#  [4 5]]</span></a></code></pre></div>
 <p>Gdy będziemy używali funkcji <strong><em>reshape</em></strong> musimy mieć pewność, że nowy wymiar będzie pasował. Pomocna może być zmienna <strong><em>size</em></strong> należąca do tablic, która informuje o całkowitej liczbie elementów:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-
-tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">3</span><span class="op">+</span>j <span class="cf">for</span> j <span class="op">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])
-
-tab1D <span class="op">=</span> tab2D.reshape(tab2D.size)
-<span class="co"># array([0, 1, 2, 3, 4, 5])</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">3</span><span class="op">+</span>j <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">tab1D <span class="op">=</span> tab2D.reshape(tab2D.size)</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co"># array([0, 1, 2, 3, 4, 5])</span></a></code></pre></div>
 </div>
 <div id="numpy---loadsave-data" class="section level2">
 <h2>NumPy - load/save data</h2>
 <p>Kolejną bardzo przydatną funkcją z biblioteki numpy jest <strong><em>load</em></strong> i <strong><em>save</em></strong>. Podczas poprzednich zajęć pokazaliśmy jak wczytywać/zapisywać dane z pliku linia po linii. Jak wiadomo w praktyce inżynierskiej zapisywanie danych do pliku zazwyczaj sprowadza się tylko do zapisu pewnego zbioru liczb. I właśnie do tego celu bardzo dobrze nadają się wspomniane funkcje. Potrafią one zapisać dowolną tablicę numpy.array do pliku o rozszerzeniu <strong><em>npy</em></strong>. Plik taki zostaje zapisany w postaci binarnej, dzięki czemu proces zapisywania i wczytywania jest możliwie najbardziej wydajny. Zobaczmy jak to działa w praktyce:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dv">100</span>)
-y <span class="op">=</span> np.sin(x)
-
-xy <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">2</span>))
-xy[:,<span class="dv">0</span>] <span class="op">=</span> x
-xy[:,<span class="dv">1</span>] <span class="op">=</span> y
-
-np.save(<span class="st">&quot;nazwa_pliku&quot;</span>, xy)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">y <span class="op">=</span> np.sin(x)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">xy <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">xy[:,<span class="dv">0</span>] <span class="op">=</span> x</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">xy[:,<span class="dv">1</span>] <span class="op">=</span> y</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">np.save(<span class="st">&quot;nazwa_pliku&quot;</span>, xy)</a></code></pre></div>
 <p>W miejscu “nazwa_pliku” możemy wstawić dowolną ścieżkę. Jeśli nie podamy ścieżki tylko samą nazwę, to zostanie utworzony plik w aktualnym roboczym katalogu. Wczytywanie tych danych jest tak samo proste jak ich zapisywanie:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-
-xy <span class="op">=</span> np.load(<span class="st">&quot;nazwa_pliku&quot;</span>)
-
-plt.figure()
-plt.plot(xy[:,<span class="dv">0</span>],xy[:,<span class="dv">1</span>])
-plt.title(<span class="st">&quot;Funkcja sinus&quot;</span>)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">xy <span class="op">=</span> np.load(<span class="st">&quot;nazwa_pliku&quot;</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">plt.figure()</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">plt.plot(xy[:,<span class="dv">0</span>],xy[:,<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">plt.title(<span class="st">&quot;Funkcja sinus&quot;</span>)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">plt.show()</a></code></pre></div>
 <p>Oprócz opisanych powyżej funkcji do zapisu danych można skorzystać z funkcji: - <code>numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\n', header='', footer='', comments='# ')</code> - funkcja zapisuje dane w postaci tekstowej. Wymagane jest przekazanie dwóch pierwszych parametrów: nazwa pliku i tablica. Pozostałe parametry są opcjonalne. Domyślne wartości przedstawiono powyżej. - <code>numpy.loadtxt(fname, dtype=&lt;type 'float'&gt;, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)</code> - funkcja wczytuje dane z pliku tekstowego. Wymagany parametr to ścieżka do pliku. Pozostałe parametry są opcjonalne. Warto tutaj zwrócić uwagę na parametr <strong><em>dtype</em></strong> który określa typ zmiennych do jakich mają być wczytane dane. Domyślnie ustawiony jest typ <strong><em>float</em></strong>, który nie zawsze jest tym którego oczekujemy.</p>
 <p>Z powyższych funkcji korzysta się dokładnie tak samo jak z poprzednich. Funkcje te zapisują/wczytują jednak dane w postaci tekstowej, co jest znacznie wolniejsze ale za to bardziej uniwersalne. Wykorzystując parametry funkcji możemy zdefiniować</p>
 <p>Sprawdź format zapisu tych danych. Jakie informacje są zawarte w pliku? Czy wczytywanie takich danych jest optymalne? Jeśli nie to dlaczego?</p>
@@ -654,318 +788,323 @@ plt.show()</code></pre></div>
 <div id="obiekty-klasy-dict" class="section level2">
 <h2>Obiekty klasy “dict”</h2>
 <p>Do tej pory pokazaliśmy kilka podstawowych typów, takich jak <strong><em>list</em></strong> czy <strong><em>string</em></strong>. Python zawiera jeszcze jeden bardzo ważny typ <strong><em>dictionary</em></strong> - oznaczany jako <strong><em>dict</em></strong>. Type ten jest odpowiednikiem typu mapa spotykanego w innych językach. Mapuje on wartości jednego typu na wartości drugiego, np. string -&gt; integer. Jest on bardzo przydatny, ponieważ pozwala na przechowywanie liczb(ewentualnie jakiś obiektów) ale przy okazji pozwala się do nich odwoływać za pomocą nazwy zamiast indeksów np.: “dom” -&gt; 1 “drzwi” -&gt; 2 Gdy nie chcemy pamiętać jaki indeks ma “dom” to wystarczy przechować te nazwy i indeksy za pomocą typu “dict”, a następnie pobierać wartości już tylko za pomocą ich nazw. W Pythonie typ <strong><em>dict</em></strong> możemy utworzyć na dwa sposobu: * wywołując funkcje <strong><em>dict()</em></strong> która utworzy pustą mapę <code>mapa=dict()</code> * przypisując do zmiennej konkretne pary:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mapa <span class="op">=</span> { <span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" data-line-number="1">mapa <span class="op">=</span> { <span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</a></code></pre></div>
 <p>Aby skorzystać następnie z takiej mapy wystarczy odwołać się do jej elementów za pomocą klucza - czyli pierwszej zmiennej w parze:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mapa <span class="op">=</span> { <span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}
-
-<span class="bu">print</span> <span class="st">&quot;Indeks przypisany do domu to &quot;</span>, mapa[<span class="st">&quot;dom&quot;</span>]
-<span class="bu">print</span> <span class="st">&quot;a indeks przypisany do drzwi to &quot;</span>, mapa[<span class="st">&quot;drzwi&quot;</span>]</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb10-1" data-line-number="1">mapa <span class="op">=</span> { <span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="bu">print</span> <span class="st">&quot;Indeks przypisany do domu to &quot;</span>, mapa[<span class="st">&quot;dom&quot;</span>]</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="bu">print</span> <span class="st">&quot;a indeks przypisany do drzwi to &quot;</span>, mapa[<span class="st">&quot;drzwi&quot;</span>]</a></code></pre></div>
 <p>W przypadku gdy będziemy chcieli dodać nowy element do mapy wystarczy przypisać do nowej nazwy nową wartość:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mapa <span class="op">=</span> <span class="bu">dict</span>()
-mapa[<span class="st">&quot;dom&quot;</span>] <span class="op">=</span> <span class="dv">1</span>
-mapa[<span class="st">&quot;drzwi&quot;</span>] <span class="op">=</span> <span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb11-1" data-line-number="1">mapa <span class="op">=</span> <span class="bu">dict</span>()</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">mapa[<span class="st">&quot;dom&quot;</span>] <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">mapa[<span class="st">&quot;drzwi&quot;</span>] <span class="op">=</span> <span class="dv">2</span></a></code></pre></div>
 <p>Należy pamiętać, ze mapa wcale nie musi mapować tylko nazw do liczb. Możemy zapisać za jej pomocą na przykład pary obiekt okno graficzne - jego tytuł</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-
-okno1 <span class="op">=</span> plt.figure()
-okno2 <span class="op">=</span> plt.figure()
-
-tytuly<span class="op">=</span>{okno1:<span class="st">&quot;Okno pierwsze&quot;</span>, tytuly[okno2]:<span class="st">&quot;Okno drugie&quot;</span>}
-
-
-<span class="bu">print</span> <span class="st">&quot;Tytul okna pierwszego to &quot;</span>, tytuly[okno1]
-
-<span class="co">#ustawiamy tutul okna</span>
-okno1.fig.canvas.set_window_title( tytuly[okno1] )</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">okno1 <span class="op">=</span> plt.figure()</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">okno2 <span class="op">=</span> plt.figure()</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">tytuly<span class="op">=</span>{okno1:<span class="st">&quot;Okno pierwsze&quot;</span>, tytuly[okno2]:<span class="st">&quot;Okno drugie&quot;</span>}</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="bu">print</span> <span class="st">&quot;Tytul okna pierwszego to &quot;</span>, tytuly[okno1]</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#ustawiamy tutul okna</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">okno1.fig.canvas.set_window_title( tytuly[okno1] )</a></code></pre></div>
 <p>Należy jednak pamiętać, że aby jakiś typ mógł być użyty jako klucz mapy musi być on “hashowalny”. Nie będziemy tego opisywali, tylko zwracamy uwagę, że nie wszystkie typy mogą być użyte jako klucze, np. skorzystanie z listy spowoduje wyrzucenie błędu.</p>
 </div>
 <div id="sprawdzanie-czy-klucz-znajduje-sie-w-sowniku-dict" class="section level2">
 <h2>Sprawdzanie czy klucz znajduje się w słowniku “dict”</h2>
 <p>Bardzo często będzie zachodziła sytuacja, gdy będziemy chcieli dowiedzieć się, czy dany obiekt jest już w jakimś kontenerze <strong><em>dict</em></strong>. Podobnie do list i tutaj wystarczy skorzystać z słowa kluczowego <strong><em>in</em></strong>, np.:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}
-
-<span class="cf">if</span> <span class="st">&quot;dom&quot;</span> <span class="op">in</span> mapa:
-    <span class="bu">print</span> <span class="st">&quot;Dom jest w mapie, a jego indeks to&quot;</span>, mapa[<span class="st">&quot;dom&quot;</span>]</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="cf">if</span> <span class="st">&quot;dom&quot;</span> <span class="kw">in</span> mapa:</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">    <span class="bu">print</span> <span class="st">&quot;Dom jest w mapie, a jego indeks to&quot;</span>, mapa[<span class="st">&quot;dom&quot;</span>]</a></code></pre></div>
 <p>Do słowa kluczowego <strong><em>in</em></strong> można dodać <strong><em>not</em></strong>, co odwróci jego działanie:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}
-
-<span class="cf">if</span> <span class="st">&quot;okno&quot;</span> <span class="op">not</span> <span class="op">in</span> mapa:
-    mapa[<span class="st">&quot;okno&quot;</span>] <span class="op">=</span> <span class="dv">5</span>
-
-<span class="bu">print</span> <span class="st">&quot;Okno ma indeks&quot;</span>, mapa[<span class="st">&quot;okno&quot;</span>]</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="cf">if</span> <span class="st">&quot;okno&quot;</span> <span class="kw">not</span> <span class="kw">in</span> mapa:</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">    mapa[<span class="st">&quot;okno&quot;</span>] <span class="op">=</span> <span class="dv">5</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Okno ma indeks&quot;</span>, mapa[<span class="st">&quot;okno&quot;</span>]</a></code></pre></div>
 <p>Powyższy kod pozwala nam upewnić się, że okno znajdzie się w mapie, a linijka z “print” nie wygeneruje błędu.</p>
 </div>
 <div id="iterowanie-po-elementach-sownika" class="section level2">
 <h2>Iterowanie po elementach słownika</h2>
 <p>W przypadku list i tablic iterowanie po ich elementach jest dość oczywiste - kolejne parametry pojawiające się w pętli <strong><em>for</em></strong> są kolejnymi elementami list. A jak to jest w przypadku słownika, gdzie operujemy na parach klucz-wartość? Jest podobnie, tylko elementami po których iterujemy są klucze. A zatem jeśli mamy mapę o parach string-integer to kolejnymi elementami w pętli for będą nazwy:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>, <span class="st">&quot;okno&quot;</span>:<span class="dv">5</span>}
-
-<span class="cf">for</span> key <span class="op">in</span> mapa:
-    <span class="bu">print</span> <span class="st">&quot;klucz to:&quot;</span>, key, <span class="st">&quot; a wartosc&quot;</span>, mapa[key]</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>, <span class="st">&quot;okno&quot;</span>:<span class="dv">5</span>}</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="cf">for</span> key <span class="kw">in</span> mapa:</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="bu">print</span> <span class="st">&quot;klucz to:&quot;</span>, key, <span class="st">&quot; a wartosc&quot;</span>, mapa[key]</a></code></pre></div>
 <p>Podsumowując, w przypadku kontenerów typu <strong><em>dict</em></strong> iterujemy w pętlach zawsze po jej kluczach, a wartości możemy uzyskać pobierając wartość z mapy za kolejnego klucza w pętli.</p>
 </div>
 <div id="funkcje-zwracajace-wiecej-niz-jeden-argument" class="section level2">
 <h2>Funkcje zwracające więcej niż jeden argument</h2>
 <p>W większości znanych języków funkcje zazwyczaj mogą zwracać tylko jeden lub żaden argument. W przypadku Pythonie jest i nie jest tak samo jednocześnie. Jest tak samo, ponieważ fizycznie Python zwraca jeden argument. Nie jest tak samo, bo w praktyce wygląda to tak jakbyśmy pracowali na kodzie, gdzie może być zwracanych więcej niż jeden argument. Przyjrzyjmy się następującej funkcji:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(a,b):
-    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">def</span> funkcja(a,b):</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</a></code></pre></div>
 <p>Funkcja ta przyjmuje 2 liczby i zwraca także dwie liczby, ponieważ po przecinku wypisaliśmy sumę i różnicę przekazanych parametrów a i b. Taka konstrukcja służy do zwracania większej liczby parametrów. Zobaczmy w takim razie jaki to typ zwraca nasza funkcja:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(a,b):
-    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b
-
-<span class="bu">print</span> <span class="bu">type</span>( funkcja(<span class="dv">1</span>,<span class="dv">2</span>) ) <span class="co"># &gt;&gt; &lt;type &#39;tuple&#39;&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">def</span> funkcja(a,b):</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="bu">print</span> <span class="bu">type</span>( funkcja(<span class="dv">1</span>,<span class="dv">2</span>) ) <span class="co"># &gt;&gt; &lt;type &#39;tuple&#39;&gt;</span></a></code></pre></div>
 <p>Jak widać Python parę liczb zwraca jako typ <strong><em>tuple</em></strong>. Przypomnijmy, <strong><em>tuple</em></strong> to kontener, który przechowuje dowolne typy (elementy mogą być różnego typu) ale nie można zmieniać tych elementów. Zatem w wyniku dostajemy niemodyfikowalną listę różnych obiektów. A sprawdź co zwraca funkcja jedno i bez argumentowa:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(a,b):
-    <span class="cf">return</span> a<span class="op">+</span>b
-
-<span class="bu">print</span> <span class="bu">type</span>( funkcja(<span class="dv">1</span>,<span class="dv">2</span>) ) <span class="co"># &gt;&gt; &lt;type &#39;int&#39;&gt;</span>
-
-<span class="kw">def</span> funkcja(a,b):
-    c  <span class="op">=</span> a<span class="op">-</span>b
-
-<span class="bu">print</span> funkcja(<span class="dv">1</span>,<span class="dv">2</span>) <span class="co"># &gt;&gt; None</span>
-<span class="bu">print</span> <span class="bu">type</span>(funkcja(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># &gt;&gt; &lt;type &#39;NoneType&#39;&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">def</span> funkcja(a,b):</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">+</span>b</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="bu">print</span> <span class="bu">type</span>( funkcja(<span class="dv">1</span>,<span class="dv">2</span>) ) <span class="co"># &gt;&gt; &lt;type &#39;int&#39;&gt;</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="kw">def</span> funkcja(a,b):</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">    c  <span class="op">=</span> a<span class="op">-</span>b</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="bu">print</span> funkcja(<span class="dv">1</span>,<span class="dv">2</span>) <span class="co"># &gt;&gt; None</span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="bu">print</span> <span class="bu">type</span>(funkcja(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># &gt;&gt; &lt;type &#39;NoneType&#39;&gt;</span></a></code></pre></div>
 <p>Jak widzimy w przypadku jednego argumentu Python automatycznie zwraca ten jeden konkretny obiekt, nie opakowuje go w kontener <strong><em>tuple</em></strong>. Z kolei gdy funkcja nic nie zwraca, to okazuje się, że w rzeczywistości Python zwraca domyślnie zmienną typu <strong><em>NoneType</em></strong> o wartości <strong><em>None</em></strong>. Zmienna ta jest czymś co przypomina pusty wskaźnik “Null” w innych językach. Można go testować w konstrukcji <strong><em>if</em></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(a,b):
-    c  <span class="op">=</span> a<span class="op">-</span>b
-
-wynik <span class="op">=</span> funkcja(<span class="dv">1</span>, <span class="dv">2</span>)
-
-<span class="cf">if</span> wynik:
-    <span class="bu">print</span> <span class="st">&quot;Funkcja zwraca argument&quot;</span>
-<span class="cf">else</span>:
-    <span class="bu">print</span> <span class="st">&quot;Funkcja nie zwraca argumentow&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">def</span> funkcja(a,b):</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">    c  <span class="op">=</span> a<span class="op">-</span>b</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">wynik <span class="op">=</span> funkcja(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="cf">if</span> wynik:</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">    <span class="bu">print</span> <span class="st">&quot;Funkcja zwraca argument&quot;</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="cf">else</span>:</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">    <span class="bu">print</span> <span class="st">&quot;Funkcja nie zwraca argumentow&quot;</span></a></code></pre></div>
 <p>Wróćmy do zwracania wielu argumentów pod postacią tuple. Na poprzednich ćwiczeniach mówiliśmy, że w Pythonie dowolną listę, tablicę czy tuple (coś po czym można iterować jak w pętli for) można “rozwinąć” do zmiennych. W tym celu korzysta się z konstrukcji</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">dane <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;cos&quot;</span>)
-liczba1, liczba2, text <span class="op">=</span> dane</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb20-1" data-line-number="1">dane <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;cos&quot;</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">liczba1, liczba2, text <span class="op">=</span> dane</a></code></pre></div>
 <p>która przypisuje zmiennym po przecinku dane z kontenera. Z racji tego, że funkcja zwracająca wiele argumentów zwraca fizycznie <strong><em>tuple</em></strong> to dokładnie w ten sam sposób możemy wynik z funkcji przypisać do kilku zmiennych:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> funkcja(a,b):
-    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b
-
-suma, roznica <span class="op">=</span> funkcja(<span class="dv">1</span>,<span class="dv">2</span>)
-
-<span class="bu">print</span> <span class="st">&quot;Suma =&quot;</span>,suma <span class="co"># &gt;&gt; Suma = 3</span>
-<span class="bu">print</span> <span class="st">&quot;Roznica =&quot;</span>,roznica <span class="co"># &gt;&gt; Roznica = -1 </span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">def</span> funkcja(a,b):</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">suma, roznica <span class="op">=</span> funkcja(<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Suma =&quot;</span>,suma <span class="co"># &gt;&gt; Suma = 3</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="bu">print</span> <span class="st">&quot;Roznica =&quot;</span>,roznica <span class="co"># &gt;&gt; Roznica = -1 </span></a></code></pre></div>
 </div>
 <div id="domyslne-wartosci-argumentow-funkcji" class="section level2">
 <h2>Domyślne wartości argumentów funkcji</h2>
 <p>W Pythonie w odróżnieniu od innych języków programowania nie można zdefiniować funkcji o tej samej nazwie, tak aby różniła się tylko inną liczbą argumentów. W języku C++ czy Java jest to bardzo często wykorzystywane, jednak tam nazwa funkcji nie jest prawdziwą jej nazwą, ponieważ kompilator zawsze dopisuje do niej jeszcze typy argumentów. Zazwyczaj wykorzystuje się takie zduplikowane funkcje do tego aby przekazać domyślne argumenty funkcji, np.:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> root(<span class="dt">double</span> a, <span class="dt">double</span> order)
-{
-    <span class="kw">return</span> pow(a, <span class="fl">1.</span>/order);
-}
-
-<span class="dt">double</span> root(<span class="dt">double</span> a)
-{
-    <span class="kw">return</span> root(a, <span class="dv">2</span>);
-}</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="dt">double</span> root(<span class="dt">double</span> a, <span class="dt">double</span> order)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    <span class="cf">return</span> pow(a, <span class="fl">1.</span>/order);</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="dt">double</span> root(<span class="dt">double</span> a)</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb22-8" data-line-number="8">    <span class="cf">return</span> root(a, <span class="dv">2</span>);</a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">}</a></code></pre></div>
 <p>W związku z tym w tych językach można korzystać z tej samej nazwy dla różnych zadań. W Pythonie jak już wspominaliśmy typy argumentów nie mają znaczenia, dlatego wpisanie nowej funkcji spowoduje nadpisanie jej.</p>
 <p>W Pythonie z kolei (w języku C++ także jest to dozwolone) można dodawać domyślne wartości do zmiennych. Dzięki temu, możemy napisać jedną funkcję, która będzie obsługiwała różne przypadki. W tym celu posługujemy się operatorem = tuż za nazwą zmiennej przy argumentach funkcji, np.:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>):
-    <span class="cf">return</span> a<span class="op">**</span>(<span class="dv">1</span>.<span class="op">/</span>order)
-
-<span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 to&quot;</span>, root(<span class="dv">2</span>)
-<span class="bu">print</span> <span class="st">&quot;Pierwiastek trzeciego stopnia z 2 to&quot;</span>, root(<span class="dv">2</span>,<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>):</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">**</span>(<span class="fl">1.</span><span class="op">/</span>order)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 to&quot;</span>, root(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="bu">print</span> <span class="st">&quot;Pierwiastek trzeciego stopnia z 2 to&quot;</span>, root(<span class="dv">2</span>,<span class="dv">3</span>)</a></code></pre></div>
 <p>Jak widać, powyższa funkcja została wywołana 2 razy, jednak za pierwszym razem argument “order” został po cichu ustawiony jako 2, a w drugim explicite podaliśmy jego wartość jako 3.</p>
 <p>Należy tutaj zauważyć, że takie domyślne (opcjonalne) parametry funkcji muszą znajdować się tuż za koniecznymi argumentami.</p>
 <p>Teraz zajmijmy się przypadkiem, gdy mamy więcej niż jeden domyślny argument, ale tylko jeden konkretny chcemy zmienić. W takim przypadku odwołujemy się do konkretnego argumentu za pomocą jego nazwy. Załóżmy, że chcemy aby funkcja “root” mogła zwracać wynik w postaci wybranego typu. W związku z tym zmienimy definicję naszej funkcji poprzez dodanie trzeciego argumentu rtype (“return type”):</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">float</span>):
-    <span class="cf">return</span> rtype(a<span class="op">**</span>(<span class="dv">1</span>.<span class="op">/</span>order))</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">float</span>):</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">    <span class="cf">return</span> rtype(a<span class="op">**</span>(<span class="fl">1.</span><span class="op">/</span>order))</a></code></pre></div>
 <p>W powyższej definicji funkcji skorzystaliśmy z faktu, że Python posiada wbudowane funkcje o nazwie danego typu, które automatycznie konwertują przekazany argument do wybranego typu (np. rtype=int oznacza, że a**(1./order) zostanie zamienione w zmienną typu całkowitego). Zastosujmy teraz naszą funkcję tak, aby zostawić domyślny parametr order, a zamienić tylko zwracany typ:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">float</span>):
-    <span class="cf">return</span> rtype(a<span class="op">**</span>(<span class="dv">1</span>.<span class="op">/</span>order))
-
-<span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 jako l. domyślna to&quot;</span>, root(<span class="dv">2</span>)
-<span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 jako l. calkowita to&quot;</span>, root(<span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">int</span>)
-<span class="bu">print</span> <span class="st">&quot;Pierwiastek 3-ciego stopnia z 2 jako int to&quot;</span>, root(<span class="dv">2</span>, <span class="dv">3</span>, <span class="bu">str</span>)</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">float</span>):</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">    <span class="cf">return</span> rtype(a<span class="op">**</span>(<span class="fl">1.</span><span class="op">/</span>order))</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 jako l. domyślna to&quot;</span>, root(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 jako l. calkowita to&quot;</span>, root(<span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">int</span>)</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Pierwiastek 3-ciego stopnia z 2 jako int to&quot;</span>, root(<span class="dv">2</span>, <span class="dv">3</span>, <span class="bu">str</span>)</a></code></pre></div>
 <p>Jak widać powyżej, w sytuacji gdy podajemy kolejne argumenty, tak samo jak zostały one zdefiniowane w funkcji, nie musimy korzystać z nazw argumentów. Jednak gdy chcemy przekazać argumenty w dowolnej kolejności, to już niestety tak musimy uczynić.</p>
 </div>
 <div id="definiowanie-funkcji-ze-zmienna-liczba-argumentow" class="section level2">
 <h2>Definiowanie funkcji ze zmienną liczbą argumentów</h2>
 <p>Ponieważ Python jest bardzo elastycznym językiem to pozwala na stosowanie zmiennej ilości argumentów. Taka zmienna liczba argumentów jest przekazywana do funkcji za pomocą jednej zmiennej która w praktyce jest jakimś kontenerem (sekwencją obiektów). Przyjrzyjmy się następującej funkcji:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fun(<span class="op">*</span>args):
-       <span class="cf">for</span> a <span class="op">in</span> args:
-               <span class="bu">print</span> a
-
-fun(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;dos&quot;</span>,<span class="st">&quot;beta&quot;</span>)
-<span class="co">#&gt;&gt; 1</span>
-<span class="co">#&gt;&gt; 2</span>
-<span class="co">#&gt;&gt; dos</span>
-<span class="co">#&gt;&gt; beta</span></code></pre></div>
-<p>W powyższej funkcji zdefiniowaliśmy jeden argument o nazwie <strong><em>args</em></strong> dodając przed nim gwiazdkę “<em>“. Oznacza to, że pod zmienną”args&quot; może znajdować się dowolna liczba parametrów. Sprawdźmy jakiego typu jest zmienna </em><strong>args</strong>*:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> fun(<span class="op">*</span>args):
-    <span class="bu">print</span> <span class="bu">type</span>(args)
-
-fun(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;dos&quot;</span>,<span class="st">&quot;beta&quot;</span>) <span class="co"># &gt;&gt; &lt;type &#39;tuple&#39;&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">def</span> fun(<span class="op">*</span>args):</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">       <span class="cf">for</span> a <span class="kw">in</span> args:</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">               <span class="bu">print</span> a</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">fun(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;dos&quot;</span>,<span class="st">&quot;beta&quot;</span>)</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="co">#&gt;&gt; 1</span></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="co">#&gt;&gt; 2</span></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co">#&gt;&gt; dos</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9"><span class="co">#&gt;&gt; beta</span></a></code></pre></div>
+<p>W powyższej funkcji zdefiniowaliśmy jeden argument o nazwie <strong><em>args</em></strong> dodając przed nim gwiazdkę &quot;<em>“. Oznacza to, że pod zmienną”args&quot; może znajdować się dowolna liczba parametrów. Sprawdźmy jakiego typu jest zmienna </em><strong>args</strong>*:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">def</span> fun(<span class="op">*</span>args):</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">    <span class="bu">print</span> <span class="bu">type</span>(args)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">fun(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;dos&quot;</span>,<span class="st">&quot;beta&quot;</span>) <span class="co"># &gt;&gt; &lt;type &#39;tuple&#39;&gt;</span></a></code></pre></div>
 <p>Jak łatwo było się domyślić kontener ten to <strong><em>tuple</em></strong>, ponieważ wszystkie argumenty zdefiniowaliśmy w trakcie przekazania ich do funkcji, zatem ich liczba ani wartości nie powinny być modyfikowalne, co zapewnia typ <strong><em>tuple</em></strong>.</p>
 <p>Funkcje ze zmienną liczbą argumentów wcale nie muszą być pozbawione zwyczajowych argumentów, ważne jest tylko aby argument ****args*** (nazwa może być dowolna) był na końcu, np.:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> suma(a, b, <span class="op">*</span>args):
-    s <span class="op">=</span> a <span class="op">+</span> b
-    <span class="cf">for</span> arg <span class="op">in</span> args:
-        s <span class="op">+=</span> arg
-    <span class="cf">return</span> s</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">def</span> suma(a, b, <span class="op">*</span>args):</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">    s <span class="op">=</span> a <span class="op">+</span> b</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">    <span class="cf">for</span> arg <span class="kw">in</span> args:</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">        s <span class="op">+=</span> arg</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">    <span class="cf">return</span> s</a></code></pre></div>
 <p>Powyższa funkcja potrafi zsumować wszystkie przekazane argumenty. Z racji tego, że argumenty <strong><em>a, b</em></strong> zostały zdefiniowane dodatkowo, to w przypadku gdy ktoś zechce z niej skorzystać przekazując mniej liczb otrzyma błąd, ponieważ sumowanie ma sens tylko gdy mamy co najmniej 2 liczby. Sprawdźmy jej działanie:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> suma(a, b, <span class="op">*</span>args):
-    s <span class="op">=</span> a <span class="op">+</span> b
-    <span class="cf">for</span> arg <span class="op">in</span> args:
-        s <span class="op">+=</span> arg
-    <span class="cf">return</span> s
-
-<span class="bu">print</span> <span class="st">&quot;Suma 1,2,3,4,5 to&quot;</span>, suma(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) 
-<span class="co"># &gt;&gt; 15</span>
-<span class="bu">print</span> <span class="st">&quot;Suma tylko 1 to&quot;</span>, suma(<span class="dv">1</span>)
-<span class="co">#&gt;&gt; TypeError                                 Traceback (most recent call last)</span>
-<span class="co">#&gt;&gt; &lt;ipython-input-198-5304d71f0cc4&gt; in &lt;module&gt;()</span>
-<span class="co">#&gt;&gt; ----&gt; 1 print &quot;Suma 1 to&quot;, suma(1)</span>
-<span class="co">#&gt;&gt;</span>
-<span class="co">#&gt;&gt; TypeError: suma() takes at least 2 arguments (1 given)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">def</span> suma(a, b, <span class="op">*</span>args):</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">    s <span class="op">=</span> a <span class="op">+</span> b</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">    <span class="cf">for</span> arg <span class="kw">in</span> args:</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">        s <span class="op">+=</span> arg</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">    <span class="cf">return</span> s</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="bu">print</span> <span class="st">&quot;Suma 1,2,3,4,5 to&quot;</span>, suma(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) </a>
+<a class="sourceLine" id="cb29-8" data-line-number="8"><span class="co"># &gt;&gt; 15</span></a>
+<a class="sourceLine" id="cb29-9" data-line-number="9"><span class="bu">print</span> <span class="st">&quot;Suma tylko 1 to&quot;</span>, suma(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="co">#&gt;&gt; TypeError                                 Traceback (most recent call last)</span></a>
+<a class="sourceLine" id="cb29-11" data-line-number="11"><span class="co">#&gt;&gt; &lt;ipython-input-198-5304d71f0cc4&gt; in &lt;module&gt;()</span></a>
+<a class="sourceLine" id="cb29-12" data-line-number="12"><span class="co">#&gt;&gt; ----&gt; 1 print &quot;Suma 1 to&quot;, suma(1)</span></a>
+<a class="sourceLine" id="cb29-13" data-line-number="13"><span class="co">#&gt;&gt;</span></a>
+<a class="sourceLine" id="cb29-14" data-line-number="14"><span class="co">#&gt;&gt; TypeError: suma() takes at least 2 arguments (1 given)</span></a></code></pre></div>
 </div>
 <div id="przekazywanie-listy-wprost-do-argumentow-funkcji" class="section level2">
 <h2>Przekazywanie listy wprost do argumentów funkcji</h2>
 <p>Bardzo często zdarza się tak, że w wyniku jakiś operacji przechowujemy w liście/tablicy pewne dane, które następnie wszystkie muszą być przekazane do kolejnej funkcji. W takiej sytuacji zazwyczaj po prostu wyciągamy kolejne argumenty z listy za pomocą indeksów, a następnie je przekazujemy do funkcji, np.:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):
-    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c
-
-lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]
-
-<span class="bu">print</span> dziwnafunkcja(lista[<span class="dv">0</span>], lista[<span class="dv">1</span>], lista[<span class="dv">2</span>], lista[<span class="dv">3</span>], lista[<span class="dv">4</span>]) 
-<span class="co"># &gt;&gt; (443, 123)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6"><span class="bu">print</span> dziwnafunkcja(lista[<span class="dv">0</span>], lista[<span class="dv">1</span>], lista[<span class="dv">2</span>], lista[<span class="dv">3</span>], lista[<span class="dv">4</span>]) </a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="co"># &gt;&gt; (443, 123)</span></a></code></pre></div>
 <p>Przekazywanie takich argumentów jest uciążliwe. Ale zaraz zaraz, przecież możemy skorzystać z rozwijania sekwencji do argumentów, a zatem możemy przerobić naszą funkcję na taką która przyjmuje listę:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> dziwnafunkcja(lista):
-    a,b,c,x1,x2 <span class="op">=</span> lista
-    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c
-
-lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]
-
-<span class="bu">print</span> dziwnafunkcja(lista) 
-<span class="co"># &gt;&gt; (443, 123)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">def</span> dziwnafunkcja(lista):</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">    a,b,c,x1,x2 <span class="op">=</span> lista</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="bu">print</span> dziwnafunkcja(lista) </a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="co"># &gt;&gt; (443, 123)</span></a></code></pre></div>
 <p>Teraz wywołanie funkcji jest bardzo krótkie, ale za to, aby przekazać liczby wprost do niej będziemy musieli je zawsze opakować w nawis kwadratowy, np.:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span> dziwnafunkcja( [ <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">12</span>] ) 
-<span class="co"># &gt;&gt; (443, 123)</span></code></pre></div>
-<p>Okazuje się, że Python potrafi obejść także taki problem. W tej sytuacji znów skorzystamy z operatora gwiazdka “*“, ale posłuży on nam do rozwinięcia sekwencji na argumenty funkcji. W przypadku zwykłych zmiennych wystarczyło przypisać listę do zmiennych po przecinku. W przypadku funkcji już tak łatwo nie jest, ponieważ musimy poinformować interpreter, że chcemy aby nasza lista była użyta jako ==kolejne argumenty, a nie jako pierwszy argument==. Aby móc zastosować rozwinięcie sekwencji do argumentów funkcja nie wymaga zmian a nieznacznie musi być zmodyfikowane jej wywołanie:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):
-    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c
-
-lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]
-
-<span class="bu">print</span> dziwnafunkcja(<span class="op">*</span>lista) 
-<span class="co"># &gt;&gt; (443, 123)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="bu">print</span> dziwnafunkcja( [ <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="dv">-12</span>] ) </a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co"># &gt;&gt; (443, 123)</span></a></code></pre></div>
+<p>Okazuje się, że Python potrafi obejść także taki problem. W tej sytuacji znów skorzystamy z operatora gwiazdka &quot;*&quot;, ale posłuży on nam do rozwinięcia sekwencji na argumenty funkcji. W przypadku zwykłych zmiennych wystarczyło przypisać listę do zmiennych po przecinku. W przypadku funkcji już tak łatwo nie jest, ponieważ musimy poinformować interpreter, że chcemy aby nasza lista była użyta jako ==kolejne argumenty, a nie jako pierwszy argument==. Aby móc zastosować rozwinięcie sekwencji do argumentów funkcja nie wymaga zmian a nieznacznie musi być zmodyfikowane jej wywołanie:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb33-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="bu">print</span> dziwnafunkcja(<span class="op">*</span>lista) </a>
+<a class="sourceLine" id="cb33-7" data-line-number="7"><span class="co"># &gt;&gt; (443, 123)</span></a></code></pre></div>
 <p>Oczywiście takie rozwijanie sekwencji może być zastosowane na dowolnym typie, po którym możemy iterować, np. tuple albo numpy.array.</p>
 </div>
 <div id="definiowanie-funkcji-z-nazwanymi-argumentami" class="section level2">
 <h2>Definiowanie funkcji z nazwanymi argumentami</h2>
 <p>Teraz przedstawimy ostatni element dotyczący samych funkcji - nazwane argumenty o dowolnej ich liczbie. Wcześniej pokazaliśmy, że podczas wywoływania funkcji można skorzystać z nazw argumentów i przekazać je w dowolnej kolejności. Jednak w tej sytuacji wszystkie takie argumenty musiały być zdefiniowane w nagłówku funkcji. Teraz przejdziemy do trochę bardziej zaawansowanej kwestii, a mianowicie sytuacji gdy liczba tych nazwanych argumentów może być dowolna. W takiej sytuacji, kod zawarty w funkcji musi sam sprawdzać, czy argument został przekazany czy nie.</p>
-<p>W celu zdefiniowania dowolnej liczby nazwanych argumentów korzystamy znów z operatora “<em>&quot; ale tym razem podwojonego, aby odróżnić go od sekwencji argumentów bez nazw. Ponadto wszystkie te argumenty zostaną przekazane do funkcji za pomocą obiektu o typie </em><strong>dict</strong>* który będzie zawierał pary: nazwa zmiennej - wartość.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
-<span class="kw">def</span> funkcja(<span class="op">**</span>kwargs):
-    <span class="cf">for</span> argName <span class="op">in</span> kwargs:
-        <span class="bu">print</span> <span class="st">&quot;Argument &quot;</span>,argName, <span class="st">&quot; zostal przekazany z wartoscia&quot;</span>, kwargs[argName]
-    <span class="cf">if</span> <span class="st">&quot;speak&quot;</span> <span class="op">in</span> kwargs <span class="op">and</span> kwargs[<span class="st">&quot;speak&quot;</span>]:
-        <span class="bu">print</span> <span class="st">&quot;You&#39;ve asked to say Hellow!&quot;</span>
-
-funkcja(cos<span class="op">=</span><span class="dv">20</span>, ktos<span class="op">=</span><span class="st">&quot;ada&quot;</span>, speak<span class="op">=</span><span class="va">True</span>)</code></pre></div>
+<p>W celu zdefiniowania dowolnej liczby nazwanych argumentów korzystamy znów z operatora &quot;<em>&quot; ale tym razem podwojonego, aby odróżnić go od sekwencji argumentów bez nazw. Ponadto wszystkie te argumenty zostaną przekazane do funkcji za pomocą obiektu o typie </em><strong>dict</strong>* który będzie zawierał pary: nazwa zmiennej - wartość.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">def</span> funkcja(<span class="op">**</span>kwargs):</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">    <span class="cf">for</span> argName <span class="kw">in</span> kwargs:</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">        <span class="bu">print</span> <span class="st">&quot;Argument &quot;</span>,argName, <span class="st">&quot; zostal przekazany z wartoscia&quot;</span>, kwargs[argName]</a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">    <span class="cf">if</span> <span class="st">&quot;speak&quot;</span> <span class="kw">in</span> kwargs <span class="kw">and</span> kwargs[<span class="st">&quot;speak&quot;</span>]:</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">        <span class="bu">print</span> <span class="st">&quot;You&#39;ve asked to say Hellow!&quot;</span></a>
+<a class="sourceLine" id="cb34-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb34-8" data-line-number="8">funkcja(cos<span class="op">=</span><span class="dv">20</span>, ktos<span class="op">=</span><span class="st">&quot;ada&quot;</span>, speak<span class="op">=</span><span class="va">True</span>)</a></code></pre></div>
 <p>W powyższym kodzie na początku zadeklarowaliśmy funkcję przyjmującą dowolną ilość nazwanych parametrów. To od użytkownika tej funkcji zależy czy ją wywoła poprawnie czy nie. Z racji tego ważne jest, aby dokumentacja tej funkcji była odpowiednio przygotowana. Funkcja ta na początek iteruje po wszystkich przekazanych argumentach i wyświetla ich wraz z wartością. Następnie sprawdzamy czy do <strong><em>kwargs</em></strong> został przekazany argument “speak” i czy wartość tego argumentu jest prawdą (kwargs[“speak”] zwraca wartość, która z założenia ma być równa True/False)</p>
 <p>W tym momencie powinno pojawić się nam w głowie czerwone światełko - po co w ogóle to robić, skoro i tak następnie w kodzie musimy znów sprawdzać czy zmienna jest przekazana, czy nie. Lepiej już pozostawić to w gestii domyślnych wartości argumentów tak aby użytkownik mógł łatwo zauważyć jakie zmienne należy przekazać. I to jest prawda, w przypadku większości funkcji lepszym rozwiązaniem są domyślne parametry. Jednak są dwie sytuacje w których jest to użyteczne:</p>
 <ol style="list-style-type: decimal">
 <li>Gdy nasza funkcja ma mieć bardzo dużo opcjonalnych argumentów. Wtedy nagłówek funkcji będzie bardzo nieczytelny i lepiej jest pozostawić takie parametry schowane. Jednak to rozwiązanie może być nadal dyskusyjne.</li>
-<li>Gdy wewnątrz naszej funkcji wywołujemy następną funkcję, która posiada dużo parametrów, o których czasami nawet nie wiemy, a chcemy aby użytkownik mógł z poziomu wywołania naszej funkcji wykorzystać je. Ten opis może być niewystarczający, więc przyjrzyjmy się poniższej funkcji, która służy to rysowania sinusa: ```python import numpy as np import matplotlib.pyplot as plt</li>
+<li>Gdy wewnątrz naszej funkcji wywołujemy następną funkcję, która posiada dużo parametrów, o których czasami nawet nie wiemy, a chcemy aby użytkownik mógł z poziomu wywołania naszej funkcji wykorzystać je. Ten opis może być niewystarczający, więc przyjrzyjmy się poniższej funkcji, która służy to rysowania sinusa:</li>
 </ol>
-<p>def sinus(num_divisions=100, a=0, b=np.pi, <strong>kwargs):<br />
- x = np.linspace(a, b, num_divisions) y = np.sin(x) plt.plot(x,y,</strong>kwargs) ```</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw">def</span> sinus(num_divisions<span class="op">=</span><span class="dv">100</span>, a<span class="op">=</span><span class="dv">0</span>, b<span class="op">=</span>np.pi, <span class="op">**</span>kwargs):   </a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">    x <span class="op">=</span> np.linspace(a, b, num_divisions)</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">    y <span class="op">=</span> np.sin(x)</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">    plt.plot(x,y,<span class="op">**</span>kwargs)</a></code></pre></div>
 <p>Funkcja ta ma zadeklarowane 3 argumenty z domyślnymi parametrami. Ponadto możemy przekazać do niej dowolnie nazwane argumenty w miejscu “kwargs”. Zastosowanie podstawowych zmiennych jest oczywiste. Należy jednak zwrócić uwagę na przekazanie *****kwargs*** do funkcji <strong><em>plt.plot</em></strong>. Tam przed argumentem <strong><em>kwargs</em></strong> umieściliśmy podwójny znak <strong>. Oznacza on w tym przypadku, że chcemy zamienić słownik </strong><em>kwargs</em>** z powrotem na argumenty funkcji. Podobną operację wykonywał operator * gdy chcieliśmy przekazać listę jako kolejne argumenty funkcji. W tej sytuacji musimy zastosować operator ** ponieważ chcemy aby słownik został rozwinięty do zbioru nazwanych argumentów. Dzięki takiej konstrukcji możemy kontrolować parametry rysowania linii tak samo jak to miało miejsce w czystej funkcji <strong><em>plt.plot</em></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-
-<span class="kw">def</span> sinus(num_divisions<span class="op">=</span><span class="dv">100</span>, a<span class="op">=</span><span class="dv">0</span>, b<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="op">**</span>kwargs): 
-    x <span class="op">=</span> np.linspace(a, b, num_divisions)
-    y <span class="op">=</span> np.sin(x)
-    plt.plot(x, y, <span class="op">**</span>kwargs)
-
-plt.figure()
-sinus() <span class="co">#domyslne parametry</span>
-sinus(linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, markersize<span class="op">=</span><span class="dv">10</span>) <span class="co">#domyslny zakres, inne parametry graficzne</span>
-sinus(<span class="dv">25</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, color<span class="op">=</span><span class="st">&quot;grey&quot;</span>) <span class="co"># kombinacja argumentow f. sinus i przekazanych do plot</span>
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="kw">def</span> sinus(num_divisions<span class="op">=</span><span class="dv">100</span>, a<span class="op">=</span><span class="dv">0</span>, b<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="op">**</span>kwargs): </a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">    x <span class="op">=</span> np.linspace(a, b, num_divisions)</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">    y <span class="op">=</span> np.sin(x)</a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">    plt.plot(x, y, <span class="op">**</span>kwargs)</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb36-9" data-line-number="9">plt.figure()</a>
+<a class="sourceLine" id="cb36-10" data-line-number="10">sinus() <span class="co">#domyslne parametry</span></a>
+<a class="sourceLine" id="cb36-11" data-line-number="11">sinus(linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, markersize<span class="op">=</span><span class="dv">10</span>) <span class="co">#domyslny zakres, inne parametry graficzne</span></a>
+<a class="sourceLine" id="cb36-12" data-line-number="12">sinus(<span class="dv">25</span>, <span class="dv">-5</span>, <span class="dv">5</span>, color<span class="op">=</span><span class="st">&quot;grey&quot;</span>) <span class="co"># kombinacja argumentow f. sinus i przekazanych do plot</span></a>
+<a class="sourceLine" id="cb36-13" data-line-number="13">plt.show()</a></code></pre></div>
 </div>
 <div id="wykresy-konturowe" class="section level2">
 <h2>Wykresy konturowe</h2>
 <p>Biblioteka Matplotlib poza prostymi wykresami 2D może służyć do tworzenia wykresów słupkowych, kołowych a także wykresów trójwymiarowych. W poniższym opracowaniu pokażemy jak przygotować wykres konturowy (mapa konturowa). Na koniec przedstawimy jak utworzyć także wykres w pełni trójwymiarowy.</p>
 <p>Aby utworzyć jakiś wykres trójwymiarowy musimy zdefiniować na początek pewną przestrzeń próbkowania. W przypadku dwuwymiarowych wykresów taką przestrzeń stanowiła np. tablica równomiernie rozłożonych liczba w danym zakresie. W przypadku wykresów trójwymiarowych zamiast jednej osi mamy płaszczyznę. W związku z tym musimy na niej określić w jakich punktach będą znajdowały się nasze próbki (dla których punktów x,y powinna zostać zaznaczona wartość na osi Z). Taka przestrzeń powinna być zdefiniowana jako tablica dwuwymiarowa współrzędnych X oraz druga tablica dwuwymiarowa współrzędnych Y. Dlaczego muszą być to dwie tablice dwuwymiarowe? Ponieważ każdy punkt na płaszczyźnie musi mieć przypisaną swoją współrzędną x i y. Para takich tablic tworzy siatkę. Można te tablice uzupełnić ręcznie, ale to tego celu lepiej nadaje się funkcja <strong><em>numpy.meshgrid</em></strong> która generuje dwie tablice X,Y na podstawie zadanych podziałów wzdłuż jednego kierunku i wzdłuż drugiego:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">6</span>)
-y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">11</span>)
-
-X,Y <span class="op">=</span> np.meshgrid(x, y)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">X,Y <span class="op">=</span> np.meshgrid(x, y)</a></code></pre></div>
 <p>Tablice X, Y będą tablicami dwuwymiarowymi. Każda kolumna tablicy X będzie miała dokładnie te same wartości. Z kolei każdy wiersz tablicy Y będzie także miał te same wartości co inne wiersze. Tablica X będzie zatem wyglądać tak | | | | | | | |:-:|:-:|:-:|:-:|:-:|:-:| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1|</p>
 <p>Analogicznie tablic Y z tą różnicą, że zmieniać się będą wartości w wierszach.</p>
 <p>Gdy już posiadamy siatkę (czyli pary [x,y]) to możemy wyznaczyć kolejną tablicę, o tym samym rozmiarze, która każdej z par [x,y] przypisze wartość na osi z, np. za pomocą funkcji sin(x*y):</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">6</span>)
-y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">11</span>)
-
-X,Y <span class="op">=</span> np.meshgrid(x, y)
-
-Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">X,Y <span class="op">=</span> np.meshgrid(x, y)</a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</a></code></pre></div>
 <p>Domyślny iloczynem w przypadku tablic numpy jest iloczyn dwóch odpowiadających sobie elementów (w przypadku gdybyśmy chcieli wykonać mnożenie macierzowe, to należało by skorzystać z funkcji numpy.dot).</p>
 <p>Posiadamy już dane, teraz przejdźmy do utworzenia mapy konturowej:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-
-X,Y <span class="op">=</span> np.meshgrid(x, y)
-
-Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)
-
-plt.figure()
-plt.contour(X, Y, Z)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7">X,Y <span class="op">=</span> np.meshgrid(x, y)</a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9">Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</a>
+<a class="sourceLine" id="cb39-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb39-11" data-line-number="11">plt.figure()</a>
+<a class="sourceLine" id="cb39-12" data-line-number="12">plt.contour(X, Y, Z)</a>
+<a class="sourceLine" id="cb39-13" data-line-number="13">plt.show()</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst04/contour.png" title="Najprostszy wykres konturowy" alt="contour" />
 <p class="caption">contour</p>
 </div>
 <p>Jak widać utworzenie wykresu konturowego, jest tak proste jak zwykłego. Wykres konturowy może zostać także wyświetlony jako wypełniony, jednak należy wtedy skorzystać z zamiast funkcji <strong><em>contour</em></strong> funkcję <strong><em>contourf</em></strong>. Trudno jest odczytywać wykresy konturowe po samych kolorach bo musimy posiadać ich definicję. W tym celu korzystamy z funkcji <strong><em>colorbar</em></strong>. Do skali kolorów można także dodać tytuł:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-
-X,Y <span class="op">=</span> np.meshgrid(x, y)
-
-Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)
-
-plt.figure()
-cnt <span class="op">=</span> plt.contourf(X, Y, Z)
-cbar <span class="op">=</span> plt.colorbar(cnt)
-cbar.ax.set_ylabel(<span class="st">&quot;values of sin(x*y)&quot;</span>)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4">x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb40-5" data-line-number="5">y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7">X,Y <span class="op">=</span> np.meshgrid(x, y)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb40-9" data-line-number="9">Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb40-11" data-line-number="11">plt.figure()</a>
+<a class="sourceLine" id="cb40-12" data-line-number="12">cnt <span class="op">=</span> plt.contourf(X, Y, Z)</a>
+<a class="sourceLine" id="cb40-13" data-line-number="13">cbar <span class="op">=</span> plt.colorbar(cnt)</a>
+<a class="sourceLine" id="cb40-14" data-line-number="14">cbar.ax.set_ylabel(<span class="st">&quot;values of sin(x*y)&quot;</span>)</a>
+<a class="sourceLine" id="cb40-15" data-line-number="15">plt.show()</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst04/contourf_colorbar.png" title="Wypełniony wykres konturowy ze skalą kolorów" alt="contourf" />
 <p class="caption">contourf</p>
 </div>
 <p>Do funkcji <strong><em>contourf</em></strong> można przekazać za pomocą argumentu <strong><em>levels</em></strong> wartości określające poziomy na których powinny zmieniać się kolory:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.figure()
-cnt <span class="op">=</span> plt.contourf(X, Y, Z, levels<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="fl">0.5</span>,<span class="dv">0</span>., <span class="fl">0.5</span>, <span class="dv">1</span>])
-cbar <span class="op">=</span> plt.colorbar(cnt)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb41-1" data-line-number="1">plt.figure()</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">cnt <span class="op">=</span> plt.contourf(X, Y, Z, levels<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="fl">0.5</span>,<span class="fl">0.</span>, <span class="fl">0.5</span>, <span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">cbar <span class="op">=</span> plt.colorbar(cnt)</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">plt.show()</a></code></pre></div>
 <p>Domyślne skala kolorów może zostać zamieniona. W tym celu należy przekazać do funkcji <strong><em>contourf</em></strong> parametr <strong><em>cmap</em></strong> który jest obiektem typu ColorMap. Pewne określone mapy kolorów są z góry zdefiniowane w pakiecie <strong><em>matplotlib.cm</em></strong> gdzie znajdują się wszystkie stałe i domyślne parametry biblioteki matplotlib:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-<span class="im">import</span> matplotlib.cm
-
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-
-X,Y <span class="op">=</span> np.meshgrid(x, y)
-
-Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)
-
-plt.figure()
-cnt <span class="op">=</span> plt.contourf(X, Y, Z, levels<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">21</span>),  cmap<span class="op">=</span>matplotlib.cm.winter)
-cbar <span class="op">=</span> plt.colorbar(cnt)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="im">import</span> matplotlib.cm</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">X,Y <span class="op">=</span> np.meshgrid(x, y)</a>
+<a class="sourceLine" id="cb42-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb42-10" data-line-number="10">Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</a>
+<a class="sourceLine" id="cb42-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb42-12" data-line-number="12">plt.figure()</a>
+<a class="sourceLine" id="cb42-13" data-line-number="13">cnt <span class="op">=</span> plt.contourf(X, Y, Z, levels<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">21</span>),  cmap<span class="op">=</span>matplotlib.cm.winter)</a>
+<a class="sourceLine" id="cb42-14" data-line-number="14">cbar <span class="op">=</span> plt.colorbar(cnt)</a>
+<a class="sourceLine" id="cb42-15" data-line-number="15">plt.show()</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst04/contourf_winter_colormap.png" title="Wykres konturowy ze zmienioną mapą kolorów" alt="contourf_winter" />
 <p class="caption">contourf_winter</p>
@@ -974,55 +1113,54 @@ plt.show()</code></pre></div>
 <div id="wykresy-trojwymiarowe" class="section level2">
 <h2>Wykresy trójwymiarowe</h2>
 <p>Elementy grafiki 3D znajdują się w pakiecie <strong><em>mplot3d</em></strong>. Znajdują się tam funkcje pozwalające na rysowanie linii oraz powierzchni w trzech wymiarach. Na początek przedstawimy rysowanie linii na przykładzie spirali:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-<span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D
-
-angles <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span><span class="op">*</span>np.pi, <span class="dv">200</span>)
-x <span class="op">=</span> np.cos(angles)
-y <span class="op">=</span> np.sin(angles)
-z <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>, <span class="dv">200</span>)
-
-fig <span class="op">=</span> plt.figure()
-ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>) <span class="co">#dodajemy osie 3D</span>
-ax3D.plot(x,y,z)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">angles <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span><span class="op">*</span>np.pi, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">x <span class="op">=</span> np.cos(angles)</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">y <span class="op">=</span> np.sin(angles)</a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">z <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb43-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb43-10" data-line-number="10">fig <span class="op">=</span> plt.figure()</a>
+<a class="sourceLine" id="cb43-11" data-line-number="11">ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>) <span class="co">#dodajemy osie 3D</span></a>
+<a class="sourceLine" id="cb43-12" data-line-number="12">ax3D.plot(x,y,z)</a>
+<a class="sourceLine" id="cb43-13" data-line-number="13">plt.show()</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst04/spiral.png" title="Przykład zastosowania Axes3D.plot" alt="spirala" />
 <p class="caption">spirala</p>
 </div>
 <p>Aby przedstawić wyświetlanie powierzchni zastosujemy te same dane co w przypadku wykresów konturowych. Dane w tym przypadku muszą być przygotowane w podobny sposób, tj. za pomocą tablic dwuwymiarowych dla współrzędnych X, Y i Z:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy <span class="im">as</span> np
-<span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
-<span class="im">import</span> matplotlib.cm
-<span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D
-
-x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)
-
-X,Y <span class="op">=</span> np.meshgrid(x, y)
-
-Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)
-
-fig <span class="op">=</span> plt.figure()
-ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)
-psurf<span class="op">=</span> ax3D.plot_surface(X, Y, Z,  cmap <span class="op">=</span> matplotlib.cm.coolwarm)
-cbar <span class="op">=</span> fig.colorbar(psurf)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="im">import</span> matplotlib.cm</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb44-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb44-9" data-line-number="9">X,Y <span class="op">=</span> np.meshgrid(x, y)</a>
+<a class="sourceLine" id="cb44-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb44-11" data-line-number="11">Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</a>
+<a class="sourceLine" id="cb44-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb44-13" data-line-number="13">fig <span class="op">=</span> plt.figure()</a>
+<a class="sourceLine" id="cb44-14" data-line-number="14">ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)</a>
+<a class="sourceLine" id="cb44-15" data-line-number="15">psurf<span class="op">=</span> ax3D.plot_surface(X, Y, Z,  cmap <span class="op">=</span> matplotlib.cm.coolwarm)</a>
+<a class="sourceLine" id="cb44-16" data-line-number="16">cbar <span class="op">=</span> fig.colorbar(psurf)</a>
+<a class="sourceLine" id="cb44-17" data-line-number="17">plt.show()</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst04/surf.png" title="Przykład zastosowania Axes3D.plot_surf" alt="plot_surf" />
 <p class="caption">plot_surf</p>
 </div>
 <p>Widać, że na powierzchni pojawiają się duże prostokąty, pomimo, że danych jest znacznie więcej. Wynika to z tego że domyślnie jest rysowany tylko co dziesiąty element. Aby się tego pozbyć należy ustawić parametry rstride i cstride na 1. Ponadto aby linie nie były widoczne należy ustawić grubość linii na 0:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">fig <span class="op">=</span> plt.figure()
-ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)
-psurf<span class="op">=</span> ax3D.plot_surface(X, Y, Z,  cmap <span class="op">=</span> matplotlib.cm.coolwarm, linewidth<span class="op">=</span><span class="dv">0</span>, rstride<span class="op">=</span><span class="dv">1</span>, cstride<span class="op">=</span><span class="dv">1</span>)
-cbar <span class="op">=</span> fig.colorbar(psurf)
-plt.show()</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb45-1" data-line-number="1">fig <span class="op">=</span> plt.figure()</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3">psurf<span class="op">=</span> ax3D.plot_surface(X, Y, Z,  cmap <span class="op">=</span> matplotlib.cm.coolwarm, linewidth<span class="op">=</span><span class="dv">0</span>, rstride<span class="op">=</span><span class="dv">1</span>, cstride<span class="op">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">cbar <span class="op">=</span> fig.colorbar(psurf)</a>
+<a class="sourceLine" id="cb45-5" data-line-number="5">plt.show()</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst04/surf2.png" title="Bardziej dokładna powierzchnia" alt="plot_surf_adjusted" />
 <p class="caption">plot_surf_adjusted</p>
-</div>
 </div>
 </div>
 <div id="zadania" class="section level1">
@@ -1087,28 +1225,7 @@ plt.show()</code></pre></div>
 <p>A w formie macierzowej to jedno równanie ma postać:</p>
 <p><span class="math display">\[\frac{1}{\delta^2} \cdot [ 0, \textbf{1}, 0, 0, 0, \textbf{1}, \textbf{-4},  \textbf{1},  0, 0, 0, \textbf{1}, 0, .... 0, .... 0 ] \cdot [T00, \textbf{T10}, T20, T30, T40, \textbf{T01}, \textbf{T11}, \textbf{T21}, T31, T41, \textbf{T02}, T12, T22, T32, T42, ..... ]\]</span></p>
 <p>Jak teraz łatwo zauważyć, każde następne równanie, dla kolejnych ineksów, np. (2,1), (3,1), (4,1), (0,2),(1,2)…. będzie wyglądało dokładnie tak samo, tylko wystarczy przesunąć niezerowe elementy o 1 indeks w prawo. Przykładowo układ równań będzie wyglądał tak:</p>
-<table style="width:106%;">
-<colgroup>
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-<col width="5%" />
-</colgroup>
+<table>
 <tbody>
 <tr class="odd">
 <td align="center">…</td>

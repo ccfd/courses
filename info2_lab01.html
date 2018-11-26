@@ -12,7 +12,7 @@
 <meta name="author" content="B. Górecki, rev. W. Gryglas" />
 
 
-<title></title>
+<title>info2_lab01.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -590,31 +721,37 @@ div.tocify {
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li><p>Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych <span class="math display">\[[x_i, exp(-x_i^2)]\]</span> gdzie <span class="math display">\[ x_i = a + i \cdot h \\ h = \frac{b-a}{n-1} \\ i=0,...,n-1 \\ \]</span> zaś <span class="math display">\[a=-2, b=2\]</span> Może być Ci przydatne przypomnienie użycia funkcji <code>malloc</code> do alokacji pamięci:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> *x;
-x = (<span class="dt">double</span>*)malloc(n*<span class="kw">sizeof</span>(<span class="dt">double</span>));
-free(x);</code></pre></div></li>
-<li><p>Obliczy wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. dla <span class="math inline">\(t_i=a+\frac{i\cdot h}{4}, i=0,...,4n-4\)</span>. Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
-{
-<span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};
-<span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};
-<span class="dt">double</span> f, t = <span class="fl">1.</span><span class="dv">5</span>
-<span class="co">// Wyznacz wartosc paraboli dla t = 1.5</span>
-f = lagrange(x, y, <span class="dv">3</span>, t);
-}</code></pre></div></li>
+<li>Napisz program, który wygeneruje zestaw n punktów (udających punkty eksperymentalne) o współrzędnych <span class="math display">\[[x_i, exp(-x_i^2)]\]</span> gdzie <span class="math display">\[ x_i = a + i \cdot h \\ h = \frac{b-a}{n-1} \\ i=0,...,n-1 \\ \]</span> zaś <span class="math display">\[a=-2, b=2\]</span> Może być Ci przydatne przypomnienie użycia funkcji <code>malloc</code> do alokacji pamięci:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> *x;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">x = (<span class="dt">double</span>*)malloc(n*<span class="kw">sizeof</span>(<span class="dt">double</span>));</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">free(x);</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Obliczy wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. dla <span class="math inline">\(t_i=a+\frac{i\cdot h}{4}, i=0,...,4n-4\)</span>. Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="dt">double</span> f, t = <span class="fl">1.5</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="co">// Wyznacz wartosc paraboli dla t = 1.5</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    f = lagrange(x, y, <span class="dv">3</span>, t);</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">}</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
 <li><p>Wydrukuj te wyniki (dla każdego <span class="math inline">\(t\)</span>) na ekran.</p></li>
-<li><p>Wyświetl je graficznie, korzystając z nowej funkcji zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
-{
-graphics(<span class="dv">600</span>, <span class="dv">400</span>);scale(<span class="dv">0</span>, <span class="dv">7</span>, <span class="fl">-1.</span><span class="dv">2</span>, <span class="fl">1.</span><span class="dv">2</span>); <span class="co">// okresl xmin, xmax, ymin, ymax</span>
-<span class="dt">double</span> x = <span class="dv">0</span>;
-<span class="kw">while</span>(x&lt;<span class="fl">6.</span><span class="dv">28</span>)
-{
-    point(x, sin(x));
-    x += <span class="fl">0.</span><span class="bn">01</span>;
-}
-}</code></pre></div></li>
+<li>Wyświetl je graficznie, korzystając z nowej funkcji zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    graphics(<span class="dv">600</span>, <span class="dv">400</span>);scale(<span class="dv">0</span>, <span class="dv">7</span>, <span class="fl">-1.2</span>, <span class="fl">1.2</span>); <span class="co">// okresl xmin, xmax, ymin, ymax</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="dt">double</span> x = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="cf">while</span>(x&lt;<span class="fl">6.28</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    {</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">        point(x, sin(x));</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">        x += <span class="fl">0.01</span>;</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    }</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">}</a></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
 <li><p>Zapisz wyniki do pliku.</p></li>
 <li><p>Obejrzyj wyniki na wykresie dla różnych wartości parametru n.</p></li>
 <li><p>Dla wybranego n stwórz w Excelu wykres błędu interpolacji.</p></li>
@@ -633,7 +770,7 @@ graphics(<span class="dv">600</span>, <span class="dv">400</span>);scale(<span c
 </div>
 <div id="dla-ambitnych" class="section level2">
 <h2>3 Dla ambitnych</h2>
-<p>Sprawdźmy, czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających. <img src="figures/info2/inst1/chebyshev_nodes.png" title="Ilustracja generacji węzłów Czebyszewa" alt="" /></p>
+<p>Sprawdźmy, czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających. <img src="figures/info2/inst1/chebyshev_nodes.png" title="Ilustracja generacji węzłów Czebyszewa" /></p>
 <div id="wezy-czebyszewa" class="section level3">
 <h3>Węzły Czebyszewa</h3>
 <p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz je rozłóżmy w taki sposób, aby były gęściej rozłożone przy brzegach ob- szaru i rzadziej w środku. Można tego dokonać nastepująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [−1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n − 1\)</span> fragmentów. Teraz zrzutujmy punkty podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu na spokojnie ten wzór - to dość proste) <span class="math inline">\(x\)</span>-owe dane wzorem: <span class="math display">\[

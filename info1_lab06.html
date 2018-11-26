@@ -12,7 +12,7 @@
 <meta name="author" content="B. Górecki" />
 
 
-<title></title>
+<title>info1_lab06.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -575,57 +706,57 @@ div.tocify {
 <p>W języku C, komunikacja z plikami przebiega niemalże identycznie, jak czytanie danych z klawiatury i drukowanie ich na ekranie. Odpowiednikiem funkcji <code>scanf()</code> jest <code>fscanf()</code> a funkcji <code>printf()</code> jest <code>fprintf()</code>. Różnica polega na tym, że w przypadku funkcji służących do obsługi plików, jako pierwszy argument musimy podać wskaźnik zawierający adres pliku.<br />
 Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adres można pobrać za pomocą funkcji <code>fopen()</code>.</p>
 <p>Przyjrzyjmy się przykładowemu kodowi źródłowemu:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f;              <span class="co">// deklarujemy wskaznik do typu FILE, o nazwie f</span>
-
-f = fopen(<span class="st">&quot;dane.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);
-                      <span class="co">// otwieramy plik o nazwie dane.txt z zamiarem</span>
-                      <span class="co">// zapisu (&quot;w&quot;) a do zmiennej o nazwie f przypisujemy adres pliku</span>
-
-fprintf(f, <span class="st">&quot;Zapisujemy wlasnie ten tekst do pliku</span><span class="ch">\n</span><span class="st">&quot;</span>);
-
-fclose(f);            <span class="co">// zamykamy plik</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">FILE</span> *f;              <span class="co">// deklarujemy wskaznik do typu FILE, o nazwie f</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">f = fopen(<span class="st">&quot;dane.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">                      <span class="co">// otwieramy plik o nazwie dane.txt z zamiarem</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">                      <span class="co">// zapisu (&quot;w&quot;) a do zmiennej o nazwie f przypisujemy adres pliku</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">fprintf(f, <span class="st">&quot;Zapisujemy wlasnie ten tekst do pliku</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">fclose(f);            <span class="co">// zamykamy plik</span></a></code></pre></div>
 <p>W tym momencie należy zwrócić uwagę na pewną kwestię. Funkcja <code>fopen()</code> zgłasza żądanie otworzenia nowego pliku. Nie oznacza to jednak, że system operacyjny zawsze dysponuje odpowiednimi zasobami i takie żądanie zostanie spełnione. Jeśli system operacyjny nie przydzieli nam dostępu do pliku, do wskaźnika typu <code>FILE</code> zostanie przypisana wartość <code>NULL</code>. Dlatego należy koniecznie sprawdzić czy plik został poprawnie otworzony. Zmodyfikujmy odpowiednio nasze instrukcje.</p>
 <p>Teraz wyglądają one tak:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FILE *f;
-f = fopen(<span class="st">&quot;dane.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);
-
-<span class="kw">if</span>(f == NULL) {
-   printf(<span class="st">&quot;Blad otwarcia pliku!</span><span class="ch">\n</span><span class="st">&quot;</span>);  <span class="co">// drukujemy komunikat o bledzie</span>
-   exit(<span class="dv">1</span>);                           <span class="co">// konczymy prace programu (funkcja exit()</span>
-                                      <span class="co">// znajduje sie w bibliotece stdlib.h)</span>
-}
-
-<span class="co">// Tutaj wykonujemy operacje na pliku (w naszym przypadku zapis).</span>
-<span class="co">// Gdy plik nie bedzie juz wiecej potrzebny zamykamy go.</span>
-
-fclose(f);</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">FILE</span> *f;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">f = fopen(<span class="st">&quot;dane.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="cf">if</span>(f == NULL) {</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">   printf(<span class="st">&quot;Blad otwarcia pliku!</span><span class="sc">\n</span><span class="st">&quot;</span>);  <span class="co">// drukujemy komunikat o bledzie</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">   exit(<span class="dv">1</span>);                           <span class="co">// konczymy prace programu (funkcja exit()</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">                                      <span class="co">// znajduje sie w bibliotece stdlib.h)</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">// Tutaj wykonujemy operacje na pliku (w naszym przypadku zapis).</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">// Gdy plik nie bedzie juz wiecej potrzebny zamykamy go.</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">fclose(f);</a></code></pre></div>
 <p>Pliki można otwierać nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać czy tworzony/odczytywany plik ma być obsługiwany w trybie tekstowym, czy binarnym. Aby móc obsługiwać plik binarny należy dodać literę <code>b</code> do trybu zapisu.</p>
 <p>Przykładowe instrukcje zaprezentowano poniżej.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
-  <span class="dt">int</span> a;
-  FILE *f, *g, *innyPlik;
-  
-  f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);       <span class="co">// Zapis w trybie tekstowym</span>
-  g = fopen(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>);      <span class="co">// Zapis w trybie binarnym</span>
-  innyPlik = fopen(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span>
-  
-  <span class="kw">if</span> (f == NULL || g == NULL || innyPlik == NULL) {
-    printf(<span class="st">&quot;Nie udalo sie otworzyc co najmniej jednego pliku!</span><span class="ch">\n</span><span class="st">&quot;</span>);
-    exit(<span class="dv">1</span>);
-  }
-
-  fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
-  fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="ch">\n</span><span class="st">&quot;</span>);
-  
-  fscanf(innyPlik, <span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a);        <span class="co">// wczytujemy liczbe calkowita z pliku Dane.txt</span>
-                                     <span class="co">// i zapisujemy jej wartosc do zmiennej a</span>
-
-  <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span>
- 
-  fclose(f);
-  fclose(g);
-  fclose(innyPlik);
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">int</span> a;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">FILE</span> *f, *g, *innyPlik;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);       <span class="co">// Zapis w trybie tekstowym</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  g = fopen(<span class="st">&quot;plik2.dat&quot;</span>, <span class="st">&quot;wb&quot;</span>);      <span class="co">// Zapis w trybie binarnym</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">  innyPlik = fopen(<span class="st">&quot;Dane.txt&quot;</span>, <span class="st">&quot;r&quot;</span>); <span class="co">// Czytanie z pliku</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">  <span class="cf">if</span> (f == NULL || g == NULL || innyPlik == NULL) {</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    printf(<span class="st">&quot;Nie udalo sie otworzyc co najmniej jednego pliku!</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    exit(<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  }</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="sc">%d\n</span><span class="st">&quot;</span>, a);</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">  fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">  </a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  fscanf(innyPlik, <span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span>, &amp;a);        <span class="co">// wczytujemy liczbe calkowita z pliku Dane.txt</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">                                     <span class="co">// i zapisujemy jej wartosc do zmiennej a</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"> </a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">  fclose(f);</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">  fclose(g);</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">  fclose(innyPlik);</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">}</a></code></pre></div>
 <p>W powyższym przykładzie, zaprezentowaliśmy użycie funkcji <code>fscanf()</code>, która działa analogicznie do funkcji <code>scanf()</code>.</p>
 <div id="bufor" class="section level2">
 <h2>Bufor</h2>
@@ -656,31 +787,31 @@ fclose(f);</code></pre></div>
 </ul>
 <p>Dla sprawdzenia wczytaj też plik <code>przebieg.txt</code> do arkusza kalkulacyjnego i utwórz wykres obrazujący te przebiegi.</p>
 <p><strong>Wskazówka:</strong> Zauważ, że każda suma daje się policzyć z wykorzystaniem pętli <code>for</code> w następujący sposób:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> suma = <span class="dv">0</span>;
-<span class="dt">int</span> i;
-
-<span class="kw">for</span>(i = <span class="dv">0</span>; i &lt; n; i++) {
-   suma += a[i];
-}</code></pre></div>
-<div id="wykozystanie-funkcji-do-poprawienia-przejrzystosci-programu" class="section level3">
-<h3>Wykożystanie funkcji do poprawienia przejrzystości programu</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">double</span> suma = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="dt">int</span> i;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="cf">for</span>(i = <span class="dv">0</span>; i &lt; n; i++) {</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">   suma += a[i];</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">}</a></code></pre></div>
+<div id="wykorzystanie-funkcji-do-poprawienia-przejrzystosci-programu" class="section level3">
+<h3>Wykorzystanie funkcji do poprawienia przejrzystości programu</h3>
 <p>Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach <code>srednia()</code> i <code>odchStd()</code>. Funkcje te powinny mieć poniższe nagłówki:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> srednia(<span class="dt">double</span> tablica[], <span class="dt">int</span> n);
-<span class="dt">double</span> odchStd(<span class="dt">double</span> tablica[], <span class="dt">int</span> n, <span class="dt">double</span> wartoscSrednia);</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">double</span> srednia(<span class="dt">double</span> tablica[], <span class="dt">int</span> n);</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">double</span> odchStd(<span class="dt">double</span> tablica[], <span class="dt">int</span> n, <span class="dt">double</span> wartoscSrednia);</a></code></pre></div>
 <p>Następnie zmodyfikuj kod funkcji <code>main()</code> tak, aby część dotycząca obliczeń dała się zwięźle zapisać w poniższej postaci:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
-   <span class="co">// deklaracje i kod wczytujacy dane</span>
-
-   um = srednia(u, n);
-   vm = srednia(v, n);
-   wm = srednia(w, n);
-
-   u_std = odchStd(u, n, um);
-   v_std = odchStd(v, n, vm);
-   w_std = odchStd(w, n, wm);
-
-   <span class="co">// dalsza czesc programu zajmujaca sie raportowaniem wynikow</span>
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">   <span class="co">// deklaracje i kod wczytujacy dane</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">   um = srednia(u, n);</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">   vm = srednia(v, n);</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">   wm = srednia(w, n);</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">   u_std = odchStd(u, n, um);</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">   v_std = odchStd(v, n, vm);</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">   w_std = odchStd(w, n, wm);</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">   <span class="co">// dalsza czesc programu zajmujaca sie raportowaniem wynikow</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">}</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -688,16 +819,16 @@ fclose(f);</code></pre></div>
 <h1>* Dla dociekliwych</h1>
 <p>Obliczenia na komputerze prowadzone są ze skończoną dokładnością. Zmodyfikuj swój kod tak, aby bieżąca wartość średniej była liczona ,,w locie’’ – w trakcie czytania danych z pliku (będzie to średnia wartość przeczytanych dotąd elementów). Wystarczy, że zrobisz to dla jednej składowej prędkości (np. <em>u</em>). Możesz średnią obliczaną podczas czytania danych drukować na bieżąco na ekran. Na końcu, porównaj wartość średniej uzyskanej w ten sposób z wartością policzoną w poprzednim poleceniu.<br />
 Pseudokod algorytmu znajdziesz poniżej. Zapisz go w sposób zrozumiały dla komputera, w języku C.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">biezaca_srednia = <span class="dv">0</span>
-
-petla po i od <span class="dv">1</span> <span class="kw">do</span> n (czytajaca dane)
-{
-   przeczytajNowyElementZPlikuIWpiszGoDoTablicy
-
-   biezaca_srednia = (biezaca_srednia * (i - <span class="dv">1</span>) + u[i]) / i
-}
-
-<span class="co">// Po zakonczeniu petli, biezaca_srednia to srednia z calego zbioru</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1">biezaca_srednia = <span class="dv">0</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">petla po i od <span class="dv">1</span> <span class="cf">do</span> n (czytajaca dane)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">   przeczytajNowyElementZPlikuIWpiszGoDoTablicy</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">   biezaca_srednia = (biezaca_srednia * (i - <span class="dv">1</span>) + u[i]) / i</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">// Po zakonczeniu petli, biezaca_srednia to srednia z calego zbioru</span></a></code></pre></div>
 <p>Zastanów się, dlaczego taki algorytm liczenia średniej w sensie matematycznym prowadzi do tak samo zdefiniowanej średniej. Jeśli trudno Ci go zrozumieć, wymyśl sobie zbiór 4-elementowy i zastosuj do niego powyższy algorytm krok po kroku na kartce.</p>
 <p><strong>Pytanie:</strong> Czy obie średnie (policzone na komputerze dwoma sposobami) mają tę samą wartość? Czy coś się zmieni, gdy uśrednisz inną składową prędkości?</p>
 </div>

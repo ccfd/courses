@@ -77,8 +77,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -94,7 +100,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -114,6 +119,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -135,18 +177,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -536,12 +637,10 @@ div.tocify {
 <h1>Zacznijmy od największej <span class="math inline">\(\lambda\)</span></h1>
 <p>Zaczniemy od największej <span class="math inline">\(\lambda\)</span>. Dobrze zauważyć, że największa wartość własna odpowiada najniższej częstotliwości. Są to drgania własne najmniej tłumione w fizycznym układzie i niosące zazwyczaj najwięcej energii w inżynierskich zastosowaniach.</p>
 <p>Będziemy znajdywać nasz wektor <span class="math inline">\(\phi\)</span> iteracyjnie. Zauważmy, że wektor <span class="math inline">\(\phi\)</span> może być dowolnej długości. To znaczy: jeśli wektor <span class="math inline">\(\phi\)</span> spełnia równanie , to także <span class="math inline">\(2\phi\)</span> go spełnia. Możemy więc arbitralnie wybrać ,,skale’’ wektora <span class="math inline">\(\phi\)</span>. Przyjmijmy, że <span class="math inline">\(\phi^T M \phi = 1\)</span>, tzn: niesie on energię kinetyczną <span class="math inline">\(\frac{1}{2}\)</span>.</p>
-Pomnóżmy równanie  przez <span class="math inline">\(S^{-1}\)</span>. Otrzymamy: <span class="math display">\[\phi = \frac{1}{\lambda}S^{-1}M\phi\]</span> Na podstawie tego wzoru możemy skonstruować prostą iterację:
-\begin{align*}
+<p>Pomnóżmy równanie  przez <span class="math inline">\(S^{-1}\)</span>. Otrzymamy: <span class="math display">\[\phi = \frac{1}{\lambda}S^{-1}M\phi\]</span> Na podstawie tego wzoru możemy skonstruować prostą iterację: <span class="math display">\[\begin{align*}
 p &amp;= S^{-1}M\phi\\
 \phi &amp;= p\frac{1}{\sqrt{p^TMp}}
-\end{align*}
-<p>W pierwszym etapie liczymy wynik <span class="math inline">\(S^{-1}M\phi\)</span>, a następnie go normalizujemy tak by <span class="math inline">\(\phi^T M \phi = 1\)</span>. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie <span class="math inline">\(\phi\)</span> będzie składać się tylko z tego wektora, a <span class="math inline">\(p^TMp\)</span> zbiegnie do największej <span class="math inline">\(\lambda\)</span>.</p>
+\end{align*}\]</span> W pierwszym etapie liczymy wynik <span class="math inline">\(S^{-1}M\phi\)</span>, a następnie go normalizujemy tak by <span class="math inline">\(\phi^T M \phi = 1\)</span>. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie <span class="math inline">\(\phi\)</span> będzie składać się tylko z tego wektora, a <span class="math inline">\(p^TMp\)</span> zbiegnie do największej <span class="math inline">\(\lambda\)</span>.</p>
 <div id="zadanie" class="section level3">
 <h3>Zadanie</h3>
 <p>Znajdź wektor <span class="math inline">\(\phi\)</span> odpowiadający największej wartości własnej wg. następującego schematu iteracji: - Oblicz <span class="math inline">\(b = M\cdot phi\)</span> - Rozwiąż układ <span class="math inline">\(S\cdot p = b\)</span> - Oblicz <span class="math inline">\(Mp = M\cdot p\)</span> - Oblicz <span class="math inline">\(phi = \frac{1}{\sqrt{\langle p, Mp \rangle}} p\)</span></p>

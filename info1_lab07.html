@@ -12,7 +12,7 @@
 <meta name="author" content="W. Regulski" />
 
 
-<title></title>
+<title>info1_lab07.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -572,10 +703,10 @@ div.tocify {
 <div id="dynamiczna-alokacja-pamieci" class="section level1">
 <h1>Dynamiczna alokacja pamięci</h1>
 <p>Do tej pory używaliśmy tablic, które miały z góry zadany rozmiar. Deklarowaliśmy je w bardzo prosty sposób:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x[<span class="dv">100</span>];</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> x[<span class="dv">100</span>];</a></code></pre></div>
 <p>lub też:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">const</span> <span class="dt">int</span> N = <span class="dv">100</span>;
-<span class="dt">double</span> x[N];</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="at">const</span> <span class="dt">int</span> N = <span class="dv">100</span>;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dt">double</span> x[N];</a></code></pre></div>
 <p>Chcielibyśmy poszerzyć funkcjonalność naszego programu tak, aby była możliwa deklaracja tablic o długości określanej dopiero w trakcie działania programu. Mówimy wówczas o tzw. dynamicznej (tzn. wykonywanej podczas działania programu, a nie podczas kompilacji) alokacji pamięci. W języku C, na taki mechanizm składa się kilka etapów:</p>
 <ul>
 <li>Deklaracja wskaźnika, który będzie zawierał adres tworzonej tablicy.</li>
@@ -583,27 +714,27 @@ div.tocify {
 <li>Zwolnienie pamięci – funkcja <code>free()</code>.</li>
 </ul>
 <p>Nowe funkcje wymagają użycia biblioteki <code>stdlib.h</code>. Poniższy fragment kodu ilustruje cały mechanizm:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
-
-<span class="dt">void</span> main() {
-     <span class="dt">int</span> N = <span class="dv">100</span>;
-     <span class="dt">double</span> *x;                                 <span class="co">// wskaznik do pierwszego</span>
-                                                <span class="co">// elementu tablicy</span>
-                                                
-     x = (<span class="dt">double</span>*)malloc(N * <span class="kw">sizeof</span>(<span class="dt">double</span>));   <span class="co">// alokacja tablicy</span>
-
-     free(x);                                   <span class="co">// zwolnienie pamieci</span>
-}</code></pre></div>
-<p>Kluczowym elementem mechanizmu jest właściwe zastosowanie funkcji <code>malloc()</code>. Jej argumentem jest rozmiar pamięci, o którą wnioskujemy. Potrzebujemy rozmiaru równego <span class="math inline">\(N\)</span> razy rozmiar zajmowany przez zmienną typu <code>double</code>. Stąd wynika obecność funkcji <code>sizeof()</code>, która zwraca rozmiar danego typu zmiennych. Ponadto używamy mechanizmu rzutowania – przed funkcją <code>malloc()</code> pojawia się rzutowanie na wskaźnik do typu. W naszym przypadku jest to wywołanie <code>(double *)</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Po pracy na tablicy, należy pamiętać o zwolnieniu pamięci, którą ona zajmowała. Służy do tego funkcja <code>free()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">     <span class="dt">int</span> N = <span class="dv">100</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">     <span class="dt">double</span> *x;                                 <span class="co">// wskaznik do pierwszego</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">                                                <span class="co">// elementu tablicy</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                                                </a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">     x = (<span class="dt">double</span>*)malloc(N * <span class="kw">sizeof</span>(<span class="dt">double</span>));   <span class="co">// alokacja tablicy</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">     free(x);                                   <span class="co">// zwolnienie pamieci</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">}</a></code></pre></div>
+<p>Kluczowym elementem mechanizmu jest właściwe zastosowanie funkcji <code>malloc()</code>. Jej argumentem jest rozmiar pamięci, o którą wnioskujemy. Potrzebujemy rozmiaru równego <span class="math inline">\(N\)</span> razy rozmiar zajmowany przez zmienną typu <code>double</code>. Stąd wynika obecność funkcji <code>sizeof()</code>, która zwraca rozmiar danego typu zmiennych. Ponadto używamy mechanizmu rzutowania – przed funkcją <code>malloc()</code> pojawia się rzutowanie na wskaźnik do typu. W naszym przypadku jest to wywołanie <code>(double *)</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Po pracy na tablicy, należy pamiętać o zwolnieniu pamięci, którą ona zajmowała. Służy do tego funkcja <code>free()</code>.</p>
 </div>
 <div id="wczytywanie-i-rysowanie-konturow" class="section level1">
 <h1>Wczytywanie i rysowanie konturów</h1>
 <p>Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w plikach: <a href="data/info1/plik1.txt">plik1.txt</a> oraz <a href="data/info1/plik2.txt">plik2.txt</a>. Pliki mają następującą strukturę:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dv">156</span>
-<span class="fl">12.</span><span class="dv">67</span>    <span class="fl">768.</span><span class="dv">3254</span>
-<span class="fl">14.</span><span class="dv">98</span>    <span class="fl">768.</span><span class="dv">3254</span>
-<span class="fl">17.</span><span class="dv">462</span>  <span class="fl">766.</span><span class="dv">51075</span>
-...</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dv">156</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="fl">12.67</span>    <span class="fl">768.3254</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="fl">14.98</span>    <span class="fl">768.3254</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="fl">17.462</span>  <span class="fl">766.51075</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">...</a></code></pre></div>
 <p>Pierwsza linia pliku zawiera liczbę punktów zapisanych w pliku. Poniżej, współrzędne <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> są zapisane w oddzielnych kolumnach.</p>
 <div id="cwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
@@ -634,7 +765,7 @@ S_{i}=\frac{1}{2} | \boldsymbol v_i\times \boldsymbol v_{i+1} | = \frac{1}{2} (x
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>programując w C można by zrezygnować z rzutowania, wówczas <code>malloc()</code> zwróci wskaźnik typu <code>void*</code>. Jednak powszechnie stosujemy kompilatory języka C++, który jest językiem o tzw. silnej kontroli typów i nie zezwala na to, by wskaźnik nie miał typu. Nie zagłębiając się w szczegóły, należy wyrobić sobie nawyk rzutowania wskaźnika zwracanego przez funkcję <code>malloc()</code>, aby uniknąć nieprzyjemnych sytuacji w przyszłości.<a href="#fnref1">↩</a></p></li>
+<li id="fn1"><p>programując w C można by zrezygnować z rzutowania, wówczas <code>malloc()</code> zwróci wskaźnik typu <code>void*</code>. Jednak powszechnie stosujemy kompilatory języka C++, który jest językiem o tzw. silnej kontroli typów i nie zezwala na to, by wskaźnik nie miał typu. Nie zagłębiając się w szczegóły, należy wyrobić sobie nawyk rzutowania wskaźnika zwracanego przez funkcję <code>malloc()</code>, aby uniknąć nieprzyjemnych sytuacji w przyszłości.<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

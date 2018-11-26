@@ -12,7 +12,7 @@
 <meta name="author" content="W. Gryglas" />
 
 
-<title></title>
+<title>python_inst01.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -607,64 +738,43 @@ div.tocify {
 <div id="wymagane-pakiety" class="section level2">
 <h2>Wymagane pakiety</h2>
 <p>Poniżej przedstawiamy zbiór pakietów które są najczęściej wykorzystywane podczas pracy. Podczas zajęć także będziemy korzystali z tych narzędzi, dlatego należy je zainstalować przed rozpoczęciem kursu.</p>
-<div id="python-dev" class="section level3">
-<h3>python-dev</h3>
-<p>podstawowe narzędzia języka python które są niezbędne do pracy i rozwoju kodu w tym języku.</p>
-</div>
-<div id="pip" class="section level3">
-<h3>pip</h3>
-<p>Narzędzia do zarządzania pakietami pythona. Pozwala na automatyczne pobranie kodu z oficjalnego repozytorium <em>Python Package Index</em> (PyPI), kompilację i instalację wybranego pakietu. Korzystając z <em>pip</em> możemy pobrać dowolną wersję danego pakietu, co jest najczęściej niemożliwe w przypadku innych metod instalacji pakietów. Ponadto często nowsze pakiety są dostępne jedynie za pośrednictwem tej platformy.</p>
-</div>
-<div id="numpy" class="section level3">
-<h3>numpy</h3>
-<p>Pakiet zawierający rozszerzenie tablic wielowymiarowych, który pozwala na wygodny dostęp do danych oraz na operacji na nich. Zawiera także wiele własnych funkcji do obliczeń naukowych, które jednak są ograniczone w porównaniu do pakietu <em>scipy</em> o którym dalej.</p>
-</div>
-<div id="matplotlib" class="section level3">
-<h3>matplotlib</h3>
-<p>Zbiór narzędzi służących do tworzenia wykresów przeróżnego typu, takich jak:</p>
+<p>###python-dev podstawowe narzędzia języka python które są niezbędne do pracy i rozwoju kodu w tym języku.</p>
+<p>###pip Narzędzia do zarządzania pakietami pythona. Pozwala na automatyczne pobranie kodu z oficjalnego repozytorium <em>Python Package Index</em> (PyPI), kompilację i instalację wybranego pakietu. Korzystając z <em>pip</em> możemy pobrać dowolną wersję danego pakietu, co jest najczęściej niemożliwe w przypadku innych metod instalacji pakietów. Ponadto często nowsze pakiety są dostępne jedynie za pośrednictwem tej platformy.</p>
+<p>###numpy Pakiet zawierający rozszerzenie tablic wielowymiarowych, który pozwala na wygodny dostęp do danych oraz na operacji na nich. Zawiera także wiele własnych funkcji do obliczeń naukowych, które jednak są ograniczone w porównaniu do pakietu <em>scipy</em> o którym dalej.</p>
+<p>###matplotlib Zbiór narzędzi służących do tworzenia wykresów przeróżnego typu, takich jak:</p>
 <ul>
 <li>proste jedno wymiarowe,</li>
 <li>różne wykresy statystyczne,</li>
 <li>wykresy konturowe,</li>
 <li>wykresy trój wymiarowe.</li>
 </ul>
-</div>
-<div id="scipy" class="section level3">
-<h3>scipy</h3>
-<p>Biblioteka zawierająca szeroki zbiór narzędzi do obliczeń naukowych . Nazwa <em>SciPy</em> może odnosić się do całego zbioru bibliotek (numpy, matplotlib, scipy, sympy, pandas). Jednak sam pakiet o nazwie <em>scipy</em> zawiera tylko narzędzia obliczeniowe. Pakiet <em>scipy</em> posiada wiele funkcji o tym samym zastosowaniu co <em>numpy</em>. Duplikacja tych narzędzi wynika z tego, że <em>scipy</em> jest w dużej części opakowaniem implementacji w języku Fortran (które są bardzo wydajne) a <em>numpy</em> jest przygotowane tak, aby możliwa była jego instalacja także bez kompilatora Fortran. Jednak <em>scipy</em> zawiera dużo więcej i w dodatku nowszych narzędzi niż <em>numpy</em>.</p>
-</div>
-<div id="sympy" class="section level3">
-<h3>sympy</h3>
-<p>Pakiet pozwalający na dokonywanie obliczeń symbolicznych.</p>
-</div>
-<div id="pandas" class="section level3">
-<h3>pandas</h3>
-<p>Biblioteka służąca do obróbki i analizy danych. W szczególności wprowadza wygodne struktury danych i operacje do ich obróbki. Biblioteka ta znajduje świetne zastosowanie w analizie statystycznej. Dane mogą być reprezentowane jako ciągi czasowe lub tablice z dodatkowymi nazwami wierszy i kolumn.</p>
-</div>
+<p>###scipy Biblioteka zawierająca szeroki zbiór narzędzi do obliczeń naukowych . Nazwa <em>SciPy</em> może odnosić się do całego zbioru bibliotek (numpy, matplotlib, scipy, sympy, pandas). Jednak sam pakiet o nazwie <em>scipy</em> zawiera tylko narzędzia obliczeniowe. Pakiet <em>scipy</em> posiada wiele funkcji o tym samym zastosowaniu co <em>numpy</em>. Duplikacja tych narzędzi wynika z tego, że <em>scipy</em> jest w dużej części opakowaniem implementacji w języku Fortran (które są bardzo wydajne) a <em>numpy</em> jest przygotowane tak, aby możliwa była jego instalacja także bez kompilatora Fortran. Jednak <em>scipy</em> zawiera dużo więcej i w dodatku nowszych narzędzi niż <em>numpy</em>.</p>
+<p>###sympy Pakiet pozwalający na dokonywanie obliczeń symbolicznych.</p>
+<p>###pandas Biblioteka służąca do obróbki i analizy danych. W szczególności wprowadza wygodne struktury danych i operacje do ich obróbki. Biblioteka ta znajduje świetne zastosowanie w analizie statystycznej. Dane mogą być reprezentowane jako ciągi czasowe lub tablice z dodatkowymi nazwami wierszy i kolumn.</p>
 </div>
 <div id="instalacja---linux-dystrybucje-debian" class="section level2">
 <h2>Instalacja - Linux (dystrybucje Debian)</h2>
 <div id="podstawowe-narzedzia" class="section level3">
 <h3>Podstawowe narzędzia</h3>
-<p>Większość systemów posiada domyślnie zainstalowane podstawowe pakiety języka python. Jednak, aby się upewnić, że je posiadamy możemy po prostu spróbować je zainstalować. Na początek 2 podstawowe i najważniejsze pakiety. Otwieramy konsolę a w niej wpisujemy następujące komendy (Uwaga komenda <code class="sourceCode bash"><span class="kw">sudo</span></code> oznacza uruchomienie zadania jako administrator co będzie wymagało podania hasła):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install python-dev
-<span class="kw">sudo</span> apt-get install python-pip</code></pre></div>
+<p>Większość systemów posiada domyślnie zainstalowane podstawowe pakiety języka python. Jednak, aby się upewnić, że je posiadamy możemy po prostu spróbować je zainstalować. Na początek 2 podstawowe i najważniejsze pakiety. Otwieramy konsolę a w niej wpisujemy następujące komendy (Uwaga komenda <code class="sourceCode bash"><span class="fu">sudo</span></code> oznacza uruchomienie zadania jako administrator co będzie wymagało podania hasła):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">sudo</span> apt-get install python-dev</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="fu">sudo</span> apt-get install python-pip</a></code></pre></div>
 <p>Po dokonaniu instalacji <em>python-pip</em> uzyskujemy dostęp do managera pakietów pythona z oficjalnego repozytorium PyPI. Z kolei instalacja pakietów za pomocą <em>apt-get</em> dostarcza tylko te pakiety które znajdują się w repozytorium wydawcy danego systemu (np. Ubuntu Repository) i na ogół są one dość ograniczone i zawierają tylko najnowsze wersje pakietów. Pakiety dostarczane za pomocą <em>apt-get</em> są wcześniej skompilowane dzięki czemu proces instalacji jest znacznie krótszy, ale nie zawsze jest to lepsze rozwiązanie.</p>
 </div>
 <div id="dodatkowe-pakiety" class="section level3">
 <h3>Dodatkowe pakiety</h3>
 <p>Aby zainstalować dodatkowe możemy skorzystać z repozytorium <em>PyPI</em> lub z repozytorium wydawcy systemu. W obu przypadkach aby zainstalować wszystkie biblioteki możemy w linii poleceń podać więcej niż jedną nazwę pakietu. Na obecnym etapie kursu będziemy potrzebowali tylko 3 dodatkowych pakietów:</p>
 <ul>
-<li><em>apt-get</em> <code class="sourceCode bash"><span class="kw">sudo</span> apt-get install python-numpy python-scipy python-matplotlib python-pandas</code></li>
-<li><em>pip</em> <code class="sourceCode bash"><span class="kw">sudo</span> pip install numpy scipy matplotlib pandas</code></li>
+<li><em>apt-get</em> <code class="sourceCode bash"><span class="fu">sudo</span> apt-get install python-numpy python-scipy python-matplotlib python-pandas</code></li>
+<li><em>pip</em> <code class="sourceCode bash"><span class="fu">sudo</span> pip install numpy scipy matplotlib pandas</code></li>
 </ul>
 </div>
 <div id="instalacja-git" class="section level3">
 <h3>Instalacja git</h3>
 <p>W przypadku systemów Linux większość dystrybucji posiada zainstalowane to narzędzie domyślnie. Aby sprawdzić czy pakiet jest zainstalowany możemy w konsoli wpisać:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> --version</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">git</span> --version</a></code></pre></div>
 <p>Jeśli w konsoli zostanie wyświetlona wersja, to znaczy, że posiadamy ten program i nie trzeba go instalować. Jeśli w danej dystrybucji nie znajduje się zainstalowany git to należy go doinstalować komendą:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install git-all</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">sudo</span> apt-get install git-all</a></code></pre></div>
 </div>
 </div>
 <div id="instalacja---windows" class="section level2">
@@ -686,9 +796,9 @@ div.tocify {
 <div id="instalacja" class="section level2">
 <h2>Instalacja</h2>
 <p>Aby zainstalować PyCharm na systemie Linux wystarczy pobrać odpowiedni plik i rozpakować do dowolnie wybranego miejsca na dysku. Spakowaną aplikację można pobrać ze strony <a href="https://www.jetbrains.com/pycharm/download/#section=linux">PyCharm - Linux</a>. Po zapisaniu pliku na dysku możemy go rozpakować komendą:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tar</span> xfz <span class="kw">&lt;</span>sciezka do sciagnietego pliku<span class="kw">&gt;</span> -C <span class="kw">&lt;</span>sciezka do miejsca gdzie rozpakowac<span class="kw">&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="fu">tar</span> xfz <span class="op">&lt;</span>sciezka do sciagnietego pliku<span class="op">&gt;</span> -C <span class="op">&lt;</span>sciezka do miejsca gdzie rozpakowac<span class="op">&gt;</span></a></code></pre></div>
 <p>Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli (po pierwszym uruchomieniu program doda skróty do systemu):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">&lt;sciezka</span> do rozpakowanego folderu<span class="kw">&gt;</span>/bin/pycharm.sh</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="op">&lt;</span><span class="ex">sciezka</span> do rozpakowanego folderu<span class="op">&gt;</span>/bin/pycharm.sh</a></code></pre></div>
 <p>Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruchomieniu program wyświetli okno konfiguracji w który należało będzie ustawić własne preferencje.</p>
 </div>
 <div id="poczatek-pracy-w-pycharm" class="section level2">
@@ -717,20 +827,20 @@ div.tocify {
 <p class="caption">Pierwszy kod</p>
 </div>
 <p>Nowo dodany plik zostanie automatycznie otwarty w panelu po prawej stronie. PyCharm automatycznie doda do pliku linijkę z kodem:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">__author__ <span class="op">=</span> <span class="st">&quot;user.name&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1">__author__ <span class="op">=</span> <span class="st">&quot;user.name&quot;</span></a></code></pre></div>
 <p>Instrukcja <code>__author__ =</code> oznacza utworzenie zmiennej globalnej. Nie jest ona konieczna potrzebna, a wręcz rzadko stosowana. Głównym celem jej dodawania jest przekazanie metadanych do celów tworzenia dokumentacji i pakietów. Opcję automatycznego dodawania tej zmiennej można wyłączyć w ustawieniach PyCharm.</p>
 <p>W dalszej części napiszmy pierwszy kod - funkcję której zadaniem będzie wyświetlenie tekstu historycznie uznanego za jeden z najważniejszych w dziejach programowania, ten od którego wszyscy zaczęli - “Hellow World”</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> first_function():
-    <span class="bu">print</span> <span class="st">&quot;Hellow world!</span>
-
-<span class="st">first_function()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">def</span> first_function():</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">    <span class="bu">print</span> <span class="st">&quot;Hellow world!</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">first_function()</span></a></code></pre></div>
 <p>Przeanalizujmy powyższy kod. Słowo kluczowe <code>def</code> oznacza początek definicji funkcji. Następnie podajemy nazwę definiowanej funkcji, w naszym przypadku jest to <em>first_function</em>. W Pythonie nie podajemy typu zawracanej wartości, ponieważ typy jako takie w nim nie istnieją. Python jest językiem dynamicznie typowany co oznacza, że typ zmiennej jest taki jak wartość do niej przypisana, dlatego nie trzeba zmiennej deklarować. Każda zmienna może być typu <em>integer</em> a następnie może stać się typu <em>string</em>, w związku z czym nie ma sensu podawanie typu zwracanego obiektu ponieważ on wyniknie z tego co zostanie zwrócone. Po nazwie funkcji podajemy w nawiasie nazwy argumentów (tylko nazwy, poniweaż typy nie są potrzebne) a następnie wstawiamy znak <strong>:</strong>, który rozpoczyna ciało funkcji. I tutaj pojawia się ciekawe zjawisko - brak klamer. W Pythonie klamry określające przynależność części kodu do instrukcji, zostały zastąpione wcięciem w tekście o 1 tabulację. Koniec ciała funkcji z kolei definiujemy poprzez przesunięcie kodu o 1 tabulację z powrotem w lewo. Funkcje wywołujemy dokładnie tak samo jak w większości innych języków, poprzez podanie nazwy funkcji i argumentów w okrągłych nawiasach.</p>
 <div class="figure">
 <img src="figures/python_inst01/19.png" alt="Pierwsze uruchomienie nowego pliku" />
 <p class="caption">Pierwsze uruchomienie nowego pliku</p>
 </div>
 <p>Gdy posiadamy już kod należy go uruchomić aby sprawdzić czy poprawnie zapisaliśmy to co chcemy osiągnąć. W przypadku kodu Pythona wystarczy wywołać interpreter ze wskazaniem ścieżki do pliku. Taką operację można wykonać z poziomu konsoli:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">python</span> nazwa_pliku.py</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1">$ <span class="ex">python</span> nazwa_pliku.py</a></code></pre></div>
 <p>Jednak w sytuacji gdy korzystamy IDE uruchamianie kodu z konsoli nie jest wygodne. Aby to zrobić za pierwszym razem należy przygotować konfigurację uruchamiania wybranego pliku. W przypadku gdy chcemy uruchomić aktualnie edytowany plik możemy skorzystać z domyślnej konfiguracji:</p>
 <ol style="list-style-type: decimal">
 <li>Kliknij prawym przyciskiem w pustym miejscu w edytowanym pliku.</li>
@@ -759,12 +869,11 @@ div.tocify {
 <p>Na koniec jeszcze zobaczmy co zawiera konfiguracja uruchomieniowa naszego pliku test.py. Aby otworzyć okno jej edycji należy wybrać opcję <strong><em>Edit configuration</em></strong> z rozwijanego menu (<a href="figures/python_inst01/05.png">rysunek</a>). W panelu <strong><em>Configuration</em></strong> znajdują się 3 najważniejsze pola:</p>
 <ol style="list-style-type: decimal">
 <li><strong><em>Script</em></strong> - ścieżka do pliku który ma zostać uruchomiony.</li>
-<li><p><strong><em>Script parameters</em></strong> - parametry jakie powinny zostać przkazane do naszego kodu w czasie jego wywołania. Paremetry te to nic innego jak parametry przekazywane do programów gdy je wywołujemy z konsoli, np.:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">rm</span> directory_name</code></pre></div>
-W powyższym przykładzie <strong><em>rm</em></strong> jest nazwą programu, a <em>directory_name</em> to parametr który zostaje przekazany do programu. W sytuacji gdy będziemy pisali skrypt ogólnego zastosowania, który będzie zależał od parametrów przekazanych przez użytkownika, to na czas testów kodu warto właśnie w tym miejscu podać testowe parmetry, zamiast na sztywno je przypisywać wenątrz kodu.<br />
-</li>
-<li><p><strong><em>Working directory</em></strong> - lokalizacja z której ma zostać wywołany nasz program. Podobnie jak w przypadku parametrów ta informacja jest przekazywana do programu przez system operacyjny w czasie uruchamiania go z konsoli. W przykładzie z poprzedniego punkut komenda <strong><em>rm</em></strong> służy do usuwania plików wskazanych za pomocą parmetrów. Ścieżki tych parametrów mogą być podawane względem folderu w którym się znajdujemy, zatem program musi zawsze otrzymać dodatkową informację o lokalizacji z której został uruchomiony.</p></li>
+<li><strong><em>Script parameters</em></strong> - parametry jakie powinny zostać przkazane do naszego kodu w czasie jego wywołania. Paremetry te to nic innego jak parametry przekazywane do programów gdy je wywołujemy z konsoli, np.:</li>
 </ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1">$ <span class="fu">rm</span> directory_name</a></code></pre></div>
+<p>W powyższym przykładzie <strong><em>rm</em></strong> jest nazwą programu, a <em>directory_name</em> to parametr który zostaje przekazany do programu. W sytuacji gdy będziemy pisali skrypt ogólnego zastosowania, który będzie zależał od parametrów przekazanych przez użytkownika, to na czas testów kodu warto właśnie w tym miejscu podać testowe parmetry, zamiast na sztywno je przypisywać wenątrz kodu.<br />
+3. <strong><em>Working directory</em></strong> - lokalizacja z której ma zostać wywołany nasz program. Podobnie jak w przypadku parametrów ta informacja jest przekazywana do programu przez system operacyjny w czasie uruchamiania go z konsoli. W przykładzie z poprzedniego punkut komenda <strong><em>rm</em></strong> służy do usuwania plików wskazanych za pomocą parmetrów. Ścieżki tych parametrów mogą być podawane względem folderu w którym się znajdujemy, zatem program musi zawsze otrzymać dodatkową informację o lokalizacji z której został uruchomiony.</p>
 </div>
 <div id="wasne-repozytorium-w-sieci-i-git-w-pycharm" class="section level2">
 <h2>Własne repozytorium w sieci i git w PyCharm</h2>
@@ -779,7 +888,7 @@ W powyższym przykładzie <strong><em>rm</em></strong> jest nazwą programu, a <
 <p class="caption">Tworzenie lokalnego repozytorium w PyCharm</p>
 </div>
 <p>Utworzyliśmy właśnie własne repozytorium. Jednak znajduje się ono na razie tylko na serwerze. Aby ściągnąć pliki zawarte w tym repozytorium należy utowrzyć tzw. lokalne repozytorium. Lokalne repozytorium jest kopią kodu zawartego na serwerze na przestrzeń dyskową własnego komputera. Dzięki temu można wprowadzać zmiany z pozimu własnego komputera. Należy jednak pamiętać, że wszystkie takie zamiany będą tylko lokalne, tzn. istniały tylko w obrębie własnego komputera. Aby te zmiany mogły się pojawić także na serwerze, trzeba będzie je tam wysłać, ale o tym dalej. Operacja kopiowania (pobierania) zdalnego repozytorium na własny komputer nazywana jest klonowaniem (clone). Można to uczynić z poziumu konsoli za pośrednictwem programu <strong><em>git</em></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> clone https://github.com/ccfd/python_course.git</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1">$ <span class="fu">git</span> clone https://github.com/ccfd/python_course.git</a></code></pre></div>
 <p>Ta komenda utworzy repozytorium w folerze o nazwie “python_course”. Jeśli chcemy aby to repozytorium zostało zapisane w innmym folderze, to należy podać dodatkowy parametr ze ścieżką do wybranego folderu.</p>
 <p>PyCharm jest rozbuodwanym środowsikiem i sam także pozwala na utorzenie lokalnej kopii ze zdalnego repozytorium. Aby to ucznić należy: 1. Wybrać opcję <strong><em>VCS</em></strong> z górnego menu. 2. Wybrać opcję <strong><em>Cehckout from Version Control</em></strong>. 3. Na koniec wskazać <strong><em>GitHub</em></strong> który jest dodatkowo wspierany przez PyCharm.</p>
 <div class="figure">
@@ -828,9 +937,9 @@ W powyższym przykładzie <strong><em>rm</em></strong> jest nazwą programu, a <
 <p>Jeśli program zadziałał poprawnie, to powinniśmy zobaczyć powyższy wykres w nowym oknie.</p>
 <p>Teraz dokonamy drobnych zmian w naszym kodzie, tak aby można było zatwierdzić zmianę (zrobić “Commit”) oraz wysłać ją z lokalnego repozytorium na zdalne - serwer.</p>
 <p>W tym celu zamieńmy linijkę:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numpyArray2 <span class="op">=</span> np.sin(array)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1">numpyArray2 <span class="op">=</span> np.sin(array)</a></code></pre></div>
 <p>na linijkę:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numpyArray2 <span class="op">=</span> np.sin(array) <span class="op">+</span> np.cos(array)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1">numpyArray2 <span class="op">=</span> np.sin(array) <span class="op">+</span> np.cos(array)</a></code></pre></div>
 <div class="figure">
 <img src="figures/python_inst01/16.png" alt="Zatwierdzanie zmian w lokalnym i zdalnym repozytorium" />
 <p class="caption">Zatwierdzanie zmian w lokalnym i zdalnym repozytorium</p>
@@ -861,7 +970,7 @@ W powyższym przykładzie <strong><em>rm</em></strong> jest nazwą programu, a <
 <p class="caption">Pobieranie zmian ze zdalnego repozytorium</p>
 </div>
 <p>Na koniec pokażemy jeszcze jak pobrać zmiany ze zdalnego repozytorium na nasze lokalne, które już istnieje (np. w sytuacji, gdy ktoś inny wprowadził zmiany i chcemy aby ten nowszy kod pojawił się także u nas na dysku). Do tego celu korzystamy z opcji “Pull” która działa przeciwnie do “Push” - czyli pobiera wszystkie zmiany z serwera i dołącza je do naszego kodu. Aby dokonać tej operacji z pozimu konsoli należy przejść do właściwego folderu zawierającego nasze lokalne repozytorium, a następnie wywołać:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> pull</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1">$ <span class="fu">git</span> pull</a></code></pre></div>
 <p>Po tej operacji zostaniemy poproszeni o podanie nazwy użytkownika i hasła.</p>
 <p>W naszy przypadku skorzystamy z PyCharma - wystarczy wybrać odpowienią opcję z menu (tak jak na rysunku powyżej) a program wykona żądaną operację i ściągnie najświeższy kod. Musimy zrócić uwagę na jeszcze jedną opcję znajdującą się obok “Push” i “Pull” - “Fetch”. Opcja ta służy jedynie do pobrania inforamcji i danych ze zdalnego repozytorium. Ona, w przeciwieństwie do “Pull”, nie zmienia plików źródłowych w lokalnym repozytorium.</p>
 <p>Git - aktualizacja kopii repozytorium …. todo ….</p>

@@ -12,7 +12,7 @@
 <meta name="author" content="B. Górecki" />
 
 
-<title></title>
+<title>info1_lab03.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,41 +28,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -120,8 +150,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -137,7 +173,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -157,6 +192,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -178,18 +250,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -581,9 +712,9 @@ div.tocify {
 <div id="drukowanie-tekstu" class="section level2">
 <h2>Drukowanie tekstu</h2>
 <p>Utwórz nowy projekt pakietu MS Visual Studio i napisz program, który wydrukuje tekst <em>Witaj na trzecim laboratorium!</em></p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
-   printf(<span class="st">&quot;Witaj na trzecim laboratorium!&quot;</span>);
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">   printf(<span class="st">&quot;Witaj na trzecim laboratorium!&quot;</span>);</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">}</a></code></pre></div>
 <p>Funkcja <code>printf()</code> służy do wypisywania tekstu na ekran. Jako pierwszy argument przyjmuje sformatowany tekst. Do formatowania tekstu służą <em>kody sterujące</em>, które pozwalają wprowadzić znak nowej linii, tabulacji itp. Przykładowo, umieszczona wewnątrz tekstu sekwencja znaków:</p>
 <ul>
 <li><code>&quot;\n&quot;</code> – wprowadza znak nowej linii,</li>
@@ -592,38 +723,38 @@ div.tocify {
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Używając <strong>pojedynczej</strong> funkcji <code>printf()</code> oraz odpowiednich kodów sterujących, wygeneruj tekst identyczny z poniższym:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">To jest pierwsze zdanie w mojej instrukcji.
-To jest tuz po znaku nowej linii.      Zas ten fragment
-                                       oddzielony jest znakiem
-                                       tabulacji!
-W ponizszej linii wszystkie liczby oddzielono tabulatorami:
-<span class="fl">5.</span><span class="dv">2</span>    <span class="fl">3.</span><span class="dv">14</span>    <span class="dv">-7</span>    <span class="dv">8</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">To jest pierwsze zdanie w mojej instrukcji.</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">To jest tuz po znaku nowej linii.      Zas ten fragment</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                                       oddzielony jest znakiem</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                                       tabulacji!</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">W ponizszej linii wszystkie liczby oddzielono tabulatorami:</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="fl">5.2</span>    <span class="fl">3.14</span>    <span class="dv">-7</span>    <span class="dv">8</span></a></code></pre></div>
 <p><strong>Uwaga:</strong> jeśli instrukcja jest długa, a przez to mało czytelna, warto kontynuować ją w nowej linii. W tym celu należy posłużyć się ukośnikiem wstecznym ,,\’’. Przykładowo:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">printf(<span class="st">&quot;Ta instrukcja kontynuowana jest \</span>
-<span class="st">w kolejnej linii</span><span class="ch">\n</span><span class="st">);</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">printf(<span class="st">&quot;Ta instrukcja kontynuowana jest \</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">w kolejnej linii</span><span class="sc">\n</span><span class="st">);</span></a></code></pre></div>
 <p>Spróbuj osiągnąć ten sam efekt, co powyżej, ale tym razem użyj osobnej instrukcji <code>printf</code> dla każdego ze zdań.</p>
 <p>W instrukcji <code>printf()</code> nie używaj polskich znaków diakrytycznych. Można to zrobić, jednak ze względu na przenośność w prostych programach nie jest praktykowane.</p>
 </div>
 </div>
 <div id="znaki-specjalne" class="section level2">
 <h2>Znaki specjalne</h2>
-<p>Pewne znaki są w języku C zarezerwowane na potrzeby wykonania konkretnych operacji. Jeśli chcemy je wydrukować na ekran, nie mogą być użyte wprost. Przykładowo, jeśli chcemy za pomocą funkcji <code>printf()</code> wydrukować znaki ,,%‘’ i ,,\’‘należy je zapisać podwójnie, tzn. ,,%%’‘i ,,\\’’.</p>
+<p>Pewne znaki są w języku C zarezerwowane na potrzeby wykonania konkretnych operacji. Jeśli chcemy je wydrukować na ekran, nie mogą być użyte wprost. Przykładowo, jeśli chcemy za pomocą funkcji <code>printf()</code> wydrukować znaki ,,%’‘i ,,\’‘należy je zapisać podwójnie, tzn. ,,%%’‘i ,,\\’’.</p>
 <p>Dopisz do swojego programu instrukcję, która wydrukuje następujący tekst:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dv">82</span>% dysku C:\ jest w uzyciu!</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dv">82</span>% dysku C:\ jest w uzyciu!</a></code></pre></div>
 </div>
 <div id="drukowane-liczb" class="section level2">
 <h2>Drukowane liczb</h2>
 <p>Przepisz do funkcji main następujące instrukcje:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a = <span class="dv">5</span>;
-<span class="dt">double</span> b = <span class="fl">8.</span><span class="dv">2</span>, c = <span class="fl">7.</span><span class="dv">5</span>;
-
-printf(<span class="st">&quot;a = </span><span class="ch">%d</span><span class="st">, b = </span><span class="ch">%lf</span><span class="st">, c = </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, a, b, c);
-
-c += b;
-c -= a;
-a = <span class="dv">1</span>;
-
-printf(<span class="st">&quot;a = </span><span class="ch">%d</span><span class="st">, b = </span><span class="ch">%lf</span><span class="st">, c = </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, a, b, c);</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">int</span> a = <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">double</span> b = <span class="fl">8.2</span>, c = <span class="fl">7.5</span>;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">printf(<span class="st">&quot;a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%lf</span><span class="st">, c = </span><span class="sc">%lf\n</span><span class="st">&quot;</span>, a, b, c);</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">c += b;</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">c -= a;</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">a = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">printf(<span class="st">&quot;a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%lf</span><span class="st">, c = </span><span class="sc">%lf\n</span><span class="st">&quot;</span>, a, b, c);</a></code></pre></div>
 <p>Zauważ, że do drukowania wartości przechowywanych w zmiennych służą tzw. <em>specyfikatory formatu</em>. Na zajęciach najczęściej będą używane:</p>
 <pre><code>- %lf -- dla zmiennych typu `double`
 - %d -- dla zmiennych typu `int`
@@ -644,21 +775,21 @@ printf(<span class="st">&quot;a = </span><span class="ch">%d</span><span class="
 <div id="czytanie-z-klawiatury" class="section level2">
 <h2>Czytanie z klawiatury</h2>
 <p>Instrukcją służącą do czytania danych ze standardowego wejścia (klawiatury) jest funkcja <code>scanf()</code>. Przykład jej użycia wygląda następująco:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a;
-scanf(<span class="st">&quot;</span><span class="ch">%d</span><span class="st">&quot;</span>, &amp;a);
-printf(<span class="st">&quot;Wczytana liczba: </span><span class="ch">%d\n</span><span class="st">&quot;</span>, a);
-
-<span class="dt">double</span> c;
-scanf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st">&quot;</span>, &amp;c);
-printf(<span class="st">&quot;Wczytana liczba: </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, c);
-
-<span class="dt">int</span> b, d;
-<span class="dt">double</span> g, h;
-scanf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%lf</span><span class="st">&quot;</span>, &amp;g, &amp;d, &amp;b, &amp;h);
-printf(<span class="st">&quot;Wczytane liczby: </span><span class="ch">%lf</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%d</span><span class="st"> </span><span class="ch">%lf\n</span><span class="st">&quot;</span>, g, d, b, h);</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dt">int</span> a;</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">scanf(<span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span>, &amp;a);</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">printf(<span class="st">&quot;Wczytana liczba: </span><span class="sc">%d\n</span><span class="st">&quot;</span>, a);</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="dt">double</span> c;</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">scanf(<span class="st">&quot;</span><span class="sc">%lf</span><span class="st">&quot;</span>, &amp;c);</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">printf(<span class="st">&quot;Wczytana liczba: </span><span class="sc">%lf\n</span><span class="st">&quot;</span>, c);</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="dt">int</span> b, d;</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="dt">double</span> g, h;</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">scanf(<span class="st">&quot;</span><span class="sc">%lf</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%lf</span><span class="st">&quot;</span>, &amp;g, &amp;d, &amp;b, &amp;h);</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">printf(<span class="st">&quot;Wczytane liczby: </span><span class="sc">%lf</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%lf\n</span><span class="st">&quot;</span>, g, d, b, h);</a></code></pre></div>
 <p><strong>Uwaga:</strong></p>
 <ul>
-<li>Zwróć szczególną uwagę na znak ,,&amp;‘’ występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten służy do ustalenia zmiennej występującej za raz po nim. Funkcja <code>scanf()</code> wczytuje dane z klawiatury, które musi gdzieś zapisać. Stosując znak ,,&amp;’’ dostarczamy informacji o tym gdzie znajduje się zmienna, do której należy zapisać wczytaną wartość.</li>
+<li>Zwróć szczególną uwagę na znak ,,&amp;’‘występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten służy do ustalenia zmiennej występującej za raz po nim. Funkcja <code>scanf()</code> wczytuje dane z klawiatury, które musi gdzieś zapisać. Stosując znak ,,&amp;’’ dostarczamy informacji o tym gdzie znajduje się zmienna, do której należy zapisać wczytaną wartość.</li>
 <li>Zauważ również, że używając pojedynczej instrukcji <code>scanf</code> możesz wczytać wiele liczb. Należy przy tym pamiętać o podaniu specyfikatorów formatu w takiej kolejności jak zmienne na liście argumentów. Powinno się unikać stosowania innych symboli niż spacje i specyfikatory formatu. Inaczej należy pamiętać o podaniu liczb razem z tymi dodatkowymi symbolami.</li>
 </ul>
 <div id="cwiczenia-2" class="section level3">
@@ -672,18 +803,18 @@ printf(<span class="st">&quot;Wczytane liczby: </span><span class="ch">%lf</span
 <p>Każdy element programu musi być zapisany gdzieś w pamięci komputera. Oznacza to, że musi mieć swój adres. Adres ten można zapisać w pewnej zmiennej i posłużyć się nim w programie. Zmienną zawierającą adres innej zmiennej nazywamy <strong>wskaźnikiem</strong>. Wskaźniki mogą zawierać adresy różnych elementów (zmiennych, tablic, funkcji, …). Z tego powodu będą pojawiały się na różnych etapach tego kursu. W tej instrukcji opiszemy jedynie podstawy.</p>
 <p>Jak już wspomnieliśmy, każda zmienna ma swój adres. Można go uzyskać stosując operator &amp; i zapisać w zmiennej typu wskaźnikowego. Mówiliśmy o tym podczas zajmowania się funkcją <code>scanf()</code>. Zmienne różnych typów wymagają różnej wielkości pamięci. Dlatego deklaracja wskaźnika zawierającego adres zmiennej danego typu, ma postać <code>typ *wskaznik;</code>.</p>
 <p>Przykładowo:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">double</span> x;              <span class="co">// Deklaracja zmiennej typu double</span>
-x = <span class="fl">4.</span><span class="dv">2</span>;               <span class="co">// Definicja - nadanie zmiennej wartosci</span>
-
-<span class="dt">double</span> *wsk_x;         <span class="co">// Deklaracja wskaznika mogacego przechowac</span>
-                       <span class="co">// adres zmiennej typu double</span>
-wsk_x = &amp;x;            <span class="co">// Definicja - nadanie zmiennej wartosci</span>
-                       <span class="co">// bedacej adresem zmiennej x</span>
-printf(<span class="st">&quot;%p&quot;</span>, wsk_x);   <span class="co">// wydrukowanie adresu przechowywanego przez</span>
-                       <span class="co">// wskaznik na ekran</span>
-printf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st">&quot;</span>, *wsk_x); <span class="co">// wydrukowanie wartosci zmiennej, ktorej</span>
-                       <span class="co">// adres przechowuje wskaznik</span>
-printf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st">&quot;</span>, x);      <span class="co">// wydrukowanie wartosci zmiennej x</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dt">double</span> x;              <span class="co">// Deklaracja zmiennej typu double</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">x = <span class="fl">4.2</span>;               <span class="co">// Definicja - nadanie zmiennej wartosci</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="dt">double</span> *wsk_x;         <span class="co">// Deklaracja wskaznika mogacego przechowac</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">                       <span class="co">// adres zmiennej typu double</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">wsk_x = &amp;x;            <span class="co">// Definicja - nadanie zmiennej wartosci</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">                       <span class="co">// bedacej adresem zmiennej x</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">printf(<span class="st">&quot;</span><span class="sc">%p</span><span class="st">&quot;</span>, wsk_x);   <span class="co">// wydrukowanie adresu przechowywanego przez</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">                       <span class="co">// wskaznik na ekran</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">printf(<span class="st">&quot;</span><span class="sc">%lf</span><span class="st">&quot;</span>, *wsk_x); <span class="co">// wydrukowanie wartosci zmiennej, ktorej</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">                       <span class="co">// adres przechowuje wskaznik</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">printf(<span class="st">&quot;</span><span class="sc">%lf</span><span class="st">&quot;</span>, x);      <span class="co">// wydrukowanie wartosci zmiennej x</span></a></code></pre></div>
 <p>Podsumowując:</p>
 <ul>
 <li><code>&amp;x</code> – pobiera adres zmiennej,</li>
@@ -704,40 +835,40 @@ printf(<span class="st">&quot;</span><span class="ch">%lf</span><span class="st"
 <div id="funkcje-i-zwracanie-argumentu" class="section level1">
 <h1>Funkcje i zwracanie argumentu</h1>
 <p>Do tej pory, funkcje deklarowaliśmy i definiowaliśmy w tym samym samym miejscu (przed funkcją <code>main()</code>). W przypadku gdy kod programu jest długi lub ma być wykorzystany przez innego użytkownika rozdziela się deklarację od definicji. Instrukcja:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2);</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2);</a></code></pre></div>
 <p>jest deklaracją (zauważ, że kończy się średnikiem).</p>
 <p>Instrukcja:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2) {
-  <span class="co">// Tu znajduje sie cialo funkcji.</span>
-}</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dt">void</span> NazwaFunkcji(<span class="dt">int</span> argument1, <span class="dt">double</span> argument2) {</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="co">// Tu znajduje sie cialo funkcji.</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">}</a></code></pre></div>
 <p>jest definicją i może być umieszczona także za funkcją <code>main()</code>.</p>
 <p>Funkcje nie tylko grupują pewne logicznie wydzielone bloki instrukcji, których używamy wielokrotnie (jak funkcja rysująca ludzika z kółek i kresek. W takim przypadku wystarczyło zadeklarować, że funkcja nic nie zwraca wykorzystując słowo kluczowe <code>void</code>.</p>
 <p>Funkcje mogą jednak zwracać także wartość. Typ zmiennej, jaka jest zwracana znajduje się przed nazwą funkcji.</p>
 <p>Weźmy dla przykładu funkcję, która przyjmuje dwie wartości (jedną typu <code>double</code>, drugą typu <code>float</code>) i zwraca liczbę całkowitą równą 5, gdy większą wartość ma pierwszy argument lub wartość 10 w przeciwnym razie. Przeanalizujmy odpowiednio deklarację i kod takiej funkcji:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b);
-
-<span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b) {
-   <span class="dt">int</span> Wynik;
-
-   <span class="kw">if</span>(a &gt; b) {
-      Wynik = <span class="dv">5</span>;
-   }
-   <span class="kw">else</span> {
-      Wynik = <span class="dv">10</span>;
-   }
-   <span class="kw">return</span> Wynik;
-}</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b);</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="dt">int</span> KtoryWiekszy(<span class="dt">double</span> a, <span class="dt">float</span> b) {</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">   <span class="dt">int</span> Wynik;</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">   <span class="cf">if</span>(a &gt; b) {</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">      Wynik = <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">   }</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">   <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10">      Wynik = <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">   }</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">   <span class="cf">return</span> Wynik;</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">}</a></code></pre></div>
 <p>Zwróć uwagę na instrukcję <code>return</code>, która służy do zwracania <strong>wartości przechowywanej w konkretnej zmiennej</strong>.</p>
 <p>Ponadto, zmienna zadeklarowana w danej funkcji będzie dla programu widoczna <strong>tylko i wyłącznie wewnątrz tej funkcji</strong>, a nie będzie rozpoznawana w innych fragmentach kodu (np. wewnątrz funkcji <code>main</code>). Prześledźmy jeszcze kod funkcji <code>main()</code>, w której występuje wywołanie naszej funkcji.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> main() {
-  <span class="dt">float</span> c = <span class="fl">8.</span><span class="dv">14</span>;
-  <span class="dt">double</span> d = <span class="fl">-7.</span><span class="dv">3814</span>;
-  <span class="dt">int</span> InnaZmienna = <span class="dv">15</span>;
- 
-  KtoryWiekszy(d, c);
-  InnaZmienna = KtoryWiekszy(d, c);
-  InnaZmienna = KtoryWiekszy(<span class="fl">12.</span><span class="dv">5</span>, c);
-}</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="dt">float</span> c = <span class="fl">8.14</span>;</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="dt">double</span> d = <span class="fl">-7.3814</span>;</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="dt">int</span> InnaZmienna = <span class="dv">15</span>;</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"> </a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">  KtoryWiekszy(d, c);</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">  InnaZmienna = KtoryWiekszy(d, c);</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">  InnaZmienna = KtoryWiekszy(<span class="fl">12.5</span>, c);</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">}</a></code></pre></div>
 <div id="cwiczenia-4" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>

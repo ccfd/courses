@@ -13,7 +13,7 @@
 <meta name="author" content="rev. K. Marchlewski" />
 
 
-<title></title>
+<title>info3_lab_1.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,41 +29,71 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -121,8 +151,14 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -138,7 +174,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -158,6 +193,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -179,18 +251,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -596,7 +727,7 @@ stud01@eto:~$</code></pre>
 <div id="pierwsze-starcie" class="section level2">
 <h2>Pierwsze starcie</h2>
 <p>Wpisz w konsoli polecenie <code>date</code> i wciśnij enter. Komputer wyświetli aktualną (jego zdaniem) datę i godzinę. Poniżej ponownie wyświetli się linijka kończącą się na <code>$</code>, oznaczającą, że komputer czeka na nowe polecenia. Używając strzałek <code>góra</code> i <code>dół</code> możesz przeglądać historię poleceń. Kliknięcie klawiszy <code>Ctrl + R</code> uruchomi opcję wyszukiwania poleceń w historii. Klasyczny znak zachęty zostanie zastąpiony przez</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">(reverse-i-search)`</span><span class="st">&#39;:</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">(</span><span class="ex">reverse-i-search</span><span class="kw">)`</span><span class="st">&#39;:</span></a></code></pre></div>
 <p>Wyszukujemy przez wpisywanie kolejnych znaków z szukanego polecenia, a pod dwukropku system pokarze podpowiedź. Kolejne kliknięcie <code>Ctrl + R</code> pokarze nastęþną sugestię. Innym ułatwieniem jest kończenie nazw. Jeśli wpiszesz <code>dat</code> i naciśniesz 2x klawisz <code>tab</code>, wyświetlona zostanie lista poleceń zaczynających się na <code>dat</code>. Jeśli jest tylko jedno takie polecenie, nazwa zostanie dokończona. Pamiętaj o tych trikach – znacznie ułatwiają pracę w trybie tekstowym.</p>
 </div>
 <div id="poruszanie-sie-po-katalogach" class="section level2">
@@ -625,7 +756,7 @@ stud01@eto:~$</code></pre>
 <div id="tworzenie-i-usuwanie-katalogow" class="section level2">
 <h2>Tworzenie i usuwanie katalogów</h2>
 <p>Do tworzenia katalogów służy polecenie <code>mkdir</code> np.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> nazwa_katalogu</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1">$ <span class="fu">mkdir</span> nazwa_katalogu</a></code></pre></div>
 <p>a do sprawdzenia zawartości aktualnego katalogu polecenie <code>ls</code>. Stwórz teraz katalogi A, B, C i D, każdy wewnątrz poprzedniego. Aby to zrobić będziesz musiał stworzyć katalog A, przejść do niego, następnie stworzyć B, itd. Do usuwania katalogów służy polecenie <code>rmdir</code>. Usuń teraz stworzone katalogi.</p>
 <p>Za pomocą <code>rmdir</code> nie można usunąć katalogu posiadającego zawartość. W tym celu należy wykorzystać polecenie <code>rm -r</code>. Znaki <code>-r</code> po nazwie programu <code>rm</code> są argumentem programu i oznaczają, że katalog ma być usuwany rekurencyjne. Podobne argumenty posiada większość poleceń, np. <code>ls -l</code> pokazuje zawartość danego katalogu w postaci listy zawierającej różne informacje o pliku.</p>
 </div>
@@ -633,13 +764,13 @@ stud01@eto:~$</code></pre>
 <div id="podstawowe-operacja-na-plikach-i-katalogach" class="section level1">
 <h1>Podstawowe operacja na plikach i katalogach</h1>
 <p>Komenda <code>echo</code> wypisuje na ekran ciąg znaków, który podany jest jako jej argument. Można to wykorzystać do stworzenia pierwszego pliku (o znaczeniu symbolu <code>&gt;&gt;</code> będzie na kolejnych zajęciach)</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> pierwszy plik <span class="kw">&gt;&gt;</span> plik.txt</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1">$ <span class="bu">echo</span> pierwszy plik <span class="op">&gt;&gt;</span> plik.txt</a></code></pre></div>
 <p>Aby wyświetlić zawartość pliku na ekranie używamy polecenia <code>cat</code></p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> plik.txt</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1">$ <span class="fu">cat</span> plik.txt</a></code></pre></div>
 <div id="kopiowanie-i-przenoszenie" class="section level2">
 <h2>Kopiowanie i przenoszenie</h2>
 <p>Do kopiowania służy komenda <code>cp CO GDZIE</code>. Stwórz teraz katalog i skopiuj do niego Twój plik. Powinno to wyglądać tak:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cp</span> plik.txt katalog</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" data-line-number="1">$ <span class="fu">cp</span> plik.txt katalog</a></code></pre></div>
 <p>Aby przenieść/zmienić nazwę pliku lub katalogu używamy polecenia <code>mv CO GDZIE</code>. Przejdź do nowego katalogu i zmień nazwę pliku. Następnie usuń plik poleceniem <code>rm</code>.</p>
 <p>Nie zawsze trzeba podawać pełną nazwę pliku/katalogu, który chcemy wykorzystać jako argument programu. Kliknięcie klawisza <code>tab</code> dokończy wpisywaną nazwę. Jeśli podpowiedź nie jest jednoznaczna, po dwukrotnym naciśnięciu klawisza <code>tab</code> w konsoli zostaną wyświetlone nazwy wszystkich plików/katalogów zaczynające się od wpisanych znaków.</p>
 </div>
@@ -647,60 +778,61 @@ stud01@eto:~$</code></pre>
 <div id="pomoc" class="section level1">
 <h1>Pomoc</h1>
 <p>Znakomita większość komend trybu tekstowego posiada porządną dokumentację dostępną od ręki, np.:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">man</span> rm
-$ <span class="kw">rm</span> --help</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1">$ <span class="fu">man</span> rm</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">$ <span class="fu">rm</span> --help</a></code></pre></div>
 <p>W przypadku komendy <code>man</code> dostajemy obszerniejszą dokumentację. Tekst przewija się za pomocą strzałek. Aby zakończyć przeglądanie należy wcisnąć <code>Q</code>. Sprawdź instrukcje dla poleceń <code>who</code>, <code>whoami</code>, <code>finger</code> i <code>date</code>. Sprawdź jak działają.</p>
 </div>
 <div id="program-tar" class="section level1">
 <h1>Program Tar</h1>
 <p>Program <code>tar</code> służy do pakowania i rozpakowywania drzewa katalogów i plików w jeden plik. Plik wynikowy niekoniecznie musi być mniejszy niż oryginalne pliki. Dopiero użycie kompresji zmniejszy rozmiar. Przygotuj najpierw kilka plików do spakowania:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> a
-$ <span class="kw">cd</span> a
-$ <span class="kw">mkdir</span> b
-$ <span class="kw">echo</span> asdasd <span class="kw">&gt;&gt;</span> ./b/c
-$ <span class="kw">cat</span> ./b/c
-<span class="kw">asdasd</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" data-line-number="1">$ <span class="fu">mkdir</span> a</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">$ <span class="bu">cd</span> a</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">$ <span class="fu">mkdir</span> b</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">$ <span class="bu">echo</span> asdasd <span class="op">&gt;&gt;</span> ./b/c</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">$ <span class="fu">cat</span> ./b/c</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="ex">asdasd</span></a></code></pre></div>
 <p>Teraz spakuj je a następnie obejrzyj zawartość archiwum za pomocą programu <code>mc</code>.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">tar</span> -cf test.tar b
-$ <span class="kw">ls</span>
-<span class="kw">b</span>  test.tar
-$ <span class="kw">mc</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" data-line-number="1">$ <span class="fu">tar</span> -cf test.tar b</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">$ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="ex">b</span>  test.tar</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">$ <span class="ex">mc</span></a></code></pre></div>
 <p>Sprawdź zawartość katalogu, który spakowałeś, następnie usuń go i rozpakuj archiwum.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span>
-<span class="kw">b</span>  test.tar
-$ <span class="kw">rm</span> -r b
-$ <span class="kw">ls</span>
-<span class="kw">test.tar</span>
-$ <span class="kw">tar</span> -xf test.tar
-$ <span class="kw">ls</span>
-<span class="kw">b</span>  test.tar</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" data-line-number="1">$ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="ex">b</span>  test.tar</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">$ <span class="fu">rm</span> -r b</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">$ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="ex">test.tar</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">$ <span class="fu">tar</span> -xf test.tar</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">$ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="ex">b</span>  test.tar</a></code></pre></div>
 <p>Sprawdź poleceniem <code>ls -la</code> objętość utworzonego archiwum. Następnie spakuj te same pliki z dodatkową flagą <code>z</code>. Dodanie tego parametru uruchamia kompresję programem <code>gzip</code>. Zmień rozszerzenie archiwum na <code>tar.gz</code>. Sprawdź czy plik wynikowy jest mniejszy.</p>
 </div>
 <div id="proste-skrypty" class="section level1">
 <h1>Proste skrypty</h1>
 <p>Najważniejszym aspektem pracy w trybie tekstowym jest możliwość tworzenia skryptów, czyli zapisanych w pliku kolejnych komend wykonywanych tak, jakbyśmy wpisywali je z klawiatury. Więcej o zaawansowanych skryptach dowiesz się na następnych laboratoriach, pierwszy napiszesz dzisiaj.</p>
 <p>Prostymi i dość wygodnymi edytorami tekstu są <code>nano</code> i <code>vim</code>. Uruchom program <code>nano</code> komendą <code>nano skrypt.sh</code> i zapisz do niego pierwszy skrypt:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
-<span class="kw">echo</span> 1
-<span class="kw">echo</span> 2</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="bu">echo</span> 1</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="bu">echo</span> 2</a></code></pre></div>
 <p>Następnie zmień uprawnienia, aby pozwolić na uruchomienie naszego skryptu:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">chmod</span> u+x skrypt.sh
-$ <span class="kw">./skrypt.sh</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb17-1" data-line-number="1">$ <span class="fu">chmod</span> u+x skrypt.sh</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">$ <span class="ex">./skrypt.sh</span></a></code></pre></div>
 <p>Polecenie <code>chmod</code> służy do zmiany uprawnień pliku. <code>u</code> oznacza użytkownika (czyli Ciebie), któremu chcemy nadać <code>+</code> prawo uruchamiania <code>x</code> skryptów/programów.</p>
 <div id="zmienne" class="section level2">
 <h2>Zmienne</h2>
 <p>Bash obsługuje zmienne, tak jak język C. Nie występuje tu jednak typowanie. Aby stworzyć zmienną zawierającą tekst piszemy:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">zmienna=</span><span class="st">&quot;Tekst&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="va">zmienna=</span><span class="st">&quot;Tekst&quot;</span></a></code></pre></div>
 <p>Natomiast wynik działania jakiegoś programu możemy zapisać do zmiennej w następujący sposób:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">zmienna=$(</span> <span class="kw">pwd</span> <span class="ot">)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="va">zmienna=$(</span> <span class="bu">pwd</span> <span class="va">)</span></a></code></pre></div>
 <p>Aby odczytać zmienną piszemy:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">echo</span> <span class="ot">$zmienna</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="bu">echo</span> <span class="va">$zmienna</span></a></code></pre></div>
 </div>
 <div id="drugi-skrypt" class="section level2">
 <h2>Drugi skrypt</h2>
 <p>Przygotuj strukturę katalogów:</p>
 <ul>
-<li>AA</li>
+<li>AA
+<ul>
 <li>BB
 <ul>
 <li>plik.txt</li>
@@ -710,11 +842,13 @@ $ <span class="kw">./skrypt.sh</span></code></pre></div>
 <li>DD</li>
 <li>plik.txt</li>
 </ul></li>
+</ul></li>
 </ul>
 <p>zawierając niezbędne komendy w skrypcie. Plik <code>plik.txt</code> ma zawierać datę zwracaną przez polecenie <code>date</code>.</p>
 <p>Zmodyfikuj skrypt tak, aby nazwa każdego katalogu zaczynała się przedrostkiem przekazanym do skryptu przy jego uruchomieniu.</p>
 <ul>
-<li>przed_AA</li>
+<li>przed_AA
+<ul>
 <li>przed_BB
 <ul>
 <li>plik.txt</li>
@@ -724,20 +858,21 @@ $ <span class="kw">./skrypt.sh</span></code></pre></div>
 <li>przed_DD</li>
 <li>plik.txt</li>
 </ul></li>
+</ul></li>
 </ul>
 <p>Abu uruchomić skrypt wraz z dwoma argumentami <code>arg1</code> i <code>arg2</code> należy wpisać</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">./skrypt.sh</span> arg1 arg2</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="ex">./skrypt.sh</span> arg1 arg2</a></code></pre></div>
 <p>Do argumentów <code>arg1</code> i <code>arg2</code> mamy dostęp z wewnątrz skryptu dzięki tzw. zmiennym programowym. Jest ich dziewięć <code>$1</code> – <code>$9</code>, w tym przypadku będą to zmienne <code>$1</code> i <code>$2</code>.</p>
 </div>
 <div id="petle" class="section level2">
 <h2>Pętle</h2>
 <p>Przygotuj skrypt zawierający:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
-
-<span class="kw">for</span> <span class="kw">i</span> in *.txt
-<span class="kw">do</span>
-  <span class="kw">cp</span> <span class="ot">$i</span> <span class="ot">$1</span>_<span class="ot">$i</span>
-<span class="kw">done</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">for</span> <span class="ex">i</span> in *.txt</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="kw">do</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">  <span class="fu">cp</span> <span class="va">$i</span> <span class="va">$1</span>_<span class="va">$i</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="kw">done</span></a></code></pre></div>
 <p>i uruchom go w katalogu zawierającym pliki z rozszerzeniem <code>.txt</code>. W jaki sposób działa? Pamiętaj o argumencie skryptu!</p>
 <p>Napisz skrypt, który tworzy katalog o nazwie podanej jako pierwszy argument skryptu <code>$1</code> i kopiuje do niego wszystkie pliki <code>.txt</code> dodając do ich nazwy przedrostek podany jako drugi argument <code>$2</code>. Co się stanie jeśli nie podasz argumentów do skryptu?</p>
 </div>
@@ -746,9 +881,9 @@ $ <span class="kw">./skrypt.sh</span></code></pre></div>
 <h1>GUI</h1>
 <p>Jeśli korzystasz z systemu Linux dane z komputera zdalnego możesz skopiować na komputer lokalny za pomocą polecenia <code>scp</code>. Będąc cały czas zalogowanym na serwer <code>eto</code> stwórz w katalogu domowym plik <code>copyme</code>. Wyloguj się poleceniem <code>exit</code> lub skrótem klawiaturowym <code>Ctrl+D</code>.</p>
 <p>Otwórz konsolę na komputerze lokalnym i ściągnij utworzony plik za pomocą polecenia</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> stud01@info3.meil.pw.edu.pl:~/copyme ./</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="fu">scp</span> stud01@info3.meil.pw.edu.pl:~/copyme ./</a></code></pre></div>
 <p>W ogólności składnia ma postać</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">scp</span> login@host:sciezka_do_pliku gdzie_zapisac</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="fu">scp</span> login@host:sciezka_do_pliku gdzie_zapisac</a></code></pre></div>
 <p>Program <code>scp</code> działa tak jak <code>cp</code>, z tą różnicą, że cel (lub źródło) znajduje się na innym komputerze obsługującym połączenia ssh. Dla komputerów z systemem z rodziny Windows stworzono program <code>WinSCP</code>, który pozwala na kopiowanie danych w trybie graficznym.</p>
 </div>
 <div id="deser" class="section level1">
@@ -756,20 +891,20 @@ $ <span class="kw">./skrypt.sh</span></code></pre></div>
 <div id="pre-rekwizyty" class="section level2">
 <h2>Pre-rekwizyty</h2>
 <p>Sprawdź do czego służy program <code>write</code> z użyciem polecenia <code>man</code>. Porównaj także rezultaty komend:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">who</span>
-$ <span class="kw">who</span> <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $1}&#39;</span>
-$ <span class="kw">who</span> <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $2}&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb25-1" data-line-number="1">$ <span class="fu">who</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">$ <span class="fu">who</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $1}&#39;</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">$ <span class="fu">who</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $2}&#39;</span></a></code></pre></div>
 <p>Zwróć uwagę na symbol <code>|</code>, który oznacza przekierowanie wyjścia jednego programu na wejście drugiego. Taki zapis nazywa się “potokiem” (ang. pipe).</p>
 </div>
 <div id="skrypt-spamera" class="section level2">
 <h2>Skrypt spamera</h2>
 <p>Stwórz skrypt:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
-
-<span class="kw">for</span> <span class="kw">u</span> in <span class="ot">$(</span> <span class="kw">who</span> <span class="kw">|</span> <span class="kw">awk</span> <span class="st">&#39;{print $1}&#39;</span> <span class="ot">)</span>
-<span class="kw">do</span>
-   <span class="kw">echo</span> <span class="ot">$u</span>
-<span class="kw">done</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw">for</span> <span class="ex">u</span> in <span class="va">$(</span> <span class="fu">who</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $1}&#39;</span> <span class="va">)</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="kw">do</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">   <span class="bu">echo</span> <span class="va">$u</span></a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="kw">done</span></a></code></pre></div>
 <p>i sprawdź jak działa. Następnie zmodyfikuj go tak, aby “zaspamować” wszystkich zalogowanych.</p>
 </div>
 </div>
