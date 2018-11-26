@@ -732,12 +732,15 @@ div.tocify {
 <li><p>Usuń wszystkie elementu z tablicy tab przez wykorzystanie metody <code class="sourceCode cpp">clear()</code>. Sprawdź czy tablica jest rzeczywiście pusta przez sprawdzenie rozmiaru (<code class="sourceCode cpp">size()</code>) i metody <code class="sourceCode cpp">empty()</code> – zwraca wartość <code class="sourceCode cpp"><span class="dt">bool</span></code> w zależności od tego czy tablica jest pusta czy też nie.</p></li>
 <li><p>Zmodyfikuj program tak aby zamiast kolekcji typu vector korzystać z kolekcji typu list (pamiętaj o include <list>).</p></li>
 </ul>
-<p>##Zadanie 2 Korzystanie ze standardowych algorytmów.</p>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Korzystanie ze standardowych algorytmów.</p>
 <ul>
 <li>Posortuj rosnąco i wydrukuj zawartość tablicy <code class="sourceCode cpp">tab</code>. Skorzystaj z funkcji <code class="sourceCode cpp">sort</code> (pamiętaj o <code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;algorithm&gt;</span></code> i <code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;functional&gt;</span></code>):</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1">sort( tab.begin(), tab.end() );</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">Posortuj malejąco i wydrukuj zawartość tablicy tab:</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">// Posortuj malejąco i wydrukuj zawartość tablicy tab:</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">sort( tab.begin(), tab.end(), greater&lt;<span class="dt">int</span>&gt;() );</a></code></pre></div>
 <ul>
 <li><p>Czy efekt z punktu poprzedniego można osiągnąć inaczej? Czy funkcja <code class="sourceCode cpp">sort</code> będzie działała dla kolekcji typu <code class="sourceCode cpp">list</code> (dlaczego)?</p></li>
