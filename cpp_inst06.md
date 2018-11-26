@@ -42,13 +42,13 @@ cout << *ritr <<endl;
 
 * Zmodyfikuj program tak aby zamiast kolekcji typu vector korzystać z kolekcji typu list (pamiętaj o include <list>).
 
-##Zadanie 2
+## Zadanie 2
 Korzystanie ze standardowych algorytmów.
 
 * Posortuj rosnąco i wydrukuj zawartość tablicy `tab`{.cpp}. Skorzystaj z funkcji `sort`{.cpp} (pamiętaj o `#include <algorithm>`{.cpp} i `#include <functional>`{.cpp}):
 ```cpp
 sort( tab.begin(), tab.end() );
-Posortuj malejąco i wydrukuj zawartość tablicy tab:
+// Posortuj malejąco i wydrukuj zawartość tablicy tab:
 sort( tab.begin(), tab.end(), greater<int>() );
 ```
 
