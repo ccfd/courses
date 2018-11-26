@@ -145,7 +145,7 @@ for(i = 0; i < n; i++) {
 }
 ```
 
-### Wykożystanie funkcji do poprawienia przejrzystości programu
+### Wykorzystanie funkcji do poprawienia przejrzystości programu
 Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach `srednia()` i `odchStd()`.
 Funkcje te powinny mieć poniższe nagłówki:
 ```c++
