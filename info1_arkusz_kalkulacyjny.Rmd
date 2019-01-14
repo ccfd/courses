@@ -49,7 +49,7 @@ Druga tabela powinna zawierać dwie kolumny: `Nr indeksu` oraz `Imię i Nazwisko
 
 - Kolumnę `Nr indeksu` należy uzupełnić numerami indeksu z poprzedniej tabeli ale w innej kolejności.
 - Kolumnę `Imię i Nazwisko` należy wypełnić korzystając z funkcji `CONCATENATE()` i `VLOOKUP()`.
-Funkcje można zagnieżdżać, np. wywołanie `VLOOKUP(CONCATENATE(...), CONCATENATE(...))` jest prawidłowe.  
+Funkcje można zagnieżdżać, np. wywołanie `CONCATENATE(VLOOKUP(...), VLOOKUP(...))` jest prawidłowe.  
 Funkcja `CONCATENATE()` łączy wybrane ciągi znaków w jeden.
 Przykładowo, formuła `CONCATENATE(A1, " ", A2)` złączy napisy zawarte w komórkach *A1* i *A2* wstawiając między nie znak spacji.  
 Funkcja `VLOOKUP()` wyszukuje wiersz zawierający zadaną wartość w pierwszej kolumnie wybranej tabeli i zwraca wartość znajdującą się w wybranej kolumnie.
