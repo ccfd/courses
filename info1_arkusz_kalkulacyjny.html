@@ -670,7 +670,7 @@ Argumentem jest zakres komórek, których wartości należy zsumować. Przykład
 <p>Druga tabela powinna zawierać dwie kolumny: <code>Nr indeksu</code> oraz <code>Imię i Nazwisko</code>.</p>
 <ul>
 <li>Kolumnę <code>Nr indeksu</code> należy uzupełnić numerami indeksu z poprzedniej tabeli ale w innej kolejności.</li>
-<li>Kolumnę <code>Imię i Nazwisko</code> należy wypełnić korzystając z funkcji <code>CONCATENATE()</code> i <code>VLOOKUP()</code>. Funkcje można zagnieżdżać, np. wywołanie <code>VLOOKUP(CONCATENATE(...), CONCATENATE(...))</code> jest prawidłowe.<br />
+<li>Kolumnę <code>Imię i Nazwisko</code> należy wypełnić korzystając z funkcji <code>CONCATENATE()</code> i <code>VLOOKUP()</code>. Funkcje można zagnieżdżać, np. wywołanie <code>CONCATENATE(VLOOKUP(...), VLOOKUP(...))</code> jest prawidłowe.<br />
 Funkcja <code>CONCATENATE()</code> łączy wybrane ciągi znaków w jeden. Przykładowo, formuła <code>CONCATENATE(A1, &quot; &quot;, A2)</code> złączy napisy zawarte w komórkach <em>A1</em> i <em>A2</em> wstawiając między nie znak spacji.<br />
 Funkcja <code>VLOOKUP()</code> wyszukuje wiersz zawierający zadaną wartość w pierwszej kolumnie wybranej tabeli i zwraca wartość znajdującą się w wybranej kolumnie. Na przykład, formuła <code>VLOOKUP(A10, A1:D6, 3, 0)</code> wyszuka zawartość komórki <em>A10</em> w pierwszej kolumnie tabeli <em>A1:D6</em> i zwróci zawartość odpowiedniego wiersza w trzeciej kolumnie. Ostatni parametr funkcji – zero, oznacza, że pierwsza kolumna tabeli, w której wyszukujemy nie jest posortowana rosnąco.</li>
 </ul>
