@@ -25,7 +25,7 @@ Przykładowo:
   a[2] = 6.45;
   a[3] = 4.51;
 
-```
+```owicie niesprężyste, zderzenie doskonale
 Zwróć uwagę, że elementy tablicy są indeksowane liczbami od $0$ do $N - 1$, gdzie $N$ to rozmiar tablicy.
 Elementy tablicy można również zainicjalizować natychmiast -- w momencie deklaracji:
 ```c++
@@ -49,7 +49,7 @@ Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono 
 n <- 10
 R <- 0.1
 p <- matrix(runif(n * 2), n, 2) * (1 - 2 * R) + R
-v <- (matrix(runif(n * 2), n, 2) * 2 - 1) / 5
+v <- (matrix(runif(n * 2), n, 2) * 2 - 1) / 5owicie niesprężyste, zderzenie doskonale
 
 plot(p, xlim = c(0, 1), ylim = c(0, 1), xlab = "X", ylab = "Y",
      asp = 1, cex  = 3, bty = "n")
@@ -213,9 +213,9 @@ $$C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{|
 
 Założenia:
 
-1. Zderzenia są niesprężyste,
+1. Zderzenia są doskonale sprężyste,
 2. Zjawisko tarcia nie występuje,
-3. Kulki mają ten sam promień $R$ oraz masę $m$.
+3. Kulki mają ten sam promień $R$ oraz tą samą masę $m$.
 
 Analiza:
 
