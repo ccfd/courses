@@ -49,7 +49,7 @@ Przykładowy ekran początkowy widoczny jest na Rysunku 1 (strzałki zaznaczono 
 n <- 10
 R <- 0.1
 p <- matrix(runif(n * 2), n, 2) * (1 - 2 * R) + R
-v <- (matrix(runif(n * 2), n, 2) * 2 - 1) / 5owicie niesprężyste, zderzenie doskonale
+v <- (matrix(runif(n * 2), n, 2) * 2 - 1) / 5
 
 plot(p, xlim = c(0, 1), ylim = c(0, 1), xlab = "X", ylab = "Y",
      asp = 1, cex  = 3, bty = "n")
@@ -320,35 +320,31 @@ Sprawdź wynik uruchomienia programu w wersji 'release/debug' oraz 'x84/x64'.
 - Poeksperymtuj z różnymi rozmiarami tablicy `tab`.
 
 ```c++
-
-void static_array_overflow()
-{
+void static_array_overflow() {
 	int a = 123;
-	int tab[5];
 	int b = 456;
-	printf("Adress of &a = %p value of a = %d \n", &a, a);
-	printf("Adress of &b = %p value of b = %d \n", &b, b);
-	for (int i = -10; i < 5; i++){
+	int tab[5];
+
+	printf("Adress of &a = %p, value of a = %d \n", &a, a);
+	printf("Adress of &b = %p, value of b = %d \n", &b, b);
+	for (int i = -10; i < 5; i++) {
 		tab[i] = i;
 	}
 
-	for (int i = -10; i < 10; i++){
+	for (int i = -10; i < 10; i++) {
 		printf("&tab[%d] = %p tab[%d] = %d \n ", i, &tab[i], i, tab[i]);
 	}
 
-	printf("Adress of &a = %p value of a = %d \n", &a, a);
-	printf("Adress of &b = %p value of b = %d \n", &b, b);
+	printf("Adress of &a = %p, value of a = %d \n", &a, a);
+	printf("Adress of &b = %p, value of b = %d \n", &b, b);
 }
 
-int main()
-{
+int main() {
 	static_array_overflow();
 	printf("\n---DONE---\n");
 
 	return 0;
 }
-
-
 ```
 
 ### Konfiguracja Debug/Release
