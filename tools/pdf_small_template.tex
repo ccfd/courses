@@ -1,5 +1,5 @@
 \documentclass[twoside]{article}
-\usepackage{lmodern}
+%\usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 %\usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -7,6 +7,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+\DeclareUnicodeCharacter{2660}{\ensuremath{\spadesuit}}
+\DeclareUnicodeCharacter{2663}{\ensuremath{\clubsuit}}
+\DeclareUnicodeCharacter{2665}{\ensuremath{\heartsuit}}
+\DeclareUnicodeCharacter{2666}{\ensuremath{\diamondsuit}}
+
 
 \usepackage{geometry}
 \geometry{

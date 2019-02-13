@@ -42,10 +42,14 @@ Zdefiniuj wektor $g$ i rozwiąż równanie sprzężone (zauważ że $S$ jest sym
 
 ### Zadanie
 
-Zdefiniuj funkcję `calc\_grad(int n, double * x, double * lambda, double * grad)`. Skopiuj do niej zawartość funkcji mnożącej `SMult` i zmień:\\
-`r[$\diamondsuit$] += x[$\spadesuit$]*pow(thick[$\clubsuit$],gamma)*$\heartsuit$;`\\
-na:\\
-`grad[$\clubsuit$] += gamma*pow(thick[$\clubsuit$],gamma-1)*lambda[$\diamondsuit$]*x[$\spadesuit$]*$\heartsuit$;`\\
+Zdefiniuj funkcję `calc_grad(int n, double * x, double * lambda, double * grad)`. Skopiuj do niej zawartość funkcji mnożącej `SMult` i zmień:
+
+`r[♦] += x[♠]*pow(thick[♣],gamma)*♥;`
+
+na:
+
+`grad[♣] += gamma*pow(thick[♣],gamma-1)*lambda[♦]*x[♠]*♥;`
+
 Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długość jak `thick`, czyli `mx*my`. Pamiętaj także by wyzerować `grad` i wyciąć część murującą stopnie swobody.
 
 
