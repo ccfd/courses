@@ -6,7 +6,7 @@ author: Ł. Łaniewski-Wołłk
 title: Topologiczna optymalizacja z użyciem równań sprzeżonych
 ---
 
-Na dzisiejszych zajęciach dobierzemy wektor grubości elementów $\theta=\text`thick`$, tak by ugięcie belki było jak najmniejsze. Jedynym elementem który zależy od $\theta$ jest macierz sztywności:
+Na dzisiejszych zajęciach dobierzemy wektor grubości elementów $\theta=\text{thick}$, tak by ugięcie belki było jak najmniejsze. Jedynym elementem który zależy od $\theta$ jest macierz sztywności:
 
 \[S(\theta)x = F\]
 
@@ -57,15 +57,16 @@ Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długo�
 
 # Optymalizacja
 
-Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:\\
-`thick[i] += grad[i]; `
+Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:
+
+`thick[i] += grad[i];`
 
 ### Zadanie
 
 Dodaj gradient do parametrów `thick[i] += grad[i];`. Iteruj taką procedurę, oglądając wyniki.
 
 
-Tak ustawiony problem optymalizacyjny jest nieograniczony. Chcemy jednak uzyskać najmniejsze ugięcie przy ustalonej ,,masie'' belki. Tzn: chcemy zachować sumę parametrów $\theta$: $\sum_i\text`thick[i]` = \text`frac*mx*my`$. Możemy łatwo nałożyć ten więz na `grad`:
+Tak ustawiony problem optymalizacyjny jest nieograniczony. Chcemy jednak uzyskać najmniejsze ugięcie przy ustalonej ,,masie'' belki. Tzn: chcemy zachować sumę parametrów $\theta$: $\sum_i\text{thick[i]} = \text{frac*mx*my}$. Możemy łatwo nałożyć ten więz na `grad`:
 
 
 ### Zadanie
@@ -92,7 +93,7 @@ Wynik dodania gradientu do parametrów wstaw do nowego wektora `nt[i] = thick[i]
 
 ### Zadanie
 
-Zsumuj wartości `thick` po poprzedniej procedurze. Dobierz `scale` metodą bisekcji tak by $\sum_i\text`thick[i]` = \text`frac*mx*my`$.
+Zsumuj wartości `thick` po poprzedniej procedurze. Dobierz `scale` metodą bisekcji tak by $\sum_i\text{thick[i]} = \text{frac*mx*my}$.
 
 
 
