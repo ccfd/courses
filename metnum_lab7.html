@@ -629,7 +629,7 @@ div.tocify {
 </div>
 
 
-<p>Na dzisiejszych zajęciach dobierzemy wektor grubości elementów <span class="math inline">\(\theta=\text`thick`\)</span>, tak by ugięcie belki było jak najmniejsze. Jedynym elementem który zależy od <span class="math inline">\(\theta\)</span> jest macierz sztywności:</p>
+<p>Na dzisiejszych zajęciach dobierzemy wektor grubości elementów <span class="math inline">\(\theta=\text{thick}\)</span>, tak by ugięcie belki było jak najmniejsze. Jedynym elementem który zależy od <span class="math inline">\(\theta\)</span> jest macierz sztywności:</p>
 <p><span class="math display">\[S(\theta)x = F\]</span></p>
 <p>A dokładniej: macierz sztywności jest sumą macierzy elementów przemnożonych przez elementy <span class="math inline">\(\theta\)</span>. Dla późniejszej poprawy zbieżności dołożymy potęgę <span class="math inline">\(\gamma=3\)</span> do tej zależności: <span class="math display">\[S(\theta) = \sum_i\theta_k^\gamma K^k\]</span></p>
 <p>Będziemy chcieli zoptymalizować przesunięcie węzła w którym przyłożyliśmy siłę. Stwórzmy wektor <span class="math inline">\(g\)</span>, który ma <span class="math inline">\(-1\)</span> w miejscu tego przemieszczenia, a resztę wartości ma zerową. Teraz nasza funkcja celu to <span class="math inline">\(J = -\langle x, g \rangle\)</span>. Potraktujmy nasze równanie statyki jako więz i rozpiszmy funkcję celu powiększoną o mnożniki Lagrange: <span class="math display">\[-\sum_i x_i g_i  + \sum_j\lambda_j (\sum_iS_{ji}(\theta)x_i - F_j)\]</span> Optymalne rozwiązanie powinno zerować pochodne po <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span> i <span class="math inline">\(\theta\)</span>: <span class="math display">\[\begin{cases}
@@ -648,15 +648,20 @@ div.tocify {
 </div>
 <div id="zadanie-2" class="section level3">
 <h3>Zadanie</h3>
-<p>Zdefiniuj funkcję <code>calc\_grad(int n, double * x, double * lambda, double * grad)</code>. Skopiuj do niej zawartość funkcji mnożącej <code>SMult</code> i zmień:\ <code>r[$\diamondsuit$] += x[$\spadesuit$]*pow(thick[$\clubsuit$],gamma)*$\heartsuit$;</code>\ na:\ <code>grad[$\clubsuit$] += gamma*pow(thick[$\clubsuit$],gamma-1)*lambda[$\diamondsuit$]*x[$\spadesuit$]*$\heartsuit$;</code>\ Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długość jak <code>thick</code>, czyli <code>mx*my</code>. Pamiętaj także by wyzerować <code>grad</code> i wyciąć część murującą stopnie swobody.</p>
+<p>Zdefiniuj funkcję <code>calc_grad(int n, double * x, double * lambda, double * grad)</code>. Skopiuj do niej zawartość funkcji mnożącej <code>SMult</code> i zmień:</p>
+<p><code>r[♦] += x[♠]*pow(thick[♣],gamma)*♥;</code></p>
+<p>na:</p>
+<p><code>grad[♣] += gamma*pow(thick[♣],gamma-1)*lambda[♦]*x[♠]*♥;</code></p>
+<p>Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długość jak <code>thick</code>, czyli <code>mx*my</code>. Pamiętaj także by wyzerować <code>grad</code> i wyciąć część murującą stopnie swobody.</p>
 </div>
 <div id="optymalizacja" class="section level1">
 <h1>Optymalizacja</h1>
-<p>Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:\ <code>thick[i] += grad[i];</code></p>
+<p>Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:</p>
+<p><code>thick[i] += grad[i];</code></p>
 <div id="zadanie-3" class="section level3">
 <h3>Zadanie</h3>
 <p>Dodaj gradient do parametrów <code>thick[i] += grad[i];</code>. Iteruj taką procedurę, oglądając wyniki.</p>
-<p>Tak ustawiony problem optymalizacyjny jest nieograniczony. Chcemy jednak uzyskać najmniejsze ugięcie przy ustalonej ,,masie’’ belki. Tzn: chcemy zachować sumę parametrów <span class="math inline">\(\theta\)</span>: <span class="math inline">\(\sum_i\text`thick[i]` = \text`frac*mx*my`\)</span>. Możemy łatwo nałożyć ten więz na <code>grad</code>:</p>
+<p>Tak ustawiony problem optymalizacyjny jest nieograniczony. Chcemy jednak uzyskać najmniejsze ugięcie przy ustalonej ,,masie’’ belki. Tzn: chcemy zachować sumę parametrów <span class="math inline">\(\theta\)</span>: <span class="math inline">\(\sum_i\text{thick[i]} = \text{frac*mx*my}\)</span>. Możemy łatwo nałożyć ten więz na <code>grad</code>:</p>
 </div>
 <div id="zadanie-4" class="section level3">
 <h3>Zadanie</h3>
@@ -674,7 +679,7 @@ div.tocify {
 </div>
 <div id="zadanie-7" class="section level3">
 <h3>Zadanie</h3>
-<p>Zsumuj wartości <code>thick</code> po poprzedniej procedurze. Dobierz <code>scale</code> metodą bisekcji tak by <span class="math inline">\(\sum_i\text`thick[i]` = \text`frac*mx*my`\)</span>.</p>
+<p>Zsumuj wartości <code>thick</code> po poprzedniej procedurze. Dobierz <code>scale</code> metodą bisekcji tak by <span class="math inline">\(\sum_i\text{thick[i]} = \text{frac*mx*my}\)</span>.</p>
 </div>
 <div id="zadanie-8" class="section level3">
 <h3>Zadanie</h3>
