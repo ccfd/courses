@@ -18,13 +18,11 @@ number: 0
 1. Wykład odbywa się przez pół semestru w pt. 8:15-10:00
 2. Ćwiczenia odbywają się co dwa tygodnie w terminach:
 
-    - pon. 8:15-10:00,
     - wt. 8:15-10:00,
-    - czw. 16:15-18:00.
+    - wt. 10:15-12:00,
+    - pt. 10:15-12:00.
     
-3. Zapisy do grup laboratoryjnych odbywają się na pierwszym wykładzie.
-
-4. Zaliczenie przedmiotu składa się z dwóch części:
+3. Zaliczenie przedmiotu składa się z dwóch części:
 
     - kolokwium wykładowe (warunek konieczny niewystarczający)
     - kolokwium na ćwiczeniach.
