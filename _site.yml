@@ -138,6 +138,16 @@ navbar:
         href: python_inst04.html
       - text: "Instrukcja V"
         href: python_inst05.html
+        
+    - text: "KAP/ACFD"
+      menu:
+      - text: "Informacje"
+        href: kap_lab.html
+      - text: "Instrukcja I"
+        href: kap_lab01.html      
+      - text: "Instrukcja II"
+        href: kap_lab02.html
+        
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:
