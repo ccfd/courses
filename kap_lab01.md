@@ -10,7 +10,7 @@ Purpose of this laboratory is to practice a generation of block-structured mesh 
 
 __Duration__: 2h
 
-##Geometry and Mesh
+## Geometry and Mesh
 
 1. Open Workbench 14 (Start Menu/Programy/ANSYS 14...). Drag and drop the **Geometry**
 component system into the **Project Schematic**. Open the **Geometry** cell. Make a
@@ -21,7 +21,7 @@ file under **Coordinates File**. Click on **Generate** button.
 
 ![Final block-structured mesh](figures/KAP/Lab1_mesh.png "Final block-structured mesh")
 
-##Fluent
+## Fluent
 
 1. Read the mesh file. Check the scale. Keep the length in m. Rotate the mesh by 1.55 deg.
 **Mesh/Rotate/** set -1.55 deg.
@@ -43,7 +43,7 @@ pressure and static temperature has to be specified in the boundary condition ta
     * Set the static temperature to $283 K$. For air $\gamma=1.4$.
     \[\frac{T_{0}}{T} =  1 +\left(\frac{\gamma - 1}{2}\right) M^{2}\ \]
     
-    *Turbulence quantities. Ratio of turbulent to molecular viscosity $\nu = 10$, Turbulent intensity $TI = 1%$.
+    * Turbulence quantities. Ratio of turbulent to molecular viscosity $\nu = 10$, Turbulent intensity $TI = 1%$.
 
 4. Run the computations. The residuals should fall down below $10^{-5}$. The numerical scheme
 should be set to the second order upwind.
