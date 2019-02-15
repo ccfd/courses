@@ -10,7 +10,7 @@ Purpose of this laboratory is to practice the simulation of the unsteady turbule
 
 __Duration__: 2h
 
-##Geometry and Mesh
+## Geometry and Mesh
 
 ## Fluent
 
