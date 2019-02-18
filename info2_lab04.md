@@ -45,7 +45,7 @@ y(t_0) &=& y_0 \\
 \right.
 $$
 Rozwiązanie dokładne ma postać:
-$$ y(t) = y_0 · e^{\lambda(t−t_0)} $$
+$$ y(t) = y_0 · e^{\lambda(t-t_0)} $$
 
 1. Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu Eulera.
 2. Napisz program rozwiązujący dane zagadnienie, z wykorzystaniem schematu RK4

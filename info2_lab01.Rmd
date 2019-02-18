@@ -124,9 +124,9 @@ Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą do
 Do tej pory punkty były rozłożone równomiernie.
 Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku.
 Można tego dokonać następująco.
-Chcemy rozłożyć punkty w przedziale $x = [−1, 1]$.
+Chcemy rozłożyć punkty w przedziale $x = [-1, 1]$.
 Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w $x = 0$ i promieniu $R = 1$).
-Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n − 1$ fragmentów.
+Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n - 1$ fragmentów.
 Teraz dokonajmy rzutowania punktów podziału na oś $x$.
 Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi $x$ dane wzorem:
 $$
