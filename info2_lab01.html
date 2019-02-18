@@ -24,6 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -712,7 +714,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info2_lab01.md">
+  <a href="https://github.com/ccfd/courses/edit/master/info2_lab01.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -746,7 +748,7 @@ div.tocify {
 <li><a href="http://ccfd.github.io/courses/code/info2/inter.cpp">Plik źródłowy inter.cpp</a></li>
 </ul>
 <div id="interpolacja-w-praktyce-inzynierskiej" class="section level2">
-<h2>1 Interpolacja w praktyce inżynierskiej</h2>
+<h2>1. Interpolacja w praktyce inżynierskiej</h2>
 <p>Dziś będziemy się zajmować zagadnieniem interpolacji. Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości, rurą wypływa woda aż do jego opróżnienia. Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika. W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, aby umieć przewidzieć czas opróżniania dla dowolnej wysokości umieszczenia zbiornika. Wysokość ta zawiera się między ustalonymi wartościami skrajnymi, a więc np. na wysokości wynoszącej 3.27 m. Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność. Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.</p>
 <div id="meritum" class="section level3">
 <h3>Meritum</h3>
@@ -754,8 +756,8 @@ div.tocify {
 </div>
 </div>
 <div id="interpolacja-wielomianowa" class="section level2">
-<h2>2 Interpolacja wielomianowa</h2>
-<p>W tym momencie przejdziemy do zagadnienia interpolacji wielomianowej Lagrange’a. Funkcja interpolująca to wielomian posataci: <span class="math display">\[
+<h2>2. Interpolacja wielomianowa</h2>
+<p>W tym momencie przejdziemy do zagadnienia interpolacji wielomianowej Lagrange’a. Funkcja interpolująca to wielomian postaci: <span class="math display">\[
 w(x) = \sum_{i=0}^{n} y_i \prod_{j=0 \land j\neq i}^{n} \frac{x - x_j}{x_i - x_j}
 \]</span> gdzie <span class="math inline">\((x_i, y_i)\)</span> to punkt pomiarowy.</p>
 <div id="cwiczenia" class="section level3">
@@ -785,7 +787,7 @@ i = 0, \ldots n-1
 <ol start="2" style="list-style-type: decimal">
 <li>Oblicz wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. o współrzędnych: <span class="math display">\[
 t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
-\]</span> Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej:</li>
+\]</span> Wartość funkcji w dowolnie wybranym punkcie (dla argumentu <code>xx</code> leżącego w dowolnym miejscu między punktami eksperymentalnymi) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej:</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">int</span> main() {</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};</a>
@@ -795,7 +797,7 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 <a class="sourceLine" id="cb2-6" data-line-number="6">  f = lagrange(x, y, <span class="dv">3</span>, t);</a>
 <a class="sourceLine" id="cb2-7" data-line-number="7">}</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li>Wydrukuj usyskane wyniki (dla każdego <span class="math inline">\(t_i\)</span>) na ekran.</li>
+<li>Wydrukuj uzyskane wyniki (dla każdego <span class="math inline">\(t_i\)</span>) na ekran.</li>
 <li>Wyświetl je graficznie, korzystając z funkcji <code>scale</code> zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">int</span> main() {</a>
@@ -811,8 +813,8 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 <a class="sourceLine" id="cb3-11" data-line-number="11">}</a></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Zapisz wyniki do pliku.</li>
-<li>Obejrzyj wyniki na wykresie dla różnych wartości parametru n.</li>
-<li>Dla wybranego n stwórz w Excelu wykres błędu interpolacji.</li>
+<li>Obejrzyj wyniki na wykresie dla różnych wartości parametru <span class="math inline">\(n\)</span>.</li>
+<li>Dla wybranego <span class="math inline">\(n\)</span> stwórz w Excelu wykres błędu interpolacji.</li>
 <li>Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji <span class="math inline">\(|x|\)</span>. Dlaczego tak wyglądają?</li>
 </ol>
 </div>
@@ -827,19 +829,20 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 </div>
 </div>
 <div id="dla-ambitnych" class="section level2">
-<h2>3 Dla ambitnych</h2>
-<p>Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających. <img src="figures/info2/inst1/chebyshev_nodes.png" title="Ilustracja generacji węzłów Czebyszewa" /></p>
+<h2>3. Dla ambitnych</h2>
+<p>Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających.</p>
 <div id="wezy-czebyszewa" class="section level3">
 <h3>Węzły Czebyszewa</h3>
-<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku. Można tego dokonać następująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [−1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n − 1\)</span> fragmentów. Teraz zrzutujmy punkty podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi <span class="math inline">\(x\)</span> dane wzorem: <span class="math display">\[
+<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku. Można tego dokonać następująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [−1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n − 1\)</span> fragmentów. Teraz dokonajmy rzutowania punktów podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi <span class="math inline">\(x\)</span> dane wzorem: <span class="math display">\[
 x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
 \]</span> Dla ogólnego przypadku przedziału <span class="math inline">\(x = [a, b]\)</span> wzór wyglądałby tak: <span class="math display">\[
-x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, i = 0, \ldots n - 1
+x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, \; i = 0, \ldots n - 1
 \]</span></p>
-<div id="cwiczenie" class="section level4">
-<h4>Ćwiczenie</h4>
-<p>Zmodyfikuj swój program tak, aby początkowy zestaw punktów generowany był dla współrzędnych zdefiniowanych w powyższy sposób. Sprawdź działanie interpolacji funkcji <span class="math inline">\(|x|\)</span> z użyciem węzłów Czebyszewa. Czy wyniki są inne?</p>
+<p><img src="info2_lab01_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
+<div id="cwiczenie" class="section level3">
+<h3>Ćwiczenie</h3>
+<p>Zmodyfikuj swój program tak, aby początkowy zestaw punktów generowany był dla współrzędnych zdefiniowanych w powyższy sposób. Sprawdź działanie interpolacji funkcji <span class="math inline">\(|x|\)</span> z użyciem węzłów Czebyszewa. Czy wyniki są inne?</p>
 </div>
 </div>
 </div>
