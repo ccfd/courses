@@ -90,7 +90,7 @@ Procedury trapezów i Simpsona to dość elementarne procedury. W programach obl
 
 
 
-Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale $x = [−1, 1]$).
+Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale $x = [-1, 1]$).
 $$ I = \int_{-1}^{1}{f(x)dx} $$
 Całkę w sposób przybliżony oblicza się wg następującego wzoru:
 $$ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
