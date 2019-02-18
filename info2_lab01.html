@@ -707,7 +707,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="info2_lab01.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -833,7 +833,7 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 <p>Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających.</p>
 <div id="wezy-czebyszewa" class="section level3">
 <h3>Węzły Czebyszewa</h3>
-<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku. Można tego dokonać następująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [−1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n − 1\)</span> fragmentów. Teraz dokonajmy rzutowania punktów podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi <span class="math inline">\(x\)</span> dane wzorem: <span class="math display">\[
+<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku. Można tego dokonać następująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [-1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n - 1\)</span> fragmentów. Teraz dokonajmy rzutowania punktów podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi <span class="math inline">\(x\)</span> dane wzorem: <span class="math display">\[
 x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
 \]</span> Dla ogólnego przypadku przedziału <span class="math inline">\(x = [a, b]\)</span> wzór wyglądałby tak: <span class="math display">\[
 x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, \; i = 0, \ldots n - 1

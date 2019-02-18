@@ -705,7 +705,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="info2_lab03.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -753,14 +753,14 @@ div.tocify {
 <h2>2. Metoda bisekcji</h2>
 <p>W przypadu metody bisekcji korzystamy z faktu, że jeśli na końcach pewnego przedziału liczbowego wartosci funkcji są przeciwnych znaków, gdzieś na tym odcinku funkcja ma miejsce zerowe (ta trywialna obserwacja to tzw. twierdzenie Darboux, sformułowane przez francuskiego matematyka Jeana Gastona Darboux (1842-1917)). Za pomocą tej metody rozwiążemy równanie: <span class="math display">\[cos(x) = x\]</span> Posłużymy się przygotowaną wcześniej funkcją <code>bisec</code>. W tym celu należy załączyć do projektu pliki <em>nonlin.h</em> oraz <em>nonlin.cpp</em>. Funkcja <code>bisec</code> ma nagłówek następującej postaci:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> bisec(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
-<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty: - <code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania - <code>(*pf)</code> - wzkaźnik do funkcji zawierającej rozwiązywane równanie - <code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span> - <code>iter</code> - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to pod wskaźnik <code>iter</code> zostaje przypisana wartość <code>−1</code> a funkcja zwraca wartość <code>0</code>.</p>
+<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty: - <code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania - <code>(*pf)</code> - wzkaźnik do funkcji zawierającej rozwiązywane równanie - <code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span> - <code>iter</code> - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to pod wskaźnik <code>iter</code> zostaje przypisana wartość <code>-1</code> a funkcja zwraca wartość <code>0</code>.</p>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Napisz funkcję <code>double eqn(double x)</code>, która będzie zwracac wartość naszego równania sprowadzonego do postaci <span class="math inline">\(f (x) = 0\)</span>.</li>
 <li>Wczytać z klawiatury dokładność rozwiązania <code>eps</code> oraz krańce przedziału przeszukiwań <code>a</code> i <code>b</code>. Należy pamętać o tym, że <span class="math inline">\(f (a) \cdot f (b) &lt; 0\)</span>.</li>
 <li>Wypisz na ekranie miejsce zerowe oraz liczbę iteracji.</li>
-<li>Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{−20} , 2^{−19}, ..., 2^{−3}\)</span>.</li>
+<li>Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{-20} , 2^{-19}, ..., 2^{-3}\)</span>.</li>
 <li>Zrób wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).</li>
 </ol>
 </div>
@@ -773,7 +773,7 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Rozwiąż to samo równanie, co poprzednio, używajac obu powyższych metod. Wypisz na ekran dokładność, liczbę itaracji metody siecznych, stycznych oraz bisekcji.</li>
 <li>Stwórz wykres przedstawiajacy zależność liczby iteracji od dokładnosci rozwiązania (dokładność przedstaw na skali logarytmicznej).</li>
-<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(cos(x) = w \cdot x\)</span>. Dokładność <span class="math inline">\(\varepsilon = 10^−6\)</span> , Parametr <span class="math inline">\(w\)</span> przebiega w zakresie <span class="math inline">\(w = 0.5, 0.6, ..., 15.0\)</span>.</li>
+<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(cos(x) = w \cdot x\)</span>. Dokładność <span class="math inline">\(\varepsilon = 10^{-6}\)</span> , Parametr <span class="math inline">\(w\)</span> przebiega w zakresie <span class="math inline">\(w = 0.5, 0.6, ..., 15.0\)</span>.</li>
 </ol>
 </div>
 </div>
