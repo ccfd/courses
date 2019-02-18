@@ -32,9 +32,9 @@ Liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zb
 
 W tym momencie przejdziemy do zagadnienia interpolacji wielomianowej Lagrange’a.
 Funkcja interpolująca to wielomian posataci:
-\[
+$$
 w(x) = \sum_{i=0}^{n} y_i \prod_{j=0 \land j\neq i}^{n} \frac{x - x_j}{x_i - x_j}
-\]
+$$
 gdzie $(x_i, y_i)$ to punkt pomiarowy.
 
 ### Ćwiczenia
@@ -55,6 +55,7 @@ i = 0, \ldots n-1
 $$
 zaś $a = -2$ i $b = 2$.  
 **Przypomnienie:** użycie funkcji `malloc` do alokacji pamięci:
+
 ```c++
 double *x;
 x = (double *) malloc(n * sizeof(double));
@@ -74,6 +75,7 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 $$
 Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`.
 Przykład najprostszego użycia funkcji `lagrange` pokazany jest poniżej:
+
 ```c++
 int main() {
   double x[3] = {0, 1, 2};
@@ -86,6 +88,7 @@ int main() {
 3. Wydrukuj usyskane wyniki (dla każdego $t_i$) na ekran.
 4. Wyświetl je graficznie, korzystając z funkcji  `scale` zaimplementowanej w bibliotece graficznej.
 Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.
+
 ```c++
 int main() {
   double pi = 4. * atan(1.);
@@ -116,7 +119,6 @@ Parametry funkcji `lagrange(double *x, double *y, int n, double xx)` oznaczają:
 ## 3 Dla ambitnych
 Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej.
 Posłużymy się w tym celu dalej funkcją $|x|$ jako jedną z bardziej wymagających.
-![ ](figures/info2/inst1/chebyshev_nodes.png  "Ilustracja generacji węzłów Czebyszewa")
 
 ### Węzły Czebyszewa
 Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób.
@@ -133,8 +135,26 @@ x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
 $$
 Dla ogólnego przypadku przedziału $x = [a, b]$ wzór wyglądałby tak:
 $$
-x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, i = 0, \ldots n - 1
+x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, \; i = 0, \ldots n - 1
 $$
+
+```{r, echo = FALSE}
+pl_n <- 200
+pl_x <- seq(-1, 1, len = pl_n)
+pl_y <- sqrt(1 - pl_x**2)
+
+node_N <- 9
+node_i <- seq(0, node_N-1)
+node_x <- -cos(pi * node_i / (node_N - 1))
+node_y <- sqrt(1 - node_x**2)
+nodes <- cbind(node_x, node_y)
+  
+plot(pl_x, pl_y, xlab = "", ylab = "", xlim = c(-1, 1), ylim = c(0, 1),
+     asp = 1, type = "l", lwd = 2, col = "blue")
+points(cbind(node_x, 0), pch = 19, col = "blue")
+invisible(sapply(0:node_N, function(i) lines(c(0, nodes[i, 1]), c(0, nodes[i, 2]), lty = 2)))
+invisible(sapply(1:(node_N-1), function(i) lines(rep(nodes[i, 1], 2), c(0, nodes[i, 2]), lty = 2, col = "blue")))
+```
 
 #### Ćwiczenie
 Zmodyfikuj swój program tak, aby początkowy zestaw punktów generowany był dla współrzędnych zdefiniowanych w powyższy sposób.
