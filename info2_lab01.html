@@ -798,19 +798,20 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 <a class="sourceLine" id="cb2-7" data-line-number="7">}</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Wydrukuj uzyskane wyniki (dla każdego <span class="math inline">\(t_i\)</span>) na ekran.</li>
-<li>Wyświetl je graficznie, korzystając z funkcji <code>scale</code> zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</li>
+<li>Wyświetl je graficznie, korzystając z funkcji <code>scale(double x0, double y0, double x1, double y1)</code> zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">int</span> main() {</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">double</span> pi = <span class="fl">4.</span> * atan(<span class="fl">1.</span>);</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  graphics(<span class="dv">600</span>, <span class="dv">400</span>);</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  scale(<span class="dv">0</span>, <span class="dv">7</span>, <span class="fl">-1.2</span>, <span class="fl">1.2</span>); <span class="co">// okresl xmin, xmax, ymin, ymax</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  scale(<span class="dv">0</span>, <span class="fl">-1.2</span>, <span class="dv">7</span>, <span class="fl">1.2</span>);    <span class="co">// xmin = 0, ymin = -1.2, x_max = 7, ymax = 1.2</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">double</span> x = <span class="dv">0</span>;</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">  </a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="cf">while</span>(x &lt; <span class="dv">2</span> * pi) {</a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">    point(x, sin(x));</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">    x += <span class="fl">0.01</span>;</a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">}</a></code></pre></div>
+<a class="sourceLine" id="cb3-11" data-line-number="11">  wait();</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">}</a></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Zapisz wyniki do pliku.</li>
 <li>Obejrzyj wyniki na wykresie dla różnych wartości parametru <span class="math inline">\(n\)</span>.</li>
