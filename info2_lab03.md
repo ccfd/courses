@@ -27,13 +27,13 @@ Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następuj�
 - `a` i `b` - krańce przedziału, w którym szukamy rozwiązania
 - `(*pf)` - wzkaźnik do funkcji zawierającej rozwiązywane równanie
 - `eps` - dokładność rozwiązania $\varepsilon$
-- `iter` - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału $[a, b]$ funkcja przyjmuje wartości tego samego znaku to pod wskaźnik `iter` zostaje przypisana wartość `−1` a funkcja zwraca wartość `0`.
+- `iter` - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału $[a, b]$ funkcja przyjmuje wartości tego samego znaku to pod wskaźnik `iter` zostaje przypisana wartość `-1` a funkcja zwraca wartość `0`.
 
 ### Ćwiczenia
 1. Napisz funkcję `double eqn(double x)`, która będzie zwracac wartość naszego równania sprowadzonego do postaci $f (x) = 0$.
 2. Wczytać z klawiatury dokładność rozwiązania `eps` oraz krańce przedziału przeszukiwań `a` i `b`. Należy pamętać o tym, że $f (a) \cdot f (b) < 0$.
 3. Wypisz na ekranie miejsce zerowe oraz liczbę iteracji.
-4. Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności $\varepsilon = 2^{−20} , 2^{−19}, ..., 2^{−3}$.
+4. Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności $\varepsilon = 2^{-20} , 2^{-19}, ..., 2^{-3}$.
 5. Zrób wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).
 
 ## 3. Metoda siecznych i stycznych
@@ -45,7 +45,7 @@ $$ x_{i+1} = x_i - \frac{f(x_i)}{f'(x)} $$
 ### Ćwiczenia
 1. Rozwiąż to samo równanie, co poprzednio, używajac obu powyższych metod. Wypisz na ekran dokładność, liczbę itaracji metody siecznych, stycznych oraz bisekcji.
 2. Stwórz wykres przedstawiajacy zależność liczby iteracji od dokładnosci rozwiązania (dokładność przedstaw na skali logarytmicznej).
-3. Rozwiąż trzema metodami równanie z parametrem $cos(x) = w \cdot x$. Dokładność $\varepsilon = 10^−6$ , Parametr $w$ przebiega w zakresie $w = 0.5, 0.6, ..., 15.0$.
+3. Rozwiąż trzema metodami równanie z parametrem $cos(x) = w \cdot x$. Dokładność $\varepsilon = 10^{-6}$ , Parametr $w$ przebiega w zakresie $w = 0.5, 0.6, ..., 15.0$.
 
 ## 4. Zadanie dodatkowe
 Metody rozwiązywania równań nieliniowych mogą być również użyte do znajdowania ekstremów funkcji. Spróbuj znaleźć ekstremum funkcji:
