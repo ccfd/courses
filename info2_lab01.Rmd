@@ -85,20 +85,21 @@ int main() {
 }
 ```
 3. Wydrukuj uzyskane wyniki (dla każdego $t_i$) na ekran.
-4. Wyświetl je graficznie, korzystając z funkcji  `scale` zaimplementowanej w bibliotece graficznej.
+4. Wyświetl je graficznie, korzystając z funkcji  `scale(double x0, double y0, double x1, double y1)` zaimplementowanej w bibliotece graficznej.
 Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.
 
 ```c++
 int main() {
   double pi = 4. * atan(1.);
   graphics(600, 400);
-  scale(0, 7, -1.2, 1.2); // okresl xmin, xmax, ymin, ymax
+  scale(0, -1.2, 7, 1.2);    // xmin = 0, ymin = -1.2, x_max = 7, ymax = 1.2
   double x = 0;
   
   while(x < 2 * pi) {
     point(x, sin(x));
     x += 0.01;
   }
+  wait();
 }
 ```
 5. Zapisz wyniki do pliku.
