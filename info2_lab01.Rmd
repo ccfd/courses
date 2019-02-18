@@ -13,7 +13,7 @@ Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniżs
   - [Plik źródłowy inter.cpp](http://ccfd.github.io/courses/code/info2/inter.cpp)
 
 
-## 1 Interpolacja w praktyce inżynierskiej
+## 1. Interpolacja w praktyce inżynierskiej
 
 Dziś będziemy się zajmować zagadnieniem interpolacji.
 Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości, rurą wypływa woda aż do jego opróżnienia.
@@ -28,10 +28,10 @@ Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowyc
 Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi.
 Liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).
 
-## 2 Interpolacja wielomianowa
+## 2. Interpolacja wielomianowa
 
 W tym momencie przejdziemy do zagadnienia interpolacji wielomianowej Lagrange’a.
-Funkcja interpolująca to wielomian posataci:
+Funkcja interpolująca to wielomian postaci:
 $$
 w(x) = \sum_{i=0}^{n} y_i \prod_{j=0 \land j\neq i}^{n} \frac{x - x_j}{x_i - x_j}
 $$
@@ -68,12 +68,11 @@ if (x == NULL) {
 /* operacje z wykorzystaniem tablicy x */
 free(x);
 ```
-
 2. Oblicz wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. o współrzędnych:
 $$
 t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 $$
-Wartość funkcji w dowolnie wybranym punkcie (dla argumentu xx leżącego w dowolnym miejscu między danymi punktami) oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`.
+Wartość funkcji w dowolnie wybranym punkcie (dla argumentu `xx` leżącego w dowolnym miejscu między punktami eksperymentalnymi) oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`.
 Przykład najprostszego użycia funkcji `lagrange` pokazany jest poniżej:
 
 ```c++
@@ -85,7 +84,7 @@ int main() {
   f = lagrange(x, y, 3, t);
 }
 ```
-3. Wydrukuj usyskane wyniki (dla każdego $t_i$) na ekran.
+3. Wydrukuj uzyskane wyniki (dla każdego $t_i$) na ekran.
 4. Wyświetl je graficznie, korzystając z funkcji  `scale` zaimplementowanej w bibliotece graficznej.
 Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.
 
@@ -103,8 +102,8 @@ int main() {
 }
 ```
 5. Zapisz wyniki do pliku.
-6. Obejrzyj wyniki na wykresie dla różnych wartości parametru n.
-7. Dla wybranego n stwórz w Excelu wykres błędu interpolacji.
+6. Obejrzyj wyniki na wykresie dla różnych wartości parametru $n$.
+7. Dla wybranego $n$ stwórz w Excelu wykres błędu interpolacji.
 8. Powtórz wyniki dla innej funkcji interpolowanej.
 Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji $|x|$.
 Dlaczego tak wyglądają?
@@ -116,7 +115,7 @@ Parametry funkcji `lagrange(double *x, double *y, int n, double xx)` oznaczają:
   - `n` - rozmiar wektora (liczba jego elementów),
   - `xx` - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.
 
-## 3 Dla ambitnych
+## 3. Dla ambitnych
 Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej.
 Posłużymy się w tym celu dalej funkcją $|x|$ jako jedną z bardziej wymagających.
 
@@ -128,7 +127,7 @@ Można tego dokonać następująco.
 Chcemy rozłożyć punkty w przedziale $x = [−1, 1]$.
 Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w $x = 0$ i promieniu $R = 1$).
 Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n − 1$ fragmentów.
-Teraz zrzutujmy punkty podziału na oś $x$.
+Teraz dokonajmy rzutowania punktów podziału na oś $x$.
 Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi $x$ dane wzorem:
 $$
 x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
@@ -156,7 +155,8 @@ invisible(sapply(0:node_N, function(i) lines(c(0, nodes[i, 1]), c(0, nodes[i, 2]
 invisible(sapply(1:(node_N-1), function(i) lines(rep(nodes[i, 1], 2), c(0, nodes[i, 2]), lty = 2, col = "blue")))
 ```
 
-#### Ćwiczenie
+### Ćwiczenie
+
 Zmodyfikuj swój program tak, aby początkowy zestaw punktów generowany był dla współrzędnych zdefiniowanych w powyższy sposób.
 Sprawdź działanie interpolacji funkcji $|x|$ z użyciem węzłów Czebyszewa.
 Czy wyniki są inne?
