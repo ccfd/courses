@@ -17,7 +17,7 @@ Files for the present tutorial can be found using following links:
 
 Today, we will deal with the issue of interpolation.
 Suppose that from a tank that can be placed at different heights, water flows out of the pipe until it is empty.
-We made the experiment by placing the tank at several different heights (eg 2, 3 and 4 m) and for each of these heights we measured the time after which the tank was empty. Note, that pipe remains on the same level. 
+We made the experiment by placing the tank at several different heights (eg 2, 3 and 4 m) and for each of these heights we measured the time after which the tank was empty. Note, the pipe remains on the same level. 
 In the design process (optimization?), we usually want to be able to predict the emptying time for any tank 
 placement height.
 This height is between the set extreme values, i.e. at an altitude of 3.27 m.
