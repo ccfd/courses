@@ -127,14 +127,10 @@ This can be done as follows (see Lecture nodes for theoretical explenation).
 
 We want to distribute interpolation nodes in the range $x = [-1, 1]$.
 
-Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w $x = 0$ i promieniu $R = 1$).
-Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n - 1$ fragmentów.
-Teraz dokonajmy rzutowania punktów podziału na oś $x$.
-Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi $x$ dane wzorem:
 
 Now let us plot half-circle with center in the middle of this range $x = 0$ and radius $R = 1$.
-The uniform division of an resulting arc (measuring in local arc coordinate) on $n - 1$ allows
-to generate abscisas of the interpolation nodes given be the formula:
+The uniform division of an resulting arc (measuring in local arc coordinate) on $n - 1$ fragments
+allows to generate abscisas of the interpolation nodes given be the formula:
 $$
 x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
 $$
