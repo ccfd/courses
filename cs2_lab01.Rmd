@@ -5,45 +5,45 @@ material: Instruction 1
 author: B. Górecki, rev. W. Gryglas, eng. T.Wacławczyk
 ---
 
-# Interpolacja
+# Interpolation
 
-Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:
+Files for the present tutorial can be found using following links:
 
-  - [Plik nagłówkowy inter.h](http://ccfd.github.io/courses/code/info2/inter.h)
-  - [Plik źródłowy inter.cpp](http://ccfd.github.io/courses/code/info2/inter.cpp)
+  - [Header file inter.h](http://ccfd.github.io/courses/code/info2/inter.h)
+  - [Source file inter.cpp](http://ccfd.github.io/courses/code/info2/inter.cpp)
 
 
-## 1. Interpolacja w praktyce inżynierskiej
+## 1. Interpolation in engineering practice
 
-Dziś będziemy się zajmować zagadnieniem interpolacji.
-Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości, rurą wypływa woda aż do jego opróżnienia.
-Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika.
-W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, aby umieć przewidzieć czas opróżniania dla dowolnej wysokości umieszczenia zbiornika.
-Wysokość ta zawiera się między ustalonymi wartościami skrajnymi, a więc np. na wysokości wynoszącej 3.27 m.
-Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność.
-Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.
+Today, we will deal with the issue of interpolation.
+Suppose that from a tank that can be placed at different heights, water flows out of the pipe until it is empty.
+We made the experiment by placing the tank at several different heights (eg 2, 3 and 4 m) and for each of these heights we measured the time after which the tank was empty.
+In the design process (optimization?), we usually want to be able to predict the emptying time for any tank 
+placement height.
+This height is between the set extreme values, i.e. at an altitude of 3.27 m.
+Therefore, we must be able to use our measurement data to carry out a curve that will reliably approximate this relationship.
+We are talking about interpolation, i.e. interpolating a set of discrete data (interpolation nodes) into a continuous relationship defined for each argument lying between the points (interpolation nodes) on which we base interpolation.
 
 ### Meritum
 
-Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi.
-Liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).
+Interpolation is the issue of leading a curve through all points from the data set so as to obtain the course of the assumed dependence between the measurement points.
+The number of degrees of freedom of the fitted curve must be equal to the number of points in the data set (the number of equations must be equal to the number of unknowns).
 
-## 2. Interpolacja wielomianowa
+## 2. Polynomial interpolation
 
-W tym momencie przejdziemy do zagadnienia interpolacji wielomianowej Lagrange’a.
-Funkcja interpolująca to wielomian postaci:
+Let us condider a Lagrange polynomial interpolation, where interpolation polynomial reads:
 $$
 w(x) = \sum_{i=0}^{n} y_i \prod_{j=0 \land j\neq i}^{n} \frac{x - x_j}{x_i - x_j}
 $$
-gdzie $(x_i, y_i)$ to punkt pomiarowy.
+and $(x_i, y_i)$ denotes single measurement point (interpolation node).
 
-### Ćwiczenia
+### Exercises
 
-1. Napisz program, który wygeneruje zestaw n punktów (będących punktami eksperymentalnymi) o współrzędnych:
+1. Write a program generating n points (interpolation nodes) using following definitions:
 $$
 \left( x_i, \exp(-x_i^2) \right)
 $$ 
-gdzie
+where
 $$
 x_i = a + i \cdot h
 $$
@@ -53,8 +53,8 @@ $$
 $$
 i = 0, \ldots n-1
 $$
-zaś $a = -2$ i $b = 2$.  
-**Przypomnienie:** użycie funkcji `malloc` do alokacji pamięci:
+and $a = -2$ i $b = 2$.  
+**Repetition:** usage of `malloc` function for dynamic mememory allocation of a 1D array:
 
 ```c++
 double *x;
@@ -63,15 +63,17 @@ if (x == NULL) {
   fprintf(stderr, "malloc: can not allocate x.\n");
   exit(1);
 }
-/* operacje z wykorzystaniem tablicy x */
+/* free memory x */
 free(x);
 ```
-2. Oblicz wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. o współrzędnych:
+2. Compute value of the Lagrange interpolation polynomial in points with cooridinates:
 $$
 t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 $$
-Wartość funkcji w dowolnie wybranym punkcie (dla argumentu `xx` leżącego w dowolnym miejscu między punktami eksperymentalnymi) oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`.
-Przykład najprostszego użycia funkcji `lagrange` pokazany jest poniżej:
+
+Using function `lagrange(double *x, double *y, int n, double xx)` compute the value of the interpolation polynomial
+in the arbitrary point `xx` located in between the interpolation nodes. 
+An example of basic usage of `lagrange` function is given below:
 
 ```c++
 int main() {
@@ -82,9 +84,10 @@ int main() {
   f = lagrange(x, y, 3, t);
 }
 ```
-3. Wydrukuj uzyskane wyniki (dla każdego $t_i$) na ekran.
-4. Wyświetl je graficznie, korzystając z funkcji  `scale(double x0, double y0, double x1, double y1)` zaimplementowanej w bibliotece graficznej.
-Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.
+3. Print obtained results (for each $t_i$) on the screen.
+4. Display result on the diagram using function `scale(double x0, double y0, double x1, double y1)`
+   definedd in `winbgi2` library. Experiment with different `x0,y0,x1,y1` parameters.
+   An example below shows how to apply this function to display sin(x) function.
 ```c++
 int main() {
   double pi = 4. * atan(1.);
@@ -99,34 +102,43 @@ int main() {
   wait();
 }
 ```
-5. Zapisz wyniki do pliku.
-6. Obejrzyj wyniki na wykresie dla różnych wartości parametru $n$.
-7. Dla wybranego $n$ stwórz w Excelu wykres błędu interpolacji.
-8. Powtórz wyniki dla innej funkcji interpolowanej.
-Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji $|x|$.
-Dlaczego tak wyglądają?
-### Uwaga
-Parametry funkcji `lagrange(double *x, double *y, int n, double xx)` oznaczają:
-  - `x`, `y` - wskaźniki do n-elementowych tablic zawierających współrzędne punktów interpolowanych,
-  - `n` - rozmiar wektora (liczba jego elementów),
-  - `xx` - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.
-## 3. Dla ambitnych
-Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej.
-Posłużymy się w tym celu dalej funkcją $|x|$ jako jedną z bardziej wymagających.
-### Węzły Czebyszewa
-Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób.
-Do tej pory punkty były rozłożone równomiernie.
-Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku.
-Można tego dokonać następująco.
-Chcemy rozłożyć punkty w przedziale $x = [-1, 1]$.
+5. Write results to the file.
+6. Compare results for different number of interpolation nodes $n$.
+7. For a selected $n$ calculate and display maximal error of the interpolation.
+8. Reapeat you results for different set of interpolation nodes (using different function
+   to create interpolation nodes).
+Look for the results obtained using functoin $|x|$.
+Can you explain why the look like that (see definition of the intepolation error)?
+### Note
+Parameters of the function `lagrange(double *x, double *y, int n, double xx)` denote:
+  - `x`, `y` - pointers to n-element arrays holding coordinates of the interpolation nodes,
+  - `n` - the size of the vector (number of its elements),
+  - `xx` - current value of the interpolating polynomial argument for which we compute
+           the value of the Lagrange polynomial.
+## 3. Runge effect
+Let us check how to improve quality of the interpolation by introduction of a more
+clever interpolation nodes distribution. We will use function $|x|$ in this example.
+
+### Chebyschev interpolation nodes
+Up to now, interpolation nodes were distributed uniformly in the interpolation domain.
+Let us now to choose this distribution in such a way that they are denser close to  the 
+ends of the interpolation domain.
+This can be done as follows (see Lecture nodes for theoretical explenation).
+
+We want to distribute interpolation nodes in the range $x = [-1, 1]$.
+
 Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w $x = 0$ i promieniu $R = 1$).
 Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na $n - 1$ fragmentów.
 Teraz dokonajmy rzutowania punktów podziału na oś $x$.
 Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi $x$ dane wzorem:
+
+Now let us plot half-circle with center in the middle of this range $x = 0$ and radius $R = 1$.
+The uniform division of an resulting arc (measuring in local arc coordinate) on $n - 1$ allows
+to generate abscisas of the interpolation nodes given be the formula:
 $$
 x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
 $$
-Dla ogólnego przypadku przedziału $x = [a, b]$ wzór wyglądałby tak:
+In more general case of the range $x = [a, b]$ the following formula is valid:
 $$
 x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, \; i = 0, \ldots n - 1
 $$
@@ -146,7 +158,9 @@ points(cbind(node_x, 0), pch = 19, col = "blue")
 invisible(sapply(0:node_N, function(i) lines(c(0, nodes[i, 1]), c(0, nodes[i, 2]), lty = 2)))
 invisible(sapply(1:(node_N-1), function(i) lines(rep(nodes[i, 1], 2), c(0, nodes[i, 2]), lty = 2, col = "blue")))
 ```
-### Ćwiczenie
-Zmodyfikuj swój program tak, aby początkowy zestaw punktów generowany był dla współrzędnych zdefiniowanych w powyższy sposób.
-Sprawdź działanie interpolacji funkcji $|x|$ z użyciem węzłów Czebyszewa.
-Czy wyniki są inne?
+### Exercise
+Modify your program in such a way, that interpolation nodes are generated according to the above defined formula,
+i.e., Chebyschev interpolation nodes.
+Check how interpolation errors change when functions: $|x|$ or $1/(1+10x^2)$ are used to generate interpolation nodes.
+Can you see a difference ?
+
