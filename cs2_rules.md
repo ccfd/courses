@@ -4,7 +4,7 @@ course: Computer Science 2
 material: Regulamin
 ---
 
-# Rules of the subject Computer Science II (semestr: 2019S)
+# Rules of the subject Computer Science II (2019S)
   
 ## Points
 - Lecture Test at the end of semester: 50 pts. (less than 25 pts. means 0 pts.),
