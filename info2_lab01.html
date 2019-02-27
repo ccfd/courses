@@ -771,7 +771,7 @@ x_i = a + i \cdot h
 h = \frac{b - a}{n-1}
 \]</span> <span class="math display">\[
 i = 0, \ldots n-1
-\]</span> zaś <span class="math inline">\(a = -2\)</span> i <span class="math inline">\(b = 2\)</span>.<br />
+\]</span> zaś <span class="math inline">\(a = -2.0\)</span> i <span class="math inline">\(b = 2.0\)</span>.<br />
 <strong>Przypomnienie:</strong> użycie funkcji <code>malloc</code> do alokacji pamięci:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> *x;</a>
@@ -787,8 +787,14 @@ i = 0, \ldots n-1
 <ol start="2" style="list-style-type: decimal">
 <li>Oblicz wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. o współrzędnych: <span class="math display">\[
 t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
-\]</span> Wartość funkcji w dowolnie wybranym punkcie (dla argumentu <code>xx</code> leżącego w dowolnym miejscu między punktami eksperymentalnymi) oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej:</li>
+\]</span> Wartość funkcji w dowolnie wybranym punkcie <span class="math inline">\(t_i\)</span> oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>.<br />
+Parametry funkcji oznaczają:</li>
 </ol>
+<ul>
+<li><code>x</code>, <code>y</code> - wskaźniki do n-elementowych tablic zawierających współrzędne punktów interpolowanych,</li>
+<li><code>n</code> - długość wektora (liczba jego elementów),</li>
+<li><code>xx</code> - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej:</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">int</span> main() {</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};</a>
@@ -813,20 +819,11 @@ t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 <a class="sourceLine" id="cb3-11" data-line-number="11">  wait();</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">}</a></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
-<li>Zapisz wyniki do pliku.</li>
 <li>Obejrzyj wyniki na wykresie dla różnych wartości parametru <span class="math inline">\(n\)</span>.</li>
-<li>Dla wybranego <span class="math inline">\(n\)</span> stwórz w Excelu wykres błędu interpolacji.</li>
+<li>Zapisz wyniki do pliku.</li>
+<li>Dla wybranego <span class="math inline">\(n\)</span> stwórz w arkuszu kalkulacyjnym wykres błędu interpolacji.</li>
 <li>Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji <span class="math inline">\(|x|\)</span>. Dlaczego tak wyglądają?</li>
 </ol>
-</div>
-<div id="uwaga" class="section level3">
-<h3>Uwaga</h3>
-<p>Parametry funkcji <code>lagrange(double *x, double *y, int n, double xx)</code> oznaczają:</p>
-<ul>
-<li><code>x</code>, <code>y</code> - wskaźniki do n-elementowych tablic zawierających współrzędne punktów interpolowanych,</li>
-<li><code>n</code> - rozmiar wektora (liczba jego elementów),</li>
-<li><code>xx</code> - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.</li>
-</ul>
 </div>
 </div>
 <div id="dla-ambitnych" class="section level2">
