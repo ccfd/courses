@@ -53,7 +53,7 @@ $$
 $$
 i = 0, \ldots n-1
 $$
-zaś $a = -2$ i $b = 2$.  
+zaś $a = -2.0$ i $b = 2.0$.  
 **Przypomnienie:** użycie funkcji `malloc` do alokacji pamięci:
 
 ```c++
@@ -72,7 +72,12 @@ free(x);
 $$
 t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
 $$
-Wartość funkcji w dowolnie wybranym punkcie (dla argumentu `xx` leżącego w dowolnym miejscu między punktami eksperymentalnymi) oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`.
+Wartość funkcji w dowolnie wybranym punkcie $t_i$ oblicz, korzystając z funkcji `lagrange(double *x, double *y, int n, double xx)`.  
+Parametry funkcji oznaczają:
+
+  - `x`, `y` - wskaźniki do n-elementowych tablic zawierających współrzędne punktów interpolowanych,
+  - `n` - długość wektora (liczba jego elementów),
+  - `xx` - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.
 Przykład najprostszego użycia funkcji `lagrange` pokazany jest poniżej:
 
 ```c++
@@ -102,19 +107,12 @@ int main() {
   wait();
 }
 ```
-5. Zapisz wyniki do pliku.
-6. Obejrzyj wyniki na wykresie dla różnych wartości parametru $n$.
-7. Dla wybranego $n$ stwórz w Excelu wykres błędu interpolacji.
+5. Obejrzyj wyniki na wykresie dla różnych wartości parametru $n$.
+6. Zapisz wyniki do pliku.
+7. Dla wybranego $n$ stwórz w arkuszu kalkulacyjnym wykres błędu interpolacji.
 8. Powtórz wyniki dla innej funkcji interpolowanej.
 Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji $|x|$.
 Dlaczego tak wyglądają?
-
-### Uwaga
-Parametry funkcji `lagrange(double *x, double *y, int n, double xx)` oznaczają:
-
-  - `x`, `y` - wskaźniki do n-elementowych tablic zawierających współrzędne punktów interpolowanych,
-  - `n` - rozmiar wektora (liczba jego elementów),
-  - `xx` - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a.
 
 ## 3. Dla ambitnych
 Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej.
