@@ -87,7 +87,7 @@ int main() {
 3. Print obtained results (for each $t_i$) on the screen.
 4. Display result on the diagram using function `scale(double x0, double y0, double x1, double y1)`
    definedd in `winbgi2` library. Experiment with different `x0,y0,x1,y1` parameters.
-   An example below shows how to apply this function to display sin(x) function.
+   An example below shows how to apply `scale()` to display sin(x) function.
 ```c++
 int main() {
   double pi = 4. * atan(1.);
@@ -158,5 +158,5 @@ invisible(sapply(1:(node_N-1), function(i) lines(rep(nodes[i, 1], 2), c(0, nodes
 Modify your program in such a way, that interpolation nodes are generated according to the above defined formula,
 i.e., Chebyschev interpolation nodes.
 Check how interpolation errors change when functions: $|x|$ or $1/(1+10x^2)$ are used to generate interpolation nodes.
-Can you see a difference ?
+Can you see any difference ?
 
