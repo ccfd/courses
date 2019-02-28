@@ -89,7 +89,7 @@ choosing $a = 1, b = 5$ or $a = 0.1, b = 5$.
    rate) of their errors ?  
 
 
-### Example regarding pointers to the function
+### More about pointers to the function
 Analyze the code below. How values of `y1` and `y2` variables
 are changing during the code execution ? 
 ```c++
@@ -122,21 +122,23 @@ void main()
 The trapezoidal and Simpson rules are both based on approximation
 of the integrand by the Lagrange interpolation polynomial.
 More accurate integration methods are available. 
-One of the examples of very accurate integration method is the
-method based on the Gauss quadrature. 
+One of the examples of very accurate numerical integration techniques is the
+the Gauss-Legendre method (GLM). 
 
-Gauss quadrature in its original form is defined for the definite integral
-on the interval $x = [-1, 1]$:
+GLM in its original form is defined for the definite integral
+on the interval $[-1, 1]$:
 $$ I = \int_{-1}^{1}{f(x)dx} $$
-The value of integral is approximated using formula:
+From the lectures you know, that each definite integral
+on the interval $[a,b]$ can be transformed into such integral.
+The value of this definite integral is approximated using formula:
 $$I = \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
 where $w_i$ are weights of the Gauss quadrature, $x_i$ are nodes of
 the Gauss quadrature,  $n$ denotes number of the nodes on which the integrand
 value $f(x_i)$ is evaluated.
 To approximate the value of the definite integral using Gauss qudrature
-the information about the qudarature node distribution and weights values $w_i$
-must be known beforehand. They can be computed (see Lecure notes) or found in
-the internet[^1]. In our case they are given in the table below for $n=5$:
+the information about the qudarature nodes $x_i$ distribution and weights values $w_i$
+must be known beforehand. They can be computed (see Lecture notes) or found in
+the internet[^1]. In our case, they are given in the table below for $n=5$:
 
 
 |             $x_i$            |            $w_i$            |
@@ -147,11 +149,10 @@ the internet[^1]. In our case they are given in the table below for $n=5$:
 |  0.5384693101056830910363144 | 0.4786286704993664680412915 |
 |  0.9061798459386639927976269 | 0.2369268850561890875142640 |
 
+
 ### Exercise
-Implement the Gauss method (you can do it in a single loop without function, 
-directly in the main program). Compare the results obtained using the Gauss method
-with previous findings, how many sub-divisions `n` are required in trapezoidal/Simpsom methods to reduce the error to the level obtained by the Gauss method
-using only five nodes ?
+Implement the Gauss-Legendre method (you can do it in a single loop without function, 
+directly in the main program). Compare the results obtained using GLM with previous results, how many sub-divisions `n` are required in trapezoidal/Simpsom methods to reduce the error to the level obtained by the Gauss method using only five nodes ?
 
 
 
