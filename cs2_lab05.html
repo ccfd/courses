@@ -9,10 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="B. Górecki, rev. W. Gryglas, eng. T.Wacławczyk" />
+<meta name="author" content="W. Gryglas, eng. T.Wacławczyk" />
 
 
-<title>cs2_lab01.utf8.md</title>
+<title>cs2_lab05.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,99 +28,6 @@
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -734,14 +641,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="cs2_lab01.pdf">
+  <a href="cs2_lab05.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cs2_lab01.Rmd">
+  <a href="https://github.com/ccfd/courses/edit/master/cs2_lab05.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -767,109 +674,111 @@ div.tocify {
 </div>
 
 
-<div id="interpolation" class="section level1">
-<h1>Interpolation</h1>
+<div id="numerical-solution-of-higher-order-ordinary-differential-equations" class="section level1">
+<h1>Numerical solution of higher-order ordinary differential equations</h1>
 <p>Files for the present tutorial can be found using following links:</p>
 <ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/inter.h">Header file inter.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/inter.cpp">Source file inter.cpp</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Header file rk4.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Source file rk4.cpp</a></li>
 </ul>
-<div id="interpolation-in-engineering-practice" class="section level2">
-<h2>1. Interpolation in engineering practice</h2>
-<p>Today, we will deal with the issue of interpolation. Suppose that from a tank that can be placed at different heights, water flows out of the pipe until it is empty. We made the experiment by placing the tank at several different heights (eg 2, 3 and 4 m) and for each of these heights we measure the time after which the tank was empty. Note, the pipe outlet remains on the same level. In the design process (optimization?), we usually want to be able to predict the emptying time for any tank placement height. This height is between the set extreme values, i.e. at an altitude of 3.27 m. Therefore, we must be able to use our measurement data to carry out a curve that will reliably approximate this relationship. We are talking about interpolation, i.e. interpolating a set of discrete data (interpolation nodes) into a continuous relationship defined for each argument lying between the points (interpolation nodes) on which we base interpolation.</p>
-<div id="meritum" class="section level3">
-<h3>Meritum</h3>
-<p>Interpolation is the issue of leading a curve through all points from the data set so as to obtain the course of the assumed dependence between the measurement points. The number of degrees of freedom of the fitted curve must be equal to the number of points in the data set (the number of equations must be equal to the number of unknowns).</p>
+<div id="introduction" class="section level2">
+<h2>1. Introduction</h2>
+<p>During previous laboratory we have learned how to integrate single ordinary differential equation (ODE) in the initial value problem. Introduced numerical methods allow for finding the function <span class="math inline">\(y(t)\)</span> which satisfies arbitrary first order differential equation: <span class="math display">\[ \frac{dy}{dt} = f(t, y(t)) \]</span> with the initial condition <span class="math inline">\(y(t=t_0)=y_0\)</span>. However, in may situations we have to solve simultaneously two or more ODE’s which are coupled with each other, for example by the functions on their right hand sides: <span class="math display">\[ 
+\begin{aligned}
+\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
+\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
+\end{aligned}
+\]</span> As you can observe in the above set of the two first order ODE’s, during their solutions we search for the functions <span class="math inline">\(x = x(t)\)</span> and <span class="math inline">\(y=y(t)\)</span>. However, the RHS of these equations are both dependent on <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span>. Hence, to solve first equation for <span class="math inline">\(x(t)\)</span> we need to know how <span class="math inline">\(y(t)\)</span> is changing in time. To solve second equation for <span class="math inline">\(y(t)\)</span> we need to know how <span class="math inline">\(x(t)\)</span> is changing in time. Therefore, these two equations are strongly coupled. To solve this problem we have to integrate both equations simultaneously. This is the main topic of the present laboratory for its solution we use knowledge we gathered during the previous classes during solution of the initial value problem.</p>
+<p>The issue of the numerical solution of the set of first-order ODE’s very often is related to problems which are described by higher order ODE’s. Here, the most common one are the second-order differential equations especially in the models describing dynamics of the mechanical systems, e.g., movement of the solid body or material point under action of external forces. These equations typically read: <span class="math display">\[ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) \]</span> Each second-order ODE, can be reformulated into the form of the set of two <strong>first- order</strong> ODE’s: <span class="math display">\[ 
+\begin{aligned}
+\frac{dv_x}{dt} &amp;= f_1(t, x, v_x) \\
+\frac{dx}{dt} &amp;= v_x
+\end{aligned}
+\]</span></p>
+<p>Above set of equations can be reduced to the single second-order equation (by substitution). Their solutions are therefore corresponding. Note, the unknown functions to dertermine here are <span class="math inline">\(v_x(t)\)</span> and <span class="math inline">\(x(t)\)</span>. For this reason we also need two initial conditions for instance at <span class="math inline">\(t=0\)</span>: <span class="math inline">\(v_x(t=0)=v_0\)</span> and <span class="math inline">\(x(t=0)=x_0\)</span>, where <span class="math inline">\(v_0\)</span>, <span class="math inline">\(x_0\)</span> are known values.</p>
 </div>
-</div>
-<div id="polynomial-interpolation" class="section level2">
-<h2>2. Polynomial interpolation</h2>
-<p>Let us condider a Lagrange interpolation polynomial of order <span class="math inline">\(n\)</span> defined as: <span class="math display">\[
-w_n(x) = \sum_{i=0}^{n} y_i \prod_{j=0 \land j\neq i}^{n} \frac{x - x_j}{x_i - x_j}
-\]</span> where <span class="math inline">\((x_i, y_i)\)</span> denote the <span class="math inline">\(i-th\)</span> coordinate of single measurement point (interpolation node).</p>
+<div id="numerical-integration-of-the-set-of-odes" class="section level2">
+<h2>2. Numerical integration of the set of ODE’s</h2>
+<p>We already know two numerical techniques that can be used to integrate the first-order ODE in time, namely:</p>
+<ul>
+<li>Euler method</li>
+<li>Rungego-Kutta method.</li>
+</ul>
+<p>These two iterative methods allow to find the values of the unknown function(s) in the next time moments (time levels). In the case of the sets of ODE’s we use similar approach. First we compute the value of the functions based on the previous solution. The difference is that the next integration step must be performed for all equations in the given system. Let us consider set of equations:</p>
+<p><span class="math display">\[ 
+\begin{aligned}
+\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
+\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
+\end{aligned}
+\]</span> with initial conditions: <span class="math display">\[
+x(t=0) = 0 \\
+y(t=0) = 0
+\]</span></p>
+<p>For the above system of equations, integration using the Euler’s method can be described using the following algorithm:</p>
+<ol style="list-style-type: decimal">
+<li><p>Set <span class="math inline">\(x_0 = x(t=0)\)</span>, <span class="math inline">\(y_0 = y(t=0)\)</span>, the integration strart at <span class="math inline">\(t=0\)</span>, choose the time step size <span class="math inline">\(dt\)</span>, e.g. <span class="math inline">\(dt = 0.001\)</span>.</p></li>
+<li>Compute derivatives of functions <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> using known values <span class="math inline">\(x_0, y_0, t\)</span>, in this case: <span class="math display">\[
+dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
+dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
+\]</span></li>
+<li>Using values of the drivatives obtained at time <span class="math inline">\(t=0\)</span> compute new values of functions <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> at the next time level: <span class="math display">\[
+x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
+y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
+\]</span></li>
+<li>Update the variables setting: <span class="math display">\[
+x_0 = x = 0, \quad
+y_0 = y = 0.001, \quad
+t = t + dt = 0.001
+\]</span></li>
+<li><p>Goto point 2. and repeat all operations until variable <span class="math inline">\(t\)</span> equals its final value <span class="math inline">\(T\)</span> (<span class="math inline">\(T\)</span> is set by the user).</p></li>
+</ol>
+<p>Using above algorithm one can obtain the results presented on the figure below in time [0,T], here <span class="math inline">\(T=1\)</span>.</p>
+<p><img src="cs2_lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>The above algorithm can be easily reformulated in order to use Runge-Kutta method. The only difference is in the way how the right hand sides are calculated, i.e., how variables <span class="math inline">\(dxdt\)</span> and <span class="math inline">\(dydt\)</span> are updated.</p>
 <div id="exercises" class="section level3">
 <h3>Exercises</h3>
 <ol style="list-style-type: decimal">
-<li>Write a program generating n points (interpolation nodes) using following definitions: <span class="math display">\[
-(x_i,y_i) \rightarrow \left( x_i, \exp(-x_i^2) \right)
-\]</span> where <span class="math display">\[
-x_i = a + i \cdot h,\qquad y_i=\exp(-x_i^2)
-\]</span> <span class="math display">\[
-h = \frac{b - a}{n-1}
-\]</span> <span class="math display">\[
-i = 0, \ldots n-1
-\]</span> and <span class="math inline">\(a = -2\)</span> i <span class="math inline">\(b = 2\)</span>.<br />
-<strong>Repetition:</strong> usage of <code>malloc</code> function for dynamic mememory allocation of a 1D array:</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> *x;</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">x = (<span class="dt">double</span> *) malloc(n * <span class="kw">sizeof</span>(<span class="dt">double</span>));</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="cf">if</span> (x == NULL) {</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  fprintf(stderr, <span class="st">&quot;malloc: can not allocate x.</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  exit(<span class="dv">1</span>);</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">/* free memory x */</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">free(x);</a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Compute value of the Lagrange interpolation polynomial in points with cooridinates: <span class="math display">\[
-t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
-\]</span> Using function <code>lagrange(double *x, double *y, int n, double xx)</code> compute the value of the interpolation polynomial in the arbitrary point <code>xx</code> located in between the interpolation nodes. An example of basic usage of <code>lagrange()</code> function is given below:</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">int</span> main() {</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">double</span> f, t = <span class="fl">1.5</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="co">/* Compute value of the Lagrange polynomial of order 2 at t = 1.5 */</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">  f = lagrange(x, y, <span class="dv">3</span>, t);</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">}</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Print obtained results (for each <span class="math inline">\(t_i\)</span>) on the screen.</li>
-<li>Display result on the diagram using function <code>scale(double x0, double y0, double x1, double y1)</code> defined in <code>winbgi2</code> library. Experiment with different <code>x0,y0,x1,y1</code> parameters. An example below shows how to use it to display sin(x) function:</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">int</span> main() {</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">double</span> pi = <span class="fl">4.</span> * atan(<span class="fl">1.</span>);</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  graphics(<span class="dv">600</span>, <span class="dv">400</span>);</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  scale(<span class="dv">0</span>, <span class="fl">-1.2</span>, <span class="dv">7</span>, <span class="fl">1.2</span>);    <span class="co">// xmin = 0, ymin = -1.2, x_max = 7, ymax = 1.2</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">double</span> x = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="cf">while</span>(x &lt; <span class="dv">2</span> * pi) {</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    point(x, sin(x));</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">    x += <span class="fl">0.01</span>;</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">  wait();</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">}</a></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Write results to the file.</li>
-<li>Compare results for different number of interpolation nodes <span class="math inline">\(n\)</span>.</li>
-<li>For a selected <span class="math inline">\(n\)</span> calculate and display maximal error of the interpolation.</li>
-<li>Repeat your results for different set of interpolation nodes (using different function to create values <code>y[i]</code> in interpolation nodes). Look for the results obtained using function <span class="math inline">\(|x|\)</span>. Can you explain why they look like that (see definition of the intepolation error)?</li>
+<li>Implement described algorithm into your program and integrate the set of ODE’s as described above.</li>
+<li>The results of the integration, i.e., values of the functions <span class="math inline">\(x(t)\)</span>, <span class="math inline">\(y(t)\)</span> write in arrays <code>X</code>, <code>Y</code> for each time step.</li>
+<li>Present <span class="math inline">\(X(t)\)</span>, <span class="math inline">\(Y(t)\)</span> on the diagram using graphical library.</li>
+<li>Modify your program in a way allowing to use RK-4 method (use your experience from previous classes).</li>
 </ol>
 </div>
-<div id="note" class="section level3">
-<h3>Note</h3>
-<p>Parameters of the function <code>lagrange(double *x, double *y, int n, double xx)</code> denote:</p>
-<ul>
-<li><code>x</code>, <code>y</code> - pointers to n-element arrays holding coordinates of the interpolation nodes,</li>
-<li><code>n</code> - the size of the vector (number of its elements),</li>
-<li><code>xx</code> - current value of the interpolating polynomial argument for which we compute the value of the Lagrange polynomial.</li>
-</ul>
 </div>
+<div id="transformation-of-higher-order-ode-to-set-of-first-order-odes" class="section level2">
+<h2>3. Transformation of higher-order ODE to set of first-order ODE’s</h2>
+<p>In order to use Euler’s or RK-4 method to problems described by higher-order differential equations, one needs to transform higher-order equation into a set of the first-order differential equations.</p>
+<div class="figure">
+<img src="figures/info2/inst5/carriage.png" title="Problem do rozwiązania" alt="Cart" />
+<p class="caption">Cart</p>
 </div>
-<div id="runge-effect" class="section level2">
-<h2>3. Runge effect</h2>
-<p>Let us check how to improve quality of the interpolation by introduction of a more clever, non-uniform interpolation nodes distribution. We will use function <span class="math inline">\(|x|\)</span> in this example to generate the set of interpolation nodes <span class="math inline">\((x_i,|x_i|)\)</span>.</p>
-<div id="chebyschev-distribution-of-interpolation-nodes" class="section level3">
-<h3>Chebyschev distribution of interpolation nodes</h3>
-<p>Up to now, interpolation nodes were distributed uniformly in the interpolation domain. Let us now to choose the distribution in such a way that they are denser close to the ends of the interpolation domain. This can be done as follows (see Lecture notes for theoretical explanation).</p>
-<p>We want to distribute interpolation nodes in the range <span class="math inline">\(x = [-1, 1]\)</span>.</p>
-<p>Now, let us plot half-circle with center in the middle of this range <span class="math inline">\(x = 0\)</span> and radius <span class="math inline">\(R = 1\)</span>. The uniform division of an resulting arc (measuring in local arc coordinate) on <span class="math inline">\(n - 1\)</span> fragments allows to generate abscisas of the interpolation nodes given be the formula: <span class="math display">\[
-x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
-\]</span> In the more general case of the range <span class="math inline">\(x = [a, b]\)</span> the following formula is valid: <span class="math display">\[
-x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, \; i = 0, \ldots n - 1
-\]</span> <img src="cs2_lab01_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<div id="exercise" class="section level3">
-<h3>Exercise</h3>
-<p>Modify your program in such a way, that interpolation nodes are generated according to the above defined formula for <span class="math inline">\(x_i\)</span>. Check,how interpolation errors change when functions: <span class="math inline">\(|x|\)</span> or <span class="math inline">\(1/(1+10x^2)\)</span> are used to generate the values <span class="math inline">\(y_i\)</span> in interpolation nodes distributed (non-)uniformly. Can you see a difference ?</p>
+<p>Let us consider the problem that is depicted on the above figure.</p>
+<p>The movement of the cart (assuming that initially the spring is not streached and mass of the cart wheels is negligible) can be described using equation resulting from the III law of Newton’s dynamics: <span class="math display">\[ F_{cart} = - k\cdot x = m \cdot a\]</span> knowing that acceleration is the second derivative of the cart position in time we can write: <span class="math display">\[ \frac{d^2x}{dt^2} = - \frac{k}{m} \cdot x \]</span></p>
+<p>Beside the equation, we also need initial conditions. As considered equation is second-order, two initial conditions are needed. In this case we can assume that initial position of the cart is located at the beginning of the coordinate system: <span class="math display">\[ x(t=0) = 0 \]</span> and, that initially the cart is at rest: <span class="math display">\[ \frac{dx}{dt}(t=0)=0 \]</span> Next, we have to reformulate above problem to the set of two first-order ODE’s. It can be done in several different ways, for example using canonical equations (they introduce pair: position, momentum). As our case is simple, we note that introduction of a new variable - <span class="math inline">\(v\)</span> and substitution <span class="math display">\[ v = \frac{dx}{dt} \]</span> is sufficent to obtain an additional equation. This new equation relates velocity and position. Using above to the second order ODE we note: <span class="math display">\[ \frac{d^2x}{dt^2} = \frac{d}{dt} (\frac{dx}{dt}) = \frac{dv}{dt} = -\frac{k}{m}x \]</span> The same operation must be repeated for initial conditions. Finally we obtain following set of the first-order ODE’s: <span class="math display">\[
+\frac{dv}{dt} = -\frac{k}{m} x \\
+\frac{dx}{dt} = v \\
+x(t=0) = 0 \\
+v(t=0) = 0
+\]</span></p>
+<div id="exercises-1" class="section level3">
+<h3>Exercises</h3>
+<p>The movement of the mathematical pendulum (neglecting air reistance and assuming the line is massless and not extendable) is described by the following ordinary differential equation with the initial conditions: <span class="math display">\[
+\begin{aligned}
+&amp;\frac{d^2\alpha}{dt^2} = -\frac{g}{l}sin(\alpha) \\
+&amp;\alpha(t_0) = \alpha_0 \\
+&amp;\frac{d\alpha}{dt}(t_0) = \omega_0
+\end{aligned}
+\]</span> where:</p>
+<p><span class="math inline">\(\alpha\)</span> - the angle describing deviation of the pendulum from its equilibrium position,</p>
+<p><span class="math inline">\(g\)</span> - gravitational acceleration,</p>
+<p><span class="math inline">\(l\)</span> - the length of pendulum line,</p>
+<p><span class="math inline">\(m\)</span> - the mass of pendulum.</p>
+<ol style="list-style-type: decimal">
+<li><p>Transform above second-order equation to the set of first-order ordinary differential equations.</p></li>
+<li><p>Write a program using RK-4 method which computes <span class="math inline">\(\alpha(t)\)</span> - angular position and <span class="math inline">\(\omega(t) = \frac{d\alpha}{dt}\)</span> - angular velocity in time <span class="math inline">\(t \in \left[0,10\right]\)</span></p></li>
+<li>Additionaly, compute how the totoal mechanical energy <span class="math inline">\(E(t)\)</span> is changing in time. The total mechanical energy of pendulum reads: <span class="math display">\[E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))\]</span> <strong>Note</strong>: In the case with zero dissipation the total mechanical energy should be constant.</li>
+<li><p>Repeat computations using different values of the time step size <span class="math inline">\(\Delta t\)</span>.</p></li>
+</ol>
 </div>
 </div>
 </div>
