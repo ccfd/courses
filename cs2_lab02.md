@@ -30,19 +30,19 @@ e.g., trapezoidal or the Simpson integration rules.
 ### Exercises
 1. Write a program which uses trapezoidal rule and approximates the definite integral: 
 $$ I = \int_{a}^{b}{f(x)dx} $$
-Integration algorithm is already implemented. It can be found in the function
+Integration algorithm, using complex trapezoidal or Simpson quadrature, is already implemented.
+It can be found in the function
 `trapez` see file *kwad.cpp*. Header of the function `trapez` has the following form:
 ```c++
 double trapez(double a, double b, double (*fun)(double x), int n)
 ```
-Arguments `a`, `b` and `n` denote, respectively, lower `a`, upper `b` borders of integration interval and `n` is number of sub-division on which the integration interval
-is divided.
+Arguments `a`, `b` and `n` denote, respectively, the lower `a` and upper `b` borders of integration interval;  `n` is the number of sub-division on which the integration interval $b-a$ is divided.
 Note, the third argument. This argument is a pointer to the function.
 Thanks to this the function `trapez` can be used without modifications
 to approximate the value of definite integral of arbitrary user defined
 function `f(x)`. The name of the function (that is a pointer to this function) can
 be used as `trapez` argument and hence defines the integrand `f(x)`.
-Three correct calls of the function `trapez` are given by:
+Three different calls of the function `trapez` are given by:
 - `trapez(a, b, sin, n);`,
 - `trapez(1, 5, sqrt, 100);`,
 - `trapez(a, b, MyFunction, 50);`
@@ -128,14 +128,14 @@ the Gauss-Legendre method (GLM).
 GLM in its original form is defined for the definite integral
 on the interval $[-1, 1]$:
 $$ I = \int_{-1}^{1}{f(x)dx} $$
-From the lectures you know, that each definite integral
-on the interval $[a,b]$ can be transformed into such integral.
+From the lectures you know, each definite integral
+on the interval $[a,b]$ can be transformed into integral on interval $[-1,1]$.
 The value of this definite integral is approximated using formula:
 $$I = \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
-where $w_i$ are weights of the Gauss quadrature, $x_i$ are nodes of
-the Gauss quadrature,  $n$ denotes number of the nodes on which the integrand
+where $w_i$ are weights and $x_i$ are nodes of
+the Gauss-Legendre quadrature,  $n$ denotes number of the nodes on which the integrand
 value $f(x_i)$ is evaluated.
-To approximate the value of the definite integral using Gauss qudrature
+To approximate the value of the definite integral using GLM
 the information about the qudarature nodes $x_i$ distribution and weights values $w_i$
 must be known beforehand. They can be computed (see Lecture notes) or found in
 the internet[^1]. In our case, they are given in the table below for $n=5$:
@@ -152,7 +152,7 @@ the internet[^1]. In our case, they are given in the table below for $n=5$:
 
 ### Exercise
 Implement the Gauss-Legendre method (you can do it in a single loop without function, 
-directly in the main program). Compare the results obtained using GLM with previous results, how many sub-divisions `n` are required in trapezoidal/Simpsom methods to reduce the error to the level obtained by the Gauss method using only five nodes ?
+directly in the main program). Compare the results obtained using GLM with previous results, how many sub-divisions `n` are required in trapezoidal/Simpson methods to reduce the error to the level obtained by the Gauss-Legendre method using only five nodes ?
 
 
 
