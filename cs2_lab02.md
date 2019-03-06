@@ -14,16 +14,16 @@ Files for the present tutorial can be found using following links:
 ## 1. Introduction
 Numerical approximation of the definite integral is one of the basic algorithms
 used in the engineering computations. Note that we can only approximate the
-value of definite integral as the result of definite integration is scalar value
-(single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.
+value of the definite integral as the result of the definite integration is a scalar value (single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.
 
 ## 2. Newton-Cotes quadratures for integration.
 
 The idea of numerical integration is reduced to the selection of
-the appropriate quadrature for the integrated function called the integrand.
+the appropriate quadrature for the integrated function $f(x)$. 
+The function $f(x)$ is called the integrand.
 Dependent on the required accuracy of approximation of the definite
 integral, several different types of Newton-Cotes quadratures can be choosen,
-e.g., trapezoidal or the Simpson integration rules.
+e.g., mid-point, trapezoidal or the Simpson integration rules.
 
 
 
@@ -36,13 +36,14 @@ It can be found in the function
 ```c++
 double trapez(double a, double b, double (*fun)(double x), int n)
 ```
-Arguments `a`, `b` and `n` denote, respectively, the lower `a` and upper `b` borders of integration interval;  `n` is the number of sub-division on which the integration interval $b-a$ is divided.
+Arguments `a`, `b` and `n` denote, respectively, the lower `a` and upper `b` borders of integration interval;  `n` is the number of sub-division on which the integration interval $b-a$ is divided. Thus, we use the complex quadrature to approximate the
+value of the definite integral.
 Note, the third argument. This argument is a pointer to the function.
 Thanks to this the function `trapez` can be used without modifications
 to approximate the value of definite integral of arbitrary user defined
 function `f(x)`. The name of the function (that is a pointer to this function) can
-be used as `trapez` argument and hence defines the integrand `f(x)`.
-Three different calls of the function `trapez` are given by:
+be used as `trapez` argument and hence defines the integrand `f(x)`. Below,
+three different examples of the calls of the function `trapez` are given:
 - `trapez(a, b, sin, n);`,
 - `trapez(1, 5, sqrt, 100);`,
 - `trapez(a, b, MyFunction, 50);`
@@ -65,7 +66,7 @@ To solve Problem 1., the following steps are required:
 - compute the definite integral numerically `cn` and anlytically `ca`
   by calling appropriate functions defined by you above
 - compute the error $E_n=|cn - ca|_n$, note $E_n$ is expected to change dependent on selected `n`
-- write to the file number `n` of sub-divisions, values of the integral `cn`, `ca`
+- write to the file number  of sub-divisions `n`, values of the integral `cn`, `ca`
   and the error $E_n$ 
 
 
@@ -128,7 +129,7 @@ the Gauss-Legendre method (GLM).
 GLM in its original form is defined for the definite integral
 on the interval $[-1, 1]$:
 $$ I = \int_{-1}^{1}{f(x)dx} $$
-From the lectures you know, each definite integral
+This is not a problem as from the lectures you know, each definite integral
 on the interval $[a,b]$ can be transformed into integral on interval $[-1,1]$.
 The value of this definite integral is approximated using formula:
 $$I = \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}$$
