@@ -767,70 +767,89 @@ div.tocify {
 
 <div id="cakowanie-numeryczne" class="section level1">
 <h1>Całkowanie numeryczne</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
+<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/kwad.h">Plik nagłówkowy kwad.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/kwad.cpp">Plik źródłowy kwad.cpp</a></li>
 </ul>
-<div id="sowem-wstepu" class="section level2">
-<h2>1. Słowem wstępu</h2>
-<p>Całkowanie numeryczne jest jednym z podstawowych algorytmów używanych w obliczeniach inżynierskich. Pamiętajmy, że całkowanie numeryczne zawsze dotyczy obliczania całki oznaczonej (jedno- bądź wielowymiarowej). Nigdy natomiast nie dotyczy obliczania całki nieoznaczonej. Wynikiem jego działania jest wartość całki, a w żadnym razie wzór funkcji pierwotnej.</p>
+<div id="wstep" class="section level2">
+<h2>1. Wstęp</h2>
+<p>Całkowanie numeryczne jest jednym z podstawowych algorytmów używanych w obliczeniach inżynierskich. Całkowanie numeryczne zawsze dotyczy obliczania całki oznaczonej (jedno bądź wielowymiarowej). Nigdy natomiast nie dotyczy obliczania całki nieoznaczonej. Wynikiem jego działania jest wartość całki, a w żadnym razie wzór funkcji pierwotnej.</p>
 </div>
 <div id="algorytmy-cakujace" class="section level2">
 <h2>2. Algorytmy całkujące</h2>
-<p>Wśród dwóch podstawowych algorytmów, jakim będziemy się zajmować jest metoda trapezów oraz metoda Simpsona.</p>
+<p>Wśród podstawowych algorytmów, jakimi będziemy się zajmować są:</p>
+<ul>
+<li>metoda trapezów,</li>
+<li>metoda Simpsona oraz</li>
+<li>kwadratury Gaussa-Legendre’a.</li>
+</ul>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li>Napisz program obliczający metodą trapezów całkę oznaczoną o wzorze: <span class="math display">\[ g(x) = \int_{a}^{b}{f(x)dx} \]</span> Algorytm całkowania metodą trapezów jest zaimplementowany. Znajdziesz go w funkcji <code>trapez</code> w pliku <em>kwad.cpp</em>. Nagłówek funkcji <code>trapez</code> ma następującą postać:</li>
+<li>Napisz program, który metodą trapezów obliczy całkę oznaczoną: <span class="math display">\[
+I = \int_a^bf(x) dx.
+\]</span> Algorytm całkowania metodą trapezów jest zaimplementowany. Znajdziesz go w funkcji <code>trapez</code> w pliku <em>kwad.cpp</em>. Nagłówek funkcji <code>trapez</code> ma następującą postać:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> trapez(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*fun)(<span class="dt">double</span> x), <span class="dt">int</span> n)</a></code></pre></div>
-<p>Argumenty <code>a</code>, <code>b</code> i <code>n</code> to odpowiednio dolna i górna granica całkowania oraz liczba przedziałów, na które dzielony jest obszar całkowania. Zwróć uwagę na trzeci argument. Jest to wskaźnik do funkcji. Dzięki temu procedura trapez jest w stanie w taki sam, ogólny sposób liczyć całkę z dowolnej funkcji. Po nazwie (wskaźniku do funkcji) wie, której funkcji ma użyć do obliczania wartości funkcji podcałkowej. Poprawne wywołanie to np. <code>trapez(a, b, sin, n);</code> lub <code>trapez(1, 5, sqrt, 100);</code>. Możesz też użyć tej procedury do przecałkowania funkcji, którą wcześniej zdefiniowałeś, np. <code>trapez(a, b, MojaFunkcja, 50);</code> pod warunkiem, że we wcześniejszym miejscu w kodzie ta funkcja jest określona. Np. tak:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> MojaFunkcja(<span class="dt">double</span> x) <span class="co">// funkcja musi byc typu double i miec 1 argument typu double</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="cf">return</span> x*x+sin(x);</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">}</a></code></pre></div>
-<p>Aby zrealizować zadanie z punktu 1, wykonaj następujące czynności: - Napisz funkcję obliczającą <span class="math inline">\(f(x)\)</span> oraz funkcję obliczającą całkę w sposób analityczny (przecałkuj na papierze). Umieść ich prototypy przed funkcją główną oraz załącz plik nagłówkowy <em>kwad.h</em> z funkcjami całkującymi. - Czytaj z klawiatury <code>a</code>, <code>b</code> oraz <code>n</code>- liczbę podziałów. - Obliczaj całkę numerycznie <code>cn</code> oraz analitycznie ca przez wywołanie odpowiednich funkcji. - Obliczaj błąd <span class="math inline">\(|c_n - c_a|\)</span>. - Wpisuj do pliku krok całkowania oraz wartość całki policzonej analitycznie oraz numerycznie.</p>
+<p>Argumenty <code>a</code>, <code>b</code> i <code>n</code> to odpowiednio dolna i górna granica całkowania oraz liczba punktów, które dzielą przedział całkowania. Trzeci argument to wskaźnik do funkcji. Dzięki niemu procedura <code>trapez</code> jest w stanie obliczyć całkę z dowolnej funkcji. Nazwa funkcji, która jest jednocześnie jej adresem, informuje gdzie można znaleźć instrukcje obliczające wartości funkcji podcałkowej. Poprawne wywołanie to np. <code>trapez(a, b, sin, n);</code> lub <code>trapez(1, 5, sqrt, 100);</code>. Możesz też użyć tej procedury do obliczenia całki z funkcji, którą wcześniej zadeklarowałeś i zdefiniowałeś, np. <code>trapez(a, b, MojaFunkcja, 50);</code>, gdzie definicja funkcji <code>MojaFunkcja</code> ma postać:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> MojaFunkcja(<span class="dt">double</span> x) {</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="cf">return</span> x * x + sin(x);</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">}</a></code></pre></div>
+<p>Zwróć uwagę, że funkcja <strong>musi</strong> mieć jeden argument typu <code>double</code> i <strong>musi</strong> zwracać wartość typu <code>double</code>.<br />
+Aby zrealizować zadanie z punktu 1, wykonaj następujące czynności:</p>
+<ul>
+<li>Napisz funkcję, która oblicza wartości <span class="math inline">\(f(x)\)</span> oraz funkcję, która oblicza całkę w sposób analityczny (całkę oblicz na papierze). Umieść ich prototypy przed funkcją główną oraz załącz plik nagłówkowy <em>kwad.h</em> z funkcjami całkującymi.</li>
+<li>Za pomocą klawiatury podaj wartości <code>a</code>, <code>b</code> oraz <code>n</code>.</li>
+<li>Oblicz wartość całki numerycznej <code>cn</code> oraz wartość całki analitycznej <code>ca</code> przez wywołanie odpowiednich funkcji.</li>
+<li>Oblicz błąd <span class="math inline">\(|cn - ca|\)</span>.</li>
+<li>Zapisz do pliku krok całkowania oraz wartość całki obliczonej analitycznie oraz numerycznie.</li>
+</ul>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Przetestuj ten program dla: <span class="math display">\[ f(x) = \frac{1}{x^2} \]</span> <span class="math display">\[ f(x) = \frac{1}{x} \]</span> dla <span class="math inline">\(a = 1, b = 5\)</span> oraz <span class="math inline">\(a = 0.1\)</span> i <span class="math inline">\(b = 5\)</span>.</p></li>
-<li><p>Rozszerz ten program tak, aby zapisywał do pliku kolejne wierwsz odpowiadające <span class="math inline">\(n = 2, 4, 8, . . . , 2^m\)</span>.</p></li>
-<li><p>Wynik przedstaw graficznie, korzystając z Excela.</p></li>
-<li><p>Rozszerz program tak, aby dodatkowo używał metody Simpsona. Wymaga to tylko kosmetycznych zmian. Cały potrzebny szkielet już masz. Metoda Simpsona jest zaimplementowana w procedurze <code>simpson(double a, double b, double(*fun)(double x), int n)</code>.</p></li>
-<li><p>Przedstaw wyniki graficznie.</p></li>
+<li><p>Przetestuj ten program dla dwóch funkcji: <span class="math display">\[
+f(x) = \frac{1}{x^2}
+\]</span> oraz <span class="math display">\[
+f(x) = \frac{1}{x}
+\]</span> dla <span class="math inline">\(a = 1\)</span>, <span class="math inline">\(b = 5\)</span> oraz <span class="math inline">\(a = 0.1\)</span> i <span class="math inline">\(b = 5\)</span>.</p></li>
+<li><p>Rozszerz program tak, aby zapisywał do pliku kolejne wiersze odpowiadające wartościom <span class="math inline">\(n = 2, 4, 8, \ldots, 2^m\)</span>. Liczbę <code>m</code> wczytaj z klawiatury.</p></li>
+<li><p>Wynik przedstaw graficznie, korzystając z arkusza kalkulacyjnego.</p></li>
+<li><p>Rozszerz program tak, aby dodatkowo używał metody Simpsona. Jest ona zaimplementowana w funkcji o nagłówku <code>double simpson(double a, double b, double(*fun)(double x), int n)</code>.</p></li>
+<li><p>Otrzymane wyniki przedstaw graficznie.</p></li>
 </ol>
 </div>
 <div id="wskazowki-odnosnie-wskaznikow-do-funkcji" class="section level3">
 <h3>Wskazówki odnośnie wskaźników do funkcji</h3>
 <p>Przeanalizuj poniższy kod ilustrujący użycie wskaźników do funkcji. Jakie wartości przyjmują zmienne <code>y1</code> i <code>y2</code>?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">//funkcja: y = 2*x</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">double</span> fun1(<span class="dt">double</span> x)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">{</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="cf">return</span> <span class="dv">2</span>*x;</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">// funkcja: y = -x</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="dt">double</span> fun2(<span class="dt">double</span> x)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">{</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="cf">return</span> -x;</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">// funkcja zwaraca y^2</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="dt">double</span> kwadrat(<span class="dt">double</span> xx, <span class="dt">double</span> (*pf)(<span class="dt">double</span>))</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">{</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="cf">return</span> pf(xx)*pf(xx);</a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">}</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="dt">void</span> main()</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">{</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">    <span class="dt">double</span> y1 = kwadrat(<span class="fl">2.</span>, fun1);</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">double</span> y2 = kwadrat(<span class="fl">2.</span>, fun2);</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">}</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">// funkcja: y = 2 * x</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">double</span> fun1(<span class="dt">double</span> x) {</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="cf">return</span> <span class="dv">2</span> * x;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">// funkcja: y = -x</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="dt">double</span> fun2(<span class="dt">double</span> x) {</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="cf">return</span> -x;</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">// funkcja zwaraca y^2</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="dt">double</span> kwadrat(<span class="dt">double</span> xx, <span class="dt">double</span> (*pf)(<span class="dt">double</span>)) {</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  <span class="cf">return</span> pf(xx) * pf(xx);</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">}</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="dt">void</span> main() {</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  <span class="dt">double</span> y1 = kwadrat(<span class="fl">2.</span>, fun1);</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  <span class="dt">double</span> y2 = kwadrat(<span class="fl">2.</span>, fun2);</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">}</a></code></pre></div>
 </div>
 </div>
 <div id="dla-dociekliwych" class="section level2">
 <h2>3. Dla dociekliwych</h2>
-<p>Procedury trapezów i Simpsona to dość elementarne procedury. W programach obliczeniowych, które wymagają wykonywania całkowań wielokrotnie (często wiele milionów razy - o takich metodach, np. metodzie elementów skończonych - stosowanej choćby w wytrzymałości konstrukcji - będziesz się uczyć na wyższych latach) trzeba używać procedur najbardziej wydajnych obliczeniowo. Jedną klasę takich metod, które osiągają dużą dokładność przy niewielkiej liczbie punktów, w których obliczana jest funkcja podcałkowa (o tych punktach mówimy węzły kwadratury) stanowią kwadratury Gaussa.</p>
-<p>Kwadratura Gaussa jest w oryginalnej postaci zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale <span class="math inline">\(x = [-1, 1]\)</span>). <span class="math display">\[ I = \int_{-1}^{1}{f(x)dx} \]</span> Całkę w sposób przybliżony oblicza się wg następującego wzoru: <span class="math display">\[ \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}\]</span> gdzie <span class="math inline">\(w_i\)</span> to kolejne wagi kwadratury, <span class="math inline">\(x_i\)</span> to węzły kwadratury, a <span class="math inline">\(n\)</span> oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej. Aby policzyć całkę kwadraturą Gaussa, trzeba znać położenia węzłów i wartości wag. Można je obliczyć (istnieją odpowiednie procedury) lub też dla wybranych wartości <span class="math inline">\(n\)</span> można je znaleźć w internecie<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Położenia węzłów i wartości wag dla <span class="math inline">\(n = 5\)</span> są podane w poniższej tabeli:</p>
+<p>Metody trapezów i Simpsona to dość elementarne procedury. W programach obliczeniowych, które wymagają wykonywania wielokrotnych całkowań (często wiele milionów razy - o takich metodach, np. metodzie elementów skończonych stosowanej chociażby w wytrzymałości konstrukcji - będziesz się uczyć na wyższych latach) trzeba używać procedur bardziej wydajnych obliczeniowo. Jedną klasę takich metod, które osiągają dużą dokładność przy niewielkiej liczbie punktów, w których obliczana jest funkcja podcałkowa (o tych punktach mówimy węzły kwadratury) stanowią kwadratury Gaussa.</p>
+<p>Kwadratura Gaussa-Legendre’a jest w zdefiniowana dla następującej całki oznaczonej (zawsze w przedziale <span class="math inline">\(x = [-1, 1]\)</span>). <span class="math display">\[
+I = \int_{-1}^{1}{f(x)dx}
+\]</span> Taką całkę w sposób przybliżony oblicza się zgodnie z następującym wzorem: <span class="math display">\[
+\int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}
+\]</span> Wielkości <span class="math inline">\(w_i\)</span> to kolejne wagi kwadratury, <span class="math inline">\(x_i\)</span> to węzły kwadratury, a <span class="math inline">\(n\)</span> oznacza liczbę węzłów, w których będzie obliczana wartość funkcji podcałkowej.<br />
+Aby obliczyć całkę tą kwadraturą, trzeba znać położenia węzłów i wartości wag. Wielkości te można obliczyć lub skorzystać z tablic zawierających obliczone wartości <span class="math inline">\(w_i\)</span> i <span class="math inline">\(n_i\)</span> dla różnych wartości <span class="math inline">\(n\)</span> (przykładowo, można je znaleźć w Internecie<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>). Położenia węzłów i wartości wag dla <span class="math inline">\(n = 5\)</span> są podane w poniższej tabeli:</p>
 <table>
 <thead>
 <tr class="header">
@@ -863,14 +882,17 @@ div.tocify {
 </table>
 <div id="cwiczenie" class="section level3">
 <h3>Ćwiczenie</h3>
-<p>Zaimplementuj w dowolny sposób (choćby w pętli - niekoniecznie w osobnej procedurze) metodę całkowania za pomocą kwadratury Gaussa. Porównaj ją z poprzednimi metodami. Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadaturę Gaussa opartą na pięciu węzłach?</p>
+<ul>
+<li>Zaimplementuj w dowolny sposób metodę całkowania za pomocą kwadratury Gaussa. Zwróć uwagę, że kwadratura ta jest zdefinowana dla całki w przedziale <span class="math inline">\([-1, 1]\)</span>. Musisz najpierw przekształcić wzór tak aby można było obliczyć całkę w przedziale <span class="math inline">\([a, b]\)</span> (skorzystaj z zamiany zmiennych).</li>
+<li>Porównaj otrzymaną wartość z poprzednimi metodami. Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadaturę Gaussa opartą na pięciu węzłach?</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Wystarczy do wyszukiwarki wpisać hasło „Legendre Gauss nodes and weights”. Da się je znaleźć choćby pod <a href="http://holoborodko.com/pavel/numerical-methods/numerical-%20integration/">adresem</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Wystarczy do przeglądarki wpisać hasło ,,Legendre Gauss nodes and weights’’. Można je także znaleźć choćby pod <a href="http://holoborodko.com/pavel/numerical-methods/numerical-%20integration/">adresem</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
