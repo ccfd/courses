@@ -9,10 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="B. Górecki, rev. W. Gryglas, eng. T.Wacławczyk" />
+<meta name="author" content="W. Gryglas, eng. T.Wacławczyk" />
 
 
-<title>cs2_lab02.utf8.md</title>
+<title>cs2_lab06.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -732,14 +734,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="cs2_lab02.pdf">
+  <a href="cs2_lab06.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cs2_lab02.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cs2_lab06.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -765,112 +767,129 @@ div.tocify {
 </div>
 
 
-<div id="numerical-integration" class="section level1">
-<h1>Numerical integration</h1>
+<div id="solution-of-the-set-of-linear-algebraic-equations" class="section level1">
+<h1>Solution of the set of linear algebraic equations</h1>
 <p>Files for the present tutorial can be found using following links:</p>
 <ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/kwad.h">Header file kwad.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/kwad.cpp">Source file kwad.cpp</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/gauss.h">Header file gauss.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/gauss.cpp">Source file gauss.cpp</a></li>
 </ul>
 <div id="introduction" class="section level2">
 <h2>1. Introduction</h2>
-<p>Numerical approximation of the definite integral is one of the basic algorithms used in the engineering computations. Note that we can only approximate the value of the definite integral as the result of the definite integration is a scalar value (single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.</p>
+<p>During this laboratory we will use one of the numerical methods for solution of the set of linear algebraic equations. The numerical methods for this kind of problems are extremely important in practically all applications of (continous) mechanics. In practice, all non-linear problems (also described by partial differential equations) can be transformed using appropriate discretiziation rules and some additional assumptions, to the sets (sometimes huge) of linar equations. These sets are solved in the procedure allowing to obtain approximate solution of the exact non-linear problem. Such transformation is usefull as the sets of linear equations are praticularly well suited for numerical solution by computers which perform efficiently only simple operations (e.g., addition, subtruction). Such approximate solutions are very usefull in engineering practice, very often they are only available solutions of the complex, non-linear problems.</p>
+<p>The exit point is the set of linear equations: <span class="math display">\[ A \cdot x = b \]</span> where: <span class="math inline">\(A\)</span> is a matrix of coefficients, <span class="math inline">\(x\)</span> is vector of unknowns and <span class="math inline">\(b\)</span> is the right hand side (RHS) vector that is given. We know how to solve above system using the Gauss method. But before that we will construct the set of the linear equations to solve.</p>
+<p>To this goal, we use finite difference method. It is based on discretization of derivatives using the values at different, prdefined points (grid centers). Such approach allows to reformulate problem described by continous differential equations to the set of linear algebraic equations. This process is called discretization. Solution of this problem - meaining finding values of the vector <span class="math inline">\(x\)</span> - typically requires finding inverse of the matrix <span class="math inline">\(A\)</span> and finding of its left product with vector <span class="math inline">\(b\)</span>: <span class="math display">\[ x = A^{-1}\cdot b\]</span> as <span class="math inline">\(A^{-1}A=I\)</span> where <span class="math inline">\(I\)</span> is identity matrix.</p>
+<p>Let us note, computation of the inverse matrix <span class="math inline">\(A^{-1}\)</span> although possible is computationally expensive. For this reason during this classes we use <strong>Gauss elimination method</strong> that is from the class of the direct methods (not iterative) for solution of the set of linear algebraic equations.</p>
+<p>Futher, we divide the work into two parts. First we will discretize continous problem in order to create the set of linear algebraic equations, next we solve this set using the aformentioned Gauss method.</p>
 </div>
-<div id="newton-cotes-quadratures-for-integration." class="section level2">
-<h2>2. Newton-Cotes quadratures for integration.</h2>
-<p>The idea of numerical integration is reduced to the selection of the appropriate quadrature for the integrated function <span class="math inline">\(f(x)\)</span>. The function <span class="math inline">\(f(x)\)</span> is called the integrand. Dependent on the required accuracy of approximation of the definite integral, several different types of Newton-Cotes quadratures can be choosen, e.g., mid-point, trapezoidal or the Simpson integration rules.</p>
-<div id="exercises" class="section level3">
-<h3>Exercises</h3>
+<div id="creation-of-the-set-of-linear-equations" class="section level2">
+<h2>2. Creation of the set of linear equations</h2>
+<p>Let us condier a problem of heat transport by conduction in the one dimensional steel rod (see Fig.)</p>
+<p><img src="figures/info2/inst6/problem.png" title="Zagadnienie" /></p>
+<p>We want to find a distribution of temperature, knowing that at the beggining of the rod, temperature is <span class="math inline">\(T_p=273\,[K]\)</span> and at the end of the rod <span class="math inline">\(T_k=300\,[K]\)</span>. Additionally we know: <span class="math inline">\(L=1\,[m]\)</span> the length of the rod, <span class="math inline">\(\lambda=58\,[W/mK]\)</span> heat conductivity of steel. Moreover, the steel rod is heated by an additional heat source varying along its length as <span class="math inline">\(Q=-10^4\cdot sin(x\pi)[\frac{W}{m^3}]\)</span>.</p>
+<p>Hence, the heat conduction is described by the equation: <span class="math display">\[ \frac{\partial}{dx} \left( \lambda \frac{\partial T}{dx} \right) = Q(x) \]</span> Taking into account that <span class="math inline">\(\lambda=const.\)</span>, we can simplify above equation to: <span class="math display">\[ \frac{d^2T}{dx^2} = \frac{Q(x)}{\lambda} \]</span> This is a second-order, ordinary differential equation (<span class="math inline">\(T\)</span> depends only on <span class="math inline">\(x\)</span>) formulated as boundary value problem. Hence, to solve above equation we need two boundary conditions for temperature: <span class="math display">\[ T(x=0) = T_p \]</span> <span class="math display">\[ T(x=L) = T_k \]</span> In order to solve above problem using finite difference method we have to reformulate it to a set of the linear algebraic equations. To this goal, we have to divide computational domain (length of the rod <span class="math inline">\(L=1\,[m]\)</span>) into smaller elements. We choose to divide the interval <span class="math inline">\([0,1]\)</span> into <span class="math inline">\(N\)</span> elements, as depicted in Figure below.</p>
+<p><img src="figures/info2/inst6/discretization.png" title="Dyskretyzacja" /></p>
+<p>The points <span class="math inline">\(x_0, x_1, ..., x_N\)</span> are called the nodes of the computational grid. Let us assume for now, their distribution is uniform (equidistant), hence, <span class="math inline">\(x_{i+1}-x_i = h\)</span> where <span class="math inline">\(h = \frac{L}{N}\)</span> is constant, <span class="math inline">\(L=1\,[m]\)</span> in our case: <span class="math display">\[h = \frac{1}{N}\]</span> Before we discretize equation, let’s introduce following notation: <span class="math display">\[ T = [T_0, T_1, T_2, T_3, ..., T_N]^T\]</span> where <span class="math inline">\(T\)</span> is a vector storing values of the solution at discrete grid points <span class="math inline">\(T=T(x_i)\)</span>, <span class="math inline">\(i=0,...,N\)</span>.</p>
+<p>Now, let’s recall definition of the derivative of the function: <span class="math display">\[ \frac{dT}{dx} = \lim_{dx\to 0}{\frac{T(x+dx)-T(x)}{dx}}\]</span> The computer can not use infinitisemaly small numbers, for this reason <span class="math inline">\(dx\)</span> in the computer code must be finite. To this goal, let us choose <span class="math inline">\(h\)</span> which is small but finite: <span class="math display">\[\frac{dT}{dx} \approx \frac{T(x+h)-T(x)}{h}\]</span> In above equation one problem appears. For which value of <span class="math inline">\(x\)</span> abobove formula approximates the derivative: <span class="math inline">\(x\)</span>, <span class="math inline">\(x+h\)</span> or maybe <span class="math inline">\(x+\frac{h}{2}\)</span>? In reality above approximation is true for each of the previousely definied points as it is only an approximation.</p>
+<ul>
+<li><p>If we choose that the derivative is approximated at point x: <span class="math inline">\(\frac{dT}{dx}(x)\)</span> above approximation results in the explicit Euler’s scheme (in space).</p></li>
+<li><p>If we choose that the derivative is approximated at point x+h: <span class="math inline">\(\frac{dT}{dx}(x+h)\)</span> above approximation results in implicit Euler’s scheme (in space).</p></li>
+</ul>
+<p>For the present classes, we however assume that the difference <span class="math inline">\(\frac{T(x+h)-T(x)}{h}\)</span> approximates the value of the derivative at point <span class="math inline">\(x+h/2\)</span>: <span class="math inline">\(\frac{dT}{dx}(x+\frac{h}{2})\)</span> One can show this is second-order accurate discretization of the derivative. As our heat conduction equation, uses second-order sparial derivative <span class="math inline">\(\frac{d^2T}{dx^2}\)</span> we use above approximation twice. Let’s introduce notation <span class="math inline">\(\frac{dT}{dx} = Y\)</span>. Then our problem can be written in the form: <span class="math display">\[\frac{dY}{dx} = \frac{Q(x)}{\lambda}\]</span> And we use approximation of the derivative of the function <span class="math inline">\(Y\)</span> (central difference) to obtain: <span class="math display">\[\frac{Y(x+\frac{h}{2})-Y(x-\frac{h}{2})}{h} = \frac{Q(x)}{\lambda}\]</span> Let us write terms in above formula explicitely: <span class="math inline">\(Y(x+\frac{h}{2})=\frac{dT}{dx}(x+\frac{h}{2})\)</span> oraz <span class="math inline">\(Y(x-\frac{h}{2})=\frac{dT}{dx}(x-\frac{h}{2})\)</span>: <span class="math display">\[
+Y(x+\frac{h}{2}) = \frac{T(x+h)-T(x)}{h}\\
+Y(x-\frac{h}{2}) = \frac{T(x)-T(x-h)}{h}
+\]</span> After substitution to the initial heat condution equation, we obtain: <span class="math display">\[\frac{\frac{T(x+h)-T(x)}{h} - \frac{T(x)-T(x-h)}{h}}{h} = \frac{T(x+h)-2\cdot T(x)+T(x-h)}{h^2} = \frac{Q(x)}{\lambda}\]</span> Above formula, is an approximation of the second-order derivative using the values of <span class="math inline">\(T\)</span> function in three points: <span class="math inline">\(x-h, x, x+h\)</span>. The central scheme is second-order accurate what is its desirable feature, we can use above equation to construct corresponding set of the linear algebraic equations. Let’s modify above formula by multiplying both sides by <span class="math inline">\(h^2\)</span> what leads to: <span class="math display">\[ T(x+h) - 2T(x) + T(x-h) = \frac{Q(x)}{\lambda}h^2 \]</span> Let go back to the figure above presenting discretization. We take into account internal nodes having numbers 1,…,N-1. If we substitute values of following <span class="math inline">\(x_i\)</span> to the equation above following set of the equations is obained: <span class="math display">\[
+T_2 - 2 \cdot T_1 + T_0 = \frac{Q(x_1)}{\lambda} \cdot h^2 \\
+T_3 - 2 \cdot T_2 + T_1 = \frac{Q(x_2)}{\lambda} \cdot h^2 \\
+T_4 - 2 \cdot T_3 + T_2 = \frac{Q(x_3)}{\lambda} \cdot h^2 \\
+. \\
+. \\
+. \\
+T_N - 2 \cdot T_{N-1} + T_{N-2} = \frac{Q(x_{N-1})}{\lambda} \cdot h^2
+\]</span> Above set omits points <span class="math inline">\(0\)</span> and <span class="math inline">\(N\)</span> as it is hard to write an equation for them (nodes <span class="math inline">\(x_{-1}\)</span> and <span class="math inline">\(x_{N+1}\)</span> does not exsist) we will take them into account in the moment. Now let’s look on the form of the above equations. Each of them carries information about 3 unknown values denoted as <span class="math inline">\(T_{i+1}, T_{i}, T_{i-1}\)</span>. These are values of the unknown function in corresponding nodes. We introduce one more vector <span class="math inline">\(F\)</span>: <span class="math display">\[ F_i = \frac{Q(x_i)}{\lambda} \cdot h^2\]</span> its elements <span class="math inline">\(F=F(x_i)\)</span> contain values of the known RHS in the equation. Therefore, reformulated equation finaly has a form: <span class="math display">\[ T_{i+1} - 2 \cdot T_i + T_{i-1} = F_i \]</span> Using vector notation above equation in matrix form reads: <span class="math display">\[ K \cdot T = F\]</span> where <span class="math inline">\(K\)</span> is the matrix of coefficients: <span class="math display">\[
+\begin{bmatrix}
+1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp;  0\\
+0 &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; &amp; 1 &amp; -2 &amp; 1 
+\end{bmatrix}
+\times
+\begin{bmatrix}
+T_0 \\
+T_1 \\
+T_2 \\
+\vdots \\
+T_{N}
+\end{bmatrix}
+=
+\begin{bmatrix}
+F_1 \\
+F_2 \\
+\vdots \\
+F_{N-1}
+\end{bmatrix}
+\]</span> Above set of linear algebraic equation is not <strong>closed</strong>. As it is easy to notice the matrix <span class="math inline">\(K\)</span> is not square since two equations for the nodes <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_N\)</span> are missing. Here, we must use boundary values: <span class="math display">\[
+T(x=x_0) = T_0 = T_p = 273\\
+T(x=x_N) = T_N = T_k = 300
+\]</span> Above equations mean that we know solution (temperature <span class="math inline">\(F_0=T_0\)</span> and <span class="math inline">\(F_N=T_N\)</span>) at points <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_N\)</span>. Therefore we can explicitly include them into the set of algerbraic equations:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp;  0\\
+0 &amp; \dots &amp; \dots &amp; \dots &amp; \dots  &amp; 1 &amp; -2 &amp; 1\\
+0 &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; 1\\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+T_0 \\
+T_1 \\
+T_2 \\
+\vdots \\
+T_{N-1}\\
+T_{N}
+\end{bmatrix}
+=
+\begin{bmatrix}
+273 \\
+\frac{Q(x_1)}{\lambda} \cdot h^2 \\
+\frac{Q(x_2)}{\lambda} \cdot h^2 \\
+\vdots \\
+\frac{Q(x_{N-1})}{\lambda} \cdot h^2 \\
+300
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="exercises" class="section level2">
+<h2>Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Write a program which uses trapezoidal rule and approximates the definite integral: <span class="math display">\[ I = \int_{a}^{b}{f(x)dx} \]</span> Integration algorithm, using complex trapezoidal or Simpson quadrature, is already implemented. It can be found in the function <code>trapez</code> see file <em>kwad.cpp</em>. Header of the function <code>trapez</code> has the following form:</li>
+<li><p>Create a variable: two dimensional array <span class="math inline">\(K\)</span> using static memory allocation. Set constant size of a matrix <code>N=6</code> (use an instruction <code>const int N=...;</code> or preprocessor declaration <code>#define</code> to change the size of a matrix). Remember, the number of discretization (grid) points equals <span class="math inline">\(N+1\)</span> in the above example.</p></li>
+<li><p>Create static arrays to store the RHS vector <span class="math inline">\(F\)</span> and vector of unkowns <span class="math inline">\(T\)</span>/</p></li>
+<li><p>Initialize matrix <span class="math inline">\(K\)</span> according to discretization presented above.</p></li>
+<li>Write function displaing matrix <span class="math inline">\(K\)</span> with protoype:</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> trapez(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*fun)(<span class="dt">double</span> x), <span class="dt">int</span> n)</a></code></pre></div>
-<p>Arguments <code>a</code>, <code>b</code> and <code>n</code> denote, respectively, the lower <code>a</code> and upper <code>b</code> borders of integration interval; <code>n</code> is the number of sub-division on which the integration interval <span class="math inline">\(b-a\)</span> is divided. Thus, we use the complex quadrature to approximate the value of the definite integral. Note, the third argument. This argument is a pointer to the function. Thanks to this the function <code>trapez</code> can be used without modifications to approximate the value of definite integral of arbitrary user defined function <code>f(x)</code>. The name of the function (that is a pointer to this function) can be used as <code>trapez</code> argument and hence defines the integrand <code>f(x)</code>. Below, three different examples of the calls of the function <code>trapez</code> are given: - <code>trapez(a, b, sin, n);</code>, - <code>trapez(1, 5, sqrt, 100);</code>, - <code>trapez(a, b, MyFunction, 50);</code> where <code>MyFunction</code> is a user specified function defining <code>f(x)</code>. For example <code>MyFunction</code> can be defined like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> MyFunction(<span class="dt">double</span> x) <span class="co">// the function must be of type double with one argument of type double</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="cf">return</span> x*x+sin(x);</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">}</a></code></pre></div>
-<p>To solve Problem 1., the following steps are required: - write a function computing <span class="math inline">\(f(x)\)</span> and a function computing the value of the definite integral analytically for given (simple enough) <span class="math inline">\(f(x)\)</span> (before writing it solve the definite integral by yourself on the paper sheet). Next, place prototypes of both functions before <code>main()</code> and include header file <code>kwad.h</code> - read from the keyboard (or initially define in the program) <code>a</code>, <code>b</code> and <code>n</code>- number of sub-divisions of <code>&lt;a,b&gt;</code> domain - compute the definite integral numerically <code>cn</code> and anlytically <code>ca</code> by calling appropriate functions defined by you above - compute the error <span class="math inline">\(E_n=|cn - ca|_n\)</span>, note <span class="math inline">\(E_n\)</span> is expected to change dependent on selected <code>n</code> - write to the file number of sub-divisions <code>n</code>, values of the integral <code>cn</code>, <code>ca</code> and the error <span class="math inline">\(E_n\)</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Test your program for two functions: <span class="math display">\[ f(x) = \frac{1}{x^2} \]</span> <span class="math display">\[ f(x) = \frac{1}{x} \]</span> choosing <span class="math inline">\(a = 1, b = 5\)</span> or <span class="math inline">\(a = 0.1, b = 5\)</span>.</p></li>
-<li><p>Extend your program in a way it writes to the file different rows corresponding to <span class="math inline">\(n = 2, 4, 8, . . . , 2^m\)</span>, where <span class="math inline">\(m\)</span> is user defined value (e.g. <span class="math inline">\(m=5\)</span>).</p></li>
-<li><p>Extend your program by including the Simpson method (the changes are not large you only need additional varialbes to store <code>cn</code>,<code>ca</code>, <span class="math inline">\(E_n\)</span> obtained using the Simpson method). The Simpson method is implemented in files <code>kwad.h</code>, <code>kwad.cpp</code> as well. Its prototype <code>simpson(double a, double b, double(*fun)(double x), int n)</code>.</p></li>
-<li><p>Compare on the single diagram errors obtained using <code>trapez</code> and <code>simpson</code> methods. What can you say about the rate of change (convergence rate) of their errors ?</p></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> DisplayMatrix(<span class="dt">int</span> n, <span class="dt">double</span> A[][N]);</a></code></pre></div>
+<p>Check if matrix <span class="math inline">\(K\)</span> in your code has elements as described above.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Compute the vector of <span class="math inline">\(F\)</span> using definition from above description.</li>
 </ol>
 </div>
-<div id="more-about-pointers-to-the-function" class="section level3">
-<h3>More about pointers to the function</h3>
-<p>Analyze the code below. How values of <code>y1</code> and <code>y2</code> variables are changing during the code execution ?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">//function: y = 2*x</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">double</span> fun1(<span class="dt">double</span> x)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">{</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="cf">return</span> <span class="dv">2</span>*x;</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">// function: y = -x</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="dt">double</span> fun2(<span class="dt">double</span> x)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">{</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="cf">return</span> -x;</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">// function returns y^2</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="dt">double</span> kwadrat(<span class="dt">double</span> xx, <span class="dt">double</span> (*pf)(<span class="dt">double</span>))</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">{</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="cf">return</span> pf(xx)*pf(xx);</a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">}</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="dt">void</span> main()</a>
-<a class="sourceLine" id="cb3-20" data-line-number="20">{</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">    <span class="dt">double</span> y1 = kwadrat(<span class="fl">2.</span>, fun1);</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22">    <span class="dt">double</span> y2 = kwadrat(<span class="fl">2.</span>, fun2);</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">}</a></code></pre></div>
+<div id="solution-of-the-set-of-linear-algebraic-equations-1" class="section level2">
+<h2>3. Solution of the set of linear algebraic equations</h2>
+<p>Finally, we can solve the set of linear algebraic equations. As a result we obtain one-dimensional array <span class="math inline">\(T\)</span> storing the values of unknown temperature in predefined grid points.</p>
 </div>
-</div>
-<div id="spectral-integration" class="section level2">
-<h2>3. Spectral integration</h2>
-<p>The trapezoidal and Simpson rules are both based on approximation of the integrand by the Lagrange interpolation polynomial. More accurate integration methods are available. One of the examples of very accurate numerical integration techniques is the the Gauss-Legendre method (GLM).</p>
-<p>GLM in its original form is defined for the definite integral on the interval <span class="math inline">\([-1, 1]\)</span>: <span class="math display">\[ I = \int_{-1}^{1}{f(x)dx} \]</span> This is not a problem as from the lectures you know, each definite integral on the interval <span class="math inline">\([a,b]\)</span> can be transformed into integral on interval <span class="math inline">\([-1,1]\)</span>. The value of this definite integral is approximated using formula: <span class="math display">\[I = \int_{-1}^{1}{f(x)dx} \approx \sum_{i=1}^{n}{w_if(x_i)}\]</span> where <span class="math inline">\(w_i\)</span> are weights and <span class="math inline">\(x_i\)</span> are nodes of the Gauss-Legendre quadrature, <span class="math inline">\(n\)</span> denotes number of the nodes on which the integrand value <span class="math inline">\(f(x_i)\)</span> is evaluated. To approximate the value of the definite integral using GLM the information about the qudarature nodes <span class="math inline">\(x_i\)</span> distribution and weights values <span class="math inline">\(w_i\)</span> must be known beforehand. They can be computed (see Lecture notes) or found in the internet<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. In our case, they are given in the table below for <span class="math inline">\(n=5\)</span>:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(x_i\)</span></th>
-<th align="center"><span class="math inline">\(w_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">-0.9061798459386639927976269</td>
-<td align="center">0.2369268850561890875142640</td>
-</tr>
-<tr class="even">
-<td align="center">-0.5384693101056830910363144</td>
-<td align="center">0.4786286704993664680412915</td>
-</tr>
-<tr class="odd">
-<td align="center">0.0</td>
-<td align="center">0.5688888888888888888888889</td>
-</tr>
-<tr class="even">
-<td align="center">0.5384693101056830910363144</td>
-<td align="center">0.4786286704993664680412915</td>
-</tr>
-<tr class="odd">
-<td align="center">0.9061798459386639927976269</td>
-<td align="center">0.2369268850561890875142640</td>
-</tr>
-</tbody>
-</table>
-<div id="exercise" class="section level3">
-<h3>Exercise</h3>
-<p>Implement the Gauss-Legendre method (you can do it in a single loop without function, directly in the main program). Compare the results obtained using GLM with previous results, how many sub-divisions <code>n</code> are required in trapezoidal/Simpson methods to reduce the error to the level obtained by the Gauss-Legendre method using only five nodes ?</p>
-</div>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>try to google „Legendre Gauss nodes and weights” or check <a href="http://holoborodko.com/pavel/numerical-methods/numerical-%20integration/">here</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<div id="exercises-1" class="section level2">
+<h2>Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Apply function <code>gauss</code> performing the Gauss elimination to solve above system of equations. The header of this function: <code>void gauss(int n, double A[][N], double b[], double x[])</code> where <code>n</code> number of equations, <code>A</code> the coefficient matrix, <code>b</code> - the right hand side vector and <code>x</code> the vector of unknowns (stores final result).</p></li>
+<li><p>Prepeare diagram of the function <span class="math inline">\(T=T(x)\)</span> using graphical library. If <code>N=20</code> (meaning 21 points) your result should be similar to the result depicted in the figure below <img src="cs2_lab06_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p></li>
+<li><p>Test your program for different <code>n</code> (be carefull, the Gauss method is slow <span class="math inline">\(~n^3\)</span> operations are required to obtain the solution).</p></li>
+<li><p>Based on the function <code>gauss</code> write a function computing upper tri-diagonal matrix. Next, use it to compute determinant of the matrix <span class="math inline">\(K\)</span>.</p></li>
 </ol>
+</div>
 </div>
 
 <!-- Dummy footer -->
