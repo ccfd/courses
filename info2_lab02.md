@@ -130,10 +130,10 @@ Położenia węzłów i wartości wag dla $n = 5$ są podane w poniższej tabeli
 ### Ćwiczenie
 
  - Zaimplementuj w dowolny sposób metodę całkowania za pomocą kwadratury Gaussa.
-Zwróć uwagę, że kwadratura ta jest zdefinowana dla całki w przedziale $[-1, 1]$.
+Zwróć uwagę, że kwadratura ta jest zdefiniowana dla całki w przedziale $[-1, 1]$.
 Musisz najpierw przekształcić wzór tak aby można było obliczyć całkę w przedziale $[a, b]$ (skorzystaj z zamiany zmiennych).
  - Porównaj otrzymaną wartość z poprzednimi metodami.
-Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadaturę Gaussa opartą na pięciu węzłach?
+Ilu podziałów w metodzie trapezów lub Simpsona musisz użyć, aby osiągnąć dokładność całkowania osiąganą przez kwadraturę Gaussa opartą na pięciu węzłach?
 
 [^1]:Wystarczy do przeglądarki wpisać hasło ,,Legendre Gauss nodes and weights''. Można je także znaleźć choćby pod [adresem](http://holoborodko.com/pavel/numerical-methods/numerical-
 integration/)
