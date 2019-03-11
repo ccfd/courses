@@ -64,7 +64,7 @@ file under **Coordinates File**. Click on **Generate** button.
 
 4. Right click on the **Mesh**, select **Face Meshing**. Add all faces under **Geometry**. Select **Quadrilaterals** under **Method**. Click on **Generate** button. Fig. 6 shows the view of the computational mesh.
 
-5. Save the meshing project. Export the mesh to *.msh Fluent file. **File\Export**.
+5. Save the meshing project. Export the mesh to *.msh Fluent file. **File/Export**.
 
 ![**Fig. 6** Final block-structured mesh](figures/KAP/Lab1_mesh.png "Figure  6")
 
@@ -90,7 +90,7 @@ pressure and static temperature has to be specified in the boundary condition ta
     * Set the static temperature to $283 K$. For air $\gamma=1.4$.
     \[ \frac{T_{0}}{T} =  1 +\left(\frac{\gamma - 1}{2}\right) M^{2} \]
 
-    * Turbulence quantities. Ratio of turbulent to molecular viscosity $\nu = 10$, Turbulent intensity $TI = 1%$.
+    * Turbulence quantities. Ratio of turbulent to molecular viscosity $\nu = 10$, Turbulent intensity $TI = 1\%$.
 
 4. Run the computations. The residuals should fall down below $10^{-5}$. The numerical scheme
 should be set to the second order upwind.

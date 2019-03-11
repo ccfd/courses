@@ -1,3 +1,20 @@
 #!/bin/bash
+if test "x$1" == "xkeep_tex"
+then
+	OPT="keep_tex=TRUE"
+	shift
+else
+	OPT=""
+fi
+
 test -z "$1" && exit -1
-R --vanilla --slave -e "library(rmarkdown); source('tools/pdf_full.R'); render('$1',pdf_full())"
+echo -n "Compiling $1 to pdf - "
+if R --vanilla --slave -e "library(rmarkdown); source('tools/pdf_full.R'); render('$1',pdf_full($OPT))" >pdf_compile.log 2>&1
+then
+	echo "OK"
+else
+	echo "ERROR"
+	cat pdf_compile.log
+	echo "-----"
+fi
+
