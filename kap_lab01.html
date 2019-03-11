@@ -639,7 +639,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="kap_lab01.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -706,7 +706,7 @@ div.tocify {
 <li><p>The boundary layer mesh (<strong>Inflation</strong>) cannot be used now.</p></li>
 </ul></li>
 <li><p>Right click on the <strong>Mesh</strong>, select <strong>Face Meshing</strong>. Add all faces under <strong>Geometry</strong>. Select <strong>Quadrilaterals</strong> under <strong>Method</strong>. Click on <strong>Generate</strong> button. Fig. 6 shows the view of the computational mesh.</p></li>
-<li><p>Save the meshing project. Export the mesh to *.msh Fluent file. **File*.</p></li>
+<li><p>Save the meshing project. Export the mesh to *.msh Fluent file. <strong>File/Export</strong>.</p></li>
 </ol>
 <div class="figure">
 <img src="figures/KAP/Lab1_mesh.png" title="Figure 6" alt="Fig. 6 Final block-structured mesh" />
@@ -723,7 +723,7 @@ div.tocify {
 <li><p>Set the operating pressure to <span class="math inline">\(0 Pa\)</span> <strong>Define/Boundary Conditions/Operating Condition</strong>.</p></li>
 <li><p>Set the static pressure to <span class="math inline">\(73048 Pa\)</span> (<strong>Define/Boundary Conditions/pressure far field</strong>). <span class="math display">\[ \frac{p_{0}}{p} = \left[ 1 +\left(\frac{\gamma - 1}{2}\right) M^{2}\right]^{\frac{\gamma}{\gamma - 1}} \]</span></p></li>
 <li><p>Set the static temperature to <span class="math inline">\(283 K\)</span>. For air <span class="math inline">\(\gamma=1.4\)</span>. <span class="math display">\[ \frac{T_{0}}{T} =  1 +\left(\frac{\gamma - 1}{2}\right) M^{2} \]</span></p></li>
-<li><p>Turbulence quantities. Ratio of turbulent to molecular viscosity <span class="math inline">\(\nu = 10\)</span>, Turbulent intensity <span class="math inline">\(TI = 1%\)</span>.</p></li>
+<li><p>Turbulence quantities. Ratio of turbulent to molecular viscosity <span class="math inline">\(\nu = 10\)</span>, Turbulent intensity <span class="math inline">\(TI = 1\%\)</span>.</p></li>
 </ul></li>
 <li><p>Run the computations. The residuals should fall down below <span class="math inline">\(10^{-5}\)</span>. The numerical scheme should be set to the second order upwind.</p></li>
 <li><p>Verify the pressure, temperature and velocity fields. Verify the lift and drag coefficients cd=Fd/(0.5 u2 A) <span class="math display">\[c_{d} =  \frac{F_{D}}{0.5 \rho u^{2} A} \]</span> , (A is equal to 1) and compare them with literature data (activate the freestream conditions in <strong>Report/Reference values</strong>). For this flow the measured lift and drag coefficient are equal to <span class="math inline">\(c_{l}=0.241\)</span>, <span class="math inline">\(c_{d}=0.0079\)</span>. Note that the forces have to be computed with respect to direction of the incoming flow. This is why the mesh has been rotated in the beginning by 1.55 deg. It means that the lift and drag coefficients can now easily be obtained in <strong>Report/Forces/Direction vector</strong> by setting 1 and 0 factors under Direction vector. x=1 y=0 for drag, x=0, y=1 for lift.</p></li>
