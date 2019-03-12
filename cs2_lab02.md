@@ -14,7 +14,8 @@ Files for the present tutorial can be found using following links:
 ## 1. Introduction
 Numerical approximation of the definite integral is one of the basic algorithms
 used in the engineering computations. Note that we can only approximate the
-value of the definite integral as the result of the definite integration is a scalar value (single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.
+value of the definite integral as the result of the definite integration is a scalar value
+(single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.
 
 ## 2. Newton-Cotes quadratures for integration.
 
