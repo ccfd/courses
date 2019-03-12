@@ -18,8 +18,7 @@ Today, we will deal with the issue of interpolation.
 Suppose that from a tank that can be placed  at different heights, water flows out of the pipe until it is empty.
 We made the experiment by placing the tank at several different heights (eg 2, 3 and 4 m) and for each of these heights we measure the time after which the tank was empty. Note, the pipe outlet remains on the same level. 
 In the design process (optimization?), we usually want to be able to predict the emptying time for any tank 
-placement height.
-This height is between the set extreme values, i.e. at an altitude of 3.27 m.
+placement height. This height is between the set extreme values, i.e. at an altitude of 3.27 m.
 Therefore, we must be able to use our measurement data to carry out a curve that will reliably approximate this relationship.
 We are talking about interpolation, i.e. interpolating a set of discrete data (interpolation nodes) into a continuous relationship defined for each argument lying between the points (interpolation nodes) on which we base interpolation.
 

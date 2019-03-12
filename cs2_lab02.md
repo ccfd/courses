@@ -14,7 +14,8 @@ Files for the present tutorial can be found using following links:
 ## 1. Introduction
 Numerical approximation of the definite integral is one of the basic algorithms
 used in the engineering computations. Note that we can only approximate the
-value of the definite integral as the result of the definite integration is a scalar value (single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.
+value of the definite integral as the result of the definite integration is a scalar value
+(single number). Indefinite integrals can not be computed (solved) using methods discussed during this course.
 
 ## 2. Newton-Cotes quadratures for integration.
 
@@ -155,7 +156,4 @@ the internet[^1]. In our case, they are given in the table below for $n=5$:
 Implement the Gauss-Legendre method (you can do it in a single loop without function, 
 directly in the main program). Compare the results obtained using GLM with previous results, how many sub-divisions `n` are required in trapezoidal/Simpson methods to reduce the error to the level obtained by the Gauss-Legendre method using only five nodes ?
 
-
-
-[^1]:try to google „Legendre Gauss nodes and weights” or check [here](http://holoborodko.com/pavel/numerical-methods/numerical-
-integration/)
+[^1]:try to google „Legendre Gauss nodes and weights” or check [here](http://holoborodko.com/pavel/numerical-methods/numerical-integration/)
