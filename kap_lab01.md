@@ -35,7 +35,7 @@ file under **Coordinates File**. Click on **Generate** button.
 
 8. Make the two surfaces. Switch to **Modeling** mode (**Concept/Surfaces from sketches**), select both rectangles, Change **Add Material** to **Add frozen** under **Operation**.
 
-9. Subtract the airfoil surface from fluid areas surrounding the body (half of circle and rectangle). **Create/Boolean/Subtract**. **Preserve Tool Bodies** set to** **No**. See fig. 3
+9. Subtract the airfoil surface from fluid areas surrounding the body (half of circle and rectangle). **Create/Boolean/Subtract**. **Preserve Tool Bodies** set to **No**. See fig. 3
     ![**Fig. 3** Airfoil body subtracted from half of cylinder and rectangular](figures/KAP/Lab1_fig3.png "Figure 3")
 
 10. Mirror the two rectangles (one with subtracted airfoil) in the zx-plane. (**Create/Body Operation/Mirror**, select zx-plane)
