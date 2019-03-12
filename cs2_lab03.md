@@ -17,8 +17,7 @@ During this tutorial we will learn how to use different methods for solution
 of the non-linear algebraic equations. As in practice it is impossible to
 find exact solution to this problem, we search for approximate solution only.
 To meet this goal, three different iterative numerical techniques will be introduced, namely:
-bi-section, secant and tangent methods. 
-All of them require, that the function which root is
+bi-section, secant and tangent methods. All of them require, that the function which root is
 the solution of the problem is continous.
 
 
