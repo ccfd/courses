@@ -156,5 +156,4 @@ the internet[^1]. In our case, they are given in the table below for $n=5$:
 Implement the Gauss-Legendre method (you can do it in a single loop without function, 
 directly in the main program). Compare the results obtained using GLM with previous results, how many sub-divisions `n` are required in trapezoidal/Simpson methods to reduce the error to the level obtained by the Gauss-Legendre method using only five nodes ?
 
-[^1]:try to google „Legendre Gauss nodes and weights” or check [here](http://holoborodko.com/pavel/numerical-methods/numerical-
-integration)
+[^1]:try to google „Legendre Gauss nodes and weights” or check [here](http://holoborodko.com/pavel/numerical-methods/numerical-integration/)
