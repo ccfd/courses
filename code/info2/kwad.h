@@ -5,13 +5,13 @@
 // oblicza metoda trapezow calke funkcji pf w przedziale <a,b> 
 // w oparciu o n punktow (n >= 2)
 //////////////////////////////////////////////////////////////////
-float trapez( float a, float b, float (*pf)(float), int n);
+double trapez( double a, double b, double (*pf)(double), int n);
 
 //////////////////////////////////////////////////////////////////
 // oblicza metoda simpsona calke funkcji pf w przedziale <a,b> 
 // w oparciu o n punktow (n >= 2)
 //////////////////////////////////////////////////////////////////
-float simpson( float a, float b, float (*pf)(float), int n);
+double simpson( double a, double b, double (*pf)(double), int n);
 
 
 #endif // __KWAD_H__
