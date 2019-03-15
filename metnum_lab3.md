@@ -130,4 +130,4 @@ Schemat taki nazywamy metodą **gradientu sprzężonego** --- Conjugate Gradient
 ### Zadanie
  Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem $p=r$ (brakiem preconditionera).
 
-**Uwaga:** Metodę Conjugate Gradient można zaimplementować w bardziej ,,zwartej'' formie. Taki schemat można znaleść na wikipedii, bądz w notatkach z wykładu.
+**Uwaga:** Metodę Conjugate Gradient można zaimplementować w bardziej ,,zwartej'' formie. Taki schemat można znaleźć na wikipedii, bądz w notatkach z wykładu.
