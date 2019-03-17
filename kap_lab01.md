@@ -31,6 +31,8 @@ file under **Coordinates File**. Click on **Generate** button.
 
 4. We are going to generate a fluid areas surrounding the airfoil. Add new **Sketch**
    ![](figures/KAP/Lab1_newsketch_button.png "New sketch") in the XY-Plane. Go to the **Sketching** mode. First, a half of the cylinder will be made in front of the airfoil (fig 1). Make a circle with origin at point (0,1 0,0 0,0). Set a circle diameter to 15m. Use **Dimensions** to specify the above parameters. Make a straight vertical line with length larger than the circle diameter. Place the vertical line at distance 0,1 from y-axis (use **Parallel** option to make the line parallel to y-axis). Use **Modify/Trim** option to remove the right half of the cylinder and the line segments above the circle.
+   
+   
     ![**Fig. 1** Half of the cylinder (**Sketching mode**)](figures/KAP/Lab1_fig1.png "Figure 1")
 
 
@@ -38,6 +40,8 @@ file under **Coordinates File**. Click on **Generate** button.
 
 
 6. Add new **Sketch** in the XY-Plane. Go to the Sk**e**tching mode. Make a rectangular 0,9 x 7,5m. The end points of the bottom side of rectangular are : (0,1 0), (1 0). Use **Coincident** in order to attach some lines with the other. Fig. 2 shows the rectangular in the sketching mode.
+
+
     ![**Fig. 2** Rectangular placed next to half of the cylinder](figures/KAP/Lab1_fig2.png "Figure 2")
 
 
@@ -48,6 +52,8 @@ file under **Coordinates File**. Click on **Generate** button.
 
 
 9. Subtract the airfoil surface from fluid areas surrounding the body (half of circle and rectangle). **Create/Boolean/Subtract**. **Preserve Tool Bodies** set to **No**. See fig. 3
+
+
     ![**Fig. 3** Airfoil body subtracted from half of cylinder and rectangular](figures/KAP/Lab1_fig3.png "Figure 3")
 
 
@@ -55,6 +61,8 @@ file under **Coordinates File**. Click on **Generate** button.
 
 
 11. Connect the five faces together to ensure that there are linked together (**Tools/Joint**). See fig. 4
+
+
     ![**Fig. 4** The five faces surrounding the airfoil](figures/KAP/Lab1_fig4.png "Figure 4")
 
 
@@ -71,6 +79,8 @@ file under **Coordinates File**. Click on **Generate** button.
 
 
 2. Click on the **Mesh** button. Change the settings under the **Physics reference** from **Mechanical** to **CFD**, use **Fluent** as **Solver Preference**. Generate a preliminary (unstructured) mesh (see fig. 5). The mesh is very coarse near to the surface and it cannot be used for viscous flow simulations.
+
+
     ![**Fig. 5** Preliminary mesh generated over airfoil using the global mesh settings](figures/KAP/Lab1_fig5.png "Figure 5")
 
 
