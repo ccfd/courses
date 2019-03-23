@@ -776,46 +776,67 @@ div.tocify {
 
 <div id="iteracyjne-metody-rozwiazywania-rownan-nieliniowych" class="section level1">
 <h1>Iteracyjne metody rozwiązywania równań nieliniowych</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
+<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/nonlin.h">Plik nagłówkowy nonlin.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/nonlin.cpp">Plik źródłowy nonlin.cpp</a></li>
 </ul>
 <div id="wstep" class="section level2">
 <h2>1. Wstęp</h2>
-<p>Celem ćwiczenia jest zapoznanie z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych równań algebraicznych. W praktyce najczęściej jest niemożliwe znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą bisekcji, siecznych oraz stycznych. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy, była ciągła.</p>
+<p>Celem ćwiczenia jest zapoznanie się z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych funkcji matematycznych. W praktyce najczęściej niemożliwe jest znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą <strong>bisekcji</strong>, <strong>siecznych</strong> oraz <strong>stycznych</strong>. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy, była ciągła.</p>
 </div>
 <div id="metoda-bisekcji" class="section level2">
 <h2>2. Metoda bisekcji</h2>
-<p>W przypadu metody bisekcji korzystamy z faktu, że jeśli na końcach pewnego przedziału liczbowego wartosci funkcji są przeciwnych znaków, gdzieś na tym odcinku funkcja ma miejsce zerowe (ta trywialna obserwacja to tzw. twierdzenie Darboux, sformułowane przez francuskiego matematyka Jeana Gastona Darboux (1842-1917)). Za pomocą tej metody rozwiążemy równanie: <span class="math display">\[cos(x) = x\]</span> Posłużymy się przygotowaną wcześniej funkcją <code>bisec</code>. W tym celu należy załączyć do projektu pliki <em>nonlin.h</em> oraz <em>nonlin.cpp</em>. Funkcja <code>bisec</code> ma nagłówek następującej postaci:</p>
+<p>W przypadku metody bisekcji korzystamy z faktu, że jeśli na końcach pewnego przedziału liczbowego wartości funkcji są przeciwnych znaków, gdzieś na tym odcinku funkcja ma miejsce zerowe (ta trywialna obserwacja to tzw. twierdzenie Darboux, sformułowane przez francuskiego matematyka Jeana Gastona Darboux (1842-1917)). Za pomocą tej metody rozwiążemy równanie: <span class="math display">\[
+\cos(x) = x
+\]</span> Posłużymy się przygotowaną wcześniej funkcją <code>bisec</code>. W tym celu należy załączyć do projektu pliki <em>nonlin.h</em> oraz <em>nonlin.cpp</em>. Funkcja <code>bisec</code> ma nagłówek następującej postaci:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> bisec(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
-<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty: - <code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania - <code>(*pf)</code> - wzkaźnik do funkcji zawierającej rozwiązywane równanie - <code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span> - <code>iter</code> - wskaźnik do zmiennej, pod którą zostanie zapisana ilość iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to pod wskaźnik <code>iter</code> zostaje przypisana wartość <code>-1</code> a funkcja zwraca wartość <code>0</code>.</p>
+<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty:</p>
+<ul>
+<li><code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania,</li>
+<li><code>double (*pf)(double)</code> - wskaźnik do funkcji utworzonej na podstawie rozwiązywanego równania,</li>
+<li><code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span>,</li>
+<li><code>iter</code> - zmienna typu wskaźnikowego, która zawiera adres, pod który zostanie zapisana liczba iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to zmienna, której adres zawiera <code>iter</code> będzie zawierać wartość <code>-1</code> a funkcja zwróci wartość <code>0</code>.</li>
+</ul>
 <div id="cwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li>Napisz funkcję <code>double eqn(double x)</code>, która będzie zwracac wartość naszego równania sprowadzonego do postaci <span class="math inline">\(f (x) = 0\)</span>.</li>
-<li>Wczytać z klawiatury dokładność rozwiązania <code>eps</code> oraz krańce przedziału przeszukiwań <code>a</code> i <code>b</code>. Należy pamętać o tym, że <span class="math inline">\(f (a) \cdot f (b) &lt; 0\)</span>.</li>
-<li>Wypisz na ekranie miejsce zerowe oraz liczbę iteracji.</li>
-<li>Przerób program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{-20} , 2^{-19}, ..., 2^{-3}\)</span>.</li>
-<li>Zrób wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).</li>
+<li>Napisz funkcję <code>double fun(double x)</code>, która będzie zwracać wartość funkcji <span class="math inline">\(f(x)\)</span> uzyskaną z przekształcenia naszego równania do postaci <span class="math inline">\(f(x) = 0\)</span>.</li>
+<li>Wczytaj z klawiatury dokładność rozwiązania <code>eps</code> oraz krańce przedziału przeszukiwań <code>a</code> i <code>b</code>. Pamiętaj o tym, że krańce muszą spełniać nierówność <span class="math inline">\(f(a) \cdot f(b) &lt; 0\)</span>.</li>
+<li>Wykorzystaj funkcję <code>bisec</code> a następnie wypisz na ekranie znalezione miejsce zerowe oraz liczbę iteracji.</li>
+<li>Zmodyfikuj program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{-20} , 2^{-19}, \ldots, 2^{-3}\)</span>.</li>
+<li>Utwórz wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).</li>
 </ol>
 </div>
 </div>
 <div id="metoda-siecznych-i-stycznych" class="section level2">
 <h2>3. Metoda siecznych i stycznych</h2>
-<p>Innymi metodami poszukiwania rozwiązań równań nieliniowych są metody stycznych oraz siecznych. W przypadku metody siecznych kolejne przybliżenie miejsca zerowego wyznacza się jako miejsca przecięcia odpowiedniej siecznej wykresu funkcji z osią odciętych. Dana sieczna przechodzi przez punkty z wykresu funkcji, których rzędne były poprzednimi przybliżeniami miejsca zerowego. Schemat iteracyjny ma następującą postać: <span class="math display">\[ x_{i+1} = x_i - f(x_i) \frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})} \]</span> W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia miejsca zerowego są przeciąciami stycznych do wykresu funkcji z osią odciętych. Policzenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji. Schemat iteracyjny przybiera następującą postać: <span class="math display">\[ x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x)} \]</span></p>
+<p>Innymi metodami poszukiwania rozwiązań równań nieliniowych są metody stycznych oraz siecznych. W przypadku metody siecznych kolejne przybliżenie miejsca zerowego wyznacza się jako miejsca przecięcia odpowiedniej siecznej wykresu funkcji z osią odciętych. Dana sieczna przechodzi przez punkty z wykresu funkcji, których rzędne były poprzednimi przybliżeniami miejsca zerowego. Schemat iteracyjny ma następującą postać: <span class="math display">\[
+x_{i+1} = x_i - f(x_i) \frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})}
+\]</span></p>
+<p>W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia miejsca zerowego są przecięciami stycznych do wykresu funkcji z osią odciętych. Obliczenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji. Schemat iteracyjny przybiera następującą postać: <span class="math display">\[
+x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x)}
+\]</span></p>
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li>Rozwiąż to samo równanie, co poprzednio, używajac obu powyższych metod. Wypisz na ekran dokładność, liczbę itaracji metody siecznych, stycznych oraz bisekcji.</li>
-<li>Stwórz wykres przedstawiajacy zależność liczby iteracji od dokładnosci rozwiązania (dokładność przedstaw na skali logarytmicznej).</li>
-<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(cos(x) = w \cdot x\)</span>. Dokładność <span class="math inline">\(\varepsilon = 10^{-6}\)</span> , Parametr <span class="math inline">\(w\)</span> przebiega w zakresie <span class="math inline">\(w = 0.5, 0.6, ..., 15.0\)</span>.</li>
+<li>Napisz procedury wyznaczające miejsce zerowe funkcji <span class="math inline">\(f(x)\)</span> metodą Newtona i metodą siecznych. Nagłówki funkcji powinny mieć postaci:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> newton(<span class="dt">double</span> x, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">double</span> siecz(<span class="dt">double</span> x1, <span class="dt">double</span> x2, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Rozwiąż to samo równanie co poprzednio, używając obu powyższych metod.</li>
+<li>Dla metody siecznych, stycznych oraz bisekcji, wypisz na ekran liczbę iteracji niezbędną do znalezienia miejsca zerowego funkcji przy dokładności <span class="math inline">\(\varepsilon = 2^{-20} , 2^{-19}, \ldots, 2^{-3}\)</span>.</li>
+<li>Stwórz wykres przedstawiający zależność liczby iteracji od dokładności rozwiązania (dokładność przedstaw na skali logarytmicznej).</li>
+<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(\cos(x) = w \cdot x\)</span>. Dokładność rozwiązania <span class="math inline">\(\varepsilon = 10^{-6}\)</span> . Parametr <span class="math inline">\(w\)</span> przybiera wartości <span class="math inline">\(w = 0.5, 0.6, \ldots, 15.0\)</span>.</li>
 </ol>
 </div>
 </div>
 <div id="zadanie-dodatkowe" class="section level2">
 <h2>4. Zadanie dodatkowe</h2>
-<p>Metody rozwiązywania równań nieliniowych mogą być również użyte do znajdowania ekstremów funkcji. Spróbuj znaleźć ekstremum funkcji: <span class="math display">\[ f (x) = (1 + x) \cdot arctan(x) \]</span></p>
+<p>Metody rozwiązywania równań nieliniowych mogą być również użyte do znajdowania ekstremów funkcji. Spróbuj znaleźć ekstremum funkcji: <span class="math display">\[
+f(x) = (1 + x) \cdot \arctan(x)
+\]</span></p>
 </div>
 </div>
 
