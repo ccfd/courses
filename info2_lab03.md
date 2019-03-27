@@ -64,7 +64,7 @@ W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia
 Obliczenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji.
 Schemat iteracyjny przybiera następującą postać:
 $$
-x_{i+1} = x_i - \frac{f(x_i)}{f'(x)}
+x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 $$
 
 ### Ćwiczenia
