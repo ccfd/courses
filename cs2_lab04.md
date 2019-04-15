@@ -20,16 +20,17 @@ physical phenomena we accounter in the real world.
 Most of the equations derived for description of the given phenomena are
 to complex to be solved analytically. In particular, the most difficult to
 solve are equations including non-linear terms. Interestingly, almost
-all physical phenomena in the reality (and their models too) are non-linear
+all physical phenomena in reality (and their models too) are non-linear
 hence the world is non-linear (complex) place ...
-As engineer needs solutions, no matter what, and hence anlytical solution
-of the problems are not posssible we often use numerical methods to obtain
-approximate solution to complex problems.
+
+As engineer needs solutions and hence anlytical solution
+of the problems are usually not posssible, we often use numerical methods to obtain
+approximate solutions of complex problems.
 The basic example here is the Euler's method that is the simplest, first-order
-accurate method. The second approach to the discussed problem
+accurate technique for solution of ODE's. The second approach to the discussed problem
 will be carried out using 4-th order accurate Runge-Kutta method.
 It is an example of multi-step method with high order of accuracy 
-and relatively high stability in comparison to the Euler's method.
+and relatively higher stability in comparison to the Euler's method.
 
 
 
