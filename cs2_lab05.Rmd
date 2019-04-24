@@ -19,15 +19,15 @@ differential equation (ODE) in the initial value problem. Introduced numerical m
 allow for finding the function $y(t)$ which satisfies arbitrary first order differential equation:
 $$ \frac{dy}{dt} = f(t, y(t)) $$
 with the initial condition $y(t=t_0)=y_0$.
-However, in may situations we have to solve simultaneously two or more ODE's which are coupled with each other, for example by the functions on their right hand sides:
+However, in many situations we have to solve simultaneously two or more ODE's which are coupled with each other, for example by the functions on their right hand sides:
 $$ 
 \begin{aligned}
 \frac{dx}{dt} &= sin(y) + cos(x) \cdot t \\
 \frac{dy}{dt} &= sin(y) \cdot t + cos(x)
 \end{aligned}
 $$
-As you can observe in the above set of the two first order ODE's, during their solutions we search for the functions $x = x(t)$ and $y=y(t)$. However, the RHS of these equations are both dependent on $x(t)$ and $y(t)$. Hence, to solve first equation for $x(t)$ we need to know how $y(t)$ is changing in time. To solve second equation for $y(t)$ we need to know how $x(t)$ is changing in time. Therefore, these two equations are strongly coupled.
-To solve this problem we have to integrate both equations simultaneously. This is the main topic of the present laboratory for its solution we use knowledge we gathered during the previous classes during solution of the initial value problem. 
+As you can observe in the above set of the two first order ODE's, during their solutions we search for the functions $x=x(t)$ and $y=y(t)$. However, the RHS of these equations are both dependent on $x(t)$ and $y(t)$. Hence, to solve first equation for $x(t)$ one needs to know how $y(t)$ is changing in time. To solve second equation for $y(t)$ one needs to know how $x(t)$ is changing in time. Therefore, these two equations are strongly coupled.
+To solve above problem (the set of two first-order ODE's) we have to integrate both equations simultaneously. This is the main subject of the present laboratory. 
 
 The issue of the numerical solution of the set of first-order ODE's very often is related to problems which are described by higher order ODE's. Here, the most common one are the second-order differential equations especially in the models describing dynamics of the mechanical systems, e.g., movement of the solid body or material point under action of  external forces. These equations typically read: 
 $$ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) $$
@@ -39,7 +39,7 @@ $$
 \end{aligned}
 $$
 
-Above set of equations can be reduced to the single second-order equation (by substitution). Their solutions are therefore corresponding. Note, the unknown functions to dertermine here are $v_x(t)$ and $x(t)$. For this reason we also need two initial conditions for instance at $t=0$: \qquad $v_x(t=0)=v_0$ and $x(t=0)=x_0$, where $v_0$, $x_0$ are known values.
+Above set of equations can be reduced to the single second-order equation (by substitution); their solutions are therefore corresponding. Note, the unknown functions to dertermine are $v_x(t)$ and $x(t)$. For this reason we also need two initial conditions at $t=0$, for instance: \qquad $v_x(t=0)=v_0$ and $x(t=0)=x_0$, where $v_0$, $x_0$ are known, specified values.
 
 
 
@@ -70,23 +70,23 @@ $$
 
 For the above system of equations, integration using the Euler's method can be described using the following algorithm:
 
-1. Set $x_0 = x(t=0)$, $y_0 = y(t=0)$, the integration strart at $t=0$, choose the time step size $dt$, e.g. $dt = 0.001$.
+1. Set $x0 = x(t=0)$, $y0 = y(t=0)$, the integration strart at $t=0$, choose the time step size $dt$, e.g. $dt = 0.001$.
 
-2. Compute derivatives of functions $x$ and $y$ using known values $x_0, y_0, t$,
+2. Compute derivatives of functions $x$ and $y$ using known values $x0, y0, t$,
 in this case:
 $$
-dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
-dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
+dxdt = sin(y0) + cos(x0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
+dydt = sin(y0) \cdot 0 + cos(x0) = sin(0) \cdot 0 + cos(0) = 1
 $$
 3. Using values of the drivatives obtained at time $t=0$ compute new values of functions $x$, $y$ at the next time level:
 $$
-x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
-y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
+x1 = x0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
+y1 = y0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
 $$
 4. Update the variables setting:
 $$
-x_0 = x = 0, \quad
-y_0 = y = 0.001, \quad
+x0 = x1 = 0, \quad
+y0 = y1 = 0.001, \quad
 t = t + dt = 0.001
 $$
 5. Goto point 2. and repeat all operations until variable $t$ equals its final value $T$
@@ -110,7 +110,7 @@ lines(t, Y, col="red")
 legend(0.05,y=0.3, legend = c("x(t)","y(t"), col=c("blue","red"), lty=c(1,1), cex=1.2)
 ```
 
-The above algorithm can be easily reformulated in order to use Runge-Kutta method.
+The above algorithm can be easily reformulated in order to use the Runge-Kutta method.
 The only difference is in the way how the right hand sides are calculated, i.e., how
 variables $dxdt$ and $dydt$ are updated.
 
@@ -181,12 +181,14 @@ $l$ - the length of pendulum line,
 
 $m$ - the mass of pendulum.
 
-1. Transform above second-order equation to the set of first-order ordinary differential equations.
+1. Transform the above second-order equation to the set of first-order ordinary differential equations.
 
 2. Write a program using RK-4 method which computes $\alpha(t)$ - angular position and $\omega(t) = \frac{d\alpha}{dt}$ - angular velocity in time $t \in \left[0,10\right]$
 
-3. Additionaly, compute how the totoal mechanical energy $E(t)$ is changing in time.
+3. Additionaly, compute how the total mechanical energy $E(t)$ is changing in time.
 The total mechanical energy of pendulum reads:
 $$E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))$$
 **Note**: In the case with zero dissipation the total mechanical energy should be constant.
 4. Repeat computations using different values of the time step size $\Delta t$.
+   Investigate stability of the solution for Euler's and RK-4 methods. Conclude,
+   which method has larger domain of stability?
