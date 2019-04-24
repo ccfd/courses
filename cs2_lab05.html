@@ -690,19 +690,19 @@ div.tocify {
 </ul>
 <div id="introduction" class="section level2">
 <h2>1. Introduction</h2>
-<p>During previous laboratory we have learned how to integrate single ordinary differential equation (ODE) in the initial value problem. Introduced numerical methods allow for finding the function <span class="math inline">\(y(t)\)</span> which satisfies arbitrary first order differential equation: <span class="math display">\[ \frac{dy}{dt} = f(t, y(t)) \]</span> with the initial condition <span class="math inline">\(y(t=t_0)=y_0\)</span>. However, in may situations we have to solve simultaneously two or more ODE’s which are coupled with each other, for example by the functions on their right hand sides: <span class="math display">\[ 
+<p>During previous laboratory we have learned how to integrate single ordinary differential equation (ODE) in the initial value problem. Introduced numerical methods allow for finding the function <span class="math inline">\(y(t)\)</span> which satisfies arbitrary first order differential equation: <span class="math display">\[ \frac{dy}{dt} = f(t, y(t)) \]</span> with the initial condition <span class="math inline">\(y(t=t_0)=y_0\)</span>. However, in many situations we have to solve simultaneously two or more ODE’s which are coupled with each other, for example by the functions on their right hand sides: <span class="math display">\[ 
 \begin{aligned}
 \frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
 \frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
 \end{aligned}
-\]</span> As you can observe in the above set of the two first order ODE’s, during their solutions we search for the functions <span class="math inline">\(x = x(t)\)</span> and <span class="math inline">\(y=y(t)\)</span>. However, the RHS of these equations are both dependent on <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span>. Hence, to solve first equation for <span class="math inline">\(x(t)\)</span> we need to know how <span class="math inline">\(y(t)\)</span> is changing in time. To solve second equation for <span class="math inline">\(y(t)\)</span> we need to know how <span class="math inline">\(x(t)\)</span> is changing in time. Therefore, these two equations are strongly coupled. To solve this problem we have to integrate both equations simultaneously. This is the main topic of the present laboratory for its solution we use knowledge we gathered during the previous classes during solution of the initial value problem.</p>
+\]</span> As you can observe in the above set of the two first order ODE’s, during their solutions we search for the functions <span class="math inline">\(x=x(t)\)</span> and <span class="math inline">\(y=y(t)\)</span>. However, the RHS of these equations are both dependent on <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span>. Hence, to solve first equation for <span class="math inline">\(x(t)\)</span> one needs to know how <span class="math inline">\(y(t)\)</span> is changing in time. To solve second equation for <span class="math inline">\(y(t)\)</span> one needs to know how <span class="math inline">\(x(t)\)</span> is changing in time. Therefore, these two equations are strongly coupled. To solve above problem (the set of two first-order ODE’s) we have to integrate both equations simultaneously. This is the main subject of the present laboratory.</p>
 <p>The issue of the numerical solution of the set of first-order ODE’s very often is related to problems which are described by higher order ODE’s. Here, the most common one are the second-order differential equations especially in the models describing dynamics of the mechanical systems, e.g., movement of the solid body or material point under action of external forces. These equations typically read: <span class="math display">\[ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) \]</span> Each second-order ODE, can be reformulated into the form of the set of two <strong>first- order</strong> ODE’s: <span class="math display">\[ 
 \begin{aligned}
 \frac{dv_x}{dt} &amp;= f_1(t, x, v_x) \\
 \frac{dx}{dt} &amp;= v_x
 \end{aligned}
 \]</span></p>
-<p>Above set of equations can be reduced to the single second-order equation (by substitution). Their solutions are therefore corresponding. Note, the unknown functions to dertermine here are <span class="math inline">\(v_x(t)\)</span> and <span class="math inline">\(x(t)\)</span>. For this reason we also need two initial conditions for instance at <span class="math inline">\(t=0\)</span>: <span class="math inline">\(v_x(t=0)=v_0\)</span> and <span class="math inline">\(x(t=0)=x_0\)</span>, where <span class="math inline">\(v_0\)</span>, <span class="math inline">\(x_0\)</span> are known values.</p>
+<p>Above set of equations can be reduced to the single second-order equation (by substitution); their solutions are therefore corresponding. Note, the unknown functions to dertermine are <span class="math inline">\(v_x(t)\)</span> and <span class="math inline">\(x(t)\)</span>. For this reason we also need two initial conditions at <span class="math inline">\(t=0\)</span>, for instance: <span class="math inline">\(v_x(t=0)=v_0\)</span> and <span class="math inline">\(x(t=0)=x_0\)</span>, where <span class="math inline">\(v_0\)</span>, <span class="math inline">\(x_0\)</span> are known, specified values.</p>
 </div>
 <div id="numerical-integration-of-the-set-of-odes" class="section level2">
 <h2>2. Numerical integration of the set of ODE’s</h2>
@@ -723,25 +723,25 @@ y(t=0) = 0
 \]</span></p>
 <p>For the above system of equations, integration using the Euler’s method can be described using the following algorithm:</p>
 <ol style="list-style-type: decimal">
-<li><p>Set <span class="math inline">\(x_0 = x(t=0)\)</span>, <span class="math inline">\(y_0 = y(t=0)\)</span>, the integration strart at <span class="math inline">\(t=0\)</span>, choose the time step size <span class="math inline">\(dt\)</span>, e.g. <span class="math inline">\(dt = 0.001\)</span>.</p></li>
-<li>Compute derivatives of functions <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> using known values <span class="math inline">\(x_0, y_0, t\)</span>, in this case: <span class="math display">\[
-dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
-dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
+<li><p>Set <span class="math inline">\(x0 = x(t=0)\)</span>, <span class="math inline">\(y0 = y(t=0)\)</span>, the integration strart at <span class="math inline">\(t=0\)</span>, choose the time step size <span class="math inline">\(dt\)</span>, e.g. <span class="math inline">\(dt = 0.001\)</span>.</p></li>
+<li>Compute derivatives of functions <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> using known values <span class="math inline">\(x0, y0, t\)</span>, in this case: <span class="math display">\[
+dxdt = sin(y0) + cos(x0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
+dydt = sin(y0) \cdot 0 + cos(x0) = sin(0) \cdot 0 + cos(0) = 1
 \]</span></li>
 <li>Using values of the drivatives obtained at time <span class="math inline">\(t=0\)</span> compute new values of functions <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> at the next time level: <span class="math display">\[
-x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
-y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
+x1 = x0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
+y1 = y0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
 \]</span></li>
 <li>Update the variables setting: <span class="math display">\[
-x_0 = x = 0, \quad
-y_0 = y = 0.001, \quad
+x0 = x1 = 0, \quad
+y0 = y1 = 0.001, \quad
 t = t + dt = 0.001
 \]</span></li>
 <li><p>Goto point 2. and repeat all operations until variable <span class="math inline">\(t\)</span> equals its final value <span class="math inline">\(T\)</span> (<span class="math inline">\(T\)</span> is set by the user).</p></li>
 </ol>
 <p>Using above algorithm one can obtain the results presented on the figure below in time [0,T], here <span class="math inline">\(T=1\)</span>.</p>
 <p><img src="cs2_lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>The above algorithm can be easily reformulated in order to use Runge-Kutta method. The only difference is in the way how the right hand sides are calculated, i.e., how variables <span class="math inline">\(dxdt\)</span> and <span class="math inline">\(dydt\)</span> are updated.</p>
+<p>The above algorithm can be easily reformulated in order to use the Runge-Kutta method. The only difference is in the way how the right hand sides are calculated, i.e., how variables <span class="math inline">\(dxdt\)</span> and <span class="math inline">\(dydt\)</span> are updated.</p>
 <div id="exercises" class="section level3">
 <h3>Exercises</h3>
 <ol style="list-style-type: decimal">
@@ -781,10 +781,10 @@ v(t=0) = 0
 <p><span class="math inline">\(l\)</span> - the length of pendulum line,</p>
 <p><span class="math inline">\(m\)</span> - the mass of pendulum.</p>
 <ol style="list-style-type: decimal">
-<li><p>Transform above second-order equation to the set of first-order ordinary differential equations.</p></li>
+<li><p>Transform the above second-order equation to the set of first-order ordinary differential equations.</p></li>
 <li><p>Write a program using RK-4 method which computes <span class="math inline">\(\alpha(t)\)</span> - angular position and <span class="math inline">\(\omega(t) = \frac{d\alpha}{dt}\)</span> - angular velocity in time <span class="math inline">\(t \in \left[0,10\right]\)</span></p></li>
-<li>Additionaly, compute how the totoal mechanical energy <span class="math inline">\(E(t)\)</span> is changing in time. The total mechanical energy of pendulum reads: <span class="math display">\[E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))\]</span> <strong>Note</strong>: In the case with zero dissipation the total mechanical energy should be constant.</li>
-<li><p>Repeat computations using different values of the time step size <span class="math inline">\(\Delta t\)</span>.</p></li>
+<li>Additionaly, compute how the total mechanical energy <span class="math inline">\(E(t)\)</span> is changing in time. The total mechanical energy of pendulum reads: <span class="math display">\[E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))\]</span> <strong>Note</strong>: In the case with zero dissipation the total mechanical energy should be constant.</li>
+<li><p>Repeat computations using different values of the time step size <span class="math inline">\(\Delta t\)</span>. Investigate stability of the solution for Euler’s and RK-4 methods. Conclude, which method has larger domain of stability?</p></li>
 </ol>
 </div>
 </div>
