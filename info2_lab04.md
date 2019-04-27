@@ -14,7 +14,7 @@ Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniżs
 
 ## 1. Wstęp
 Celem dzisiejszych zajęć jest zapoznanie się z podstawowymi metodami całkowania numerycznego równań różniczkowych zwyczajnych pierwszego rzędu.
-Część procesów fizycznych, które można obserwować w otaczającym nas świecie można modelować korzystając właśnie z równań różniczkowych.
+Część procesów fizycznych, które obserwujemy w otaczającym nas świecie może być modelowana za pomocą właśnie równań różniczkowych.
 Większości z nich nie da się rozwiązać w sposób analityczny (tj. podać rozwiązania w postaci jawnej).
 W szczególności, największe problemy sprawiają równania zawierające człony nieliniowe.
 Świat, w którym żyjemy, jest silnie nieliniowy i większość problemów, które przyjdzie nam rozwiązywać, nie będzie posiadać rozwiązania w formie analitycznej.
@@ -52,7 +52,24 @@ Gdzie:
 
 ## 3. Metoda Rungego-Kutty 4-ego rzędu
 
-Metoda ta jest już zaimplementowana w pliku $\verb+rk4.cpp+$.
+Schemat iteracyjny ma postać:
+$$
+y_{i+1} = y_i + \frac{h}{6} \left( K_1 + 2K_2 + 2K_3 + K_4 \right)
+$$
+gdzie:
+$$
+K_1 = f\left( x_i, y_i \right)
+$$
+$$
+K_2 = f\left( x_i + \frac{1}{2}h, y_i + \frac{1}{2}hK_1\right)
+$$
+$$
+K_3 = f\left( x_i + \frac{1}{2}h, y_i + \frac{1}{2}hK_2\right)
+$$
+$$
+K_4 = f\left( x_i + h, y_i +hK_3 \right)
+$$
+Metoda ta **jest już** zaimplementowana w pliku $\verb+rk4.cpp+$.
 Nagłówek funkcji, która wykonuje jeden krok całkowania równania różniczkowego ma postać:
 ```c++
 double rk4(double x0, double y0, double h, double (*fun)(double, double))
@@ -80,10 +97,9 @@ $$
 y(t) = y_0 \cdot \mathrm{e}^{\lambda(t-t_0)}
 $$
 
-1. Napisz program, który rozwiąże dane zagadnienie początkowe, z wykorzystaniem schematu Eulera.
-Wybierz czas końcowy $t_k$ oraz liczbę kroków $N$.
-2. Wykorzystaj zaimplementowany schemat RK4 i ponownie rozwiąż zagadnienie.
-3. Dla obu przypadków wyświetl na monitorze kolejne wartości $t$, $y$ oraz względną wartość błędu: $\varepsilon = \frac{|y-y_\mathrm{analityczne}|}{|y_\mathrm{analityczne}|}$.
-4. Zmodyfikuj program tak aby wykonywał obliczenia jedną i druga metodą dla zadanego $t_k$ i liczby kroków: $2^0$, $2^1$, $\ldots$, $2^6$.  
+1. Napisz program, który rozwiąże dane zagadnienie początkowe z wykorzystaniem schematu Eulera.
+2. Wykorzystaj schemat RK4 zaimplementowany w pliku $\verb+rk4.cpp+$ i ponownie rozwiąż zagadnienie.
+3. Dla obu przypadków wyświetl na monitorze kolejne wartości $t_i$, $y_i$ oraz względne wartości błędów: $\varepsilon_i = \frac{|y_i - y_i^\mathrm{analityczne}|}{|y_i^\mathrm{analityczne}|}$.
+4. Zmodyfikuj program tak aby wykonywał obliczenia jedną i druga metodą dla zadanego $t_k$ i liczby kroków: $N = 2^0,\; 2^1,\; \ldots,\; 2^6$.  
 Wydrukuj do pliku: liczbę kroków $N$, długość kroku $h$, błąd metody Eulera i błąd metody RK4 dla ostatniego kroku czasowego.
-5. Sporządź wykres błędu metody w funkcji $h$ i oszacuj rząd zbieżności.
+5. Sporządź wykresy błędów obu metod w funkcji kroku $h$ i oszacuj ich rzędy zbieżności.
