@@ -781,7 +781,7 @@ div.tocify {
 </ul>
 <div id="wstep" class="section level2">
 <h2>1. Wstęp</h2>
-<p>Celem dzisiejszych zajęć jest zapoznanie się z podstawowymi metodami całkowania numerycznego równań różniczkowych zwyczajnych pierwszego rzędu. Część procesów fizycznych, które można obserwować w otaczającym nas świecie można modelować korzystając właśnie z równań różniczkowych. Większości z nich nie da się rozwiązać w sposób analityczny (tj. podać rozwiązania w postaci jawnej). W szczególności, największe problemy sprawiają równania zawierające człony nieliniowe. Świat, w którym żyjemy, jest silnie nieliniowy i większość problemów, które przyjdzie nam rozwiązywać, nie będzie posiadać rozwiązania w formie analitycznej.</p>
+<p>Celem dzisiejszych zajęć jest zapoznanie się z podstawowymi metodami całkowania numerycznego równań różniczkowych zwyczajnych pierwszego rzędu. Część procesów fizycznych, które obserwujemy w otaczającym nas świecie może być modelowana za pomocą właśnie równań różniczkowych. Większości z nich nie da się rozwiązać w sposób analityczny (tj. podać rozwiązania w postaci jawnej). W szczególności, największe problemy sprawiają równania zawierające człony nieliniowe. Świat, w którym żyjemy, jest silnie nieliniowy i większość problemów, które przyjdzie nam rozwiązywać, nie będzie posiadać rozwiązania w formie analitycznej.</p>
 <p>Jako pierwszą poznamy metodę pierwszego rzędu zwaną (od nazwiska twórcy) jawną metodą <strong>Eulera</strong>. Jest ona jednocześnie najprostszą i bardzo niestabilną metodą. Drugą metodą, którą zastosujemy na dzisiejszych zajęciach, będzie metoda <strong>Rungego-Kutty 4-go rzędu</strong>. Jest to metoda jawna, która charakteryzuje się stosunkowo wysokim rzędem, łatwością implementacji oraz relatywnie wysoką stabilnością.</p>
 <p>Obie metody wykorzystamy do rozwiązania zagadnienia początkowego w postaci: <span class="math display">\[
 \left\{
@@ -808,7 +808,17 @@ y_{i+1} = y_i + h \cdot f(t_i , y_i )
 </div>
 <div id="metoda-rungego-kutty-4-ego-rzedu" class="section level2">
 <h2>3. Metoda Rungego-Kutty 4-ego rzędu</h2>
-<p>Metoda ta jest już zaimplementowana w pliku <span class="math inline">\(\verb+rk4.cpp+\)</span>. Nagłówek funkcji, która wykonuje jeden krok całkowania równania różniczkowego ma postać:</p>
+<p>Schemat iteracyjny ma postać: <span class="math display">\[
+y_{i+1} = y_i + \frac{h}{6} \left( K_1 + 2K_2 + 2K_3 + K_4 \right)
+\]</span> gdzie: <span class="math display">\[
+K_1 = f\left( x_i, y_i \right)
+\]</span> <span class="math display">\[
+K_2 = f\left( x_i + \frac{1}{2}h, y_i + \frac{1}{2}hK_1\right)
+\]</span> <span class="math display">\[
+K_3 = f\left( x_i + \frac{1}{2}h, y_i + \frac{1}{2}hK_2\right)
+\]</span> <span class="math display">\[
+K_4 = f\left( x_i + h, y_i +hK_3 \right)
+\]</span> Metoda ta <strong>jest już</strong> zaimplementowana w pliku <span class="math inline">\(\verb+rk4.cpp+\)</span>. Nagłówek funkcji, która wykonuje jeden krok całkowania równania różniczkowego ma postać:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> rk4(<span class="dt">double</span> x0, <span class="dt">double</span> y0, <span class="dt">double</span> h, <span class="dt">double</span> (*fun)(<span class="dt">double</span>, <span class="dt">double</span>))</a></code></pre></div>
 <p>gdzie:</p>
 <ul>
@@ -831,12 +841,12 @@ y(t_0) = y_0 \\
 y(t) = y_0 \cdot \mathrm{e}^{\lambda(t-t_0)}
 \]</span></p>
 <ol style="list-style-type: decimal">
-<li>Napisz program, który rozwiąże dane zagadnienie początkowe, z wykorzystaniem schematu Eulera. Wybierz czas końcowy <span class="math inline">\(t_k\)</span> oraz liczbę kroków <span class="math inline">\(N\)</span>.</li>
-<li>Wykorzystaj zaimplementowany schemat RK4 i ponownie rozwiąż zagadnienie.</li>
-<li>Dla obu przypadków wyświetl na monitorze kolejne wartości <span class="math inline">\(t\)</span>, <span class="math inline">\(y\)</span> oraz względną wartość błędu: <span class="math inline">\(\varepsilon = \frac{|y-y_\mathrm{analityczne}|}{|y_\mathrm{analityczne}|}\)</span>.</li>
-<li>Zmodyfikuj program tak aby wykonywał obliczenia jedną i druga metodą dla zadanego <span class="math inline">\(t_k\)</span> i liczby kroków: <span class="math inline">\(2^0\)</span>, <span class="math inline">\(2^1\)</span>, <span class="math inline">\(\ldots\)</span>, <span class="math inline">\(2^6\)</span>.<br />
+<li>Napisz program, który rozwiąże dane zagadnienie początkowe z wykorzystaniem schematu Eulera.</li>
+<li>Wykorzystaj schemat RK4 zaimplementowany w pliku <span class="math inline">\(\verb+rk4.cpp+\)</span> i ponownie rozwiąż zagadnienie.</li>
+<li>Dla obu przypadków wyświetl na monitorze kolejne wartości <span class="math inline">\(t_i\)</span>, <span class="math inline">\(y_i\)</span> oraz względne wartości błędów: <span class="math inline">\(\varepsilon_i = \frac{|y_i - y_i^\mathrm{analityczne}|}{|y_i^\mathrm{analityczne}|}\)</span>.</li>
+<li>Zmodyfikuj program tak aby wykonywał obliczenia jedną i druga metodą dla zadanego <span class="math inline">\(t_k\)</span> i liczby kroków: <span class="math inline">\(N = 2^0,\; 2^1,\; \ldots,\; 2^6\)</span>.<br />
 Wydrukuj do pliku: liczbę kroków <span class="math inline">\(N\)</span>, długość kroku <span class="math inline">\(h\)</span>, błąd metody Eulera i błąd metody RK4 dla ostatniego kroku czasowego.</li>
-<li>Sporządź wykres błędu metody w funkcji <span class="math inline">\(h\)</span> i oszacuj rząd zbieżności.</li>
+<li>Sporządź wykresy błędów obu metod w funkcji kroku <span class="math inline">\(h\)</span> i oszacuj ich rzędy zbieżności.</li>
 </ol>
 </div>
 </div>
