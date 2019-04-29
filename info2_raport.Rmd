@@ -1,0 +1,40 @@
+---
+number: 9
+course: Informatyka 2
+material: "Raport"
+---
+
+Projekt w ramach przedmiotu Informatyka 2 podsumowywany jest raportem.
+
+Przykładowy raport w różnych formatach można pobrać za pomocą linków:
+
+- [PDF](https://github.com/ccfd/report-template/blob/auto/pdf/info2.pdf?raw=true)
+- [LaTeX](https://github.com/ccfd/report-template/archive/auto/latex.zip)
+- [rmarkdown (oryginał)](https://github.com/ccfd/report-template/archive/master.zip)
+
+Raport musi być sformatowany i musi zawierać informacje takie jak w powyższym przykładzie.
+Może być wykonany w dowolnym edytorze jednak polecamy system `LaTeX`.
+System ten pozwala na uzyskanie dokumentu wysokiej jakości i skupienie się na tekście dokumentu a nie na jego formatowaniu.
+[Instrukcja](http://ccfd.github.io/courses/info3_lab_5.html) zawiera krótkie wprowadzanie do `LaTeXa`.
+
+Aby uzyskać formatowanie takie jak w przykładowym raporcie w preambule pliku `raport.tex` wystarczy wpisać:
+```{.tex}
+\documentclass[12pt]{sprawozdanie}
+
+\title{Tytuł}
+\author{Autor nr indeksu}
+\class{Nazwa przedmiotu}
+\deadline{Termin oddania}
+\instructor{Prowadzący}
+```
+oraz pobrać pliki:
+
+- [sprawozdanie.cls](https://github.com/ccfd/report-template/blob/master/sprawozdanie.cls)
+- [znak.tex](https://github.com/ccfd/report-template/blob/master/znak.tex)
+
+i umieścić je w katalogu, w którym znajduje się plik `raport.tex`.
+
+Pracę z systemem `LaTeX` najwygodniej jest zacząć od edytora dostępnego w sieci Internet:
+
+- [overleaf](https://www.overleaf.com)
+
