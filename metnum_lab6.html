@@ -684,7 +684,7 @@ div.tocify {
 </div>
 
 
-<p>Z poprzednich zajęć wiemy, że równanie ruchu wygląda następująco: <span class="math display">\[M\ddot{x} = F - Sx\]</span> Policzmy ,,rozwiązanie ogólne równania jednorodnego’’. Tzn: jakie funkcje <span class="math inline">\(x=f(t)\phi\)</span> spełniają równanie bez sił: <span class="math display">\[M\ddot{x} = - Sx\]</span> <span class="math display">\[\ddot{f}(t)M\phi = - f(t)S\phi\]</span></p>
+<p>Z poprzednich zajęć wiemy, że równanie ruchu wygląda następująco: <span class="math display">\[M\ddot{x} = F - Sx\]</span> Policzmy <em>rozwiązanie ogólne równania jednorodnego</em>. Tzn: jakie funkcje <span class="math inline">\(x=f(t)\phi\)</span> spełniają równanie bez sił: <span class="math display">\[M\ddot{x} = - Sx\]</span> <span class="math display">\[\ddot{f}(t)M\phi = - f(t)S\phi\]</span></p>
 <p>Jeśli znajdziemy takie <span class="math inline">\(\phi\)</span>, że: <span class="math display">\[\label{rownanie:wlasne}M\phi = \lambda S\phi\]</span> to otrzymamy: <span class="math display">\[\lambda\ddot{f}(t) = -  f(t) \quad\Rightarrow\quad f(t) = sin \left(t\frac{1}{\sqrt{\lambda}}\right)\]</span></p>
 <p>To oznacza, że <span class="math inline">\(sin(t\sqrt{\lambda})\phi\)</span> jest oscylującym w czasie rozwiązaniem naszego równania dynamiki. Takie rozwiązanie nazywamy drganiem własnym układu. Równanie  nazywamy równaniem własnym.</p>
 <p>Dziś skupimy się na znalezieniu zestawu wektorów <span class="math inline">\(\phi\)</span> i wartości <span class="math inline">\(\lambda\)</span> dla naszej belki</p>
@@ -698,34 +698,45 @@ p &amp;= S^{-1}M\phi\\
 \end{align*}\]</span> W pierwszym etapie liczymy wynik <span class="math inline">\(S^{-1}M\phi\)</span>, a następnie go normalizujemy tak by <span class="math inline">\(\phi^T M \phi = 1\)</span>. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie <span class="math inline">\(\phi\)</span> będzie składać się tylko z tego wektora, a <span class="math inline">\(p^TMp\)</span> zbiegnie do największej <span class="math inline">\(\lambda\)</span>.</p>
 <div id="zadanie" class="section level3">
 <h3>Zadanie</h3>
-<p>Znajdź wektor <span class="math inline">\(\phi\)</span> odpowiadający największej wartości własnej wg. następującego schematu iteracji: - Oblicz <span class="math inline">\(b = M\cdot phi\)</span> - Rozwiąż układ <span class="math inline">\(S\cdot p = b\)</span> - Oblicz <span class="math inline">\(Mp = M\cdot p\)</span> - Oblicz <span class="math inline">\(phi = \frac{1}{\sqrt{\langle p, Mp \rangle}} p\)</span></p>
+<p>Znajdź wektor <span class="math inline">\(\phi\)</span> odpowiadający największej wartości własnej wg. następującego schematu iteracji:</p>
+<ul>
+<li>Oblicz <span class="math inline">\(b = M\cdot phi\)</span></li>
+<li>Rozwiąż układ <span class="math inline">\(S\cdot p = b\)</span></li>
+<li>Oblicz <span class="math inline">\(Mp = M\cdot p\)</span></li>
+<li>Oblicz <span class="math inline">\(phi = \frac{1}{\sqrt{\langle p, Mp \rangle}} p\)</span></li>
+</ul>
 </div>
 <div id="zadanie-1" class="section level3">
 <h3>Zadanie</h3>
 <p>Pokaż przemieszczenie <span class="math inline">\(\phi\)</span> przy pomocy funkcji <code>draw</code>. Zrób animację tego przemieszczenia przemnożonego przez <span class="math inline">\(\sin{t}\)</span>.</p>
 </div>
-<div id="zadanie-2" class="section level3">
-<h3>Zadanie</h3>
-<p>[Dla ciekawych] By otrzymać bardziej płynną animację dodaj:\ <code>static int pg=0;</code>\ <code>setvisualpage(pg % 2);</code>\ na początku funkcji <code>animate</code> w <code>winbgi2.cpp</code>. Zaś na końcu tej funkcji (przed <code>return</code>):\ <code>pg++;</code>\ <code>setactivepage(pg % 2);</code>\</p>
-</div>
 </div>
 <div id="a-teraz-nastepne-lambda" class="section level1">
 <h1>A teraz następne <span class="math inline">\(\lambda\)</span></h1>
-<p>Chcemy by wektory własne (drgania własne) były niezależne w energii kinetycznej. To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych (,,<span class="math inline">\(E_k(\phi_0+\phi_1) = E_k(\phi_0)+E_k(\phi_1)\)</span>’‘). To w połączeniu z naszą ,,skalą’’ daje nam bardzo ważny warunek: <span class="math display">\[\begin{cases}
+<p>Chcemy by wektory własne (drgania własne) były niezależne w energii kinetycznej. To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych (<span class="math inline">\(E_k(\phi_0+\phi_1) = E_k(\phi_0)+E_k(\phi_1)\)</span>). To w połączeniu z naszą <em>skalą</em> daje nam bardzo ważny warunek: <span class="math display">\[\begin{cases}
 \phi_i^T M \phi_j = 0 &amp;\quad \text{dla}\quad i\neq j \\
 \phi_i^T M \phi_j = 1 &amp;\quad \text{dla}\quad i = j \\
 \end{cases}\]</span></p>
 <p>Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem macierzy <span class="math inline">\(M\)</span>. Takiej ortonormalizacji możemy dokonać znaną z Analizy Matematycznej metodą Grama-Schmidta:</p>
-<p>\ \ Po tej procedurze wszystkie wektory <span class="math inline">\(\phi\)</span> są ortogonalne i długości <span class="math inline">\(1\)</span> względem macierzy <span class="math inline">\(M\)</span>.</p>
-<div id="zadanie-3" class="section level3">
+<div id="ortonormalizacja-grama-schmidta" class="section level3">
+<h3>Ortonormalizacja Grama-Schmidta</h3>
+<p>Dla każdego <span class="math inline">\(i\)</span> od <span class="math inline">\(1\)</span> do <span class="math inline">\(n\)</span> wykonaj:</p>
+<ul>
+<li>dla każdego <span class="math inline">\(i\)</span> od <span class="math inline">\(1\)</span> do <span class="math inline">\(i-1\)</span> wykonaj (dla <span class="math inline">\(i=1\)</span> nic nie rób):</li>
+<li>Oblicz <span class="math inline">\(\phi_i = \phi_i - \phi_j \langle \phi_j, M\phi_i \rangle\)</span></li>
+<li>Oblicz <span class="math inline">\(\phi_i = \frac{1}{ \sqrt{\langle \phi_i, M\phi_i \rangle}}\phi_i\)</span></li>
+</ul>
+<p>Po tej procedurze wszystkie wektory <span class="math inline">\(\phi\)</span> są ortogonalne i długości <span class="math inline">\(1\)</span> względem macierzy <span class="math inline">\(M\)</span>.</p>
+</div>
+<div id="zadanie-2" class="section level3">
 <h3>Zadanie</h3>
 <p>Znajdź wektory <span class="math inline">\(\phi_i\)</span> odpowiadające <span class="math inline">\(10\)</span>ciu największym wartościom własnym wg. następującego schematu iteracji: - Oblicz <span class="math inline">\(b = M\cdot \phi_j\)</span> - Rozwiąż układ <span class="math inline">\(S\cdot p_j = b\)</span> - Przepisz <span class="math inline">\(\phi_i = p_i\)</span> - Wykonaj ortonormalizację G-S wektorów <span class="math inline">\(\phi\)</span></p>
 </div>
-<div id="zadanie-4" class="section level3">
+<div id="zadanie-3" class="section level3">
 <h3>Zadanie</h3>
 <p>Zrób animację dla kolejnych przemieszczeń <span class="math inline">\(\phi_i\)</span> przemnożonych przez <span class="math inline">\(\sin{t}\)</span>.</p>
 </div>
-<div id="zadanie-5" class="section level3">
+<div id="zadanie-4" class="section level3">
 <h3>Zadanie</h3>
 <p>Wyznacz odpowiednie <span class="math inline">\(\lambda_i\)</span></p>
 </div>
