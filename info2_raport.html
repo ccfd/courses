@@ -778,15 +778,35 @@ div.tocify {
 
 <div id="raport" class="section level1">
 <h1>Raport</h1>
-<p>Projekt w ramach przedmiotu Informatyka 2 podsumowywany jest raportem.</p>
-<p>Przykładowy raport w różnych formatach można pobrać za pomocą linków:</p>
+<p>W ramach przedmiotu Informatyka 2 należy rozwiązać zadanie domowe (projekt). Na rozwiązanie składa się <strong>kod programu</strong> oraz <strong>raport</strong> z przeprowadzonych obliczeń.</p>
+<div id="zakres-raportu" class="section level2">
+<h2>Zakres raportu</h2>
+<p>Raport powinien zawierać cztery podstawowe części:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Opis zagadnienia</strong><br />
+Należy narysować układ mechaniczny będący przedmiotem zadania i zaznaczyć na rysunku wszystkie wielkości (siły, przemieszczenia, itd.), które potrzebne są do rozwiązania zadania.</li>
+<li><strong>Równania ruchu i energii</strong><br />
+Należy wyprowadzić równania ruchu oraz wzór na energię całkowitą dla danego zagadnienia. Równania ruchu należy sprowadzić do układu równań różniczkowych pierwszego rzędu.</li>
+<li><strong>Opis metody obliczeniowej</strong><br />
+Równania należy rozwiązać za pomocą metody Rungego-Kutty 4 rzędu. Wszystkie wielkości, od których zależy rozwiązanie (warunki początkowe, krok całkowania, itd.) powinny być podane a ich wartości uzasadnione.</li>
+<li><strong>Wyniki i ich analiza</strong><br />
+Rozdział powinien zawierać wykresy prędkości i położenia w czasie, wykres trajektorii układu w przestrzeni fazowej (jeśli układ ma więcej niż dwa stopnie swobody wykres ten należy pominąć) oraz wykres energii. Wyniki powinny być przeanalizowane.</li>
+</ol>
+</div>
+<div id="przykadowy-raport" class="section level2">
+<h2>Przykładowy raport</h2>
+<p>Raport można przygotować w dowolnym edytorze. Przykład (w różnych formatach) można pobrać za pomocą linków:</p>
 <ul>
 <li><a href="https://github.com/ccfd/report-template/blob/auto/pdf/info2.pdf?raw=true">PDF</a></li>
 <li><a href="https://github.com/ccfd/report-template/archive/auto/latex.zip">LaTeX</a></li>
 <li><a href="https://github.com/ccfd/report-template/archive/master.zip">rmarkdown (oryginał)</a></li>
 </ul>
-<p>Raport musi być sformatowany i musi zawierać informacje takie jak w powyższym przykładzie. Może być wykonany w dowolnym edytorze jednak polecamy system <code>LaTeX</code>. System ten pozwala na uzyskanie dokumentu wysokiej jakości i skupienie się na tekście dokumentu a nie na jego formatowaniu. <a href="http://ccfd.github.io/courses/info3_lab_5.html">Instrukcja</a> zawiera krótkie wprowadzanie do <code>LaTeXa</code>.</p>
-<p>Aby uzyskać formatowanie takie jak w przykładowym raporcie w preambule pliku <code>raport.tex</code> wystarczy wpisać:</p>
+<p>System <code>LaTeX</code> pozwala na przygotowanie dokumentu wysokiej jakości przy niedużym nakładzie pracy. Osoby zainteresowane tym językiem odsyłamy do <a href="http://ccfd.github.io/courses/info3_lab_5.html">Instrukcji</a>, która zawiera krótkie wprowadzanie do <code>LaTeXa</code>. Pracę z systemem <code>LaTeX</code> wygodnie jest zacząć od edytora dostępnego w sieci Internet, np:</p>
+<ul>
+<li><a href="https://www.overleaf.com">overleaf</a></li>
+</ul>
+<p><strong>Uwagi</strong>:<br />
+Aby uzyskać formatowanie takie jak w przykładowym raporcie w preambule pliku <code>raport.tex</code> wystarczy wpisać:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="bu">\documentclass</span>[12pt]{<span class="ex">sprawozdanie</span>}</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="fu">\title</span>{Tytuł}</a>
@@ -800,10 +820,7 @@ div.tocify {
 <li><a href="https://github.com/ccfd/report-template/blob/master/znak.tex">znak.tex</a></li>
 </ul>
 <p>i umieścić je w katalogu, w którym znajduje się plik <code>raport.tex</code>.</p>
-<p>Pracę z systemem <code>LaTeX</code> najwygodniej jest zacząć od edytora dostępnego w sieci Internet:</p>
-<ul>
-<li><a href="https://www.overleaf.com">overleaf</a></li>
-</ul>
+</div>
 </div>
 
 <!-- Dummy footer -->
