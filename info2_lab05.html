@@ -9,7 +9,6 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="W. Gryglas" />
 
 
 <title>info2_lab05.utf8.md</title>
@@ -28,6 +27,99 @@
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -684,104 +776,105 @@ div.tocify {
 </div>
 
 
-<div id="cakowanie-numeryczne-ukadow-rownan" class="section level1">
-<h1>Całkowanie numeryczne układów równań</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:</p>
+<div id="cakowanie-numeryczne-ukadow-rownan-rozniczkowych-zwyczajnych" class="section level1">
+<h1>Całkowanie numeryczne układów równań różniczkowych zwyczajnych</h1>
+<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Plik nagłówkowy rk4.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Plik źródłowy rk4.cpp</a></li>
 </ul>
 <div id="wstep" class="section level2">
-<h2>1. Wstęp</h2>
-<p>Z poprzednich ćwiczeń dowiedzieliśmy się jak można dokonać całkowania równań różniczkowych zwyczajnych (z ang. Ordinary Differential Equations, ODE). Opisane metody pozwalają na znalezienie konkretnej funkcji spełniającej dowolne równanie pierwszego rzędu, tj. postaci: <span class="math display">\[ \frac{dy}{dt} = f(t, y(t)) \]</span> Jednak świat który opisujemy za pomocą równań różniczkowych nie jest niestety tak prosty. W wielu zagadnieniach napotykamy na sytuacje gdy należy “jednocześnie” rozwiązać dwa równania różniczkowe. Mówiąc “jednocześnie” mamy tutaj na myśli sytuację, w której w obu równaniach pojawiają się nieznane(których poszukujemy rozwiązując równania różniczkowe) funkcje, np.: <span class="math display">\[ 
-\begin{aligned}
-\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
-\end{aligned}
-\]</span></p>
-<p>Jak widać w powyższym układzie równań poszukiwane funkcje to <span class="math inline">\(x = x(t)\)</span> i <span class="math inline">\(y=y(t)\)</span>. Obie są funkcjami zmiennej niezależnej <span class="math inline">\(t\)</span>. W obu równaniach pojawia się jednak zarówno funkcja <span class="math inline">\(x\)</span> jak i <span class="math inline">\(y\)</span>. Równania te są sprzężone, a zatem nie da się w ogólności rozwiązać (scałkować) tego układu w sposób skwencyjny, tj. znaleźć najpierw pierwszą funkcję, a potem oddzielnie drugą. W szczególnych przypadkach można się pokusić o transofrmację wyjściowych równań, tak aby wyrugować jedną ze zmiennych. Jednak w ogólnym przypadku, gdy mamy doczynienia z silnie uwikłanymi funkcjami prawych stron, taki zabieg jest nie możliwy. Dlatego aby znaleźć poszukiwane rozwiązania należy całkować równocześnie wszystkie równania. Takim zagadnieniem zajemiemy się w poniższym ćwiczeniu. Postaramy się zastosować poznane metody z poprzednich zajęć do rozwiązania układów równań pierwszego rzędu.</p>
-<p>Problem rozwiązywania układów rówań pierwszego rzędu bardzo często pojawia się w związku z problemami opisanymi równaniami różniczkowymi zwyczajnymi wyżych rzędów. Równanie różniczkowe zwyczajne drugiego rzędu są jednymi z bardziej rozpowszechnionych równań w mechanice, ponieważ służą do opisu dynamiki, np. ruchu bryły sztywnej pod działaniem sił zewnętrznych. Równanie te przyjmują następującą postać: <span class="math display">\[ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) \]</span> Każde tego typu równanie można przedstawić w równoważnej formie układu rówań <strong>pierwszego</strong> rzędu: <span class="math display">\[ 
-\begin{aligned}
-\frac{dv_x}{dt} &amp;= f_1(t, x, v_x) \\
-\frac{dx}{dt} &amp;= v_x
-\end{aligned}
-\]</span> Powyższy układ jest tożsamy z równanie drugiego rzędu i znalezienie przebiegu funkcji <span class="math inline">\(x=x(t)\)</span> będzie odpowiadało scałkowaniu rówania drugiego rzędu. Tego typu problemem zajmiemy się w drugiej części tego ćwiczenia.</p>
+<h2>Wstęp</h2>
+<p>Celem ćwiczenia jest zastosowanie metody <strong>Eulera</strong> oraz metody <strong>Rugego-Kutty 4 rzędu</strong> do numerycznego rozwiązania równań ruchu dynamiki Newtona. Jako przykład takiego zagadnienia posłuży nam wahadło matematyczne.</p>
 </div>
-<div id="cakowanie-ukadow-rowan" class="section level2">
-<h2>2. Całkowanie układów rówań</h2>
-<p>Na poprzednich zajęciach poznaliśmy dwie metody jawnego całkowania równań różniczkowych zwyczajnych pierwszego rzędu:</p>
-<ul>
-<li>Eulera</li>
-<li>Rungego-Kutty</li>
-</ul>
-<p>Metody te należą do klasy metod iteracyjnych i pozwalają znaleź przebieg poszukiwanej funkcji obliczając jej wartość w kolejnych krokach czasowych. W przypadku układów równań czynimy podbnie, tj. obliczamy nowe wartości funkcji bazując na poprzednim rozwiązaniu. Różnica w tym przypadku polega na tym, że musimy kolejny krok całkowania wykonać dla wszystkich równań układu. Weźmy pod uwagę przykładowy układ równań ze wstępu do tych ćwiczeń: <span class="math display">\[ 
-\begin{aligned}
-\frac{dx}{dt} &amp;= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &amp;= sin(y) \cdot t + cos(x)
-\end{aligned}
-\]</span> z warunkami początkowymi: <span class="math display">\[
-x(t=0) = 0 \\
-y(t=0) = 0
-\]</span> Dla tagiego układu równań całkowanie metodą Eulera można opisać za pomocą następującego algorytmu:</p>
-<ol style="list-style-type: decimal">
-<li>Ustaw <span class="math inline">\(x_0 = x(t=0)\)</span>, <span class="math inline">\(y_0 = y(t=0)\)</span>, wartość czasu <span class="math inline">\(t=0\)</span> oraz wybierz krok całkowania <span class="math inline">\(dt\)</span>, np. <span class="math inline">\(dt = 0.001\)</span>.</li>
-<li>Oblicz pochodne funkcji <span class="math inline">\(x\)</span> i <span class="math inline">\(y\)</span> wykorzystując znane wielkości <span class="math inline">\(x_0, y_0, t\)</span>, w tym przypadku: <span class="math display">\[
-dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
-dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
-\]</span></li>
-<li>Wykorzystując wartości pochodnych dla czasu <span class="math inline">\(t=0\)</span> oblicz nowe wartości funkcji <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>: <span class="math display">\[
-x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
-y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
-\]</span></li>
-<li>Zaktualizuj zmienne podstawiając: <span class="math display">\[
-x_0 = x = 0
-y_0 = y = 0.001
-t = t + dh = 0.001
-\]</span></li>
-<li>Przejdź do punktu 2 i potórz operacje aż zmienna <span class="math inline">\(t\)</span> osiągnie wartość końcową <span class="math inline">\(t_k\)</span></li>
-</ol>
-<p>Korzystając z powyższego algorytmu można uzyskać następujący wynik dla czasu w zakresie [0,1] <img src="info2_lab05_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Powyższy algorytm bedzie bardzo podobny dla metody Rungego-Kutty. Różnica będzie jedynie polegała na zastąpieniu sposobu obliczania wartości funkcji parawych stron, tj. w tym przypadku zmiennych <span class="math inline">\(dxdt\)</span> oraz <span class="math inline">\(dydt\)</span>.</p>
-<div id="cwiczenia" class="section level3">
-<h3>Ćwiczenia</h3>
-<ol style="list-style-type: decimal">
-<li>Zaimplementuj opisany algorytm i dokonaj całkowania układu równań przedstawionego powyżej.</li>
-<li>Wartości rozwiązania dla kolejnych kroków zapisz w tablicach X, Y.</li>
-<li>Wyświetl wartości funkcji X(t) oraz Y(t) na spólnym wykresie używając biblioteki graficznej.</li>
-<li>Zmodyfikuj program tak aby całkowanie odbywało się przy wykorzystaniu metody Rungego-Kutty.</li>
-</ol>
-</div>
-</div>
-<div id="sprowadzanie-rownan-wyzszego-rzedu-do-ukadow-rownan" class="section level2">
-<h2>3. Sprowadzanie równań wyższego rzędu do układów równań</h2>
-<p>Teraz przejdźmy do kolejnego zagadnienia. Aby zastosować poznane metody do problemów opisanych równaniami wyższych rzędów należy przekształcić wyjściowy problem do układu równań pierwszego rzędu. Aby przeanalizować ten proces weźmy pod uwagę następujące zagadnienie: <img src="figures/info2/inst5/carriage.png" title="Problem do rozwiązania" alt="Wózek" /></p>
-<p>Ruch wózka, zakładając, że w pozycji wyjściowej sprężyna jest nierozciągnięta oraz masa kół jest pomijalna, można opisać za pomocą prostego równania dynamiki bazując na III zasadzie dynamiki Newtona: <span class="math display">\[ F_{wózek} = - k\cdot x = m \cdot a\]</span> wiedząc, że przyśpieszenie to druga pochodna przemieszczenia po czasie możemy ostatecznie zapisać: <span class="math display">\[ \frac{d^2x}{dt^2} = - \frac{k}{m} \cdot x \]</span></p>
-<p>Oprócz równania potrzebujemy jeszcze warunków początkowych. Z racji tego, że jest to równanie drugiego rzędu będziemy potrzebowali dwóch takich warunków. W tym przypadku możemy wprost założyć, że startowe położenie wózka jest w początku układu współrzędnych, czyli: <span class="math display">\[ x(t=0) = 0 \]</span> oraz, że na początku wózek jest w spoczynku: <span class="math display">\[ \frac{dx}{dt}(t=0)=0 \]</span> Teraz musimy przekształcić ten problem do problemu opisanego układem dwóch równań różniczkowych pierwszego rzędu. Można to uczynić na kilka sposobów. Jednym z nich jest skorzystanie z równań kanonicznych, które opsiują ruch ciała za pomocą pary [pęd, położenie]. Innym podjeściem, które najłatwiej w tej chwili zrealizować, bedzie przekształcenie równania wyjściowego przez wprowadzenie nowej zmiennej - <span class="math inline">\(v\)</span> i zastosowanie prostego podstawienia: <span class="math display">\[ v = \frac{dx}{dt} \]</span> Powyższe podstawienie automatycznie definiuje nam nowe równanie, które wiąże prędkość i położenie. Teraz, pozostaje tylko zastosować powyższe podstawienie w kontekście równania wyjściowego: <span class="math display">\[ \frac{d^2x}{dt^2} = \frac{d}{dt} (\frac{dx}{dt}) = \frac{dv}{dt} = -\frac{k}{m}x \]</span> Oprócz równań podobnie należy uczynić z warunkami początkowymi. Ostatcznie otrzymujemy następujący układ równań: <span class="math display">\[
-\frac{dv}{dt} = -\frac{k}{m} x \\
-\frac{dx}{dt} = v \\
-x(t=0) = 0 \\
-v(t=0) = 0
-\]</span></p>
-<div id="cwiczenia-1" class="section level3">
-<h3>Ćwiczenia</h3>
-<p>Ruch wahadła matematycznego opisuje równanie różniczkowe z warunkami początkowymi (pomijamy opór powietrza, nić jest nieważka i nierozciągliwa): <span class="math display">\[
-\begin{aligned}
-\frac{d^2\alpha}{dt^2} &amp;= -\frac{g}{l}sin(\alpha) \\
-\alpha(t_0) &amp;= \alpha_0 \\
-\frac{d\alpha}{dt}(t_0) &amp;= \omega_0
-\end{aligned}
+<div id="rownania-ruchu" class="section level2">
+<h2>Równania ruchu</h2>
+<p>Ruch wahadła matematycznego najwygodniej jest opisać w układzie współrzędnych biegunowych związanych z jego punktem zaczepienia. Otrzymamy wtedy równanie różniczkowe wraz z warunkami początkowymi: <span class="math display">\[
+\left\{
+\begin{array}{l}
+  \dfrac{d^2\alpha}{dt^2} = -\dfrac{g}{l}\sin(\alpha) \\
+  \alpha(t_0) = \alpha_0 \\
+  \dfrac{d\alpha}{dt}(t_0) = \omega_0
+\end{array}
+\right.
 \]</span> gdzie:</p>
-<p><span class="math inline">\(\alpha\)</span> - kąt wychylenia wahadła z położenia równowagi,</p>
-<p><span class="math inline">\(g\)</span> - przyśpieszenie ziemskie,</p>
-<p><span class="math inline">\(l\)</span> - długość wahadła,</p>
-<p><span class="math inline">\(m\)</span> - masa kuli zaczepionej na końcu wahadła.</p>
-<ol style="list-style-type: decimal">
-<li>Sprowadzić powyższe równanie różniczkowe rzędu drugiego do układu równań różniczkowych rzędu pierwszego.</li>
-<li>Napisać program który używając metody Rungego-Kutty wyznacza zależność kąta wychylenia wahadła od czasu <span class="math inline">\(\alpha(t)\)</span> oraz prędkość kątową <span class="math inline">\(\omega = \frac{d\alpha}{dt}\)</span> dla czasu <span class="math inline">\(t \in \left[0,10\right]\)</span></li>
-<li>Dodatkowo wyznaczyć zależność energii całkowitej wahadła od czasu <span class="math inline">\(E(t)\)</span>, energia całkowita wahadła wyraża się wzorem: <span class="math display">\[E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))\]</span> <strong>Uwaga</strong>: Przy braku dyssypacji, energia mechaniczna powinna być stała.</li>
-<li>Powtórzyć obliczenia dla różnych kroków czasowych.</li>
-</ol>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> - kąt wychylenia wahadła z położenia równowagi,</li>
+<li><span class="math inline">\(g\)</span> - przyśpieszenie ziemskie,</li>
+<li><span class="math inline">\(l\)</span> - długość wahadła,</li>
+<li><span class="math inline">\(m\)</span> - masa kulki zaczepionej na końcu wahadła,</li>
+<li><span class="math inline">\(\alpha_0\)</span> - początkowe wychylenie wahadła,</li>
+<li><span class="math inline">\(\omega_0\)</span> - początkowa prędkość wahadła.</li>
+</ul>
+<p>Równanie to możemy sprowadzić do układu równań różniczkowych zwyczajnych pierwszego rzędu za pomocą podstawienia: <span class="math display">\[
+\dfrac{d\alpha}{dt} = \omega
+\]</span> Układ równań ma teraz postać: <span class="math display">\[
+\tag{*}
+\left\{
+\begin{array}{l}
+  \dfrac{d\omega}{dt} = -\dfrac{g}{l}\sin(\alpha) \\
+  \dfrac{d\alpha}{dt} = \omega \\
+  \alpha(t_0) = \alpha_0 \\
+  \omega(t_0) = \omega_0
+\end{array}
+\right.
+\]</span></p>
 </div>
+<div id="rozwiazanie-ukadu-rownan-rozniczkowych-metoda-eulera" class="section level2">
+<h2>Rozwiązanie układu równań różniczkowych metodą Eulera</h2>
+<p>Mamy układ dwóch równań różniczkowych pierwszego rzędu: <span class="math display">\[
+\left\{
+\begin{array}{l}
+  \dfrac{d\omega}{dt} = F_1(\alpha, \omega, t) \\
+  \dfrac{d\alpha}{dt} = F_2(\alpha, \omega, t) \\
+\end{array}
+\right.
+\]</span> Szukanymi funkcjami są <span class="math inline">\(\omega = \omega(t)\)</span> oraz <span class="math inline">\(\alpha = \alpha(t)\)</span>. Układ ten można rozwiązać metodą Eulera: <span class="math display">\[\begin{equation}
+\left\{
+\begin{array}{l}
+  \omega(t_i + h) = \omega_i + h \cdot F_1(\alpha(t_i), \omega(t_i), t_i) \\
+  \alpha(t_i + h) = \alpha_i + h \cdot F_2(\alpha(t_i), \omega(t_i), t_i) \\
+  h = t_{i+1} - t_i \\
+\end{array}
+\right.
+\end{equation}\]</span></p>
+</div>
+<div id="cwiczenia" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Dla wahadła opisanego układem równań (*):</p>
+<ol style="list-style-type: decimal">
+<li>Napisz funkcję o nagłówku:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> rhs_fun(<span class="dt">double</span> t, <span class="dt">double</span> *X, <span class="dt">double</span> *F);</a></code></pre></div>
+<p>która oblicza wartości prawych stron równań różniczkowych. Argumenty funkcji to:</p>
+<ul>
+<li><code>t</code> - zmienna niezależna (czas),</li>
+<li><code>X</code> - tablica zmiennych zależnych (<span class="math inline">\(\alpha\)</span> i <span class="math inline">\(\omega\)</span>),</li>
+<li><code>F</code> - tablica do której zapisane zostaną obliczone prawe strony równań różniczkowych.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Napisz funkcję:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">void</span> veuler(<span class="dt">double</span> t, <span class="dt">double</span> *X, <span class="dt">double</span> h, <span class="dt">int</span> n,</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">            <span class="dt">void</span> (* fun)(<span class="dt">double</span>, <span class="dt">double</span> *,<span class="dt">double</span> *), <span class="dt">double</span> *X1);</a></code></pre></div>
+<p>która wykonuje jeden krok całkowania układu równań różniczkowych zwyczajnych pierwszego rzędu metodą Eulera. Argumenty funkcji to:</p>
+<ul>
+<li><code>t</code> - zmienna niezależna,</li>
+<li><code>X</code> - tablica wartości zmiennych zależnych w kroku <code>t</code>,</li>
+<li><code>h</code> - krok całkowania,</li>
+<li><code>n</code> - rozmiar tablicy,</li>
+<li><code>fun</code> - wskaźnik do funkcji obliczającej prawe strony równań,</li>
+<li><code>X1</code> - tablica do której zapisane zostaną wartości zmiennych zależnych w kroku <code>t + h</code>.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Napisz program, który używając metody Eulera wyznacza zależności kąta wychylenia wahadła <span class="math inline">\(\alpha\)</span> oraz prędkości kątowej <span class="math inline">\(\omega\)</span> od czasu dla <span class="math inline">\(t \in \left[0, \ldots 10\right]\)</span>.</p></li>
+<li><p>Narysuj wykres trajektorii układu w przestrzeni fazowej (<span class="math inline">\(\alpha-\omega\)</span>).</p></li>
+<li><p>Powtórz obliczenia korzystając z metody Rungego-Kutty 4 rzędu, która jest zaimplementowana w bibliotece <code>rk4.cpp</code>. Funkcja nazywa się <code>vrk4</code> a jej nagłówek jest analogiczny do nagłówka funkcji <code>veuler</code>.</p></li>
+<li><p>Wyznacz zależność energii całkowitej wahadła od czasu <span class="math inline">\(E(t)\)</span>. Energia całkowita wahadła wyraża się wzorem: <span class="math display">\[
+E = \frac{ml^2}{2}\left(\frac{d\alpha}{dt}\right)^2 + mgl(1-\cos(\alpha))
+\]</span> <strong>Uwaga</strong>: Przy braku dyssypacji, energia mechaniczna powinna być stała.</p></li>
+<li><p>Powtórz obliczenia dla różnych kroków czasowych.</p></li>
+</ol>
 </div>
 </div>
 
