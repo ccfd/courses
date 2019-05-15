@@ -67,13 +67,13 @@ $$
 \right.
 $$
 Szukanymi funkcjami są $\omega = \omega(t)$ oraz $\alpha = \alpha(t)$.
-Układ ten można rozwiązać metodą Eulera:
+Układ ten można rozwiązać metodą Eulera.
+Jedna iteracja całkowania z krokiem $h$ będzie miała postać:
 \begin{equation}
 \left\{
 \begin{array}{l}
-  \omega(t_i + h) = \omega_i + h \cdot F_1(\alpha(t_i), \omega(t_i), t_i) \\
-  \alpha(t_i + h) = \alpha_i + h \cdot F_2(\alpha(t_i), \omega(t_i), t_i) \\
-  h = t_{i+1} - t_i \\
+  \omega(t_{i+1}) = \omega(t_i) + h \cdot F_1(\alpha(t_i), \omega(t_i), t_i) \\
+  \alpha(t_{i+1}) = \alpha(t_i) + h \cdot F_2(\alpha(t_i), \omega(t_i), t_i) \\
 \end{array}
 \right.
 \end{equation}
@@ -113,7 +113,7 @@ Argumenty funkcji to:
 3. Narysuj wykres trajektorii układu w przestrzeni fazowej ($\alpha-\omega$).
 
 4. Powtórz obliczenia korzystając z metody Rungego-Kutty 4 rzędu, która jest zaimplementowana w bibliotece `rk4.cpp`.
-Funkcja nazywa się `vrk4` a jej nagłówek jest analogiczny do nagłówka funkcji `veuler`.
+Odpowiednia funkcja nazywa się `vrk4` a jej nagłówek jest analogiczny do nagłówka funkcji `veuler`.
 
 5. Wyznacz zależność energii całkowitej wahadła od czasu $E(t)$.
 Energia całkowita wahadła wyraża się wzorem:
