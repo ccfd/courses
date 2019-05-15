@@ -829,12 +829,11 @@ div.tocify {
   \dfrac{d\alpha}{dt} = F_2(\alpha, \omega, t) \\
 \end{array}
 \right.
-\]</span> Szukanymi funkcjami są <span class="math inline">\(\omega = \omega(t)\)</span> oraz <span class="math inline">\(\alpha = \alpha(t)\)</span>. Układ ten można rozwiązać metodą Eulera: <span class="math display">\[\begin{equation}
+\]</span> Szukanymi funkcjami są <span class="math inline">\(\omega = \omega(t)\)</span> oraz <span class="math inline">\(\alpha = \alpha(t)\)</span>. Układ ten można rozwiązać metodą Eulera. Jedna iteracja całkowania z krokiem <span class="math inline">\(h\)</span> będzie miała postać: <span class="math display">\[\begin{equation}
 \left\{
 \begin{array}{l}
-  \omega(t_i + h) = \omega_i + h \cdot F_1(\alpha(t_i), \omega(t_i), t_i) \\
-  \alpha(t_i + h) = \alpha_i + h \cdot F_2(\alpha(t_i), \omega(t_i), t_i) \\
-  h = t_{i+1} - t_i \\
+  \omega(t_{i+1}) = \omega(t_i) + h \cdot F_1(\alpha(t_i), \omega(t_i), t_i) \\
+  \alpha(t_{i+1}) = \alpha(t_i) + h \cdot F_2(\alpha(t_i), \omega(t_i), t_i) \\
 \end{array}
 \right.
 \end{equation}\]</span></p>
@@ -869,7 +868,7 @@ div.tocify {
 <ol start="2" style="list-style-type: decimal">
 <li><p>Napisz program, który używając metody Eulera wyznacza zależności kąta wychylenia wahadła <span class="math inline">\(\alpha\)</span> oraz prędkości kątowej <span class="math inline">\(\omega\)</span> od czasu dla <span class="math inline">\(t \in \left[0, \ldots 10\right]\)</span>.</p></li>
 <li><p>Narysuj wykres trajektorii układu w przestrzeni fazowej (<span class="math inline">\(\alpha-\omega\)</span>).</p></li>
-<li><p>Powtórz obliczenia korzystając z metody Rungego-Kutty 4 rzędu, która jest zaimplementowana w bibliotece <code>rk4.cpp</code>. Funkcja nazywa się <code>vrk4</code> a jej nagłówek jest analogiczny do nagłówka funkcji <code>veuler</code>.</p></li>
+<li><p>Powtórz obliczenia korzystając z metody Rungego-Kutty 4 rzędu, która jest zaimplementowana w bibliotece <code>rk4.cpp</code>. Odpowiednia funkcja nazywa się <code>vrk4</code> a jej nagłówek jest analogiczny do nagłówka funkcji <code>veuler</code>.</p></li>
 <li><p>Wyznacz zależność energii całkowitej wahadła od czasu <span class="math inline">\(E(t)\)</span>. Energia całkowita wahadła wyraża się wzorem: <span class="math display">\[
 E = \frac{ml^2}{2}\left(\frac{d\alpha}{dt}\right)^2 + mgl(1-\cos(\alpha))
 \]</span> <strong>Uwaga</strong>: Przy braku dyssypacji, energia mechaniczna powinna być stała.</p></li>
