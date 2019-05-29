@@ -742,7 +742,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="info3_lab_dodatki.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -808,6 +808,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="fu">mv</span> pliki katalog</code> — Przenosi pliki do katalogu.</li>
 <li><code class="sourceCode bash"><span class="fu">mv</span> plik1 plik2</code> — Zmienia nazwę pliku z ,,plik1’‘na ,,plik2’’.</li>
 <li><code class="sourceCode bash"><span class="fu">sed</span> <span class="st">&#39;s/tekst1/tekst2/g&#39;</span></code> — Czyta z klawiatury tekst i wypisuje go zamieniając ,,tekst1’‘na ,,tekst2’’.</li>
+<li><code class="sourceCode bash"><span class="fu">cut</span> -d<span class="st">&quot; &quot;</span> -f1</code> — Czyta z klawiatury tekst, używając znaku spacji jako separatora dzieli go na pola i wypisuje pierwsze pole.</li>
 <li><code class="sourceCode bash"><span class="fu">seq</span> liczba1 liczba2</code> — Wypisuje na ekran ciąg liczb od ,,liczba1’‘do ,,liczba2’’ co jeden (wartość domyślna).</li>
 </ul>
 </div>
@@ -829,8 +830,8 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="fu">grep</span> Tekst <span class="op">&lt;</span> plik</code> — wyszuka w pliku linie zwierające ,,Tekst’’ i je wypisze na ekran</li>
 <li><code class="sourceCode bash"><span class="bu">echo</span> Tekst <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/st/a/g&#39;</span></code> — Zamieni w ,,Tekst’‘każde wystąpienie ,,st’‘na ,,a’‘. Więc wypisze na ekran ,,Teka’’.</li>
 <li><code class="sourceCode bash"><span class="bu">echo</span> <span class="va">$nazwa</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
-<li><code class="sourceCode bash"><span class="bu">echo</span> <span class="va">$nazwa</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę <code>.txt</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
-<li><code class="sourceCode bash"><span class="va">nazwa2=$(</span><span class="bu">echo</span> <span class="va">$nazwa</span> <span class="kw">|</span><span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="va">)</span></code> — Jak poprzednio, lecz  <code>nazwa2</code>.</li>
+<li><code class="sourceCode bash"><span class="va">nazwa2=$(</span><span class="bu">echo</span> <span class="va">$nazwa</span> <span class="kw">|</span><span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="va">)</span></code> — Jak poprzednio, lecz rezultat wypisze do zmiennej <code>nazwa2</code>.</li>
+<li><code class="sourceCode bash"><span class="bu">echo</span> <span class="va">$(</span><span class="bu">echo</span> <span class="va">$nazwa</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">&quot;.&quot;</span> -f1<span class="va">)</span>.dat</code> — Zastąpi w zmiennej <code>nazwa</code> końcówkę występującą po <code>.</code> na <code>.dat</code>. Rezultat wypisze na ekran.</li>
 <li><code class="sourceCode bash"><span class="fu">ls</span> katalog <span class="op">&gt;</span> plik</code> — wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje).</li>
 <li><code class="sourceCode bash"><span class="fu">cp</span> ls katalog</code> albo <code class="sourceCode bash"><span class="fu">cp</span> <span class="va">$(</span><span class="fu">ls</span><span class="va">)</span> katalog</code> — skopiuje pliki do <code>katalogu</code> według listy zwróconej przez <code>ls</code>.</li>
 <li><code class="sourceCode bash"><span class="fu">cp</span> cat plik katalog</code> bądź <code class="sourceCode bash"><span class="fu">cp</span> <span class="va">$(</span><span class="fu">cat</span> plik<span class="va">)</span> katalog</code> — skopiuje pliki do <code>katalogu</code> według listy zawartej w pliku.</li>
