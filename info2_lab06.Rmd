@@ -7,33 +7,125 @@ author: W. Gryglas
 
 # Metoda eliminacji Gaussa
 
-Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:
+Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:
 
- - [Plik nagłówkowy gauss.h](http://ccfd.github.io/courses/code/info2/gauss.h)
- - [Plik źródłowy gauss.cpp](http://ccfd.github.io/courses/code/info2/gauss.cpp)
+- [Plik nagłówkowy gauss.h](http://ccfd.github.io/courses/code/info2/gauss.h)
+- [Plik źródłowy gauss.cpp](http://ccfd.github.io/courses/code/info2/gauss.cpp)
+
+W ramach niniejszego ćwiczenia można:
+
+1. Rozwiązać układ równań, w którym występuje macierz Hilberta.
+Zadanie ma pokazać jak uwarunkowanie układu wpływa na numeryczną poprawność eliminacji Gaussa.
+2. Rozwiązać zagadnienie rozkładu temperatury w pręcie.
+Zadanie ma pokazać jak rozwiązać "rzeczywiste" zagadnienie wykorzystując eliminację Gaussa.
+
+**Wybór zadania zależy od prowadzącego ćwiczenia.**
+
+## Zadanie 1: macierz Hilberta
+
+Macierz Hilberta jest macierzą, której uwarunkowanie rośnie wyjątkowo szybko z wymiarem.
+Oznacza to, że za pomocą metod numerycznych prawidłowe rozwiązanie układu, w którym występuje taka macierz, można uzyskać tylko dla niewielkich rozmiarów macierzy.
+
+Rozwiąż układ równań $Hx=b$, w którym:
+
+- $H$ jest macierzą Hilberta o elementach $h_{ij} = \frac{1}{1+i+j}$, $i,j = \{0,1,\ldots,N-1 \}$,
+- $x$ to szukane rozwiązanie,
+- $b$ to wektor prawych stron, w którym elementy to sumy $b_{i} = \sum_{j=0}^{N-1}h_{ij}$.
+
+Taki układ ma analityczne rozwiązanie.
+Jakie ono jest?
+
+### Ćwiczenia
+
+1. Zaalokuj dynamicznie pamięć na dwuwymiarową tablicę $H$ o wymiarze $N\times N$ w celu przechowywania elementów macierzy Hilberta.
+2. Zaalokuj dynamicznie pamięć na wektory $b$ oraz $x$.
+3. Napisz funkcję o nagłówku
+```c++
+void HilbertMatrix(int N, double **H);
+```
+która tworzy macierz Hilberta $H$.
+4. Napisz funkcję o nagłówku
+```c++
+void displayMatrix(int N, double **H);
+```
+która drukuje macierz $H$ na ekranie.
+5. Napisz funkcję
+```c++
+void computeVec(int N, double **H, double *b);
+```
+która oblicza wektor prawych stron $b$ oraz funkcję
+```c++
+void plotVec(int N, double *v);
+```
+która drukuje wektor $v$ na ekranie.
+6. Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania układu równań $Hx=b$.
+Nagłówek funkcji jest postaci
+```c++
+void gauss(int N, double **A, double *x, double *b);
+```
+gdzie:
+    - $N$ to liczba równań,
+    - $A$ to macierz układu równań,
+    - $x$ to wektor, w którym zostanie zapisane rozwiązanie,
+    - $b$ to wektor prawych stron.
+7. Przetestuj działanie programu dla różnych wartości $N$.
+8. Jak zmiana typu zmiennych wpływa na dokładność obliczeń?
+
+## Zadanie 2: rozkład temperatury w pręcie
 
 ## 1. Wstęp
+Niniejsze zadanie pozwoli na zapoznanie się z jedną z metod numerycznych służących do rozwiązywania układów równań liniowych.
+Metody te mają niesłychane znaczenie w kontekście praktycznie wszystkich zagadnień mechaniki, od kinematyki po złożone problemy mechaniki ośrodków ciągłych.
+Większość problemów z jakimi mamy do czynienia sprowadza się do opisu zjawiska za pomocą jakiegoś typu równań czy to algebraicznych, czy różniczkowych.
+Człowiek, dzięki abstrakcyjnemu myśleniu, potrafi sobie radzić z różnymi ich typami.
+Niestety nie jest tak w przypadku komputerów.
+One, będąc maszynami liczącymi, świetnie sobie radzą w przypadku wykonywania prostych algebraicznych operacji.
+"Rozumieją" podstawowe pojęcie liczb oraz operacji algebraicznych, takich jak dodawanie, odejmowanie czy mnożenie.
+Jednak nie radzą już sobie z problemami bardziej złożonymi, takimi jak pojęcie funkcji ciągłej, różniczkowania.
+Oczywiście za pomocą odpowiedniego kodu możne w pewnym sensie nauczyć je dokonywania różniczkowania, ale to wciąż będzie wykonane za pomocą przekształceń algebraicznych.
+Biorąc pod uwagę zarówno zalety jak i ograniczenia takich maszyn, ludzkość skierowała swoją uwagę na rozwiązywanie problemów na sposób przybliżony.
+Nie staramy się już rozwiązać problemu opisanego za pomocą abstrakcyjnych tworów matematycznych, lecz przybliżamy je czymś co w wykazuje podobne cechy ale za to daje się rozwiązać przy wykorzystaniu komputerów.
+Jednym z przykładów takiego uproszczenia są metody poznane na poprzednich zajęciach - rozwiązywania równań nieliniowych czy jawnego całkowania równań różniczkowych.
+W tych przypadkach ostateczne rozwiązanie sprowadzało się do zapisania odpowiedniego schematu iteracyjnego.
+Oprócz tego typu metod zostały także opracowane takie których rozwiązywanie sprowadza się do rozwiązania bardzo dużego układu równań liniowych:
+$$
+A \cdot x = b
+$$
+gdzie:
 
-## 2. 
+- $A$ to macierz układu równań,
+- $x$ to wektor niewiadomych a
+- $b$ to wektor prawych stron układu równań.
 
-## 3. Przykład: rozkład temperatury w pręcie
+Jedną z takich metod jest metoda różnic skończonych.
+Jej sformułowanie polega na zastąpieniu odpowiednich pochodnych za pomocą różnic pomiędzy wartościami w ściśle przewidzianych punktach.
+Takie podejście w ostateczności prowadzi do przeformułowania problemu z równania różniczkowego do dużego układu algebraicznych równań liniowych (takie przeformułowanie nazywamy dyskretyzacją równań).
+Rozwiązanie takiego układu - znalezienie nieznanego wektora niewiadomych $x$ - wymaga dokonania odwrócenia macierzy $A$ i przemnożenia jej lewostronnie z wektorem $b$:
+$$
+x = A^{-1}
+\cdot b
+$$
+Na zajęciach z algebry poznali Państwo metodę odwracania macierzy, która była oparta na obliczaniu wyznaczników dopełnień algebraicznych.
+Metoda ta, choć poprawna, jest niestety bardzo kosztowna.
+Aby obliczyć wyznacznik dopełnienia należy uprzednio znów obliczyć zbiór wyznaczników macierzy o rozmiarze o jeden mniejszej.
+W praktyce nie jesteśmy zainteresowani znalezieniem postaci odwrotności macierzy $A$ tylko znalezieniem takiego $x$ który będzie spełniał postawiony układ równań.
+Do takiego zadania z kolei bardzo dobrze się nadaje metoda **eliminacji Gaussa**.
+Metoda ta pozwala efektywnie obliczyć wartości wektora $x$, lecz jawnie nie wyznacza odwrotności macierzy $A$.
 
-## 1. Wstęp
-W trakcie poniższych zajęć zapoznamy się z jedną z metod numerycznych służących do rozwiązywania układów równań liniowych. Metody te mają niesłychane znaczenie w kontekście praktycznie wszystkich zagadnień mechaniki, od kinematyki po złożone problemy mechaniki ośrodków ciągłych. Większość problemów z jakimi mamy do czynienia sprowadzają się do opisu zjawiska za pomocą jakiegoś typu równań, czy to algebraicznych czy różniczkowych. Człowiek, dzięki abstrakcyjnemu myśleniu, potrafi sobie radzić z różnymi ich typami. Niestety nie jest tak w przypadku komputerów. One, będąc maszynami liczącymi, świetnie sobie radzą w przypadku wykonywania prostych algebraicznych operacji. "Rozumieją" podstawowe pojęcie liczb oraz operacji algebraicznych, takich jak dodawanie, odejmowanie czy mnożenie. Jednak nie radzą już sobie z problemami bardziej złożonymi, takimi jak pojęcie funkcji ciągłej, różniczkowania. Oczywiście za pomocą odpowiedniego kodu możne w pewnym sensie nauczyć je dokonywania różniczkowania, ale to wciąż będzie wykonane za pomocą przekształceń algebraicznych. Biorąc pod uwagę zarówno zalety jak i ograniczenia takich maszyn, ludzkość skierowała swoją uwagę na rozwiązywanie problemów na sposób przybliżony. Nie staramy się już rozwiązać problemu opisanego za pomocą abstrakcyjnych tworów matematycznych, lecz przybliżamy je czymś co w wykazuje podobne cechy ale za to daje się rozwiązać przy wykorzystaniu komputerów. Jednym z przykładów takiego uproszczenia są metody poznane na poprzednich zajęciach - rozwiązywania równań nieliniowych czy jawnego całkowania równań różniczkowych. W tych przypadkach ostateczne rozwiązanie sprowadzało się do zapisania odpowiedniego schematu iteracyjnego. Oprócz tego typu metod zostały także opracowane takie których rozwiązywanie sprowadza się do rozwiązania bardzo dużego układu równań liniowych:
-$$ A \cdot x = b $$
-gdzie: $A$ to macierz układu równań, $x$ to wektor niewiadomych a $b$ to wektor prawych stron układu równań. Jedną z takich metod jest metoda różnic skończonych. Jej sformułowanie polega na zastąpieniu odpowiednich pochodnych za pomocą różnic pomiędzy wartościami w ściśle przewidzianych punktach. Takie podejście w ostateczności prowadzi do przeformułowania problemu z równania różniczkowego do dużego układu algebraicznych równań liniowych (Takie przeformułowanie nazywamy dyskretyzacją równań). Rozwiązanie takiego układu - znalezienie nieznanego wektora niewiadomych $x$ - wymaga dokonania odwrócenia macierzy $A$ i przemnożenia jej lewostronnie z wektorem $b$:
-$$ x = A^{-1}\cdot b$$
-Na zajęciach z algebry poznali Państwo metodę odwracania macierzy, która była oparta na obliczaniu wyznaczników dopełnień algebraicznych. Metoda ta, choć poprawna, jest niestety bardzo kosztowna. Aby obliczyć wyznacznik dopełnienia należy uprzednio znów obliczyć zbiór wyznaczników macierzy o rozmiarze o jeden mniejszej. W praktyce nie jesteśmy zainteresowani znalezieniem postaci odwrotności macierzy $A$ tylko znalezieniem takiego $x$ który będzie spełniał postawiony układ równań. Do takiego zadania z kolei bardzo dobrze się nadaje metoda **eliminacji Gaussa**. Metoda ta pozwala efektywnie obliczyć wartości wektora $x$, lecz jawnie nie wyznacza odwrotności macierzy $A$. 
-
-W dalszej części ćwiczeń wykonamy dwa zadania. Pierwsze zadanie będzie polegało na przygotowaniu odpowiedniego układu równań liniowych - czyli przygotowaniu macierzy układu $A$ oraz wektora prawych stron $b$. Obie te wielkości zostaną utworzone jako rezultat zastosowania metody różnic skończonych dla jednowymiarowego równania ustalonego przewodnictwa ciepła. W drugiej części ćwiczeń zajmiemy się rozwiązaniem tego układu równań za pomocą rzeczonej metody eliminacji Gaussa. Wynikiem rozwiązania takiego układu równań będzie rozkład wartości temperatury wzdłuż ogrzewanego pręta. 
-
+W dalszej części ćwiczeń wykonamy dwa zadania.
+Pierwsze zadanie będzie polegało na przygotowaniu odpowiedniego układu równań liniowych - czyli przygotowaniu macierzy układu $A$ oraz wektora prawych stron $b$.
+Obie te wielkości zostaną utworzone jako rezultat zastosowania metody różnic skończonych dla jednowymiarowego równania ustalonego przewodnictwa ciepła.
+W drugiej części ćwiczeń zajmiemy się rozwiązaniem tego układu równań za pomocą rzeczonej metody eliminacji Gaussa.
+Wynikiem rozwiązania takiego układu równań będzie rozkład wartości temperatury wzdłuż ogrzewanego pręta.
 
 ## 2. Przygotowanie układu równań
 
 Na początek zajmijmy się przygotowaniem układu równań. Tak jak już na początku wspomnieliśmy powstanie on jako wynik dyskretyzacji równania przewodnictwa cieplnego:
 ![](figures/info2/inst6/problem.png "Zagadnienie")
 
-Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości $L=1[m]$ i przewodności cieplnej $\lambda=58[\frac{W}{mK}]$. Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - $Q= - 10^4 \cdot sin(x\pi)[\frac{W}{m^3}]$. Ponadto na obu końcach pręta utrzymywane są stałe temperatura $T_p=273[K]$ i $T_k=300[K]$. 
+Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości $L=1[m]$ i przewodności cieplnej $\lambda=58[\frac{W}{mK}]$.
+Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - $Q= - 10^4 \cdot sin(x\pi)[\frac{W}{m^3}]$.
+Ponadto na obu końcach pręta utrzymywane są stałe temperatury $T_p=273[K]$ i $T_k=300[K]$. 
 
 Proces ten opisuje następujące równanie:
 $$ \lambda \frac{d^2T}{dx^2} = Q(x) $$
@@ -155,7 +247,7 @@ T_{N}
 \end{bmatrix}
 $$
 
-## Ćwiczenia
+### Ćwiczenia
 1. Utwórz zmienną określającą macierze $K$ wykorzystując tablice dwuwymiarowe statyczne. Zadeklaruj stały rozmiar na `N=6` (użyj instrukcji ` const int N=...;` lub deklaracji preprocesora `#define` aby sterować rozmiarem tablicy statycznej). Pamiętaj, że liczba punktów dyskretyzacji jest równa $N+1$ dla zaprezentowanego przykładu. 
 
 2. Utwórz tablicę statyczną określającą wektor prawych stron $F$ oraz poszukiwanego rozwiązania $T$.
@@ -174,7 +266,7 @@ Sprawdź czy uzyskana macierz jest odpowiednio utworzona.
 
 Przejdźmy teraz do ostatniej części ćwiczeń - rozwiązania układu równań. W wyniku tego działania otrzymamy tablicę $T$ przechowującą wartości rozwiązania problemu przewodnictwa ciepła w z góry narzuconych punktach. 
 
-## Ćwiczenia
+### Ćwiczenia
 1. Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania powyższego układu równań. Nagłówek funkcji jest postaci `void gauss(int n, double A[][N], double b[], double x[])`, gdzie `n` to liczba równań, `A` to macierz układu równań, `b` - wektor prawych stron, zaś `x` to wektor, w którym zostanie zapisany wynik.
 
 2. Sporządź wykres funkcji $T=T(x)$ wykorzystując bibliotekę graficzną. Dla liczby podziałów N=20 (21 punktów) powinieneś uzyskać podobny wynik do zaprezentowanego poniżej
