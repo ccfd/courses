@@ -808,15 +808,35 @@ div.tocify {
 <li>Napisz funkcję o nagłówku</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> HilbertMatrix(<span class="dt">int</span> N, <span class="dt">double</span> **H);</a></code></pre></div>
-<p>która tworzy macierz Hilberta <span class="math inline">\(H\)</span>. 4. Napisz funkcję o nagłówku</p>
+<p>która tworzy macierz Hilberta <span class="math inline">\(H\)</span>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Napisz funkcję o nagłówku</li>
+</ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">void</span> displayMatrix(<span class="dt">int</span> N, <span class="dt">double</span> **H);</a></code></pre></div>
-<p>która drukuje macierz <span class="math inline">\(H\)</span> na ekranie. 5. Napisz funkcję</p>
+<p>która drukuje macierz <span class="math inline">\(H\)</span> na ekranie.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Napisz funkcję</li>
+</ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">void</span> computeVec(<span class="dt">int</span> N, <span class="dt">double</span> **H, <span class="dt">double</span> *b);</a></code></pre></div>
 <p>która oblicza wektor prawych stron <span class="math inline">\(b\)</span> oraz funkcję</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">void</span> plotVec(<span class="dt">int</span> N, <span class="dt">double</span> *v);</a></code></pre></div>
-<p>która drukuje wektor <span class="math inline">\(v\)</span> na ekranie. 6. Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania układu równań <span class="math inline">\(Hx=b\)</span>. Nagłówek funkcji jest postaci</p>
+<p>która drukuje wektor <span class="math inline">\(v\)</span> na ekranie.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania układu równań <span class="math inline">\(Hx=b\)</span>. Nagłówek funkcji jest postaci</li>
+</ol>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">void</span> gauss(<span class="dt">int</span> N, <span class="dt">double</span> **A, <span class="dt">double</span> *x, <span class="dt">double</span> *b);</a></code></pre></div>
-<p>gdzie: - <span class="math inline">\(N\)</span> to liczba równań, - <span class="math inline">\(A\)</span> to macierz układu równań, - <span class="math inline">\(x\)</span> to wektor, w którym zostanie zapisane rozwiązanie, - <span class="math inline">\(b\)</span> to wektor prawych stron. 7. Przetestuj działanie programu dla różnych wartości <span class="math inline">\(N\)</span>. 8. Jak zmiana typu zmiennych wpływa na dokładność obliczeń?</p>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(N\)</span> to liczba równań,</li>
+<li><span class="math inline">\(A\)</span> to macierz układu równań,</li>
+<li><span class="math inline">\(x\)</span> to wektor, w którym zostanie zapisane rozwiązanie,</li>
+<li><span class="math inline">\(b\)</span> to wektor prawych stron.</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Przetestuj działanie programu dla różnych wartości <span class="math inline">\(N\)</span>.<br />
+</li>
+<li>Jak zmiana typu zmiennych wpływa na dokładność obliczeń?</li>
+</ol>
 </div>
 </div>
 <div id="zadanie-2-rozkad-temperatury-w-precie" class="section level2">
@@ -843,14 +863,14 @@ x = A^{-1}
 <p>Na początek zajmijmy się przygotowaniem układu równań. Tak jak już na początku wspomnieliśmy powstanie on jako wynik dyskretyzacji równania przewodnictwa cieplnego: <img src="figures/info2/inst6/problem.png" title="Zagadnienie" /></p>
 <p>Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości <span class="math inline">\(L=1[m]\)</span> i przewodności cieplnej <span class="math inline">\(\lambda=58[\frac{W}{mK}]\)</span>. Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - <span class="math inline">\(Q= - 10^4 \cdot sin(x\pi)[\frac{W}{m^3}]\)</span>. Ponadto na obu końcach pręta utrzymywane są stałe temperatury <span class="math inline">\(T_p=273[K]\)</span> i <span class="math inline">\(T_k=300[K]\)</span>.</p>
 <p>Proces ten opisuje następujące równanie: <span class="math display">\[ \lambda \frac{d^2T}{dx^2} = Q(x) \]</span> Biorąc pod uwagę stałą wartość przewodności możemy zapisać równanie jako: <span class="math display">\[ \frac{d^2T}{dx^2} = \frac{Q(x)}{\lambda} \]</span> Aby w pełni sformułować nasz problem należy wziąć pod uwagę warunki brzegowe postawione dla tego zagadnienia: <span class="math display">\[ T(x=0) = T_p \]</span> <span class="math display">\[ T(x=L) = T_k \]</span></p>
-<p>W celu rozwiązania tego problemu metodą różnic skończonych musimy go przeformułować do postaci układu równań liniowych. Na początek musimy dokonać dyskretyzacji przestrzennej zagadnienia. W tym celu musimy podzielić obszar obliczeniowy (długość pręta <span class="math inline">\(L=1[m]\)</span>) [0, 1] na N odcinków, tak jak to pokazano no poniższym rysunku.</p>
+<p>W celu rozwiązania tego problemu metodą różnic skończonych musimy go przeformułować do postaci układu równań liniowych. Na początek musimy dokonać dyskretyzacji przestrzennej zagadnienia. W tym celu musimy podzielić obszar obliczeniowy (długość pręta <span class="math inline">\(L=1[m]\)</span>) [0, 1] na <span class="math inline">\(N\)</span> odcinków, tak jak to pokazano no poniższym rysunku.</p>
 <p><img src="figures/info2/inst6/discretization.png" title="Dyskretyzacja" /></p>
-<p>Punkty <span class="math inline">\(x_0, x_1, ..., x_N\)</span> będziemy nazywali węzłami siatki obliczeniowej. Na tą chwilę, możemy założyć, że wszystkie punkty (łącznie jest ich N+1) są równo oddalone, tj. zachodzi <span class="math inline">\(x_{i+1}-x_i = h\)</span>, gdzie <span class="math inline">\(h\)</span> ma stałą, ustaloną wartość równą: <span class="math display">\[h = \frac{1}{N}\]</span></p>
+<p>Punkty <span class="math inline">\(x_0, x_1, \ldots x_N\)</span> będziemy nazywali węzłami siatki obliczeniowej. Na tą chwilę, możemy założyć, że wszystkie punkty (łącznie jest ich N+1) są równo oddalone, tj. zachodzi <span class="math inline">\(x_{i+1}-x_i = h\)</span>, gdzie <span class="math inline">\(h\)</span> ma stałą, ustaloną wartość równą: <span class="math display">\[h = \frac{1}{N}\]</span></p>
 <p>Zanim przejdziemy do dyskretyzacji równania, wprowadźmy następujące oznaczenie: <span class="math display">\[ T = [T_0, T_1, T_2, T_3, ..., T_N]^T\]</span> gdzie <span class="math inline">\(T\)</span> jest wektorem przechowującym wartości rozwiązania (wartości funkcji <span class="math inline">\(T=T(x)\)</span>) w kolejnych punktach siatki obliczeniowej.</p>
 <p>Teraz przypomnijmy sobie jak wygląda definicja pochodnej funkcji: <span class="math display">\[ \frac{dT}{dx} = \lim_{dx\to 0}{\frac{T(x+dx)-T(x)}{dx}}\]</span></p>
 <p>Komputer nie potrafi operować na nieskończenie małych liczbach, dlatego należy wprowadzić przybliżenie w postaci skończonego przyrostu <span class="math inline">\(h\)</span> (liczby małej, ale skończonej): <span class="math display">\[\frac{dT}{dx} \approx \frac{T(x+h)-T(x)}{h}\]</span></p>
-<p>W powyższym równaniu pojawia się pewien problem: dla jakiej wartości zmiennej <span class="math inline">\(x\)</span> powyższe przybliżenie odwzorowuje pochodną, dla <span class="math inline">\(x\)</span>, <span class="math inline">\(x+h\)</span> czy może <span class="math inline">\(x+\frac{h}{2}\)</span>? Tak na prawdę powyższe przybliżenie będzie prawdziwe dla każdej z wymienionych wartości <span class="math inline">\(x\)</span>, z racji tego, że jest to tylko przybliżenie. Jeśli przyjmiemy, że jest to przybliżenie <span class="math inline">\(\frac{dT}{dx}(x)\)</span> to skończymy z poznanym na poprzednich zajęciach jawnym schematem Eulera. Jeśli założymy, że jest to <span class="math inline">\(\frac{dT}{dx}(x+h)\)</span> otrzymamy niejawny schemat Eulera (nie da się tak łatwo go zastosować jak to robiliśmy poprzednio). Nas jednak w tej chwili interesuje założenie, że taka różnica <span class="math inline">\(\frac{T(x+h)-T(x)}{h}\)</span> odwzorowuje wartość pochodnej <span class="math inline">\(\frac{dT}{dx}(x+\frac{h}{2})\)</span>. Można udowodnić, że takie założenie, tzw. schematu centralnego, jest bardziej dokładne i w rezultacie daje nam schemat 2-giego rzędu dokładności (rząd dokładności określa z jaką potęgą zmienia się błąd przybliżenia przy zmianie wielkości kroku <span class="math inline">\(h\)</span>).</p>
-<p>Z racji tego, że nasz wyjściowy problem jest opisany przez drugą pochodną <span class="math inline">\(\frac{d^2T}{dx^2}\)</span> spróbujmy zastosować powyższe przybliżenie ponownie. Wprowadźmy oznaczenie <span class="math inline">\(\frac{dT}{dx} = Y\)</span>, wtedy nasz wyjściowy problem będzie wyglądał tak: <span class="math display">\[\frac{dY}{dx} = \frac{Q(x)}{\lambda}\]</span> Zastosujmy nasze przybliżenie dla funkcji <span class="math inline">\(Y\)</span> wykorzystując założenie o pochodnej centralnej : <span class="math display">\[\frac{Y(x+\frac{h}{2})-Y(x-\frac{h}{2})}{h} = \frac{Q(x)}{\lambda}\]</span> Zastosujmy ponownie pochodną centralną, ale teraz dla wartości pochodnej <span class="math inline">\(Y(x+\frac{h}{2})=\frac{dT}{dx}(x+\frac{h}{2})\)</span> oraz <span class="math inline">\(Y(x-\frac{h}{2})\frac{dT}{dx}(x-\frac{h}{2})\)</span>: <span class="math display">\[
+<p>W powyższym równaniu pojawia się pewien problem: dla jakiej wartości zmiennej <span class="math inline">\(x\)</span> powyższe przybliżenie odwzorowuje pochodną, dla <span class="math inline">\(x\)</span>, <span class="math inline">\(x+h\)</span> czy może <span class="math inline">\(x+\frac{h}{2}\)</span>? Tak na prawdę powyższe przybliżenie będzie prawdziwe dla każdej z wymienionych wartości <span class="math inline">\(x\)</span>, z racji tego, że jest to tylko przybliżenie. Jeśli przyjmiemy, że jest to przybliżenie <span class="math inline">\(\frac{dT}{dx}(x)\)</span> to skończymy z poznanym na poprzednich zajęciach jawnym schematem Eulera. Jeśli założymy, że jest to <span class="math inline">\(\frac{dT}{dx}(x+h)\)</span> otrzymamy niejawny schemat Eulera (nie da się tak łatwo go zastosować jak to robiliśmy poprzednio). Nas jednak w tej chwili interesuje założenie, że taka różnica <span class="math inline">\(\frac{T(x+h)-T(x)}{h}\)</span> odwzorowuje wartość pochodnej <span class="math inline">\(\frac{dT}{dx}(x+\frac{h}{2})\)</span>. Można udowodnić, że takie założenie, tzw. schematu centralnego, jest bardziej dokładne i w rezultacie daje nam schemat drugiego rzędu dokładności (rząd dokładności określa z jaką potęgą zmienia się błąd przybliżenia przy zmianie wielkości kroku <span class="math inline">\(h\)</span>).</p>
+<p>Z racji tego, że nasz wyjściowy problem jest opisany przez drugą pochodną <span class="math inline">\(\frac{d^2T}{dx^2}\)</span> spróbujmy zastosować powyższe przybliżenie ponownie. Wprowadźmy oznaczenie <span class="math inline">\(\frac{dT}{dx} = Y\)</span>, wtedy nasz wyjściowy problem będzie wyglądał tak: <span class="math display">\[\frac{dY}{dx} = \frac{Q(x)}{\lambda}\]</span> Zastosujmy nasze przybliżenie dla funkcji <span class="math inline">\(Y\)</span> wykorzystując założenie o pochodnej centralnej: <span class="math display">\[\frac{Y(x+\frac{h}{2})-Y(x-\frac{h}{2})}{h} = \frac{Q(x)}{\lambda}\]</span> Zastosujmy ponownie pochodną centralną, ale teraz dla wartości pochodnej <span class="math inline">\(Y(x+\frac{h}{2})=\frac{dT}{dx}(x+\frac{h}{2})\)</span> oraz <span class="math inline">\(Y(x-\frac{h}{2})\frac{dT}{dx}(x-\frac{h}{2})\)</span>: <span class="math display">\[
 Y(x+\frac{h}{2}) = \frac{T(x+h)-T(x)}{h}\\
 Y(x-\frac{h}{2}) = \frac{T(x)-T(x-h)}{h}
 \]</span> Podstawiając powyższe do wzoru wyjściowego otrzymamy: <span class="math display">\[\frac{\frac{T(x+h)-T(x)}{h} - \frac{T(x)-T(x-h)}{h}}{h} = \frac{T(x+h)-2\cdot T(x)+T(x-h)}{h^2} = \frac{Q(x)}{\lambda}\]</span></p>
@@ -922,16 +942,27 @@ T_{N}
 <div id="cwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li><p>Utwórz zmienną określającą macierze <span class="math inline">\(K\)</span> wykorzystując tablice dwuwymiarowe statyczne. Zadeklaruj stały rozmiar na <code>N=6</code> (użyj instrukcji <code>const int N=...;</code> lub deklaracji preprocesora <code>#define</code> aby sterować rozmiarem tablicy statycznej). Pamiętaj, że liczba punktów dyskretyzacji jest równa <span class="math inline">\(N+1\)</span> dla zaprezentowanego przykładu.</p></li>
-<li><p>Utwórz tablicę statyczną określającą wektor prawych stron <span class="math inline">\(F\)</span> oraz poszukiwanego rozwiązania <span class="math inline">\(T\)</span>.</p></li>
-<li><p>Uzupełnij macierz <span class="math inline">\(K\)</span> zgodnie z zaprezentowaną powyżej postacią.</p></li>
-<li>Napisz funkcję służącą do wyświetlania macierzy <span class="math inline">\(K\)</span> o sygnaturze:</li>
+<li>Zaalokuj dynamicznie pamięć na macierz <span class="math inline">\(K\)</span>. Pamiętaj, że liczba punktów dyskretyzacji jest równa <span class="math inline">\(N+1\)</span> dla zaprezentowanego przykładu.</li>
+<li>Zaalokuj dynamicznie pamięć na wektor prawych stron <span class="math inline">\(F\)</span> oraz wektor poszukiwanego rozwiązania <span class="math inline">\(T\)</span>.</li>
+<li>Napisz funkcję, która posłuży do uzupełnienia macierzy <span class="math inline">\(K\)</span>. Nagłówek funkcji powinien mieć postać:</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="dt">void</span> DisplayMatrix(<span class="dt">int</span> n, <span class="dt">double</span> A[][N]);</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="dt">void</span> computeMatrix(<span class="dt">int</span> N, <span class="dt">double</span> **K);</a></code></pre></div>
+<p>Uzupełnij macierz <span class="math inline">\(K\)</span>.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Napisz funkcję służącą do wyświetlania macierzy <span class="math inline">\(K\)</span> o nagłówku:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dt">void</span> displayMatrix(<span class="dt">int</span> n, <span class="dt">double</span> **K);</a></code></pre></div>
 <p>Sprawdź czy uzyskana macierz jest odpowiednio utworzona.</p>
 <ol start="5" style="list-style-type: decimal">
-<li>Uzupełnij wektor prawych stron <span class="math inline">\(F\)</span></li>
+<li>Napisz funkcję, która posłuży do uzupełnienia wektora prawych stron <span class="math inline">\(F\)</span>. Nagłówek funkcji powinien mieć postać:</li>
 </ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dt">void</span> computeVector(<span class="dt">int</span> N, <span class="dt">double</span> *F);</a></code></pre></div>
+<p>Uzupełnij wektor <span class="math inline">\(F\)</span>.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Napisz funkcję służącą do wyświetlania wektorów <span class="math inline">\(F\)</span> oraz <span class="math inline">\(T\)</span> o nagłówku:</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="dt">void</span> displayVector(<span class="dt">int</span> n, <span class="dt">double</span> *F);</a></code></pre></div>
+<p>Sprawdź czy wektor <span class="math inline">\(F\)</span> jest poprawnie utworzony.</p>
 </div>
 </div>
 <div id="rozwiazanie-ukadu-rownan" class="section level2">
@@ -940,10 +971,20 @@ T_{N}
 <div id="cwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
-<li><p>Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania powyższego układu równań. Nagłówek funkcji jest postaci <code>void gauss(int n, double A[][N], double b[], double x[])</code>, gdzie <code>n</code> to liczba równań, <code>A</code> to macierz układu równań, <code>b</code> - wektor prawych stron, zaś <code>x</code> to wektor, w którym zostanie zapisany wynik.</p></li>
-<li><p>Sporządź wykres funkcji <span class="math inline">\(T=T(x)\)</span> wykorzystując bibliotekę graficzną. Dla liczby podziałów N=20 (21 punktów) powinieneś uzyskać podobny wynik do zaprezentowanego poniżej <img src="info2_lab06_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p></li>
-<li><p>Przetestuj działanie programu dla różnych <code>n</code> (nie przesadź, ponieważ metoda Gaussa nie jest metodą optymalną do tego typu problemów).</p></li>
-<li><p>Na podstawie funkcji gauss napisz funkcję wyznaczającą macierz trójkątną. Następnie wykorzystując tę macierz, oblicz wartość wyznacznika macierzy <span class="math inline">\(K\)</span>.</p></li>
+<li>Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania powyższego układu równań. Nagłówek funkcji jest postaci:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dt">void</span> gauss(<span class="dt">int</span> N, <span class="dt">double</span> **A, <span class="dt">double</span> *x, <span class="dt">double</span> *b);</a></code></pre></div>
+<p>gdzie:</p>
+<ul>
+<li><span class="math inline">\(N\)</span> to liczba równań,</li>
+<li><span class="math inline">\(A\)</span> to macierz układu równań,</li>
+<li><span class="math inline">\(x\)</span> to wektor, w którym zostanie zapisane rozwiązanie,</li>
+<li><span class="math inline">\(b\)</span> to wektor prawych stron.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Sporządź wykres funkcji <span class="math inline">\(T=T(x)\)</span> wykorzystując bibliotekę graficzną. Dla liczby podziałów <span class="math inline">\(N = 20\)</span> (21 punktów) powinieneś uzyskać wynik podobny do zaprezentowanego poniżej <img src="info2_lab06_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p></li>
+<li><p>Przetestuj działanie programu dla różnych <code>N</code> (nie przesadź, ponieważ metoda Gaussa nie jest metodą optymalną do tego typu problemów).</p></li>
+<li><p>Oblicz wartość wyznacznika macierzy <span class="math inline">\(K\)</span>.</p></li>
 </ol>
 </div>
 </div>
