@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -777,11 +738,11 @@ div.tocify {
 
 <div id="relacyjne-bazy-danych-w-interpretacji-mysql---podstawy" class="section level1">
 <h1>Relacyjne bazy danych w interpretacji MySQL - podstawy</h1>
-<div id="cwiczenie-4" class="section level3">
+<div id="ćwiczenie-4" class="section level3">
 <h3>Ćwiczenie 4</h3>
 </div>
 </div>
-<div id="poaczenie-z-serwerem-mysql" class="section level1">
+<div id="połączenie-z-serwerem-mysql" class="section level1">
 <h1>Połączenie z serwerem MySQL</h1>
 <ol style="list-style-type: decimal">
 <li>Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).</li>
@@ -799,7 +760,7 @@ div.tocify {
 </div>
 <div id="baza-danych-test" class="section level1">
 <h1>Baza danych <em>test</em></h1>
-<div id="sprawdz-jakie-tabele-zawarte-sa-w-bazie-danych-test" class="section level3">
+<div id="sprawdż-jakie-tabele-zawarte-są-w-bazie-danych-test" class="section level3">
 <h3>Sprawdż jakie tabele zawarte są w bazie danych <em>test</em>:</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb5-1" data-line-number="1">SHOW <span class="kw">TABLES</span>;</a></code></pre></div>
 <p>Okaże się, że są to: <em>City</em>, <em>Country</em> i <em>CountryLanguage</em>. Informacje jakie są przechowywane w poszczególnych tabelach (definicję tabeli) wyświetli poniższe polecenie, np. dla tabeli <em>City</em>:</p>
@@ -962,7 +923,7 @@ div.tocify {
 </ol>
 </div>
 </div>
-<div id="tworzenie-i-uzywanie-nowych-baz-danych" class="section level1">
+<div id="tworzenie-i-używanie-nowych-baz-danych" class="section level1">
 <h1>Tworzenie i używanie nowych baz danych</h1>
 <ol start="0" style="list-style-type: decimal">
 <li>Utwórz własną bazę danych <code>studxy</code> (<em>xy</em> to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:</li>
@@ -1083,7 +1044,7 @@ div.tocify {
 <p><img src="figures/info3_lab_4-5_twoja_base.png" title="Twoja Baza danych" /></p>
 </div>
 </div>
-<div id="sciagawka" class="section level1">
+<div id="ściągawka" class="section level1">
 <h1>Ściągawka</h1>
 <table>
 <colgroup>
@@ -1268,6 +1229,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

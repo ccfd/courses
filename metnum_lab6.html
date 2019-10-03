@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -70,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -231,48 +231,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -688,7 +649,7 @@ div.tocify {
 <p>Jeśli znajdziemy takie <span class="math inline">\(\phi\)</span>, że: <span class="math display">\[\label{rownanie:wlasne}M\phi = \lambda S\phi\]</span> to otrzymamy: <span class="math display">\[\lambda\ddot{f}(t) = -  f(t) \quad\Rightarrow\quad f(t) = sin \left(t\frac{1}{\sqrt{\lambda}}\right)\]</span></p>
 <p>To oznacza, że <span class="math inline">\(sin(t\sqrt{\lambda})\phi\)</span> jest oscylującym w czasie rozwiązaniem naszego równania dynamiki. Takie rozwiązanie nazywamy drganiem własnym układu. Równanie  nazywamy równaniem własnym.</p>
 <p>Dziś skupimy się na znalezieniu zestawu wektorów <span class="math inline">\(\phi\)</span> i wartości <span class="math inline">\(\lambda\)</span> dla naszej belki</p>
-<div id="zacznijmy-od-najwiekszej-lambda" class="section level1">
+<div id="zacznijmy-od-największej-lambda" class="section level1">
 <h1>Zacznijmy od największej <span class="math inline">\(\lambda\)</span></h1>
 <p>Zaczniemy od największej <span class="math inline">\(\lambda\)</span>. Dobrze zauważyć, że największa wartość własna odpowiada najniższej częstotliwości. Są to drgania własne najmniej tłumione w fizycznym układzie i niosące zazwyczaj najwięcej energii w inżynierskich zastosowaniach.</p>
 <p>Będziemy znajdywać nasz wektor <span class="math inline">\(\phi\)</span> iteracyjnie. Zauważmy, że wektor <span class="math inline">\(\phi\)</span> może być dowolnej długości. To znaczy: jeśli wektor <span class="math inline">\(\phi\)</span> spełnia równanie , to także <span class="math inline">\(2\phi\)</span> go spełnia. Możemy więc arbitralnie wybrać ,,skale’’ wektora <span class="math inline">\(\phi\)</span>. Przyjmijmy, że <span class="math inline">\(\phi^T M \phi = 1\)</span>, tzn: niesie on energię kinetyczną <span class="math inline">\(\frac{1}{2}\)</span>.</p>
@@ -711,7 +672,7 @@ p &amp;= S^{-1}M\phi\\
 <p>Pokaż przemieszczenie <span class="math inline">\(\phi\)</span> przy pomocy funkcji <code>draw</code>. Zrób animację tego przemieszczenia przemnożonego przez <span class="math inline">\(\sin{t}\)</span>.</p>
 </div>
 </div>
-<div id="a-teraz-nastepne-lambda" class="section level1">
+<div id="a-teraz-następne-lambda" class="section level1">
 <h1>A teraz następne <span class="math inline">\(\lambda\)</span></h1>
 <p>Chcemy by wektory własne (drgania własne) były niezależne w energii kinetycznej. To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych (<span class="math inline">\(E_k(\phi_0+\phi_1) = E_k(\phi_0)+E_k(\phi_1)\)</span>). To w połączeniu z naszą <em>skalą</em> daje nam bardzo ważny warunek: <span class="math display">\[\begin{cases}
 \phi_i^T M \phi_j = 0 &amp;\quad \text{dla}\quad i\neq j \\
@@ -761,6 +722,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

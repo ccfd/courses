@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="P. Szałtys, rev. W. Gryglas" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,14 +736,14 @@ div.tocify {
 </div>
 
 
-<div id="cakowanie-numeryczne-rownan-rozniczkowych-zwyczajnych" class="section level1">
+<div id="całkowanie-numeryczne-równań-różniczkowych-zwyczajnych" class="section level1">
 <h1>Całkowanie numeryczne równań różniczkowych zwyczajnych</h1>
 <p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Plik nagłówkowy rk4.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Plik źródłowy rk4.cpp</a></li>
 </ul>
-<div id="wstep" class="section level2">
+<div id="wstęp" class="section level2">
 <h2>1. Wstęp</h2>
 <p>Celem dzisiejszych zajęć jest zapoznanie się z podstawowymi metodami całkowania numerycznego równań różniczkowych zwyczajnych pierwszego rzędu. Część procesów fizycznych, które obserwujemy w otaczającym nas świecie może być modelowana za pomocą właśnie równań różniczkowych. Większości z nich nie da się rozwiązać w sposób analityczny (tj. podać rozwiązania w postaci jawnej). W szczególności, największe problemy sprawiają równania zawierające człony nieliniowe. Świat, w którym żyjemy, jest silnie nieliniowy i większość problemów, które przyjdzie nam rozwiązywać, nie będzie posiadać rozwiązania w formie analitycznej.</p>
 <p>Jako pierwszą poznamy metodę pierwszego rzędu zwaną (od nazwiska twórcy) jawną metodą <strong>Eulera</strong>. Jest ona jednocześnie najprostszą i bardzo niestabilną metodą. Drugą metodą, którą zastosujemy na dzisiejszych zajęciach, będzie metoda <strong>Rungego-Kutty 4-go rzędu</strong>. Jest to metoda jawna, która charakteryzuje się stosunkowo wysokim rzędem, łatwością implementacji oraz relatywnie wysoką stabilnością.</p>
@@ -809,7 +770,7 @@ y_{i+1} = y_i + h \cdot f(t_i , y_i )
 <li><span class="math inline">\(f\)</span> - funkcja obliczająca prawą stronę równania różniczkowego.</li>
 </ul>
 </div>
-<div id="metoda-rungego-kutty-4-ego-rzedu" class="section level2">
+<div id="metoda-rungego-kutty-4-ego-rzędu" class="section level2">
 <h2>3. Metoda Rungego-Kutty 4-ego rzędu</h2>
 <p>Schemat iteracyjny ma postać: <span class="math display">\[
 y_{i+1} = y_i + \frac{h}{6} \left( K_1 + 2K_2 + 2K_3 + K_4 \right)
@@ -831,7 +792,7 @@ K_4 = f\left( x_i + h, y_i +hK_3 \right)
 <li><code>fun</code> – adres funkcji obliczającej prawe strony równania.</li>
 </ul>
 </div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>4. Ćwiczenia</h2>
 <p>Dane jest zagadnienie początkowe w postaci: <span class="math display">\[
 \left\{
@@ -873,6 +834,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

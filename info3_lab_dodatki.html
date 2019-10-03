@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk, rev. K. Marchlewski" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -812,7 +773,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="fu">seq</span> liczba1 liczba2</code> — Wypisuje na ekran ciąg liczb od ,,liczba1’‘do ,,liczba2’’ co jeden (wartość domyślna).</li>
 </ul>
 </div>
-<div id="przekierowanie-wejscia-wyjscia" class="section level2">
+<div id="przekierowanie-wejścia-wyjścia" class="section level2">
 <h2>Przekierowanie wejścia wyjścia</h2>
 <p>Standardowo wszystkie programy czytają z klawiatury i piszą na ekran. Można jednak zarówno wejście jak i wyjście przekierować.</p>
 <ul>
@@ -822,7 +783,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="ex">program1</span> <span class="kw">|</span> <span class="ex">program2</span></code> — To co ,,program1’‘wypisałby na ekran, zostanie wpisane ,,z klawiatury’‘do ,,program2’’.</li>
 <li><code class="sourceCode bash"><span class="st">&#39;program&#39;</span></code> lub <code class="sourceCode bash"><span class="va">$(</span><span class="ex">program</span><span class="va">)</span></code> — To co program wypisałby na ekran, zostanie wklejone w tym miejscu kodu (patrz przykłady). Odwrócony apostrof <code>`</code> jest na klawiszu z tyldą <code>~</code>.</li>
 </ul>
-<div id="przykady" class="section level3">
+<div id="przykłady" class="section level3">
 <h3>Przykłady:</h3>
 <ul>
 <li><code class="sourceCode bash"><span class="bu">echo</span> Tekst <span class="op">&gt;</span> plik</code> — wypisze ,,Tekst’’ do pliku (plik zostanie nadpisany jeśli istnieje)</li>
@@ -838,7 +799,7 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="petle-i-wyrazenia-warunkowe" class="section level2">
+<div id="pętle-i-wyrażenia-warunkowe" class="section level2">
 <h2>Pętle i wyrażenia warunkowe</h2>
 <p><strong>instrucja warunkowa if</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">if</span> <span class="ex">program</span> argumenty</a>
@@ -868,7 +829,7 @@ div.tocify {
 <p>Przeniesie każdy plik o końcówce <code>.jpg</code>, do katalogu <code>IMG</code> dodając im przedrostek <code>a_</code> (np.: <code>obrazek.jpg</code> zamieni na <code>IMG/a_obrazek.jpg</code>).</p>
 </div>
 </div>
-<div id="obrobka-obrazkow" class="section level1">
+<div id="obróbka-obrazków" class="section level1">
 <h1>Obróbka obrazków</h1>
 <div id="program-convert" class="section level2">
 <h2>Program <code>convert</code></h2>
@@ -1126,6 +1087,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

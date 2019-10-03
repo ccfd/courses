@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Gryglas" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -778,7 +739,7 @@ div.tocify {
 <div id="wprowadzenie" class="section level1">
 <h1>Wprowadzenie</h1>
 <p>W ramach tych zajęć nauczymy się korzystać z bibliotek Pythona na przykładzie NumPy, Matplotlib i SciPy. W praktyce większość narzędzi z których korzysta się nacodzień w Pythonie pochodzi właśnie z wymienionych bibliotek. Oprócz tych zagadnień nauczymy się jak odczytywać/zapisywać pliki oraz jak wykonywać przydatne operacje na poziomie systemu.</p>
-<div id="wykorzystywanie-istniejacych-moduow" class="section level2">
+<div id="wykorzystywanie-istniejących-modułów" class="section level2">
 <h2>Wykorzystywanie istniejących modułów</h2>
 <p>Podczas poprzednich zajęć powiedzieliśmy, że każdy plik jest nazywany modułem. Aby z niego skorzystać w innym pliku należy na początek zaimportować go do aktualnego pliku. W tym celu posługujemy się następującym wyrażeniem:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">import</span> nazwa_modulu</a></code></pre></div>
@@ -825,7 +786,7 @@ div.tocify {
 <a class="sourceLine" id="cb8-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9">Y <span class="op">=</span> odeint(funkcja_prawych_stron, Y0, timeSteps )</a></code></pre></div>
 </div>
-<div id="generator-enumerate-i-zip-w-petli-for" class="section level2">
+<div id="generator-enumerate-i-zip-w-pętli-for" class="section level2">
 <h2>Generator enumerate i zip w pętli for</h2>
 <p>Na poprzednich zajęciach pokazaliśmy jak iterować po kolejnych elementach listy, albo po indeksach przy użyciu funkcji <strong><em>range</em></strong>. Bardzo często zdarza się, że zarówno chcemy pobierać element z listy, ale także znać indeks tego elementu. Bazując na poznanych narzędziach mamy 2 opcje:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb9-1" data-line-number="1">aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</a>
@@ -921,7 +882,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb21-7" data-line-number="7"><span class="bu">print</span> tablica2 <span class="co">#&gt;&gt; [0 0 0 0 0 0 0 0 0 0]</span></a></code></pre></div>
 <p>Jak widać definicję typu przeprowadzamy za pomocą nazwanego argumentu <strong><em>dtype</em></strong>.</p>
 </div>
-<div id="dostep-do-elementow---optymalizacja-dziaan" class="section level3">
+<div id="dostęp-do-elementów---optymalizacja-działań" class="section level3">
 <h3>Dostęp do elementów - optymalizacja działań</h3>
 <p>Teraz przejdźmy do wykorzystywania tablic. Zazwyczaj jesteśmy przyzwyczajeni do korzystania z nich za pośrednictwem pętli for, jednak w przypadku tych tablic tak nie jest. Wynika to z tego, że pętla for będzie wymagała pobierania elementów z tablicy. Każdy taki element następnie staje się obiektem Python, co jest kosztowne. Każda następna operacja, np. dodawanie, zanim zostanie wykonana, będzie wymagała sprawdzenia typów, które z założenia zawsze są takie same. Dlatego do wykonywania takich operacji lepiej nadaje się skorzystanie z gotowej funkcji, która potrafi np. zsumować kolejne elementy dwóch tablic, ale tak, że ta operacja jest wykonana optymalnie już na poziomie kodu natywnego a nie interpretowanego. Aby lepiej zobaczyć różnicę przeanalizujmy poniższy kod, który będzie mierzył czas wykonania operacji sumowania:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="im">import</span> timeit</a>
@@ -977,7 +938,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb23-6" data-line-number="6">t2<span class="op">/</span>t3 <span class="fl">140.893861705</span></a></code></pre></div>
 <p>Jak widać najgorzej spisała się implementacja, która w pętli wykonywała sumowanie z tablicy numpy.array. Sumowanie elementów z listy było 3 razy szybsze niż z tablicy. Wynika to z tego, że dostęp do elementów tablice jest wolniejszy, ponieważ każdy element tablicy jest kopiowany z natywnego kodu do obiektu Pythona. Zwróćmy teraz uwagę na ostatni przypadek. Operacja sumowania “całych” tablic na raz jest wykonana ponad 40 razy szybciej niż iterowanie po elementach listy i aż 140 razy szybciej niż iterowanie po elementach tablicy. Wynika z tego następujący wniosek - <strong>jeśli korzystasz z tablic typu numpy.array unikaj za wszelką cenę pętli!</strong>. Bardzo dużo operacji można wykonać za pomocą różnych funkcji z pakiety NumPy oraz za pomocą wycinków tablic, podobnych do wycinków list.</p>
 </div>
-<div id="tworzenie-i-dostep-do-elementow-tablicy-wielowymiarowej" class="section level3">
+<div id="tworzenie-i-dostęp-do-elementów-tablicy-wielowymiarowej" class="section level3">
 <h3>Tworzenie i dostęp do elementów tablicy wielowymiarowej</h3>
 <p>Klasa array z biblioteka NumPy domyślnie wspiera tworzenie tablic wielowymiarowych. Tablicę taką można utworzyć podobnie jak w przypadku jednowymiarowej tablicy:</p>
 <ul>
@@ -1035,7 +996,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb29-5" data-line-number="5"><span class="bu">print</span> <span class="st">&quot;Pierwszy wymiar&quot;</span>, tab2D.shape[<span class="dv">0</span>] <span class="co"># &gt;&gt; Pierwszy wymiar 10</span></a>
 <a class="sourceLine" id="cb29-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Drugi wymiar&quot;</span>, tab2D.shape[<span class="dv">0</span>] <span class="co"># &gt;&gt; Drugi wymiar 5</span></a></code></pre></div>
 </div>
-<div id="wycinki-tablic-i-uzupenianie-wartosci-tablicy" class="section level3">
+<div id="wycinki-tablic-i-uzupełnianie-wartości-tablicy" class="section level3">
 <h3>Wycinki tablic i uzupełnianie wartości tablicy</h3>
 <p>Podczas poprzednich zajęć pokazaliśmy jak można wygodnie pracować na części listy. Podobne, a nawet dalej idące, narzędzie wspierają tablice. Tworzenie wycinków w tablicach jednowymiarowych jest dokładnie takie same jak w przypadku list. Tablice pozwalają jednak na przypisanie tej samej wartości do wszystkich elementów z wycinka:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
@@ -1051,7 +1012,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb31-5" data-line-number="5">                        <span class="co">#        [ 0.  0.  0.  0.]</span></a>
 <a class="sourceLine" id="cb31-6" data-line-number="6">                        <span class="co">#            [ 0.  0.  0.  0.]]</span></a></code></pre></div>
 </div>
-<div id="wycinki-tablic-za-pomoca-indeksow-i-masek" class="section level3">
+<div id="wycinki-tablic-za-pomocą-indeksów-i-masek" class="section level3">
 <h3>Wycinki tablic za pomocą indeksów i masek</h3>
 <p>Tablice NumPy pozwalają także na inny sposób tworzenia wycinków tablic: 1. Za pomocą listy indeksów. 2. Za pomocą maski - tablica o tej samej długości co źródłowa i złożona ze zmiennych typu boolean - wartość True oznacza wybór elementy a False pominięcie</p>
 <p>Sprawdź działanie poniższego kodu:</p>
@@ -1074,7 +1035,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb32-17" data-line-number="17"><span class="cf">for</span> e <span class="kw">in</span> tab[tab <span class="op">&gt;</span> <span class="dv">5</span>]:</a>
 <a class="sourceLine" id="cb32-18" data-line-number="18">    <span class="bu">print</span> e</a></code></pre></div>
 </div>
-<div id="operacje-matematyczne-na-caych-tablicach" class="section level3">
+<div id="operacje-matematyczne-na-całych-tablicach" class="section level3">
 <h3>Operacje matematyczne na całych tablicach</h3>
 <p>Obiekty klasy <strong><em>numpy.array</em></strong> wspierają większość znanych funkcji takich jak <strong><em>sin, cos, exp, abs, …</em></strong> oraz operatory ** +, -, /, *, <strong> </strong>. Pełną lista funkcji matematycznych zobacz <a href="http://docs.scipy.org/doc/numpy/reference/routines.math.html" title="Funkcje matematyczne NumPy">tutaj</a>. Aby skorzystać z tych funkcji trzeba odwoływać się do nich poprzez nazwę pakietu.</p>
 <p>Inna bardzo przydatna funkcja należąca do pakietu NumPy to <strong><em>linspace(start, stop, step)</em></strong> która generuje tablicę o liczbach równomiernie rozłożonych w zadanym zakresie:</p>
@@ -1136,10 +1097,10 @@ for a, b in zip(aList, bList):
 <div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb40-1" data-line-number="1">zdanie<span class="op">=</span><span class="st">&quot;Jaki ten python jest latwy i czytelny&quot;</span></a>
 <a class="sourceLine" id="cb40-2" data-line-number="2"><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> plik: plik.writelines([s<span class="op">+</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="cf">for</span> s <span class="kw">in</span> zdanie.split()])</a></code></pre></div>
 </div>
-<div id="podstawowe-narzedzie-obsugi-systemu" class="section level2">
+<div id="podstawowe-narzędzie-obsługi-systemu" class="section level2">
 <h2>Podstawowe narzędzie obsługi systemu</h2>
 <p>Python jako język skryptowy bardzo dobrze nadaje się do obsługi zadań związanych z zarządzaniem plikami/katalogami bądź wywoływania różnych procesów. Duży zbiór takich narzędzi znajduje się pakiecie o nazwie <strong><em>os</em></strong>, z którego opiszemy poniżej kilka najbardziej przydatnych funkcji. Zbiór wszystkich funkcji można znaleźć <a href="https://docs.python.org/2/library/os.html#module-os" title="moduł os">tutaj</a>.</p>
-<div id="sciezki-do-plikow" class="section level3">
+<div id="ścieżki-do-plików" class="section level3">
 <h3>Ścieżki do plików</h3>
 <p>Czasami pojawia się potrzeba przetwarzania ścieżek do plików bądź wyciąganie z niej odpowiednich informacji. W tym celu korzystamy z pod-modułu path w którym znajdują się przydatne funkcje:</p>
 <ul>
@@ -1181,7 +1142,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb42-5" data-line-number="5"><span class="bu">print</span> <span class="st">&quot;folder&quot;</span> <span class="op">+</span> os.sep <span class="op">+</span> <span class="st">&quot;plik&quot;</span> </a></code></pre></div>
 <p>Aby kod działał poprawnie na wszystkich systemach należy wystrzegać się jawnego używania znaku “&quot; lub”/&quot; a należy korzystać ze zmiennej <strong><em>os.sep</em></strong> lub funkcji <strong><em>os.path.join</em></strong>.</p>
 </div>
-<div id="listowanie-katalogow" class="section level3">
+<div id="listowanie-katalogów" class="section level3">
 <h3>Listowanie katalogów</h3>
 <p>Do przejrzenia plików w danym folderze służy funkcja <strong><em>listdir</em></strong> z pakietu <strong><em>os</em></strong>. Funkcja ta zwraca listę stringów będących nazwami plików i folderów:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="im">import</span> os</a>
@@ -1199,7 +1160,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb44-3" data-line-number="3"><span class="cf">for</span> txtFile <span class="kw">in</span> glob1(<span class="st">&quot;/home/wgryglas/Desktop&quot;</span>, <span class="st">&quot;*.txt&quot;</span>):</a>
 <a class="sourceLine" id="cb44-4" data-line-number="4">    <span class="bu">print</span> <span class="st">&quot;Plik text: &quot;</span><span class="op">+</span>txtFile</a></code></pre></div>
 </div>
-<div id="manipulacje-folderami-i-plikami-za-pomoca-moduu-os" class="section level3">
+<div id="manipulacje-folderami-i-plikami-za-pomocą-modułu-os" class="section level3">
 <h3>Manipulacje folderami i plikami za pomocą modułu “os”</h3>
 <p>Pakiet <strong><em>os</em></strong> pozwala także na dokonywanie tworzenie jednego folderu - <strong><em>os.mkdir(path, [mode])</em></strong> gdzie opcjonalny parametr <strong><em>mode</em></strong> określa prawa dostępu (domyślna wartość to 0777).</p>
 <p>Z kolei jeśli chcemy utworzyć całą ścieżkę folderów, końcowy i jego właścicieli, to należy skorzystać z funkcji <strong><em>os.makedirs(path, [mode])</em></strong></p>
@@ -1220,13 +1181,13 @@ for a, b in zip(aList, bList):
 <p>Ponadto w pakiecie <strong><em>os</em></strong> znajduje się funkcja <strong><em>remove(path)</em></strong> która usuwa pojedynczy plik. Jeśli ścieżka wskazuje na folder, to pojawi się błąd.</p>
 <p>Ostatnia przydatna funkcja to <strong><em>rename(src, dst)</em></strong>. Jak nazwa wskazuje służy ona do zmiany nazwy pliku/folderu. Jedna w praktyce to nie zmiana nazwy tylko przeniesienie pliku/folderu ze ścieżki <strong><em>src</em></strong> do ścieżki <strong><em>dst</em></strong>.</p>
 </div>
-<div id="operacje-na-plikach-za-pomoca-pakietu-shutil" class="section level3">
+<div id="operacje-na-plikach-za-pomocą-pakietu-shutil" class="section level3">
 <h3>Operacje na plikach za pomocą pakietu “shutil”</h3>
 <p>Do manipulacji plikami służy służy moduł o nazwie <strong><em>shutil</em></strong>. Pozwala ona na: - kopiowanie pojedynczych plików za pomocą <strong><em>shutli.copy(src, dst)</em></strong>, gdzie <strong><em>src</em></strong> określa plik źródłowy a <strong><em>dst</em></strong> ścieżkę do kopii. Jeśli <strong><em>dst</em></strong> jest folderem to plik <strong>src</strong> zostanie skopiowany z tą samą nazwą do folderu <strong><em>dst</em></strong>. - kopiowanie całych folderów wraz z zawartością. Do tego służy funkcja <strong><em>shutil.copytree(src,dst)</em></strong>. W przypadku tej funkcji folder <strong><em>dst</em></strong> nie może wcześniej istnieć. - usuwanie folderów wraz całą zawartością za pomocą <strong><em>shutil.rmtree(path)</em></strong>.</p>
 <p>Więcej funkcji z tego pakietu możesz znaleźć <a href="https://docs.python.org/2/library/shutil.html?highlight=shutil#module-shutil" title="Moduł shutil">tutaj</a></p>
 </div>
 </div>
-<div id="rysowanie-wykresow---podstawy-biblioteki-matplotlib" class="section level2">
+<div id="rysowanie-wykresów---podstawy-biblioteki-matplotlib" class="section level2">
 <h2>Rysowanie wykresów - podstawy biblioteki Matplotlib</h2>
 <p>Na koniec tych zajęć przedstawimy drugą po <strong><em>NumPy</em></strong> bardzo przydaną bibliotekę - <strong><em>Matplotlib</em></strong>. Jest to biblioteka służąca z założenia do wyświetlania wykresów. Oprócz samych wykresów pozwala na wyświetlanie i prostą obróbkę wykresów. Biblioteka ta jest tak zaprojektowana, żeby przypominała korzystanie z funkcji MATLABa, dzięki czemu jest dość prosta do nauczenia się. Ponadto jest ona rozszerzeniem pakietu NumPy, dzięki czemu domyślnie operuje na tablicach, ale wspiera także dane w postaci list. W tym punkcie pokażemy jak wykonać prosty wykres, animację i wyświetlić obrazek.</p>
 <div id="najprostsze-wykresy" class="section level3">
@@ -1289,7 +1250,7 @@ for a, b in zip(aList, bList):
 <a class="sourceLine" id="cb49-16" data-line-number="16"></a>
 <a class="sourceLine" id="cb49-17" data-line-number="17">plt.show()</a></code></pre></div>
 </div>
-<div id="kilka-wykresow-w-jednym-oknie" class="section level3">
+<div id="kilka-wykresów-w-jednym-oknie" class="section level3">
 <h3>Kilka wykresów w jednym oknie</h3>
 <p>Funkcja plt.plot, plt.xlabel … dokonuje rysowania na aktywnych osiach. Gdy posiadamy okno z jednym wykresem jest to oczywiste na której z osi go tworzymy, jednak w przypadku dwóch musimy się w jakiś sposób do wybranej osi odwoływać. Do tworzenia kilku wykresów w jednym oknie służy funkcja <strong><em>subplots</em></strong> która jako argument przyjmuje liczby osi w danym kierunku, np.: <code>plt.subplots(2,2)</code> wygeneruje okno z 4 układami współrzędnych. Funkcja ta zwraca oprócz obiektu “figure” także tablicę NumPy składającą się obiektów “axes”:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</a>
@@ -1472,6 +1433,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Regulski" />
@@ -108,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -165,7 +166,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -326,48 +326,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -800,7 +761,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dt">double</span> xV[<span class="dv">10</span>], yV[<span class="dv">10</span>];      <span class="co">// skladowe predkosci pilek</span></a></code></pre></div>
 <p>Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji <code>circle()</code>. Jako argumenty podamy elementy tablic odpowiadające danej piłce. Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">circle(x[<span class="dv">0</span>], y[<span class="dv">0</span>], <span class="dv">5</span>);</a></code></pre></div>
-<div id="modyfikacja-tablic-petla-for" class="section level2">
+<div id="modyfikacja-tablic-pętla-for" class="section level2">
 <h2>Modyfikacja tablic – pętla <code>for</code></h2>
 <p>Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty. Funkcje będą musiały także pobierać długość tablic tak, aby operacje można było wykonać dla każdego z jej elementów. Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością <span class="math inline">\(0\)</span>, napiszemy funkcję:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">void</span> init(<span class="dt">double</span> *x, <span class="dt">double</span> *y, <span class="dt">int</span> N) {</a>
@@ -835,7 +796,7 @@ div.tocify {
 <a class="sourceLine" id="cb5-8" data-line-number="8">*(a + <span class="dv">1</span>) = <span class="fl">3.13</span>;</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">*(a + <span class="dv">2</span>) = <span class="fl">0.22</span>;</a></code></pre></div>
 </div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Przed wykonaniem ćwiczeń upewnij się, że dołączono bibliotekę <code>winbgi2.h</code>.</p>
 <ul>
@@ -858,7 +819,7 @@ div.tocify {
 <li>określić ich prędkości początkowe oraz</li>
 <li>ustalić prawo opisujące ich ruch.</li>
 </ul>
-<div id="cwiczenia-1" class="section level2">
+<div id="ćwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Napisz funkcję, która losuje prędkości początkowe piłeczek. Składowe prędkości (<code>xV</code> oraz <code>yV</code>) wylosuj tak, aby ich wartości znalazły się w przedziale <span class="math inline">\([-1, 1]\)</span>.</li>
@@ -881,10 +842,10 @@ Użycie funkcji <code>aimate</code> wygląda następująco:</li>
 <a class="sourceLine" id="cb7-5" data-line-number="5">}</a></code></pre></div>
 </div>
 </div>
-<div id="kolizje-ze-scianami" class="section level1">
+<div id="kolizje-ze-ścianami" class="section level1">
 <h1>Kolizje ze ścianami</h1>
 <p>Chcielibyśmy, aby piłeczki miały wbudowany mechanizm kolizji ze ścianami. Zderzenia są doskonale sprężyste, zatem w układzie współrzędnych związanym ze ścianami, kąt padania będzie równy równy kątowi odbicia.</p>
-<div id="cwiczenia-2" class="section level2">
+<div id="ćwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Napisz funkcję <code>collideWall</code>, która sprawdza czy piłka zderzyła się ze ścianą. W przypadku kolizji należy zastosować prawo odbicia, które sprowadza się do:
@@ -897,7 +858,7 @@ Użycie funkcji <code>aimate</code> wygląda następująco:</li>
 </ul>
 </div>
 </div>
-<div id="kolizje-z-pikami" class="section level1">
+<div id="kolizje-z-piłkami" class="section level1">
 <h1>Kolizje z piłkami</h1>
 <p>Napisz funkcję <code>collideBall</code>, która sprawdza czy piłki zderzają się ze sobą nawzajem. W celu wykonania tego sprawdzenia, należy wyznaczyć odległość dla każdej pary piłek i sprawdzić czy jest mniejsza niż <span class="math inline">\(2\cdot R = 40\)</span> (przyjęliśmy wcześniej, że promień piłki to <span class="math inline">\(R = 20\)</span>).</p>
 <p>Następnie należy zmodyfikować prędkości piłek zgodnie z poniższymi wzorami.<br />
@@ -909,14 +870,14 @@ Oznaczenia:</p>
 <li><span class="math inline">\(C\)</span> – parametr, ułatwiający wyprowadzenie i zapis wzorów.</li>
 </ul>
 <p><span class="math display">\[\mathbf{v}&#39;_1= \mathbf{v}_1 + \Delta \mathbf{v}\]</span> <span class="math display">\[\mathbf{v}&#39;_2= \mathbf{v}_2 - \Delta \mathbf{v}\]</span> <span class="math display">\[\Delta \mathbf{v} = C \cdot (\mathbf{r}_{2} - \mathbf{r}_{1})\]</span> gdzie: <span class="math display">\[C = \frac{(\mathbf{r}_{1}-\mathbf{r}_{2}) \cdot (\mathbf{v}_1-\mathbf{v}_2)}{||\mathbf{r}_{1}-\mathbf{r}_{2}||^2}\]</span></p>
-<div id="przykadowa-animacja" class="section level2">
+<div id="przykładowa-animacja" class="section level2">
 <h2>Przykładowa animacja</h2>
 <p><img src="figures/info1/kulki.gif" title="Kulki w ruchu." /></p>
 </div>
 </div>
 <div id="dla-dociekliwych" class="section level1">
 <h1>Dla dociekliwych</h1>
-<div id="wyprowadzenie-wzoru-na-predkosci-piek-po-zderzeniu" class="section level2">
+<div id="wyprowadzenie-wzoru-na-prędkości-piłek-po-zderzeniu" class="section level2">
 <h2>Wyprowadzenie wzoru na prędkości piłek po zderzeniu</h2>
 <p>Założenia:</p>
 <ol style="list-style-type: decimal">
@@ -1026,6 +987,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

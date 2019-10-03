@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -70,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -231,48 +231,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -734,11 +695,11 @@ div.tocify {
 <p>Popraw kod zauważając, że ani <code>SMult</code> ani <code>IPrecond</code> nie potrzebują brać <code>A</code> za argument.</p>
 </div>
 </div>
-<div id="a-teraz-na-powaznie" class="section level1">
+<div id="a-teraz-na-poważnie" class="section level1">
 <h1>A teraz na poważnie</h1>
 <p>Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy <span class="math inline">\(S\)</span>. Możemy ją całkowicie wyeliminować. Funkcję <code>Solve</code> będziemy chcieli jednak używać dla różnych macierzy — dlatego jako argument, zamiast macierzy <code>double ** A</code> będziemy przekazywać funkcję mnożenia <code>void (*mult)(double *, double *)</code>. Tzn: nagłówek funkcji <code>Solve</code> będzie następujący:\ <code>void Solve(int n, void (*mult)(double *, double *), double *b, double *x)</code>\ A w miejscu mnożenia przez macierz <span class="math inline">\(r=Ax\)</span> będziemy mieli <code>mult(x,r);</code>. Teraz funkcję <code>Solve</code> będziemy wywoływać przekazując jej konkretną funkcję mnożącą: <code>Solve(n, SMult, F, d);</code>.</p>
 </div>
-<div id="rownolegosc" class="section level1">
+<div id="równoległość" class="section level1">
 <h1>Równoległość</h1>
 </div>
 
@@ -761,6 +722,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

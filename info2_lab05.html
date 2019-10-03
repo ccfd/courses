@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -107,7 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -164,7 +165,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -325,48 +325,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -776,18 +737,18 @@ div.tocify {
 </div>
 
 
-<div id="cakowanie-numeryczne-ukadow-rownan-rozniczkowych-zwyczajnych" class="section level1">
+<div id="całkowanie-numeryczne-układów-równań-różniczkowych-zwyczajnych" class="section level1">
 <h1>Całkowanie numeryczne układów równań różniczkowych zwyczajnych</h1>
 <p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Plik nagłówkowy rk4.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Plik źródłowy rk4.cpp</a></li>
 </ul>
-<div id="wstep" class="section level2">
+<div id="wstęp" class="section level2">
 <h2>Wstęp</h2>
 <p>Celem ćwiczenia jest zastosowanie metody <strong>Eulera</strong> oraz metody <strong>Rugego-Kutty 4 rzędu</strong> do numerycznego rozwiązania równań ruchu dynamiki Newtona. Jako przykład takiego zagadnienia posłuży nam wahadło matematyczne.</p>
 </div>
-<div id="rownania-ruchu" class="section level2">
+<div id="równania-ruchu" class="section level2">
 <h2>Równania ruchu</h2>
 <p>Ruch wahadła matematycznego najwygodniej jest opisać w układzie współrzędnych biegunowych związanych z jego punktem zaczepienia. Otrzymamy wtedy równanie różniczkowe wraz z warunkami początkowymi: <span class="math display">\[
 \left\{
@@ -820,7 +781,7 @@ div.tocify {
 \right.
 \]</span></p>
 </div>
-<div id="rozwiazanie-ukadu-rownan-rozniczkowych-metoda-eulera" class="section level2">
+<div id="rozwiązanie-układu-równań-różniczkowych-metodą-eulera" class="section level2">
 <h2>Rozwiązanie układu równań różniczkowych metodą Eulera</h2>
 <p>Mamy układ dwóch równań różniczkowych pierwszego rzędu: <span class="math display">\[
 \left\{
@@ -838,7 +799,7 @@ div.tocify {
 \right.
 \end{equation}\]</span></p>
 </div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Dla wahadła opisanego układem równań (*):</p>
 <ol style="list-style-type: decimal">
@@ -896,6 +857,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

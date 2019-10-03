@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -108,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -165,7 +166,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -326,48 +326,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -778,7 +739,7 @@ div.tocify {
 
 
 <p>Na dzisiejszych zajęciach będziemy zajmować się fraktalami. Fraktale to zbiory matematyczne charakteryzujące się tzw. samopodobieństwem – w każdym powiększeniu wyglądają identycznie<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<div id="trojkat-sierpinskiego" class="section level1">
+<div id="trójkąt-sierpińskiego" class="section level1">
 <h1>Trójkąt Sierpińskiego</h1>
 <p>Idea trójkąta Sierpińskiego polega na tym, że każdy trójkąt zawiera w sobie trzy takie same trójkąty o dwukrotnie krótszych bokach (patrz Rys. 1).</p>
 <div class="figure">
@@ -786,7 +747,7 @@ div.tocify {
 <p class="caption">Rys.1. Trójkąt Sierpińskiego.</p>
 </div>
 <p>Trójkąt Sierpińskiego można stworzyć na różne sposoby. My wykorzystamy <strong>rekurencję</strong>.</p>
-<div id="rekurencyjne-wywoywanie-funkcji" class="section level2">
+<div id="rekurencyjne-wywoływanie-funkcji" class="section level2">
 <h2>Rekurencyjne wywoływanie funkcji</h2>
 <p>Rekurencyjne wywoływanie funkcji polega na tym, że dana funkcja wywołuje samą siebie. Jak łatwo się domyślić, takie wywoływanie trwałoby w nieskończoność. Aby tego uniknąć, nakłada się warunek na wywołanie funkcji.</p>
 <p>Cały mechanizm, ilustruje to poniższy przykład:</p>
@@ -799,7 +760,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-7" data-line-number="7">}</a></code></pre></div>
 <p>Funkcja <code>recursiveDraw</code> rysuje okrąg o zadanych parametrach oraz wywołuje samą siebie z innymi wartościami argumentów, dopóki wartość <span class="math inline">\(x\)</span> nie przekroczy <span class="math inline">\(500\)</span>.</p>
 <p>W wypadku trójkąta Sierpińskiego, napiszemy funkcję, która generuje fraktal do pewnej ,,głębokości’’. Głębokość <span class="math inline">\(1\)</span> oznacza pojedynczy trójkąt, <span class="math inline">\(2\)</span> – trzy trójkąty, <span class="math inline">\(3\)</span> – dziewięć, itd. Funkcję taką można napisać zauważając, że trójkąt o głębokości <span class="math inline">\(n\)</span> składa się z trzech trójkątów o głębokości <span class="math inline">\(n - 1\)</span>.</p>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Napisz funkcję <code>sierpinski(x, y, d, n)</code>, która:</p>
 <ol style="list-style-type: decimal">
@@ -815,10 +776,10 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="zbior-julii-zbior-mandelbrota" class="section level1">
+<div id="zbiór-julii-zbiór-mandelbrota" class="section level1">
 <h1>Zbiór Julii, zbiór Mandelbrota</h1>
 <p>Wyobraźmy sobie ciąg liczb zespolonych takich, że każdy wyraz zależy od poprzedniego zgodnie ze wzorem: <span class="math inline">\(z_{n+1} = z_n^2 + c\)</span>. Taki ciąg ma nietypowe własności. Między innymi, jego rozbieżność zależy w bardzo złożony sposób od wyrazu początkowego <span class="math inline">\(z_0\)</span> i stałej <span class="math inline">\(c\)</span>. Zbiór takich <span class="math inline">\(z_0\)</span>, dla których ciąg ten nie jest rozbieżny nazwany został zbiorem <em>Julii</em> (zależy on od <span class="math inline">\(c\)</span>). Zaś zbiór takich <span class="math inline">\(c\)</span>, dla których ciąg ten nie jest rozbieżny oraz <span class="math inline">\(z_0 = 0\)</span> – zbiorem <em>Mandelbrota</em>.</p>
-<div id="mapa-kolorow" class="section level2">
+<div id="mapa-kolorów" class="section level2">
 <h2>Mapa kolorów</h2>
 <p>Do zobrazowania tych zbiorów potrzebna jest umiejętność kolorowania pojedynczych pikseli. Wyobraźmy sobie, że nasze okno grafiki to układ dwuwymiarowy, gdzie <span class="math inline">\(x \in [-4, 4]\)</span> i <span class="math inline">\(y \in [-3, 3]\)</span>. Używając funkcji <code>setcolor()</code>, możemy narysować wykres funkcji <span class="math inline">\(\sin(x^2 + y^2)\)</span> dla tych współrzędnych.</p>
 <p>Funkcja <code>setcolor()</code> jako argument przyjmuje liczbę z przedziału od <span class="math inline">\(0\)</span> do <span class="math inline">\(1\)</span> i ustawia kolor rysowania.</p>
@@ -843,7 +804,7 @@ div.tocify {
 <a class="sourceLine" id="cb2-18" data-line-number="18">  wait();</a>
 <a class="sourceLine" id="cb2-19" data-line-number="19">}</a></code></pre></div>
 </div>
-<div id="rozbieznosc" class="section level2">
+<div id="rozbieżność" class="section level2">
 <h2>Rozbieżność</h2>
 <p>Napisz funkcję <code>divergence(zR, zI, cR, cI)</code>, która sprawdza czy ciąg opisany równaniem <span class="math display">\[
 \left\{
@@ -855,7 +816,7 @@ c = cR + cI \cdot i
 \right.
 \]</span> jest zbieżny.</p>
 <p>Przyjmij, że maksymalna liczba iteracji to <span class="math inline">\(600\)</span>. Jeśli ciąg jest rozbieżny, niech funkcja zwraca liczbę iteracji, po której <span class="math inline">\(|z_n| &gt; 2\)</span> podzieloną przez <span class="math inline">\(600\)</span>. Jeżeli ciąg jest zbieżny (tzn. po <span class="math inline">\(600\)</span> iteracjach nadal <span class="math inline">\(|z_n| &lt; 2\)</span>), niech funkcja zwraca <span class="math inline">\(0\)</span>. <strong>Przypomnienie:</strong> Działania na liczbach zespolonych wykonuj jak zwykłe mnożenie dwumianów, pamiętając jedynie, że <span class="math inline">\(i^2 = -1\)</span>.</p>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Pokoloruj piksele, tak jak w przykładzie z funkcją <span class="math inline">\(\sin()\)</span>, wywołując <code>divergence(x, y, -0.3, 0.63)</code>. Dla ułatwienia, wywołanie to możesz umieścić wewnątrz <code>fun(x, y)</code> albo bezpośrednio wpisać jego wynik do zmiennej <span class="math inline">\(r\)</span>.</li>
@@ -870,7 +831,7 @@ c = cR + cI \cdot i
 <div id="antyaliasing---dla-dociekliwych" class="section level2">
 <h2>* Antyaliasing - dla dociekliwych</h2>
 <p>Antyaliasing ma na celu usunięcie efektów reprezentacji ze skończoną rozdzielczością. Dla przykładu, jeśli mamy literę, to jej krawędź jest gładką krzywą, która przechodzi tylko częściowo przez piksel. Jeśli zaczernimy tylko piksele wewnątrz krzywej, uzyskamy bardzo nienaturalny efekt. Jeśli jednak użyjemy odcienia szarości, proporcjonalnego do ,,pola’‘przykrytego tą literą, uzyskamy ładną, gładką czcionkę. Wyobraźmy sobie, że mamy obraz składający się z dużej liczby gęsto ułożonych czarnych linii na białym tle. Chcąc taki obraz zmniejszyć, możemy wziąć np. co trzeci piksel w każdą stronę. Jednak takie podejście spowoduje, że raz trafimy na w pełni czarny, a raz na w pełni biały piksel. Ostatecznie uzyskamy biało-czarną kaszę. Drugim podejściem byłoby wyznaczenie średniej z każdej kostki <span class="math inline">\(3 \times 3\)</span>. Takie podejście da nam pożądany efekt rozmazania zbyt małych struktur i kolor szary w miejscu losowej kaszy. Taki rodzaj antyaliasingu nazywany jest super-samplingiem. W wypadku obrazów takich jak zbiór <em>Mandelbrota</em> czy zbiór <em>Julii</em>, możemy dla każdego piksela obliczyć <span class="math inline">\(k \times k\)</span> wartości funkcji <code>fun()</code> i uśrednić wynik. Taki zabieg wygładzi obraz i usunie ,,odstające’’ piksele.</p>
-<div id="cwiczenia-2" class="section level3">
+<div id="ćwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Stwórz funkcję <code>fun2(x, y)</code>, która oblicza średnią wartość funkcji <code>fun</code> w czterech punktach: <span class="math inline">\((x, y)\)</span>, <span class="math inline">\((x + s, y)\)</span>, <span class="math inline">\((x, y + s)\)</span> i <span class="math inline">\((x + s, y + s)\)</span>, gdzie <span class="math inline">\(s = 1/800\)</span>. Pokoloruj piksele za jej pomocą.</li>
@@ -916,6 +877,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

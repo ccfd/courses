@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="B. Górecki" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,7 +736,7 @@ div.tocify {
 </div>
 
 
-<div id="wspopraca-z-plikami" class="section level1">
+<div id="współpraca-z-plikami" class="section level1">
 <h1>Współpraca z plikami</h1>
 <p>Do tej pory posługiwaliśmy się danymi, które pochodziły ze standardowego wejścia (klawiatury) i były zapisywane do standardowego wyjścia (terminala). Wykorzystywanie takich danych jest jednak często niewygodne i nieefektywne (wyobraźmy sobie ilość pracy jaka by nas czekała przy podawaniu kilkudziesięciu parametrów za pomocą klawiatury, za każdym razem kiedy uruchamiamy program). W takich przypadkach posługujemy się plikami. Pliki pozwalają na wczytanie i zapisanie dużych ilości przygotowanych wcześniej danych.</p>
 <p>W języku C, komunikacja z plikami przebiega niemalże identycznie, jak czytanie danych z klawiatury i drukowanie ich na ekranie. Odpowiednikiem funkcji <code>scanf()</code> jest <code>fscanf()</code> a funkcji <code>printf()</code> jest <code>fprintf()</code>. Różnica polega na tym, że w przypadku funkcji służących do obsługi plików, jako pierwszy argument musimy podać wskaźnik zawierający adres pliku.<br />
@@ -843,7 +804,7 @@ Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adre
 </ul>
 <p><strong>Uwaga:</strong> wszystkie funkcje związane z obsługą plików znajdują się w bibliotece <code>stdio.h</code>. W związku z tym, do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: <code>#include &lt;stdio.h&gt;</code></p>
 </div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>W praktyce inżynierskiej, pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik <a href="data/info1/przebieg.txt">przebieg.txt</a> zawiera fragment przebiegu czasowego dla wartości trzech składowych prędkości <span class="math inline">\((u, v, w)\)</span> pochodzących z symulacji przepływu powietrza przez turbinę wiatrową. Wartości tych składowych zostały zmierzone w punkcie znajdującym się tuż za turbiną. Otwórz i obejrzy plik, aby przekonać się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości <span class="math inline">\((u, v, w)\)</span> a kolejne wiersze odpowiadają kolejnym krokom czasowym).</p>
 <p>Napisz program, który:</p>
@@ -868,7 +829,7 @@ Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adre
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="cf">for</span>(i = <span class="dv">0</span>; i &lt; n; i++) {</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">   suma += a[i];</a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">}</a></code></pre></div>
-<div id="wykorzystanie-funkcji-do-poprawienia-przejrzystosci-programu" class="section level3">
+<div id="wykorzystanie-funkcji-do-poprawienia-przejrzystości-programu" class="section level3">
 <h3>Wykorzystanie funkcji do poprawienia przejrzystości programu</h3>
 <p>Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach <code>srednia()</code> i <code>odchStd()</code>. Funkcje te powinny mieć poniższe nagłówki:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">double</span> srednia(<span class="dt">double</span> tablica[], <span class="dt">int</span> n);</a>
@@ -927,6 +888,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="M. Dzikowski" />
@@ -107,7 +108,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -164,7 +165,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -325,48 +325,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -797,7 +758,7 @@ stud01@eto:~$</code></pre>
 <pre><code>stud01@eto:~$</code></pre>
 <p>to tzw. znak zachęty i oznacza, że jako użytkownik <code>stud01</code> jesteśmy zalogowani na komputer <code>eto</code>. Między znakami <code>:</code> i <code>$</code> znajduje się katalog, w którym się aktualnie znajdujemy. W tym przypadku jesteśmy katalogu domowym. Znak <code>~</code> to skrót, którego rozwinięcie to <code>/home/students/stud01</code>.</p>
 </div>
-<div id="cwiczenia" class="section level1">
+<div id="ćwiczenia" class="section level1">
 <h1>Ćwiczenia</h1>
 <div id="pierwsze-starcie" class="section level2">
 <h2>Pierwsze starcie</h2>
@@ -805,7 +766,7 @@ stud01@eto:~$</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">(</span><span class="ex">reverse-i-search</span><span class="kw">)`</span><span class="st">&#39;:</span></a></code></pre></div>
 <p>Wyszukujemy przez wpisywanie kolejnych znaków z szukanego polecenia, a pod dwukropku system pokarze podpowiedź. Kolejne kliknięcie <code>Ctrl + R</code> pokarze nastęþną sugestię. Innym ułatwieniem jest kończenie nazw. Jeśli wpiszesz <code>dat</code> i naciśniesz 2x klawisz <code>tab</code>, wyświetlona zostanie lista poleceń zaczynających się na <code>dat</code>. Jeśli jest tylko jedno takie polecenie, nazwa zostanie dokończona. Pamiętaj o tych trikach – znacznie ułatwiają pracę w trybie tekstowym.</p>
 </div>
-<div id="poruszanie-sie-po-katalogach" class="section level2">
+<div id="poruszanie-się-po-katalogach" class="section level2">
 <h2>Poruszanie się po katalogach</h2>
 <p>Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw. katalogu bieżącym. Jeśli uruchomimy jakiś program, np. prosty program czytający dane z pliku z Informatyki I, będzie on odczytywał pliki znajdujące się w tym katalogu. Każdy program, którego będziesz używać, a który potrzebuje nazwy pliku lub katalogu (np. do kopiowania), może ją otrzymać w dwóch postaciach. Pierwsza to tzw. ścieżka bezwzględna, zaczynająca się od znaku <code>/</code> np:</p>
 <pre><code>/home/students/stud01
@@ -828,7 +789,7 @@ stud01@eto:~$</code></pre>
 </ul>
 <p>Poeksperymentuj teraz z poruszaniem się po katalogach. Jeśli wpisywanie ścieżek Cię znudzi wypróbuj program <code>mc</code>. Pozwala on m. in. na graficzne poruszanie się po drzewie katalogów. Z programu wychodzimy przez kliknięcie klawisza <code>F10</code> lub wpisanie <code>exit</code>.</p>
 </div>
-<div id="tworzenie-i-usuwanie-katalogow" class="section level2">
+<div id="tworzenie-i-usuwanie-katalogów" class="section level2">
 <h2>Tworzenie i usuwanie katalogów</h2>
 <p>Do tworzenia katalogów służy polecenie <code>mkdir</code> np.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1">$ <span class="fu">mkdir</span> nazwa_katalogu</a></code></pre></div>
@@ -939,7 +900,7 @@ stud01@eto:~$</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="ex">./skrypt.sh</span> arg1 arg2</a></code></pre></div>
 <p>Do argumentów <code>arg1</code> i <code>arg2</code> mamy dostęp z wewnątrz skryptu dzięki tzw. zmiennym programowym. Jest ich dziewięć <code>$1</code> – <code>$9</code>, w tym przypadku będą to zmienne <code>$1</code> i <code>$2</code>.</p>
 </div>
-<div id="petle" class="section level2">
+<div id="pętle" class="section level2">
 <h2>Pętle</h2>
 <p>Przygotuj skrypt zawierający:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
@@ -1003,6 +964,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

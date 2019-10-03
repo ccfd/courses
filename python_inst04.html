@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Gryglas" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -776,7 +737,7 @@ div.tocify {
 
 
 <p>#Wprowadzenie</p>
-<div id="numpy-array---zamiana-wymiarow" class="section level2">
+<div id="numpy-array---zamiana-wymiarów" class="section level2">
 <h2>NumPy array - zamiana wymiarów</h2>
 <p>Jak wiemy z poprzednich zajęć, tablice numpy.array są stałego wymiaru. W przypadku np. dwu-wymiarowym są to zawsze tablice prostokątne, co oznacza, że nie nie może zdarzyć się sytuacja w której jeden z wierszy będzie krótszy. Aby zobaczyć wymiary tablicy korzystamy ze zmiennej “shape”:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
@@ -888,7 +849,7 @@ div.tocify {
 <a class="sourceLine" id="cb12-12" data-line-number="12">okno1.fig.canvas.set_window_title( tytuly[okno1] )</a></code></pre></div>
 <p>Należy jednak pamiętać, że aby jakiś typ mógł być użyty jako klucz mapy musi być on “hashowalny”. Nie będziemy tego opisywali, tylko zwracamy uwagę, że nie wszystkie typy mogą być użyte jako klucze, np. skorzystanie z listy spowoduje wyrzucenie błędu.</p>
 </div>
-<div id="sprawdzanie-czy-klucz-znajduje-sie-w-sowniku-dict" class="section level2">
+<div id="sprawdzanie-czy-klucz-znajduje-się-w-słowniku-dict" class="section level2">
 <h2>Sprawdzanie czy klucz znajduje się w słowniku “dict”</h2>
 <p>Bardzo często będzie zachodziła sytuacja, gdy będziemy chcieli dowiedzieć się, czy dany obiekt jest już w jakimś kontenerze <strong><em>dict</em></strong>. Podobnie do list i tutaj wystarczy skorzystać z słowa kluczowego <strong><em>in</em></strong>, np.:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</a>
@@ -904,7 +865,7 @@ div.tocify {
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Okno ma indeks&quot;</span>, mapa[<span class="st">&quot;okno&quot;</span>]</a></code></pre></div>
 <p>Powyższy kod pozwala nam upewnić się, że okno znajdzie się w mapie, a linijka z “print” nie wygeneruje błędu.</p>
 </div>
-<div id="iterowanie-po-elementach-sownika" class="section level2">
+<div id="iterowanie-po-elementach-słownika" class="section level2">
 <h2>Iterowanie po elementach słownika</h2>
 <p>W przypadku list i tablic iterowanie po ich elementach jest dość oczywiste - kolejne parametry pojawiające się w pętli <strong><em>for</em></strong> są kolejnymi elementami list. A jak to jest w przypadku słownika, gdzie operujemy na parach klucz-wartość? Jest podobnie, tylko elementami po których iterujemy są klucze. A zatem jeśli mamy mapę o parach string-integer to kolejnymi elementami w pętli for będą nazwy:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1">mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>, <span class="st">&quot;okno&quot;</span>:<span class="dv">5</span>}</a>
@@ -913,7 +874,7 @@ div.tocify {
 <a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="bu">print</span> <span class="st">&quot;klucz to:&quot;</span>, key, <span class="st">&quot; a wartosc&quot;</span>, mapa[key]</a></code></pre></div>
 <p>Podsumowując, w przypadku kontenerów typu <strong><em>dict</em></strong> iterujemy w pętlach zawsze po jej kluczach, a wartości możemy uzyskać pobierając wartość z mapy za kolejnego klucza w pętli.</p>
 </div>
-<div id="funkcje-zwracajace-wiecej-niz-jeden-argument" class="section level2">
+<div id="funkcje-zwracające-więcej-niż-jeden-argument" class="section level2">
 <h2>Funkcje zwracające więcej niż jeden argument</h2>
 <p>W większości znanych języków funkcje zazwyczaj mogą zwracać tylko jeden lub żaden argument. W przypadku Pythonie jest i nie jest tak samo jednocześnie. Jest tak samo, ponieważ fizycznie Python zwraca jeden argument. Nie jest tak samo, bo w praktyce wygląda to tak jakbyśmy pracowali na kodzie, gdzie może być zwracanych więcej niż jeden argument. Przyjrzyjmy się następującej funkcji:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">def</span> funkcja(a,b):</a>
@@ -956,7 +917,7 @@ div.tocify {
 <a class="sourceLine" id="cb21-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Suma =&quot;</span>,suma <span class="co"># &gt;&gt; Suma = 3</span></a>
 <a class="sourceLine" id="cb21-7" data-line-number="7"><span class="bu">print</span> <span class="st">&quot;Roznica =&quot;</span>,roznica <span class="co"># &gt;&gt; Roznica = -1 </span></a></code></pre></div>
 </div>
-<div id="domyslne-wartosci-argumentow-funkcji" class="section level2">
+<div id="domyślne-wartości-argumentów-funkcji" class="section level2">
 <h2>Domyślne wartości argumentów funkcji</h2>
 <p>W Pythonie w odróżnieniu od innych języków programowania nie można zdefiniować funkcji o tej samej nazwie, tak aby różniła się tylko inną liczbą argumentów. W języku C++ czy Java jest to bardzo często wykorzystywane, jednak tam nazwa funkcji nie jest prawdziwą jej nazwą, ponieważ kompilator zawsze dopisuje do niej jeszcze typy argumentów. Zazwyczaj wykorzystuje się takie zduplikowane funkcje do tego aby przekazać domyślne argumenty funkcji, np.:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="dt">double</span> root(<span class="dt">double</span> a, <span class="dt">double</span> order)</a>
@@ -989,7 +950,7 @@ div.tocify {
 <a class="sourceLine" id="cb25-6" data-line-number="6"><span class="bu">print</span> <span class="st">&quot;Pierwiastek 3-ciego stopnia z 2 jako int to&quot;</span>, root(<span class="dv">2</span>, <span class="dv">3</span>, <span class="bu">str</span>)</a></code></pre></div>
 <p>Jak widać powyżej, w sytuacji gdy podajemy kolejne argumenty, tak samo jak zostały one zdefiniowane w funkcji, nie musimy korzystać z nazw argumentów. Jednak gdy chcemy przekazać argumenty w dowolnej kolejności, to już niestety tak musimy uczynić.</p>
 </div>
-<div id="definiowanie-funkcji-ze-zmienna-liczba-argumentow" class="section level2">
+<div id="definiowanie-funkcji-ze-zmienną-liczbą-argumentów" class="section level2">
 <h2>Definiowanie funkcji ze zmienną liczbą argumentów</h2>
 <p>Ponieważ Python jest bardzo elastycznym językiem to pozwala na stosowanie zmiennej ilości argumentów. Taka zmienna liczba argumentów jest przekazywana do funkcji za pomocą jednej zmiennej która w praktyce jest jakimś kontenerem (sekwencją obiektów). Przyjrzyjmy się następującej funkcji:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">def</span> fun(<span class="op">*</span>args):</a>
@@ -1029,7 +990,7 @@ div.tocify {
 <a class="sourceLine" id="cb29-13" data-line-number="13"><span class="co">#&gt;&gt;</span></a>
 <a class="sourceLine" id="cb29-14" data-line-number="14"><span class="co">#&gt;&gt; TypeError: suma() takes at least 2 arguments (1 given)</span></a></code></pre></div>
 </div>
-<div id="przekazywanie-listy-wprost-do-argumentow-funkcji" class="section level2">
+<div id="przekazywanie-listy-wprost-do-argumentów-funkcji" class="section level2">
 <h2>Przekazywanie listy wprost do argumentów funkcji</h2>
 <p>Bardzo często zdarza się tak, że w wyniku jakiś operacji przechowujemy w liście/tablicy pewne dane, które następnie wszystkie muszą być przekazane do kolejnej funkcji. W takiej sytuacji zazwyczaj po prostu wyciągamy kolejne argumenty z listy za pomocą indeksów, a następnie je przekazujemy do funkcji, np.:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):</a>
@@ -1185,7 +1146,7 @@ div.tocify {
 <p class="caption">contourf_winter</p>
 </div>
 </div>
-<div id="wykresy-trojwymiarowe" class="section level2">
+<div id="wykresy-trójwymiarowe" class="section level2">
 <h2>Wykresy trójwymiarowe</h2>
 <p>Elementy grafiki 3D znajdują się w pakiecie <strong><em>mplot3d</em></strong>. Znajdują się tam funkcje pozwalające na rysowanie linii oraz powierzchni w trzech wymiarach. Na początek przedstawimy rysowanie linii na przykładzie spirali:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
@@ -1485,6 +1446,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

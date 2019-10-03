@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -70,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -231,48 +231,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -690,7 +651,7 @@ div.tocify {
 <h3>Zadanie</h3>
 <p>Policz residual. Następnie policz i wyświetl jego normę: <span class="math inline">\(\|r\|=\sqrt{r^Tr}\)</span> (napisz funkcję liczącą normę wektora <code>norm(double *,int)</code>). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?</p>
 </div>
-<div id="na-gupa" class="section level1">
+<div id="na-głupa" class="section level1">
 <h1>Na głupa</h1>
 <p>Pierwszym pomysłem na iteracyjne rozwiązywanie byłoby postawienie: <span class="math display">\[x^{(n+1)} = x^{(n)} + p\]</span> Gdzie <span class="math inline">\(p\)</span> jest ,,poprawką’’ w iteracji. Łatwo sprawdzić, że idealne <span class="math inline">\(p\)</span> byłoby równe: <span class="math display">\[p = A^{-1}r\]</span> Jednak nie mamy <span class="math inline">\(A^{-1}\)</span> (w tym rzecz). Zamiast niej użyjemy <span class="math inline">\(M^{-1}\)</span>, gdzie <span class="math inline">\(M\)</span> będzie przybliżeniem <span class="math inline">\(A\)</span>. Macierz <span class="math inline">\(M^{-1}\)</span> nazywamy <strong>preconditioner’em</strong>. Na początek zamiast rozwiązywać pełen układ, pominiemy większość jego elementów: <span class="math display">\[\begin{array}{rrrrrl}
 A_{11}p_1 &amp; \color{Gray}{+A_{12}p_2}&amp;\color{Gray}{+A_{13}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{1n}p_n}&amp;= r_1\\
@@ -745,7 +706,7 @@ A_{n1}p_1&amp; +A_{n2}p_2&amp; +A_{n3}p_1&amp; +\cdots &amp;+A_{nn}p_n&amp;= r_n
 <p>Zmodyfikuj iterację wg. schematu: - oblicz residual - oblicz <span class="math inline">\(p=M^{-1}r\)</span> - jeżeli to nie pierwsza iteracja: oblicz <span class="math inline">\(\beta\)</span> i nową poprawkę: <span class="math inline">\(p=p-\beta q\)</span> - oblicz <span class="math inline">\(\alpha\)</span> - wylicz nowe rozwiązanie <span class="math inline">\(x=x+\alpha p\)</span> - zachowaj poprawkę <span class="math inline">\(q=p\)</span> (opłaca się też zachować <span class="math inline">\(Ap\)</span>)</p>
 </div>
 </div>
-<div id="a-jesli-a-jest-symetryczna-i-dodatnio-okreslona" class="section level1">
+<div id="a-jeśli-a-jest-symetryczna-i-dodatnio-określona" class="section level1">
 <h1>A jeśli <span class="math inline">\(A\)</span> jest symetryczna i dodatnio określona …</h1>
 <p>W naszym przypadku możemy wykorzystać fakt, że macierz <span class="math inline">\(A\)</span> jest symetryczna i dodatnio określona. Wtedy zamiast minimalizować <span class="math inline">\(r^Tr\)</span> możemy minimalizować pewien specjalny funkcjonał: <span class="math display">\[\frac{1}{2}x^TAx - b^Tx\]</span> <strong>Pytanie:</strong> Jakie fizyczne wyjaśnienie mają następujące rzeczy w naszym przypadku: - Czym jest powyższy funkcjonał? - Dlaczego <span class="math inline">\(A\)</span> jest symetryczna? - Dlaczego <span class="math inline">\(A\)</span> jest dodatnio określona?</p>
 <div id="zadanie-8" class="section level3">
@@ -788,6 +749,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

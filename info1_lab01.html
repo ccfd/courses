@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,7 +736,7 @@ div.tocify {
 </div>
 
 
-<div id="wstep" class="section level1">
+<div id="wstęp" class="section level1">
 <h1>Wstęp</h1>
 <p>Rozpakuj projekt. Za pomocą programu Visual Studio, otwórz plik <code>ProjektVisualStudio2013.vcxproj</code>. Projekt zawiera następujące pliki:</p>
 <ul>
@@ -794,7 +755,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-4" data-line-number="4">wait();</a></code></pre></div>
 <p><strong><em>Uwaga:</em> Pamiętaj o średnikach!</strong></p>
 <p>Skompiluj i uruchom program. Pierwsza linia tworzy okno grafiki, dwie następne rysują linie, zaś ostatnia czeka z zamknięciem okna na naciśnięcie dowolnego klawisza.</p>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Używając funkcji <code>line(x1, y1, x2, y2)</code> i <code>circle(x, y, r)</code>, wykonaj następujące zadania:</p>
 <ul>
@@ -828,7 +789,7 @@ div.tocify {
 <a class="sourceLine" id="cb3-8" data-line-number="8">w = w + <span class="dv">20</span>;</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9">circle( <span class="dv">10</span>, w, <span class="dv">10</span>);</a></code></pre></div>
 <p>W efekcie, wyświetlą się cztery kółka narysowane koło siebie. Przetestuj.</p>
-<div id="cwiczenia-1" class="section level2">
+<div id="ćwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Każdy program przetestuj dla paru ustawień zmiennych, by zobaczyć czy działa poprawnie.</p>
 <ul>
@@ -839,7 +800,7 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="petle" class="section level1">
+<div id="pętle" class="section level1">
 <h1>Pętle</h1>
 <p>Pierwszą automatyzacją są pętle. Pętla wykonuje pewną operację, dopóki pewien warunek jest spełniony, np:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">int</span> x;</a>
@@ -865,7 +826,7 @@ div.tocify {
 </ul>
 <p>Ostatecznie program narysuje pionowe kreski dla kolejnych <span class="math inline">\(x = 0, 10, 20, \ldots\)</span></p>
 <p><strong><em>Zauważ:</em> Program nie narysuje linii dla <span class="math inline">\(x=200\)</span>, bo komputer najpierw sprawdzi, że <span class="math inline">\(x\not&lt; 200\)</span> i przerwie pętlę.</strong></p>
-<div id="cwiczenia-2" class="section level2">
+<div id="ćwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Napisz program, który narysuje kratkę z odstępem <span class="math inline">\(w\)</span>.</li>
@@ -900,6 +861,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

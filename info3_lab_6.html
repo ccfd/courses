@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="M. Dzikowski" />
@@ -109,7 +110,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -166,7 +167,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -327,48 +327,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -778,14 +739,14 @@ div.tocify {
 </div>
 
 
-<div id="wstep" class="section level1">
+<div id="wstęp" class="section level1">
 <h1>Wstęp</h1>
 <p>Obliczenia z wykorzystaniem komputerów są nieodłączną częścią współczesnej nauki. Natomiast, podstawą obliczeń komputerowych są obliczenia równoległe. Gdy korzystamy z 1 komputera, nawet bardzo mocnego, jesteśmy ograniczeni do około 32 procesorów (obecnie) i kilkuset Gb pamięci RAM. Co więcej, czas obliczeń spada (przynajmniej tego byśmy sobie życzyli) jak 1/(liczba procesów). Dlatego z reguły potrzebujemy i chcemy wykorzystać ich jak najwięcej.</p>
 </div>
-<div id="obliczenia-rownolege" class="section level1">
+<div id="obliczenia-równoległe" class="section level1">
 <h1>Obliczenia równoległe</h1>
 <p>Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu, potrzebuje mechanizmu komunikacji. W naszym przypadku będzie to standard MPI czyli Message Passing Interface. Biblioteka OpenMPI dostarcza nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami składającymi się na nasz “program”.</p>
-<div id="cwiczenie-1" class="section level3">
+<div id="ćwiczenie-1" class="section level3">
 <h3>Ćwiczenie 1</h3>
 <p>Przygotuj plik <code>program.cpp</code> o poniższej treści. Następnie skompiluj go za pomocą programu <code>mpic++</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
@@ -809,7 +770,7 @@ div.tocify {
 <p>gdzie <code>4</code> to liczba procesorów, na których ma zostać uruchomiony program.</p>
 <p>Przeanalizujmy teraz program. Funkcje <code>MPI_Init</code> i <code>MPI_Finalize</code> służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki <code>MPI</code> i komunikować się z innymi procesami w grupie. Wywołanie <code>MPI_Comm_size</code> zwroci nam liczbe procesów (np. <code>4</code>), zaś <code>MPI_Comm_rank</code> zwróci nam numer <em>naszego</em> procesu (np. <code>0</code>,<code>1</code>,<code>2</code> lub <code>3</code>). Zmienna <code>rank</code> jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.</p>
 </div>
-<div id="cwiczenie-2" class="section level3">
+<div id="ćwiczenie-2" class="section level3">
 <h3>Ćwiczenie 2</h3>
 <p>Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne statystyki:</p>
 <ol style="list-style-type: decimal">
@@ -824,12 +785,12 @@ div.tocify {
 <p>Pamietaj aby we wszystkich komunikatach umieszczać zmienną <code>rank</code>, tak by było wiadomo, który komunikat pochodzi, od którego procesu. By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę <code class="sourceCode cpp">fflush(stdout);</code> zaraz po każdym wywołaniu <code class="sourceCode cpp">printf</code>. Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.</p>
 <p>Aktualnie, losowanie jest bardzo niedoskonałe. Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np. wartość <code>time(NULL) + rank</code> jako <em>ziarno</em> do funkcji <code>srand</code>, tak aby ciąg losowy był zainicjalizowany inną liczbą na każdym procesorze.</p>
 </div>
-<div id="cwiczenie-3" class="section level3">
+<div id="ćwiczenie-3" class="section level3">
 <h3>Ćwiczenie 3</h3>
 <p>Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1. Możemy wymusić aby procesy czekały na siebie nawzajem dodając instrukcję <code class="sourceCode cpp">MPI_Barrier(MPI_COMM_WORLD);</code> po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej. Zauważ, że powoduje to iż program działa tak wolno, jak jego najwolniejszy element. Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:</p>
 <p><img src="info3_lab_6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
-<div id="cwiczenie-4" class="section level3">
+<div id="ćwiczenie-4" class="section level3">
 <h3>Ćwiczenie 4</h3>
 <p>Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z <span class="math inline">\(a\)</span>. Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">MPI_Reduce(source, destination, count, datatype, operation, root,</a>
@@ -848,7 +809,7 @@ div.tocify {
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1">MPI_Allreduce(source, destination, count, datatype, operation,</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">              MPI_COMM_WORLD);</a></code></pre></div>
 </div>
-<div id="cwiczenie" class="section level3">
+<div id="ćwiczenie" class="section level3">
 <h3>Ćwiczenie *</h3>
 <p>Stwórz nowy program równoległy <code>program2.cpp</code>, który będzie obliczał powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy <code>a</code> (tzn., będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:</p>
 <p><span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{n}\sum_j a_j\right)^2\)</span></p>
@@ -861,7 +822,7 @@ div.tocify {
 <div id="kolejka-pbs" class="section level1">
 <h1>Kolejka PBS</h1>
 <p>W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy do zlecania zadań, pozostałe, tzw. węzły obliczeniowe, przyjmują i wykonują zadania. Na <code>info3</code> jest tylko jeden węzeł który spełnia obie role.</p>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Sprawdź co zrobi komenda <code class="sourceCode bash"><span class="ex">qsub</span> -I</code> (wielka litera i). To program do wysyłania zadań do wykonania. Opcja <code>-I</code> oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz <code>qstat</code>, sprawdź opcje <code>-n</code> i <code>-f</code>. Zobacz, że twoje ‘zadanie’ jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie mogą być wykorzystywane tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę <code>-l</code>, np.:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="ex">qsub</span> -l nodes=1:ppn=4 -I</a>
@@ -877,7 +838,7 @@ div.tocify {
 <p>Zlecamy jego wykonanie przez</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="ex">qsub</span> plik.sh</a></code></pre></div>
 <p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu <code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu <code>plik.sh</code> komendę <code class="sourceCode bash"><span class="fu">sleep</span> 8</code>, która spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.</p>
-<div id="cwiczenie-5" class="section level3">
+<div id="ćwiczenie-5" class="section level3">
 <h3>Ćwiczenie</h3>
 <p>Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w kolejce.</p>
 </div>
@@ -903,6 +864,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

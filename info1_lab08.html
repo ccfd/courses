@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="B. Górecki" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -818,7 +779,7 @@ div.tocify {
 \end{array}
 \right)
 \]</span> Pozostaje wytłumaczyć jeszcze, w jaki sposób odwołujemy się do elementów w dwuwymiarowej tablicy. Robimy to analogicznie do tablicy jednowymiarowej, tylko tym razem podajemy dwa indeksy. Wartość pierwszego indeksu to numer wiersza, drugiego – numer kolumny. Przykładowo, do elementu macierzy <span class="math inline">\(a_{32}\)</span> odwołamy się przez napisanie <code>a[2][1]</code>. W ten sposób możemy wyłuskać wartość przechowywaną pod tym elementem lub za pomocą operatora ,,=’’ przypisać temu elementowi nową wartość.</p>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>W funkcji <code>main()</code> napisz kod, w którym zadeklarujesz i zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe. Jedna ma przechowywać macierz kwadratową o wymiarze <span class="math inline">\(2 \times 2\)</span>, a druga macierz kwadratową o wymiarze <span class="math inline">\(3 \times 3\)</span>. Napisz kod, który dla każdej z tych macierzy policzy wyznacznik.</p>
 </div>
@@ -858,7 +819,7 @@ div.tocify {
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i)</a>
 <a class="sourceLine" id="cb7-11" data-line-number="11">  free(A[i]);</a>
 <a class="sourceLine" id="cb7-12" data-line-number="12">free(A);</a></code></pre></div>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Zaalokuj w funkcji <code>main</code> w sposób dynamiczny miejsce dla macierzy <span class="math inline">\(A\)</span> o wymiarze <span class="math inline">\([3 \times 3]\)</span> oraz dwóch 3-elementowych wektorów <span class="math inline">\(v1\)</span> i <span class="math inline">\(v2\)</span>. Wypełnij macierz i jeden z wektorów dowolnymi liczbami.</li>
@@ -885,7 +846,7 @@ v_i = i+1, (i = 0,\ldots,n-1)
 </div>
 </div>
 </div>
-<div id="alokacja-pamieci-wewnatrz-funkcji" class="section level1">
+<div id="alokacja-pamięci-wewnątrz-funkcji" class="section level1">
 <h1>Alokacja pamięci wewnątrz funkcji</h1>
 <p>Zastanów się dlaczego poniższy kod nie działa poprawnie?</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dt">void</span> initialize_vec_BAD(<span class="dt">int</span> *ptr, <span class="dt">int</span> N) {</a>
@@ -955,6 +916,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

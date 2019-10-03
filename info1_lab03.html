@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="B. Górecki" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -781,7 +742,7 @@ div.tocify {
 <li>Wprowadzeniu do wskaźników,</li>
 <li>Zwracaniu wartości przez funkcje.</li>
 </ul>
-<div id="instrukcje-wejsciawyjscia" class="section level1">
+<div id="instrukcje-wejściawyjścia" class="section level1">
 <h1>Instrukcje wejścia/wyjścia</h1>
 <p>Praktyczny program powinien mieć możliwość interaktywnej komunikacji z użytkownikiem. W celu drukowania informacji często wykorzystywane jest standardowe wyjście (ekran).</p>
 <div id="drukowanie-tekstu" class="section level2">
@@ -795,7 +756,7 @@ div.tocify {
 <li><code>&quot;\n&quot;</code> – wprowadza znak nowej linii,</li>
 <li><code>&quot;\t&quot;</code> – wprowadza znak tabulacji.</li>
 </ul>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Używając <strong>pojedynczej</strong> funkcji <code>printf()</code> oraz odpowiednich kodów sterujących, wygeneruj tekst identyczny z poniższym:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">To jest pierwsze zdanie w mojej instrukcji.</a>
@@ -835,7 +796,7 @@ div.tocify {
 - %d -- dla zmiennych typu `int`
 - %f -- dla zmiennych typu `float`
 - %c -- dla zmiennych typu `char`</code></pre>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Dodaj po linijce kodu, który wydrukuje na ekran bieżącą wartość przechowywaną w zmiennych. Co oznaczają operatory <code>+=</code> i <code>-=</code>?</li>
@@ -867,13 +828,13 @@ div.tocify {
 <li>Zwróć szczególną uwagę na znak ,,&amp;’‘występujący przed nazwami zmiennych, do których wczytujemy wartości. Znak ten służy do ustalenia zmiennej występującej za raz po nim. Funkcja <code>scanf()</code> wczytuje dane z klawiatury, które musi gdzieś zapisać. Stosując znak ,,&amp;’’ dostarczamy informacji o tym gdzie znajduje się zmienna, do której należy zapisać wczytaną wartość.</li>
 <li>Zauważ również, że używając pojedynczej instrukcji <code>scanf</code> możesz wczytać wiele liczb. Należy przy tym pamiętać o podaniu specyfikatorów formatu w takiej kolejności jak zmienne na liście argumentów. Powinno się unikać stosowania innych symboli niż spacje i specyfikatory formatu. Inaczej należy pamiętać o podaniu liczb razem z tymi dodatkowymi symbolami.</li>
 </ul>
-<div id="cwiczenia-2" class="section level3">
+<div id="ćwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i dzielenie. Pamiętaj, że odejmowanie i dzielenie nie jest przemienne – policz zatem każdą z możliwych różnic i ilorazów. Wydrukuj wszystkie wyniki na ekran.</p>
 </div>
 </div>
 </div>
-<div id="wskazniki" class="section level1">
+<div id="wskaźniki" class="section level1">
 <h1>Wskaźniki</h1>
 <p>Każdy element programu musi być zapisany gdzieś w pamięci komputera. Oznacza to, że musi mieć swój adres. Adres ten można zapisać w pewnej zmiennej i posłużyć się nim w programie. Zmienną zawierającą adres innej zmiennej nazywamy <strong>wskaźnikiem</strong>. Wskaźniki mogą zawierać adresy różnych elementów (zmiennych, tablic, funkcji, …). Z tego powodu będą pojawiały się na różnych etapach tego kursu. W tej instrukcji opiszemy jedynie podstawy.</p>
 <p>Jak już wspomnieliśmy, każda zmienna ma swój adres. Można go uzyskać stosując operator &amp; i zapisać w zmiennej typu wskaźnikowego. Mówiliśmy o tym podczas zajmowania się funkcją <code>scanf()</code>. Zmienne różnych typów wymagają różnej wielkości pamięci. Dlatego deklaracja wskaźnika zawierającego adres zmiennej danego typu, ma postać <code>typ *wskaznik;</code>.</p>
@@ -896,7 +857,7 @@ div.tocify {
 <li><code>*wsk_k</code>– pobiera wartość zmiennej, na którą wskazuje wskaźnik,</li>
 <li><code>&quot;%p&quot;</code> – informuje funkcję <code>printf()</code>, że wyświetlana wartość to adres.</li>
 </ul>
-<div id="cwiczenia-3" class="section level3">
+<div id="ćwiczenia-3" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Stwórz trzy zmienne <code>a</code>, <code>b</code> i <code>c</code> tego samego typu.</li>
@@ -944,7 +905,7 @@ div.tocify {
 <a class="sourceLine" id="cb12-7" data-line-number="7">  InnaZmienna = KtoryWiekszy(d, c);</a>
 <a class="sourceLine" id="cb12-8" data-line-number="8">  InnaZmienna = KtoryWiekszy(<span class="fl">12.5</span>, c);</a>
 <a class="sourceLine" id="cb12-9" data-line-number="9">}</a></code></pre></div>
-<div id="cwiczenia-4" class="section level3">
+<div id="ćwiczenia-4" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu funkcji <code>KtoryWiekszy</code> wydrukują wartość aktualnie przechowywaną przez zmienną <code>InnaZmienna</code>. Zastanów się, jaki będzie wynik i sprawdź czy masz rację.</li>
@@ -972,6 +933,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Regulski" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,7 +736,7 @@ div.tocify {
 </div>
 
 
-<div id="dynamiczna-alokacja-pamieci" class="section level1">
+<div id="dynamiczna-alokacja-pamięci" class="section level1">
 <h1>Dynamiczna alokacja pamięci</h1>
 <p>Do tej pory używaliśmy tablic, które miały z góry zadany rozmiar. Deklarowaliśmy je w bardzo prosty sposób:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> x[<span class="dv">100</span>];</a></code></pre></div>
@@ -802,7 +763,7 @@ div.tocify {
 <a class="sourceLine" id="cb3-11" data-line-number="11">}</a></code></pre></div>
 <p>Kluczowym elementem mechanizmu jest właściwe zastosowanie funkcji <code>malloc()</code>. Jej argumentem jest rozmiar pamięci, o którą wnioskujemy. Potrzebujemy rozmiaru równego <span class="math inline">\(N\)</span> razy rozmiar zajmowany przez zmienną typu <code>double</code>. Stąd wynika obecność funkcji <code>sizeof()</code>, która zwraca rozmiar danego typu zmiennych. Ponadto używamy mechanizmu rzutowania – przed funkcją <code>malloc()</code> pojawia się rzutowanie na wskaźnik do typu. W naszym przypadku jest to wywołanie <code>(double *)</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Po pracy na tablicy, należy pamiętać o zwolnieniu pamięci, którą ona zajmowała. Służy do tego funkcja <code>free()</code>.</p>
 </div>
-<div id="wczytywanie-i-rysowanie-konturow" class="section level1">
+<div id="wczytywanie-i-rysowanie-konturów" class="section level1">
 <h1>Wczytywanie i rysowanie konturów</h1>
 <p>Nowy mechanizm będzie nam potrzebny do wykonania zadania polegającego na wczytaniu współrzędnych konturów map z plików oraz narysowaniu tych map na ekranie. Współrzędne konturów dwóch map są zapisane w plikach: <a href="data/info1/plik1.txt">plik1.txt</a> oraz <a href="data/info1/plik2.txt">plik2.txt</a>. Pliki mają następującą strukturę:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dv">156</span></a>
@@ -811,7 +772,7 @@ div.tocify {
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="fl">17.462</span>  <span class="fl">766.51075</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">...</a></code></pre></div>
 <p>Pierwsza linia pliku zawiera liczbę punktów zapisanych w pliku. Poniżej, współrzędne <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> są zapisane w oddzielnych kolumnach.</p>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <ol style="list-style-type: decimal">
 <li>Otwórz oba pliki w programie głównym.</li>
@@ -823,10 +784,10 @@ div.tocify {
 </ol>
 </div>
 </div>
-<div id="troche-geografii" class="section level1">
+<div id="trochę-geografii" class="section level1">
 <h1>Trochę geografii</h1>
 <p>Mając kontur, możemy policzyć kilka interesujących rzeczy:</p>
-<div id="cwiczenia-1" class="section level2">
+<div id="ćwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <ol start="7" style="list-style-type: decimal">
 <li>Napisz funkcję <code>double perimeter()</code>, która zwraca obwód zadanego konturu.</li>
@@ -863,6 +824,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

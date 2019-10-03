@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Gryglas" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -777,7 +738,7 @@ div.tocify {
 
 <div id="wprowadzenie" class="section level1">
 <h1>Wprowadzenie</h1>
-<div id="kilka-sow-o-pythonie" class="section level2">
+<div id="kilka-słów-o-pythonie" class="section level2">
 <h2>Kilka słów o Pythonie</h2>
 <p>Python jest <strong>dynamicznie typowanym</strong> i <strong>interpretowanym</strong> (w szczególnych przypadkach kompilowanym) językiem. Dynamiczne typowanie oznacza, że jakakolwiek zmienna (globalna czy lokalna w funkcji) nie posiada przypisanego typu. Dzięki temu kod jest bardzo krótki, elastyczny oraz jest pozbawiony sprawdzania typów na poziomie kompilacji, co znacząco skraca czas potrzebny od wprowadzenia zmian do uruchomienia kodu. Typ zmiennej jest sprawdzany dopiero w momencie wykonywania instrukcji, czyli jej konkretnego użycia. Dowolna zmienna staje się, np. integerem, w momencie gdy do niej przypiszemy wartość:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1">a <span class="op">=</span> <span class="dv">5</span></a></code></pre></div>
@@ -839,7 +800,7 @@ div.tocify {
 <a class="sourceLine" id="cb11-2" data-line-number="2">$ <span class="ex">sciezka/do/pliku.py</span> <span class="co">#uruchomienie programu</span></a></code></pre></div>
 <p>Powyższa metoda działa dokładnie tak samo jak w przypadku skryptów <strong><em>bash</em></strong>, gdzie w miejscu ścieżki korzystamy zazwyczaj z <em>/bin/bash</em>.</p>
 </div>
-<div id="moduy" class="section level2">
+<div id="moduły" class="section level2">
 <h2>Moduły</h2>
 <p>Każdy pojedynczy plik napisany w języku Python nazywany jest modułem. Każdy z modułów może być uruchamiany wprost (tak jak to zostało wcześniej opisane) lub zostać użyty w innym module. W tej sytuacji można w drugim module korzystać z funkcji, klas i zmiennych zawartych w pierwszym. Jednak aby skorzystać z funkcji należy odwołać się nie do samej nazwy np. funkcji, ale należy poprzedzić ją nazwą modułu (pliku):</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#wywołanie funkcji z innego modułu:</span></a>
@@ -847,7 +808,7 @@ div.tocify {
 <p>Dzięki temu nazwy funkcji mogą być takie same w różnych plikach i nie powstanie konflikt. Każdy moduł stanowi swego rodzaju przestrzeń nazw wewnątrz której nazwy elementów języka nie mogą się powtarzać. Moduły rozpinają się nie tylko na pliki, ale także na struktury folderów. Jeśli plik znajduje się wewnątrz folderu o nazwie <em>folder2</em>, który z kolei znajduje w folderze <em>folder1</em>, to odwołanie do funkcji będzie miało następującą postać:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1">folder1.folder2.nazwapliku.nazwafunkcji()</a></code></pre></div>
 </div>
-<div id="komentarze-w-plikach-zrodowych" class="section level2">
+<div id="komentarze-w-plikach-źródłowych" class="section level2">
 <h2>Komentarze w plikach źródłowych</h2>
 <p>Jednym z najczęściej używanych elementów każdego języka są komentarze, które pozwalają na chwilowe wyłączenie kodu bądź dodanie notatki na temat danej instrukcji. W języku python w odróżnieniu od C/C++ komentować można tylko linię za pomocą znaku <strong><em>#</em></strong></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># To jest komentarz, a poniżej zwykły kod</span></a>
@@ -926,7 +887,7 @@ div.tocify {
 <a class="sourceLine" id="cb22-4" data-line-number="4">moja_funkcja()</a></code></pre></div>
 <p>Ta cecha języka może być jednak problematyczna, ponieważ wprowadza potencjalne błędy które trudno zlokalizować. O ile pisząc własne funkcje łatwo zauważyć taki problem, to w przypadku wbudowanych funkcji (zawsze dostępnych) takich jak <strong><em>list</em></strong> lub <strong><em>len</em></strong> jest to trudniejsze i trzeba na to uważać.</p>
 </div>
-<div id="wasne-funkcje" class="section level2">
+<div id="własne-funkcje" class="section level2">
 <h2>Własne funkcje</h2>
 <p>Już kilkukrotnie pokazywaliśmy jak wyglądają funkcje w języku Python. Teraz uzupełnimy tę wiedzę o 2 przydatne cechy. W Pythonie funkcjami można operować podobnie do zmiennych, ponieważ one są w rzeczywistości obiektami. Dzięki temu, można dowolnie zmieniać nazwę funkcji, bądź przypisywać im inne. Sprawdź poniższy kod:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">def</span> funkcja1():</a>
@@ -955,7 +916,7 @@ div.tocify {
 <a class="sourceLine" id="cb25-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb25-11" data-line-number="11"><span class="bu">print</span> <span class="st">&quot;Calka =&quot;</span>, calka(x_kwadrat, <span class="fl">0.</span>, <span class="fl">10.</span>)</a></code></pre></div>
 </div>
-<div id="sowo-pass-w-ciele-instrukcji" class="section level2">
+<div id="słowo-pass-w-ciele-instrukcji" class="section level2">
 <h2>Słowo “pass” w ciele instrukcji</h2>
 <p>W języku C taki zakres określała się za pomocą klamer { }. W przypadku tego języka jeśli chcemy pozostawić “pustą” funkcję, to wystarczy zapisać jej ciało jako otwarcie i zamknięcie klamer:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="dt">void</span> funkcja()</a>
@@ -991,7 +952,7 @@ div.tocify {
 <p>Aby sprawdzić rozmiar listy korzysta się z wbudowanej funkcji <strong><em>len</em></strong>:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb33-1" data-line-number="1">aList <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&quot;dwa&quot;</span>, <span class="fl">3.</span> , <span class="dv">5</span>]</a>
 <a class="sourceLine" id="cb33-2" data-line-number="2"><span class="bu">print</span> <span class="st">&quot;Dlugosc listy =&quot;</span>, <span class="bu">len</span>(aList)</a></code></pre></div>
-<div id="metody-nalezace-do-klasy-list" class="section level3">
+<div id="metody-należące-do-klasy-list" class="section level3">
 <h3>Metody należące do klasy list</h3>
 <p>Lista tak jak wszystkie zmienne jest obiektem, w związku z tym posiada przypisane do siebie funkcje, które operują na liście, na której zostały wywołane (funkcje takie nazywane są metodami i wywołuje się je podając jej nazwę tuż po nazwie listy, np. nazwaListy.nazwaFunkcji()) . Do tych funkcji należą: - nazwaListy.append(element) - metoda dodaje element na koniec listy, np.:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb34-1" data-line-number="1">aList <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</a>
@@ -1025,7 +986,7 @@ div.tocify {
 <a class="sourceLine" id="cb39-2" data-line-number="2">aList <span class="op">+=</span> [<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</a>
 <a class="sourceLine" id="cb39-3" data-line-number="3"><span class="bu">print</span> aList <span class="co"># &gt;&gt; [1, 2, 3, 3, 2, 1]</span></a></code></pre></div>
 </div>
-<div id="sowo-kluczowe-in-w-kontekscie-list" class="section level3">
+<div id="słowo-kluczowe-in-w-kontekście-list" class="section level3">
 <h3>Słowo kluczowe “in” w kontekście list</h3>
 <p>Język Python w specjalny sposób wspiera sprawdzanie czy element znajduje się w liście. Do tego służy słowo kluczowe <strong><em>in</em></strong>. Przeanalizujmy następujący kod:</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb40-1" data-line-number="1">aList <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&#39;cos&#39;</span>, <span class="dv">2</span>]</a>
@@ -1037,7 +998,7 @@ div.tocify {
 <a class="sourceLine" id="cb40-7" data-line-number="7">    <span class="bu">print</span> <span class="st">&#39;cos is in the aList&#39;</span></a></code></pre></div>
 <p>Wyrażenie <em>element</em> <strong><em>in</em></strong> <em>lista</em> zwraca wartość logiczną True/False.</p>
 </div>
-<div id="petla-for-i-generator-range" class="section level3">
+<div id="pętla-for-i-generator-range" class="section level3">
 <h3>Pętla “for” i generator “range”</h3>
 <p>Jednym z najważniejszy elementów języków programowania są pętle. W przypadku Pythona pętla <strong><em>for</em></strong> różni się swojego odpowiednika w języku C/C++. W języku C aby pobrać z tablicy kolejne elementy piszemy:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="dt">float</span>[] aList = {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>};</a>
@@ -1160,7 +1121,7 @@ div.tocify {
 <a class="sourceLine" id="cb64-5" data-line-number="5"><span class="cf">else</span></a>
 <a class="sourceLine" id="cb64-6" data-line-number="6">    <span class="co"># instruckje</span></a></code></pre></div>
 </div>
-<div id="wyrazenia-logiczne" class="section level2">
+<div id="wyrażenia-logiczne" class="section level2">
 <h2>Wyrażenia logiczne</h2>
 </div>
 <div id="string" class="section level2">
@@ -1172,7 +1133,7 @@ div.tocify {
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb66-1" data-line-number="1">aString  <span class="op">=</span> <span class="st">&quot;&quot;</span> <span class="co">#  lub aString=&#39;&#39; </span></a>
 <a class="sourceLine" id="cb66-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb66-3" data-line-number="3">aString  <span class="op">=</span> <span class="st">&quot;Jakis ciag znakow&quot;</span></a></code></pre></div>
-<div id="wieloliniowe-ciagi-znakow" class="section level3">
+<div id="wieloliniowe-ciągi-znaków" class="section level3">
 <h3>Wieloliniowe ciągi znaków</h3>
 <p>Aby złamać linię w tekście wystarczy użyć znaku “”, jednak w kodzie nadal będziemy pisali w tej samej linii, co jest bardzo nieczytelne. Python dodatkowo wspiera pisanie w postaci wieloliniowego tekstu. W tym celu korzysta się z potrójnego cudzysłowu:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb67-1" data-line-number="1">longString <span class="op">=</span> <span class="st">&quot;&quot;&quot;Piszemy dlugi, wieloliniowy tekst, a teraz nowa linia</span></a>
@@ -1200,7 +1161,7 @@ div.tocify {
 <a class="sourceLine" id="cb70-3" data-line-number="3"><span class="bu">print</span> <span class="st">&quot;5 pierwszych znakow to &quot;</span> <span class="op">+</span> aString[:<span class="dv">5</span>]</a>
 <a class="sourceLine" id="cb70-4" data-line-number="4"><span class="bu">print</span> <span class="st">&quot;A 8 ostatnich to &quot;</span><span class="op">+</span> aString[<span class="op">-</span><span class="dv">8</span>:]</a></code></pre></div>
 </div>
-<div id="konwersja-typow" class="section level3">
+<div id="konwersja-typów" class="section level3">
 <h3>Konwersja typów</h3>
 <p>Z kolei jeśli chcemy połączyć string ze zmienną innego typu najlepiej jest skorzystać z funkcji konwertującej typy - <strong><em>str</em></strong>:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb71-1" data-line-number="1">a <span class="op">=</span> <span class="dv">1</span></a>
@@ -1227,7 +1188,7 @@ div.tocify {
 <div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="bu">print</span> <span class="st">&quot;Trzy sformatowane kolejne cyfry to </span><span class="sc">%f</span><span class="st">-</span><span class="sc">%02d</span><span class="st">-</span><span class="sc">%.2f</span><span class="st">&quot;</span> <span class="op">%</span> (<span class="fl">1.25312</span>, <span class="dv">2</span>, <span class="fl">2.35495</span>)</a></code></pre></div>
 <p><strong>Uwaga</strong> zmienne do sformatowania nie mogą być przekazane jako lista, ponieważ</p>
 </div>
-<div id="dodatkowe-metody-nalezace-do-typu-string" class="section level3">
+<div id="dodatkowe-metody-należące-do-typu-string" class="section level3">
 <h3>Dodatkowe metody należące do typu <strong><em>string</em></strong></h3>
 <p>Zmienne typu <strong><em>string</em></strong> podobnie jak <strong><em>list </em></strong> posiadają dodatkowe metody które pozwalają na wygodną pracę. Przydatne metody należące do klasy <strong><em>string</em></strong> to:</p>
 <ul>
@@ -1360,6 +1321,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

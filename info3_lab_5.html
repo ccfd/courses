@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="K. Marchlewski" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,7 +736,7 @@ div.tocify {
 </div>
 
 
-<div id="wstep" class="section level1">
+<div id="wstęp" class="section level1">
 <h1>Wstęp</h1>
 <p>Statystyczny użytkownik myszki komputerowej żyje w przekonaniu, iż stworzenie dokumentu tekstowego wysokiej jakości jest stosunkowo proste. Jest prawdopodobne, że przekonanie to zostało mu zaszczepione przez edytory typu WYSWIG (What You See is What You Get). Klasycznym przykładem takiego programu jest MS Word. Umożliwia on m. in. modyfikację kroju czcionki oraz rozmiaru marginesów w taki sposób aby dokument był przyjemny dla oka. Czy wizualna atrakcyjność dokumentu oznacza jednak, że dokument jest wysokiej jakości? Ciężko powiedzieć… nie napisaliśmy jeszcze co to znaczy “dokument wysokiej jakości”.</p>
 <p>Otóż, dokument powinien być tak sformatowany, aby umożliwić czytelnikowi całkowite skupienie się na tekście. Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwagę od tego co jest najważniejsze – od treści. Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych. Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.</p>
@@ -815,7 +776,7 @@ div.tocify {
 </ul>
 <p>Pakiety, z których planujemy korzystać umieszczamy w t.zw. <em>preambule</em>: za instrukcją <code>\documentclass</code>, a przed instrukcją <code>\begin{document}</code>. Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.</p>
 </div>
-<div id="strona-tytuowa" class="section level3">
+<div id="strona-tytułowa" class="section level3">
 <h3>Strona tytułowa</h3>
 <p>Ponieważ tekst wygląda teraz elegancko, warto pochwalić się swoim osiągnięciem światu. Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje “sterujące” jej zawartością, np.:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">\author</span>{Gall Anonim}</a>
@@ -826,7 +787,7 @@ div.tocify {
 <p>i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.</p>
 </div>
 </div>
-<div id="podzia-logiczny-dokumentu" class="section level1">
+<div id="podział-logiczny-dokumentu" class="section level1">
 <h1>Podział logiczny dokumentu</h1>
 <div id="sekcje" class="section level3">
 <h3>Sekcje</h3>
@@ -880,7 +841,7 @@ div.tocify {
 </ol>
 </div>
 </div>
-<div id="wzory-i-rownania-matematyczne" class="section level1">
+<div id="wzory-i-równania-matematyczne" class="section level1">
 <h1>Wzory i równania matematyczne</h1>
 <p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej). W <code>LaTeXu</code> istnieje kilka sposobów dodawania wyrażeń matematycznych. Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się <em>inline</em>)</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode tex"><code class="sourceCode latex"><a class="sourceLine" id="cb11-1" data-line-number="1">  wzór <span class="ss">$E=mc^2$</span> powstał <span class="fu">\ldots</span></a></code></pre></div>
@@ -946,7 +907,7 @@ div.tocify {
 <a class="sourceLine" id="cb28-6" data-line-number="6"><span class="ss">    </span><span class="sc">\end</span><span class="ss">{array}</span></a>
 <a class="sourceLine" id="cb28-7" data-line-number="7"><span class="ss">  </span><span class="sc">\right</span><span class="ss">.</span></a>
 <a class="sourceLine" id="cb28-8" data-line-number="8"><span class="ss">\]</span></a></code></pre></div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Zapisz poniższe równania wykorzystując system <code>LaTeX</code>. Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej. W sieci Internet można znaleźć listy dostępnych symboli. W naszej pracowni można skorzystać ze strony: <a href="https://www.sharelatex.com/learn/Mathematical_expressions" class="uri">https://www.sharelatex.com/learn/Mathematical_expressions</a></p>
 <p>Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów. Przykładowo, symbol całki podwójnej <code class="sourceCode latex"><span class="fu">\iint</span></code> uzyskamy po dołączeniu pakietu <code class="sourceCode latex">amsmath</code>.</p>
@@ -1019,7 +980,7 @@ c(x_n,x_0)
 <li><code>b</code> – umieść wstawkę na dole strony,</li>
 <li><code>p</code> – umieść wstawkę na oddzielnej stronie ze wstawkami.</li>
 </ul>
-<div id="cwiczenia-1" class="section level2">
+<div id="ćwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Wykonaj poniższą tabelę:</p>
 <p><img src="figures/info3_lab_5_table.png" title="Tabela" /></p>
@@ -1035,7 +996,7 @@ c(x_n,x_0)
 <a class="sourceLine" id="cb33-3" data-line-number="3">    <span class="fu">\caption</span>{Rysunek.}</a>
 <a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">\end</span>{<span class="ex">figure</span>}</a></code></pre></div>
 </div>
-<div id="odwoania" class="section level1">
+<div id="odwołania" class="section level1">
 <h1>Odwołania</h1>
 <p>System <code>LaTeX</code> umożliwia wstawienie odwołania do niemal każdego obiektu posiadającego numer. Oznacza to, że możemy odwołać się do dowolnego rozdziału, równania, tabeli czy rysunku. Obiekt, do którego planujemy się odwołać oznaczamy za pomocą polecenia <code>\label{nazwa_obiektu}</code>. Natomiast w miejscu, w którym odwołujemy się, wstawiamy polecenie <code>\ref{nazwa_obiektu}</code>. Zamiast numeru obiektu, możemy podać stronę, na której znajduje się dany element. W tym celu stosujemy polecenie <code>\pageref{nazwa_obiektu}</code>. Stosując indywidualne nazwy obiektów, nie musimy martwić się o ewentualne zmiany numeracji wynikające z pracy nad tekstem. <code>LaTeX</code> zajmie się koniecznymi modyfikacjami.<br />
 Przykładowo, aby odwołać się do rozdziału piszemy:</p>
@@ -1054,7 +1015,7 @@ Przykładowo, aby odwołać się do rozdziału piszemy:</p>
 <a class="sourceLine" id="cb35-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb35-11" data-line-number="11">Tabela <span class="kw">\ref</span>{<span class="ex">kik</span>} zawiera przykładową partię w kółko i krzyżyk.</a>
 <a class="sourceLine" id="cb35-12" data-line-number="12">Znajduje się ona na stronie <span class="kw">\pageref</span>{<span class="ex">kik</span>}.</a></code></pre></div>
-<div id="cwiczenia-2" class="section level3">
+<div id="ćwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Stwórz odwołania do pozostałych obiektów użytych w trakcie ćwiczeń (równań i rysunków).</p>
 </div>
@@ -1079,6 +1040,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Regulski" />
@@ -108,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -165,7 +166,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -326,48 +326,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -794,7 +755,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-10" data-line-number="10">  i = rand();                 <span class="co">//funkcja losujaca liczbe</span></a>
 <a class="sourceLine" id="cb1-11" data-line-number="11">  printf(<span class="st">&quot; Wylosowana liczba to </span><span class="sc">%d\n</span><span class="st">&quot;</span>, i);</a>
 <a class="sourceLine" id="cb1-12" data-line-number="12">}</a></code></pre></div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Wykonaj powyższy program kilka razy z rzędu. Co możesz powiedzieć o wyniku?</li>
@@ -816,7 +777,7 @@ div.tocify {
 <h2>Uwaga</h2>
 <p>Czy taki wzór będzie generował liczby losowe o rozkładzie równomiernym? Czy możesz podać lepsze rozwiązanie?</p>
 </div>
-<div id="cwiczenia-1" class="section level2">
+<div id="ćwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od <span class="math inline">\(1\)</span> do <span class="math inline">\(8\)</span>.</li>
@@ -834,7 +795,7 @@ div.tocify {
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="co">// wyrazenie (double), rzutuje typ na double</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">    x = (<span class="dt">double</span>) rand() / RAND_MAX;</a></code></pre></div>
-<div id="cwiczenia-2" class="section level2">
+<div id="ćwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Napisz funkcję <code>isInCircle()</code>, która będzie losowała punkt w kwadracie o wymiarach <span class="math inline">\([0, 1] \times [0, 1]\)</span> i zwracała wartość <span class="math inline">\(1\)</span> jeśli punkt znajduje się wewnątrz koła o promieniu <span class="math inline">\(R = 1\)</span>. Jeśli punkt jest poza kołem, niech funkcja zwraca <span class="math inline">\(0\)</span>.</li>
@@ -844,10 +805,10 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="liczenie-przyblizen-liczby-pi-metoda-monte-carlo" class="section level1">
+<div id="liczenie-przybliżeń-liczby-pi-metodą-monte-carlo" class="section level1">
 <h1>Liczenie przybliżeń liczby <span class="math inline">\(\pi\)</span> metodą Monte Carlo</h1>
 <p>Koło wpisane w jednostkowy kwadrat ma powierzchnię równą <span class="math inline">\(\pi/4\)</span>. Toteż losując punkty w kwadracie, z prawdopodobieństwem <span class="math inline">\(\pi/4\)</span> trafiamy w obszar koła. Wiedząc to, możemy wyznaczyć przybliżenie liczby <span class="math inline">\(\pi\)</span>. Obliczamy iloraz liczby punktów, które znalazły się wewnątrz koła do całkowitej liczby punktów i mnożymy przez <span class="math inline">\(4\)</span>. Taka metoda zalicza się do metod Monte Carlo<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
-<div id="cwiczenia-3" class="section level2">
+<div id="ćwiczenia-3" class="section level2">
 <h2>Ćwiczenia</h2>
 <ul>
 <li>Przy użyciu poprzedniej funkcji policz przybliżenie liczby <span class="math inline">\(\pi\)</span>. Wykonaj 10000 losowań.</li>
@@ -884,6 +845,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

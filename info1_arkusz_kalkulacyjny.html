@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="" />
@@ -72,7 +73,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -233,48 +233,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -686,7 +647,7 @@ div.tocify {
 
 <p>Niniejsza instrukcja zawiera ćwiczenia dotyczące arkusza kalkulacyjnego. Można je wykonać wykorzystując darmowe oprogramowanie (np. <em>LibreOffice Calc</em>, <em>OpenOffice Calc</em> czy <em>WPS SpreadSheets</em> lub też komercyjne (np. <em>Microsoft Excel</em>). Składnia formuł we wszystkich wymienionych programach nie różni się znacznie.</p>
 <p>Ćwiczenia zostały oparte o program <em>LibreOffice Calc</em>. Dla wygody, każde zadanie można rozwiązać w odrębnej karcie arkusza kalkulacyjnego.</p>
-<div id="tabliczka-mnozenia" class="section level2">
+<div id="tabliczka-mnożenia" class="section level2">
 <h2>Tabliczka mnożenia</h2>
 <p>Stwórz tabelę zawierającą tabliczkę mnożenia do dziesięciu. W tym celu:</p>
 <ul>
@@ -701,7 +662,7 @@ Przykładowo, odwołanie <code>A$3</code> oznacza, że przy przeciągnięciu pio
 <p class="caption">Rys.1. Tabela z tabliczką mnożenia.</p>
 </div>
 </div>
-<div id="sprzedaz-samochodow" class="section level2">
+<div id="sprzedaż-samochodów" class="section level2">
 <h2>Sprzedaż samochodów</h2>
 <p>Stwórz tabelę zawierającą informacje o sprzedaży pięciu modeli samochodów.</p>
 <ul>
@@ -750,7 +711,7 @@ W tym celu:</p>
 <p class="caption">Rys.4. Wykres funkcji jednej zmiennej.</p>
 </div>
 </div>
-<div id="wyznaczanie-pierwiastkow-funkcji-kwadratowej" class="section level2">
+<div id="wyznaczanie-pierwiastków-funkcji-kwadratowej" class="section level2">
 <h2>Wyznaczanie pierwiastków funkcji kwadratowej</h2>
 <p>Utwórz arkusz w celu wyznaczenia pierwiastków funkcji kwadratowej. W tym celu:</p>
 <ul>
@@ -774,7 +735,7 @@ W tym celu:</p>
 <p class="caption">Rys.6. Funkcja trendu.</p>
 </div>
 </div>
-<div id="wykres-funkcji-dwoch-zmiennych-tylko-microsoft-excel" class="section level2">
+<div id="wykres-funkcji-dwóch-zmiennych-tylko-microsoft-excel" class="section level2">
 <h2>Wykres funkcji dwóch zmiennych (tylko Microsoft Excel)</h2>
 <p>Utwórz wykres funkcji <span class="math display">\[
 f(x, y) = |2 - (x^2 + y^2)|
@@ -804,6 +765,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

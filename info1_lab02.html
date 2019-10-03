@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -791,7 +752,7 @@ div.tocify {
 <a class="sourceLine" id="cb2-3" data-line-number="3">    obrazek(<span class="dv">100</span>, <span class="dv">50</span>);   </a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">    wait();</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">}</a></code></pre></div>
-<div id="cwiczenia" class="section level2">
+<div id="ćwiczenia" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Napisz i wywołaj dowolne dwie z poniższych funkcji:</p>
 <ul>
@@ -803,7 +764,7 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="troche-wiecej-szczegoow" class="section level1">
+<div id="trochę-więcej-szczegółów" class="section level1">
 <h1>Trochę więcej szczegółów</h1>
 <p>Omówmy pewne rzeczy trochę dokładniej.</p>
 <div id="typy" class="section level2">
@@ -825,7 +786,7 @@ div.tocify {
 <a class="sourceLine" id="cb3-7" data-line-number="7">}</a></code></pre></div>
 <p>Program ten, za pomocą kółek o promieniu 3, narysuje wykres funkcji sinus przeskalowany o 100.</p>
 </div>
-<div id="cwiczenia-1" class="section level2">
+<div id="ćwiczenia-1" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Używając analogicznej pętli, wykonaj dowolne dwa z poniższych zadań:</p>
 <ul>
@@ -835,12 +796,12 @@ div.tocify {
 <li>Narysuj punkty o współrzędnych <span class="math inline">\(x = 100\cdot r\cdot\sin{a} + 100\)</span> i <span class="math inline">\(y = 100\cdot r\cdot\cos{a} + 100\)</span>, gdzie <span class="math inline">\(r = \frac{\cos{a} + 2}{3}\)</span> (niech <span class="math inline">\(r\)</span> będzie kolejną zmienną).</li>
 </ul>
 </div>
-<div id="typy-puapki" class="section level2">
+<div id="typy-pułapki" class="section level2">
 <h2>Typy — pułapki</h2>
 <p>Ważne, aby pamiętać, że liczby bez przecinka dziesiętnego, są uważane za całkowite, tzn. wykonywane są na nich działania tak jak dla liczb całkowitych. Dlatego <code>1/4</code> da jako wynik 0! Wynik 0.25 zostanie obcięty do liczby całkowitej. Żeby tego uniknąć, możemy napisać <code>1.0/4</code> lub jeszcze lepiej <code>1.0/4.0</code>. Możemy także bezpośrednio ‘rzutować’ zmienną z typu <code>int</code> na typ <code>double</code> pisząc: <code>(double) zmienna</code>.</p>
 <p><em>Pamiętaj:</em> Wszędzie, gdzie robisz obliczenia, używaj <code>double</code>. Unikaj mieszania liczb całkowitych i zmiennoprzecinkowych. Nigdy nie pisz ułamków jako 1/3!</p>
 </div>
-<div id="cwiczenia-2" class="section level2">
+<div id="ćwiczenia-2" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Przeanalizuj (i przetestuj) wynik tego programu. Które linie nie dadzą pożądanego efektu?</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">double</span> a;</a>
@@ -884,7 +845,7 @@ div.tocify {
 <a class="sourceLine" id="cb6-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">  wait();</a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">}</a></code></pre></div>
-<div id="cwiczenia-3" class="section level2">
+<div id="ćwiczenia-3" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Napisz i wywołaj dwie spośród niżej wymienionych funkcji:</p>
 <ul>
@@ -921,7 +882,7 @@ div.tocify {
 <a class="sourceLine" id="cb8-11" data-line-number="11">  a = a + <span class="fl">0.001</span>;</a>
 <a class="sourceLine" id="cb8-12" data-line-number="12">}</a></code></pre></div>
 <p>Gdyby nie instrukcja <code>if</code>, ten program narysował by koło z małych kółek. Teraz, gdy kąt <code>a</code> przekroczy <span class="math inline">\(2\)</span> radiany, zmieni promień kółeczka z <span class="math inline">\(5\)</span> na <span class="math inline">\(10\)</span></p>
-<div id="cwiczenia-4" class="section level2">
+<div id="ćwiczenia-4" class="section level2">
 <h2>Ćwiczenia</h2>
 <p>Napisz program który:</p>
 <ul>
@@ -951,6 +912,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

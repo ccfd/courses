@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ł. Łaniewski-Wołłk" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,7 +736,7 @@ div.tocify {
 </div>
 
 
-<div id="polecenia-i-materiay" class="section level1">
+<div id="polecenia-i-materiały" class="section level1">
 <h1>Polecenia i Materiały</h1>
 <p>By otworzyć linię poleceń w systemie Windows, można: poszukać jej w Akcesoriach, bądz wybrać Menu Start, Uruchom i wpisać <code>cmd</code>.</p>
 <p>Większość poleceń należy wykonać na maszynie <code>info3.meil.pw.edu.pl</code>, lecz niektóre można wykonać w lini poleceń Windows.</p>
@@ -790,7 +751,7 @@ div.tocify {
 <li>192.168.0.1 – zwyczajowy adres bramy sieci (np routera w twoim domu) – widoczny tylko w tej sieci.</li>
 </ul>
 <p>Standardową metodą komunikacji jest łączenie się jednego komputera z portem drugiego komputera. Każdy komputer ma wiele portów — tak by jeden komputer mógł obsługiwać wiele różnych funkcji. Komputer który łączy się nazywamy klientem, zaś komputer do którego się łączymy serwerem. Rozmawiają one przy pomocy zestawu ustalonych komend, które nazywamy protokołem. Żeby nie pomylić protokołów, przypisano im unikatowe porty. To oznacza, że dany port jest zwyczajowo używany do danego protokołu — ale fizycznie można by do tego użyć dowolnego innego.</p>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Spróbuj dowiedzieć się jaki numer IP mają różne komputery używając np. komendy <code>ping google.com</code></li>
@@ -802,7 +763,7 @@ div.tocify {
 <h2>Telnet</h2>
 <p><strong>Port</strong>: 23</p>
 <p>Jednym z bardzo użytecznych programów jest <code>telnet</code>. Gdy uruchomimy <code>telnet google.com</code> program spróbuje połączyć się z komputerem google.com, na porcie 23. Gdyby udało mu sie połączyć, moglibyśmy z klawiatury wysyłać teksty do serwera, a na ekranie wyswietlała by się odpowiedz. Telnet służył do obsługi konsoli — tak jak SSH (putty) którego używasz. Jednak telnet nie był niczym zabezpieczony (nawet hasło było widoczne), dlatego nie jest teraz nigdzie używany. Jednak <code>telnet</code> jest użyteczny ponieważ możemy mu wskazać port na który ma się połączyć — i w ten sposób “oszukać” program i połączyć się z innym protokołem.</p>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>W następnych ćwiczenia połączymy się na różnych portach z różnymi komputerami pisząc:</p>
 <ul>
@@ -832,7 +793,7 @@ Host: m.google.com
 <li><code>Accept:</code> – Jakie formaty umiesz przeczytać (html, txt) - można nadać im priorytety.</li>
 <li><code>Accept-Language</code> – Jakie języki akceptujemy – też można nadać priorytety.</li>
 </ul>
-<div id="cwiczenia-2" class="section level3">
+<div id="ćwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Spróbuj ściągnąć główną stronę “m.google.com”</li>
@@ -849,7 +810,7 @@ Host: m.google.com
 <p>Do wielu usług warto łączyć się kanałem szyfrowanym. Po pierwszym użyciu w tym celu programu <code>telnet</code>, np łączac się z <code>telnet google.com 443</code>, widzimy że nie umiemy rozmawiać zaszyfrowanymi bajtami.</p>
 <p>Do komunikacji z serwerem po szyfrowanym połączeniu możemy użyć program <code>openssl</code>. Dla przykładu:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">openssl</span> s_client -connect google.com:443</a></code></pre></div>
-<div id="cwiczenia-3" class="section level3">
+<div id="ćwiczenia-3" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Spróbuj ściągnąć główną stronę “m.google.com” po protokole szyfrowanym</li>
@@ -880,7 +841,7 @@ Content-Length: 53
 </ul>
 <p>Z szyfrowanym protokołem SMTP (typu TLS), można się połączyć za pomocą:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="ex">openssl</span> s_client -connect [serwer]:25 -starttls smtp</a></code></pre></div>
-<div id="cwiczenia-4" class="section level3">
+<div id="ćwiczenia-4" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Spróbuj wysłać ze swojego konta e-mail do kolegi obok</li>
@@ -905,7 +866,7 @@ Content-Length: 53
 <li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
 </ul>
 <p>Do połączenia szyfrowanego użyj analogicznego polecenia jak w sekcji o HTTPS</p>
-<div id="cwiczenia-5" class="section level3">
+<div id="ćwiczenia-5" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Spróbuj odebrać swoje e-maile</li>
@@ -927,7 +888,7 @@ Content-Length: 53
 </ul>
 <p>W materiałach można znaleść program <code>smsniff.exe</code>. Jest to typowy prosty sniffer pod Windows. Sieć w laboratorium jest oparta na dobrym switch’u, więc jedyne pakiety widoczne w sieci, to takie które idą od lub do danego komputera (oraz broadcast). Oznacza to, że nie da się podsłuchiwać innych studentów.</p>
 <p><strong>UWAGA:</strong> <em>Większość sieci (w tym praktycznie wszystkie WiFi) nie są zabezpieczone przed Sniffingiem! Pamiętaj, że to co właśnie robisz, może zrobić każdy!</em></p>
-<div id="cwiczenia-6" class="section level3">
+<div id="ćwiczenia-6" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Podsłuchaj swoje połączenie przez SSH z orange’m (port 22)</li>
@@ -942,7 +903,7 @@ Content-Length: 53
 <p>Porty można przekierować. Jeśli przekierujemy port x z serwera X do portu y serwera Y, to będzie to oznaczać, że jeśli połączymy się z portem x z serwerem X, to on przekaże całą komunikację do portu y serwera Y. Innymi słowy jeśli napiszemy:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="ex">telnet</span> X x</a></code></pre></div>
 <p>to połączymy się z portem y na Y. Jest to wyjątkowo przydatne, jeśli my nie potrafimy połączyć się z komputerem Y. Dla przykłady gdy Y jest za firewall’em, albo jest w innej podsieci.</p>
-<div id="cwiczenia-7" class="section level3">
+<div id="ćwiczenia-7" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Uruchom putty. Wejdz w ustawienia ,,tunneling&quot;. Tam ustaw by port <code>80</code> był przekierowany na <code>google.com:80</code>. Następnie połącz się z maszyną <code>info3</code> jak zwykle.</li>
@@ -950,7 +911,7 @@ Content-Length: 53
 <li>Zobacz co działa a co nie. Jeśli nie działa, to dlaczego?</li>
 </ul>
 </div>
-<div id="cwiczenia-socks-proxy" class="section level3">
+<div id="ćwiczenia-socks-proxy" class="section level3">
 <h3>Ćwiczenia SOCKS Proxy</h3>
 <ul>
 <li>Uruchom putty. Wejdz w ustawienia “tunneling”. Tam ustaw by port <code>12345</code> był przekierowaniem typu “Dynamic”. Następnie połącz się z maszyną <code>info3</code> jak zwykle.</li>
@@ -980,6 +941,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

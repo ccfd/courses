@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="M. Dzikowski" />
@@ -108,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -165,7 +166,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -326,48 +326,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -777,7 +738,7 @@ div.tocify {
 </div>
 
 
-<div id="materiay" class="section level1">
+<div id="materiały" class="section level1">
 <h1>Materiały</h1>
 <p>Materiały do laboratorium znajdują się w katalogu <code>/home/share/informatyka_3</code> na serwerze <code>info3.meil.pw.edu.pl</code>. Za nim przystąpimy do pracy należy skopiować je do swojego katalogu domowego. W tym celu należy wykonać polecenie</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">cp</span> -r /home/share/informatyka_3/. ~</a></code></pre></div>
@@ -785,7 +746,7 @@ div.tocify {
 <p>Jeśli chcemy skopiować pliki na nasz komputer lokalny należy wykonać polecenie, które ściągnie pliki z serwera zdalnego. W tym celu posłużymy się programem <code>scp</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">scp</span> -r studxy@info3.meil.pw.edu.pl:/home/share/informatyka_3/. ~</a></code></pre></div>
 </div>
-<div id="obrobka-obrazkow" class="section level1">
+<div id="obróbka-obrazków" class="section level1">
 <h1>Obróbka obrazków</h1>
 <div id="program-convert" class="section level2">
 <h2>Program convert</h2>
@@ -803,7 +764,7 @@ div.tocify {
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">convert</span> -size 320x85 canvas:none -pointsize 72 -fill red \</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">-draw <span class="st">&quot;text 20, 55 &#39;Magick&#39;&quot;</span> magick.jpg</a></code></pre></div>
 <p>– stworzy obrazek <code>magick.jpg</code>, z naniesionym tekstem “Magick” (znaki “spacji” i “ukośnika” na końcu linii oznaczają, że ciąg dalszy komendy nastąpi w kolejnej linii).</p>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <p>Napisz skrypt, który:</p>
 <ul>
@@ -882,7 +843,7 @@ div.tocify {
 <p>Uwaga: Zamiast typu “char” moglibyśmy użyć tablicy typu “float” i liczb z przedziału <span class="math inline">\([0, 1]\)</span>. Wtedy jednak musielibyśmy skonwertować obrazek za pomocą polecenia:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="ex">convert</span> -size 100x100 -depth 32 \</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">-define quantum:format=floating-point gray:obrazek obrazek.jpg</a></code></pre></div>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ul>
 <li>Zmniejsz dowolne zdjęcie do rozmiarów (dokładnie) 100 na 100 pixeli.</li>
@@ -923,6 +884,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Gryglas" />
@@ -108,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -165,7 +166,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -326,48 +326,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -800,7 +761,7 @@ div.tocify {
 <li><span class="math inline">\(b\)</span> to wektor prawych stron, w którym elementy to sumy <span class="math inline">\(b_{i} = \sum_{j=0}^{N-1}h_{ij}\)</span>.</li>
 </ul>
 <p>Taki układ ma analityczne rozwiązanie. Jakie ono jest?</p>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Zaalokuj dynamicznie pamięć na dwuwymiarową tablicę <span class="math inline">\(H\)</span> o wymiarze <span class="math inline">\(N\times N\)</span> w celu przechowywania elementów macierzy Hilberta.</li>
@@ -839,10 +800,10 @@ div.tocify {
 </ol>
 </div>
 </div>
-<div id="zadanie-2-rozkad-temperatury-w-precie" class="section level2">
+<div id="zadanie-2-rozkład-temperatury-w-pręcie" class="section level2">
 <h2>Zadanie 2: rozkład temperatury w pręcie</h2>
 </div>
-<div id="wstep" class="section level2">
+<div id="wstęp" class="section level2">
 <h2>1. Wstęp</h2>
 <p>Niniejsze zadanie pozwoli na zapoznanie się z jedną z metod numerycznych służących do rozwiązywania układów równań liniowych. Metody te mają niesłychane znaczenie w kontekście praktycznie wszystkich zagadnień mechaniki, od kinematyki po złożone problemy mechaniki ośrodków ciągłych. Większość problemów z jakimi mamy do czynienia sprowadza się do opisu zjawiska za pomocą jakiegoś typu równań czy to algebraicznych, czy różniczkowych. Człowiek, dzięki abstrakcyjnemu myśleniu, potrafi sobie radzić z różnymi ich typami. Niestety nie jest tak w przypadku komputerów. One, będąc maszynami liczącymi, świetnie sobie radzą w przypadku wykonywania prostych algebraicznych operacji. “Rozumieją” podstawowe pojęcie liczb oraz operacji algebraicznych, takich jak dodawanie, odejmowanie czy mnożenie. Jednak nie radzą już sobie z problemami bardziej złożonymi, takimi jak pojęcie funkcji ciągłej, różniczkowania. Oczywiście za pomocą odpowiedniego kodu możne w pewnym sensie nauczyć je dokonywania różniczkowania, ale to wciąż będzie wykonane za pomocą przekształceń algebraicznych. Biorąc pod uwagę zarówno zalety jak i ograniczenia takich maszyn, ludzkość skierowała swoją uwagę na rozwiązywanie problemów na sposób przybliżony. Nie staramy się już rozwiązać problemu opisanego za pomocą abstrakcyjnych tworów matematycznych, lecz przybliżamy je czymś co w wykazuje podobne cechy ale za to daje się rozwiązać przy wykorzystaniu komputerów. Jednym z przykładów takiego uproszczenia są metody poznane na poprzednich zajęciach - rozwiązywania równań nieliniowych czy jawnego całkowania równań różniczkowych. W tych przypadkach ostateczne rozwiązanie sprowadzało się do zapisania odpowiedniego schematu iteracyjnego. Oprócz tego typu metod zostały także opracowane takie których rozwiązywanie sprowadza się do rozwiązania bardzo dużego układu równań liniowych: <span class="math display">\[
 A \cdot x = b
@@ -858,7 +819,7 @@ x = A^{-1}
 \]</span> Na zajęciach z algebry poznali Państwo metodę odwracania macierzy, która była oparta na obliczaniu wyznaczników dopełnień algebraicznych. Metoda ta, choć poprawna, jest niestety bardzo kosztowna. Aby obliczyć wyznacznik dopełnienia należy uprzednio znów obliczyć zbiór wyznaczników macierzy o rozmiarze o jeden mniejszej. W praktyce nie jesteśmy zainteresowani znalezieniem postaci odwrotności macierzy <span class="math inline">\(A\)</span> tylko znalezieniem takiego <span class="math inline">\(x\)</span> który będzie spełniał postawiony układ równań. Do takiego zadania z kolei bardzo dobrze się nadaje metoda <strong>eliminacji Gaussa</strong>. Metoda ta pozwala efektywnie obliczyć wartości wektora <span class="math inline">\(x\)</span>, lecz jawnie nie wyznacza odwrotności macierzy <span class="math inline">\(A\)</span>.</p>
 <p>W dalszej części ćwiczeń wykonamy dwa zadania. Pierwsze zadanie będzie polegało na przygotowaniu odpowiedniego układu równań liniowych - czyli przygotowaniu macierzy układu <span class="math inline">\(A\)</span> oraz wektora prawych stron <span class="math inline">\(b\)</span>. Obie te wielkości zostaną utworzone jako rezultat zastosowania metody różnic skończonych dla jednowymiarowego równania ustalonego przewodnictwa ciepła. W drugiej części ćwiczeń zajmiemy się rozwiązaniem tego układu równań za pomocą rzeczonej metody eliminacji Gaussa. Wynikiem rozwiązania takiego układu równań będzie rozkład wartości temperatury wzdłuż ogrzewanego pręta.</p>
 </div>
-<div id="przygotowanie-ukadu-rownan" class="section level2">
+<div id="przygotowanie-układu-równań" class="section level2">
 <h2>2. Przygotowanie układu równań</h2>
 <p>Na początek zajmijmy się przygotowaniem układu równań. Tak jak już na początku wspomnieliśmy powstanie on jako wynik dyskretyzacji równania przewodnictwa cieplnego: <img src="figures/info2/inst6/problem.png" title="Zagadnienie" /></p>
 <p>Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości <span class="math inline">\(L=1[m]\)</span> i przewodności cieplnej <span class="math inline">\(\lambda=58[\frac{W}{mK}]\)</span>. Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - <span class="math inline">\(Q= - 10^4 \cdot sin(x\pi)[\frac{W}{m^3}]\)</span>. Ponadto na obu końcach pręta utrzymywane są stałe temperatury <span class="math inline">\(T_p=273[K]\)</span> i <span class="math inline">\(T_k=300[K]\)</span>.</p>
@@ -939,7 +900,7 @@ T_{N}
 300
 \end{bmatrix}
 \]</span></p>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Zaalokuj dynamicznie pamięć na macierz <span class="math inline">\(K\)</span>. Pamiętaj, że liczba punktów dyskretyzacji jest równa <span class="math inline">\(N+1\)</span> dla zaprezentowanego przykładu.</li>
@@ -965,10 +926,10 @@ T_{N}
 <p>Sprawdź czy wektor <span class="math inline">\(F\)</span> jest poprawnie utworzony.</p>
 </div>
 </div>
-<div id="rozwiazanie-ukadu-rownan" class="section level2">
+<div id="rozwiązanie-układu-równań" class="section level2">
 <h2>3. Rozwiązanie układu równań</h2>
 <p>Przejdźmy teraz do ostatniej części ćwiczeń - rozwiązania układu równań. W wyniku tego działania otrzymamy tablicę <span class="math inline">\(T\)</span> przechowującą wartości rozwiązania problemu przewodnictwa ciepła w z góry narzuconych punktach.</p>
-<div id="cwiczenia-2" class="section level3">
+<div id="ćwiczenia-2" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Zastosuj funkcję realizującą metodę eliminacji Gaussa do rozwiązania powyższego układu równań. Nagłówek funkcji jest postaci:</li>
@@ -1009,6 +970,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

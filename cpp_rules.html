@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="S. Gepner" />
@@ -70,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -231,48 +231,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -682,18 +643,59 @@ div.tocify {
 </div>
 
 
-<div id="regulamin-przedmiotu-zasady-zaliczenia" class="section level1">
-<h1>Regulamin przedmiotu, zasady zaliczenia</h1>
+<div id="programowanie-obiektowe-w-języku-c" class="section level1">
+<h1>Programowanie Obiektowe w Języku C++</h1>
+<p>Regulamin przedmiotu oraz zasady zaliczenia w roku 2019/20</p>
+<div id="kierownik-przedmiotu" class="section level2">
+<h2>Kierownik przedmiotu</h2>
+<p>dr inż. Stanisław Gepner, <a href="mailto:sgepner@meil.pw.edu.pl">sgepner@meil.pw.edu.pl</a>, pokój 117.</p>
+</div>
+<div id="prowadzący-ćwiczenia" class="section level2">
+<h2>Prowadzący ćwiczenia</h2>
+<p>Jakub Gałecki, Krzysztof Marchlewski, Grzegorz Gruszczyński, pokój 123.</p>
+<div id="liczba-punktów-ects-5" class="section level3">
+<h3>Liczba punktów ECTS: 5</h3>
+</div>
+<div id="efekty-uczenia-się" class="section level3">
+<h3>Efekty uczenia się</h3>
+<p>Cel: Nauczenie programowania w języku C++, zapoznanie z metodologią programowania obiektowego</p>
+</div>
+<div id="treści-kształcenia" class="section level3">
+<h3>Treści kształcenia</h3>
+<ol style="list-style-type: decimal">
+<li>Podstawy koncepcji programowania obiektowego.</li>
+<li>Obiekty w C++ - atrybuty i metody, konstruktory i destruktory.</li>
+<li>Przeciążanie operatorów.</li>
+<li>Dziedziczenie, klasy abstrakcyjne, polimorfizm.</li>
+<li>Wzorce (template’y) dla funkcji i klas. Konkretyzacja wzorców.</li>
+<li>Obiektowe strumienie wejścia/wyjścia.</li>
+<li>Biblioteka standardowa STL.</li>
+</ol>
+<p>Zalecana literatura:</p>
+<p><em>1.</em> B. Stroustrup: Język C++, WNT, Warszawa, 2002. 2. inna dowolna książka o programowaniu w C++.</p>
+<p>Dodatkowa literatura: Materiały na stronie <a href="http://www.cplusplus.com/" class="uri">http://www.cplusplus.com/</a> Materiały dostarczone przez wykładowcę.</p>
+</div>
+<div id="efekty-typu-wiedza" class="section level3">
+<h3>Efekty typu W(iedza)</h3>
+<p>Opis: Znajomość podstaw języka programowania C++. Weryfikacja: Bieżąca praca na laboratorium i kolokwium zaliczeniowe.</p>
+</div>
+<div id="efekty-typu-umiejętności" class="section level3">
+<h3>Efekty typu U(miejętności)</h3>
+<p>Opis: Potrafi programować w języku C++ przy wykorzystaniu mechanizmów obiektowych. Weryfikacja: Bieżąca praca na laboratorium i kolokwium zaliczeniowe.</p>
+</div>
+</div>
+<div id="sposób-weryfikacji-efektów-i-oceniania-warunki-zaliczenia-oraz-szczegółowy-regulamin-przedmiotu" class="section level2">
+<h2>Sposób weryfikacji efektów i oceniania, warunki zaliczenia oraz szczegółowy regulamin przedmiotu</h2>
 <ol style="list-style-type: decimal">
 <li>Przedmiot składa się z:
 <ul>
-<li>7 wykładów i 7 obowiązkowych ćwiczeń,</li>
+<li>7 wykładów (15h) i 7 (15h) obowiązkowych ćwiczeń,</li>
 <li>kolokwium zaliczeniowego,</li>
 <li>obowiązkowego projektu zaliczeniowego.</li>
 </ul></li>
 <li>Postępy studenta opisane są skalą punktową w zakresie 0-100 punktów. Punkty otrzymuje się za:
 <ul>
-<li>Zaliczenie wejściówek przeprowadzonych na 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt.</li>
+<li>Zaliczenie wejściówek przeprowadzonych na 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt..</li>
 <li>Projekt zaliczeniowy, 35 punktów.
 <ul>
 <li>W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów bez możliwości poprawy.</li>
@@ -701,7 +703,7 @@ div.tocify {
 </ul></li>
 <li>Kolokwium zaliczeniowe oceniane do 40 punktów.
 <ul>
-<li>Kolokwium przeprowadzane jest bez wykorzystania materiałów dodatkowych, tj. notatek, książek, pamięci zewnętrznych, itp.</li>
+<li>Kolokwium przeprowadzane jest bez wykorzystania materiałów dodatkowych, tj. notatek, książek, pamięci zewnętrznych, itp..</li>
 <li>W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów.</li>
 </ul></li>
 </ul></li>
@@ -709,8 +711,9 @@ div.tocify {
 <ul>
 <li>13 punktów z ćwiczeń,</li>
 <li>18 z projektu,</li>
-<li>21 punktów z kolokwium W przypadku nieuzyskania minimalnej liczby punktów student otrzymuje ocenę niedostateczną (2.0).</li>
-</ul></li>
+<li>21 punktów z kolokwium</li>
+</ul>
+<p>W przypadku nieuzyskania minimalnej liczby punktów student otrzymuje ocenę niedostateczną (2.0).</p></li>
 <li>W przypadku uzyskania minimalnej liczby punktów, podanej w punkcie 3, ostateczna ocena obliczana jest w następujący sposób:
 <ul>
 <li>0-50: 2.0</li>
@@ -718,26 +721,23 @@ div.tocify {
 <li>61-70: 3.5</li>
 <li>71-80: 4.0</li>
 <li>81-90: 4.5</li>
-<li>91-100: 5.0 Oceny wystawione w ostatnim dnu semestru są ostateczne. Nie będzie popraw w sesji ani semestrze letnim. Nie istnieją oceny „N”.</li>
-</ul></li>
-<li>Obecność na ćwiczeniach jest obowiązkowa. Każda nieusprawiedliwiona i nieodrobiona nieobecność na ćwiczeniach powoduje odjęcie 3 punktów.
-<ul>
-<li>W przypadku nieobecności w wyniku zdarzeń losowych odrobienie ćwiczeń możliwe jest po przedstawieniu zwolnienia.</li>
-<li>W przypadku nieobecności planowanej (np. wyjazd) odrobienie jest możliwe jedynie w przypadku wcześniejszej zgody prowadzącego ćwiczenia.</li>
-<li>Zasady, oraz termin odrobienia nieobecności ustala prowadzący ćwiczenia.</li>
-</ul></li>
-<li>Prowadzący ćwiczenia może zorganizować poprawę kolokwium zaliczeniowego. Do kolokwium poprawkowego może przystąpić student:
-<ul>
-<li>Obecny na kolokwium zaliczeniowym lub z usprawiedliwioną na nim nieobecnością. Obowiązują zasady jak w 5a,b.</li>
-<li>Z zaliczonym projektem zaliczeniowym. Brak pozytywnej oceny z projektu uniemożliwia poprawę kolokwium.</li>
-<li>Obecny na 5 z 7 wykładów.</li>
-</ul></li>
-<li>Zapisy do grup laboratoryjnych odbywają się na pierwszym wykładzie. Kolejność zapisu wg. list rankingowych dostępnych w wirtualnym dziekanacie w dniu zapisu.
-<ul>
-<li>Studenci niezapisani na przedmiot nie mają prawa uczestniczyć w laboratoriach.</li>
-<li>Studenci zapisani, zapisani po terminie i nie wymienieni na listach dziekańskich zapisują się jako ostatni.</li>
-</ul></li>
+<li>91-100: 5.0</li>
+</ul>
+<p>Oceny wystawione w ostatnim dnu semestru są ostateczne. Nie będzie popraw w sesji ani semestrze letnim. Nie istnieją oceny „N”.</p></li>
+<li><p>Obecność na ćwiczeniach jest obowiązkowa. Każda nieusprawiedliwiona i nieodrobiona nieobecność na ćwiczeniach powoduje odjęcie 3 punktów.</p>
+<p><em>a)</em> W przypadku nieobecności w wyniku zdarzeń losowych odrobienie ćwiczeń możliwe jest po przedstawieniu zwolnienia.</p>
+<p><em>b)</em> W przypadku nieobecności planowanej (np. wyjazd) odrobienie jest możliwe jedynie w przypadku wcześniejszej zgody prowadzącego ćwiczenia.</p>
+<p><em>c)</em> Zasady, oraz termin odrobienia nieobecności ustala prowadzący ćwiczenia.</p></li>
+<li><p>Prowadzący ćwiczenia może zorganizować poprawę kolokwium zaliczeniowego. Do kolokwium poprawkowego może przystąpić student:</p>
+<p><em>a)</em> Obecny na kolokwium zaliczeniowym lub z usprawiedliwioną na nim nieobecnością. Obowiązują zasady jak w 5 a,b.</p>
+<p><em>b)</em> Z zaliczonym projektem zaliczeniowym. Brak pozytywnej oceny z projektu uniemożliwia poprawę kolokwium.</p>
+<p><em>c)</em> Obecny na 5 z 7 wykładów.</p></li>
+<li><p>Zapisy do grup laboratoryjnych odbywają się na pierwszym wykładzie. Kolejność zapisu wg. list rankingowych dostępnych w wirtualnym dziekanacie w dniu zapisu.</p>
+<p><em>a)</em> Studenci zapisani, zapisani po terminie i nie wymienieni na listach dziekańskich zapisują się jako ostatni.</p>
+<p><em>b)</em> Studenci niezapisani na przedmiot nie mają prawa uczestniczyć w laboratoriach.</p>
+<p><em>c)</em> Studenci ignorujący punkt 7b, otrzymują ocenę, która zostanie im wystawiona przy pierwszej rejestracji na przedmiot, bez możliwości jej poprawy.</p></li>
 </ol>
+</div>
 </div>
 
 <!-- Dummy footer -->
@@ -759,6 +759,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

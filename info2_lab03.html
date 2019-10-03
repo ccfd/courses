@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="W. Regulski, rev. W. Gryglas" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,14 +736,14 @@ div.tocify {
 </div>
 
 
-<div id="iteracyjne-metody-rozwiazywania-rownan-nieliniowych" class="section level1">
+<div id="iteracyjne-metody-rozwiązywania-równań-nieliniowych" class="section level1">
 <h1>Iteracyjne metody rozwiązywania równań nieliniowych</h1>
 <p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/nonlin.h">Plik nagłówkowy nonlin.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/nonlin.cpp">Plik źródłowy nonlin.cpp</a></li>
 </ul>
-<div id="wstep" class="section level2">
+<div id="wstęp" class="section level2">
 <h2>1. Wstęp</h2>
 <p>Celem ćwiczenia jest zapoznanie się z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych funkcji matematycznych. W praktyce najczęściej niemożliwe jest znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą <strong>bisekcji</strong>, <strong>siecznych</strong> oraz <strong>stycznych</strong>. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy, była ciągła.</p>
 </div>
@@ -799,7 +760,7 @@ div.tocify {
 <li><code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span>,</li>
 <li><code>iter</code> - zmienna typu wskaźnikowego, która zawiera adres, pod który zostanie zapisana liczba iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to zmienna, której adres zawiera <code>iter</code> będzie zawierać wartość <code>-1</code> a funkcja zwróci wartość <code>0</code>.</li>
 </ul>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Napisz funkcję <code>double fun(double x)</code>, która będzie zwracać wartość funkcji <span class="math inline">\(f(x)\)</span> uzyskaną z przekształcenia naszego równania do postaci <span class="math inline">\(f(x) = 0\)</span>.</li>
@@ -818,7 +779,7 @@ x_{i+1} = x_i - f(x_i) \frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})}
 <p>W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia miejsca zerowego są przecięciami stycznych do wykresu funkcji z osią odciętych. Obliczenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji. Schemat iteracyjny przybiera następującą postać: <span class="math display">\[
 x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x_i)}
 \]</span></p>
-<div id="cwiczenia-1" class="section level3">
+<div id="ćwiczenia-1" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Napisz procedury wyznaczające miejsce zerowe funkcji <span class="math inline">\(f(x)\)</span> metodą Newtona i metodą siecznych. Nagłówki funkcji powinny mieć postaci:</li>
@@ -860,6 +821,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

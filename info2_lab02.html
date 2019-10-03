@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="B. Górecki, rev. W. Gryglas" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -775,18 +736,18 @@ div.tocify {
 </div>
 
 
-<div id="cakowanie-numeryczne" class="section level1">
+<div id="całkowanie-numeryczne" class="section level1">
 <h1>Całkowanie numeryczne</h1>
 <p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
 <ul>
 <li><a href="http://ccfd.github.io/courses/code/info2/kwad.h">Plik nagłówkowy kwad.h</a></li>
 <li><a href="http://ccfd.github.io/courses/code/info2/kwad.cpp">Plik źródłowy kwad.cpp</a></li>
 </ul>
-<div id="wstep" class="section level2">
+<div id="wstęp" class="section level2">
 <h2>1. Wstęp</h2>
 <p>Całkowanie numeryczne jest jednym z podstawowych algorytmów używanych w obliczeniach inżynierskich. Całkowanie numeryczne zawsze dotyczy obliczania całki oznaczonej (jedno bądź wielowymiarowej). Nigdy natomiast nie dotyczy obliczania całki nieoznaczonej. Wynikiem jego działania jest wartość całki, a w żadnym razie wzór funkcji pierwotnej.</p>
 </div>
-<div id="algorytmy-cakujace" class="section level2">
+<div id="algorytmy-całkujące" class="section level2">
 <h2>2. Algorytmy całkujące</h2>
 <p>Wśród podstawowych algorytmów, jakimi będziemy się zajmować są:</p>
 <ul>
@@ -794,7 +755,7 @@ div.tocify {
 <li>metoda Simpsona oraz</li>
 <li>kwadratury Gaussa-Legendre’a.</li>
 </ul>
-<div id="cwiczenia" class="section level3">
+<div id="ćwiczenia" class="section level3">
 <h3>Ćwiczenia</h3>
 <ol style="list-style-type: decimal">
 <li>Napisz program, który metodą trapezów obliczy całkę oznaczoną: <span class="math display">\[
@@ -827,7 +788,7 @@ f(x) = \frac{1}{x}
 <li><p>Otrzymane wyniki przedstaw graficznie.</p></li>
 </ol>
 </div>
-<div id="wskazowki-odnosnie-wskaznikow-do-funkcji" class="section level3">
+<div id="wskazówki-odnośnie-wskaźników-do-funkcji" class="section level3">
 <h3>Wskazówki odnośnie wskaźników do funkcji</h3>
 <p>Przeanalizuj poniższy kod ilustrujący użycie wskaźników do funkcji. Jakie wartości przyjmują zmienne <code>y1</code> i <code>y2</code>?</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">// funkcja: y = 2 * x</span></a>
@@ -890,7 +851,7 @@ Aby obliczyć całkę tą kwadraturą, trzeba znać położenia węzłów i wart
 </tr>
 </tbody>
 </table>
-<div id="cwiczenie" class="section level3">
+<div id="ćwiczenie" class="section level3">
 <h3>Ćwiczenie</h3>
 <ul>
 <li>Zaimplementuj w dowolny sposób metodę całkowania za pomocą kwadratury Gaussa. Zwróć uwagę, że kwadratura ta jest zdefiniowana dla całki w przedziale <span class="math inline">\([-1, 1]\)</span>. Musisz najpierw przekształcić wzór tak aby można było obliczyć całkę w przedziale <span class="math inline">\([a, b]\)</span> (skorzystaj z zamiany zmiennych).</li>
@@ -925,6 +886,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

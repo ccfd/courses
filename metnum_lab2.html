@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="B. Górecki" />
@@ -106,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -163,7 +164,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -324,48 +324,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -781,7 +742,7 @@ div.tocify {
 <h1>Wprowadzenie</h1>
 <p>Niniejszą instrukcją rozpoczynamy cykl laboratoriów, z których każde kolejne będzie rozwinięciem poprzedniego i wnioski z poprzedniego będą stanowiły motywację do zastosowania kolejnych metod. Tym samym należy zadbać o to, aby zadania z każdego laboratorium były wykonywane do końca, czy to na zajęciach czy w domu. Dziś zaznajomimy się ze sformułowaniem metody elementów skończonych dla jednego elementu czworokątnego. Dla uproszczenia nie będziemy stosować transformacji geometrycznych występujących w rzeczywistym sformułowaniu metody elementów skończonych, więc faktycznie będziemy operować zawsze na jednostkowych elementach kwadratowych.</p>
 </div>
-<div id="sformuowanie-algebraiczne-dla-jednego-elementu" class="section level1">
+<div id="sformułowanie-algebraiczne-dla-jednego-elementu" class="section level1">
 <h1>Sformułowanie algebraiczne dla jednego elementu</h1>
 <p>Zagadnienie wytrzymałości konstrukcji dla jednego elementu skończonego ma następujące sformułowanie algebraiczne: Elementowi skończonemu przypisana jest tzw. macierz sztywności <span class="math inline">\(K\)</span> reprezentująca jego sztywność na poszczególne rodzaje odkształceń (przesunięć jego wierzchołków), wektor przesunięć <span class="math inline">\(\vec d\)</span>, jakim ulegną poszczególne wierzchołki elementu pod obciążeniem oraz wektor sił węzłowych <span class="math inline">\(\vec F\)</span> reprezentujący odpowiednio przeliczone siły (bądź obciążenia ciągłe) przyłożone do węzłów elementu.</p>
 <p><span class="math display">\[
@@ -812,7 +773,7 @@ K \vec d = \vec F
 </ul>
 </div>
 </div>
-<div id="wskazowki-implementacyjne" class="section level1">
+<div id="wskazówki-implementacyjne" class="section level1">
 <h1>Wskazówki implementacyjne</h1>
 <ul>
 <li>Elementy w belce mają być indeksowane od 0 do <span class="math inline">\(m_x*m_y-1\)</span>, poczynając od elementu w lewym dolnym rogu i indeksując je po kolei w prawo. Po dojściu do końca belki, zaczynamy od lewego brzegu analogicznie indeksować kolejnymi liczbami elementy w pasie położonym o jeden element wyżej niż dopiero co poindeksowany pas. W identyczny sposób indeksowane są węzły. Takiego indeksowania wymaga uproszczenie implementacji (brak transformacji geometrycznej macierzy sztywności) oraz prostota obecnej funkcji do rysowania całego układu.</li>
@@ -845,7 +806,7 @@ K \vec d = \vec F
 <a class="sourceLine" id="cb1-23" data-line-number="23">   <span class="cf">return</span> <span class="dv">0</span>;</a>
 <a class="sourceLine" id="cb1-24" data-line-number="24">}</a></code></pre></div>
 </div>
-<div id="krotka-dokumentacja-biblioteki-meslib.h" class="section level1">
+<div id="krótka-dokumentacja-biblioteki-meslib.h" class="section level1">
 <h1>Krótka dokumentacja biblioteki <em>MesLib.h</em></h1>
 <p>Biblioteka <em>MesLib.h</em> została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację i zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje: - <code>int P(int x, int y, int z)</code> - funkcja, która zwraca globalny indeks stopnia swobody przy założeniu, że <em>x</em> to jego indeks w kierunku x (liczony od 0 na lewej krawędzi), <em>y</em> to jego indeks w kierunku osi y (liczony od 0 na dolnej powierzchni belki), a <em>z</em> to 0 lub 1 zależnie od tego, czy interesuje nas stopień swobody w kierunku poziomym czy pionowym. - <code>int Q(int x, int y)</code> - funkcja zwracająca globalny indeks elementu przy założeniu, że jest to element o indeksie <em>x</em> w kierunku poziomym i o indeksie <em>y</em> w kierunku pionowym. - <code>int DOF(int elidx, int elidy, int locdofid)</code> - funkcja zwracająca globalny indeks stopnia swobody przy założeniu, że <em>elidx</em> oznacza indeks elementu w kierunku poziomym, <em>elidy</em> indeks elementu w kierunku pionowym, a <em>locdofid</em> to liczba od 0 do 7 oznaczająca lokalny indeks danego stopnia swobody. Lokalna indeksacja stopni swobody jest następująca: w węźle o indeksie 0 przesunięcia w kierunku poziomym i pionowym to odpowiednio <span class="math inline">\(0-wy\)</span> i <span class="math inline">\(1-szy\)</span> stopień swobody, w węźle o indeksie <span class="math inline">\(1\)</span> występują 2. i 3. stopień swobody itd. - Lokalna macierz sztywności jest zdefiniowana w dwuwymiarowej tablicy <code>K[8][8]</code>. Przy składaniu macierzy sztywności powinna być w programie przemnożona przez czynnik <code>Md</code> zawierający wpływ modułu Younga oraz współczynnika Poissona oraz przez grubość elementu. - Lokalna macierz masowa jest zdefiniowana w dwuwymiarowej tablicy <code>M[8][8]</code>. Przy składaniu globalnej macierzy masowej powinna być w programie przemnożona przez czynnik <code>Mm</code> zawierający wpływ gęstości materiału oraz dodatkowo należy ją przemnożyć przez grubość elementu. - <code>void Gauss(int n, double **M, double *f, double *x)</code> - procedura eliminacji Gaussa rozwiązująca układ równań o macierzy zapisanej w dynamicznie zaalokowanej dwuwymiarowej tablicy <code>M</code> o wymiarze <code>n</code>, i wektorze prawej strony <code>f</code>. Wynik zostanie wpisany do miejsc w pamięci wskazywanych przez wskaźnik <code>*x</code>. - <code>void draw(double *p, double *f)</code> - funkcja rysująca cały układ odkształconych elementów. <code>p</code> to wektor przesunięć poszczególnych stopni swobody, a <code>f</code> to wektor sił węzłowych w tych stopniach swobody. Ponadto funkcja wykorzystuje globalnie zadeklarowaną tablicę <code>fix</code>, z której czerpie informację, które stopnie swobody układu są odebrane.</p>
 </div>
@@ -869,6 +830,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

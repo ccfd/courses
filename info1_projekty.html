@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="B. Górecki" />
@@ -73,7 +74,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -234,48 +234,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -702,7 +663,7 @@ Odpowiednie wzory opisujące zderzenia dwóch bil znajdziesz w <a href="http://c
 <h3>3. Burzenie zamku</h3>
 <p>Napisz program, który będzie stanowił modyfikacje program opisanego w <a href="http://ccfd.github.io/courses/info1_lab09.html">Instukcji 9</a>. Napisz odpowiednie funkcje, które stworzą zamek piksel po pikselu (najwygodniej napisać sobie dwie funkcje, które z pikseli będą potrafiły tworzyć prostokąt i trójkąt, a następnie z tych kształtów wygenerować zamek). Następnie program ma realizować ten sam algorytm ustawiania armaty i oddawania strzału, jednak w momencie, w którym kula znajdzie się na dowolnym pikselu należącym do zamku, zakończy swój lot i wytworzy w tym miejscu wyrwę w murze (tzn. usunie wszystkie piksele w promieniu np. <span class="math inline">\(10\)</span> pikseli od miejsca uderzenia). Promień wyrwy uzależnij (np. liniowo) od prędkości, z jaką kula uderza w mur.</p>
 </div>
-<div id="gra-w-koko-i-krzyzyk" class="section level3">
+<div id="gra-w-kółko-i-krzyżyk" class="section level3">
 <h3>4. Gra w kółko i krzyżyk</h3>
 <p>Napisz program, który będzie grał z użytkownikiem w kółko i krzyżyk. Plansza ma być rysowana w oknie graficznym, a komunikacja z użytkownikiem ma być prowadzona za pośrednictwem klawiatury lub myszki. Opracuj dwa rożne algorytmy, według których program będzie wybierał kolejne pola, w których postawi swój marker. Najprostszy algorytm ma być algorytmem losowym – komputer ma bez zastanawiania się nad ruchami losować dowolne, wolne miejsce do postawienia swojego znaku. Program ma wykrywać zwycięstwo, przegraną bądź remis. Drugi algorytm powinien zawierać analizę, czy dany ruch ma sens. Możesz np. analizować wszystkie możliwe ruchy w przód i wybierać takie pole, które będzie dawało największe szanse wygranej. Możesz też opracować swój autorski algorytm lub spróbować zaczerpnąć wiedzy na temat podstawowych, powszechnie stosowanych algorytmów gry w kółko i krzyżyk.</p>
 </div>
@@ -710,7 +671,7 @@ Odpowiednie wzory opisujące zderzenia dwóch bil znajdziesz w <a href="http://c
 <h3>5. Gra w statki</h3>
 <p>Napisz program, który będzie grał z użytkownikiem w statki. Na początku program ma losować położenia statków na swojej planszy (pamiętaj, że statki nie mogą się stykać ani rogiem ani bokiem). Następnie użytkownik ma wybrać miejsca, w których chce ustawić swoje statki (może tego dokonać za pomocą myszki lub klawiatury). Ostatecznie, program ma przeprowadzić grę w statki (zastanów się nad możliwie najsprytniejszym sposobem, w jaki komputer ma ostrzeliwać pole gracza) i wykrywać wygraną.</p>
 </div>
-<div id="liczenie-caki-metoda-monte-carlo" class="section level3">
+<div id="liczenie-całki-metodą-monte-carlo" class="section level3">
 <h3>6. Liczenie całki metodą Monte Carlo</h3>
 <p>Napisz program, który wyznacza przybliżoną wartość całki <span class="math inline">\(R_b = \displaystyle{\int_a^b} f(x)dx\)</span> metodą Monte Carlo. Załóż, ze wartości funkcji podcałkowej są dodatnie. Metoda Monte Carlo obliczania całek oznaczonych działa w następujący sposób:</p>
 <ul>
@@ -724,7 +685,7 @@ Odpowiednie wzory opisujące zderzenia dwóch bil znajdziesz w <a href="http://c
 <h3>7. Kalkulator pochodnych</h3>
 <p>Napisz program, który drukuje na ekranie wzór na pierwszą pochodną funkcji zadanej w pliku. Załóż, że wzór funkcji w pliku jest postaci <span class="math inline">\(f(x) \cdot g(x)\)</span>, gdzie funkcje <span class="math inline">\(f(x)\)</span> i <span class="math inline">\(g(x)\)</span> to jedno z wyrażeń typu <span class="math inline">\(x^n\)</span>, <span class="math inline">\(\sin(a \cdot x)\)</span> lub <span class="math inline">\(cos(b \cdot x)\)</span>. Przykładowy wzór podany w pliku tekstowym to: <span class="math inline">\(x^7 \cdot \cos(\pi \cdot x)\)</span>.</p>
 </div>
-<div id="badzenie-losowe" class="section level3">
+<div id="błądzenie-losowe" class="section level3">
 <h3>8. Błądzenie losowe</h3>
 <p>Napisz program, który będzie symulował błądzenie losowe sporej grupy ludzi (np. <span class="math inline">\(10000\)</span> osób) startujących z jednego punktu. Każda osoba wykonuje w każdym kroku czasowym przesuniecie w lewo lub w prawo z zadanym prawdopodobieństwem. Utwórz histogram liczby osób od odległości, na którą zaszli. Przetestuj program dla rożnych prawdopodobieństw wykonywania kroku w dana stronę.<br />
 Dopuszczalne są tylko dwa ruchy: krok w lewo albo krok w prawo. Nie ma możliwości pozostanie w miejscu.</p>
@@ -733,32 +694,32 @@ Dopuszczalne są tylko dwa ruchy: krok w lewo albo krok w prawo. Nie ma możliwo
 <h3>9. Szyfrowanie i deszyfrowanie</h3>
 <p>Napisz program, który pozwoli na zaszyfrowanie danego fragmentu tekstu oraz złamanie danego szyfru. Zasada szyfrowania jest następująca: wszystkie litery wiadomości niezaszyfrowanej mają zostać przesunięte o pewną stałą odległość. Np. dla przesunięcia o <span class="math inline">\(3\)</span> będzie to wyglądało tak: <span class="math inline">\(ALA MA KOTA -&gt; DOD PD NRXD\)</span>. Łamanie szyfru będzie się odbywać w oparciu o fakt, że funkcja łamiąca szyfr będzie posiadała bazę słów, spośród których któreś na pewno znajduje się w tekście. Dzięki temu, próbując wszystkich możliwości dekryptażu (a jest ich tyle, ile liter w alfabecie łacińskim), wybierze poprawną możliwość przez sprawdzenie czy znajduje się tam dane słowo. Oczywiście taki algorytm nie jest jednoznaczny, jednak powinien działać rozsądnie przy krótkich wiadomościach. Wiadomość oryginalna, szyfrowana oraz baza danych słów-kluczy maja być wczytywane z pliku.</p>
 </div>
-<div id="histogram-z-zadana-podziaka" class="section level3">
+<div id="histogram-z-zadana-podziałką" class="section level3">
 <h3>10. Histogram z zadana podziałką</h3>
 <p>Napisz program, który będzie rysować histogram z zadaną podziałką w oparciu o dostarczony zbiór danych z pliku. Podziałka histogramu oznacza na ile sektorów należy podzielić wykres. Należy samemu zdobyć/wygenerować dane źródłowe (np. poprzez losowanie).</p>
 </div>
-<div id="dziaania-na-macierzach" class="section level3">
+<div id="działania-na-macierzach" class="section level3">
 <h3>11. Działania na macierzach</h3>
 <p>Napisz program, który wykonuje działania algebraiczne na macierzach: dodaje, odejmuje oraz mnoży je przez siebie. Macierze mają być wczytywane z plików, program ma sprawdzać czy ich wymiary są odpowiednie do wykonania danych operacji i jeśli są – generować plik z wynikiem.</p>
 </div>
-<div id="gra-w-weza" class="section level3">
+<div id="gra-w-węża" class="section level3">
 <h3>12. Gra w węża</h3>
 <p>Napisz program, który będzie realizował grę w węża w oknie graficznym biblioteki <code>winbgi.h</code>. W najprostszej wersji wąż może w każdym kroku czasowym upominać się o dane z klawiatury, w wersji zaawansowanej wąż porusza się, a kierunki są przyjmowane w trakcie działania programu. Dane kierunku mogą być wprowadzane za pomocą myszki lub klawiatury. Wąż oczywiście rośnie po zdobyciu pokarmu oraz umiera po zderzeniu sam ze sobą albo ze ścianą.</p>
 </div>
-<div id="gra-w-zycie" class="section level3">
+<div id="gra-w-życie" class="section level3">
 <h3>13. Gra w życie</h3>
 <p>Napisz program symulujący grę w życie wg. klasycznych zasad Conway’a (patrz <a href="https://pl.wikipedia.org/wiki/Gra_w_życie">Wikipedia</a>). Program ma wyświetlać stan populacji w każdym kroku czasowym używając biblioteki <code>winbgi.h</code>.</p>
 </div>
-<div id="ewakuacja-ponacego-budynku" class="section level3">
+<div id="ewakuacja-płonącego-budynku" class="section level3">
 <h3>14. Ewakuacja płonącego budynku</h3>
 <p>Napisz program, który symuluje ucieczkę grupy ludzi z płonącego pomieszczenia: w momencie wybuchu pożaru ludzie (kółka w oknie graficznym) zaczynają się kierować w stronę wyjścia. Niestety biegną na oślep i mogą się ze sobą zderzyć (odbijają się wg. schematu z <a href="http://ccfd.github.io/courses/info1_lab05.html">Instrukcji 5</a>), przez co przez chwilę poruszają się bezwładnie, ale po kilku krokach orientują się w przestrzeni i znów nadają sobie prędkość w kierunku wyjścia. Może potem dojść do następnych zderzeń. Zbadaj, jak zależy możliwość ucieczki takiej grupy od rozmiarów pojedynczego człowieka oraz od ilości ludzi wewnątrz. Wyjście jest jedno, kółko po prostu zniknie, gdy do niego dotrze.</p>
 </div>
-<div id="totolotek-wymaga-sporo-pracy-sugeruje-sie-je-grupom-dwuosobowym" class="section level3">
+<div id="totolotek-wymaga-sporo-pracy-sugeruje-się-je-grupom-dwuosobowym" class="section level3">
 <h3>15. *Totolotek (wymaga sporo pracy, sugeruje się je grupom dwuosobowym)</h3>
 <p>Napisz program symulujący maszynę do losowania używaną w Totolotku. Program w dużej mierze opiera się na <a href="http://ccfd.github.io/courses/info1_lab05.html">Laboratorium 5</a> (zderzenia ze ścianami, kolizje), lecz należy uwzględnić także działanie pól siłowych: grawitacji (która po prostu powinna zmniejszać składową <span class="math inline">\(y\)</span> prędkości w każdym kroku funkcji <code>run</code>) oraz dmuchawy (w pewnym obszarze okna graficznego piłki powinny być przyspieszane w pewien sposób – tutaj jest miejsce na inwencje użytkownika). Dodatkowo należy dodać niewielką ilość dyssypacji energii do programu, np. przy każdym zderzeniu niech piłki zachowują tylko <span class="math inline">\(95%\)</span> energii kinetycznej. Wreszcie, konieczna jest współpraca z myszką/klawiaturą: pierwsze kliknięcie zwalnia blokadę (zaczyna się symulacja), drugie rozpoczyna dmuchanie a trzecie zasysa piłki do boksu. Należy pamiętać, ze w boksie może być tylko jedna piłka. Oczywiście, piłki powinny się ze sobą zderzać. Należy w miarę możliwości wprowadzić lekkie zaburzenia na początku działania programu (losowo rozmieścić piłki w boksie), by wynik był niedeterministyczny.</p>
 </div>
 </div>
-<div id="sterowanie-przebiegiem-programu-za-pomoca-myszki-i-klawiatury" class="section level1">
+<div id="sterowanie-przebiegiem-programu-za-pomocą-myszki-i-klawiatury" class="section level1">
 <h1>Sterowanie przebiegiem programu za pomocą myszki i klawiatury</h1>
 <div id="mysz" class="section level2">
 <h2>Mysz</h2>
@@ -798,6 +759,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
