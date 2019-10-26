@@ -797,23 +797,14 @@ div.tocify {
 <ul>
 <li>Dodaj do klasy Pojemnik nową wersję funkcji <code class="sourceCode cpp">DrukujWszystko()</code> (np. <code class="sourceCode cpp">DrukujWszystko2()</code>). Nowa funkcja powinna wykorzystywać <code class="sourceCode cpp"><span class="kw">operator</span> &lt;&lt;</code> zamiast funkcji <code class="sourceCode cpp">Drukuj()</code> klasy <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>.</li>
 </ul>
-<p>##Zadanie 5 Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).</p>
-<ul>
-<li><p>W oknie <strong><em>Solution Explorer</em></strong> zaznacz nazwę projektu. W menu <strong><em>Project</em></strong> powinno pojawić się na samym dole podmenu <strong><em>Properties</em></strong>.</p></li>
-<li><p>W drzewku okna <strong><em>Property</em></strong> wybierz folder <strong><em>linker/debug</em></strong>. Teraz w polu <strong><em>Generate Map File</em></strong> wybierz <strong><em>Yes (/MAP)</em></strong>, a poniżel w polu <strong><em>Map File Name</em></strong> podaj nazwę pliku ****.map<strong><em>, np.: </em></strong>$(OutDir)/Test.map***.</p></li>
-<li><p>Przebuduj program i w katalogu <strong><em>debug</em></strong> projektu odszukaj plik <strong><em>Test.map</em></strong>.</p></li>
-<li><p>Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?) Spróbuj odnaleźć konstruktory i destruktory klas <code class="sourceCode cpp">Wektor<span class="er">2D</span></code> i <code class="sourceCode cpp">Pojemnik</code>. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?</p></li>
-<li><p>Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji <code class="sourceCode cpp">Pojemnik::Max()</code>)? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?</p></li>
-<li><p>Jak myślisz, czy wśród nazw znajdujących się w pliku ****.map*** mogą wystąpić dwie identyczne nazwy funkcji?</p></li>
-</ul>
 </div>
-<div id="zadanie-6" class="section level2">
-<h2>Zadanie 6</h2>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
 <p>Dodaj do klasy Pojemnik funkcję <code class="sourceCode cpp">Max()</code> zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa <code class="sourceCode cpp">Wektor<span class="er">2D</span></code> a nie klasa <code class="sourceCode cpp">Pojemnik</code>. Zatem klasa <code class="sourceCode cpp">Pojemnik</code> powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie <code class="sourceCode cpp">Wektor<span class="er">2D</span></code>. Zdefiniuj również te operatory. Funkcja <code class="sourceCode cpp">Max()</code> powinna zadziałać w następujący sposób:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1">    cout &lt;&lt; poj.Max();</a></code></pre></div>
 </div>
-<div id="zadanie-7" class="section level2">
-<h2>Zadanie 7</h2>
+<div id="zadanie-6" class="section level2">
+<h2>Zadanie 6</h2>
 <p>Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.</p>
 <hr />
 </div>
