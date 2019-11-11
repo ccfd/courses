@@ -340,6 +340,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -758,9 +764,13 @@ div.tocify {
 <a class="sourceLine" id="cb1-17" data-line-number="17">}</a></code></pre></div>
 <ul>
 <li>Dodaj do klasy A atrybut statyczny np. <code class="sourceCode cpp"><span class="at">static</span> <span class="dt">int</span> mattr</code>:</li>
-<li><p>Sprawdź jakie wartości będą drukowane (dlaczego?) jeśli wykonasz: ```c++ for ( i=0; i&lt;5; ++i) ptr[i].mattr = i+1;</p>
-<p>for ( i=0; i&lt;5; ++i) cout &lt;&lt; &quot; element &quot; &lt;&lt; i &lt;&lt; &quot; attr = &quot; &lt;&lt; ptr[i].mattr &lt;&lt; endl; ```</p></li>
+<li>Sprawdź jakie wartości będą drukowane (dlaczego?) jeśli wykonasz:</li>
 </ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">for</span> ( i=<span class="dv">0</span>; i&lt;<span class="dv">5</span>; ++i)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">ptr[i].mattr = i<span class="dv">+1</span>;</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="cf">for</span> ( i=<span class="dv">0</span>; i&lt;<span class="dv">5</span>; ++i)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">cout &lt;&lt; <span class="st">&quot; element &quot;</span> &lt;&lt; i &lt;&lt; <span class="st">&quot; attr = &quot;</span> &lt;&lt; ptr[i].mattr &lt;&lt; endl;</a></code></pre></div>
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
@@ -796,8 +806,8 @@ div.tocify {
 <li>Dodaj nowy konstruktor do klasy <code class="sourceCode cpp">Autobus</code>, który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie.</li>
 <li>Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejednoznaczności?</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">Autobus  bus;</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">bus = <span class="dv">3</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">Autobus  bus;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">bus = <span class="dv">3</span>;</a></code></pre></div>
 </div>
 <div id="zadanie-4" class="section level2">
 <h2>Zadanie 4</h2>
