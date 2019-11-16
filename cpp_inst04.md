@@ -61,7 +61,7 @@ if( dynamic_cast<Circle*>( tabp[I] ) )
 ```c++
 Point::Point( const Point& p )
 {
-			x = p.x;
+	x = p.x;
 	y = p.y;
 	cout << "Point: Kontruktor kopiujący"<<endl;
 }
