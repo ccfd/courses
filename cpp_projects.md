@@ -35,7 +35,8 @@ tworzeniem klas, dziedziczeniem itp.) Na wszelki wypadek dodam jeszcze, że prog
 się skompilować i zadziałać!
 
 Wybór zadania proszę zgłosić na zajęciach.
-Za każdy dzień zwłoki z oddaniem projektu będą odejmowane po 2 punkty.
+
+**Za każdy dzień zwłoki z oddaniem projektu będą odejmowane po 2 punkty.**
 
 ## Lista tematów prostszych, za 25 punktów
 1. Biblioteka do działań na macierzach (wersja prostsza).
