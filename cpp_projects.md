@@ -9,6 +9,7 @@ author: W. Gryglas
 # Projekty zaliczeniowe z C++
 Kryteria ocen.
 Przy ocenianiu programu będę brał pod uwagę następujące elementy:
+
 * obiektowość programu (umiejętność wykorzystania obiektowości języka C++ do
 rozwiązania danego problemu, czyli np. odpowiednie zdefiniowanie klas,
 odpowiednie przeciążenie operatorów itp.);
@@ -18,6 +19,7 @@ odpowiednie przeciążenie operatorów itp.);
 * użycie polimorfizmu (mile widziane);
 * przejrzystość i czytelność kodu (komentarze, podział kodu na pliki);
 * prezentację programu.
+
 
 Nie w każdym programie da się umieścić wzorce, dziedziczenie, polimorfizm i biblioteki STL
 na raz, jednak każdy z tych elementów będzie podwyższał ostateczną ocenę. Proszę raczej
@@ -33,6 +35,7 @@ tworzeniem klas, dziedziczeniem itp.) Na wszelki wypadek dodam jeszcze, że prog
 się skompilować i zadziałać!
 
 Wybór zadania proszę zgłosić na zajęciach.
+Za każdy dzień zwłoki z oddaniem projektu będą odejmowane po 2 punkty.
 
 ## Lista tematów prostszych, za 25 punktów
 1. Biblioteka do działań na macierzach (wersja prostsza).
