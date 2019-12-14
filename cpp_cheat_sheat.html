@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="M. Rutkowski, M.Klamka" />
+<meta name="author" content="ccfd-class" />
 
 
-<title>Flow through a valve</title>
+<title>cpp_cheat_sheat.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -619,14 +619,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="kap_lab02.pdf">
+  <a href="cpp_cheat_sheat.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/kap_lab02.md">
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_cheat_sheat.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -648,42 +648,28 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Flow through a valve</h1>
-<h4 class="author">M. Rutkowski, M.Klamka</h4>
 
 </div>
 
 
-<p>Purpose of this laboratory is to practice the simulation of the unsteady turbulent fluid flow using the moving (rotating) mesh.</p>
-<p><strong>Duration</strong>: 2h</p>
-<div id="geometry-and-mesh" class="section level2">
-<h2>Geometry and Mesh</h2>
+<div id="cheat-sheat" class="section level1">
+<h1>Cheat Sheat</h1>
+<p>Selected materials are given here. To ease learning.</p>
+<div id="uml-class-diagram" class="section level2">
+<h2>UML Class Diagram</h2>
+<div class="figure">
+<img src="figures/cpp_cheat_sheat/uml-class-cheat-sheat.jpg" alt="uml class" />
+<p class="caption">uml class</p>
 </div>
-<div id="fluent" class="section level2">
-<h2>Fluent</h2>
-<ol style="list-style-type: decimal">
-<li><p>Read the coarse mesh. <strong>File/Read/Mesh</strong></p></li>
-<li><p>Set the Pressure Based solver and activate Transient in <strong>Define/General</strong></p></li>
-<li><p>Check the scale. The mesh was created in mm.</p></li>
-<li><p>Set-up the interface in <strong>Define/Mesh Interfaces/Create Edit</strong>. All the interfaces/interface with the name ‘interface_1’ should be assigned to all remaining interfaces/interface denoted by ‘interface_2’. Provide the name under Mesh Interface.</p></li>
-<li><p>Activate the Spalart-Allmaras turbulence model in <strong>Define/Models/Viscous</strong></p></li>
-<li><p>Create a new fluid (liquid water) in <strong>Define/Materials/Fluid/Create Edit</strong> . Select it from the Fluent Database.</p></li>
-<li><p>Set the liquid water in all zones ‘a’, ‘b’ and ‘c’ (fig. 1) in <strong>Define/Cell Zone</strong> <strong>Conditions/Edit</strong>. Once the liquid water is set for the one zone/face the settings can be copied to the other zones/faces.</p></li>
-<li><p>Change the angular velocity from rad/sec to rpm. <strong>Define/Units</strong></p></li>
-<li><p>Set the moving mesh in the motion type in <strong>Define/Cell Zone Conditions/Edit</strong> for the face ‘b’ (rotating_passage). The rotational velocity could be set to 20 rpm.</p></li>
-<li><p>Specify the following boundary conditions:</p>
-<ul>
-<li><p>Pressure inlet: Set the Gauge Total Pressure and Supersonic/Initial Gauge</p></li>
-<li><p>Pressure to 100000 Pa and the turbulent to molecular viscosity ratio to 10.</p></li>
-<li><p>Pressure outlet: Set the turbulent to molecular viscosity ratio to 1.</p></li>
-</ul></li>
-<li><p>Initialize the solution. <strong>Solve/Initialization</strong> with gauge pressure, velocity components set to zero and the turbulent viscosity set to low values 0.01. Verify the velocity magnitude in <strong>Display/Graphics</strong> and <strong>Animations/Contours/Set up</strong>. To adjust the view use <strong>Display/View/front</strong></p></li>
-<li><p>Coming back to the <strong>Solve/Initialization</strong>. Chose the <strong>Patch</strong> button and set the pressure equal to 100000 Pa for the zone/face ‘A’ (inlet).</p></li>
-<li><p><strong>TUTAJ NAPISAĆ O WYSWIETLANIU</strong></p></li>
-<li><p>Compute the force acting in x or y direction on rotating_passage. First, the density and velocity has to be set to 1 and area to 2 under <strong>Report/Reference value</strong>. Next, specify the monitoring of force in <strong>Solve/Monitors/Create</strong>. Activate write to console and write to file.</p></li>
-<li><p>In <strong>Solve/Run Calculation</strong> set the time step to 0.001s and the number of time steps to 10. Run the calculations. Next increase the number of time steps and complete the calculation (rotate the channel by 30-45 deg).</p></li>
-<li><p>Read the fine mesh and perform the computations (steps 11-15). Compare the coarse and fine grid results.</p></li>
-</ol>
+<div class="figure">
+<img src="figures/cpp_cheat_sheat/UML02.png" alt="uml class" />
+<p class="caption">uml class</p>
+</div>
+<div class="figure">
+<img src="figures/cpp_cheat_sheat/UML03.png" alt="uml class" />
+<p class="caption">uml class</p>
+</div>
+</div>
 </div>
 
 <!-- Dummy footer -->
