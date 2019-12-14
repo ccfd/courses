@@ -6,7 +6,103 @@ author: W. Gryglas
 ---
 
 
-# STL ciąg dalszy
+# STL: Smart pointers and containers (continuation)
+
+To ease memory managment in C++, a smart pointer has been introduced:
+https://en.wikipedia.org/wiki/Smart_pointer
+
+## Practice
+
+You are asked to implement the `Person` class, which can add and list its friends.
+
+The system architect decided that the `Person` shall have the following attributes and methods:
+
+```cpp
+
+#include <memory>
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+class Person
+{
+    string m_name;
+    const int uuid; // for simplicity an int is used instead boost::uuid
+    map< int, weak_ptr<Person> > m_friends;
+public:
+    explicit Person(string name); // for simplicity use rand() instead of instead boost::uuid to initialize the uuid
+    ~Person();
+    void AddFriend(shared_ptr<Person> &p);
+    void PrintFriends();
+};
+
+```
+
+Sample usage:
+
+```cpp
+#include "Person.h"
+
+int main()
+{
+    srand(0);  // initialize random seed
+
+    auto katie = make_shared<Person>("Katie");
+    auto john = make_shared<Person>("John");
+    auto alice = make_shared<Person>("Alice");
+
+    auto bob = make_shared<Person>("Bob");
+    auto another_person_called_bob = std::make_shared<Person>("Bob");
+
+    katie->AddFriend(alice);
+    katie->AddFriend(bob);
+
+    john->AddFriend(bob);
+    john->AddFriend(bob);  // try to insert duplicate object
+    john->AddFriend(another_person_called_bob);  // try to insert duplicate name
+
+    katie->AddFriend(john);  // create a cyclic reference
+    john->AddFriend(katie);  // create a cyclic reference
+
+    cout << "----------------------------" << endl;
+    katie->PrintFriends();
+    john->PrintFriends();
+    cout << "----------------------------" << endl;
+    return EXIT_SUCCESS;
+}
+```
+
+Output:
+
+```sh
+Katie (uuid:1804289383) created
+John (uuid:846930886) created
+Alice (uuid:1681692777) created
+Bob (uuid:1714636915) created
+Bob (uuid:1957747793) created
+Person with uuid 1714636915 and name Bob is already a friend of John
+----------------------------
+Katie have following friends:
+	John (uuid:846930886)
+	Alice (uuid:1681692777)
+	Bob (uuid:1714636915)
+John have following friends:
+	Bob (uuid:1714636915)
+	Katie (uuid:1804289383)
+	Bob (uuid:1957747793)
+----------------------------
+Bob (uuid:1957747793) died
+Bob (uuid:1714636915) died
+Alice (uuid:1681692777) died
+John (uuid:846930886) died
+Katie (uuid:1804289383) died
+
+Process finished with exit code 0
+
+```
+
+# STL ciąg dalszy - old
 
 ## Zadanie 1
 Utwórz obiekt Record służący do przechowywania pewnych danych o osobach np.:
