@@ -745,18 +745,99 @@ div.tocify {
 </div>
 
 
-<div id="stl-ciąg-dalszy" class="section level1">
-<h1>STL ciąg dalszy</h1>
+<div id="stl-smart-pointers-and-containers-continuation" class="section level1">
+<h1>STL: Smart pointers and containers (continuation)</h1>
+<p>To ease memory managment in C++, a smart pointer has been introduced: <a href="https://en.wikipedia.org/wiki/Smart_pointer" class="uri">https://en.wikipedia.org/wiki/Smart_pointer</a></p>
+<div id="practice" class="section level2">
+<h2>Practice</h2>
+<p>You are asked to implement the <code>Person</code> class, which can add and list its friends.</p>
+<p>The system architect decided that the <code>Person</code> shall have the following attributes and methods:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;memory&gt;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="pp">#include </span><span class="im">&lt;map&gt;</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">class</span> Person</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    string <span class="va">m_name</span>;</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    <span class="at">const</span> <span class="dt">int</span> uuid; <span class="co">// for simplicity an int is used instead boost::uuid</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    map&lt; <span class="dt">int</span>, weak_ptr&lt;Person&gt; &gt; <span class="va">m_friends</span>;</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">    <span class="kw">explicit</span> Person(string name); <span class="co">// for simplicity use rand() instead of instead boost::uuid to initialize the uuid</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">    ~Person();</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">    <span class="dt">void</span> AddFriend(shared_ptr&lt;Person&gt; &amp;p);</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">    <span class="dt">void</span> PrintFriends();</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">};</a></code></pre></div>
+<p>Sample usage:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="pp">#include </span><span class="im">&quot;Person.h&quot;</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    srand(<span class="dv">0</span>);  <span class="co">// initialize random seed</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="kw">auto</span> katie = make_shared&lt;Person&gt;(<span class="st">&quot;Katie&quot;</span>);</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    <span class="kw">auto</span> john = make_shared&lt;Person&gt;(<span class="st">&quot;John&quot;</span>);</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="kw">auto</span> alice = make_shared&lt;Person&gt;(<span class="st">&quot;Alice&quot;</span>);</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="kw">auto</span> bob = make_shared&lt;Person&gt;(<span class="st">&quot;Bob&quot;</span>);</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">    <span class="kw">auto</span> another_person_called_bob = <span class="bu">std::</span>make_shared&lt;Person&gt;(<span class="st">&quot;Bob&quot;</span>);</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    katie-&gt;AddFriend(alice);</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">    katie-&gt;AddFriend(bob);</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">    john-&gt;AddFriend(bob);</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">    john-&gt;AddFriend(bob);  <span class="co">// try to insert duplicate object</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">    john-&gt;AddFriend(another_person_called_bob);  <span class="co">// try to insert duplicate name</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">    katie-&gt;AddFriend(john);  <span class="co">// create a cyclic reference</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">    john-&gt;AddFriend(katie);  <span class="co">// create a cyclic reference</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">    cout &lt;&lt; <span class="st">&quot;----------------------------&quot;</span> &lt;&lt; endl;</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">    katie-&gt;PrintFriends();</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">    john-&gt;PrintFriends();</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">    cout &lt;&lt; <span class="st">&quot;----------------------------&quot;</span> &lt;&lt; endl;</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">    <span class="cf">return</span> EXIT_SUCCESS;</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">}</a></code></pre></div>
+<p>Output:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="ex">Katie</span> (uuid:1804289383) <span class="ex">created</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="ex">John</span> (uuid:846930886) <span class="ex">created</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="ex">Alice</span> (uuid:1681692777) <span class="ex">created</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="ex">Bob</span> (uuid:1714636915) <span class="ex">created</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="ex">Bob</span> (uuid:1957747793) <span class="ex">created</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="ex">Person</span> with uuid 1714636915 and name Bob is already a friend of John</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="ex">----------------------------</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="ex">Katie</span> have following friends:</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="ex">John</span> (uuid:846930886)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="ex">Alice</span> (uuid:1681692777)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="ex">Bob</span> (uuid:1714636915)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="ex">John</span> have following friends:</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    <span class="ex">Bob</span> (uuid:1714636915)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    <span class="ex">Katie</span> (uuid:1804289383)</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="ex">Bob</span> (uuid:1957747793)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="ex">----------------------------</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="ex">Bob</span> (uuid:1957747793) <span class="ex">died</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="ex">Bob</span> (uuid:1714636915) <span class="ex">died</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="ex">Alice</span> (uuid:1681692777) <span class="ex">died</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="ex">John</span> (uuid:846930886) <span class="ex">died</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="ex">Katie</span> (uuid:1804289383) <span class="ex">died</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="ex">Process</span> finished with exit code 0</a></code></pre></div>
+</div>
+</div>
+<div id="stl-ciąg-dalszy---old" class="section level1">
+<h1>STL ciąg dalszy - old</h1>
 <div id="zadanie-1" class="section level2">
 <h2>Zadanie 1</h2>
 <p>Utwórz obiekt Record służący do przechowywania pewnych danych o osobach np.:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> Record</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">public</span>:</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="bu">std::</span>string mName;</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="bu">std::</span>string mPhone;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">int</span>     mAge;</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">};</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">class</span> Record</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="bu">std::</span>string mName;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="bu">std::</span>string mPhone;</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">int</span>     mAge;</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">};</a></code></pre></div>
 </div>
 <div id="zadanie-2" class="section level2">
 <h2>Zadanie 2</h2>
@@ -777,14 +858,14 @@ div.tocify {
 <div id="zadanie-6" class="section level2">
 <h2>Zadanie 6</h2>
 <p>Wydrukuj zawartość tablicy na ekran korzystając z algorytmu <code class="sourceCode cpp">for_each(...)</code>. Ostatnim argumentem tego algorytmu jest funkcja lub obiekt funkcyjny dokonujący operacji na każdym z obiektów kolekcji znajdującym się pomiędzy podanymi iteratorami. Sprawdź działanie tego algorytmu korzystając zarówno z funkcji jak i z obiektu funkcyjnego. Przykładowy obiekt funkcyjny wygląda tak:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">class</span> Print</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span>:</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">    <span class="dt">void</span>    <span class="kw">operator</span> () (<span class="at">const</span> Record&amp; rec)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">    {</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">        <span class="co">// instrukcje które będą wykonywane</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">    }</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">};</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">class</span> Print</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">    <span class="dt">void</span>    <span class="kw">operator</span> () (<span class="at">const</span> Record&amp; rec)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    {</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">        <span class="co">// instrukcje które będą wykonywane</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    }</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">};</a></code></pre></div>
 </div>
 <div id="zadanie-7" class="section level2">
 <h2>Zadanie 7</h2>
