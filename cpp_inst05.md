@@ -19,7 +19,7 @@ try
 {
 	....
 }
-catch (char* s)
+catch (const char* s)
 {
 	....
 }

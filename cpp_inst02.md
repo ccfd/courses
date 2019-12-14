@@ -63,29 +63,14 @@ cout << v1 << v2;
 
 * Dodaj do klasy Pojemnik nową wersję funkcji `DrukujWszystko()`{.cpp} (np. `DrukujWszystko2()`{.cpp}). Nowa funkcja powinna wykorzystywać `operator <<`{.cpp} zamiast funkcji `Drukuj()`{.cpp} klasy `Wektor2D`{.cpp}. 
 
-##Zadanie 5
-Sprawdź na czym polega „dekorowanie nazw” przez kompilator („name mangling”).
 
-* W oknie ***Solution Explorer*** zaznacz nazwę projektu. W menu ***Project*** powinno pojawić się na samym dole podmenu ***Properties***.
-
-* W drzewku okna ***Property*** wybierz folder ***linker/debug***. Teraz w polu ***Generate Map File***  wybierz ***Yes (/MAP)***, a poniżel w polu ***Map File Name*** podaj nazwę pliku ****.map***, np.: ***$(OutDir)/Test.map***.
-
-* Przebuduj program i w katalogu ***debug*** projektu odszukaj plik ***Test.map***.
-
-* Przypatrz się nazwom funkcji wygenerowanym przez kompilator. Czy nawet bez dokładnej wiedzy na temat sposobu generowania tych nazw możesz określić które funkcje należą do których klas? Czy można umieszczać w dwóch różnych klasach funkcje o tych samych nazwach i takich samych parametrach? (Inaczej mówiąc czy linkerowi się one nie pomylą?)
-Spróbuj odnaleźć konstruktory i destruktory klas `Wektor2D`{.cpp} i `Pojemnik`{.cpp}. W jaki sposób linker odróżni konstruktor domyślny (bezparametrowy) od destruktora?
-
-* Na końcu dekorowanych nazw umieszczona jest informacja o parametrach funkcji. Czy na początku nazw metod klasy umieszczona jest informacja o typach zwracanych przez te metody (np. dla funkcji `Pojemnik::Max()`{.cpp})? Czym muszą różnic się funkcje przeciążone: czyli funkcje o tych samych nazwach i należących do tej samej klasy?
-
-* Jak myślisz, czy wśród nazw znajdujących się w pliku ****.map*** mogą wystąpić dwie identyczne nazwy funkcji?
-
-## Zadanie 6
+## Zadanie 5
 Dodaj do klasy Pojemnik funkcję `Max()`{.cpp} zwracającą największy wektor. O tym, który wektor jest większy, a który mniejszy, powinna decydować klasa `Wektor2D`{.cpp} a nie klasa `Pojemnik`{.cpp}. Zatem klasa `Pojemnik`{.cpp} powinna posługiwać się odpowiednimi operatorami zdefiniowanymi w klasie `Wektor2D`{.cpp}. Zdefiniuj również te operatory. Funkcja `Max()`{.cpp} powinna zadziałać w następujący sposób:
 ```c++
 	cout << poj.Max();
 ```
 
-## Zadanie 7
+## Zadanie 6
 Zmodyfikuj program tak aby każda klasa była umieszczona w oddzielnym pliku .h i .cpp.
 
 ***

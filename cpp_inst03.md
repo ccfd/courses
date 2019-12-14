@@ -7,6 +7,7 @@ author: W. Gryglas
 
 ## Zadanie 1
 Sprawdź działanie operatorów new i delete dla tablicy klas z konstruktorem i destruktorem np.:
+
 ```c++
 #include <iostream>
 using namespace std;
@@ -29,13 +30,14 @@ int main()
 
 * Dodaj do klasy A atrybut statyczny np. `static int mattr`{.cpp}:
 * Sprawdź jakie wartości będą drukowane (dlaczego?) jeśli wykonasz:
-    ```c++
-    for ( i=0; i<5; ++i)
-        ptr[i].mattr = i+1;
 
-    for ( i=0; i<5; ++i)
-        cout << " element " << i << " attr = " << ptr[i].mattr << endl;
-    ```
+```c++
+for ( i=0; i<5; ++i)
+ptr[i].mattr = i+1;
+
+for ( i=0; i<5; ++i)
+cout << " element " << i << " attr = " << ptr[i].mattr << endl;
+```
 
 ## Zadanie 2
 Utwórz klasę bazową `Pojazd`{.cpp} opisującą pewien pojazd
@@ -63,6 +65,7 @@ Utwórz klasę `Autobus`{.cpp} która jest klasą pochodną klasy `Pojazd`{.cpp}
 * Jaki przebieg ma zmienna typu `Autobus`{.cpp}?
 * Dodaj nowy konstruktor do klasy `Autobus`{.cpp}, który pozwoli również zainicjalizować przebieg pojazdu i sprawdź jego działanie.
 * Co się stanie jeśli wykonasz poniższy kod i co zrobić aby uniknąć tego typu niejednoznaczności?
+
 ```c++
 Autobus	 bus;
 bus = 3;

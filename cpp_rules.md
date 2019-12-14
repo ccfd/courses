@@ -36,12 +36,13 @@ Cel: Nauczenie programowania w języku C++, zapoznanie z metodologią programowa
 
 Zalecana literatura:
 
-*1.* B. Stroustrup: Język C++, WNT, Warszawa, 2002.
-2. inna dowolna książka o programowaniu w C++.
+* B. Stroustrup: Język C++, WNT, Warszawa, 2002.
+* inna dowolna książka o programowaniu w C++.
 
-Dodatkowa literatura: 
-Materiały na stronie <http://www.cplusplus.com/>
-Materiały dostarczone przez wykładowcę.
+Dodatkowa literatura:
+
+* Materiały na stronie <http://www.cplusplus.com/>
+* Materiały dostarczone przez wykładowcę.
 
 ### Efekty typu W(iedza)
 
