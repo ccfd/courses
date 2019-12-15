@@ -27,11 +27,11 @@ using namespace std;
 
 class Person
 {
-    string m_name;
+    string name;
     const int uuid; // for simplicity an int is used instead boost::uuid
-    map< int, weak_ptr<Person> > m_friends;
+    map< int, weak_ptr<Person> > friends;
 public:
-    explicit Person(string name); // for simplicity use rand() instead of instead boost::uuid to initialize the uuid
+    explicit Person(string _name); // for simplicity use rand() instead of instead boost::uuid to initialize the uuid
     ~Person();
     void AddFriend(shared_ptr<Person> &p);
     void PrintFriends();
@@ -101,6 +101,56 @@ Katie (uuid:1804289383) died
 Process finished with exit code 0
 
 ```
+
+## More practise
+
+The objects have been properly disposed. What about pointers?
+Consider following scenario:
+
+```cpp
+    .
+    .
+    .
+    cout << "-----------------------------------------" << endl;
+    {
+        auto thomas = make_shared<Person>("Thomas");
+        john->AddFriend(thomas);
+        john->PrintFriends();
+    } // thomas died when he went out of scope
+    john->PrintFriends();
+    cout << "-----------------------------------------" << endl;
+    return EXIT_SUCCESS;
+}
+```
+
+### Naive solution
+
+Add a `ClearUnreachableFriends()` method.
+
+```cpp
+    .
+    .
+    .
+    cout << "-----------------------------------------" << endl;
+    {
+        auto thomas = make_shared<Person>("Thomas");
+        john->AddFriend(thomas);
+        john->PrintFriends();
+    } // thomas died when he went out of scope
+    john->PrintFriends();
+    john->ClearUnreachableFriends();
+    john->PrintFriends();
+    cout << "-----------------------------------------" << endl;
+    return EXIT_SUCCESS;
+}
+
+```
+
+### Better solution (for ambitious)
+
+Add a container storing `people_who_likes_me` to notify them when the object is destructed.
+As a result they will be able do clean up dangling pointers.
+
 
 # STL ciąg dalszy - old
 
