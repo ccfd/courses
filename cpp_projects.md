@@ -36,7 +36,7 @@ się skompilować i zadziałać!
 
 Wybór zadania proszę zgłosić na zajęciach.
 
-**Za każdy dzień zwłoki z oddaniem projektu bedzie odejmowy1 punkt.**
+**Za każdy dzień zwłoki z oddaniem projektu bedzie odejmowany 1 punkt.**
 
 ## Lista tematów prostszych, za 25 punktów
 1. Biblioteka do działań na macierzach (wersja prostsza).
