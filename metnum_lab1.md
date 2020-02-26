@@ -1,4 +1,3 @@
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 ---
 number: 1
 course: Metody Numeryczne
@@ -7,21 +6,21 @@ author: B. Górecki
 title: Wprowadzenie
 ---
 
-Pliki do pobrania:
-- [Plik nagłówkowy gauss.h](code/metnum/gauss.h)
+Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:
 
-Rozwiązanie wielu problemów inżynierskich wymaga rozwiązania układów równań nieliniowych (wśród których choć jedno równanie jest równaniem nieliniowym).
+- [Plik nagłówkowy gauss.h](http://ccfd.github.io/courses/code/info2/gauss.h)
+- [Plik źródłowy gauss.cpp](http://ccfd.github.io/courses/code/info2/gauss.cpp)
+
+Rozwiązanie wielu problemów inżynierskich wymaga rozwiązania nieliniowych układów równań (wśród których choć jedno równanie jest równaniem nieliniowym).
 Dzisiejsze laboratorium będzie poświęcone metodzie Newtona-Raphsona pozwalającej rozwiązywać takie zagadnienia.
 W celu przypomnienia podstawowych zagadnień zaczniemy od problemu liniowego wypływającego ze statyki mechanizmu po uwolnieniu poszczególnych członów od więzów.
 Umiejętność rozwiązania zagadnienia liniowego jest nieodzownym elementem implementacji metody Newtona-Raphsona.
 
-
 # Problem liniowy
 
-
-![ ](figures/metnum_inst1/mechanizm.png "Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej)")
-Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych. Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące $G_{AB}=25$, $G_{BC}=16$ oraz $G_{CD}=53$.
-
+![ ](figures/metnum_inst1/mechanizm.png "Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej).")
+Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych.
+Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące $G_{AB}=25$, $G_{BC}=16$ oraz $G_{CD}=53$.
 
 Dla układu o zadanej na rysunku geometrii oraz ciężarach członów podanych powyżej równania równowagi wyglądają następująco:
 $$
@@ -38,7 +37,7 @@ R_{Ax}&&&+R_{Bx}&&&&& &= 0 \\
 \end{array}
 $$
 
-W postaci macierzowej układ równań zapisuje się następująco:
+W postaci macierzowej układ równań ma postać:
 $$
 \left[ \begin{array}{c c c c c c c c c} 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
  0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
@@ -72,9 +71,12 @@ R_{Dy} \\
 53 \\ \end{array} \right]
 $$
 
-
 ## Zadanie 1
-Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych. Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku `Gauss.h`. (Wskazówka: Funkcja `void Gauss(int n, double **M, double *F, double *x)` przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji). Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
+
+Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych.
+Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku `gauss.cpp`.
+(Uwaga: Funkcja `gauss(int N, double **A, double *x, double *b)` przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji).
+Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
 
 $$\left[ \begin{array}{c} R_{Ax} \\
 R_{Ay} \\
@@ -96,43 +98,76 @@ R_{Dy} \\
 		- 8.117647 \\
 		54.911765 \\ \end{array} \right]$$
 
-
 # Problem nieliniowy
 
-
 ## Metoda Newtona-Raphsona
-Metoda Newtona Raphsona wypływa z rozwinięcia funkcji wielu zmiennych w szereg Taylora, ucięcia go po członie liniowym i zapostulowania, że nieznany przyrost argumentów ma być taki, aby funkcja miała w tym miejscu wartość zero. Zapiszmy takie rozwinięcie dla funkcji $F(\vec x)$, gdzie $\vec x = [x,y]$, a $\vec h = [h_x, h_y]$.
+
+Metoda Newtona-Raphsona wynika z rozwinięcia funkcji wielu zmiennych w szereg Taylora, ucięcia go po członie liniowym i zapostulowania, że nieznany przyrost argumentów ma być taki, aby funkcja miała w tym miejscu wartość zero.
+Zapiszmy takie rozwinięcie dla funkcji $F(\vec x)$, gdzie $\vec x = [x,y]$, a $\vec h = [h_x, h_y]$.
 $$
-F(\vec x_0 + \vec h) = F(\vec x_0) + \frac{\partial F}{\partial x} h_x + \frac{\partial F}{\partial y} h_y + ...
+F(\vec x_0 + \vec h) = F(\vec x_0) + \frac{\partial F}{\partial x} h_x + \frac{\partial F}{\partial y} h_y + \ldots
 $$
-W zapisie indeksowym napiszemy dla funkcji $F_i$ (może tych funkcji być cały wektor dla $i = 1,...,n$)
+W zapisie indeksowym napiszemy dla funkcji $F_i$ (może tych funkcji być cały wektor dla $i = 1, \ldots, n$)
 $$
-F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \frac{\partial F_i}{\partial x_j} h_j + ...
+F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \sum_{j=1}^n \frac{\partial F_i}{\partial x_j} h_j + ...
 $$
 
-$\frac{\partial F_i}{\partial x_j}$ to nic innego jak macierz Jacobiego. Wiadomo, że jest to macierz kwadratowa, jako że rozwiązujemy zagadnienie mające tyle samo równań co niewiadomych. Przyrównujemy rozwinięcie do zera - pozwoli nam to wyznaczyć takie przesunięcie argumentów, że gdyby liniowe rozwinięcie funkcji wokół danego punktu było słuszne, to w jednej iteracji otrzymywalibyśmy dokładne rozwiązanie zadania. Otrzymujemy:
+Wiemy, że z pochodnych $\frac{\partial F_i}{\partial x_j}$ można utworzyć macierz Jacobiego.
+Będzie to macierz kwadratowa, jako że rozwiązujemy zagadnienie mające tyle samo równań co niewiadomych.
+Przyrównujemy rozwinięcie do zera - pozwoli nam to wyznaczyć takie przesunięcie argumentów, że gdyby liniowe rozwinięcie funkcji wokół danego punktu było słuszne, to w jednej iteracji otrzymywalibyśmy dokładne rozwiązanie zadania.
+Otrzymujemy:
 $$
-F_i(\vec x_0 + \vec h) = F_i(\vec x_0) + \frac{\partial F_i}{\partial x_j} h_j = 0
+F_i(\vec{x_0} + \vec{h}) = F_i(\vec{x_0}) + \sum_{j=1}^n \frac{\partial F_i}{\partial x_j} h_j = 0
 $$
 i tym samym
 $$
-\frac{\partial F_i}{\partial x_j} h_j = - F_i(\vec x_0)
+\sum_{j=1}^n \frac{\partial F_i}{\partial x_j} h_j = - F_i(\vec x_0)
+$$
+W postaci macierzowej:
+$$
+\left(
+\begin{array}{ccc}
+\frac{\partial F_1}{\partial x_1} & \cdots & \frac{\partial F_1}{\partial x_n} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial F_n}{\partial x_1} & \cdots & \frac{\partial F_n}{\partial x_n} \\
+\end{array}
+\right) \cdot
+\left(
+\begin{array}{c}
+h_1 \\
+\vdots \\
+h_n \\
+\end{array}
+\right) = -
+\left(
+\begin{array}{c}
+F_1 \\
+\vdots \\
+F_n \\
+\end{array}
+\right)
 $$
 
 Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
+
 - Wybierz przybliżenie startowe *$x^1$*.
 - Przypisz k = 1.
-- Wyznacz wektor $\vec h^k$, rozwiązując układ równań $\frac{\partial F_i(\vec x^k)}{\partial x_j} h_j^k = - F_i(\vec x^k)$.
+- Wyznacz wektor $\vec h^k$, rozwiązując układ równań $\sum_{j=1}^n \frac{\partial F_i(\vec x^k)}{\partial x_j} h_j^k = - F_i(\vec x^k)$ , $i=1, \ldots, n$.
 - Zaktualizuj przybliżenie rozwiązania: $\vec x^{k+1} = \vec x^k + \vec h^k$.
 - Przypisz $k = k+1$.
-- Wróc do punktu 3. i powtarzaj aż do osiągnięcia zbieżności.
+- Wróć do punktu 3. i powtarzaj aż do osiągnięcia zbieżności.
 
+**Uwaga:** Metoda Newtona-Raphsona jest niezawsze zbieżna.
 
 ## Zadanie 2
 
 ![ ](figures/metnum_inst1/czworobok.png)
 
-Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I). Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych. Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona. Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów $(x_0,x_1)$ i $(x_2,x_3)$, a równania więzów będą wynikać z odchylenia członu kierującego o kąt $\alpha$ od poziomu oraz długości dwóch pozostałych członów). Tym samym równania członów są postaci:
+Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I).
+Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych.
+Do jego rozwiązania wykorzystamy metodę Newtona-Raphsona.
+Układ rozważymy we współrzędnych naturalnych (nieznanymi wielkościami będą współrzędne punktów $(x_0,x_1)$ i $(x_2,x_3)$, a równania więzów będą wynikać z odchylenia członu kierującego o kąt $\alpha$ od poziomu oraz długości dwóch pozostałych członów).
+Tym samym równania członów są postaci:
 $$
 \begin{aligned}
 x_0 &= 5 \cos\alpha \\
@@ -149,7 +184,7 @@ x_2^2-2x_0 x_2 + x_0^2 + x_3^2-2x_1 x_3 +x_1^2 -4  \\
 -6x_2+x_2^2+x_3^2-27
 \end{array} \right]
 $$
-Wyprowadziwszy powyższe równania możemy analitycznie policzyć macierz Jacobiego:
+Wyprowadziwszy powyższe równania możemy analitycznie obliczyć macierz Jacobiego:
 $$
 J = \frac{\partial \vec F}{\partial \vec x} = 
 \left[ \begin{array}{c c c c}
@@ -161,22 +196,28 @@ J = \frac{\partial \vec F}{\partial \vec x} =
 \right]
 $$
 
-
 ## Zadania do wykonania
-- Napisz program, który rozwiąże zadanie o położeniach przy wykorzystaniu metody Newtona-Raphsona. W tym celu stwórz następujące funkcje:
-- `void Constraints(double *x, double *F);`{.cpp}
-- `void JacobiMatrix(double **J, double *x);`{.cpp}
-- `void NewtonRaphson(double *x);`{.cpp}
-- Zmodyfikuj program tak, aby nie wymagał analitycznego obliczenia macierzy Jacobiego, ale potrafił numerycznie obliczyć tę macierz. W tym celu stwórz dodatkową funkcję `void JacobiMatrixFD(double **J, double *x);`{.cpp} przybliżającą poprawną macierz Jacobiego macierzą obliczoną z użyciem metody różnic skończonych (ang. *finite difference*). Można tego dokonać z użyciem algorytmu zapisanego w poniższym pseudokodzie (metoda różnic skończonych 2-ego rzędu):
 
-- Wybierz małą wartość, np. $\epsilon = 1e-8$, stwórz wektor $\vec x'$ i $\vec x''$.
-- Pętla po wszystkich czterech kolumnach:
-- Przypisz do $\vec x'$ i $\vec x''$ bieżącą wartość $\vec x$.
-- Zwiększ (zaburz) *i*-tą składową $\vec x'$ o $\epsilon$, a tę samą składową $\vec x''$ zmniejsz o $\epsilon$.
-- Wyznacz wektory wartości funkcji $\vec F (\vec x')$ oraz $\vec F (\vec x'')$.
-- Do *i*-tej kolumny macierzy $J$ wpisz wartości $\frac{\vec F (\vec x') - \vec F (\vec x'')}{2\epsilon}$.
+- Napisz program, który rozwiąże zadanie o położeniach przy wykorzystaniu metody Newtona-Raphsona.
+W tym celu stwórz następujące funkcje:
 
-W ramach testów sprawdź, czy macierz Jacobiego dla punktu startowego obliczona metodą dokładną i numeryczną ma te same wartości. Dla punktu startowego $\vec x = [0, 5, 3, 6]$ macierz Jacobiego ma wartości
+    - `void Constraints(double *x, double *F);`{.cpp}
+    - `void JacobiMatrix(double **J, double *x);`{.cpp}
+    - `void NewtonRaphson(double *x);`{.cpp}
+  
+- Zmodyfikuj program tak, aby nie wymagał analitycznego obliczenia macierzy Jacobiego, ale mógł numerycznie obliczyć tę macierz.
+W tym celu stwórz dodatkową funkcję `void JacobiMatrixFD(double **J, double *x);`{.cpp} przybliżającą poprawną macierz Jacobiego macierzą obliczoną z użyciem metody różnic skończonych (ang. *finite difference*).
+Można tego dokonać z użyciem algorytmu zapisanego w poniższym pseudokodzie (metoda różnic skończonych 2-ego rzędu):
+
+    - Wybierz małą wartość, np. $\epsilon = 1e-8$, stwórz wektory $\vec x'$ i $\vec x''$.
+    - Wykonaj pętlę po wszystkich czterech kolumnach:
+        - Przypisz do $\vec x'$ i $\vec x''$ bieżącą wartość $\vec x$.
+        - Zwiększ (zaburz) *i*-tą składową $\vec x'$ o $\epsilon$, a tę samą składową $\vec x''$ zmniejsz o $\epsilon$.
+        - Wyznacz wektory wartości funkcji $\vec F (\vec x')$ oraz $\vec F (\vec x'')$.
+        - Do *i*-tej kolumny macierzy $J$ wpisz wartości $\frac{\vec F (\vec x') - \vec F (\vec x'')}{2\epsilon}$.
+
+W ramach testów sprawdź, czy macierz Jacobiego dla punktu startowego obliczona metodą dokładną i numeryczną ma te same wartości.
+Dla punktu startowego $\vec x = [0, 5, 3, 6]$ macierz Jacobiego ma postać
 $$
 J = \left[ \begin{array}{c c c c}
 1 & 0 & 0 & 0 \\
@@ -184,5 +225,3 @@ J = \left[ \begin{array}{c c c c}
 -6 & -2 & 6 &2 \\
 0 & 0 & 0 & 12 \\ \end{array} \right]
 $$
-
-
