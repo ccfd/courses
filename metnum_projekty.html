@@ -9,10 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="P. Szałtys, rev. W. Gryglas, eng. T.Wacławczyk" />
 
 
-<title>cs2_lab04.utf8</title>
+<title>metnum_projekty.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -625,14 +624,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="metnum_projekty.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/cs2_lab04.md">
+  <a href="https://github.com/ccfd/courses/edit/master/metnum_projekty.md">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -658,40 +657,56 @@ div.tocify {
 </div>
 
 
-<div id="numerical-solution-of-ordinary-differential-equations" class="section level1">
-<h1>Numerical solution of ordinary differential equations</h1>
-<p>Files for the present tutorial can be found using following links:</p>
-<ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/rk4.h">Header file rk4.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/rk4.cpp">Source file rk4.cpp</a></li>
-</ul>
-<div id="introduction" class="section level2">
-<h2>1. Introduction</h2>
-<p>The goal of the present laboratory is to introduce the basic methods used for solution (integration) of the first order ordinary differential equations (ODE’s). Differential equations are used for mathematical modelling of almost all physical phenomena we accounter in the real world. Most of the equations derived for description of the given phenomena are to complex to be solved analytically. In particular, the most difficult to solve are equations including non-linear terms. Interestingly, almost all physical phenomena in reality (and their models too) are non-linear hence the world is non-linear (complex) place …</p>
-<p>As engineer needs solutions and hence anlytical solution of the problems are usually not posssible, we often use numerical methods to obtain approximate solutions of complex problems. The basic example here is the Euler’s method that is the simplest, first-order accurate technique for solution of ODE’s. The second approach to the discussed problem will be carried out using 4-th order accurate Runge-Kutta method. It is an example of multi-step method with high order of accuracy and relatively higher stability in comparison to the Euler’s method.</p>
+<div id="tematy-projektów" class="section level1">
+<h1>Tematy projektów</h1>
+<p>Projekty należy wykonać do ostatniego dnia semestru. Poniżej przedstawione są proponowane tematy. Szczegółowych informacji oraz danych definiujących zagadnienie mogą dostarczyć prowadzący laboratoria osobiście.</p>
+<div id="projekt-1" class="section level2">
+<h2>Projekt 1</h2>
+<p>Rozwiązanie postaci i częstości drgań własnych płyty kwadratowej (macierz bilaplasjanu uzyskana z dyskretyzacji metodą różnic skończonych).</p>
 </div>
-<div id="explicit-eulers-method" class="section level2">
-<h2>2. Explicit Euler’s method</h2>
-<p>Euler’s method will be used to solve initial value problem in the form: <span class="math display">\[ \frac{dy}{dt} = f(t,y) \]</span> <span class="math display">\[ y(t_0) = y_0 \]</span> Using following iterative scheme: <span class="math display">\[ t_{i+1} = t_{i} + h \]</span> <span class="math display">\[ y_{i+1} = y_i + h \cdot f(t_i , y_i ) \]</span> where <span class="math inline">\(h\)</span> – is the size of integration step, <span class="math inline">\(y_{i+1}\)</span> – solution at <span class="math inline">\(i+1\)</span> time level, <span class="math inline">\(y_i\)</span> – solution on the previous <span class="math inline">\(i-th\)</span> time level and <span class="math inline">\(f\)</span> - function defining the right hand side of the given ODE.</p>
+<div id="projekt-2" class="section level2">
+<h2>Projekt 2</h2>
+<p>Wyznaczenie wektorów i wartości własnych laplasjanu dla geometrii prostokątnej (macierz z dyskretyzacji elementów skończonych).</p>
 </div>
-<div id="exercises" class="section level2">
-<h2>3. Exercises</h2>
-<p>Consider the following initial value problem: <span class="math display">\[
-\left\{
-\begin{array}{ccc}
-\frac{dy}{dt} &amp;=&amp; \lambda \cdot y(t) \\
-y(t_0) &amp;=&amp; y_0 \\
-\end{array}
-\right.
-\]</span> The exact solution to this problem has a form: <span class="math display">\[ y(t) = y_0 · e^{\lambda(t-t_0)} \]</span></p>
-<ol style="list-style-type: decimal">
-<li>Write a program solving given initial value problem using Euler’s method.</li>
-<li>Write a program solving given initial value problem using RK4.</li>
-<li>In both cases, display on the screen following values of <span class="math inline">\(t_i\)</span>, <span class="math inline">\(y_i\)</span> and the error defined as <span class="math inline">\(\varepsilon_i =\frac{|y_i-y_{i,\text{analytical}}|}{|y_{i,\text{analytical}}|}\)</span>.</li>
-<li>Modify the program in a way it makes computations using both methods for a given time step size <span class="math inline">\(h\)</span> or for the given number of time steps <span class="math inline">\(2^0\)</span>, <span class="math inline">\(2^1\)</span>, , <span class="math inline">\(2^6\)</span>. <span class="math inline">\(T=n\cdot h\)</span> is the total intergration time (set by the user).<br />
-Print to the file: number of time steps, time step <span class="math inline">\(h\)</span>, error of the Euler and RK4 methods <em>only</em> for the last time step.</li>
-<li>Prepare diagram showing errors of both methods dependent of the time step size <span class="math inline">\(h\)</span> and estimate the order of their convergence.</li>
-</ol>
+<div id="projekt-3" class="section level2">
+<h2>Projekt 3</h2>
+<p>Zmodyfikuj projekt z belką z laboratorium tak, aby macierz była przechowywana w postaci macierzy rzadkiej (w formacie Compact Row Storage) i rozwiązywana przez gradient sprzężony. Porównaj czas rozwiązania całego zagadnienia z czasem rozwiązania bez jawnego tworzenia macierzy w pamięci.</p>
+</div>
+<div id="projekt-4" class="section level2">
+<h2>Projekt 4</h2>
+<p>Zmodyfikuj projekt z belką z laboratorium tak, aby macierz była przechowywana w postaci macierzy rzadkiej (format Matlab’a - przechowujący dla każdego niezerowego elementu jego i-ty oraz j-ty indeks) i rozwiązywana przez gradient sprzężony. Porównaj czas rozwiązania całego zagadnienia z czasem rozwiązania bez jawnego tworzenia macierzy w pamięci.</p>
+</div>
+<div id="projekt-5" class="section level2">
+<h2>Projekt 5</h2>
+<p>Niestacjonarne równanie dyfuzji (przewodnictwa ciepła) na kwadracie metodą wielokrokową Adamsa-Bashfortha oraz niejawnym Eulerem.</p>
+</div>
+<div id="projekt-6" class="section level2">
+<h2>Projekt 6</h2>
+<p>Rozwiązanie zagadnienia drgań belki w czasie z wykorzystaniem bazy modalnej (kilku-kilkunastu pierwszych postaci drgań zamiast tysięcy stopni swobody). Metoda powszechnie stosowana w dynamice odkształcalnych układów wieloczłonowych (np. przez program Adams).</p>
+</div>
+<div id="projekt-7" class="section level2">
+<h2>Projekt 7</h2>
+<p>Rozwiąż nieliniowe zagadnienie o położeniach (z TMM) metodą Newtona-Raphsona z macierzą Jacobiego obliczaną numerycznie za pomocą metody różnic skończonych</p>
+</div>
+<div id="projekt-8" class="section level2">
+<h2>Projekt 8</h2>
+<p>Wyznacz harmoniki (postacie i częstości drgań własnych) imbryczka do herbaty (geometria i gotowa siatka przekazana przez prowadzących).</p>
+</div>
+<div id="projekt-9" class="section level2">
+<h2>Projekt 9</h2>
+<p>Dokonaj analizy wartości wskaźnika uwarunkowania i promienia spektralnego macierzy odpowiadającej za wykonywanie kolejnych iteracji w metodzie Gaussa-Seidla oraz SOR dla różnych smukłości belki oraz gęstości siatki.</p>
+</div>
+<div id="projekt-10" class="section level2">
+<h2>Projekt 10</h2>
+<p>Wprowadź nieliniową charakterystykę materiału dla swojej belki i rozwiąż zagadnienie.</p>
+</div>
+<div id="projekt-11" class="section level2">
+<h2>Projekt 11</h2>
+<p>Napisz solwer MES dla zagadnień wytrzymałościowych dla siatek niestrukturalnych (trójkątne elementy). Jawne wzory na lokalne macierze sztywności i masowe zostaną podane przez prowadzących.</p>
+</div>
+<div id="projekt-12" class="section level2">
+<h2>Projekt 12</h2>
+<p>Zaimplementuj algorytm QR. Wyznacz rząd macierzy dla zagadnienia z belką przed i po nałożeniu warunków brzegowych (zamurowań). Wyznacz wektory i wartości własne macierzy Laplace’a otrzymanej z dyskretyzacji różnic skończonych (2D).</p>
 </div>
 </div>
 
