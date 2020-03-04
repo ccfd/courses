@@ -12,7 +12,7 @@
 <meta name="author" content="B. Górecki" />
 
 
-<title>Metoda Elementów skończonych</title>
+<title>Metoda Elementów Skończonych</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -718,14 +720,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a class="hidden">
+  <a href="metnum_lab2.pdf">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/metnum_lab2.md">
+  <a href="https://github.com/ccfd/courses/edit/master/metnum_lab2.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     Edit on GitHub
@@ -747,24 +749,27 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Metoda Elementów skończonych</h1>
+<h1 class="title toc-ignore">Metoda Elementów Skończonych</h1>
 <h4 class="author">B. Górecki</h4>
 
 </div>
 
 
+<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
+<ul>
+<li><a href="http://ccfd.github.io/courses/code/metnum/MesLib.h">Plik nagłówkowy MesLib.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/metnum/winbgi2.h">Plik nagłówkowy winbgi2.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/metnum/winbgi2.cpp">Plik źródłowy winbgi2.cpp</a></li>
+</ul>
 <div id="wprowadzenie" class="section level1">
 <h1>Wprowadzenie</h1>
 <p>Niniejszą instrukcją rozpoczynamy cykl laboratoriów, z których każde kolejne będzie rozwinięciem poprzedniego i wnioski z poprzedniego będą stanowiły motywację do zastosowania kolejnych metod. Tym samym należy zadbać o to, aby zadania z każdego laboratorium były wykonywane do końca, czy to na zajęciach czy w domu. Dziś zaznajomimy się ze sformułowaniem metody elementów skończonych dla jednego elementu czworokątnego. Dla uproszczenia nie będziemy stosować transformacji geometrycznych występujących w rzeczywistym sformułowaniu metody elementów skończonych, więc faktycznie będziemy operować zawsze na jednostkowych elementach kwadratowych.</p>
 </div>
 <div id="sformułowanie-algebraiczne-dla-jednego-elementu" class="section level1">
 <h1>Sformułowanie algebraiczne dla jednego elementu</h1>
-<p>Zagadnienie wytrzymałości konstrukcji dla jednego elementu skończonego ma następujące sformułowanie algebraiczne: Elementowi skończonemu przypisana jest tzw. macierz sztywności <span class="math inline">\(K\)</span> reprezentująca jego sztywność na poszczególne rodzaje odkształceń (przesunięć jego wierzchołków), wektor przesunięć <span class="math inline">\(\vec d\)</span>, jakim ulegną poszczególne wierzchołki elementu pod obciążeniem oraz wektor sił węzłowych <span class="math inline">\(\vec F\)</span> reprezentujący odpowiednio przeliczone siły (bądź obciążenia ciągłe) przyłożone do węzłów elementu.</p>
-<p><span class="math display">\[
-K \vec d = \vec F
-\]</span></p>
-<p>Wektor przesunięć (ang. <em>displacement</em>) zawiera odpowiednio przesunięcia względem osi <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> kolejnych węzłów elementu (numeracja węzłów pokazana jest na Rysunku 1). Wektor sił węzłowych <span class="math inline">\(\vec F\)</span> ma analogiczną postać. Poniżej przedstawiona jest również macierz sztywności <span class="math inline">\(K\)</span>.</p>
-<p><span class="math display">\[
+<p>Zagadnienie wytrzymałości konstrukcji dla jednego elementu skończonego ma następujące sformułowanie algebraiczne: Elementowi skończonemu przypisana jest tzw. macierz sztywności <span class="math inline">\(K\)</span> reprezentująca jego sztywność na poszczególne rodzaje odkształceń (przesunięcia jego wierzchołków), wektor przesunięć <span class="math inline">\(\vec{d}\)</span>, jakim ulegną poszczególne wierzchołki elementu pod obciążeniem oraz wektor sił węzłowych <span class="math inline">\(\vec{F}\)</span> reprezentujący odpowiednio przeliczone siły (bądź obciążenia ciągłe) przyłożone do węzłów elementu. <span class="math display">\[
+K \vec{d} = \vec{F}
+\]</span> Wektor przesunięć (ang. <em>displacement</em>) zawiera odpowiednio przesunięcia względem osi <span class="math inline">\(x\)</span> oraz <span class="math inline">\(y\)</span> kolejnych węzłów elementu (numeracja węzłów pokazana jest na Rys. 1). Wektor sił węzłowych <span class="math inline">\(\vec{F}\)</span> ma analogiczną postać. Poniżej przedstawiona jest również macierz sztywności <span class="math inline">\(K\)</span>. <span class="math display">\[
 \vec d = \left[ \begin{array}{c} x_0 \\ y_0 \\ x_1 \\ y_1 \\ x_2 \\ y_2 \\ x_3 \\ y_3 \\ \end{array} \right] \quad \quad \quad \vec F = \left[ \begin{array}{c} F_{x_0} \\ F_{y_0} \\ F_{x_1} \\ F_{y_1} \\ F_{x_2} \\ F_{y_2} \\ F_{x_3} \\ F_{y_3} \\ \end{array} \right]
 \]</span> <span class="math display">\[
  K = \frac{E}{1-\nu^2} \left[ \begin{array}{c c c c c c c c} \frac{1}{2} - \frac{\nu}{6} &amp; \frac{1}{8} + \frac{\nu}{8} &amp; -\frac{1}{4} - \frac{\nu}{12} &amp; -\frac{1}{8} + \frac{3}{8}\nu &amp; -\frac{1}{4} + \frac{\nu}{12} &amp; -\frac{1}{8} - \frac{\nu}{8} &amp; \frac{\nu}{6} &amp; \frac{1}{8} - \frac{3}{8}\nu \\
@@ -776,13 +781,13 @@ K \vec d = \vec F
 \frac{\nu}{6} &amp; -\frac{1}{8} + \frac{3}{8}\nu &amp; -\frac{1}{4} + \frac{\nu}{12} &amp; \frac{1}{8} + \frac{\nu}{8} &amp; -\frac{1}{4} - \frac{\nu}{12} &amp; \frac{1}{8} - \frac{3}{8}\nu &amp; \frac{1}{2} - \frac{\nu}{6} &amp; -\frac{1}{8} - \frac{\nu}{8} \\
 \frac{1}{8} - \frac{3}{8}\nu &amp; -\frac{1}{4} - \frac{\nu}{12} &amp; \frac{1}{8} + \frac{\nu}{8} &amp; -\frac{1}{4} + \frac{\nu}{12} &amp; -\frac{1}{8} + \frac{3}{8}\nu &amp; \frac{\nu}{6} &amp; -\frac{1}{8} - \frac{\nu}{8} &amp; \frac{1}{2} - \frac{\nu}{6} \\ \end{array} \right]
 \]</span></p>
-
-<p>Macierz sztywności elementu <span class="math inline">\(K\)</span>, dopóki nie zostaną na układ narzucone więzy unieruchamiające układ w przestrzeni jako ciało sztywne, jest osobliwa. Aby móc obliczyć przemieszczenia węzłów elementu pod działaniem określonych sił, nakładamy najpierw więzy. Załóżmy, że w naszym przypadku będą to więzy zamurowania lewego brzegu elementu, tzn. <span class="math inline">\(x_0 = y_0 = x_3 = y_3 = 0\)</span>. W postaci macierzowej powyższe cztery równania są równoznaczne z zastąpieniem wierszy o indeksach 0, 1, 6 i 7 jedynkami na głównej diagonali macierzy i przypisaniu zer na tych indeksach w wektorze prawej strony. Po narzuceniu więzów macierz nie jest już osobliwa i można rozwiązać układ choćby procedurą Gaussa.</p>
+<p><img src="metnum_lab2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Macierz sztywności elementu <span class="math inline">\(K\)</span>, dopóki nie zostaną na układ narzucone więzy unieruchamiające układ w przestrzeni jako ciało sztywne, jest osobliwa. Aby móc obliczyć przemieszczenia węzłów elementu pod działaniem określonych sił, nakładamy najpierw więzy. Załóżmy, że w naszym przypadku będą to więzy zamurowania lewego brzegu elementu, tzn. <span class="math inline">\(x_0 = y_0 = x_3 = y_3 = 0\)</span>. W postaci macierzowej powyższe cztery równania są równoznaczne z zastąpieniem wierszy o indeksach <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(6\)</span> i <span class="math inline">\(7\)</span> jedynkami na głównej diagonali macierzy i przypisaniu zer na tych indeksach w wektorze prawej strony. Po narzuceniu więzów macierz nie jest już osobliwa i można rozwiązać układ choćby procedurą Gaussa.</p>
 <div id="zadania" class="section level2">
 <h2>Zadania</h2>
 <ul>
-<li>Napisz program, w którym zaalokujesz miejsce na macierz sztywności elementu, wektor przemieszczeń węzłowych oraz wektor prawych stron. Wykorzystaj tablicę <code>fix[]</code> (opis poniżej) do narzucenia warunków brzegowych i rozwiąż zagadnienie procedurą Gaussa. Jako wymuszenie przyłóż siłę ciągnącą w dół prawy dolny węzeł.</li>
-<li>Zmodyfikuj w programie obciążenie: przyłóż siłę skierowaną pionowo w dół do obu węzłów na prawej krawędzi. Rozwiąż zadanie. Następnie rozciągnij element. Sprawdź wpływ współczynnika Poissona na rozwiązanie. Pobaw się programem, aby zaznajomić się z zadawaniem obciążeń i ruchami poszczególnych stopni swobody.</li>
+<li>Napisz program, w którym zaalokujesz miejsce na macierz sztywności elementu, wektor przemieszczeń węzłowych oraz wektor prawych stron. Wykorzystaj tablicę <code>fix[]</code> (opis poniżej) do narzucenia warunków brzegowych i rozwiąż zagadnienie metodą Gaussa. Jako wymuszenie przyłóż siłę ciągnącą w dół prawy dolny węzeł.</li>
+<li>Zmodyfikuj w programie obciążenie: przyłóż siłę skierowaną pionowo w dół do obu węzłów na prawej krawędzi. Rozwiąż zadanie. Następnie rozciągnij element. Sprawdź wpływ współczynnika Poissona na rozwiązanie. Sprawdź różne modyfikacje programu, aby zaznajomić się z zadawaniem obciążeń i ruchami poszczególnych stopni swobody.</li>
 <li>Zmień sposób zamurowania na inny. Sprawdź, co się stanie z rozwiązaniem, gdy w ogóle nie narzucisz warunków brzegowych lub nie w pełni odbierzesz sztywne stopnie swobody układu.</li>
 <li>Spróbuj stworzyć teraz belkę składającą się z dwóch elementów skończonych.</li>
 </ul>
@@ -791,39 +796,49 @@ K \vec d = \vec F
 <div id="wskazówki-implementacyjne" class="section level1">
 <h1>Wskazówki implementacyjne</h1>
 <ul>
-<li>Elementy w belce mają być indeksowane od 0 do <span class="math inline">\(m_x*m_y-1\)</span>, poczynając od elementu w lewym dolnym rogu i indeksując je po kolei w prawo. Po dojściu do końca belki, zaczynamy od lewego brzegu analogicznie indeksować kolejnymi liczbami elementy w pasie położonym o jeden element wyżej niż dopiero co poindeksowany pas. W identyczny sposób indeksowane są węzły. Takiego indeksowania wymaga uproszczenie implementacji (brak transformacji geometrycznej macierzy sztywności) oraz prostota obecnej funkcji do rysowania całego układu.</li>
+<li>Elementy w belce mają być indeksowane od <span class="math inline">\(0\)</span> do <span class="math inline">\(m_x*m_y-1\)</span>, poczynając od elementu w lewym dolnym rogu i indeksując je po kolei w prawo. Po dojściu do końca belki, zaczynamy od lewego brzegu analogicznie indeksować kolejnymi liczbami elementy w pasie położonym o jeden element wyżej niż dopiero co indeksowany pas. W identyczny sposób indeksowane są węzły. Takiego indeksowania wymaga uproszczenie implementacji (brak transformacji geometrycznej macierzy sztywności) oraz prostota obecnej funkcji do rysowania całego układu.</li>
 <li><code>mx</code> i <code>my</code> oznaczają odpowiednio liczbę elementów w poziomie i w pionie w prostokątnej belce. Muszą to być zmienne globalne.</li>
-<li>Funkcja do rysowania wymaga użycia globalnej tablicy <code>int fix[2*(mx+1)*(my+1)]</code> o długości równej liczbie stopni swobody w siatce. Jeśli na danej pozycji w tablicy stoi zero, przyjmujemy, że ten stopień swobody ulega przemieszczeniom. Wpisanie na danym miejscu wartości 1, oznacza, że stopień swobody o tym indeksie jest odebrany (tak układ zostanie narysowany przez procedurę rysującą <code>draw</code>). Oczywiście poprawność sformułowania matematycznego tak przyjętej konwencji i definicji tablicy <code>fix[]</code> leży w pełni po stronie użytkownika. Takie zdefiniowanie tablicy <code>fix</code> bardzo ułatwia implementację warunków brzegowych.</li>
+<li>Funkcja do rysowania wymaga użycia globalnej tablicy <code>int fix[2*(mx+1)*(my+1)]</code> o długości równej liczbie stopni swobody w siatce. Jeśli na danej pozycji w tablicy stoi zero, przyjmujemy, że ten stopień swobody ulega przemieszczeniom. Wpisanie na danym miejscu wartości <span class="math inline">\(1\)</span>, oznacza, że stopień swobody o tym indeksie jest odebrany (tak układ zostanie narysowany przez procedurę rysującą <code>draw</code>). Oczywiście poprawność sformułowania matematycznego tak przyjętej konwencji i definicji tablicy <code>fix[]</code> leży w pełni po stronie użytkownika. Takie zdefiniowanie tablicy <code>fix</code> bardzo ułatwia implementację warunków brzegowych.</li>
 <li>Początek głównego pliku z kodem programu powinien mieć następującą postać, aby uniknąć problemów z kolejnością definicji, nagłówkami i linkowaniem. Poniższy przykład pokazuje też sposób użycia biblioteki <code>MesLib.h</code> w celu narysowania rozwiązanego układu.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&quot;winbgi2.h&quot;</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="at">const</span> <span class="dt">int</span> mx = <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="at">const</span> <span class="dt">int</span> my = <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="dt">int</span> fix[<span class="dv">2</span>*(mx<span class="dv">+1</span>)*(my<span class="dv">+1</span>)];</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="pp">#include </span><span class="im">&quot;winbgi2.h&quot;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="at">const</span> <span class="dt">int</span> mx = <span class="dv">1</span>;                      <span class="co">// liczba elementow w poziomie</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="at">const</span> <span class="dt">int</span> my = <span class="dv">1</span>;                      <span class="co">// liczba elementow w pionie</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="at">const</span> <span class="dt">int</span> N = <span class="dv">2</span> * (mx + <span class="dv">1</span>) * (my + <span class="dv">1</span>); <span class="co">// calkowita liczba stopni swobody</span></a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="pp">#include </span><span class="im">&quot;MesLib.h&quot;</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="dt">int</span> fix[N];</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="dt">int</span> main()</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">{</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">   <span class="co">// Tu stworz caly program</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">   <span class="co">// Narysuj uklad</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">   graphics(<span class="dv">700</span>, <span class="dv">700</span>);</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">   scale(<span class="dv">0</span>, <span class="fl">0.5</span>*(my - mx - <span class="dv">3</span>), mx + <span class="dv">3</span>, <span class="fl">0.5</span>*(my + mx + <span class="dv">3</span>));</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">   title(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;MES&quot;</span>);</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">   draw(d, F);</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">   wait();</a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">   </a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">   <span class="co">// Zakoncz</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">   <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="pp">#include </span><span class="im">&quot;MesLib.h&quot;</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="dt">int</span> main() {</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">   <span class="co">// Tu stworz caly program</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">   <span class="co">// Narysuj uklad</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">   graphics(<span class="dv">700</span>, <span class="dv">700</span>);</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">   scale(<span class="dv">0</span>, <span class="fl">0.5</span>*(my - mx - <span class="dv">3</span>), mx + <span class="dv">3</span>, <span class="fl">0.5</span>*(my + mx + <span class="dv">3</span>));</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">   title(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;MES&quot;</span>);</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">   draw(d, F);</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">   wait();</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">   </a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">   <span class="co">// Zwolnij pamiec i zakoncz</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">   <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">}</a></code></pre></div>
 </div>
 <div id="krótka-dokumentacja-biblioteki-meslib.h" class="section level1">
 <h1>Krótka dokumentacja biblioteki <em>MesLib.h</em></h1>
-<p>Biblioteka <em>MesLib.h</em> została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację i zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje: - <code>int P(int x, int y, int z)</code> - funkcja, która zwraca globalny indeks stopnia swobody przy założeniu, że <em>x</em> to jego indeks w kierunku x (liczony od 0 na lewej krawędzi), <em>y</em> to jego indeks w kierunku osi y (liczony od 0 na dolnej powierzchni belki), a <em>z</em> to 0 lub 1 zależnie od tego, czy interesuje nas stopień swobody w kierunku poziomym czy pionowym. - <code>int Q(int x, int y)</code> - funkcja zwracająca globalny indeks elementu przy założeniu, że jest to element o indeksie <em>x</em> w kierunku poziomym i o indeksie <em>y</em> w kierunku pionowym. - <code>int DOF(int elidx, int elidy, int locdofid)</code> - funkcja zwracająca globalny indeks stopnia swobody przy założeniu, że <em>elidx</em> oznacza indeks elementu w kierunku poziomym, <em>elidy</em> indeks elementu w kierunku pionowym, a <em>locdofid</em> to liczba od 0 do 7 oznaczająca lokalny indeks danego stopnia swobody. Lokalna indeksacja stopni swobody jest następująca: w węźle o indeksie 0 przesunięcia w kierunku poziomym i pionowym to odpowiednio <span class="math inline">\(0-wy\)</span> i <span class="math inline">\(1-szy\)</span> stopień swobody, w węźle o indeksie <span class="math inline">\(1\)</span> występują 2. i 3. stopień swobody itd. - Lokalna macierz sztywności jest zdefiniowana w dwuwymiarowej tablicy <code>K[8][8]</code>. Przy składaniu macierzy sztywności powinna być w programie przemnożona przez czynnik <code>Md</code> zawierający wpływ modułu Younga oraz współczynnika Poissona oraz przez grubość elementu. - Lokalna macierz masowa jest zdefiniowana w dwuwymiarowej tablicy <code>M[8][8]</code>. Przy składaniu globalnej macierzy masowej powinna być w programie przemnożona przez czynnik <code>Mm</code> zawierający wpływ gęstości materiału oraz dodatkowo należy ją przemnożyć przez grubość elementu. - <code>void Gauss(int n, double **M, double *f, double *x)</code> - procedura eliminacji Gaussa rozwiązująca układ równań o macierzy zapisanej w dynamicznie zaalokowanej dwuwymiarowej tablicy <code>M</code> o wymiarze <code>n</code>, i wektorze prawej strony <code>f</code>. Wynik zostanie wpisany do miejsc w pamięci wskazywanych przez wskaźnik <code>*x</code>. - <code>void draw(double *p, double *f)</code> - funkcja rysująca cały układ odkształconych elementów. <code>p</code> to wektor przesunięć poszczególnych stopni swobody, a <code>f</code> to wektor sił węzłowych w tych stopniach swobody. Ponadto funkcja wykorzystuje globalnie zadeklarowaną tablicę <code>fix</code>, z której czerpie informację, które stopnie swobody układu są odebrane.</p>
+<p>Biblioteka <code>MesLib.h</code> została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację metody elementów skończonych. Zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje:</p>
+<ul>
+<li><code>int P(int x, int y, int z)</code> - funkcja, która zwraca globalny indeks stopnia swobody przy założeniu, że <code>x</code> to jego indeks w kierunku <span class="math inline">\(x\)</span> (liczony od <span class="math inline">\(0\)</span> na lewej krawędzi), <code>y</code> to jego indeks w kierunku osi <span class="math inline">\(y\)</span> (liczony od <span class="math inline">\(0\)</span> na dolnej powierzchni belki), a <code>z</code> to <span class="math inline">\(0\)</span> lub <span class="math inline">\(1\)</span> zależnie od tego czy interesuje nas stopień swobody w kierunku poziomym, czy pionowym.</li>
+<li><code>int Q(int x, int y)</code> - funkcja zwracająca globalny indeks elementu przy założeniu, że jest to element o indeksie <code>x</code> w kierunku poziomym i o indeksie <code>y</code> w kierunku pionowym.</li>
+<li><code>int DOF(int elidx, int elidy, int locdofid)</code> - funkcja zwracająca globalny indeks stopnia swobody przy założeniu, że <code>elidx</code> oznacza indeks elementu w kierunku poziomym, <code>elidy</code> indeks elementu w kierunku pionowym, a <code>locdofid</code> to liczba od <span class="math inline">\(0\)</span> do <span class="math inline">\(7\)</span> oznaczająca lokalny indeks danego stopnia swobody. Lokalna indeksacja stopni swobody jest następująca: w węźle o indeksie <span class="math inline">\(0\)</span> przesunięcia w kierunku poziomym i pionowym to odpowiednio <span class="math inline">\(0\)</span>-wy i <span class="math inline">\(1\)</span>-szy stopień swobody, w węźle o indeksie <span class="math inline">\(1\)</span> występują <span class="math inline">\(2.\)</span> i <span class="math inline">\(3.\)</span> stopień swobody itd.</li>
+<li>Lokalna macierz sztywności jest zdefiniowana w dwuwymiarowej tablicy <code>K[8][8]</code>. Przy składaniu macierzy sztywności powinna być w programie przemnożona przez czynnik <code>Md</code> zawierający wpływ modułu Younga oraz współczynnika Poissona oraz przez grubość elementu.</li>
+<li>Lokalna macierz masowa jest zdefiniowana w dwuwymiarowej tablicy <code>M[8][8]</code>. Przy składaniu globalnej macierzy masowej powinna być w programie przemnożona przez czynnik <code>Mm</code> zawierający wpływ gęstości materiału oraz dodatkowo należy ją przemnożyć przez grubość elementu.</li>
+<li><code>void Gauss(int n, double **M, double *f, double *x)</code> - procedura eliminacji Gaussa rozwiązująca układ równań o macierzy zapisanej w dynamicznie zaalokowanej dwuwymiarowej tablicy <code>M</code> o wymiarze <code>n</code>, i wektorze prawej strony <code>f</code>. Wynik zostanie wpisany do miejsc w pamięci wskazywanych przez wskaźnik <code>*x</code>.</li>
+<li><code>void draw(double *p, double *f)</code> - funkcja rysująca cały układ odkształconych elementów. <code>p</code> to wektor przesunięć poszczególnych stopni swobody, a <code>f</code> to wektor sił węzłowych w tych stopniach swobody. Ponadto funkcja wykorzystuje globalnie zadeklarowaną tablicę <code>fix</code>, z której czerpie informację, które stopnie swobody układu są odebrane.</li>
+</ul>
 </div>
 
 <!-- Dummy footer -->
