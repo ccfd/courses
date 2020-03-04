@@ -102,7 +102,7 @@ Poniższy przykład pokazuje też sposób użycia biblioteki `MesLib.h` w celu n
 
 const int mx = 1;                      // liczba elementow w poziomie
 const int my = 1;                      // liczba elementow w pionie
-const int N = 2 * (mx + 1) * (my + 1); // calkowita liczba stopni swobody
+const int N = 2 * (mx + 1) * (my + 1); // calk. liczba stopni swobody
 
 int fix[N];
 
