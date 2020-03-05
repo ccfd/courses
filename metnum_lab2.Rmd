@@ -3,6 +3,7 @@ title: "Metoda Elementów Skończonych"
 author: "B. Górecki"
 material: Instrukcja 2
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 number: 2
@@ -47,13 +48,6 @@ $$
 $$
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
-if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "latex") {
-  opts_chunk$set(
-    dev = 'cairo_pdf',
-    dev.args = list(cairo_pdf = list(family = 'Times New Roman'))
-  )
-}
-
 points <- matrix(c(2, 2, 4, 2, 4, 4, 2, 4), 4, 2, byrow = TRUE)
 par(mar = c(2, 1, 1, 1))
 plot(NULL,
