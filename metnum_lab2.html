@@ -24,6 +24,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -720,7 +722,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="metnum_lab2.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     Download PDF
@@ -828,7 +830,7 @@ K \vec{d} = \vec{F}
 <a class="sourceLine" id="cb1-25" data-line-number="25">}</a></code></pre></div>
 </div>
 <div id="krótka-dokumentacja-biblioteki-meslib.h" class="section level1">
-<h1>Krótka dokumentacja biblioteki <em>MesLib.h</em></h1>
+<h1>Krótka dokumentacja biblioteki <code>MesLib.h</code></h1>
 <p>Biblioteka <code>MesLib.h</code> została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację metody elementów skończonych. Zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu. Poniżej krótko opiszemy poszczególne funkcje:</p>
 <ul>
 <li><code>int P(int x, int y, int z)</code> - funkcja, która zwraca globalny indeks stopnia swobody przy założeniu, że <code>x</code> to jego indeks w kierunku <span class="math inline">\(x\)</span> (liczony od <span class="math inline">\(0\)</span> na lewej krawędzi), <code>y</code> to jego indeks w kierunku osi <span class="math inline">\(y\)</span> (liczony od <span class="math inline">\(0\)</span> na dolnej powierzchni belki), a <code>z</code> to <span class="math inline">\(0\)</span> lub <span class="math inline">\(1\)</span> zależnie od tego czy interesuje nas stopień swobody w kierunku poziomym, czy pionowym.</li>
