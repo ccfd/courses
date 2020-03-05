@@ -1,9 +1,12 @@
 ---
+title: "Metoda Elementów Skończonych"
+author: "B. Górecki"
+material: Instrukcja 2
+output:
+  html_document:
+    df_print: paged
 number: 2
 course: Metody Numeryczne
-material: Instrukcja 2
-author: B. Górecki
-title: Metoda Elementów Skończonych
 ---
 
 Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:
@@ -43,7 +46,14 @@ $$
 \frac{1}{8} - \frac{3}{8}\nu & -\frac{1}{4} - \frac{\nu}{12} & \frac{1}{8} + \frac{\nu}{8} & -\frac{1}{4} + \frac{\nu}{12} & -\frac{1}{8} + \frac{3}{8}\nu & \frac{\nu}{6} & -\frac{1}{8} - \frac{\nu}{8} & \frac{1}{2} - \frac{\nu}{6} \\ \end{array} \right]
 $$
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "latex") {
+  opts_chunk$set(
+    dev = 'cairo_pdf',
+    dev.args = list(cairo_pdf = list(family = 'Times New Roman'))
+  )
+}
+
 points <- matrix(c(2, 2, 4, 2, 4, 4, 2, 4), 4, 2, byrow = TRUE)
 par(mar = c(2, 1, 1, 1))
 plot(NULL,
@@ -123,7 +133,7 @@ int main() {
 }
 ```
 
-# Krótka dokumentacja biblioteki *MesLib.h*
+# Krótka dokumentacja biblioteki `MesLib.h`
 
 Biblioteka `MesLib.h` została stworzona na potrzeby laboratorium, aby uprościć i przyspieszyć implementację metody elementów skończonych.
 Zawiera szereg prostych i przydatnych funkcji oraz macierz sztywności i macierz masową pojedynczego elementu.
