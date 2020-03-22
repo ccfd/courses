@@ -3,6 +3,7 @@ author:
 - M. Dzikowski
 - Ł. Łaniewski-Wołłk
 - rev. K. Marchlewski
+- tran. Ł. Łaniewski-Wołłk
 course: Computer Science III
 material: Instructions 2-3
 number: 2, 3
@@ -10,19 +11,19 @@ number: 2, 3
 
 # Materials
 
-Materials for the laboratory are in the directory `/ home / share / informatyka_3` on the server `info3.meil.pw.edu.pl`.
-After that we will start work, copy them to your home directory.
-To do this, execute the command
+Course materials for the laboratory are in the directory `/home/share/informatyka_3` on the server `info3.meil.pw.edu.pl`.
+Before you start work, copy them to your home directory. To do this, execute the command
 ```{.bash}
 cp -r /home/share/informatyka_3/. ~
 ```
-It will appear in our home directory two directories `drop` and `japan` containing images.
+In your home directory two directories will appear, `drop` and `japan`, containing images.
 
-If we want to copy files to our local computer, please follow the command to download files from a remote server.
-To this end, we will use the `scp` program:
+If you want to copy files to your local computer, please use the command to download files from a remote server described previously.
 ```{.bash}
 scp -r studxy@info3.meil.pw.edu.pl:/home/share/informatyka_3/. ~
 ```
+
+If you don't have the access to the server, you can download the images directly: [info3.zip](https://github.com/ccfd/courses_data/archive/info3.zip)
 
 # Image processing
 
@@ -53,25 +54,25 @@ convert -size 320x85 canvas:none -pointsize 72 -fill red \
 
 Write a script that:
 
-- Reduces all `.jpg` files contained in the same directory as the script.
-- Reduces all `.jpg` files contained in the same directory as the script and places them in another directory.
+- Resizes all `.jpg` files contained in the current directory.
+- Resizes all `.jpg` files contained in the current directory and places them in another directory.
 - It will convert all `.jpg` files to `.gif`, adding the extension ( `file.jpg` -> `file.jpg.gif`).
 - It will convert all `.jpg` files to `.gif`, changing the extension ( `file.jpg` -> `file.gif`).
-- He will put text on each photo, using the argument
+- It will put text on each photo, using the argument
 ```{.bash}
 -pointsize size -draw "text x, y 'Text'"
 ```
 - It will put a frame on each photo (argument `-border 20x20`{.bash}) with the current date (command `date`{.bash}).
 - The date of creation of this image will be marked on each photo (it can be extracted using the command `stat -c% y file`{.bash}).
-- Reduces all images in the "drop" directory and joins them into animation with the command `convert *.jpg animation.gif`{.bash}.
+- Resizes all images in the "drop" directory and joins them into animation with the command `convert *.jpg animation.gif`{.bash}.
 
 ## Automation
 
 Try to write scripts that perform the following tasks:
 
-- Adds a frame to the image and writes the selected `EXIF` information to it (only photos in the `japan` directory have EXIF information).
+- Adds a frame to the image and writes a selected `EXIF` information to it (only photos in the `japan` directory have EXIF information).
 This information can be extracted using the `identify -format"%[EXIF:*]" file.jpg`{.bash} command.
-This can be, for example, the model of the camera taken.
+This can be, for example, the model of the camera.
 - Writes numbers from 0 to 10 to the screen using a loop.
 - Prints a number from 0 to the number given as the script argument to the screen.
 - Combines all images in a given catalog, reduced to 10 by 10 pixels, into one large `JPG` image.
@@ -137,29 +138,29 @@ int main() {
 
 Then compile it using the command
 ```{.bash}
-gcc obrazek.c -o obrazek.out
+gcc picture.c -o picture.out
 ```
 and do it
 ```{.bash}
-./obrazek.out > obrazek
+./picture.out > picture
 ```
 We now have a binary file containing char (1 byte) numbers from 0 to 255.
 We can convert it to the `JPG` image by entering:
 ```{.bash}
-convert -size 100x100 -depth 8 gray:obrazek obrazek.jpg
+convert -size 100x100 -depth 8 gray:picture picture.jpg
 ```
 Note: Instead of the "char" type, we could use a "float" array and numbers from $ [0, 1] $.
 Then, however, we would have to convert the image using the command:
 ```{.bash}
 convert -size 100x100 -depth 32 \
--define quantum:format=floating-point gray:obrazek obrazek.jpg
+-define quantum:format=floating-point gray:picture picture.jpg
 ```
 
 ### Exercises
 
 - Reduce any photo to a size (exactly) 100 by 100 pixels.
 - Modify the created command to convert this image to a binary file.
-- Based on the `picture.c` program, write the program `filtr.c`, which:
+- Based on the `picture.c` program, write the program `filter.c`, which:
     - reads an array from the standard input (the "fread" function is used for this),
     ```{.C}
     size_t fread(void *ptr, size_t size, size_t count, FILE *stream);
