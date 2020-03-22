@@ -24,6 +24,8 @@ W tym celu posłużymy się programem `scp`:
 scp -r studxy@info3.meil.pw.edu.pl:/home/share/informatyka_3/. ~
 ```
 
+Jeśli nie masz dostępu do serwera `info3`, możesz skopiować te pliki bezpośrednio: [info3.zip](https://github.com/ccfd/courses_data/archive/info3.zip)
+
 # Obróbka obrazków
 
 ## Program convert
