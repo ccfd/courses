@@ -756,43 +756,50 @@ div.tocify {
 
 <div id="bash-scripts" class="section level1">
 <h1>BASH: scripts</h1>
-<p>Script writing, in simple terms, consists of gathering commands in a file that we would normally type on the command line. We can then mark such a file as executable with the command <code class="sourceCode bash"><span class="fu">chmod</span> u + x file</code> and execute with the command <code class="sourceCode bash"><span class="ex">./file</span></code>. The command line (BASH) is used to run programs - therefore: ** each line of the script looks like this: ** <code class="sourceCode bash"><span class="ex">program</span> agumenty</code>.</p>
-<p>Analyze the following code snippet: <code>{} .bash i = 1 while test $ i -lt 10 down echo $ i cp file file_ $ i i = $ (expr $ i + 1) done</code></p>
+<p>Script writing, in simple terms, consists of gathering commands in a file that we would normally type on the command line. We can then mark such a file as executable with the command <code class="sourceCode bash"><span class="fu">chmod</span> u+x file</code> and execute with the command <code class="sourceCode bash"><span class="ex">./file</span></code>. The command line (BASH) is used to run <strong>programs</strong> - therefore: <strong>each line of the script looks like this:</strong> <code class="sourceCode bash"><span class="ex">program</span> arguments</code>.</p>
+<p>Analyze the following code snippet:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="va">i=</span>1</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">while</span> <span class="bu">test</span> <span class="va">$i</span> -lt 10</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">do</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="bu">echo</span> <span class="va">$i</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="fu">cp</span> file file_<span class="va">$i</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="va">i=$(</span><span class="fu">expr</span> <span class="va">$i</span> + 1<span class="va">)</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">done</span></a></code></pre></div>
 <p>It’s easy to see that:</p>
 <ul>
-<li>giving the variable <code class="sourceCode bash"><span class="ex">i</span> = 1</code> we do not use spaces because the <code>Bash</code> shell knows then that it is an assignment, not a call to the <code>i</code> program with the <code>=</code> and <code>1</code> options.</li>
-<li>in the expression <code class="sourceCode bash"><span class="fu">expr</span> $ i + 1</code>, we must keep spaces so that the program <code>expr</code> gets three arguments <code>$ i</code>, <code>+</code>and <code>1</code>, not one <code>i + 1</code>{. bash}.</li>
-<li>in the <code>while</code> loop, we cannot write&quot; <code class="sourceCode bash"><span class="ex">and</span> <span class="op">&lt;</span>10</code> ’‘, but we must use some program. The program <code class="sourceCode bash"><span class="bu">test</span></code> was created for all kinds of tests. In this case, we run it with the arguments <code>$ i</code>, <code>-lt</code> and <code>10</code>, where the option <code>-lt</code> means ’less than’.</li>
+<li>in assigning the variable <code class="sourceCode bash"><span class="va">i=</span>1</code> we do not use spaces, because the <code>bash</code> shell knows then, that it is an assignment. <code>i = 1</code> would mean a call to the <code>i</code> program with the <code>=</code> and <code>1</code> arguments.</li>
+<li>in the expression <code class="sourceCode bash"><span class="fu">expr</span> <span class="va">$i</span> + 1</code>, we must keep spaces so that the program <code>expr</code> gets three arguments <code>$i</code>, <code>+</code>and <code>1</code>, not one <code class="sourceCode bash"><span class="va">$i</span><span class="ex">+1</span></code>.</li>
+<li>in the <code>while</code> loop, we cannot write <code class="sourceCode bash"><span class="ex">i</span><span class="op">&lt;</span>10</code>, but we must use some program. The program <code class="sourceCode bash"><span class="bu">test</span></code> was created for all kinds of tests. In this case, we run it with the arguments <code>$i</code>, <code>-lt</code> and <code>10</code>, where the option <code>-lt</code> means ‘less than’.</li>
 </ul>
 <div id="useful-programs" class="section level2">
 <h2>Useful programs</h2>
-<p>If we already know that each script in the <code>Bash</code> shell is a series of called programs, we need a lot of small programs from which we can create scripts.</p>
-<p>For example:</p>
+<p>If we already know that each script in the <code>bash</code> shell is a series of calls to programs, we need a lot of small programs from which we can create scripts.</p>
+<p>Examples:</p>
 <ul>
 <li><code class="sourceCode bash"><span class="bu">echo</span> text</code> — Prints text to the screen.</li>
 <li><code class="sourceCode bash"><span class="fu">cat</span> file</code> — Prints the contents of the file to the screen.</li>
-<li><code class="sourceCode bash"><span class="fu">grep</span> text</code> — Reads characters from the keyboard and prints only lines containing “text”.</li>
+<li><code class="sourceCode bash"><span class="fu">grep</span> text</code> — Reads characters from the input and prints only lines containing “text”.</li>
 <li><code class="sourceCode bash"><span class="fu">grep</span> text files</code> — Search for “text” in files.</li>
 <li><code class="sourceCode bash"><span class="bu">cd</span> directory</code> — Enters the directory.</li>
-<li><code class="sourceCode bash"><span class="fu">ls</span> directory</code> — Prints the contents of the directory to the screen.</li>
-<li><code class="sourceCode bash"><span class="fu">cp</span> files directory</code> — Copy files to the directory.</li>
+<li><code class="sourceCode bash"><span class="fu">ls</span> directory</code> — Prints the contents of the directory.</li>
+<li><code class="sourceCode bash"><span class="fu">cp</span> files directory/</code> — Copy files to the directory.</li>
 <li><code class="sourceCode bash"><span class="fu">cp</span> file1 file2</code> — Copy the file named “file1” to the file named “file2”.</li>
-<li><code class="sourceCode bash"><span class="fu">mv</span> files directory</code> — Moves files to the directory.</li>
-<li><code class="sourceCode bash"><span class="fu">mv</span> file1 file2</code> — Changes the file name from&quot; file1 “to” file2 &quot;.</li>
-<li><code class="sourceCode bash"><span class="fu">sed</span> <span class="st">&#39;s/tekst1/tekst2/g&#39;</span></code> — Reads the text from the keyboard and prints it, replacing&quot; text1 “with” text2 &quot;.</li>
-<li><code class="sourceCode bash"><span class="fu">cut</span> -d<span class="st">&quot; &quot;</span>-f1</code> — Reads text from the keyboard, using a space as the separator separates it into fields and prints the first field.</li>
-<li><code class="sourceCode bash"><span class="fu">seq</span> number1 number2</code> — Prints on the screen a sequence of numbers from ‘number1’ to ‘number2’ every one (default value).</li>
+<li><code class="sourceCode bash"><span class="fu">mv</span> files directory/</code> — Moves files to the directory.</li>
+<li><code class="sourceCode bash"><span class="fu">mv</span> file1 file2</code> — Changes the file name from “file1” to “file2”.</li>
+<li><code class="sourceCode bash"><span class="fu">sed</span> <span class="st">&#39;s/text1/text2/g&#39;</span></code> — Reads the text from the input and prints it, replacing “text1” with “text2”.</li>
+<li><code class="sourceCode bash"><span class="fu">cut</span> -d <span class="st">&quot; &quot;</span> -f 1</code> — Reads text from the input, separates it into fields using a space as the separator (<code>-d &quot; &quot;</code>) and prints the first field (<code>-f 1</code>).</li>
+<li><code class="sourceCode bash"><span class="fu">seq</span> number1 number2</code> — Prints on the screen a sequence of numbers from ‘number1’ to ‘number2’.</li>
 </ul>
 </div>
 <div id="redirection-of-exit-input" class="section level2">
 <h2>Redirection of exit input</h2>
 <p>By default, all programs read from the keyboard and write on the screen. However, both input and output can be redirected.</p>
 <ul>
-<li><code class="sourceCode bash"><span class="ex">program</span><span class="op">&gt;</span> file</code> — What the program would write to the screen will be written to the file (the file will be overwritten if it exists).</li>
-<li><code class="sourceCode bash"><span class="ex">program</span> <span class="op">&gt;&gt;</span> file</code> — What the program would write to the screen will be added to the file (the file will be created if it did not exist).</li>
+<li><code class="sourceCode bash"><span class="ex">program</span> <span class="op">&gt;</span>file</code> — What the program would write to the screen will be written to the file (the file will be overwritten if it exists).</li>
+<li><code class="sourceCode bash"><span class="ex">program</span> <span class="op">&gt;&gt;</span>file</code> — What the program would write to the screen will be added to the file (the file will be created if it did not exist).</li>
 <li><code class="sourceCode bash"><span class="ex">program</span> <span class="op">&lt;</span>file</code> — The program will get the contents of the file as if we entered it from the keyboard.</li>
 <li><code class="sourceCode bash"><span class="ex">program1</span> <span class="kw">|</span> <span class="ex">program2</span></code> — What ‘program1’ would write to the screen will be entered ‘from the keyboard’ into ‘program2’.</li>
-<li>` <code>program '' {.bash} or</code>$ (program)<code>{.bash} --- What the program would write to the screen will be pasted here in the code (see examples). The inverted apostrophe</code> ` ` ` ` <code>is on the key with the tilde</code>~`.</li>
+<li><code class="sourceCode bash"><span class="kw">`</span><span class="ex">program</span><span class="kw">`</span></code> or <code class="sourceCode bash"><span class="va">$(</span><span class="ex">program</span><span class="va">)</span></code> — What the program would write to the screen will be <strong>pasted here in the code</strong> (see examples). <em>We strongly recommend the second version</em> The inverted apostrophe <code>`</code> is on the key with the tilde <code>~</code>.</li>
 </ul>
 <div id="examples" class="section level3">
 <h3>Examples:</h3>
@@ -800,43 +807,42 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="bu">echo</span> Text <span class="op">&gt;</span>file</code> — will write ‘Text’ to the file (the file will be overwritten if it exists)</li>
 <li><code class="sourceCode bash"><span class="bu">echo</span> Text <span class="op">&gt;&gt;</span>file</code> — will add ‘Text’ to the file (the file will be created if it did not exist)</li>
 <li><code class="sourceCode bash"><span class="fu">grep</span> Text <span class="op">&lt;</span>file</code> — will search for lines containing ‘Text’ and print them on the screen</li>
-<li><code class="sourceCode bash"><span class="bu">echo</span> Text <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/x/y/g&#39;</span></code> — Replace every occurrence of ‘x’ with ‘y’ in ‘Text’. So he will write “Teyt” on the screen.</li>
+<li><code class="sourceCode bash"><span class="bu">echo</span> Text <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/x/y/g&#39;</span></code> — Replace every occurrence of ‘x’ with ‘y’ in ‘Text’. So the command will write “Teyt” on the screen.</li>
 <li><code class="sourceCode bash"><span class="bu">echo</span> <span class="va">$name</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span></code> — Replaces <code>.txt</code> with <code>.dat</code> in the variable <code>name</code>. The result will write to the screen.</li>
-<li><code class="sourceCode bash"><span class="ex">name2</span> = <span class="va">$(</span><span class="bu">echo</span> <span class="va">$name</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="va">)</span></code> — As before, but the result will be written to the variable <code>name2</code>.</li>
-<li><code class="sourceCode bash"><span class="bu">echo</span> $ (echo <span class="va">$name</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">&quot;. &quot;</span>-f1) <span class="ex">.dat</span></code> — Replaces the <code>after</code> in the variable after <code>.</code> with <code>.dat</code>. The result will write to the screen.</li>
-<li><code class="sourceCode bash"><span class="fu">ls</span> directory<span class="op">&gt;</span> file</code> — will write the contents of the directory to the file (the file will be overwritten if it exists).</li>
+<li><code class="sourceCode bash"><span class="va">name2=$(</span><span class="bu">echo</span> <span class="va">$name</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&#39;s/.txt/.dat/g&#39;</span><span class="va">)</span></code> — As before, but the result will be written to the variable <code>name2</code>.</li>
+<li><code class="sourceCode bash"><span class="fu">ls</span> directory <span class="op">&gt;</span>file</code> — will write the contents of the directory to the file (the file will be overwritten if it exists).</li>
 <li><code class="sourceCode bash"><span class="fu">cp</span> <span class="kw">`</span><span class="fu">ls</span><span class="kw">`</span> directory</code> or <code class="sourceCode bash"><span class="fu">cp</span> <span class="va">$(</span><span class="fu">ls</span><span class="va">)</span> directory</code> — will copy files to the <code>directory</code> according to the list returned by <code>ls</code>.</li>
-<li><code class="sourceCode bash"><span class="fu">cp</span> <span class="va">$(</span><span class="fu">cat</span> file<span class="va">)</span> directory</code> — will copy files to the <code>directory</code> according to the list contained in the file.</li>
+<li><code class="sourceCode bash"><span class="fu">cp</span> <span class="kw">`</span><span class="fu">cat</span> file<span class="kw">`</span> directory</code> or <code class="sourceCode bash"><span class="fu">cp</span> <span class="va">$(</span><span class="fu">cat</span> file<span class="va">)</span> directory</code> — will copy files to the <code>directory</code> according to the list contained in the file.</li>
 </ul>
 </div>
 </div>
 <div id="loops-and-conditional-expressions" class="section level2">
 <h2>Loops and conditional expressions</h2>
 <p><strong>conditional statement if</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">if</span> <span class="ex">program</span> arguments</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">then</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="ex">commands1</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">else</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="ex">commands2</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">fi</span></a></code></pre></div>
-<p>If the <code class="sourceCode bash"><span class="ex">program</span> arguments</code> command is successful (the program returns $ 0 $), <em>command1</em> will be executed. Otherwise <em>commands2</em> will be executed.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">if</span> <span class="ex">program</span> arguments</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">then</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="ex">commands1</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="ex">commands2</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">fi</span></a></code></pre></div>
+<p>If the <code class="sourceCode bash"><span class="ex">program</span> arguments</code> command is successful (the program returns 0), <em>command1</em> will be executed. Otherwise <em>commands2</em> will be executed.</p>
 <p><strong>while loop</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">while</span> <span class="ex">program</span> arguments</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">do</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="ex">commands</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">done</span></a></code></pre></div>
-<p>A loop that will execute <em>commands</em> until the <code class="sourceCode bash"><span class="ex">program</span> arguments</code> is successfully executed.</p>
-<p><strong>for loop</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">for</span> <span class="ex">i</span> in list</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">while</span> <span class="ex">program</span> arguments</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">do</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="ex">commands</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">done</span></a></code></pre></div>
+<p>A loop that will execute <em>commands</em> while the <code class="sourceCode bash"><span class="ex">program</span> arguments</code> is successfully executed (until it fails).</p>
+<p><strong>for loop</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">for</span> <span class="ex">i</span> in list</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">do</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="ex">commands</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">done</span></a></code></pre></div>
 <p>A loop that in turn inserts each item from the list into the variable <code>i</code> and then executes <em>commands</em>.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">for</span> <span class="ex">i</span> in *.jpg</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">do</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="fu">mv</span> <span class="va">$i</span> IMG/a_<span class="va">$i</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">done</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">for</span> <span class="ex">i</span> in *.jpg</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">do</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="fu">mv</span> <span class="va">$i</span> IMG/a_<span class="va">$i</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">done</span></a></code></pre></div>
 <p>It will transfer any file with the extension <code>.jpg</code>, adding the prefix <code>a_</code> to the <code>IMG</code> directory (e.g. <code>picture.jpg</code> will change into <code>IMG/a_obrazek.jpg</code>).</p>
 </div>
 </div>
@@ -850,7 +856,7 @@ div.tocify {
 <li><code class="sourceCode bash"><span class="ex">convert</span> file1.jpg -resize 100 file2.jpg</code> - will reduce the image so that the shorter dimension is 100 pixels</li>
 <li><code class="sourceCode bash"><span class="ex">convert</span> file1.jpg -resize 100x100 file2.jpg</code> - will reduce the image to fit in a square of 100 by 100 pixels</li>
 <li><code class="sourceCode bash"><span class="ex">convert</span> file1.jpg -resize 100x100n! file2.jpg</code> - will reduce the image to 100 by 100 pixels</li>
-<li><code class="sourceCode bash"><span class="ex">convert</span> -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw <span class="st">&quot;text 25,60 &#39;Magick&#39;&quot;</span> -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw<span class="st">&quot; text 20.55 &#39;Magick&#39;&quot;</span> fuzzy-magick.jpg</code> - will create a picture fuzzy-magick.jpg, with the text “Magick” marked</li>
+<li><code class="sourceCode bash"><span class="ex">convert</span> -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw <span class="st">&quot;text 25,60 &#39;Magick&#39;&quot;</span> -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw <span class="st">&quot;text 20,55 &#39;Magick&#39;&quot;</span> fuzzy-magick.jpg</code> - will create a picture fuzzy-magick.jpg, with the text “Magick” marked</li>
 </ul>
 </div>
 <div id="all-options-for-convert" class="section level2">
