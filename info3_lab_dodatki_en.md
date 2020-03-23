@@ -8,59 +8,57 @@ number: 8
 # BASH: scripts
 
 Script writing, in simple terms, consists of gathering commands in a file that we would normally type on the command line.
-We can then mark such a file as executable with the command `chmod u + x file`{.bash} and execute with the command `./file`{.bash}.
-The command line (BASH) is used to run programs - therefore: ** each line of the script looks like this: ** `program agumenty`{.bash}.
+We can then mark such a file as executable with the command `chmod u+x file`{.bash} and execute with the command `./file`{.bash}.
+The command line (BASH) is used to run **programs** - therefore: **each line of the script looks like this:** `program arguments`{.bash}.
 
 Analyze the following code snippet:
-```{} .bash
-i = 1
-while test $ i -lt 10
-down
-echo $ i
-cp file file_ $ i
-i = $ (expr $ i + 1)
+```{.bash}
+i=1
+while test $i -lt 10
+do
+  echo $i
+  cp file file_$i
+  i=$(expr $i + 1)
 done
 ```
 
 It's easy to see that:
 
-- giving the variable `i = 1`{.bash} we do not use spaces because the `Bash` shell knows then that it is an assignment, not a call to the `i` program with the `=` and `1` options.
-- in the expression `expr $ i + 1`{.bash}, we must keep spaces so that the program `expr` gets three arguments `$ i`, `+ `and `1`, not one `i + 1`{. bash}.
-- in the `while` loop, we cannot write" `and <10`{.bash} '', but we must use some program.
-The program `test`{.bash} was created for all kinds of tests.
-In this case, we run it with the arguments `$ i`, `-lt` and `10`, where the option `-lt` means 'less than'.
+- in assigning the variable `i=1`{.bash} we do not use spaces, because the `bash` shell knows then, that it is an assignment. `i = 1` would mean a call to the `i` program with the `=` and `1` arguments.
+- in the expression `expr $i + 1`{.bash}, we must keep spaces so that the program `expr` gets three arguments `$i`, `+ `and `1`, not one `$i+1`{.bash}.
+- in the `while` loop, we cannot write `i<10`{.bash}, but we must use some program. The program `test`{.bash} was created for all kinds of tests. In this case, we run it with the arguments `$i`, `-lt` and `10`, where the option `-lt` means 'less than'.
 
 ## Useful programs
 
-If we already know that each script in the `Bash` shell is a series of called programs, we need a lot of small programs from which we can create scripts.
+If we already know that each script in the `bash` shell is a series of calls to programs, we need a lot of small programs from which we can create scripts.
 
-For example:
+Examples:
 
 - `echo text`{.bash} --- Prints text to the screen.
 - `cat file`{.bash} --- Prints the contents of the file to the screen.
-- `grep text`{.bash} --- Reads characters from the keyboard and prints only lines containing "text".
+- `grep text`{.bash} --- Reads characters from the input and prints only lines containing "text".
 - `grep text files`{.bash} --- Search for "text" in files.
 - `cd directory`{.bash} --- Enters the directory.
-- `ls directory`{.bash} --- Prints the contents of the directory to the screen.
-- `cp files directory`{.bash} --- Copy files to the directory.
+- `ls directory`{.bash} --- Prints the contents of the directory.
+- `cp files directory/`{.bash} --- Copy files to the directory.
 - `cp file1 file2`{.bash} --- Copy the file named "file1" to the file named "file2".
-- `mv files directory`{.bash} --- Moves files to the directory.
-- `mv file1 file2`{.bash} --- Changes the file name from" file1 "to" file2 ".
-- `sed 's/tekst1/tekst2/g'`{.bash} --- Reads the text from the keyboard and prints it, replacing" text1 "with" text2 ".
-- `cut -d" "-f1`{.bash} --- Reads text from the keyboard, using a space as the separator separates it into fields and prints the first field.
-- `seq number1 number2`{.bash} --- Prints on the screen a sequence of numbers from 'number1' to 'number2' every one (default value).
+- `mv files directory/`{.bash} --- Moves files to the directory.
+- `mv file1 file2`{.bash} --- Changes the file name from "file1" to "file2".
+- `sed 's/text1/text2/g'`{.bash} --- Reads the text from the input and prints it, replacing "text1" with "text2".
+- `cut -d " " -f 1`{.bash} --- Reads text from the input, separates it into fields using a space as the separator (`-d " "`) and prints the first field (`-f 1`).
+- `seq number1 number2`{.bash} --- Prints on the screen a sequence of numbers from 'number1' to 'number2'.
 
 ## Redirection of exit input
 
 By default, all programs read from the keyboard and write on the screen.
 However, both input and output can be redirected.
 
-- `program> file`{.bash} --- What the program would write to the screen will be written to the file (the file will be overwritten if it exists).
-- `program >> file`{.bash} --- What the program would write to the screen will be added to the file (the file will be created if it did not exist).
+- `program >file`{.bash} --- What the program would write to the screen will be written to the file (the file will be overwritten if it exists).
+- `program >>file`{.bash} --- What the program would write to the screen will be added to the file (the file will be created if it did not exist).
 - `program <file`{.bash} --- The program will get the contents of the file as if we entered it from the keyboard.
 - `program1 | program2`{.bash} --- What 'program1' would write to the screen will be entered 'from the keyboard' into 'program2'.
-- ` `program '' {.bash} or `$ (program)`{.bash} --- What the program would write to the screen will be pasted here in the code (see examples).
-The inverted apostrophe ` ` ` ` ` `is on the key with the tilde `~`.
+- `` `program` ``{.bash} or `$(program)`{.bash} --- What the program would write to the screen will be **pasted here in the code** (see examples). *We strongly recommend the second version*
+The inverted apostrophe `` ` `` is on the key with the tilde `~`.
 
 ### Examples:
 
@@ -68,15 +66,13 @@ The inverted apostrophe ` ` ` ` ` `is on the key with the tilde `~`.
 - `echo Text >>file`{.bash} --- will add 'Text' to the file (the file will be created if it did not exist)
 - `grep Text <file`{.bash} --- will search for lines containing 'Text' and print them on the screen
 - `echo Text | sed 's/x/y/g'`{.bash} --- Replace every occurrence of 'x' with 'y' in 'Text'.
-So he will write "Teyt" on the screen.
+So the command will write "Teyt" on the screen.
 - `echo $name | sed 's/.txt/.dat/g'`{.bash} --- Replaces `.txt` with `.dat` in the variable `name`.
 The result will write to the screen.
-- `name2 = $(echo $name | sed 's/.txt/.dat/g')`{.bash} --- As before, but the result will be written to the variable `name2`.
-- `echo $ (echo $name | cut -d". "-f1) .dat`{.bash} --- Replaces the `after` in the variable after `.` with `.dat`.
-The result will write to the screen.
-- `ls directory> file`{.bash} --- will write the contents of the directory to the file (the file will be overwritten if it exists).
+- `name2=$(echo $name | sed 's/.txt/.dat/g')`{.bash} --- As before, but the result will be written to the variable `name2`.
+- `ls directory >file`{.bash} --- will write the contents of the directory to the file (the file will be overwritten if it exists).
 - ``cp `ls` directory``{.bash} or `cp $(ls) directory`{.bash} --- will copy files to the `directory` according to the list returned by `ls`.
-- `cp $(cat file) directory`{.bash} --- will copy files to the `directory` according to the list contained in the file.
+- ``cp `cat file` directory``{.bash} or `cp $(cat file) directory`{.bash} --- will copy files to the `directory` according to the list contained in the file.
 
 ## Loops and conditional expressions
 
@@ -90,7 +86,7 @@ else
 	commands2
 fi
 ```
-If the `program arguments`{.bash} command is successful (the program returns $ 0 $), _command1_ will be executed.
+If the `program arguments`{.bash} command is successful (the program returns 0), _command1_ will be executed.
 Otherwise _commands2_ will be executed.
 
 **while loop**
@@ -101,7 +97,7 @@ do
 	commands
 done
 ```
-A loop that will execute _commands_ until the `program arguments`{.bash} is successfully executed.
+A loop that will execute _commands_ while the `program arguments`{.bash} is successfully executed (until it fails). 
 
 **for loop**
 
@@ -131,7 +127,7 @@ It will transfer any file with the extension `.jpg`, adding the prefix `a_` to t
 - `convert file1.jpg -resize 100 file2.jpg`{.bash} - will reduce the image so that the shorter dimension is 100 pixels
 - `convert file1.jpg -resize 100x100 file2.jpg`{.bash} - will reduce the image to fit in a square of 100 by 100 pixels
 - `convert file1.jpg -resize 100x100n! file2.jpg`{.bash} - will reduce the image to 100 by 100 pixels
-- `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw" text 20.55 'Magick'" fuzzy-magick.jpg`{.bash} - will create a picture fuzzy-magick.jpg, with the text "Magick" marked
+- `convert -size 320x85 canvas:none -font Bookman-DemiItalic -pointsize 72 -draw "text 25,60 'Magick'" -channel RGBA -blur 0x6 -fill darkred -stroke magenta -draw "text 20,55 'Magick'" fuzzy-magick.jpg`{.bash} - will create a picture fuzzy-magick.jpg, with the text "Magick" marked
 
 ## All options for `convert`
 
