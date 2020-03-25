@@ -663,89 +663,176 @@ div.tocify {
 </div>
 
 
-<p>Na tych laboratoriach skupimy się na rozwiązaniu układu: <span class="math display">\[Ax = b\]</span> Naszym celem będzie więc napisanie funkcji <code>Solve</code> zastępującej funkcję <code>Gauss</code>. Nie będziemy jednak tego układu rozwiązywać metodą bezpośrednią, taką jak eliminacja Gaussa, ale metodą iteracyjną. Tzn: będziemy konstruować kolejne przybliżenia <span class="math inline">\(x^{(n)}\)</span> dokładnego <span class="math inline">\(x\)</span>, takie że <span class="math inline">\(b-Ax^{(n)}\)</span> będzie coraz bliższe zeru.</p>
-<p><span class="math inline">\(r = b-Ax^{(n)}\)</span> nazywamy <strong>residual’em</strong>.</p>
+<p>Na tych laboratoriach skupimy się na rozwiązaniu układu równań: <span class="math display">\[
+\mathbf{A} \mathbf{x} = \mathbf{b}
+\]</span> W tym celu rozpatrzymy kilka metod, których działanie sprawdzimy na układzie równań otrzymanym na poprzednich zajęciach dzięki metodzie MES.<br />
+Naszym celem będzie napisanie funkcji <code>Solve</code>, która zastąpi funkcję <code>Gauss</code> i wyznaczy wartość wektora <span class="math inline">\(\mathbf{x}\)</span>. Nie będziemy jednak tego układu rozwiązywać metodą bezpośrednią, taką jak eliminacja Gaussa, ale <strong>metodą iteracyjną</strong>. Skonstruujemy ciąg <span class="math inline">\(\left(\mathbf{x}^{k}\right)\)</span>, którego elementy <span class="math inline">\(\mathbf{x}^{k}\)</span> będą dążyły do rozwiązania dokładnego <span class="math inline">\(\mathbf{x}\)</span>.</p>
+<p><strong>Niezbędne definicje</strong></p>
+<ul>
+<li>Wektorem błędu w k-tym kroku nazywamy: <span class="math display">\[
+\mathbf{e}^k = \mathbf{x} - \mathbf{x}^k
+\]</span></li>
+<li>Wektorem residualnym (<strong>residuum</strong>) w k-tym kroku nazywamy: <span class="math display">\[
+\mathbf{r}^k = \mathbf{b} - \mathbf{b}^k
+\]</span></li>
+</ul>
+<p>Łatwo zauważyć, że zachodzi zależność <span class="math inline">\(\mathbf{r}^k = \mathbf{A} \mathbf{e}^k\)</span>.<br />
+Widać także, że skoro <span class="math inline">\(\mathbf{x}^{k}\)</span> dąży do <span class="math inline">\(\mathbf{x}\)</span> to <span class="math inline">\(\mathbf{r}^{k}\)</span> dąży do zera.</p>
 <div id="zadanie" class="section level3">
 <h3>Zadanie</h3>
-<p>Policz residual. Następnie policz i wyświetl jego normę: <span class="math inline">\(\|r\|=\sqrt{r^Tr}\)</span> (napisz funkcję liczącą normę wektora <code>norm(double *,int)</code>). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?</p>
+<p>Wyznacz residuum dla zadania z poprzednich zajęć. Następnie oblicz i wyświetl jego normę: <span class="math inline">\(\|\mathbf{r}\| = \sqrt{\mathbf{r}^T\mathbf{r}}\)</span> (napisz funkcję liczącą normę wektora <code>norm(double *, int)</code>). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?</p>
 </div>
-<div id="na-głupa" class="section level1">
-<h1>Na głupa</h1>
-<p>Pierwszym pomysłem na iteracyjne rozwiązywanie byłoby postawienie: <span class="math display">\[x^{(n+1)} = x^{(n)} + p\]</span> Gdzie <span class="math inline">\(p\)</span> jest ,,poprawką’’ w iteracji. Łatwo sprawdzić, że idealne <span class="math inline">\(p\)</span> byłoby równe: <span class="math display">\[p = A^{-1}r\]</span> Jednak nie mamy <span class="math inline">\(A^{-1}\)</span> (w tym rzecz). Zamiast niej użyjemy <span class="math inline">\(M^{-1}\)</span>, gdzie <span class="math inline">\(M\)</span> będzie przybliżeniem <span class="math inline">\(A\)</span>. Macierz <span class="math inline">\(M^{-1}\)</span> nazywamy <strong>preconditioner’em</strong>. Na początek zamiast rozwiązywać pełen układ, pominiemy większość jego elementów: <span class="math display">\[\begin{array}{rrrrrl}
-A_{11}p_1 &amp; \color{Gray}{+A_{12}p_2}&amp;\color{Gray}{+A_{13}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{1n}p_n}&amp;= r_1\\
-\color{Gray}{A_{21}p_1}&amp;+ A_{22}p_2 &amp;\color{Gray}{+A_{23}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{2n}p_n}&amp;= r_2\\
-\color{Gray}{A_{31}p_1}&amp;\color{Gray}{+A_{32}p_2}&amp;+A_{33}p_1&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{3n}p_n}&amp;= r_3\\
-\cdots\\
-\color{Gray}{A_{n1}p_1}&amp;\color{Gray}{+A_{n2}p_2}&amp;\color{Gray}{+A_{n3}p_1}&amp;\color{Gray}{+\cdots }&amp;+A_{nn}p_n&amp;= r_n\\
-\end{array}\]</span> Co daje nam prosty wzór na <span class="math inline">\(p\)</span>: <span class="math display">\[p_i = \frac{1}{A_{ii}}{r_i}\]</span> Jest to równoważne z wzięciem za <span class="math inline">\(M\)</span> diagonalnej części <span class="math inline">\(A\)</span>. Ten prosty schemat iteracji, z powyższą poprawką nazywamy <strong>metodą Jacobiego</strong>.</p>
-<div id="zadanie-1" class="section level3">
-<h3>Zadanie</h3>
-<p>Zaczynając od <span class="math inline">\(x=0\)</span> powtarzaj tą prostą iterację (np. 1000 razy). W każdej iteracji wyświetlaj normę residualu, a także wywołaj funkcję <code>draw\_residual(double)</code> by wykonać wykres zbieżności.</p>
-<p>Tak wykonana iteracja się nie zbiega. Wprowadźmy współczynnik, który ,,przytłumi’’ wykonywane iteracje: <span class="math display">\[x^{(n+1)} = x^{(n)} + \alpha p\]</span></p>
+<div id="początki" class="section level1">
+<h1>Początki</h1>
+<p>Weźmy dowolny wektor <span class="math inline">\(\mathbf{x}^0\)</span> i obliczmy odpowiadający mu wektor prawych stron <span class="math inline">\(\mathbf{b}^0 = \mathbf{A} \mathbf{x}^0\)</span>. Różnica między ,,prawdziwym’‘wektorem <span class="math inline">\(\mathbf{b}\)</span> a przybliżeniem jest wtedy równa <span class="math display">\[
+\mathbf{r}^0 = \mathbf{b} -\mathbf{b}^0 = \mathbf{A} \mathbf{x} - \mathbf{A} \mathbf{x}^0 = \mathbf{A} \mathbf{e}^0
+\]</span> Zatem różnica między ,,prawdziwym’‘rozwiązaniem a przybliżonym <span class="math inline">\(\mathbf{e}^0 = \mathbf{A}^{-1} \mathbf{r}^0\)</span>. Co ostatecznie pozwala nam zapisać: <span class="math inline">\(\mathbf{x} = \mathbf{x}^0 + \mathbf{A}^{-1}\mathbf{r}^0\)</span>. Nie mamy jednak <span class="math inline">\(\mathbf{A}^{-1}\)</span> (w tym rzecz). Zamiast niej użyjemy macierzy <span class="math inline">\(\mathbf{M}^{-1}\)</span>. Wtedy jednak nie dostaniemy dokładnej wartości<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <span class="math inline">\(\mathbf{x}\)</span> a jedynie przybliżenie. Prowadzi to nas do wzoru: <span class="math display">\[
+\mathbf{x}^{k+1} = \mathbf{x}^k + \mathbf{p}^k = \mathbf{x}^k + \mathbf{M}^{-1}\mathbf{r}^k
+\]</span> Wektor <span class="math inline">\(\mathbf{p}^k\)</span> jest ,,poprawką’‘w k-tej iteracji a macierz <span class="math inline">\(\mathbf{M}\)</span> nazywamy <strong>preconditioner’em</strong>. Najlepiej byłoby gdyby macierz <span class="math inline">\(\mathbf{M}\)</span> była ,,podobna’’ do macierzy <span class="math inline">\(\mathbf{A}\)</span> a jednocześnie łatwo odwracalna.</p>
+<p>Rozpatrzmy układ <span class="math inline">\(\mathbf{r}^k = \mathbf{A} \mathbf{p}^k\)</span>. Widać, że jeśli pominiemy większość jego elementów: <span class="math display">\[
+\left\{
+\begin{array}{ccccccccccc}
+A_{11} p_1^k &amp;+&amp; \color{Gray}{A_{12} p_2^k} &amp;+&amp; \color{Gray}{A_{13} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{1N} p_N^k} &amp;=&amp; r_1^k \\
+\color{Gray}{A_{21} p_1^k} &amp;+&amp; A_{22} p_2^k &amp;+&amp; \color{Gray}{A_{23} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{2N} p_N^k} &amp;=&amp; r_2^k \\
+\color{Gray}{A_{31} p_1^k} &amp;+&amp; \color{Gray}{A_{32} p_2^k} &amp;+&amp; A_{33} p_3^k &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{3N} p_N^k} &amp;=&amp; r_3^k \\
+\vdots &amp; &amp; \vdots &amp; &amp; \vdots &amp; &amp; \ddots &amp; &amp; \vdots &amp; &amp; \vdots \\
+\color{Gray}{A_{N1} p_1^k} &amp;+&amp; \color{Gray}{A_{N2} p_2^k} &amp;+&amp; \color{Gray}{A_{N3} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; A_{NN} p_N^k &amp;=&amp; r_N^k \\
+\end{array}
+\right.
+\]</span> dostaniemy prosty wzór na <span class="math inline">\(\mathbf{p}^k\)</span>: <span class="math display">\[
+p^k_i = \frac{1}{A_{ii}}{r^k_i}
+\]</span></p>
+<p>Jest to równoważne z wzięciem za macierz <span class="math inline">\(\mathbf{M}\)</span> diagonalnej części macierzy <span class="math inline">\(\mathbf{A}\)</span>. Ten prosty schemat iteracji z powyższą poprawką nazywamy <strong>metodą Jacobiego</strong>.</p>
+<div id="zadania" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Zaimplementuj metodę Jacobiego i wykonaj np. 1000 iteracji zaczynając od <span class="math inline">\(\mathbf{x}^0 = 0\)</span>. W każdej iteracji wyświetl normę residuum. Napisz także funkcję <code>res_draw(double)</code>, która posłuży do wykonania wykresu zbieżności.</li>
+<li>Taki proces iteracyjny nie zbiega się. Wprowadź współczynnik <span class="math inline">\(\alpha\)</span>, który ,,przytłumi’’ wykonywane iteracje: <span class="math display">\[
+\mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha \mathbf{p}^k
+\]</span></li>
+<li>Sprawdź zbieżność tego schematu dla różnych wartości <span class="math inline">\(\alpha\)</span>. Sprawdź liczby <span class="math inline">\(0.5\)</span>, <span class="math inline">\(0.9\)</span>, <span class="math inline">\(1.1\)</span> i <span class="math inline">\(2\)</span>.</li>
+<li>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(\mathbf{A}\)</span>: <code>Mult(double **A, double *x, double *r)</code> i preconditioner: <code>Precond(double **A, double *x, double *p).</code></li>
+</ol>
+<p>Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner. Zauważmy, że obliczając <span class="math inline">\(p_2^k\)</span> mamy już obliczone <span class="math inline">\(p_1^k\)</span> i możemy go użyć. Nie musimy zatem pomijać elementów układu ,,pod diagonalą’’: <span class="math display">\[
+\left\{
+\begin{array}{ccccccccccc}
+A_{11} p_1^k &amp;+&amp; \color{Gray}{A_{12} p_2^k} &amp;+&amp; \color{Gray}{A_{13} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{1N} p_N^k} &amp;=&amp; r_1^k \\
+A_{21} p_1^k &amp;+&amp; A_{22} p_2^k &amp;+&amp; \color{Gray}{A_{23} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{2N} p_N^k} &amp;=&amp; r_2^k \\
+A_{31} p_1^k &amp;+&amp; A_{32} p_2^k &amp;+&amp; A_{33} p_3^k &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{3N} p_N^k} &amp;=&amp; r_3^k \\
+\vdots &amp; &amp; \vdots &amp; &amp; \vdots &amp; &amp; \ddots &amp; &amp; \vdots &amp; &amp; \vdots \\
+A_{N1} p_1^k &amp;+&amp; A_{N2} p_2^k &amp;+&amp; A_{N3} p_3^k &amp;+&amp; \ldots &amp;+&amp; A_{NN} p_N^k &amp;=&amp; r_N^k \\
+\end{array}
+\right.
+\]</span> Daje nam to prosty wzór na <span class="math inline">\(\mathbf{p}^k\)</span>: <span class="math display">\[
+p_i^k = \frac{1}{A_{ii}}\left( r_i - \sum_{j=1}^{i-1} A_{ij} p_j^k \right)
+\]</span> Gdy <span class="math inline">\(\alpha = 1\)</span> schemat taki nazywamy <strong>metodą Gaussa-Seidla</strong>.</p>
 </div>
-<div id="zadanie-2" class="section level3">
-<h3>Zadanie</h3>
-<p>Sprawdź zbieżność tego schematu przy różnych <span class="math inline">\(\alpha\)</span>. Sprawdź <span class="math inline">\(0.5\)</span>, <span class="math inline">\(0.9\)</span>, <span class="math inline">\(1.1\)</span> i <span class="math inline">\(2\)</span>.</p>
-</div>
-<div id="zadanie-3" class="section level3">
-<h3>Zadanie</h3>
-<p>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(A\)</span>: <code>Mult(double** A, double*x, double* r)</code> i preconditioner: <code>Precond(double** A, double*x, double* p)</code></p>
-<p>Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner. Zauważmy, że licząc <span class="math inline">\(p_2\)</span> mamy już obliczone <span class="math inline">\(p_1\)</span> i możemy go użyć. Tak więc nie musimy pomijać elementów układu ,,pod diagonalą’’: <span class="math display">\[\begin{array}{rrrrrl}
-A_{11}p_1 &amp; \color{Gray}{+A_{12}p_2}&amp;\color{Gray}{+A_{13}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{1n}p_n}&amp;= r_1\\
-A_{21}p_1&amp;+ A_{22}p_2 &amp;\color{Gray}{+A_{23}p_1}&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{2n}p_n}&amp;= r_2\\
-A_{31}p_1&amp; +A_{32}p_2&amp;+A_{33}p_1&amp;\color{Gray}{+\cdots }&amp;\color{Gray}{+A_{3n}p_n}&amp;= r_3\\
-\cdots\\
-A_{n1}p_1&amp; +A_{n2}p_2&amp; +A_{n3}p_1&amp; +\cdots &amp;+A_{nn}p_n&amp;= r_n\\
-\end{array}\]</span> Co daje nam prosty wzór na <span class="math inline">\(p\)</span>: <span class="math display">\[p_i = \frac{1}{A_{ii}}(r_i - \sum_{j=1}^{i-1}A_{ij}p_j)\]</span> Gdy <span class="math inline">\(\alpha=1\)</span> schemat taki nazywamy <strong>Metodą Gaussa-Seidla</strong>.</p>
-</div>
-<div id="zadanie-4" class="section level3">
-<h3>Zadanie</h3>
-<p>Wypróbuj nowy wzór na <span class="math inline">\(p\)</span>, znów sprawdzając różne <span class="math inline">\(\alpha\)</span>.</p>
-<p>Schematy z <span class="math inline">\(\alpha &gt; 1\)</span> nazywamy metodami <strong>Successive Over-Relaxation</strong> (SOR).</p>
+<div id="zadania-1" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Wypróbuj nowy wzór na <span class="math inline">\(\mathbf{p}\)</span>. Sprawdź różne wartości <span class="math inline">\(\alpha\)</span>.</li>
+</ol>
+<p>Schematy, dla których <span class="math inline">\(\alpha &gt; 1\)</span> nazywamy metodami <strong>Successive Over-Relaxation</strong> (SOR).</p>
 </div>
 </div>
 <div id="dobieramy-alpha" class="section level1">
 <h1>Dobieramy <span class="math inline">\(\alpha\)</span></h1>
-<p>Widać wyraźnie, że zbieżność bardzo zależy od <span class="math inline">\(\alpha\)</span> i jasnym jest, że najlepiej byłoby dobierać ten współczynnik w każdej iteracji. Zauważmy że residual po iteracji wynosi: <span class="math display">\[\hat{r} = r - \alpha Ap\]</span> Spróbujmy zminimalizować kwadrat normy tego residualu: <span class="math display">\[\hat{r}^T\hat{r} = (r - \alpha Ap)^T(r - \alpha Ap) = r^Tr-2\alpha r^TAp+\alpha^2(Ap)^TAp\]</span> Licząc pochodną po <span class="math inline">\(\alpha\)</span> mamy: <span class="math display">\[-r^TAp+2\alpha(Ap)^TAp=0\]</span> Ostatecznie: <span class="math display">\[\alpha = \frac{r^TAp}{(Ap)^TAp}\]</span> Schemat z takim <span class="math inline">\(\alpha\)</span> nazywamy metodą <strong>MINRES</strong>.</p>
-<div id="zadanie-5" class="section level3">
+<p>Widać wyraźnie, że zbieżność bardzo zależy od wartości współczynnika <span class="math inline">\(\alpha\)</span> i jasnym jest, że najlepiej byłoby dobierać ten współczynnik w każdej iteracji: <span class="math display">\[
+\mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha^k \mathbf{p}^k
+\]</span> Zastanówmy się teraz jak będzie się zmieniał residuum w zależności od kroku. Jeśli pomnożymy powyższy wzór przez <span class="math inline">\(\mathbf{A}\)</span> a następnie dodamy <span class="math inline">\(\mathbf{b}\)</span> i skorzystamy z definicji residuum otrzymamy: <span class="math display">\[
+\mathbf{r}^{k+1} = \mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k
+\]</span> Kwadrat normy tego residuum jest równy: <span class="math display">\[
+\|\mathbf{r}^{k+1}\| = (\mathbf{r}^{k+1})^T \mathbf{r}^{k+1} =
+(\mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k)^T (\mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k) =
+\]</span> <span class="math display">\[
+(\mathbf{r}^{k})^T \mathbf{r}^{k} -
+2 \alpha^k (\mathbf{r}^{k})^T \mathbf{A} \mathbf{p}^k +
+(\alpha^k)^2(\mathbf{A}\mathbf{p}^k)^T \mathbf{A}\mathbf{p}^k
+\]</span> Widać, że kwadrat normy jest kwadratową funkcją <span class="math inline">\(\alpha^k\)</span> a współczynnik przed <span class="math inline">\((\alpha^k)^2\)</span> jest dodatni. Oznacza to, że funkcja ta ma minimum. Obliczamy pochodną po <span class="math inline">\(\alpha^k\)</span>: <span class="math display">\[
+\frac{d}{d\alpha^k} \left( \|\mathbf{r}^{k+1}\| \right) =
+-2(\mathbf{r}^{k})^T \mathbf{A} \mathbf{p}^k +
+2 \alpha^k (\mathbf{A} \mathbf{p}^k)^T \mathbf{A} \mathbf{p}^k
+\]</span> i przyrównujemy do zera co ostatecznie daje wartość: <span class="math display">\[
+\alpha^k = \frac{(\mathbf{r}^{k})^T \mathbf{A} \mathbf{p}^k}{(\mathbf{A} \mathbf{p}^k)^T \mathbf{A} \mathbf{p}^k}
+\]</span> Schemat z taką wartością <span class="math inline">\(\alpha^k\)</span> nazywamy <strong>metodą najmniejszych residuów</strong> (Minimal Residual Method — <strong>MINRES</strong>).</p>
+<div id="zadania-2" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Sprawdź zbieżność dla nowego <span class="math inline">\(\alpha^k\)</span>. W tym celu:
+<ul>
+<li>Wyznacz wektor <span class="math inline">\(\mathbf{A} \mathbf{p}^k\)</span>.</li>
+<li>Zauważ, że wyrażenie typu <span class="math inline">\(\mathbf{a}^T \mathbf{b}\)</span> to iloczyn skalarny dwóch wektorów <span class="math inline">\(\mathbf{a}^T \mathbf{b} = \mathbf{a} \cdot \mathbf{b}\)</span>. Napisz funkcję <code>skal(double *, double *, int)</code> liczącą iloczyn skalarny i oblicz <span class="math inline">\(\alpha^k\)</span> z powyższego wzoru.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="wykorzystujemy-historię" class="section level1">
+<h1>Wykorzystujemy historię</h1>
+<p>Do tej pory ignorowaliśmy informację o poprawkach z poprzednich iteracji i poprawkę w k-tym kroku obliczaliśmy ze wzoru <span class="math display">\[
+\mathbf{p}^k = \mathbf{M}^{-1}\mathbf{r}^k
+\]</span> Zmienimy to przez wykorzystanie informacji o poprawce z <span class="math inline">\(k-1\)</span> kroku: <span class="math display">\[
+\mathbf{p}^k = \mathbf{p}^k - \beta^k \mathbf{p}^{k-1}
+\]</span> Teraz wzór na nowy residuum będzie miał postać: <span class="math display">\[
+\mathbf{r}^{k+1} =
+\mathbf{r}^{k} - \alpha^k \mathbf{A} \left(\mathbf{p}^k - \beta^k \mathbf{p}^{k-1}\right)
+\]</span> Musimy jeszcze wyznaczyć wartość nowego współczynnika <span class="math inline">\(\beta^k\)</span>.</p>
+<div id="zadania-3" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Wypisz wzór na <span class="math inline">\(\|\mathbf{r}^{k+1}\|\)</span> i zróżniczkuj go po współczynniku <span class="math inline">\(\beta^k\)</span>. Przyjmij, że <span class="math inline">\((\mathbf{r}^{k+1})^T \mathbf{A} \mathbf{p}^{k} = 0\)</span> (wynika to z poprzedniej iteracji).</li>
+</ol>
+<p>Schemat, w którym współczynniki <span class="math inline">\(\alpha^k\)</span> i <span class="math inline">\(\beta^k\)</span> obliczane są po przez minimalizację residuów nazywamy <strong>uogólnioną metodą najmniejszych residuów</strong> (Generalized Minimal Residual Method — <strong>GMRES</strong>).</p>
+</div>
+<div id="zadania-4" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Zmodyfikuj proces iteracji według schematu:
+<ul>
+<li>oblicz residuum <span class="math inline">\(\mathbf{r}^k = \mathbf{b} - \mathbf{A} \mathbf{x}^k\)</span></li>
+<li>oblicz poprawkę <span class="math inline">\(\mathbf{p}^k = \mathbf{M}^{-1} \mathbf{r}^k\)</span></li>
+<li>jeżeli nie jest to pierwsza iteracja: oblicz <span class="math inline">\(\beta^k\)</span> i nową poprawkę <span class="math inline">\(\mathbf{p}^k = \mathbf{p}^k -\beta^k \mathbf{p}^{k-1}\)</span></li>
+<li>oblicz <span class="math inline">\(\alpha^k\)</span></li>
+<li>wyznacz nowe rozwiązanie <span class="math inline">\(\mathbf{x}^{k+1} = \mathbf{x}^k + \alpha^k \mathbf{p}^k\)</span></li>
+<li>zachowaj starą poprawkę <span class="math inline">\(\mathbf{p}^k = \mathbf{p}^{k-1}\)</span> (opłaca się też zachować wektor <span class="math inline">\(\mathbf{A} \mathbf{p}^{k-1}\)</span>).</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="jeśli-macierz-mathbfa-jest-symetryczna-i-dodatnio-określona" class="section level1">
+<h1>Jeśli macierz <span class="math inline">\(\mathbf{A}\)</span> jest symetryczna i dodatnio określona…</h1>
+<p>W przypadku naszego zadania MES możemy wykorzystać fakt, że macierz <span class="math inline">\(\mathbf{A}\)</span> jest symetryczna i dodatnio określona. Wtedy zamiast minimalizować <span class="math inline">\((\mathbf{r}^{k+1})^T \mathbf{r}^{k+1}\)</span> możemy zminimalizować pewien specjalny funkcjonał: <span class="math display">\[
+f(\mathbf{x}) = \frac{1}{2} \mathbf{x}^T \mathbf{A} \mathbf{x} - \mathbf{b}^T \mathbf{x}
+\]</span></p>
+<div id="zadania-5" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Odwołując się do fizyki naszego przypadku, odpowiedz na poniższe pytania:
+<ul>
+<li>Czym jest funkcjonał <span class="math inline">\(f(\mathbf{x})\)</span>?</li>
+<li>Dlaczego macierz <span class="math inline">\(\mathbf{A}\)</span> jest symetryczna?</li>
+<li>Dlaczego <span class="math inline">\(\mathbf{A}\)</span> jest dodatnio określona?</li>
+</ul></li>
+<li>Podstaw w powyższym wzorze <span class="math inline">\(\mathbf{x}^{k+1} = \mathbf{x}^k + \alpha^k \mathbf{p}^k\)</span>, zróżniczkuj i oblicz <span class="math inline">\(\alpha^k\)</span>. Zauważ, że <span class="math inline">\(\frac{1}{2}\mathbf{x}^T \mathbf{A} \mathbf{x} - \mathbf{b}^T \mathbf{x} = \text{const.} + \frac{1}{2}(\alpha^k \mathbf{p}^k)^T \mathbf{A} (\alpha^k \mathbf{p}^k) - \mathbf{r}^T(\alpha^k \mathbf{p}^k)\)</span>.</li>
+<li>Analogicznie jak w poprzednim punkcie, podstaw <span class="math inline">\(\mathbf{x}^{k+1} = \mathbf{x}^k + \alpha^k \left(\mathbf{p}^k-\beta^k \mathbf{p}^{k-1}\right)\)</span>, zróżniczkuj względem <span class="math inline">\(\beta^k\)</span> i wyznacz <span class="math inline">\(\beta^k\)</span> (tym razem <span class="math inline">\((\mathbf{p}^{k-1})^T \mathbf{r}^k = 0\)</span>).</li>
+</ol>
+</div>
+<div id="zadanie-1" class="section level3">
 <h3>Zadanie</h3>
-<p>Oblicz wektor <span class="math inline">\(Ap\)</span>. Zauważ, że wyrażenie <span class="math inline">\(a^Tb\)</span> to iloczyn skalarny dwóch wektorów <span class="math inline">\(a^Tb = a\cdot b\)</span>. Napisz funkcję liczącą iloczyn skalarny <code>skal(double*, double*, int)</code> i oblicz <span class="math inline">\(\alpha\)</span> z powyższego wzoru. Sprawdź zbieżność przy takim <span class="math inline">\(\alpha\)</span>.</p>
+<p>Zastosuj identyczny schemat iteracji jak w poprzednim punkcie ale zmień <span class="math inline">\(\alpha^k\)</span> i <span class="math inline">\(\beta^k\)</span>. Zbadaj zbieżność.</p>
+<p>Taki schemat nazywamy metodą <strong>gradientu sprzężonego</strong> (Conjugate Gradient Method — <strong>CG</strong>).</p>
+<p><strong>Uwaga:</strong> Aktualnie zbieżność jest bardzo słaba. Wynika to z faktu, że choć <span class="math inline">\(\mathbf{A}\)</span> jest symetryczna to preconditioner z metody Gaussa-Seidla <span class="math inline">\(\mathbf{M}^{-1}\)</span> już nie jest.</p>
 </div>
-</div>
-<div id="wycinamy-nadmiary" class="section level1">
-<h1>Wycinamy nadmiary</h1>
-<p>Przez <span class="math inline">\(q\)</span> oznaczmy poprawkę z poprzedniej iteracji. Można powiedzieć, że w następnej iteracji nie chcemy ,,stracić’‘tego co ,,zyskaliśmy’’ w poprzedniej. Dlatego za nową poprawkę weźmiemy <span class="math inline">\(p - \beta q\)</span>. Teraz wzór na nowy residual będzie: <span class="math display">\[\hat{r} = r - \alpha A(p-\beta q)\]</span></p>
-<div id="zadanie-6" class="section level3">
+<div id="zadanie-2" class="section level3">
 <h3>Zadanie</h3>
-<p>Wypisz wzór na <span class="math inline">\(\hat{r}^T\hat{r}\)</span> i zróżniczkuj go po <span class="math inline">\(\beta\)</span>. Wylicz <span class="math inline">\(\beta\)</span> przyjmując, że <span class="math inline">\(r^T Aq = 0\)</span> (to wynika z poprzedniej iteracji).</p>
-</div>
-<div id="zadanie-7" class="section level3">
-<h3>Zadanie</h3>
-<p>Zmodyfikuj iterację wg. schematu: - oblicz residual - oblicz <span class="math inline">\(p=M^{-1}r\)</span> - jeżeli to nie pierwsza iteracja: oblicz <span class="math inline">\(\beta\)</span> i nową poprawkę: <span class="math inline">\(p=p-\beta q\)</span> - oblicz <span class="math inline">\(\alpha\)</span> - wylicz nowe rozwiązanie <span class="math inline">\(x=x+\alpha p\)</span> - zachowaj poprawkę <span class="math inline">\(q=p\)</span> (opłaca się też zachować <span class="math inline">\(Ap\)</span>)</p>
+<p>Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem <span class="math inline">\(\mathbf{p}^k = \mathbf{r}^k\)</span> (brakiem preconditionera).</p>
+<p><strong>Uwaga:</strong> Metodę Conjugate Gradient można zaimplementować w bardziej ,,zwartej’’ formie. Taki schemat można znaleźć na <a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">Wikipedii</a>, bądź w notatkach z wykładu.</p>
 </div>
 </div>
-<div id="a-jeśli-a-jest-symetryczna-i-dodatnio-określona" class="section level1">
-<h1>A jeśli <span class="math inline">\(A\)</span> jest symetryczna i dodatnio określona …</h1>
-<p>W naszym przypadku możemy wykorzystać fakt, że macierz <span class="math inline">\(A\)</span> jest symetryczna i dodatnio określona. Wtedy zamiast minimalizować <span class="math inline">\(r^Tr\)</span> możemy minimalizować pewien specjalny funkcjonał: <span class="math display">\[\frac{1}{2}x^TAx - b^Tx\]</span> <strong>Pytanie:</strong> Jakie fizyczne wyjaśnienie mają następujące rzeczy w naszym przypadku: - Czym jest powyższy funkcjonał? - Dlaczego <span class="math inline">\(A\)</span> jest symetryczna? - Dlaczego <span class="math inline">\(A\)</span> jest dodatnio określona?</p>
-<div id="zadanie-8" class="section level3">
-<h3>Zadanie</h3>
-<p>Podstaw w powyższym wzorze <span class="math inline">\(x = x^{(n)} + \alpha p\)</span>, zróżniczkuj i wylicz <span class="math inline">\(\alpha\)</span>. Zauważ, że <span class="math inline">\(\frac{1}{2}x^TAx - b^Tx = \text{const} + \frac{1}{2}(\alpha p)^TA(\alpha p) - r^T(\alpha p)\)</span>.</p>
-</div>
-<div id="zadanie-9" class="section level3">
-<h3>Zadanie</h3>
-<p>Analogicznie jak poprzednio, podstaw <span class="math inline">\(x = x^{(n)} + \alpha (p-\beta q)\)</span>, zróżniczkuj i wylicz <span class="math inline">\(\beta\)</span>.(tym razem <span class="math inline">\(q^Tr = 0\)</span>)</p>
-</div>
-<div id="zadanie-10" class="section level3">
-<h3>Zadanie</h3>
-<p>Zastosuj dokładnie identyczną iterację zamieniając jedynie <span class="math inline">\(\alpha\)</span> i <span class="math inline">\(\beta\)</span> i zbadaj zbieżność.</p>
-<p>Schemat taki nazywamy metodą <strong>gradientu sprzężonego</strong> — Conjugate Gradient Method (<strong>CG</strong>).</p>
-<p><strong>Uwaga:</strong> Aktualnie zbieżność jest bardzo słaba. Wynika to z faktu, że choć <span class="math inline">\(A\)</span> jest symetryczna to preconditioner z metody Gaussa-Seidla <span class="math inline">\(M^{-1}\)</span> już nie jest.</p>
-</div>
-<div id="zadanie-11" class="section level3">
-<h3>Zadanie</h3>
-<p>Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem <span class="math inline">\(p=r\)</span> (brakiem preconditionera).</p>
-<p><strong>Uwaga:</strong> Metodę Conjugate Gradient można zaimplementować w bardziej ,,zwartej’’ formie. Taki schemat można znaleźć na wikipedii, bądz w notatkach z wykładu.</p>
-</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I tak nie dostalibyśmy dokładnej wartości ze względu na błędy numeryczne.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
 
 <!-- Dummy footer -->
