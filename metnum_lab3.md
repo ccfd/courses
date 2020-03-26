@@ -125,8 +125,8 @@ Widać wyraźnie, że zbieżność bardzo zależy od wartości współczynnika $
 \[
 \mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha^k \mathbf{p}^k
 \]
-Zastanówmy się teraz jak będzie się zmieniał residuum w zależności od kroku.
-Jeśli pomnożymy powyższy wzór przez $\mathbf{A}$ a następnie dodamy $\mathbf{b}$ i skorzystamy z definicji residuum otrzymamy:
+Zastanówmy się teraz jak będzie się zmieniało residuum w zależności od kroku.
+Jeśli pomnożymy powyższy wzór przez $-\mathbf{A}$ a następnie dodamy $\mathbf{b}$ i skorzystamy z definicji residuum otrzymamy:
 \[
 \mathbf{r}^{k+1} = \mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k
 \]
@@ -173,7 +173,7 @@ Zmienimy to przez wykorzystanie informacji o poprawce z $k-1$ kroku:
 \[
 \mathbf{p}^k = \mathbf{p}^k - \beta^k \mathbf{p}^{k-1}
 \]
-Teraz wzór na nowy residuum będzie miał postać:
+Teraz wzór na nowe residuum będzie miał postać:
 \[
 \mathbf{r}^{k+1} =
 \mathbf{r}^{k} - \alpha^k \mathbf{A} \left(\mathbf{p}^k - \beta^k \mathbf{p}^{k-1}\right)
