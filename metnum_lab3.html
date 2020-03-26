@@ -739,7 +739,7 @@ p_i^k = \frac{1}{A_{ii}}\left( r_i - \sum_{j=1}^{i-1} A_{ij} p_j^k \right)
 <h1>Dobieramy <span class="math inline">\(\alpha\)</span></h1>
 <p>Widać wyraźnie, że zbieżność bardzo zależy od wartości współczynnika <span class="math inline">\(\alpha\)</span> i jasnym jest, że najlepiej byłoby dobierać ten współczynnik w każdej iteracji: <span class="math display">\[
 \mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha^k \mathbf{p}^k
-\]</span> Zastanówmy się teraz jak będzie się zmieniał residuum w zależności od kroku. Jeśli pomnożymy powyższy wzór przez <span class="math inline">\(\mathbf{A}\)</span> a następnie dodamy <span class="math inline">\(\mathbf{b}\)</span> i skorzystamy z definicji residuum otrzymamy: <span class="math display">\[
+\]</span> Zastanówmy się teraz jak będzie się zmieniało residuum w zależności od kroku. Jeśli pomnożymy powyższy wzór przez <span class="math inline">\(-\mathbf{A}\)</span> a następnie dodamy <span class="math inline">\(\mathbf{b}\)</span> i skorzystamy z definicji residuum otrzymamy: <span class="math display">\[
 \mathbf{r}^{k+1} = \mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k
 \]</span> Kwadrat normy tego residuum jest równy: <span class="math display">\[
 \|\mathbf{r}^{k+1}\| = (\mathbf{r}^{k+1})^T \mathbf{r}^{k+1} =
@@ -772,7 +772,7 @@ p_i^k = \frac{1}{A_{ii}}\left( r_i - \sum_{j=1}^{i-1} A_{ij} p_j^k \right)
 \mathbf{p}^k = \mathbf{M}^{-1}\mathbf{r}^k
 \]</span> Zmienimy to przez wykorzystanie informacji o poprawce z <span class="math inline">\(k-1\)</span> kroku: <span class="math display">\[
 \mathbf{p}^k = \mathbf{p}^k - \beta^k \mathbf{p}^{k-1}
-\]</span> Teraz wzór na nowy residuum będzie miał postać: <span class="math display">\[
+\]</span> Teraz wzór na nowe residuum będzie miał postać: <span class="math display">\[
 \mathbf{r}^{k+1} =
 \mathbf{r}^{k} - \alpha^k \mathbf{A} \left(\mathbf{p}^k - \beta^k \mathbf{p}^{k-1}\right)
 \]</span> Musimy jeszcze wyznaczyć wartość nowego współczynnika <span class="math inline">\(\beta^k\)</span>.</p>
