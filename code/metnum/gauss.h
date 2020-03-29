@@ -1,60 +1,73 @@
 //------------------------------- ELIMINACJA GAUSSA -------------------------
 void Gauss(int n, double **M, double *f, double *x)
 {
-	int i, j, k;
-	double s;
-	double wsp;
+  int i, j, k;
+  double s;
+  double wsp;
 
-	double **a;
-	double *b;
+  double **a;
+  double *b;
 
-	b = new double[n];
-	a = new double*[n];
-	for (int i = 0; i < n; ++i)
-		a[i] = new double[n];
+  // alokacja tymczasowych tablic
+  if ((b = (double *) malloc(n * sizeof(double))) == NULL) {
+    perror("Gauss fun. (b table)");
+    exit(1);
+  }
 
-	for (int i = 0; i < n; ++i)
-	{
-		for (int j = 0; j < n; ++j)
-		{
-			a[i][j] = M[i][j];
-		}
-		b[i] = f[i];
-	}
+  if ((a = (double **) malloc(n * sizeof(double *))) == NULL) {
+    perror("Gauss fun. (a table)");
+    exit(1);
+  }
 
-	//eliminacja
+  for (int i = 0; i < n; i++)
+    if ((a[i] = (double *) malloc(n * sizeof(double))) == NULL) {
+      perror("Gauss fun. (a[i] table)");
+      exit(1);
+    }
 
-	// wiersz przy pomocy którego eliminujemy elementy
-	for (i = 0; i < n - 1; i++)
-	{
-		// wersz którego elementy eliminujemy
-		for (k = i + 1; k < n; k++)
-		{
-			wsp = a[k][i] / a[i][i];
-			// odejmowanie elementów wiersza "i" od wiersza "k"
-			for (j = i + 1; j < n; j++)
-				a[k][j] -= a[i][j] * wsp;
+  // przepisanie wartosci do tymczasowych tablic
+  for (int i = 0; i < n; ++i)
+  {
+    for (int j = 0; j < n; ++j)
+    {
+      a[i][j] = M[i][j];
+    }
+    b[i] = f[i];
+  }
 
-			// odejmowanie prawych stron
-			b[k] -= b[i] * wsp;
-		}
-	}
+  //eliminacja
 
-	//rozwiazanie ukladu
-	x[n - 1] = b[n - 1] / a[n - 1][n - 1];
+  // wiersz przy pomocy którego eliminujemy elementy
+  for (i = 0; i < n - 1; i++)
+  {
+    // wersz którego elementy eliminujemy
+    for (k = i + 1; k < n; k++)
+    {
+      wsp = a[k][i] / a[i][i];
+      // odejmowanie elementów wiersza "i" od wiersza "k"
+      for (j = i + 1; j < n; j++)
+        a[k][j] -= a[i][j] * wsp;
 
-	for (i = n - 1; i >= 0; i--)
-	{
-		s = 0.0;
-		for (j = i + 1; j < n; j++)
-			s += a[i][j] * x[j];
+      // odejmowanie prawych stron
+      b[k] -= b[i] * wsp;
+    }
+  }
 
-		x[i] = (b[i] - s) / a[i][i];
-	}
+  //rozwiazanie ukladu
+  x[n - 1] = b[n - 1] / a[n - 1][n - 1];
 
-	for (int i = 0; i < n; ++i)
-		delete[] a[i];
+  for (i = n - 1; i >= 0; i--)
+  {
+    s = 0.0;
+    for (j = i + 1; j < n; j++)
+      s += a[i][j] * x[j];
 
-	delete[] a;
-	delete[] b;
+    x[i] = (b[i] - s) / a[i][i];
+  }
+
+  for (int i = 0; i < n; i++)
+    free(a[i]);
+
+  free(a);
+  free(b);
 }
