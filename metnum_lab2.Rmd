@@ -1,13 +1,9 @@
 ---
-title: "Metoda Elementów Skończonych"
-author: "B. Górecki"
-material: Instrukcja 2
-output:
-  pdf_document: default
-  html_document:
-    df_print: paged
 number: 2
 course: Metody Numeryczne
+material: Instrukcja 2
+author: B. Górecki
+title: Metoda Elementów Skończonych
 ---
 
 Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:
@@ -101,6 +97,7 @@ Poniższy przykład pokazuje też sposób użycia biblioteki `MesLib.h` w celu n
 
 ```c++
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "winbgi2.h"
 
