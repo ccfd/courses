@@ -28,7 +28,7 @@ SHOW DATABASES;
 ```
 4. My chcemy skorzystać z bazy danych o nazwie *test*:
 ```sql
-USE test;
+USE world;
 ```
 
 # Baza danych *test*
