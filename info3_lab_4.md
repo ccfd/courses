@@ -10,7 +10,7 @@ number: 4
 
 # Połączenie z serwerem MySQL
 1. Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).
-2. Klient MySQL'a uruchamia komenda: `mysql -u mysql`{.bash}
+2. Klient MySQL'a uruchamia komenda: `mysql -u studXX`{.bash}
 Program wita nas krótkim komunikatem oraz znakiem zachęty:
 ```sql
 mysql>
@@ -26,13 +26,13 @@ oznaczający, że oczekiwany jest ciąg dalszy polecenia.
 ```sql
 SHOW DATABASES;
 ```
-4. My chcemy skorzystać z bazy danych o nazwie *test*:
+4. My chcemy skorzystać z bazy danych o nazwie *world*:
 ```sql
 USE world;
 ```
 
-# Baza danych *test*
-### Sprawdż jakie tabele zawarte są w bazie danych *test*:
+# Baza danych *world*
+### Sprawdż jakie tabele zawarte są w bazie danych *world*:
 
 ```sql
 SHOW TABLES;
@@ -341,11 +341,11 @@ Odtwórz tabelę *Person* i usuń z tabeli *Phone* wszystkie telefony Kowalskieg
 
 # Schematy tabel
 
-## Schemat tabel zawartych w bazie danych *test*
+## Schemat tabel zawartych w bazie danych *world*
 
-![](figures/info3_lab_4-5_test_base.png "Baza danych Test")
+![](figures/info3_lab_4-5_test_base.png "Baza danych World")
 
-Baza danych test zawiera trzy tabele: `City`, `Country` i `CountryLanguage`. Powyższy schemat przedstawia powiązania jakie występują pomiędzy tymi tabelami. Pola: `ID` w tabeli `City` i `Code` w tabeli `Country` są unikatowe. To znaczy, że każdy rekord, np. w tabeli `City`, musi mieć inną wartość pola `ID`. Pole `CountryCode` w tabeli `City` przechowuje wartość pola `Code` z tabeli `Country`. W ten sposób można zidentyfikować, w którym państwie leży dane miasto. Podobna sytuacja występuje w powiązaniu tabeli `CountryLanguage` i `Country`. Tabela `CountryLanguage` zwiera dane o językach używanych we wszystkich państwach. Każdy rekord tej tabeli określa np. procentowy udział języka w danym państwie. Zatem, powiedzmy, język polski wystąpi w kilku rekordach tej tabeli, bo jest używany w kilku państwach.
+Baza danych world zawiera trzy tabele: `City`, `Country` i `CountryLanguage`. Powyższy schemat przedstawia powiązania jakie występują pomiędzy tymi tabelami. Pola: `ID` w tabeli `City` i `Code` w tabeli `Country` są unikatowe. To znaczy, że każdy rekord, np. w tabeli `City`, musi mieć inną wartość pola `ID`. Pole `CountryCode` w tabeli `City` przechowuje wartość pola `Code` z tabeli `Country`. W ten sposób można zidentyfikować, w którym państwie leży dane miasto. Podobna sytuacja występuje w powiązaniu tabeli `CountryLanguage` i `Country`. Tabela `CountryLanguage` zwiera dane o językach używanych we wszystkich państwach. Każdy rekord tej tabeli określa np. procentowy udział języka w danym państwie. Zatem, powiedzmy, język polski wystąpi w kilku rekordach tej tabeli, bo jest używany w kilku państwach.
 
 Z powyższego wynika, że w przypadku obydwu powiązań, mamy do czynienia z relacją jeden-do-wielu. W przypadku tabel `City` i `Country`: każde miasto może wystąpić tylko w jednym państwie, ale każde państwo może posiadać wiele miast. W przypadku tabel `Country` i `CountryLanguage` jest to może mniej oczywiste: każdy rekord z tabeli `CountryLanguage` określający język w danym państwie może przynależeć tylko do jednego państwa. (Gdyby rekord ten określał język "w ogóle", to oczywiście mógłby być powiązany z wieloma rekordami z tabeli `Country`. Jednak wtedy nie można by w nim przechowywać danych charakterystycznych dla danego państwa, jak: czy jest to język oficjalny i jaki procent ludności nim włada.) Patrząc w drugą stronę: w każdym państwie może mieszkać wiele narodowości.
 
