@@ -764,7 +764,7 @@ div.tocify {
 <h1>Połączenie z serwerem MySQL</h1>
 <ol style="list-style-type: decimal">
 <li>Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).</li>
-<li>Klient MySQL’a uruchamia komenda: <code class="sourceCode bash"><span class="ex">mysql</span> -u mysql</code> Program wita nas krótkim komunikatem oraz znakiem zachęty:</li>
+<li>Klient MySQL’a uruchamia komenda: <code class="sourceCode bash"><span class="ex">mysql</span> -u studXX</code> Program wita nas krótkim komunikatem oraz znakiem zachęty:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb1-1" data-line-number="1">mysql&gt;</a></code></pre></div>
 <p>po którym wpisujemy polecenia. Każda instrukcja powinna być zakończona średnikiem. W przeciwnym wypadku po wciśnięciu klawisza <em>enter</em> program wyświetli znak</p>
@@ -772,14 +772,14 @@ div.tocify {
 <p>oznaczający, że oczekiwany jest ciąg dalszy polecenia. 3. Dostępne bazy danych możemy wyświetlić za pomocą instrukcji:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb3-1" data-line-number="1">SHOW DATABASES;</a></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li>My chcemy skorzystać z bazy danych o nazwie <em>test</em>:</li>
+<li>My chcemy skorzystać z bazy danych o nazwie <em>world</em>:</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">USE</span> world;</a></code></pre></div>
 </div>
-<div id="baza-danych-test" class="section level1">
-<h1>Baza danych <em>test</em></h1>
-<div id="sprawdż-jakie-tabele-zawarte-są-w-bazie-danych-test" class="section level3">
-<h3>Sprawdż jakie tabele zawarte są w bazie danych <em>test</em>:</h3>
+<div id="baza-danych-world" class="section level1">
+<h1>Baza danych <em>world</em></h1>
+<div id="sprawdż-jakie-tabele-zawarte-są-w-bazie-danych-world" class="section level3">
+<h3>Sprawdż jakie tabele zawarte są w bazie danych <em>world</em>:</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb5-1" data-line-number="1">SHOW <span class="kw">TABLES</span>;</a></code></pre></div>
 <p>Okaże się, że są to: <em>City</em>, <em>Country</em> i <em>CountryLanguage</em>. Informacje jakie są przechowywane w poszczególnych tabelach (definicję tabeli) wyświetli poniższe polecenie, np. dla tabeli <em>City</em>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb6-1" data-line-number="1">DESCRIBE City;</a></code></pre></div>
@@ -1048,10 +1048,10 @@ div.tocify {
 </div>
 <div id="schematy-tabel" class="section level1">
 <h1>Schematy tabel</h1>
-<div id="schemat-tabel-zawartych-w-bazie-danych-test" class="section level2">
-<h2>Schemat tabel zawartych w bazie danych <em>test</em></h2>
-<p><img src="figures/info3_lab_4-5_test_base.png" title="Baza danych Test" /></p>
-<p>Baza danych test zawiera trzy tabele: <code>City</code>, <code>Country</code> i <code>CountryLanguage</code>. Powyższy schemat przedstawia powiązania jakie występują pomiędzy tymi tabelami. Pola: <code>ID</code> w tabeli <code>City</code> i <code>Code</code> w tabeli <code>Country</code> są unikatowe. To znaczy, że każdy rekord, np. w tabeli <code>City</code>, musi mieć inną wartość pola <code>ID</code>. Pole <code>CountryCode</code> w tabeli <code>City</code> przechowuje wartość pola <code>Code</code> z tabeli <code>Country</code>. W ten sposób można zidentyfikować, w którym państwie leży dane miasto. Podobna sytuacja występuje w powiązaniu tabeli <code>CountryLanguage</code> i <code>Country</code>. Tabela <code>CountryLanguage</code> zwiera dane o językach używanych we wszystkich państwach. Każdy rekord tej tabeli określa np. procentowy udział języka w danym państwie. Zatem, powiedzmy, język polski wystąpi w kilku rekordach tej tabeli, bo jest używany w kilku państwach.</p>
+<div id="schemat-tabel-zawartych-w-bazie-danych-world" class="section level2">
+<h2>Schemat tabel zawartych w bazie danych <em>world</em></h2>
+<p><img src="figures/info3_lab_4-5_test_base.png" title="Baza danych World" /></p>
+<p>Baza danych world zawiera trzy tabele: <code>City</code>, <code>Country</code> i <code>CountryLanguage</code>. Powyższy schemat przedstawia powiązania jakie występują pomiędzy tymi tabelami. Pola: <code>ID</code> w tabeli <code>City</code> i <code>Code</code> w tabeli <code>Country</code> są unikatowe. To znaczy, że każdy rekord, np. w tabeli <code>City</code>, musi mieć inną wartość pola <code>ID</code>. Pole <code>CountryCode</code> w tabeli <code>City</code> przechowuje wartość pola <code>Code</code> z tabeli <code>Country</code>. W ten sposób można zidentyfikować, w którym państwie leży dane miasto. Podobna sytuacja występuje w powiązaniu tabeli <code>CountryLanguage</code> i <code>Country</code>. Tabela <code>CountryLanguage</code> zwiera dane o językach używanych we wszystkich państwach. Każdy rekord tej tabeli określa np. procentowy udział języka w danym państwie. Zatem, powiedzmy, język polski wystąpi w kilku rekordach tej tabeli, bo jest używany w kilku państwach.</p>
 <p>Z powyższego wynika, że w przypadku obydwu powiązań, mamy do czynienia z relacją jeden-do-wielu. W przypadku tabel <code>City</code> i <code>Country</code>: każde miasto może wystąpić tylko w jednym państwie, ale każde państwo może posiadać wiele miast. W przypadku tabel <code>Country</code> i <code>CountryLanguage</code> jest to może mniej oczywiste: każdy rekord z tabeli <code>CountryLanguage</code> określający język w danym państwie może przynależeć tylko do jednego państwa. (Gdyby rekord ten określał język “w ogóle”, to oczywiście mógłby być powiązany z wieloma rekordami z tabeli <code>Country</code>. Jednak wtedy nie można by w nim przechowywać danych charakterystycznych dla danego państwa, jak: czy jest to język oficjalny i jaki procent ludności nim włada.) Patrząc w drugą stronę: w każdym państwie może mieszkać wiele narodowości.</p>
 <p>Powiązania te ilustruje przykład przedstawiony na rysunku. Z pierwszym rekordem z tabeli <code>Country</code> (<code>POL Code</code>) powiązane są dwa miasta z tabeli <code>City</code> (<code>1 ID</code>, <code>2 ID</code>) i dwa języki z tabeli <code>CountryLanguage</code>.</p>
 <p>Pola: <code>ID</code> (<code>City</code>), <code>Code</code> (<code>Country</code>), <code>CountryCode</code> (<code>City</code>, <code>CountryLanguage</code>) muszą zawsze być wypełnione, to znaczy, że możemy mieć pewność, że odpowiednie powiązania będą istnieć. Pomiędzy tabelami <code>Country</code> i <code>City</code> istnieje jeszcze jedno powiązanie oznaczone linią przerywaną: <code>Capital</code> - <code>ID</code>. Każde państwo może posiadać stolicę. Kod miasta będącego stolicą przechowywany jest w polu <code>Capital</code>. Pole to może mieć wartość <code>NULL</code>, ponieważ są pewne obszary globu (zazwyczaj jednak zależne od pewnych państw) nie posiadające wyraźnych struktur państwowych. Wystarczy sprawdzić jakie to terytoria:</p>
