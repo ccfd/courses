@@ -32,7 +32,7 @@ Widać także, że skoro $\mathbf{x}^{k}$ dąży do $\mathbf{x}$ to $\mathbf{r}^
 ### Zadanie
 
 Wyznacz residuum dla zadania z poprzednich zajęć.
-Następnie oblicz i wyświetl jego normę: $\|\mathbf{r}\| = \sqrt{\mathbf{r}^T\mathbf{r}}$ (napisz funkcję liczącą normę wektora `norm(double *, int)`).
+Następnie oblicz i wyświetl jego normę: $\|\mathbf{r}\| = \sqrt{\mathbf{r}^T\mathbf{r}}$ (napisz funkcję liczącą normę wektora `norm(int, double *)`).
 Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?
 
 
@@ -89,7 +89,7 @@ Wprowadź współczynnik $\alpha$, który ,,przytłumi''  wykonywane iteracje:
 \]
 3. Sprawdź zbieżność tego schematu dla różnych wartości $\alpha$.
 Sprawdź liczby $0.5$, $0.9$, $1.1$ i $2$.
-4. Wydziel z funkcji `Solve` część odpowiedzialną za mnożenie przez $\mathbf{A}$: `Mult(double **A, double *x, double *r)` i preconditioner: `Precond(double **A, double *x, double *p).`
+4. Wydziel z funkcji `Solve` część odpowiedzialną za mnożenie przez $\mathbf{A}$: `Mult(int N, double **A, double *x, double *r)` i preconditioner: `Precond(int N, double **A, double *x, double *p).`
 
 Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner.
 Zauważmy, że obliczając $p_2^k$ mamy już obliczone $p_1^k$ i możemy go użyć.
@@ -160,7 +160,7 @@ Schemat z taką wartością $\alpha^k$ nazywamy **metodą najmniejszych residuó
 W tym celu:
     - Wyznacz wektor $\mathbf{A} \mathbf{p}^k$.
     - Zauważ, że wyrażenie typu $\mathbf{a}^T \mathbf{b}$ to iloczyn skalarny dwóch wektorów $\mathbf{a}^T \mathbf{b} = \mathbf{a} \cdot \mathbf{b}$.
-    Napisz funkcję `skal(double *, double *, int)` liczącą iloczyn skalarny i oblicz $\alpha^k$ z powyższego wzoru.
+    Napisz funkcję `skal(int, double *, double *)` liczącą iloczyn skalarny i oblicz $\alpha^k$ z powyższego wzoru.
 
 
 # Wykorzystujemy historię
