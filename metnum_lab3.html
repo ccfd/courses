@@ -680,7 +680,7 @@ Naszym celem będzie napisanie funkcji <code>Solve</code>, która zastąpi funkc
 Widać także, że skoro <span class="math inline">\(\mathbf{x}^{k}\)</span> dąży do <span class="math inline">\(\mathbf{x}\)</span> to <span class="math inline">\(\mathbf{r}^{k}\)</span> dąży do zera.</p>
 <div id="zadanie" class="section level3">
 <h3>Zadanie</h3>
-<p>Wyznacz residuum dla zadania z poprzednich zajęć. Następnie oblicz i wyświetl jego normę: <span class="math inline">\(\|\mathbf{r}\| = \sqrt{\mathbf{r}^T\mathbf{r}}\)</span> (napisz funkcję liczącą normę wektora <code>norm(double *, int)</code>). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?</p>
+<p>Wyznacz residuum dla zadania z poprzednich zajęć. Następnie oblicz i wyświetl jego normę: <span class="math inline">\(\|\mathbf{r}\| = \sqrt{\mathbf{r}^T\mathbf{r}}\)</span> (napisz funkcję liczącą normę wektora <code>norm(int, double *)</code>). Ile wynosi ta norma przed i po rozwiązaniu układu metodą eliminacji Gaussa?</p>
 </div>
 <div id="początki" class="section level1">
 <h1>Początki</h1>
@@ -711,7 +711,7 @@ p^k_i = \frac{1}{A_{ii}}{r^k_i}
 \mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha \mathbf{p}^k
 \]</span></li>
 <li>Sprawdź zbieżność tego schematu dla różnych wartości <span class="math inline">\(\alpha\)</span>. Sprawdź liczby <span class="math inline">\(0.5\)</span>, <span class="math inline">\(0.9\)</span>, <span class="math inline">\(1.1\)</span> i <span class="math inline">\(2\)</span>.</li>
-<li>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(\mathbf{A}\)</span>: <code>Mult(double **A, double *x, double *r)</code> i preconditioner: <code>Precond(double **A, double *x, double *p).</code></li>
+<li>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(\mathbf{A}\)</span>: <code>Mult(int N, double **A, double *x, double *r)</code> i preconditioner: <code>Precond(int N, double **A, double *x, double *p).</code></li>
 </ol>
 <p>Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner. Zauważmy, że obliczając <span class="math inline">\(p_2^k\)</span> mamy już obliczone <span class="math inline">\(p_1^k\)</span> i możemy go użyć. Nie musimy zatem pomijać elementów układu ,,pod diagonalą’’: <span class="math display">\[
 \left\{
@@ -761,7 +761,7 @@ p_i^k = \frac{1}{A_{ii}}\left( r_i - \sum_{j=1}^{i-1} A_{ij} p_j^k \right)
 <li>Sprawdź zbieżność dla nowego <span class="math inline">\(\alpha^k\)</span>. W tym celu:
 <ul>
 <li>Wyznacz wektor <span class="math inline">\(\mathbf{A} \mathbf{p}^k\)</span>.</li>
-<li>Zauważ, że wyrażenie typu <span class="math inline">\(\mathbf{a}^T \mathbf{b}\)</span> to iloczyn skalarny dwóch wektorów <span class="math inline">\(\mathbf{a}^T \mathbf{b} = \mathbf{a} \cdot \mathbf{b}\)</span>. Napisz funkcję <code>skal(double *, double *, int)</code> liczącą iloczyn skalarny i oblicz <span class="math inline">\(\alpha^k\)</span> z powyższego wzoru.</li>
+<li>Zauważ, że wyrażenie typu <span class="math inline">\(\mathbf{a}^T \mathbf{b}\)</span> to iloczyn skalarny dwóch wektorów <span class="math inline">\(\mathbf{a}^T \mathbf{b} = \mathbf{a} \cdot \mathbf{b}\)</span>. Napisz funkcję <code>skal(int, double *, double *)</code> liczącą iloczyn skalarny i oblicz <span class="math inline">\(\alpha^k\)</span> z powyższego wzoru.</li>
 </ul></li>
 </ol>
 </div>
