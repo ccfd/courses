@@ -26,6 +26,99 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -663,62 +756,72 @@ div.tocify {
 </div>
 
 
-<p>Łatwo zauważyć, że w metodzie gradientów sprzężonych nie używamy elementów macierzy, lecz tylko możliwości mnożenia przez nią. Tzn: nie musimy wiedzieć jak wygląda <span class="math inline">\(A\)</span>, wystarczy że dla danego wektora <span class="math inline">\(x\)</span> potrafimy obliczyć <span class="math inline">\(Ax\)</span>.</p>
-<p>Na tych laboratoriach wykorzystamy tą wiedzę by dodatkowo przyspieszyć program i zmniejszyć użycie pamięci.</p>
+<p>Można zauważyć, że w metodzie gradientów sprzężonych nie wykorzystujemy elementów macierzy <span class="math inline">\(\mathbf{A}\)</span> jako takich. Używamy jedynie wektorów będących wynikami mnożenia przez <span class="math inline">\(\mathbf{A}\)</span>. Tymi wektorami są <span class="math inline">\(\mathbf{A} \mathbf{x}^k\)</span>, <span class="math inline">\(\mathbf{A} \mathbf{p}^k\)</span> oraz <span class="math inline">\(\mathbf{A} \mathbf{r}^k\)</span>. Nie musimy więc wiedzieć jak wygląda macierz <span class="math inline">\(\mathbf{A}\)</span>, wystarczy że dla danego wektora <span class="math inline">\(\mathbf{v}\)</span> wiemy jak wygląda (potrafimy obliczyć) <span class="math inline">\(\mathbf{A}\mathbf{v}\)</span>.<br />
+Na tych laboratoriach wykorzystamy tą wiedzę i przyspieszymy działanie programu oraz zmniejszymy zużycie pamięci.</p>
 <div id="przygotowanie" class="section level1">
 <h1>Przygotowanie</h1>
-<p>By nie pomylić się w następnych krokach, należy pierw dobrze ‘’posprzątać’’ kod.</p>
-<div id="zadanie" class="section level3">
-<h3>Zadanie</h3>
-<p>Wydziel wszystkie elementy iteracji metody gradientów sprzężonych do oddzielnych pętli. Tak by <span class="math inline">\(r=Ax\)</span>, <span class="math inline">\(r=b-r\)</span>, etc. były oddzielnymi kawałkami kodu</p>
-</div>
+<p>Aby nie pomylić się w kolejnych krokach, należy najpierw dobrze <strong>uporządkować</strong> dotychczasowych kod. W tym celu zrealizuj poniższe zadania:</p>
 <div id="zadanie-1" class="section level3">
-<h3>Zadanie</h3>
-<p>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez <span class="math inline">\(A\)</span>: <code>Mult(double** A, double*x, double* r)</code> i preconditioner diagonalny: <code>Precond(double** A, double*r, double* p)</code> — Zauważ że mnożenie przez macierz <span class="math inline">\(A\)</span> występuje co najmniej dwa razy w iteracji.</p>
-<p>Na tym etapie w funkcji <code>Solve</code> nie powinny występować nigdzie elementy macierzy <span class="math inline">\(A\)</span>.</p>
+<h3>Zadanie 1</h3>
+<p>Rozdziel wszystkie elementy iteracji metodą gradientów sprzężonych tak aby mnożenie przez macierz <span class="math inline">\(\mathbf{A}\)</span> było realizowane przez oddzielny fragment kodu. Przykładowo, jeśli residuum było obliczane za pomocą funkcji</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> res(<span class="dt">int</span> N, <span class="dt">double</span> **A, <span class="dt">double</span> *x, <span class="dt">double</span> *b, <span class="dt">double</span> *r)</a></code></pre></div>
+<p>to za miast niej należy użyć dwóch oddzielnych fragmentów kodu realizujących mnożenie <span class="math inline">\(\mathbf{r} = \mathbf{A} \mathbf{x}\)</span> oraz odejmowanie <span class="math inline">\(\mathbf{r} = \mathbf{b} - \mathbf{r}\)</span>.</p>
 </div>
 <div id="zadanie-2" class="section level3">
-<h3>Zadanie</h3>
-<p>Przenieś zmienne <code>fix</code>, <code>thick</code> do zmiennych globalnych</p>
+<h3>Zadanie 2</h3>
+<p>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez macierz <span class="math inline">\(\mathbf{A}\)</span>: <code>Mult(int N, double **A, double *x, double *r)</code> i preconditioner diagonalny: <code>Precond(int N, double **A, double *r, double *p)</code>.<br />
+Zauważ, że mnożenie przez macierz <span class="math inline">\(\mathbf{A}\)</span> występuje co najmniej dwa razy w iteracji.</p>
+<p>Na tym etapie w funkcji <code>Solve</code> nigdzie nie powinny występować elementy macierzy <span class="math inline">\(\mathbf{A}\)</span>.</p>
 </div>
 <div id="zadanie-3" class="section level3">
-<h3>Zadanie</h3>
-<p>Skopiuj funkcję <code>Mult</code> pod nazwą <code>SMult</code></p>
+<h3>Zadanie 3</h3>
+<p>Przenieś zmienną <code>thick</code> oznaczającą grubość elementów skończonych do zmiennych globalnych</p>
 </div>
-</div>
-<div id="element-po-elemencie" class="section level1">
-<h1>Element po elemencie</h1>
-<p>W funkcji <code>SMult</code> będziemy chcieli napisać funkcję mnożącą przez macierz sztywności nie używając samej macierzy <span class="math inline">\(S\)</span>. Chcemy wykonać operację <span class="math inline">\(r=Sx\)</span>, tzn: <span class="math inline">\(r_i = \sum_jS_{ij}x_j\)</span>.</p>
-<p>Jeśli dodamy do elementu <span class="math inline">\(S_{1,2}\)</span> liczbę <span class="math inline">\(4\)</span>, to do <span class="math inline">\(r_1\)</span> musimy dodać <span class="math inline">\(4x_2\)</span>.</p>
-<p>Analogicznie jeśli dodamy do elementu <span class="math inline">\(S_{ij}\)</span> liczbę <span class="math inline">\(w\)</span>, to tak jak byśmy dodali do elementu <span class="math inline">\(r_i\)</span> liczbę <span class="math inline">\(w\cdot x_j\)</span>. Jako, że macierz <span class="math inline">\(S\)</span> konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.</p>
 <div id="zadanie-4" class="section level3">
-<h3>Zadanie</h3>
-<p>Przekopiuj fragment kodu funkcji <code>main</code> odpowiedzialny za konstrukcję macierzy <span class="math inline">\(S\)</span>. Następnie, każde wystąpienie\ <code>S[i,j] += cos;</code>\ zamień na:\ <code>r[i] += cos * x[j];</code></p>
-<p>Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonalnej? Jeśli w macierzy <span class="math inline">\(S\)</span> <span class="math inline">\(i\)</span>-ty wiersz zamienimy na same zera i <span class="math inline">\(1\)</span> na przekątnej, to tak jak byśmy postawili <span class="math inline">\(r_i = x_i\)</span>.</p>
+<h3>Zadanie 4</h3>
+<p>Skopiuj funkcję <code>Mult</code> i nadaj jej nazwę <code>Mult_A</code>.</p>
 </div>
+</div>
+<div id="mnożenie-przez-mathbfa-bez-mathbfa" class="section level1">
+<h1>Mnożenie przez <span class="math inline">\(\mathbf{A}\)</span> bez <span class="math inline">\(\mathbf{A}\)</span></h1>
+<p>Chcielibyśmy aby funkcja <code>Mult_A</code> wykonywała mnożenie pewnego wektora <span class="math inline">\(\mathbf{v}\)</span> przez globalną macierz sztywności nie używając samej macierzy <span class="math inline">\(\mathbf{A}\)</span>. To znaczy, że chcemy wykonać operację <span class="math inline">\(\mathbf{t} = \mathbf{A} \mathbf{v}\)</span> czyli: <span class="math display">\[
+t_i = \sum_{j=1}^N A_{ij} v_j, \; (i=1\ldots N)
+\]</span> Przypomnijmy, że globalną macierz sztywności <span class="math inline">\(\mathbf{A}\)</span> tworzy się przez sumowanie elementów macierzy lokalnych. Zastanówmy się więc co się dzieje z wynikiem mnożenia <span class="math inline">\(\mathbf{t}\)</span> jeśli do macierzy <span class="math inline">\(\mathbf{A}\)</span> dodamy coś.</p>
+<p>Jeśli do elementu <span class="math inline">\(A_{1,2}\)</span> dodamy liczbę <span class="math inline">\(4\)</span>, to do <span class="math inline">\(t_1\)</span> musimy dodać <span class="math inline">\(4 v_2\)</span>.</p>
+<p>Analogicznie jeśli do elementu <span class="math inline">\(A_{ij}\)</span> dodamy liczbę <span class="math inline">\(w\)</span>, to tak jak byśmy do elementu <span class="math inline">\(t_i\)</span> dodali liczbę <span class="math inline">\(w \cdot v_j\)</span>.</p>
 <div id="zadanie-5" class="section level3">
-<h3>Zadanie</h3>
-<p>Zamień pętlę wycinającą <span class="math inline">\(i\)</span>ty wiersz, na <code>r[i]=x[i]</code></p>
+<h3>Zadanie 5</h3>
+<p>Przekopiuj fragment kodu odpowiedzialny za konstrukcję globalnej macierzy sztywności <span class="math inline">\(A\)</span>. Następnie, każde wystąpienie:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">A[i,j] += cos;</a></code></pre></div>
+<p>zamień na:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">r[i] += cos * x[j];</a></code></pre></div>
+<p>Co z częścią, która uwzględniała odebrane stopnie swobody i zamieniała wybrane wiersze na wiersze macierzy diagonalnej? Jeśli w macierzy <span class="math inline">\(\mathbf{A}\)</span> <span class="math inline">\(i\)</span>-ty wiersz zamienimy na same zera i <span class="math inline">\(1\)</span> na przekątnej, to tak jak byśmy podstawili <span class="math inline">\(t_i = v_i\)</span>.</p>
 </div>
 <div id="zadanie-6" class="section level3">
-<h3>Zadanie</h3>
-<p>Przetestuj kod z <code>SMult</code> zamiast <code>Mult</code></p>
+<h3>Zadanie 6</h3>
+<p>Zamień pętlę modyfikującą <span class="math inline">\(i\)</span>-ty wiersz, na <code>t[i] = v[i]</code>.</p>
 </div>
 <div id="zadanie-7" class="section level3">
-<h3>Zadanie</h3>
-<p>Napisz trywialny preconditioner <code>IPrecond(double ** A, double * r, double * p)</code>, przepisujący <span class="math inline">\(p=r\)</span>.</p>
+<h3>Zadanie 7</h3>
+<p>Przetestuj kod z funkcją <code>Mult_A</code> zamiast funkcji <code>Mult</code>.</p>
 </div>
 <div id="zadanie-8" class="section level3">
-<h3>Zadanie</h3>
-<p>Popraw kod zauważając, że ani <code>SMult</code> ani <code>IPrecond</code> nie potrzebują brać <code>A</code> za argument.</p>
+<h3>Zadanie 8</h3>
+<p>Jeśli nie zrobiłeś tego w poprzednim ćwiczeniu, napisz trywialny preconditioner <code>Precond_I(int N, double **A, double *r, double *p)</code> przepisujący tablicę reszt wskazywaną przez <code>r</code> na tablicę poprawek wskazywaną przez <code>p</code>.</p>
+</div>
+<div id="zadanie-9" class="section level3">
+<h3>Zadanie 9</h3>
+<p>Popraw kod zauważając, że ani <code>Mult_A</code>, ani <code>Precond_I</code> nie potrzebują wskaźnika na <code>A</code> jako argumentu.</p>
 </div>
 </div>
 <div id="a-teraz-na-poważnie" class="section level1">
 <h1>A teraz na poważnie</h1>
-<p>Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy <span class="math inline">\(S\)</span>. Możemy ją całkowicie wyeliminować. Funkcję <code>Solve</code> będziemy chcieli jednak używać dla różnych macierzy — dlatego jako argument, zamiast macierzy <code>double ** A</code> będziemy przekazywać funkcję mnożenia <code>void (*mult)(double *, double *)</code>. Tzn: nagłówek funkcji <code>Solve</code> będzie następujący:\ <code>void Solve(int n, void (*mult)(double *, double *), double *b, double *x)</code>\ A w miejscu mnożenia przez macierz <span class="math inline">\(r=Ax\)</span> będziemy mieli <code>mult(x,r);</code>. Teraz funkcję <code>Solve</code> będziemy wywoływać przekazując jej konkretną funkcję mnożącą: <code>Solve(n, SMult, F, d);</code>.</p>
-</div>
-<div id="równoległość" class="section level1">
-<h1>Równoległość</h1>
+<p>Na tym etapie nie potrzebujemy w ogóle macierzy <span class="math inline">\(\mathbf{A}\)</span> zapisanej gdziekolwiek w pamięci. Możemy ją całkowicie wyeliminować. Funkcję <code>Solve</code> będziemy jednak chcieli używać dla różnych macierzy — dlatego jako argument, zamiast wskaźnika na macierz <code>double **A</code> będziemy przekazywać funkcję mnożenia</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">void</span> (*mult)(<span class="dt">int</span> N, <span class="dt">double</span> *, <span class="dt">double</span> *)</a></code></pre></div>
+<p>Nagłówek funkcji <code>Solve</code> będzie miał wtedy postać:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">void</span> Solve(<span class="dt">int</span> N, <span class="dt">void</span> (*mult)(<span class="dt">int</span> N, <span class="dt">double</span> *, <span class="dt">double</span> *), <span class="dt">double</span> *b, <span class="dt">double</span> *x)</a></code></pre></div>
+<p>W miejscu mnożenia przez macierz <span class="math inline">\(\mathbf{b} = \mathbf{A}\mathbf{x}\)</span> będziemy wywoływali <code>mult(N, x, b);</code>. Teraz funkcję <code>Solve</code> będziemy wywoływać przekazując jej konkretną funkcję mnożącą</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1">Solve(N, Mult_A, F, d);</a></code></pre></div>
 </div>
 
 <!-- Dummy footer -->
