@@ -11,7 +11,7 @@ Na tym laboratorium nie poznamy *sensum stricte* nowych metod numerycznych. Zami
 Wykonując poprzednie laboratorium powinniśmy byli zauważyć, że najbardziej wydajną metodą iteracyjną (przynajmniej z tych rozważanych) rozwiązania układu algebraicznego wynikającego z MES jest metoda gradientów sprzężonych z preconditionerem Jacobiego.
 Wobec tego skupimy się tylko na niej, ale warto zaznaczyć, że prezentowane poniżej rozwiązania z powodzeniem można stosować również dla pozostałych metod iteracyjnych.
 
-Macierz $N \times N$ typu `double` zajmuje w pamięci $8N^2$ byte'ów, także np. mając 16GB pamięci RAM możemy zaalokować macierz reprezentującą układ równań o ok. 45tys. niewiadomych (nawet mniej, gdy uwzględnimy pamięć zarezerwowaną na inne zmienne, system operacyjny itd.).
+Macierz $N \times N$ typu `double` zajmuje w pamięci $8N^2$ byte'ów, także np. mając 16GB pamięci RAM możemy zaalokować macierz reprezentującą układ równań o ok. 45tys. niewiadomych (nawet mniej, gdy uwzględnimy pamięć zarezerwowaną na inne zmienne, system operacyjny itd).
 Implementacja z poprzednich zajęć jest wobec tego zupełnie nieadekwatna do ,,prawdziwych'' problemów inżynierskich, które potrafią mieć nawet dziesiątki milionów stopni swobody.
 Szczęśliwie okazuje się, że trzymanie w pamięci całego $A$ nie jest potrzebne.
 Nietrudno zauważyć, że w metodzie gradientów sprzężonych nie używamy elementów macierzy, lecz tylko możliwości mnożenia przez nią.
@@ -47,10 +47,18 @@ Analogicznie jeśli dodamy do elementu $S_{ij}$ liczbę $w$, to tak jak byśmy d
 Jako, że macierz $S$ konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.
 
 ### Zadanie
-Przekopiuj fragment kodu funkcji `main` odpowiedzialny za konstrukcję macierzy $S$. Następnie, każde wystąpienie\\
-`S[i,j] += cos;`\\
-zamień na:\\
+Przekopiuj fragment kodu funkcji `main` odpowiedzialny za konstrukcję macierzy $S$. Następnie, każde wystąpienie
+
+`S[i,j] += cos;`
+
+zamień na:
+
 `r[i] += cos * x[j];`
+
+Jeżeli planujesz realizować część instrukcji dot. równoległości, przerób kod tak, aby aktualizował tablicę `r` blokami, tzn. wykonywał mnożenie *lokalnej* macierzy sztywności przez odpowiedni ,,wycinek'' wektora `x`, wynik wpisywał do bufora (typ `double[8]`), a bufor dodawał do tablicy `r` dopiero po wykonaniu tego mnożenia.
+Pomoże to uniknąć nadmiernej synchronizacji wątków.
+Nawiasem mówiąc, takie rozwiązanie może się okazać nieco bardziej wydajne również dla sekwencyjnej (nierównoległej) implementacji.
+Wynika to z faktu, że korzystając z bufora, alokowanego na stosie, musimy dokonać mniejszej liczby dostępów (operacji `+=`) do tablicy `r`, zaalokowanej na stercie.
 
 ### Zadanie
 Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonalnej?
@@ -70,9 +78,10 @@ Popraw kod zauważając, że ani `SMult` ani `IPrecond` nie potrzebują brać `A
 Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy $S$.
 Możemy ją całkowicie wyeliminować.
 Funkcję `Solve` będziemy chcieli jednak używać dla różnych macierzy --- dlatego jako argument, zamiast macierzy `double ** A` będziemy przekazywać funkcję mnożenia `void (*mult)(double *, double *)`.
-Tzn: nagłówek funkcji `Solve` będzie następujący:\\
-`void Solve(int n, void (*mult)(double *, double *), double *b, double *x0, double *x)`\\
+Tzn: nagłówek funkcji `Solve` będzie następujący:
+
+`void Solve(int n, void (*mult)(double *, double *), double *b, double *x0, double *x)`
+
 A w miejscu mnożenia przez macierz $r=Ax$ będziemy mieli `mult(x,r);`. Teraz funkcję `Solve` będziemy wywoływać przekazując jej konkretną funkcję mnożącą: `Solve(n, SMult, F, d);`.
 
 # Równoległość
-
