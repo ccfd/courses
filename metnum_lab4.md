@@ -6,68 +6,91 @@ author: Ł. Łaniewski-Wołłk
 title: Mnożenie przez macierz jako funkcja
 ---
 
-Łatwo zauważyć, że w metodzie gradientów sprzężonych nie używamy elementów macierzy, lecz tylko możliwości mnożenia przez nią. Tzn: nie musimy wiedzieć jak wygląda $A$, wystarczy że dla danego wektora $x$ potrafimy obliczyć $Ax$.
-
-Na tych laboratoriach wykorzystamy tą wiedzę by dodatkowo przyspieszyć program i zmniejszyć użycie pamięci.
-
+Można zauważyć, że w metodzie gradientów sprzężonych nie wykorzystujemy elementów macierzy $\mathbf{A}$ jako takich.
+Używamy jedynie wektorów będących wynikami mnożenia przez $\mathbf{A}$.
+Tymi wektorami są $\mathbf{A} \mathbf{x}^k$, $\mathbf{A} \mathbf{p}^k$ oraz $\mathbf{A} \mathbf{r}^k$.
+Nie musimy więc wiedzieć jak wygląda macierz $\mathbf{A}$, wystarczy że dla danego wektora $\mathbf{v}$ wiemy jak wygląda (potrafimy obliczyć) $\mathbf{A}\mathbf{v}$.  
+Na tych laboratoriach wykorzystamy tą wiedzę i przyspieszymy działanie programu oraz zmniejszymy zużycie pamięci.
 
 # Przygotowanie
 
-By nie pomylić się w następnych krokach, należy pierw dobrze ''posprzątać'' kod. 
+Aby nie pomylić się w kolejnych krokach, należy najpierw dobrze **uporządkować** dotychczasowych kod.
+W tym celu zrealizuj poniższe zadania:
 
-### Zadanie
- Wydziel wszystkie elementy iteracji metody gradientów sprzężonych do oddzielnych pętli. Tak by $r=Ax$, $r=b-r$, etc. były oddzielnymi kawałkami kodu
+### Zadanie 1
+Rozdziel wszystkie elementy iteracji metodą gradientów sprzężonych tak aby mnożenie przez macierz $\mathbf{A}$ było realizowane przez oddzielny fragment kodu.
+Przykładowo, jeśli residuum było obliczane za pomocą funkcji
+```c++
+void res(int N, double **A, double *x, double *b, double *r)
+```
+to za miast niej należy użyć dwóch oddzielnych fragmentów kodu realizujących mnożenie $\mathbf{r} = \mathbf{A} \mathbf{x}$ oraz odejmowanie $\mathbf{r} = \mathbf{b} - \mathbf{r}$.
 
-### Zadanie
- Wydziel z funkcji `Solve` część odpowiedzialną za mnożenie przez $A$: `Mult(double** A, double*x, double* r)` i preconditioner diagonalny: `Precond(double** A, double*r, double* p)` --- Zauważ że mnożenie przez macierz $A$ występuje co najmniej dwa razy w iteracji.
+### Zadanie 2
+Wydziel z funkcji `Solve` część odpowiedzialną za mnożenie przez macierz $\mathbf{A}$: `Mult(int N, double **A, double *x, double *r)` i preconditioner diagonalny: `Precond(int N, double **A, double *r, double *p)`.  
+Zauważ, że mnożenie przez macierz $\mathbf{A}$ występuje co najmniej dwa razy w iteracji.
 
-Na tym etapie w funkcji `Solve` nie powinny występować nigdzie elementy macierzy $A$.
+Na tym etapie w funkcji `Solve` nigdzie nie powinny występować elementy macierzy $\mathbf{A}$.
 
+### Zadanie 3
+Przenieś zmienną `thick` oznaczającą grubość elementów skończonych do zmiennych globalnych
 
-### Zadanie
- Przenieś zmienne `fix`, `thick` do zmiennych globalnych
+### Zadanie 4
+Skopiuj funkcję `Mult` i nadaj jej nazwę `Mult_A`.
 
+# Mnożenie przez $\mathbf{A}$ bez $\mathbf{A}$ 
 
-### Zadanie
-Skopiuj funkcję `Mult` pod nazwą `SMult`
+Chcielibyśmy aby funkcja `Mult_A` wykonywała mnożenie pewnego wektora $\mathbf{v}$ przez globalną macierz sztywności nie używając samej macierzy $\mathbf{A}$.
+To znaczy, że chcemy wykonać operację $\mathbf{t} = \mathbf{A} \mathbf{v}$ czyli:
+$$
+t_i = \sum_{j=1}^N A_{ij} v_j, \; (i=1\ldots N)
+$$
+Przypomnijmy, że globalną macierz sztywności $\mathbf{A}$ tworzy się przez sumowanie elementów macierzy lokalnych.
+Zastanówmy się więc co się dzieje z wynikiem mnożenia $\mathbf{t}$ jeśli do macierzy $\mathbf{A}$ dodamy coś.
 
+Jeśli do elementu $A_{1,2}$ dodamy liczbę $4$, to do $t_1$ musimy dodać $4 v_2$.
 
-# Element po elemencie
-W funkcji `SMult` będziemy chcieli napisać funkcję mnożącą przez macierz sztywności nie używając samej macierzy $S$. Chcemy wykonać operację $r=Sx$, tzn: $r_i = \sum_jS_{ij}x_j$.
+Analogicznie jeśli do elementu $A_{ij}$ dodamy liczbę $w$, to tak jak byśmy do elementu $t_i$ dodali liczbę $w \cdot v_j$.
 
-Jeśli dodamy do elementu $S_{1,2}$ liczbę $4$, to do $r_1$ musimy dodać $4x_2$.
+### Zadanie 5
+Przekopiuj fragment kodu odpowiedzialny za konstrukcję globalnej macierzy sztywności $A$.
+Następnie, każde wystąpienie:
+```c++
+A[i,j] += cos;
+```
+zamień na:
+```c++
+r[i] += cos * x[j];
+```
 
-Analogicznie jeśli dodamy do elementu $S_{ij}$ liczbę $w$, to tak jak byśmy dodali do elementu $r_i$ liczbę $w\cdot x_j$. Jako, że macierz $S$ konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.
+Co z częścią, która uwzględniała odebrane stopnie swobody i zamieniała wybrane wiersze na wiersze macierzy diagonalnej?
+Jeśli w macierzy $\mathbf{A}$ $i$-ty wiersz zamienimy na same zera i $1$ na przekątnej, to tak jak byśmy podstawili $t_i = v_i$.
 
+### Zadanie 6
+Zamień pętlę modyfikującą $i$-ty wiersz, na `t[i] = v[i]`.
 
-### Zadanie
-Przekopiuj fragment kodu funkcji `main` odpowiedzialny za konstrukcję macierzy $S$. Następnie, każde wystąpienie\\
-`S[i,j] += cos;`\\
-zamień na:\\
-`r[i] += cos * x[j];`
+### Zadanie 7
+Przetestuj kod z funkcją `Mult_A` zamiast funkcji `Mult`.
 
-Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonalnej? Jeśli w macierzy $S$ $i$-ty wiersz zamienimy na same zera i $1$ na przekątnej, to tak jak byśmy postawili $r_i = x_i$.
+### Zadanie 8
+Jeśli nie zrobiłeś tego w poprzednim ćwiczeniu, napisz trywialny preconditioner `Precond_I(int N, double **A, double *r, double *p)` przepisujący tablicę reszt wskazywaną przez `r` na tablicę poprawek wskazywaną przez `p`.
 
-
-### Zadanie
-Zamień pętlę wycinającą $i$ty wiersz, na `r[i]=x[i]`
-
-### Zadanie
-Przetestuj kod z `SMult` zamiast `Mult`
-
-### Zadanie
-Napisz trywialny preconditioner `IPrecond(double ** A, double * r, double * p)`, przepisujący $p=r$.
-
-### Zadanie
-Popraw kod zauważając, że ani `SMult` ani `IPrecond` nie potrzebują brać `A` za argument.
-
+### Zadanie 9
+Popraw kod zauważając, że ani `Mult_A`, ani `Precond_I` nie potrzebują wskaźnika na `A` jako argumentu.
 
 # A teraz na poważnie
 
-Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy $S$. Możemy ją całkowicie wyeliminować. Funkcję `Solve` będziemy chcieli jednak używać dla różnych macierzy --- dlatego jako argument, zamiast macierzy `double ** A` będziemy przekazywać funkcję mnożenia `void (*mult)(double *, double *)`. Tzn: nagłówek funkcji `Solve` będzie następujący:\\
-`void Solve(int n, void (*mult)(double *, double *), double *b, double *x)`\\
-A w miejscu mnożenia przez macierz $r=Ax$ będziemy mieli `mult(x,r);`. Teraz funkcję `Solve` będziemy wywoływać przekazując jej konkretną funkcję mnożącą: `Solve(n, SMult, F, d);`.
-
-
-# Równoległość
-
+Na tym etapie nie potrzebujemy w ogóle macierzy $\mathbf{A}$ zapisanej gdziekolwiek w pamięci.
+Możemy ją całkowicie wyeliminować.
+Funkcję `Solve` będziemy jednak chcieli używać dla różnych macierzy --- dlatego jako argument, zamiast wskaźnika na macierz `double **A` będziemy przekazywać funkcję mnożenia
+```c++
+void (*mult)(int N, double *, double *)
+```
+Nagłówek funkcji `Solve` będzie miał wtedy postać:
+```c++
+void Solve(int N, void (*mult)(int N, double *, double *), double *b, double *x)
+```
+W miejscu mnożenia przez macierz $\mathbf{b} = \mathbf{A}\mathbf{x}$ będziemy wywoływali `mult(N, x, b);`.
+Teraz funkcję `Solve` będziemy wywoływać przekazując jej konkretną funkcję mnożącą
+```c++
+Solve(N, Mult_A, F, d);
+```
