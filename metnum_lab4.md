@@ -41,7 +41,13 @@ Aby nie pomylić się w następnych krokach, należy najpierw zrefaktoryzować (
 Skopiuj funkcję do mnożenia macierz-wektor i nazwij kopię `SMult`.
 W funkcji `SMult` będziemy chcieli napisać funkcję mnożącą przez globalną macierz sztywności $S$ nie używając samej tej macierzy. Chcemy wykonać operację $r=Sx$, tzn: $r_i = \sum_jS_{ij}x_j$.
 
-Jeśli dodamy do elementu $S_{1,2}$ liczbę $4$, to do $r_1$ musimy dodać $4x_2$.
+Chcielibyśmy aby funkcja `Mult_A` wykonywała mnożenie pewnego wektora $\mathbf{v}$ przez globalną macierz sztywności nie używając samej macierzy $\mathbf{A}$.
+To znaczy, że chcemy wykonać operację $\mathbf{t} = \mathbf{A} \mathbf{v}$ czyli:
+$$
+t_i = \sum_{j=1}^N A_{ij} v_j, \; (i=1\ldots N)
+$$
+Przypomnijmy, że globalną macierz sztywności $\mathbf{A}$ tworzy się przez sumowanie elementów macierzy lokalnych.
+Zastanówmy się więc co się dzieje z wynikiem mnożenia $\mathbf{t}$ jeśli do macierzy $\mathbf{A}$ dodamy coś.
 
 Analogicznie jeśli dodamy do elementu $S_{ij}$ liczbę $w$, to tak jak byśmy dodali do elementu $r_i$ liczbę $w\cdot x_j$.
 Jako, że macierz $S$ konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.
@@ -65,14 +71,8 @@ Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonal
 Jeśli w macierzy $S$ $i$-ty wiersz zamienimy na same zera i $1$ na przekątnej, to tak jak byśmy postawili $r_i = x_i$.
 Zamień pętlę wycinającą $i$ty wiersz, na `r[i]=x[i]`
 
-### Zadanie
-Przetestuj kod z `SMult` zamiast `Mult`
-
-### Zadanie
-Napisz trywialny preconditioner `IPrecond(double ** A, double * r, double * p)`, przepisujący $p=r$.
-
-### Zadanie
-Popraw kod zauważając, że ani `SMult` ani `IPrecond` nie potrzebują brać `A` za argument.
+### Zadanie 8
+Jeśli nie zrobiłeś tego w poprzednim ćwiczeniu, napisz trywialny preconditioner `Precond_I(int N, double **A, double *r, double *p)` przepisujący tablicę reszt wskazywaną przez `r` na tablicę poprawek wskazywaną przez `p`.
 
 # A teraz na poważnie
 Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy $S$.
