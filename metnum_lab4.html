@@ -756,72 +756,198 @@ div.tocify {
 </div>
 
 
-<p>Można zauważyć, że w metodzie gradientów sprzężonych nie wykorzystujemy elementów macierzy <span class="math inline">\(\mathbf{A}\)</span> jako takich. Używamy jedynie wektorów będących wynikami mnożenia przez <span class="math inline">\(\mathbf{A}\)</span>. Tymi wektorami są <span class="math inline">\(\mathbf{A} \mathbf{x}^k\)</span>, <span class="math inline">\(\mathbf{A} \mathbf{p}^k\)</span> oraz <span class="math inline">\(\mathbf{A} \mathbf{r}^k\)</span>. Nie musimy więc wiedzieć jak wygląda macierz <span class="math inline">\(\mathbf{A}\)</span>, wystarczy że dla danego wektora <span class="math inline">\(\mathbf{v}\)</span> wiemy jak wygląda (potrafimy obliczyć) <span class="math inline">\(\mathbf{A}\mathbf{v}\)</span>.<br />
-Na tych laboratoriach wykorzystamy tą wiedzę i przyspieszymy działanie programu oraz zmniejszymy zużycie pamięci.</p>
+<div id="wstęp" class="section level1">
+<h1>Wstęp</h1>
+<p>Na tym laboratorium nie poznamy <em>sensum stricte</em> nowych metod numerycznych. Zamiast tego przyjrzymy się, jak w optymalny sposób zaimplementować metody, które już znamy. Wykonując poprzednie laboratorium powinniśmy byli zauważyć, że najbardziej wydajną metodą iteracyjną (przynajmniej z tych rozważanych) rozwiązania układu algebraicznego wynikającego z MES jest metoda gradientów sprzężonych z preconditionerem Jacobiego. Wobec tego skupimy się tylko na niej, ale warto zaznaczyć, że prezentowane poniżej rozwiązania z powodzeniem można stosować również dla pozostałych metod iteracyjnych.</p>
+<p>Macierz <span class="math inline">\(N \times N\)</span> typu <code>double</code> zajmuje w pamięci <span class="math inline">\(8N^2\)</span> byte’ów, także np. mając 16GB pamięci RAM możemy zaalokować macierz reprezentującą układ równań o ok. 45tys. niewiadomych (nawet mniej, gdy uwzględnimy pamięć zarezerwowaną na inne zmienne, system operacyjny itd). Implementacja z poprzednich zajęć jest wobec tego zupełnie nieadekwatna do ,,prawdziwych’’ problemów inżynierskich, które potrafią mieć nawet dziesiątki milionów stopni swobody. Szczęśliwie okazuje się, że trzymanie w pamięci całego <span class="math inline">\(A\)</span> nie jest potrzebne. Nietrudno zauważyć, że w metodzie gradientów sprzężonych nie używamy elementów macierzy, lecz tylko możliwości mnożenia przez nią. Innymi słowy, nie musimy wiedzieć jak wygląda <span class="math inline">\(A\)</span>, wystarczy że dla danego wektora <span class="math inline">\(x\)</span> potrafimy policzyć <span class="math inline">\(Ax\)</span>. Dziś wykorzystamy to spostrzeżenie, aby przyspieszyć program i drastycznie zredukować ilość wykorzystywanej przez niego pamięci.</p>
+<p>Dodatkowo, chętni mogą dowiedzieć się, jak wykorzystać współczesne wielordzeniowe procesory do przyspieszenia obliczeń.</p>
+</div>
 <div id="przygotowanie" class="section level1">
 <h1>Przygotowanie</h1>
-<p>Aby nie pomylić się w kolejnych krokach, należy najpierw dobrze <strong>uporządkować</strong> dotychczasowych kod. W tym celu zrealizuj poniższe zadania:</p>
-<div id="zadanie-1" class="section level3">
-<h3>Zadanie 1</h3>
-<p>Rozdziel wszystkie elementy iteracji metodą gradientów sprzężonych tak aby mnożenie przez macierz <span class="math inline">\(\mathbf{A}\)</span> było realizowane przez oddzielny fragment kodu. Przykładowo, jeśli residuum było obliczane za pomocą funkcji</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">void</span> res(<span class="dt">int</span> N, <span class="dt">double</span> **A, <span class="dt">double</span> *x, <span class="dt">double</span> *b, <span class="dt">double</span> *r)</a></code></pre></div>
-<p>to za miast niej należy użyć dwóch oddzielnych fragmentów kodu realizujących mnożenie <span class="math inline">\(\mathbf{r} = \mathbf{A} \mathbf{x}\)</span> oraz odejmowanie <span class="math inline">\(\mathbf{r} = \mathbf{b} - \mathbf{r}\)</span>.</p>
+<p>Aby nie pomylić się w następnych krokach, należy najpierw zrefaktoryzować (tzn. przeorganizować i ,,posprzątać’’) kod. W tym celu upewnij się, że Twoja implementacja spełnia poniższe wymagania:</p>
+<ul>
+<li><p>Implementacja metody CG jest wydzielona do osobnej funkcji (dla ustalenia uwagi w tej instrukcji nazwiemy ją <code>Solve</code>)</p></li>
+<li><p><code>Solve</code> przyjmuje następujące argumenty: rozmiar układu równań <code>N</code> (typ całkowity), macierz <code>A</code> (typ <code>double **</code>), wektor <code>b</code> (typ <code>double *</code>), wektor przybliżenia początkowego <code>x0</code> (typ <code>double *</code>) oraz wektor, do którego wpisane zostać ma rozwiązanie <code>x</code> (typ <code>double*</code>).</p></li>
+<li><p><code>Solve</code> nie zwraca wartości lub ewentualnie zwraca kod błędu (typ <code>int</code>).</p></li>
+<li><p>Wewnątrz <code>Solve</code> jasno zdefiniowana jest maksymalna liczba iteracji <code>max_it</code> (typ <code>const int</code>) oraz poziom zbieżności <code>eps</code> (typ <code>const double</code>). Opcjonalnie możesz te wielkości przekazywać jako dodatkowe argumenty.</p></li>
+<li><p>Poszczególne elementy danej iteracji, np. liczenie residuum, mnożenie macierz-wektor, mnożenie skalarne wektorów itp. są wydzielone do osobnych funkcji.</p></li>
+<li><p>Bezpośrednio w <code>Solve</code> nie występują odniesienia do poszczególnych elementów <code>A</code> (są one przeniesione do odpowiednich funkcji, z których <code>Solve</code> korzysta)</p></li>
+<li><p>Zmienna <code>fix</code> jest globalna.</p></li>
+</ul>
 </div>
-<div id="zadanie-2" class="section level3">
-<h3>Zadanie 2</h3>
-<p>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za mnożenie przez macierz <span class="math inline">\(\mathbf{A}\)</span>: <code>Mult(int N, double **A, double *x, double *r)</code> i preconditioner diagonalny: <code>Precond(int N, double **A, double *r, double *p)</code>.<br />
-Zauważ, że mnożenie przez macierz <span class="math inline">\(\mathbf{A}\)</span> występuje co najmniej dwa razy w iteracji.</p>
-<p>Na tym etapie w funkcji <code>Solve</code> nigdzie nie powinny występować elementy macierzy <span class="math inline">\(\mathbf{A}\)</span>.</p>
-</div>
-<div id="zadanie-3" class="section level3">
-<h3>Zadanie 3</h3>
-<p>Przenieś zmienną <code>thick</code> oznaczającą grubość elementów skończonych do zmiennych globalnych</p>
-</div>
-<div id="zadanie-4" class="section level3">
-<h3>Zadanie 4</h3>
-<p>Skopiuj funkcję <code>Mult</code> i nadaj jej nazwę <code>Mult_A</code>.</p>
-</div>
-</div>
-<div id="mnożenie-przez-mathbfa-bez-mathbfa" class="section level1">
-<h1>Mnożenie przez <span class="math inline">\(\mathbf{A}\)</span> bez <span class="math inline">\(\mathbf{A}\)</span></h1>
+<div id="element-po-elemencie" class="section level1">
+<h1>Element po elemencie</h1>
+<p>Skopiuj funkcję do mnożenia macierz-wektor i nazwij kopię <code>SMult</code>. W funkcji <code>SMult</code> będziemy chcieli napisać funkcję mnożącą przez globalną macierz sztywności <span class="math inline">\(S\)</span> nie używając samej tej macierzy. Chcemy wykonać operację <span class="math inline">\(r=Sx\)</span>, tzn: <span class="math inline">\(r_i = \sum_jS_{ij}x_j\)</span>.</p>
 <p>Chcielibyśmy aby funkcja <code>Mult_A</code> wykonywała mnożenie pewnego wektora <span class="math inline">\(\mathbf{v}\)</span> przez globalną macierz sztywności nie używając samej macierzy <span class="math inline">\(\mathbf{A}\)</span>. To znaczy, że chcemy wykonać operację <span class="math inline">\(\mathbf{t} = \mathbf{A} \mathbf{v}\)</span> czyli: <span class="math display">\[
 t_i = \sum_{j=1}^N A_{ij} v_j, \; (i=1\ldots N)
 \]</span> Przypomnijmy, że globalną macierz sztywności <span class="math inline">\(\mathbf{A}\)</span> tworzy się przez sumowanie elementów macierzy lokalnych. Zastanówmy się więc co się dzieje z wynikiem mnożenia <span class="math inline">\(\mathbf{t}\)</span> jeśli do macierzy <span class="math inline">\(\mathbf{A}\)</span> dodamy coś.</p>
-<p>Jeśli do elementu <span class="math inline">\(A_{1,2}\)</span> dodamy liczbę <span class="math inline">\(4\)</span>, to do <span class="math inline">\(t_1\)</span> musimy dodać <span class="math inline">\(4 v_2\)</span>.</p>
-<p>Analogicznie jeśli do elementu <span class="math inline">\(A_{ij}\)</span> dodamy liczbę <span class="math inline">\(w\)</span>, to tak jak byśmy do elementu <span class="math inline">\(t_i\)</span> dodali liczbę <span class="math inline">\(w \cdot v_j\)</span>.</p>
-<div id="zadanie-5" class="section level3">
-<h3>Zadanie 5</h3>
-<p>Przekopiuj fragment kodu odpowiedzialny za konstrukcję globalnej macierzy sztywności <span class="math inline">\(A\)</span>. Następnie, każde wystąpienie:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1">A[i,j] += cos;</a></code></pre></div>
+<p>Analogicznie jeśli dodamy do elementu <span class="math inline">\(S_{ij}\)</span> liczbę <span class="math inline">\(w\)</span>, to tak jak byśmy dodali do elementu <span class="math inline">\(r_i\)</span> liczbę <span class="math inline">\(w\cdot x_j\)</span>. Jako, że macierz <span class="math inline">\(S\)</span> konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.</p>
+<div id="zadanie" class="section level3">
+<h3>Zadanie</h3>
+<p>Przekopiuj fragment kodu funkcji <code>main</code> odpowiedzialny za konstrukcję macierzy <span class="math inline">\(S\)</span>. Następnie, każde wystąpienie</p>
+<p><code>S[i,j] += cos;</code></p>
 <p>zamień na:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1">r[i] += cos * x[j];</a></code></pre></div>
-<p>Co z częścią, która uwzględniała odebrane stopnie swobody i zamieniała wybrane wiersze na wiersze macierzy diagonalnej? Jeśli w macierzy <span class="math inline">\(\mathbf{A}\)</span> <span class="math inline">\(i\)</span>-ty wiersz zamienimy na same zera i <span class="math inline">\(1\)</span> na przekątnej, to tak jak byśmy podstawili <span class="math inline">\(t_i = v_i\)</span>.</p>
+<p><code>r[i] += cos * x[j];</code></p>
+<p>Jeżeli planujesz realizować część instrukcji dot. równoległości, przerób kod tak, aby aktualizował tablicę <code>r</code> blokami, tzn. wykonywał mnożenie <em>lokalnej</em> macierzy sztywności przez odpowiedni ,,wycinek’’ wektora <code>x</code>, wynik wpisywał do bufora (typ <code>double[8]</code>), a bufor dodawał do tablicy <code>r</code> dopiero po wykonaniu tego mnożenia. Pomoże to uniknąć nadmiernej synchronizacji wątków. Nawiasem mówiąc, takie rozwiązanie może się okazać nieco bardziej wydajne również dla sekwencyjnej (nierównoległej) implementacji. Wynika to z faktu, że korzystając z alokowanego na stosie bufora dokonujemy mniejszej liczby dostępów (operacji <code>+=</code>) do tablicy <code>r</code>, która zaalokowana jest na stercie.</p>
 </div>
-<div id="zadanie-6" class="section level3">
-<h3>Zadanie 6</h3>
-<p>Zamień pętlę modyfikującą <span class="math inline">\(i\)</span>-ty wiersz, na <code>t[i] = v[i]</code>.</p>
-</div>
-<div id="zadanie-7" class="section level3">
-<h3>Zadanie 7</h3>
-<p>Przetestuj kod z funkcją <code>Mult_A</code> zamiast funkcji <code>Mult</code>.</p>
+<div id="zadanie-1" class="section level3">
+<h3>Zadanie</h3>
+<p>Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonalnej? Jeśli w macierzy <span class="math inline">\(S\)</span> <span class="math inline">\(i\)</span>-ty wiersz zamienimy na same zera i <span class="math inline">\(1\)</span> na przekątnej, to tak jak byśmy postawili <span class="math inline">\(r_i = x_i\)</span>. Zamień pętlę wycinającą <span class="math inline">\(i\)</span>ty wiersz, na <code>r[i]=x[i]</code></p>
 </div>
 <div id="zadanie-8" class="section level3">
 <h3>Zadanie 8</h3>
 <p>Jeśli nie zrobiłeś tego w poprzednim ćwiczeniu, napisz trywialny preconditioner <code>Precond_I(int N, double **A, double *r, double *p)</code> przepisujący tablicę reszt wskazywaną przez <code>r</code> na tablicę poprawek wskazywaną przez <code>p</code>.</p>
 </div>
-<div id="zadanie-9" class="section level3">
-<h3>Zadanie 9</h3>
-<p>Popraw kod zauważając, że ani <code>Mult_A</code>, ani <code>Precond_I</code> nie potrzebują wskaźnika na <code>A</code> jako argumentu.</p>
-</div>
 </div>
 <div id="a-teraz-na-poważnie" class="section level1">
 <h1>A teraz na poważnie</h1>
-<p>Na tym etapie nie potrzebujemy w ogóle macierzy <span class="math inline">\(\mathbf{A}\)</span> zapisanej gdziekolwiek w pamięci. Możemy ją całkowicie wyeliminować. Funkcję <code>Solve</code> będziemy jednak chcieli używać dla różnych macierzy — dlatego jako argument, zamiast wskaźnika na macierz <code>double **A</code> będziemy przekazywać funkcję mnożenia</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">void</span> (*mult)(<span class="dt">int</span> N, <span class="dt">double</span> *, <span class="dt">double</span> *)</a></code></pre></div>
-<p>Nagłówek funkcji <code>Solve</code> będzie miał wtedy postać:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dt">void</span> Solve(<span class="dt">int</span> N, <span class="dt">void</span> (*mult)(<span class="dt">int</span> N, <span class="dt">double</span> *, <span class="dt">double</span> *), <span class="dt">double</span> *b, <span class="dt">double</span> *x)</a></code></pre></div>
-<p>W miejscu mnożenia przez macierz <span class="math inline">\(\mathbf{b} = \mathbf{A}\mathbf{x}\)</span> będziemy wywoływali <code>mult(N, x, b);</code>. Teraz funkcję <code>Solve</code> będziemy wywoływać przekazując jej konkretną funkcję mnożącą</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" data-line-number="1">Solve(N, Mult_A, F, d);</a></code></pre></div>
+<p>Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy <span class="math inline">\(S\)</span>. Możemy ją całkowicie wyeliminować. Funkcję <code>Solve</code> będziemy chcieli jednak używać dla różnych macierzy — dlatego jako argument, zamiast macierzy <code>double ** A</code> będziemy przekazywać funkcję mnożenia <code>void (*mult)(double *, double *)</code>. Tzn: nagłówek funkcji <code>Solve</code> będzie następujący:</p>
+<p><code>void Solve(int n, void (*mult)(double *, double *), double *b, double *x0, double *x)</code></p>
+<p>A w miejscu mnożenia przez macierz <span class="math inline">\(r=Ax\)</span> będziemy mieli <code>mult(x,r);</code>. Teraz funkcję <code>Solve</code> będziemy wywoływać przekazując jej konkretną funkcję mnożącą: <code>Solve(n, SMult, F, d);</code>.</p>
+<p>Na koniec możesz spróbować przerobić funkcję <code>Solve</code> tak, aby także preconditioner przyjmowany był jako argument (wskaźnik do funkcji) i wywołać ją z preconditionerem Jacobiego.</p>
+</div>
+<div id="równoległość" class="section level1">
+<h1>Równoległość*</h1>
+<p>W tej części laboratorium zajmiemy się paralelizacją (zrównolegleniem) napisanego dotychczas kodu. Plik nagłówkowy z funkcjami ułatwiającymi pisanie równoległego kodu:</p>
+<p><a href="http://ccfd.github.io/courses/code/metnum/ParLib.hpp">Plik nagłówkowy ParLib.hpp</a></p>
+<p>Chcielibyśmy teraz wykorzystać fakt, że współczesne procesory posiadają wiele rdzeni. Są one w związku z tym zdolne do wykonywania więcej niż jednego ciągu instrukcji jednocześnie. Nawet bezwiednie korzystamy z tego na co dzień, np. jednocześnie słuchając muzyki i pisząc maile. System operacyjny przydziela wtedy zasoby obliczeniowe (dostęp do rdzeni) do różnych procesów w miarę potrzeby. Rozróżnijmy teraz 2 kluczowe pojęcia:</p>
+<ul>
+<li><p>Proces: wykonywany program. Blok kontrolny procesu zawiera informację nt. m.in. jego priorytetu, identyfikatora i innych własności. Procesy mają niezależne stosy pamięci i nie komunikują się wzajemnie w wydajny sposób.</p></li>
+<li><p>Wątek: część wykonywanego procesu (jeden proces składa się z co najmniej jednego wątku). Wątki danego procesu mają dostęp do jego stosu pamięci i komunikują się wzajemnie w wydajny sposób.</p></li>
+</ul>
+<p>Krótko mówiąc, wątki są ,,lekkimi’’ podjednostkami procesu. Kluczowy jest tutaj fakt, że różne wątki jednego procesu mogą jednocześnie wykonywać się na osobnych rdzeniach. Zajmiemy się teraz napisaniem programu, który tworzy kilka wątków i wykonuje obliczenia równoległe.</p>
+<p>Zacznijmy od prostego przykładu. Mamy daną stuelementową tablicę <code>tab</code>, której wszystkie elementy chcielibyśmy zwiększyć o 1. W tym celu stworzymy 4 wątki, z których każdy zajmie się wydzielonym kawałkiem <code>tab</code>. Program wygląda następująco:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;cstdlib&gt;</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="pp">#include </span><span class="im">&quot;ParLib.hpp&quot;</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="dt">void</span> inc1(<span class="dt">double</span>* tab, <span class="dt">unsigned</span> <span class="dt">int</span> tab_size)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="co">// Numer bieżącego wątku</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> id          = self_id();</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">    </a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="co">// Liczba wszystkich wątków</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    <span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> n_thr       = no_threads();</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    </a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="co">// Bieżący wątek inkrementuje tylko elementy tab o indeksach podzielnych przez swój identyfikator.</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="cf">for</span> (<span class="dt">int</span> i = id; i &lt; tab_size; i += n_thr)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">        tab[i] += <span class="fl">1.</span>;</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">        </a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">    <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">    <span class="co">// Stwórz tab</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">    <span class="dt">double</span>* tab = (<span class="dt">double</span>*)malloc(<span class="dv">100</span> * <span class="kw">sizeof</span>(<span class="dt">double</span>));</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">    </a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">    <span class="co">// Wypełnij tab</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">100</span>; i++)</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">        tab[i] = rand();</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">        </a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">    <span class="co">// Wywołaj inc1 równolegle</span></a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">    execute_in_parallel(<span class="dv">4</span>, inc1, tab, <span class="dv">100</span>);</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">    </a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">    <span class="co">// Zwolnij pamięć</span></a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">    free(tab);</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">}</a></code></pre></div>
+<p>Zwróć uwagę, że o liczbie wątków, które zostaną stworzone decyduje dopiero argument funkcji <code>execute_in_parallel</code> - funkcja <code>inc1</code> napisana jest w sposób ogólny.</p>
+<p>Powyższy przykład nie ilustruje jednak głównego problemu programowania równoległego. Wątki działają zupełnie niezależnie - nie muszą się komunikować, a adresy, do których wpisują wartości nie pokrywają się. Rozważmy teraz następujący przykład: mamy funkcję <code>double skomplikowane_obliczenia(double input)</code>, która przyjmuje liczbę <code>input</code>, wykonuje na niej pracochłonne działania, a następnie zwraca wynik. Chcielibyśmy teraz wywołać ją dla argumentów 3.14 oraz 42.42, a następnie zsumować wyniki. Wywołania dla osobnych argumentów są od siebie niezależne, więc od razu nasuwa się prosty schemat paralelizacji. Naiwna implementacja wygląda następująco:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;cstdlib&gt;</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="pp">#include </span><span class="im">&quot;ParLib.hpp&quot;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="dt">double</span> skomplikowane_obliczenia(<span class="dt">double</span> input)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">    <span class="co">// Wyobraźmy sobie, że tutaj dzieją się złożone obliczenia</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">    <span class="cf">return</span> input + <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">// Funkcja wywołująca skomplikowane_obliczenia i dodająca wynik do wkazanego adresu</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="dt">void</span> fun(<span class="dt">double</span> inputs[], <span class="dt">double</span>* adres)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">    <span class="co">// Dany wątek bierze z tablicy inputs argument odpowiadający jego identyfikatorowi</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="at">const</span> <span class="dt">double</span> argument = inputs[self_id()];</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">    </a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">    *adres += skomplikowane_obliczenia(argument);  <span class="co">// BŁĄD: race condition</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">    <span class="co">// Wartości wsadowe</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">    <span class="dt">double</span> inputs[<span class="dv">2</span>];</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">    inputs[<span class="dv">0</span>] = <span class="fl">3.14</span>;</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">    inputs[<span class="dv">1</span>] = <span class="fl">42.42</span>;</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">    </a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">    <span class="co">// Zmienna do której wpisujemy sumę wyników</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">    <span class="dt">double</span> wynik       = <span class="fl">0.</span>;</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">    <span class="dt">double</span>* wynik_ptr  = &amp;wynik;</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">    </a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">    <span class="co">// Wywołaj obliczenia równoległe</span></a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">    execute_in_parallel(<span class="dv">2</span>, fun, inputs, wynik_ptr);</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">}</a></code></pre></div>
+<p>Problem polega na tym, że oba stworzone wątki będą próbować pisać do tego samego adresu <code>wynik_ptr</code>. Tempo wykonywania przez wątki instrukcji nie jest deterministyczne. Może zdarzyć się, że system operacyjny uzna, że inny proces jest ważniejszy od naszego programu i na jakiś czas pozbawi jednego (lub obu) z naszych wątków zasobów. Nie jesteśmy wobec tego w stanie przewidzieć, który z nich skończy pracę pierwszy. W szczególności może zdarzyć się, że oba wątki będą <em>jednocześnie</em> starały się zmodyfikować zawartość adresu <code>wynik_ptr</code>. W takim wypadku wartość, która będzie finalnie znajdować się pod adresem <code>wynik_ptr</code> nie będzie spodziewaną sumą. Taką sytuację nazywamy race condition.</p>
+<p>Najpopularniejszym mechanizmem wykorzystywanym do eliminowania race condition są tzw. mutexy (od ang. mutual exclusion). Idea mutexu jest prosta: przed wykonaniem potencjalnie problematycznej operacji, wątek próbuje zablokować mutex (w tym celu komunikuje się z pozostałymi wątkami). Jeżeli mutex jest wolny (tzn. nie został wcześniej zablokowany przez inny wątek), operacja zostaje wykonana, a następnie mutex jest zwalniany. Jeżeli mutex jest zablokowany (przez inny wątek), wtedy wykonanie instrukcji zostaje wstrzymane do momentu zwolnienia mutexu. Taka konstrukcja programu gwarantuje, że co najwyżej jeden wątek będzie wykonywał zestaw potencjalnie problematycznych operacji jednocześnie. Przyjrzyjmy się teraz, jak uniknąć race condition w przypadku powyżej. Modyfikujemy funkcję <code>fun</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">void</span> fun(<span class="dt">double</span> inputs[], <span class="dt">double</span>* adres)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="co">// Dany wątek bierze z tablicy inputs argument odpowiadający jego identyfikatorowi</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="at">const</span> <span class="dt">double</span> argument = inputs[self_id()];</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="co">// Blokujemy mutex o numerze 0</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    mutex_lock(<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    </a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    *adres += skomplikowane_obliczenia(argument);</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    </a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="co">// Zwalniamy mutex po wykonaniu dodawania</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">    mutex_unlock(<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">}</a></code></pre></div>
+<p>Dodatkowo musimy w funkcji <code>main</code> zadeklarować, ile mutexów chcemy używać, także przed wykonaniem <code>execute_in_parallel</code> musimy zawołać</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">// Korzystamy tylko z jednego mutexu (o indeksie 0, patrz wyżej)</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">init_mutex(<span class="dv">1</span>);</a></code></pre></div>
+<p>Biblioteka ParLib wspiera używanie wielu mutexów, ich liczbę należy tylko wcześniej zadeklarować przy użyciu <code>init_mutex</code>. Korzystając z mutexów należy zachować ostrożnośc i konstruować algorytmy tak, aby wątki się nie zakleszczyły (ang. deadlock), tzn. np. żeby wątek 0 nie czekał na wątek 1, a wątek 1 na wątek 0. W takiej sytuacji wykonanie programu nigdy się nie zakończy.</p>
+<p>Zrozumienie powyższych przykładów umożliwi nam przystąpienie do paralelizacji naszej implementacji metody gradientów sprzężonych. Zanim przystąpimy do właściwej pracy, zmierzmy czas, który zajmuje nam rozwiązanie układu <span class="math inline">\(Ax = b\)</span> w sposób szeregowy, aby mieć się do czego później porównać.</p>
+<div id="zadanie-2" class="section level3">
+<h3>Zadanie</h3>
+<p>Użyj funkcji <code>tic</code> i <code>toc</code>, aby zmierzyć czas, który zajmuje Twojemu programowi wykonanie funkcji <code>Solve</code>. Dobierz <code>mx</code> i <code>my</code> tak, aby czas ten był ,,wyczuwalny’’, np. kilka sekund. Dzięki temu będziemy mogli miarodajnie kwantyfikować przyspieszenie (lub spowolnienie) kodu wynikające z wielowątkowości.</p>
+</div>
+<div id="zadanie-3" class="section level3">
+<h3>Zadanie</h3>
+<p>Zauważmy, że najbardziej kosztowne obliczeniowo jest wykonanie operacji mnożenia macierz-wektor (funkcja <code>SMult</code>). Wobec tego, zajmiemy się jej paralelizacją w pierwszej kolejności. Napisz funkcję <code>Smult_par</code> (będącą później argumentem <code>Solve</code>), która przy użyciu <code>execute_in_parallel</code> woła wielowątkowo funkcję <code>Smult_worker</code>. Clou tego zadania polega na poprawnej konstrukcji funkcji <code>Smult_worker</code>. <code>Smult_worker</code> powinna:</p>
+<ul>
+<li><p>Na podstawie numeru wątku (<code>self_id</code>) oraz sumarycznej liczby wątków (<code>no_threads</code>) identyfikować zakres elementów, na którym będzie dokonywać mnożenia. Zakresy między wątkami powinny być możliwie równe. Zagadnienie podziału pracy na wiele wątków/procesów nazywa się load balancing.</p></li>
+<li><p>Korzystać z mutexów, aby uniknąć jednoczesnego dodawania do wektora wyniku z różnych wątków. Sprawdź, co jest bardziej optymalne: blokowanie całego wektora wyników jednym mutexem, czy blokowanie go kawałkami, tak, aby umożliwić jednoczesny dostęp wątkom piszącym do różnych elementów.</p></li>
+</ul>
+</div>
+<div id="zadanie-4" class="section level3">
+<h3>Zadanie</h3>
+<p>Przyjrzyj się pozostałym elementom funkcji <code>Solve</code>. Które z nich można korzystnie zrównoleglić, a które nie? Przetestuj swoje hipotezy posługując się funkcjami <code>tic</code> i <code>toc</code>.</p>
+</div>
+</div>
+<div id="dokumentacja-biblioteki-parlib" class="section level1">
+<h1>Dokumentacja biblioteki ParLib</h1>
+<p>Podstawowa wielowątkowość:</p>
+<ul>
+<li><p><code>void execute_in_parallel(int n_threads, fun, arg1, arg2, ...)</code> — funkcja generuje <code>n_threads</code> wątków. Każny z nich zaczyna wykonywać funkcję <code>fun</code>, wywołaną z argumentami <code>arg1</code>, <code>arg2</code>, itd. Liczba argumentów jest dowolna. Wyjście z funkcji następuje po tym, gdy ostatni ze stworzonych wątków zakończy wykonywanie <code>fun</code>. <code>execute_in_parallel</code> nie wspiera rekurencji (nie można wołać jej wewnątrz <code>fun</code>). Jest to ograniczenie biblioteki ParLib, w ,,prawdziwych’’ bibliotekach do programowania równoległego wątki mogą mieć dzieci, wnuki, itd.</p></li>
+<li><p><code>int self_id()</code> — funkcja zwracająca numer wątka stworzonego przez <code>execute_in_parallel</code>. Każdy wątek stworzony w ten sposób posiada unikatowy numer z zakresu 0 - <code>n_threads</code>-1.</p></li>
+<li><p><code>int no_threads()</code> — funkcja zwracająca liczbę wątków stworzonych przez <code>execute_in_parallel</code>.</p></li>
+<li><p><code>void init_mutex(int n_mutex)</code> — funkcja inicjalizująca <code>n_mutex</code> mutexów. Można z nich korzystać do końca trwania programu, są później dealokowane automatycznie. <code>init_mutex</code> można zawołać jedynie raz.</p></li>
+<li><p><code>void mutex_lock(int mutex_no)</code> — funkcja blokująca mutex o numerze <code>mutex_no</code>. <code>mutex_no</code> musi należeć do zakresu 0 - <code>n_mutex</code>-1. Blokowanie mutexu, który został już wcześniej zablokowany przez dany wątek powoduje błąd.</p></li>
+<li><p><code>void mutex_unlock(int mutex_no)</code> — funkcja zwalniająca mutex o numerze <code>mutex_no</code>. <code>mutex_no</code> musi należeć do zakresu 0 - <code>n_mutex</code>-1. Zwalnianie mutexu, który został już wcześniej zwolniony przez dany wątek powoduje błąd.</p></li>
+</ul>
+<p>Synchronizacja:</p>
+<ul>
+<li><code>void sync()</code> — funkcja synchronizująca wszystkie wątki stworzone przez <code>execute_in_parallel</code>, tzn. każdy wątek zatrzymuje się dopóty, dopóki wszystkie pozostałe wątki nie wywołają <code>sync()</code>. Łatwo zauważyć, że wszystkie wątki muszą wywołać <code>sync()</code> dokładnie tyle samo razy, w innym wypadku program nigdy nie przestanie się wykonywać.</li>
+</ul>
+<p>Pomiar czasu:</p>
+<ul>
+<li><p><code>void tic(unsigned int tic_id)</code> — przypisuje ,,stempel czasowy’’ do identyfikatora <code>tic_id</code>. <code>tic_id</code> może być dowolne, w przypadku wykonywania wielu pomiarów nie ma obowiązku sekwencyjnego numerowania.</p></li>
+<li><p><code>double toc(unsigned int toc_id)</code> — zwraca czas (w sekundach), który upłynął od wywołania <code>tic(toc_id)</code>. Jeżeli <code>tic(toc_id)</code> nie było wcześniej wołane, zostanie zwrócone 0.</p></li>
+</ul>
+<p>Uwaga: <code>tic</code> i <code>toc</code> mają domyślny argument 0, także zawołanie</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" data-line-number="1">tic()</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">//</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">// Tutaj skomplikowane obliczenia</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">//</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">toc()</a></code></pre></div>
+<p>zwróci czas wykonania obliczeń.</p>
 </div>
 
 <!-- Dummy footer -->
