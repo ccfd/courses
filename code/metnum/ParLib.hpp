@@ -11,11 +11,15 @@
 #include <algorithm>
 #include <iostream>
 
+void sync();
+
 namespace ParLib
 {
     // Thread and mutex pools
 	std::vector<std::thread>	                                            thread_pool{};
 	std::unique_ptr<std::mutex[]>	                                        mutex_pool;
+    size_t                                                                  number_of_threads = 0;
+    std::vector<std::thread::id>                                            thread_ids{};
 
     // Syncing stuff
     std::mutex                                                              sync_mutex;
@@ -30,13 +34,13 @@ namespace ParLib
 
 unsigned int self_id()
 {
-	return std::distance(ParLib::thread_pool.cbegin(), std::find_if(ParLib::thread_pool.cbegin(), ParLib::thread_pool.cend(),
-		[](const std::thread& t) { return t.get_id() == std::this_thread::get_id(); }));
+    const auto ttid = std::this_thread::get_id();
+	return std::distance(ParLib::thread_ids.cbegin(), std::find(ParLib::thread_ids.cbegin(), ParLib::thread_ids.cend(), ttid));
 }
 
 unsigned int no_threads()
 {
-	return ParLib::thread_pool.size();
+	return ParLib::number_of_threads;
 }
 
 void init_mutex(const size_t& n_mutex)
@@ -55,15 +59,24 @@ void mutex_unlock(const size_t& mutex_no)
 }
 
 template <typename Fun, typename ... Args>
-void execute_in_parallel(const size_t& n_threads, Fun&& f, Args ... args)
+void execute_in_parallel(const size_t& n_threads, Fun&& f, Args&& ... args)
 {
-	for (size_t i = 0; i < n_threads; i++)
-		ParLib::thread_pool.emplace_back(std::forward<Fun>(f), std::forward<Args>(args) ...);
+    ParLib::number_of_threads = n_threads;
+    ParLib::thread_ids.resize(n_threads);
+    ParLib::thread_pool.reserve(n_threads);
+
+    for (size_t i = 0; i < n_threads; i++)
+    {
+        ParLib::thread_pool.emplace_back(std::forward<Fun>(f), std::forward<Args>(args) ...);
+        ParLib::thread_ids[i] = ParLib::thread_pool.back().get_id();
+    }
 
 	for (auto& t : ParLib::thread_pool)
 		t.join();
 
 	ParLib::thread_pool.clear();
+    ParLib::thread_ids.clear();
+    ParLib::number_of_threads = 0;
 }
 
 void sync()
