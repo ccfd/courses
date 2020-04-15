@@ -35,7 +35,17 @@ namespace ParLib
 unsigned int self_id()
 {
     const auto ttid = std::this_thread::get_id();
-	return std::distance(ParLib::thread_ids.cbegin(), std::find(ParLib::thread_ids.cbegin(), ParLib::thread_ids.cend(), ttid));
+    const auto thread_ptr = ParLib::thread_ids.data();
+    const auto dl = [&]()
+    {
+        return std::distance(thread_ptr, std::find(thread_ptr, thread_ptr + ParLib::number_of_threads, ttid));
+    };
+    auto ret = dl();
+
+    while (ret == ParLib::number_of_threads)
+	    ret = dl();
+
+    return ret;
 }
 
 unsigned int no_threads()
@@ -63,13 +73,16 @@ void execute_in_parallel(const size_t& n_threads, Fun&& f, Args&& ... args)
 {
     ParLib::number_of_threads = n_threads;
     ParLib::thread_ids.resize(n_threads);
-    ParLib::thread_pool.reserve(n_threads);
+    ParLib::thread_pool.resize(n_threads - 1);
 
-    for (size_t i = 0; i < n_threads; i++)
+    for (size_t i = 0; i < n_threads - 1; i++)
     {
-        ParLib::thread_pool.emplace_back(std::forward<Fun>(f), std::forward<Args>(args) ...);
-        ParLib::thread_ids[i] = ParLib::thread_pool.back().get_id();
+        ParLib::thread_pool[i] = std::thread(std::forward<Fun>(f), std::forward<Args>(args) ...);
+        ParLib::thread_ids[i] = ParLib::thread_pool[i].get_id();
     }
+
+    ParLib::thread_ids.back() = std::this_thread::get_id();
+    std::invoke(std::forward<Fun>(f), std::forward<Args>(args) ...);
 
 	for (auto& t : ParLib::thread_pool)
 		t.join();
