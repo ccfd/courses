@@ -69,7 +69,7 @@ Napisz funkcję całkującą równanie ruchu układu według następującego sch
 Przeanalizuj dla jakich $\text{dt}$ układ jest stabilny, a dla jakich nie. 
 
 ### Zadanie
-Jak wygląda wzór na całkowitą energię układu (energia potencjalna sprężystości + praca sił + energia kinetyczna)?
+Jak wygląda wzór na całkowitą energię układu (energia potencjalna sprężystości + energia kinetyczna)?
 Zróżniczkuj ją po $t$ i pokaż, że jest stała.
 
 ### Zadanie
@@ -166,5 +166,5 @@ Przeanalizuj dla jakich $\text{dt}$ układ jest stabilny.
 Wydrukuj zmienność energii. 
 
 ### Zadanie
-Udowodnij, że metoda ,,w pół kroku'' zachowuje energię układu.^[Podpowiedź: tak jak $a^2-b^2=(a+b)(a-b)$ to $x_{n+1}^TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} +
+Udowodnij, że metoda ,,w pół kroku'' zachowuje energię całkowitą układu.^[Podpowiedź: tak jak $a^2-b^2=(a+b)(a-b)$ to $x_{n+1}^TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} +
 x_{n})$]
