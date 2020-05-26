@@ -717,13 +717,23 @@ E_k(\mathbf{w}^0 + \mathbf{w}^1) = E_k(\mathbf{w}^0)+E_k(\mathbf{w}^1)
 <p>Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem macierzy <span class="math inline">\(\mathbf{M}\)</span>. Takiej ortonormalizacji możemy dokonać za pomocą znanej z Analizy Matematycznej metody Grama-Schmidta.</p>
 <div id="ortonormalizacja-grama-schmidta" class="section level2">
 <h2>Ortonormalizacja Grama-Schmidta</h2>
-<p>Załóżmy, że mamy układ <span class="math inline">\(N\)</span> liniowo niezależnych wektorów. Aby zortonormalizować ten układ, dla każdego <span class="math inline">\(j\)</span> od <span class="math inline">\(1\)</span> do <span class="math inline">\(N\)</span>:</p>
+<p>Załóżmy, że mamy <span class="math inline">\(N\)</span> liniowo niezależnych wektorów. Możemy przeprowadzić ortonormalizację tego układu za pomocą klasycznej metody Grama-Schmidta znanej z algebry. Metoda ta jest jednak niestabilna numerycznie — na skutek błędów numerycznych będziemy tracić ortogonalność. Użyjemy modyfikacji tej metody, która jest bardziej stabilna.</p>
+<p>Aby zortonormalizować układ <span class="math inline">\(N\)</span> wektorów:</p>
 <ul>
-<li>dla każdego <span class="math inline">\(i\)</span> od <span class="math inline">\(1\)</span> do <span class="math inline">\(j-1\)</span> należy wykonać (dla <span class="math inline">\(i=1\)</span> nie trzeba nic robić):</li>
-<li>oblicz <span class="math inline">\(\mathbf{w}^i = \mathbf{w}^i - \mathbf{w}^j \langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^i \rangle\)</span>,</li>
+<li>dla <span class="math inline">\(i=1\)</span>:
+<ul>
+<li>oblicz: <span class="math inline">\(\mathbf{w}^1 = \frac{1}{\sqrt{\langle \mathbf{w}^1, \mathbf{M} \mathbf{w}^1 \rangle}} \mathbf{w}^1\)</span>,</li>
+</ul></li>
+<li>dla każdego <span class="math inline">\(i\)</span> od <span class="math inline">\(2\)</span> do <span class="math inline">\(N\)</span>:
+<ul>
+<li>dla każdego <span class="math inline">\(j\)</span> od <span class="math inline">\(1\)</span> do <span class="math inline">\(i-1\)</span> należy wykonać:
+<ul>
+<li>oblicz <span class="math inline">\(\mathbf{w}^i = \mathbf{w}^i - \frac{\langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^i \rangle}{\langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^j \rangle} \mathbf{w}^j\)</span>,</li>
+</ul></li>
 <li>oblicz <span class="math inline">\(\mathbf{w}^i = \frac{1}{\sqrt{\langle \mathbf{w}^i, \mathbf{M} \mathbf{w}^i \rangle}}\mathbf{w}^i\)</span>.</li>
+</ul></li>
 </ul>
-<p>Po tej procedurze wszystkie wektory <span class="math inline">\(\mathbf{w}\)</span> są ortogonalne i długości <span class="math inline">\(1\)</span> względem macierzy <span class="math inline">\(M\)</span>.</p>
+<p>Po tej procedurze wszystkie wektory <span class="math inline">\(\mathbf{w}^i\)</span> są ortogonalne i długości <span class="math inline">\(1\)</span> względem macierzy <span class="math inline">\(M\)</span>.</p>
 <div id="zadanie-3" class="section level3">
 <h3>Zadanie 3</h3>
 <p>Znajdź wektory <span class="math inline">\(\mathbf{w}^i\)</span> odpowiadające <span class="math inline">\(10\)</span>-ciu największym wartościom własnym według następującego schematu iteracji:</p>
