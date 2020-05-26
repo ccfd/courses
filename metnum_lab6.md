@@ -99,14 +99,21 @@ Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem mac
 Takiej ortonormalizacji możemy dokonać za pomocą znanej z Analizy Matematycznej metody Grama-Schmidta.
 
 ## Ortonormalizacja Grama-Schmidta
-Załóżmy, że mamy układ $N$ liniowo niezależnych wektorów.
-Aby zortonormalizować ten układ, dla każdego $j$ od $1$ do $N$:
+Załóżmy, że mamy $N$ liniowo niezależnych wektorów.
+Możemy przeprowadzić ortonormalizację tego układu za pomocą klasycznej metody Grama-Schmidta znanej z algebry.
+Metoda ta jest jednak niestabilna numerycznie --- na skutek błędów numerycznych będziemy tracić ortogonalność.
+Użyjemy modyfikacji tej metody, która jest bardziej stabilna.
 
-- dla każdego $i$ od $1$ do $j-1$ należy wykonać (dla $i=1$ nie trzeba nic robić):
-- oblicz $\mathbf{w}^i = \mathbf{w}^i - \mathbf{w}^j \langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^i \rangle$,
-- oblicz $\mathbf{w}^i = \frac{1}{\sqrt{\langle \mathbf{w}^i, \mathbf{M} \mathbf{w}^i \rangle}}\mathbf{w}^i$.
+Aby zortonormalizować układ $N$ wektorów:
 
-Po tej procedurze wszystkie wektory $\mathbf{w}$ są ortogonalne i długości $1$ względem macierzy $M$.
+- dla $i=1$:
+    - oblicz: $\mathbf{w}^1 = \frac{1}{\sqrt{\langle \mathbf{w}^1, \mathbf{M} \mathbf{w}^1 \rangle}} \mathbf{w}^1$,
+- dla każdego $i$ od $2$ do $N$:
+    - dla każdego $j$ od $1$ do $i-1$ należy wykonać:
+        - oblicz $\mathbf{w}^i = \mathbf{w}^i - \frac{\langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^i \rangle}{\langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^j \rangle} \mathbf{w}^j$,
+    - oblicz $\mathbf{w}^i = \frac{1}{\sqrt{\langle \mathbf{w}^i, \mathbf{M} \mathbf{w}^i \rangle}}\mathbf{w}^i$.
+
+Po tej procedurze wszystkie wektory $\mathbf{w}^i$ są ortogonalne i długości $1$ względem macierzy $M$.
 
 ### Zadanie 3
 Znajdź wektory $\mathbf{w}^i$ odpowiadające $10$-ciu największym wartościom własnym według następującego schematu iteracji:
