@@ -69,7 +69,7 @@ void mutex_unlock(const size_t& mutex_no)
 }
 
 template <typename Fun, typename ... Args>
-void execute_in_parallel(const size_t& n_threads, Fun&& f, Args&& ... args)
+void execute_in_parallel(const size_t& n_threads, const Fun& f, const Args& ... args)
 {
     ParLib::number_of_threads = n_threads;
     ParLib::thread_ids.resize(n_threads);
@@ -77,12 +77,12 @@ void execute_in_parallel(const size_t& n_threads, Fun&& f, Args&& ... args)
 
     for (size_t i = 0; i < n_threads - 1; i++)
     {
-        ParLib::thread_pool[i] = std::thread(std::forward<Fun>(f), std::forward<Args>(args) ...);
+        ParLib::thread_pool[i] = std::thread(f, args...);
         ParLib::thread_ids[i] = ParLib::thread_pool[i].get_id();
     }
 
     ParLib::thread_ids.back() = std::this_thread::get_id();
-    std::invoke(std::forward<Fun>(f), std::forward<Args>(args) ...);
+    std::invoke(f, args...);
 
 	for (auto& t : ParLib::thread_pool)
 		t.join();

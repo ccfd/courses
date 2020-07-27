@@ -198,6 +198,7 @@ Nie jesteśmy wobec tego w stanie przewidzieć, który z nich skończy pracę pi
 W szczególności może zdarzyć się, że oba wątki będą *jednocześnie* starały się zmodyfikować zawartość adresu `wynik_ptr`.
 W takim wypadku wartość, która będzie finalnie znajdować się pod adresem `wynik_ptr` nie będzie spodziewaną sumą.
 Taką sytuację nazywamy race condition.
+Mówiąc nieco dokładniej: race condition (lub data race) to sytuacja, w której co najmniej jeden wątek próbuje czytać albo pisać z/do danego adresu w tym samym momencie, gdy inny wątek do niego pisze.
 
 Najpopularniejszym mechanizmem wykorzystywanym do eliminowania race condition są tzw. mutexy (od ang. mutual exclusion).
 Idea mutexu jest prosta: przed wykonaniem potencjalnie problematycznej operacji, wątek próbuje zablokować mutex (w tym celu komunikuje się z pozostałymi wątkami).
