@@ -4,15 +4,18 @@ navbar:
   right:
     - icon: fa-file-pdf-o fa-lg
       href: PDF_LINK_DUMMY
-      text: Download PDF
+      text: PDF
     - icon: fa-github fa-lg
-      text: Edit on GitHub
+      text: GitHub
       href: https://github.com/ccfd/courses
     - icon: fa-creative-commons fa-lg
+      text: CC
       href: https://en.wikipedia.org/wiki/Creative_Commons_license
   left:
     - text: "Info I"
       menu:
+      - text: "Regulamin przedmiotu"
+        href: info1_regulamin.html
       - text: "Projekt z biblioteką graficzną"
         href: https://github.com/ccfd/courses_graphics/archive/master.zip
       - text: "Instrukcja tworzenia projektu"
@@ -167,18 +170,18 @@ navbar:
       - text: "Instrukcja V"
         href: python_inst05.html
         
-    - text: "KAP/ACFD"
+    - text: "MOMP"
       menu:
       - text: "Informacje"
-        href: kap_lab.html
+        href: momp_rules.html
       - text: "Instrukcja I"
-        href: kap_lab01.html      
-      - text: "Instrukcja II"
-        href: kap_lab02.html
+        href: momp_lab01.html 
+
         
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
   html_document:
+    css: style.css
     highlight: pygments
     toc: true
     toc_depth: 2
