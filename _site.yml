@@ -176,6 +176,8 @@ navbar:
         href: momp_rules.html
       - text: "Instrukcja I"
         href: momp_lab01.html 
+      - text: "Instrukcja II"
+        href: momp_lab02.html 
 
         
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
