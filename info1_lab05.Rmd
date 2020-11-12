@@ -25,7 +25,8 @@ Przykładowo:
   a[2] = 6.45;
   a[3] = 4.51;
 
-```owicie niesprężyste, zderzenie doskonale
+```
+
 Zwróć uwagę, że elementy tablicy są indeksowane liczbami od $0$ do $N - 1$, gdzie $N$ to rozmiar tablicy.
 Elementy tablicy można również zainicjalizować natychmiast -- w momencie deklaracji:
 ```c++
@@ -59,6 +60,7 @@ lines(cbind(c(0, 0, 1, 1, 0), c(0, 1, 1, 0, 0)))
 
 Nasze piłki przechowywane będą jako zestawy współrzędnych $(x, y)$ oraz prędkości $(xV, yV)$.
 Oznacza to, że będą potrzebne następujące tablice:
+
 ```c++ 
 double x[10], y[10];        // wspolrzedne pilek
 double xV[10], yV[10];      // skladowe predkosci pilek
@@ -66,6 +68,7 @@ double xV[10], yV[10];      // skladowe predkosci pilek
 Gdy będziemy chcieli obejrzeć piłki w oknie graficznym, użyjemy funkcji `circle()`.
 Jako argumenty podamy elementy tablic odpowiadające danej piłce.
 Przykładowo, jeśli chcemy obejrzeć pierwszą piłkę:
+
 ```c++ 
 circle(x[0], y[0], 5);
 ```
@@ -75,6 +78,7 @@ circle(x[0], y[0], 5);
 Większość operacji będziemy wykonywać, używając funkcji, które będą przyjmować wprowadzone wyżej tablice jako argumenty.
 Funkcje będą musiały także pobierać długość tablic tak, aby operacje można było wykonać dla każdego z jej elementów.
 Jeśli chcemy np. zainicjalizować wszystkie współrzędne wartością $0$, napiszemy funkcję:
+
 ```c++
 void init(double *x, double *y, int N) {
   int i;
@@ -93,6 +97,7 @@ Wykorzystaliśmy tutaj pętlę `for`, która pobiera $3$ argumenty:
 - operację na liczniku (tutaj zwiększamy $i$ o $1$, co będzie najpowszechniejszą praktyką^[Teoretycznie możemy w tym miejscu wykonać dowolną operację, jednak dla czytelności kodu zazwyczaj zwiększamy licznik pętli]).
 
 Taką funkcję wywołujemy w programie głównym, podając nazwy tablic, na których ma działać oraz ich długość:
+
 ```c++
   init(x, y, 10);
 ```
