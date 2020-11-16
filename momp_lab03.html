@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Symulacja przepływu turbulentnego przez rurę o skokowo zmiennej średnicy</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li>
+      <a href="metnum_ogloszenie.html">Ogłoszenia</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_inst01b.html">Instrukcja Ib</a>
+    </li>
+    <li>
+      <a href="cpp_inst02b.html">Instrukcja IIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst03b.html">Instrukcja IIIb</a>
+    </li>
+    <li>
+      <a href="cpp_inst04b.html">Instrukcja IVb</a>
+    </li>
+    <li>
+      <a href="cpp_inst05b.html">Instrukcja Vb</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_cheat_sheat.html">Cheat Sheet</a>
+    </li>
+    <li>
+      <a href="cpp_kolokwia_do_cw.html">Kolokwia</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab03.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Symulacja przepływu turbulentnego przez rurę o skokowo zmiennej średnicy</h1>
+
+</div>
+
+
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Symulacja przepływu turbulentnego przez rurę o zmiennej średnicy przy zastosowaniu modelu turbulencji k-<span class="math inline">\(\epsilon\)</span>, analiza wpływu warunków na wlocie do obszaru obliczeniowego i sposobu modelowania zjawisk przyściennych na wynik obliczeń.</p>
+</div>
+<div id="streszczenie" class="section level1">
+<h1>Streszczenie</h1>
+<p>Obliczenia przepływu turbulentnego dla liczby Re<sub>D</sub> = 200 000 z zastosowaniem tzw. standardowego modelu turbulencji k-<span class="math inline">\(\epsilon\)</span> przeprowadzone będą na dwóch siatkach obliczeniowych: bazowej - rzadkiej(coarse) i gęstej(fine). Liczba Reynoldsa bazuje na większej średnicy rury, D = 0.1524m i prędkości średniej na wylocie z obszaru obliczeniowego.</p>
+<p>Symulacje na siatce bazowej wymagać będą stosowania funkcji ściany (Standard Wall Function) w celu poprawnego obliczenia prędkości średniej, energii kinetycznej turbulencji, k, oraz dyssypacji energii kinetycznej turbulencji, <span class="math inline">\(\epsilon\)</span>, w pobliżu ściany. Obliczenia na siatce gęstej będą realizowane z wykorzystaniem modelu turbulencji k-<span class="math inline">\(\epsilon\)</span> w połączeniu z modelem jednorównaniowym Wolfsteina w pobliżu ściany. Podejście to nazywa się Enhanced Wall Treatment.</p>
+<p>Czynnikiem roboczym jest woda.</p>
+<p>Na wlocie do obszaru obliczeniowego przyjęty zostanie warunek brzegowy typu velocity inlet. Profil prędkości średniej zdefiniowano w oparciu o symulację w pełni rozwiniętego przepływu turbulentnego w rurze. Rozpatrywane będą trzy sposoby definiowania profili energii kinetycznej turbulencji i dyssypacji na wlocie:</p>
+<ol style="list-style-type: decimal">
+<li>w oparciu o profile uzyskane dla w pełni rozwiniętego przepływu w rurze (plik inlet_profile_keps.prof)</li>
+<li>standardowe ustawienia Fluenta (nie mające znaczenia fizycznego)</li>
+<li>wielkości zdefiniowane przez użytkownika (w oparciu o pewne oszacowania intensywności turbulencji, Tu [%] i skali długości turbulentnej, lt [m]).</li>
+</ol>
+<p>Student ma do dyspozycji przygotowane wcześniej pliki *.cas zawierające siatkę obliczeniową (bazowa i gęsta). Nie ma więc konieczności przygotowania siatki.</p>
+<p><em>Warunkiem zakończenia ćwiczenia jest przedstawienie prowadzącemu zajęcia otrzymanych wyników obliczeń oraz dokonanie analizy uzyskanych wyników. Całość w formie sprawozdania zawierającego obrazy jak również analizę wyników.</em></p>
+</div>
+<div id="przebieg-ćwiczenia" class="section level1">
+<h1>Przebieg ćwiczenia</h1>
+<div id="obliczenia-z-zastosowaniem-funkcji-ściany" class="section level2">
+<h2>Obliczenia z zastosowaniem funkcji ściany</h2>
+<ol style="list-style-type: decimal">
+<li>Do okna projektu wyciągnij <strong>Fluent</strong> z zakładki <strong>Component systems</strong>. Otwieramy program Fluent przez otwarcie komórki <em>Setup</em> (<strong>2D, Double precision, serial</strong> (jeden proces) )</li>
+<li><p>Wczytać plik *.mesh z bazową siatką obliczeniową - <strong>File/Import/Mesh…</strong>.</p>
+<p><a href="http://ccfd.github.io/courses/data/momp/3/coarse.msh">Plik do ściągnięcia</a> Średnice rury to D = 0.1524m i D<sub>inlet</sub> = 0.517D = 0.0788 m.</p></li>
+<li>Przepływ jest osiowosymteryczny. Zapewne program fluent to zauważy i wypisze odpowiednie ostrzeżenie w konsoli (dzięki odpowiedniemu nazewnictwu warunku brzegowego). Sprawdź ustawienia w <strong>Setup/General</strong> w polu <strong>Solver</strong>.</li>
+<li>Wybieramy odpowiedni model turbulencji w <strong>Define/Models</strong> i odpowiednią opcję w <strong>Near-Wall Treatment</strong>.</li>
+<li>Sprawdzamy poprawność zdefiniowania własności płynu. <strong>Setup/Materials/Fluid</strong>.</li>
+<li>Pobieramy <a href="http://ccfd.github.io/courses/data/momp/3/inlet_profile_keps.prof">plik z zdefiniowanymi parametrami warunku brzegowego</a>.</li>
+<li>Wczytujemy pobrane profile. Można to zrobić na dwa sposoby:
+<ul>
+<li>W górnej belce: <strong>Physics/Zones/Profiles..</strong></li>
+<li>W drzewie po lewej stronie klikając dwukrotnie na <strong>Setup/Boundary Conditions</strong> i wciskając guzik <strong>Profiles…</strong></li>
+</ul>
+<p>Zostanie wczytanych 5 pól, z czego 3 są naszymi zmiennymi - <strong>profil prędkości, energii kinetycznej turbulencji i dyssypacji energii kinetycznej turbulencji</strong>.</p></li>
+<li>Ustawiamy schemat dyskretyzacji I rzędu dla członów konwekcyjnych w równaniach pędu (upwind) oraz SIMPLE jako schemat sprzężenia prędkość-ciśnienie w <strong>Solution/Methods</strong>.</li>
+<li>Ustawiamy poziom zbieżności rozwiązania, <strong>Solution/Monitors/Residual</strong>, 1e-5.</li>
+<li><p><strong>Inicjalizuj</strong> obliczenia z wlotu i przeliczyć. Zbieżność rozwiązania monitorować.</p>
+<p>Sprawdź jak wyglądają wlotowe profile prędkości średniej, energii kinetycznej turbulencji i dyssypacji w <strong>Results/Plots/Profile Data</strong>. Otworzyć w notatniku plik, z którego zostały wczytane i zobaczyć w jaki sposób zostały zdefiniowane.</p>
+<pre><code>W sprawozdaniu podaj przykłady przypadków dla których można zastosować tego typu profile w określaniu warunków brzegowych, oraz takich dla których wskazane jest użycie funkcji UDF(jak w poprzedniej instrukcji).</code></pre></li>
+<li><p>Po uzyskaniu zbieżnego rozwiązania dla I rzędu, przełączyć na II rząd i kontynuować obliczenia (bez inicjalizacji). <em>W niektórych przypadkach nie da się uzyskać zbieżności startując od razu od równań II rzędu.</em></p>
+<pre><code>Wykres zbieżności przedstaw w raporcie.</code></pre></li>
+<li><p>Wykonaj wizualizacje: konturów ciśnienia, prędkości, energii kinetycznej turbulencji i dyssypacji, wektorów prędkości i linii prądu korzystając z opcji pod zakładką <strong>Results/Graphics/Contours</strong>.</p>
+<pre><code>Przedstaw w raporcie.</code></pre></li>
+<li><p>Sprawdzić liczbę Reynoldsa w oparciu o prędkość średnią na wylocie z rury o średnicy D=0.1524m, <strong>Results/Report/Surface Integrals</strong>, Report Type: <strong>Area-Weighted Average</strong>.</p>
+Sprawdzić ile wynosi prędkość średnia i maksymalna w osi rury na wlocie. Prędkość średnią i prędkość maksymalną można policzyć w <strong>Results/Report/Surface Integrals</strong>
+<ul>
+<li>Report Type: <strong>Area-Weighted Average</strong> (dla prędkości średniej)</li>
+<li>Report Type: <strong>Vertex Maximum</strong> (dla prędkości maksymalnej).</li>
+</ul>
+<p>Zanotować prędkość średnią, <strong>U<sub>śr</sub></strong>, i maksymalną prędkość , <strong>U<sub>xmax</sub></strong>. Informacje te będą potrzebne do normalizacji składowej osiowej prędkości średniej i energii kinetycznej turbulencji, celem porównania z <a href="#opis-danych-eksperymentalnych-oraz-ich-interpretacja-graficzna">danymi eksperymentalnymi</a>.</p></li>
+<li><p>Zdefiniować znormalizowane funkcje w górnej belce programu - <strong>User-defined/Field Functions/Custom</strong>:</p>
+<ul>
+<li>składowa osiowa prędkości znormalizowana maksymalną prędkością w osi rury na wlocie do obszaru obliczeniowego, <strong>U<sub>x</sub> / U<sub>xmax</sub></strong></li>
+</ul>
+<p>(z menu rozwijanego <strong>Field Functions</strong> wybrać Velocity oraz Axial Velocity, potwierdzić wybór klikając na Select, następnie wybrać znak dzielenia i wpisać zanotowaną wcześniej wartość maksymalnej prędkości na wlocie, po wpisaniu nazwy zatwierdzić Define)</p>
+<ul>
+<li>energia kinetyczna turbulencji znormalizowana kwadratem średniej prędkości na wlocie do obszaru obliczeniowego, <strong>k/(U<sub>śr</sub>)<sup>2</sup></strong></li>
+</ul>
+<p>(z menu rozwijanego <strong>Field Functions</strong> wybrać Turbulence oraz Turbulent Kinetic Energy (k) i podzielić przez kwadrat odpowiedniej stałej)</p></li>
+<li><p>Sprawdzić y+ na ścianach wall, wall_d i wall_inlet. <strong>Results/Plots/XY Plot</strong>:</p>
+<ul>
+<li>Y axis function: Turbulence
+<ul>
+<li>Wall YPlus</li>
+</ul></li>
+</ul>
+<p>Efektywne wykorzystanie funkcji ściany wymaga aby bezwymiarowa odległość y+ centroid komórek obliczeniowych znajdujących się przy ścianie była w zakresie y+=30-300.</p>
+<pre><code>Przedstaw w raporcie.</code></pre></li>
+<li><p>Porównać wyniki symulacji z <a href="#opis-danych-eksperymentalnych-oraz-ich-interpretacja-graficzna">danymi eksperymentalnymi</a> w przekrojach poprzecznym <em>x = -0.0381</em> i wzdłużnym <em>r = 0.07271</em>.</p>
+<p><strong>Results/Plots/XY Plot</strong>, <strong>Load File</strong> aby wczytać dane eksperymentalne. Podobnie jak w <strong>poprzedniej instrukcji</strong>, najpierw wyświetlić wykres dla danych eksperymentalnych, a następnie zastanowić się jaka funkcja powinna znajdować się na osiach X i Y. Zdefiniuj przekroje x=-0.0381 i r=0.07271. Należy pamiętać, że nie porównujemy <strong>bezpośrednio</strong> prędkości i energii kinetycznej turbulencji, a <strong>znormalizowane</strong> przez nas funkcje, które można znaleźć pod zakładką Custom Field Functions. Zwrócić uwagę na położenie pierwszego punktu w pobliżu ściany w przekroju poprzecznym.</p>
+<p><em>Czy wyniki symulacji numerycznej dobrze oddają charakter zmian prędkości średniej wzdłuż x dla przekroju wzdłużnego? Zauważ, że w eksperymencie obserwuje się dwa obszary recyrkulacji. Mniejszy na wysokości uskoku.</em></p></li>
+<li><p>Zapisz wykres dla przekroju wzdłużnego w pliku tekstowym, <strong>Results/Plots/XY Plot</strong> opcja <strong>Write to File</strong>.</p>
+<pre><code>Przedstaw w raporcie.</code></pre></li>
+<li><p>Wyłącz program Fluent, w środowisu Workbench zapisz projekt.</p></li>
+</ol>
+<hr />
+</div>
+<div id="analiza-wpływu-warunków-na-wlocie-do-obszaru-obliczeniowego" class="section level2">
+<h2>Analiza wpływu warunków na wlocie do obszaru obliczeniowego</h2>
+<div id="standardowe-ustawienia-programu-fluent" class="section level3">
+<h3>Standardowe ustawienia programu fluent</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Zduplikuj</strong> blok z obliczeniami, odpowiednio nazwij, otwórz Fluent z nowopowstałego bloku klikając komórkę <strong>Setup</strong></li>
+<li>Zmień warunki brzegowe dla energii kinetycznej turbulencji i dyssypacji z profili UDF na standardowe warunki Fluenta const=1. <strong>Setup/Boundary Conditions/Inlet/Velocity_inlet</strong></li>
+<li>Zainicjalizuj rozwiązanie z wlotu. Przelicz przypadek.</li>
+<li><p>Porównaj uzyskane profile prędkości dla przekroju wzdłużnego z danymi eksperymentalnymi i z poprzednio uzyskanymi wynikami symulacji.</p>
+<p><em>Czy wyniki symulacji znacząco odbiegają od danych eksperymentalnych? Zapisać uzyskany profil prędkości w pobliżu ściany Display/Plot/Xyplot, Write to File</em></p>
+<pre><code> Przedstaw w raporcie.</code></pre></li>
+<li><p>Wyłącz program Fluent, w środowisu Workbench zapisz projekt.</p></li>
+</ol>
+<hr />
+</div>
+<div id="warunki-wynikające-z-teorii" class="section level3">
+<h3>Warunki wynikające z teorii</h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Zduplikuj</strong> blok z obliczeniami, odpowiednio nazwij, otwórz Fluent z nowopowstałego bloku klikając komórkę <strong>Setup</strong></p></li>
+<li><p>Zmień warunki brzegowe dla turbulencji na wlocie, <strong>Setup/Boundary Conditions/Inlet/Velocity_inlet</strong> w polu <strong>Turbulence</strong> zmień metode na <strong>Intensity and Hydraulic diameter</strong>.</p>
+<p><em>Relacja pomiędzy energią kinetyczną turbulencji, k, intensywnością turbulencji, Tu, i prędkością średnią, U<sub>śr</sub>:</em></p>
+<p><em>k=1.5(Tu U<sub>śr</sub>)U<sup>2</sup>.</em></p>
+<p><em>Dla w pełni rozwiniętego przepływu w rurze można przyjąć Tu=4% w osi rury.</em></p>
+<p><em>W przepływach wewnętrznych skala długości turbulentnej l<sub>t</sub> nie może być większa od fizycznego rozmiaru obiektu L. Dla analizowanego przepływu w rurze L=D<sub>inlet</sub>. Przyjmuje się, że skala długości turbulentnej:</em></p>
+<p><em>l<sub>t</sub>. Przy czym <span class="math inline">\(\epsilon\)</span> = k<sup>3/2</sup> / l<sub>t</sub>.</em></p>
+<p><em>Podaj warunki brzegowe: Tu=4% i L=D<sub>inlet</sub>.</em> <strong>Zainicjalizuj</strong> <em>obliczenia i</em> <strong>przelicz</strong>.</p>
+<p>Porównaj wyniki obliczeń dla przekroju wzdłużnego z danymi eksperymentalnymi i z poprzednio uzyskanymi wynikami.</p>
+<p><em>Które wyniki symulacji są najbliższe danym eksperymentalnym i dlaczego? Czy stosowanie standardowych warunków Fluenta ma sens?</em></p>
+<pre><code> Przedstaw w raporcie.</code></pre></li>
+<li><p>Wyłącz program Fluent, w środowisu Workbench zapisz projekt.</p></li>
+</ol>
+</div>
+</div>
+<div id="siatka-gęsta-podejście-enhanced-wall-treatment." class="section level2">
+<h2>Siatka gęsta, podejście Enhanced Wall Treatment.</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Zduplikuj</strong> blok z obliczeniami z <a href="#obliczenia-z-zastosowaniem-funkcji-ściany">akapitu 1</a>, odpowiednio nazwij, otwórz Fluenta z nowopowstałego bloku klikając komórkę <strong>Setup</strong></li>
+<li><p>Ściągnij plik z zagęszczoną siatką:</p>
+<p><a href="http://ccfd.github.io/courses/data/momp/3/fine.msh">Plik do ściągnięcia</a></p></li>
+<li><p>Podmień siatki:</p>
+<p>W górnej belce programu, w zakładce <strong>Domain</strong> za pomocą opcji <strong>Replace Mesh…</strong> w polu <strong>Zone</strong>.</p>
+<p><em>Zauważ, że program Fluent wykona szereg operacji, który dostosuje obecne ustawienia do nowej siatki. Bardzo ważne aby nowa siatka miała dokładnie te same nazwy warunków brzegowych.</em></p></li>
+<li><p>Zainicjalizuj i oblicz przypadek.</p></li>
+<li><p>Po wykonaniu kilkudziesięciu iteracji, sprawdź y+ na ścianach wall_inlet i wall_d, <strong>Results/Plots/XY Plot</strong>, (Turbulence i Wall YPlus)</p>
+W celu zastosowania podejścia Enhanced Wall Treatment , y+ musi być mniejsze od 3, aby poprawnie uwzględnić dynamikę przepływu w subwarstwie lepkiej. Jeżeli warunek nie jest spełniony zagęścić siatkę obliczeniową. Powtarzać obliczenia i zagęszczanie siatki do uzyskania y+ bliskiego 5.
+<ul>
+<li>W górnej belce programu wchodzimy w zakładkę <strong>Domain</strong>, później w polu <strong>Adapt</strong> klikamy <strong>Refine/Coarsening</strong></li>
+<li>W nowo otwartym oknie wciskamy przycisk <strong>Cell Registers</strong>/<strong>New</strong>/<strong>Boundary…</strong></li>
+<li>Arbitralnie wpisujemy nazwę adaptowanego pola.</li>
+<li>Zaznaczmy nasze <strong>wall_inlet</strong> oraz <strong>wall_d</strong></li>
+<li>W pole <strong>Number of cells</strong> wpisujemy ilość komórek do adaptacji licząc od ściany - <strong>2</strong>.</li>
+<li><strong>Save/Display</strong></li>
+<li>Po powrocie do okna <strong>Adaptation controls</strong> z rozwijanym menu <strong>Refinement Criterion</strong> wybieramy utworzone pole adaptacji.</li>
+<li><strong>Adapt</strong></li>
+</ul></li>
+<li><p>Porównaj wyniki symulacji z danymi eksperymentalnymi w przekroju poprzecznym <strong>Results/Plots/XY Plot</strong>. Porównaj wyniki symulacji na siatce gęstej dla przekroju wzdłużnego z danymi eksperymentalnymi i wynikami symulacji dla siatki bazowej.</p>
+<p><em>Czy zwiększenie rozdzielczości siatki obliczeniowej pozwala uzyskać dużo lepsze wyniki w pobliżu ściany ? Czy koszt obliczeń na siatce gęstej jest znacznie większy od kosztów obliczeń na siatce podstawowej?</em></p>
+<pre><code> Przedstaw w raporcie.</code></pre></li>
+<li><p>Wykonać wizualizacje.</p></li>
+</ol>
+</div>
+</div>
+<div id="opis-danych-eksperymentalnych-oraz-ich-interpretacja-graficzna" class="section level1">
+<h1>Opis danych eksperymentalnych oraz ich interpretacja graficzna</h1>
+<ul>
+<li><p><strong><a href="http://ccfd.github.io/courses/data/momp/3/exper-axial-vel_x-0_0381.xy">exper-axial-vel_x-0_0381.xy</a></strong> – profil składowej osiowej prędkości średniej znormalizowanej maksymalną prędkością w osi rury na wlocie do obszaru obliczeniowego w funkcji promienia rury w przekroju x = - 0.0381 (tuż przed uskokiem)</p></li>
+<li><p><strong><a href="http://ccfd.github.io/courses/data/momp/3/exper-axial-vel_r0.07271.xy">exper-axial-vel_r0.07271.xy</a></strong> – profil składowej osiowej prędkości średniej znormalizowanej maksymalną prędkością w osi rury na wlocie do obszaru obliczeniowego w funkcji współrzędnej x w odległości r = 0.07271 od osi rury (blisko ściany w rurze o większej średnicy).</p></li>
+</ul>
+<div class="figure">
+<img src="figures/momp_inst3/axial.svg#center" alt="Prędkości osiowe dla przekorów x = -0.0381 oraz r = 0.07271" />
+<p class="caption"><em>Prędkości osiowe dla przekorów x = -0.0381 oraz r = 0.07271</em></p>
+</div>
+<ul>
+<li><strong><a href="http://ccfd.github.io/courses/data/momp/3/exper-k-over-u2_x-0_0381.xy">exper-k-over-u2_x-0_0381.xy</a></strong> – profil energii kinetycznej turbulencji znormalizowany kwadratem prędkości średniej na wlocie do obszaru obliczeniowego w funkcji promienia rury w przekroju x = - 0.0381 (tuż przed uskokiem);</li>
+</ul>
+<div class="figure">
+<img src="figures/momp_inst3/k.svg#center" alt="Profil energii kinetycznej dla przekroju x = -0.0381" />
+<p class="caption"><em>Profil energii kinetycznej dla przekroju x = -0.0381</em></p>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
