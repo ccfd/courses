@@ -166,10 +166,10 @@ Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe poł
 W ciele pętli koniecznie użyj funkcji `animate(100)`.
 Spowolni ona wykonywanie kolejnych kroków pętli.
 Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.  
-Użycie funkcji `aimate` wygląda następująco:
+Użycie funkcji `animate` wygląda następująco:
 ```c++
 for(i = 0; i < 50; i++) {
-  animate(100);   // oczkiwanie przez 100 ms
+  animate(100);   // jako argument funkcji wpisujemy ilość klatek na sekundę (oczekiwanie przez 10 ms)
   clear();        // czyszczenie okna dla nowej klatki
                   // pozostale instrukcje...
 }
