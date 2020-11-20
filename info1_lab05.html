@@ -881,10 +881,10 @@ Piłki poruszają się ze stałą prędkością, zatem <span class="math inline"
 <a class="sourceLine" id="cb8-4" data-line-number="4">}</a></code></pre></div>
 <ul>
 <li>W funkcji <code>main</code> napisz pętlę <code>for</code>, która wykona <span class="math inline">\(i = 50\)</span> wywołań funkcji <code>move</code>. Pamiętaj żeby po każdym kroku w oknie graficznym były wyświetlane nowe położenia piłek. W ciele pętli koniecznie użyj funkcji <code>animate(100)</code>. Spowolni ona wykonywanie kolejnych kroków pętli. Jeśli nie dodasz tej funkcji, nie zauważysz, że piłki się poruszają.<br />
-Użycie funkcji <code>aimate</code> wygląda następująco:</li>
+Użycie funkcji <code>animate</code> wygląda następująco:</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="cf">for</span>(i = <span class="dv">0</span>; i &lt; <span class="dv">50</span>; i++) {</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">  animate(<span class="dv">100</span>);   <span class="co">// oczkiwanie przez 100 ms</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  animate(<span class="dv">100</span>);   <span class="co">// jako argument funkcji wpisujemy ilość klatek na sekundę (oczekiwanie przez 10 ms)</span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">  clear();        <span class="co">// czyszczenie okna dla nowej klatki</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">                  <span class="co">// pozostale instrukcje...</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">}</a></code></pre></div>

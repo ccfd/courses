@@ -809,7 +809,7 @@ Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adre
 <p>Pliki można otwierać nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać czy tworzony/odczytywany plik ma być obsługiwany w trybie tekstowym, czy binarnym. Aby móc obsługiwać plik binarny należy dodać literę <code>b</code> do trybu zapisu.</p>
 <p>Przykładowe instrukcje zaprezentowano poniżej.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">void</span> main() {</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">int</span> a;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">int</span> a = <span class="dv">3</span>;</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">FILE</span> *f, *g, *innyPlik;</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  </a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">  f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);       <span class="co">// Zapis w trybie tekstowym</span></a>
