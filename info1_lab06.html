@@ -809,7 +809,7 @@ Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adre
 <p>Pliki można otwierać nie tylko w trybie zapisu <em>(ang. write)</em> <code>w</code> (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku <em>(ang. append)</em> <code>a</code> lub czytania z pliku <em>(ang. read)</em> <code>r</code>. Można również wybrać czy tworzony/odczytywany plik ma być obsługiwany w trybie tekstowym, czy binarnym. Aby móc obsługiwać plik binarny należy dodać literę <code>b</code> do trybu zapisu.</p>
 <p>Przykładowe instrukcje zaprezentowano poniżej.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">void</span> main() {</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">int</span> a = <span class="dv">3</span>;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">int</span> a;</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">FILE</span> *f, *g, *innyPlik;</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  </a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">  f = fopen(<span class="st">&quot;plik1.txt&quot;</span>, <span class="st">&quot;w&quot;</span>);       <span class="co">// Zapis w trybie tekstowym</span></a>
@@ -821,11 +821,11 @@ Wskaźniki przechowujące adresy plików mają typ <code>FILE</code>, a sam adre
 <a class="sourceLine" id="cb3-11" data-line-number="11">    exit(<span class="dv">1</span>);</a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">  }</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">  fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="sc">%d\n</span><span class="st">&quot;</span>, a);</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15">  fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb3-16" data-line-number="16">  </a>
-<a class="sourceLine" id="cb3-17" data-line-number="17">  fscanf(innyPlik, <span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span>, &amp;a);        <span class="co">// wczytujemy liczbe calkowita z pliku Dane.txt</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18">                                     <span class="co">// i zapisujemy jej wartosc do zmiennej a</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  fscanf(innyPlik, <span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span>, &amp;a);        <span class="co">// wczytujemy liczbe calkowita z pliku Dane.txt</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">                                     <span class="co">// i zapisujemy jej wartosc do zmiennej a</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  fprintf(f, <span class="st">&quot;Zapisujemy wartosc a do plik1.txt, a = </span><span class="sc">%d\n</span><span class="st">&quot;</span>, a);</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  fprintf(g, <span class="st">&quot;Binarnie zapisujemy ten tekst do plik2.dat</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
 <a class="sourceLine" id="cb3-19" data-line-number="19"></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20">  <span class="co">// Tu mozemy wykonac jeszcze inne operacje na otwartych plikach</span></a>
 <a class="sourceLine" id="cb3-21" data-line-number="21"> </a>
