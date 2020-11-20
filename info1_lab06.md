@@ -60,7 +60,7 @@ Aby móc obsługiwać plik binarny należy dodać literę `b` do trybu zapisu.
 Przykładowe instrukcje zaprezentowano poniżej.
 ```c++
 void main() {
-  int a;
+  int a = 3;
   FILE *f, *g, *innyPlik;
   
   f = fopen("plik1.txt", "w");       // Zapis w trybie tekstowym
