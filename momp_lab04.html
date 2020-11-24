@@ -9,10 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="W. Regulski, rev. W. Gryglas" />
 
 
-<title>info2_lab03.utf8</title>
+<title>Ustalony nieściśliwy przepływ trójwymiarowy z oderwaniem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,6 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -37,99 +38,6 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -746,14 +654,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info2_lab03.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info2_lab03.md">
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab04.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     GitHub
@@ -776,73 +684,284 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Ustalony nieściśliwy przepływ trójwymiarowy z oderwaniem</h1>
 
 </div>
 
 
-<div id="iteracyjne-metody-rozwiązywania-równań-nieliniowych" class="section level1">
-<h1>Iteracyjne metody rozwiązywania równań nieliniowych</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
-<ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/nonlin.h">Plik nagłówkowy nonlin.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/nonlin.cpp">Plik źródłowy nonlin.cpp</a></li>
-</ul>
-<div id="wstęp" class="section level2">
-<h2>1. Wstęp</h2>
-<p>Celem ćwiczenia jest zapoznanie się z różnymi metodami numerycznymi służącymi do znajdowania miejsc zerowych funkcji matematycznych. W praktyce najczęściej niemożliwe jest znalezienie dokładnej wartości pierwiastka równania, więc tak naprawdę będziemy szukać coraz dokładniejszych przybliżeń tego pierwiastka. W tym celu posłużymy się metodą <strong>bisekcji</strong>, <strong>siecznych</strong> oraz <strong>stycznych</strong>. Wszystkie metody wymagają, aby funkcja, której miejsc zerowych szukamy, była ciągła.</p>
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Celem ćwiczenia jest zapoznanie się ze sposobem modelowania przepływów trójwymiarowych oraz obróbka trójwymiarowych wyników graficznych.</p>
 </div>
-<div id="metoda-bisekcji" class="section level2">
-<h2>2. Metoda bisekcji</h2>
-<p>W przypadku metody bisekcji korzystamy z faktu, że jeśli na końcach pewnego przedziału liczbowego wartości funkcji są przeciwnych znaków, gdzieś na tym odcinku funkcja ma miejsce zerowe (ta trywialna obserwacja to tzw. twierdzenie Darboux, sformułowane przez francuskiego matematyka Jeana Gastona Darboux (1842-1917)). Za pomocą tej metody rozwiążemy równanie: <span class="math display">\[
-\cos(x) = x
-\]</span> Posłużymy się przygotowaną wcześniej funkcją <code>bisec</code>. W tym celu należy załączyć do projektu pliki <em>nonlin.h</em> oraz <em>nonlin.cpp</em>. Funkcja <code>bisec</code> ma nagłówek następującej postaci:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> bisec(<span class="dt">double</span> a, <span class="dt">double</span> b, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
-<p>Funkcja zwraca przybliżenie miejsca zerowego równania. Wymagane są następujące argumenty:</p>
-<ul>
-<li><code>a</code> i <code>b</code> - krańce przedziału, w którym szukamy rozwiązania,</li>
-<li><code>double (*pf)(double)</code> - wskaźnik do funkcji utworzonej na podstawie rozwiązywanego równania,</li>
-<li><code>eps</code> - dokładność rozwiązania <span class="math inline">\(\varepsilon\)</span>,</li>
-<li><code>iter</code> - zmienna typu wskaźnikowego, która zawiera adres, pod który zostanie zapisana liczba iteracji. Jeśli na obu końcach przedziału <span class="math inline">\([a, b]\)</span> funkcja przyjmuje wartości tego samego znaku to zmienna, której adres zawiera <code>iter</code> będzie zawierać wartość <code>-1</code> a funkcja zwróci wartość <code>0</code>.</li>
-</ul>
-<div id="ćwiczenia" class="section level3">
-<h3>Ćwiczenia</h3>
+<div id="streszczenie" class="section level1">
+<h1>Streszczenie</h1>
+<p>Zadanie polega na wyznaczeniu opływu wokół skrzydła typu delta ustawionego pod dużym katem natarcia (30°), wyposażonego w śmigło, umieszczone w szczelinie. Przepływ odbywa się w zamkniętej przestrzeni tunelu aerodynamicznego i posiada płaszczyznę symetrii. Wymiary tunelu 150x200x600 cm. Przepływającym czynnikiem jest powietrze o prędkości V=10m/s i ciśnieniu p=101325 Pa. Model rozważany w tym ćwiczeniu jest właściwie półmodelem, w którym odwzorowano tylko połowę skrzydła delta oraz połowę kręgu śmigła. Tym samym założono przepływ symetryczny względem płaszczyzny XZ.</p>
+</div>
+<div id="przebieg-ćwiczenia" class="section level1">
+<h1>Przebieg ćwiczenia</h1>
+<div id="geometria" class="section level2">
+<h2>Geometria</h2>
 <ol style="list-style-type: decimal">
-<li>Napisz funkcję <code>double fun(double x)</code>, która będzie zwracać wartość funkcji <span class="math inline">\(f(x)\)</span> uzyskaną z przekształcenia naszego równania do postaci <span class="math inline">\(f(x) = 0\)</span>.</li>
-<li>Wczytaj z klawiatury dokładność rozwiązania <code>eps</code> oraz krańce przedziału przeszukiwań <code>a</code> i <code>b</code>. Pamiętaj o tym, że krańce muszą spełniać nierówność <span class="math inline">\(f(a) \cdot f(b) &lt; 0\)</span>.</li>
-<li>Wykorzystaj funkcję <code>bisec</code> a następnie wypisz na ekranie znalezione miejsce zerowe oraz liczbę iteracji.</li>
-<li>Zmodyfikuj program tak, aby rozwiązywał równanie w pętli, dla zmieniającej się dokładności <span class="math inline">\(\varepsilon = 2^{-20} , 2^{-19}, \ldots, 2^{-3}\)</span>.</li>
-<li>Utwórz wykres przedstawiający zależność liczby iteracji od dokładności (dokładność przedstaw na osi logarytmicznej).</li>
+<li><p>W środowisku workbench stwórz nowy system obliczeniowy - <strong>Fluid Flow(Fluent)</strong>.</p></li>
+<li><p>Otwórz <strong>Design Modeler</strong> klikając prawym przyciskiem myszy na komórkę <strong>Geometry</strong>.</p></li>
+<li><p>Ustaw jednostki na <strong>centymetry</strong></p></li>
+<li><p>Stwórz nowy szkic na płaszczyźnie <strong>X-Y</strong>. Narysuj geometrię połowy skrzydła delta tak jak na załączonej ilustracji.</p></li>
+</ol>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_geom.svg#center" title="Szkic 1" alt="Rys.1. Szkic 1 na płaszczyźnie X-Y" />
+<p class="caption"><strong>Rys.1.</strong> <em>Szkic 1 na płaszczyźnie X-Y</em></p>
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Stwórz <strong>powierzchnię</strong> na podstawie utworzonego szkicu.</p></li>
+<li><p>W ten sposób utworzyliśmy bardzo proste skrzydło delta a dokładnie jego połowę. Płaszczyzna X-Z będzie lustrzanym odbiciem skrzydła.</p></li>
+<li><p>Teraz trzeba utworzyć powierzchnię <strong>śmigła</strong> zastępczego.</p></li>
+<li><p>Utwórz szkic na płaszczyźnie <strong>Y-Z</strong></p></li>
+<li><p>Wewnątrz szkicu, za pomocą narzędzia <strong>Arc by Center</strong>, stwórz półokrąg według załączonej ilustracji.</p></li>
+</ol>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_geom2.svg#center" title="Szkic 2" alt="Rys.2. Szkic 2 na płaszczyźnie Y-Z" />
+<p class="caption"><strong>Rys.2.</strong> <em>Szkic 2 na płaszczyźnie Y-Z</em></p>
+</div>
+<pre><code>    UWAGA: Aby utworzyć powierzchnie śmigła, obwód musi być zamknięty. 
+    
+    Nie zapomnij domknąć półokręgu linią!
+    </code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li><p>Utwórz <strong>powierzchnię</strong> na podstawie szkicu.</p></li>
+<li><p>Obecnie skrzydło delta jest na 0 kącie natarcia. Nalezy zmienić kąt natarcia naszego skrzydła o 30 stopni</p>
+<p>Z menu kontekstowego <strong>Create</strong> wybieramy <strong>Body Transformation</strong> następnie <strong>Rotate</strong>.</p>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_rotate.svg#center" title="Obrót" alt="Rys.3. Obrót" />
+<p class="caption"><strong>Rys.3.</strong> <em>Obrót</em></p>
+</div>
+<p><strong>Wybieramy geometrie</strong> do obrotu. To można zrobić na dwa sposoby (patrz rysunek).</p>
+<ul>
+<li>Z wciśniętym <strong>ctrl</strong>, wybieramy interesujące nas elementy w ostatnim menu w drzewie historii (Patrz rysunek)</li>
+<li>Zaznaczamy powierzchnie w oknie graficznym. Jeżeli w momencie zaznaczenia elementu pod naszym kursorem znajdują się inne elementy, w lewym dolnym rogu okna graficznego rozwinie się graficzna reprezentacja tych elementów. Reprezentowane elementy będą wyświetlone w postaci <strong>warstw</strong>. Pierwsza od lewej warstwa reprezentuje element znajdujący się najbliżej użytkownika, ostatni od lewej element znajdujący się najdalej od użytkownika. Najechanie kursorem na odpowiednią warstwę podświetli reprezentowany element. Klikając odpowiednią <strong>warstwę</strong> wybieramy interesującą nas powierzchnie. (Patrz rysunek)</li>
+</ul>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_rotateopt.svg#center" title="Select" alt="Rys.4. Sposoby zaznaczania" />
+<p class="caption"><strong>Rys.4.</strong> <em>Sposoby zaznaczania</em></p>
+</div>
+<p>Wybieramy <strong>skrzydło delta</strong> i <strong>wirnik</strong>.</p>
+<p>Następnie <strong>wybieramy oś obrotu</strong>. To też można zrobić na dwa sposoby (Patrz rysunek).</p>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_rotateopt2.svg#center" title="Oś obrotu" alt="Rys.5. Sposoby wskazania osi obrotu" />
+<p class="caption"><strong>Rys.5.</strong> <em>Sposoby wskazania osi obrotu</em></p>
+</div>
+<ul>
+<li>W <strong>menu płaszczyzn</strong> w drzewie historii (tam gdzie znajdują się szkice), wybieramy <strong>płaszczyznę prostopadłą</strong> do naszej osi obrotu.</li>
+<li><p>W <strong>oknie graficznym</strong>, na naszym rysunku, znajdują się przerywane linie reprezentujące osie układu współrzędnych. Klikamy na odpowiednią oś.</p>
+<p>Kolorowy układ współrzędnych znajdujący się w dolnym prawym rogu okna graficznego, służy tylko do manipulacji kamerą.</p></li>
+</ul>
+<p>Po zaznaczeniu osi, w oknie graficznym pojawią się <strong>strzałki wyboru kierunku osi</strong>. Klikamy aby odpowiednio zorientować oś obrotu. Oś musi być tak zorientowana, żeby nasze “skrzydło”, obracając się, zadarło “nos” w kierunku osi <em>Z</em>.</p>
+<p>Wpisujemy kąt obrotu naszych powierzchni.</p>
+<p><strong>Generate</strong></p></li>
+<li><p>Ostatnim krokiem jest utworzenie objętości powietrza.</p></li>
+<li><p>W menu kontekstowym <strong>Create</strong> przejdź do menu <strong>Primitives</strong> i wybierz opcję <strong>Box</strong>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>—</th>
+<th>Początek</th>
+<th>Diagonale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>-250 cm</td>
+<td>600 cm</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>0 cm</td>
+<td>150 cm</td>
+</tr>
+<tr class="odd">
+<td>Z</td>
+<td>-80 cm</td>
+<td>200 cm</td>
+</tr>
+</tbody>
+</table>
+<p>Warto ustawić <strong>Operation - Add frozen</strong></p>
+<p><strong>Generate</strong></p>
+<pre><code>Jeżeli figura nie będzie przezroczysta od opcji **Add frozen** i wszystko nam przysłoni, należy w menu kontekstowym wybrać - View -&gt; Wireframe. Wtedy zmienimy sposób reprezentowania widoku na szkieletowy.</code></pre></li>
+<li><p>Z powstałych elementów tworzymy <strong>złożenie</strong>. We wspomnianym wcześniej <strong>menu elementów</strong>, ostatnim w drzewie historii, wybieramy wszystkie elementy i za pomocą prawego przycisku myszki wybieramy <strong>form new part</strong>.</p></li>
+</ol>
+<hr />
+<details>
+<summary>Dla chętnych</summary>
+<p>
+<ol start="15" style="list-style-type: decimal">
+<li><p>Stwórz kolejny <strong>Box</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>—</th>
+<th>Początek</th>
+<th>Diagonale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>0 cm</td>
+<td>200 cm</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>0 cm</td>
+<td>35 cm</td>
+</tr>
+<tr class="odd">
+<td>Z</td>
+<td>-20 cm</td>
+<td>35 cm</td>
+</tr>
+</tbody>
+</table>
+<p>Warto ustawić <strong>Operation - Add frozen</strong></p>
+<p><strong>Generate</strong></p>
+<p>W momencie tworzenia złożenia (punkt 14), nie dodawaj tej bryły do złożenia. Po punkcie 14 powinny być 1 złożenie (part) i jedna bryła (Solid).</p></li>
+</ol>
+</p>
+</details>
+<pre><code>---</code></pre>
+<ol start="16" style="list-style-type: decimal">
+<li><strong>Wychodzimy</strong> z DesignModeler</li>
 </ol>
 </div>
-</div>
-<div id="metoda-siecznych-i-stycznych" class="section level2">
-<h2>3. Metoda siecznych i stycznych</h2>
-<p>Innymi metodami poszukiwania rozwiązań równań nieliniowych są metody stycznych oraz siecznych. W przypadku metody siecznych kolejne przybliżenie miejsca zerowego wyznacza się jako miejsca przecięcia odpowiedniej siecznej wykresu funkcji z osią odciętych. Dana sieczna przechodzi przez punkty z wykresu funkcji, których rzędne były poprzednimi przybliżeniami miejsca zerowego. Schemat iteracyjny ma następującą postać: <span class="math display">\[
-x_{i+1} = x_i - f(x_i) \frac{x_i-x_{i-1}}{f(x_i)-f(x_{i-1})}
-\]</span></p>
-<p>W przypadku metody stycznych (zwanej też metodą Newtona) kolejne przybliżenia miejsca zerowego są przecięciami stycznych do wykresu funkcji z osią odciętych. Obliczenie kolejnych przybliżeń wymaga znajomości pochodnej funkcji. Schemat iteracyjny przybiera następującą postać: <span class="math display">\[
-x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x_i)}
-\]</span></p>
-<div id="ćwiczenia-1" class="section level3">
-<h3>Ćwiczenia</h3>
+<div id="siatka-obliczeniowa" class="section level2">
+<h2>Siatka obliczeniowa</h2>
 <ol style="list-style-type: decimal">
-<li>Napisz procedury wyznaczające miejsce zerowe funkcji <span class="math inline">\(f(x)\)</span> metodą Newtona i metodą siecznych. Nagłówki funkcji powinny mieć postaci:</li>
+<li>Otwieramy moduł <strong>Mesh</strong>.</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">double</span> newton(<span class="dt">double</span> x, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">double</span> siecz(<span class="dt">double</span> x1, <span class="dt">double</span> x2, <span class="dt">double</span> (*pf)(<span class="dt">double</span>), <span class="dt">double</span> eps, <span class="dt">int</span> *iter)</a></code></pre></div>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_namedselect.svg#center" title="Domena" alt="Rys.6. Nazwy warunków brzegowych" />
+<p class="caption"><strong>Rys.6.</strong> <em>Nazwy warunków brzegowych</em></p>
+</div>
 <ol start="2" style="list-style-type: decimal">
-<li>Rozwiąż to samo równanie co poprzednio, używając obu powyższych metod.</li>
-<li>Dla metody siecznych, stycznych oraz bisekcji, wypisz na ekran liczbę iteracji niezbędną do znalezienia miejsca zerowego funkcji przy dokładności <span class="math inline">\(\varepsilon = 2^{-20} , 2^{-19}, \ldots, 2^{-3}\)</span>.</li>
-<li>Stwórz wykres przedstawiający zależność liczby iteracji od dokładności rozwiązania (dokładność przedstaw na skali logarytmicznej).</li>
-<li>Rozwiąż trzema metodami równanie z parametrem <span class="math inline">\(\cos(x) = w \cdot x\)</span>. Dokładność rozwiązania <span class="math inline">\(\varepsilon = 10^{-6}\)</span> . Parametr <span class="math inline">\(w\)</span> przybiera wartości <span class="math inline">\(w = 0.5, 0.6, \ldots, 15.0\)</span>.</li>
+<li><p>Na wstępie nadajmy nazwy warunków brzegowych (Patrz rysunek). <strong>W analizie trójwymiarowej naszymi warunkami brzegowymi są powierzchnie</strong>. Metoda zaznaczania powierzchni jest taka sama jak w systemie zaznaczania w DesignModelerze. Po zaznaczeniu powierzchni wcisnamy <strong>n</strong> na klawiaturze i wypełniamy nazwę warunku brzegowego.</p>
+<p><strong>UWAGA</strong> zauważ, że design modeler podzielił naszą powierzchnie śmigła na dwie części. W górnej belce w zakładce <strong>Display</strong> możemy wyświetlić kierunek linii opcją <strong>Direction</strong> w polu <strong>Edge</strong>. Dzięki temu możesz się upewnić czy obydwie powierzchnie są tak samo zorientowane (Zasada prawej dłoni). Orientacja naszej powierzchni śmigła jest ważna w obliczeniach.</p>
+<ul>
+<li>Jeżeli obie powierzchnie są tak samo zorientowane zaznaczmy je razem i nazywamy razem.</li>
+<li>Jeżeli orientacje powierzchni różnią się od siebie. Nazwijmy je dodając cyfrę - fan_1, fan_2.</li>
+</ul></li>
+<li><p>Przejdźmy do ustawień siatki.</p></li>
+<li><p>W drzewie historii, w menu <strong>Mesh</strong>:</p>
+<ul>
+<li>Zakładka <strong>Defaults</strong> - Upewaniamy się, że <strong>Physics Preference</strong> jest ustawione na <strong>CFD</strong>.</li>
+<li>Zakładka <strong>Sizing</strong>:
+<ul>
+<li>Włączamy opcje <strong>Capture Curvature</strong> (powierzchnia wirnika jest okrągła)</li>
+</ul></li>
+</ul></li>
+<li><p>Wygeneruj siatkę. Sprawdź czy geometria skrzydła jest odwzorowana.</p></li>
+<li>Zaznacz powierzchnię skrzydła oraz powierzchnię wirnika. Utwórz dla nich element <strong>Sizing</strong>:
+<ul>
+<li>Type: <strong>Element size</strong></li>
+<li>Element size: <strong>10 mm</strong> (Dla osób ze słabszym sprzętem <strong>20mm</strong>)</li>
+<li>Behavior: <strong>Hard</strong></li>
+</ul>
+<p><strong>Generate</strong></p></li>
+<li>Utwórz kolejny element typu <strong>Sizing</strong>:
+<ul>
+<li><strong>Scope</strong>/<strong>Geometry</strong> zaznacz bryłę reprezentującą powietrze. <strong>Upewnij się, że zaznaczasz objętość a nie powierzchnię</strong></li>
+<li>Type: <strong>Sphere of Influence</strong></li>
+<li>Sphere Radious: <strong>500 mm</strong></li>
+<li>Element size: <strong>30 mm</strong> (Dla osób ze słabszym sprzętem <strong>50mm</strong>)</li>
+</ul>
+<p><strong>Generate</strong></p>
+<pre><code> Przyjrzyj się siatce. Co się zmieniło?</code></pre></li>
+</ol>
+<hr />
+<details>
+<summary>Dla chętnych ciąg dalszy</summary>
+<p>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Utwórz kolejny element typu <strong>Sizing</strong>:</p>
+<ul>
+<li><strong>Scope</strong>/<strong>Geometry</strong> zaznacz bryłę reprezentującą powietrze. <strong>Upewnij się, że zaznaczasz objętość a nie powierzchnię</strong></li>
+<li>Type: <strong>Body of influence</strong></li>
+<li>Bodies of Influence: <strong>Zaznaczamy stworzoną dodatkową objętość w punkcie 13</strong></li>
+<li>Element size: <strong>30 mm</strong></li>
+</ul>
+<p><strong>Generate</strong></p>
+<pre><code> Znów przeanalizuj zmianę, zastanów się po co stworzyliśmy dodatkowe zagęszczenie.</code></pre></li>
+</ol>
+</p>
+</details>
+<hr />
+<ol start="9" style="list-style-type: decimal">
+<li>Wychodzimy z programu <strong>Mesh</strong></li>
 </ol>
 </div>
+<div id="obliczenia-w-programie-fluent" class="section level2">
+<h2>Obliczenia w programie Fluent</h2>
+<ol style="list-style-type: decimal">
+<li><p>Otwieramy program fluent</p></li>
+<li><p>Wstępne ustawienia solvera:</p>
+<ul>
+<li>Dimension: <strong>3d</strong></li>
+<li>Display Mesh After Reading</li>
+</ul></li>
+<li><p>Ustawienia warunków analizy:</p>
+<ul>
+<li>General:
+<ul>
+<li>Type: <strong>Pressure-Based</strong></li>
+<li>Time: <strong>Steady</strong></li>
+</ul></li>
+<li>Models
+<ul>
+<li>Model turbulencji: <strong>Spalart-Allmaras</strong></li>
+</ul></li>
+<li>Materials
+<ul>
+<li>Powietrze z standardowymi ustawieniami</li>
+</ul></li>
+<li>Cell zone conditions
+<ul>
+<li>Upewnij się, że materiałem w domenie jest powietrze</li>
+</ul></li>
+<li>Boundary conditions (kliknij dwukrotnie na menu lub w belce górnej w zakładce <strong>Physics</strong>, wejdź w <strong>Boundaries</strong> z polu <strong>Zones</strong>)
+<ul>
+<li><strong>Inlet</strong> - 10 m/s, intensywność turbulencji 2%, skala turbulencji 0.5 cm.</li>
+<li><strong>Symmetry</strong> - sprawdź czy został załozony odpowiedni warunek</li>
+<li><p><strong>Wing</strong> - upewnij się, że dla skrzydła ustowiony został warunek ściany</p>
+<p>Przy ustawieniu warunku brzegowego na <strong>wall</strong> zauważ, że fluent stworzy drugą powierzchnię. Zastanów się dlaczego.</p></li>
+<li><strong>fan</strong>
+<ul>
+<li>Sprawdź w jaki kierunek ma normalna na powierzchni wirnika (Składowa X wektora), jeżeli normalna jest w złym kierunku zmień ją zaznaczając opcję <strong>Reverse Fan Direction</strong>.</li>
+<li>W menu rozwijanym <strong>Pressure Jump (jednostka)</strong> wybierz <strong>constant</strong></li>
+<li>W tym momencie przeprowadzimy obliczenia bez śmigła - wpisujemy <strong>0.0</strong></li>
+</ul></li>
+<li><p><strong>Outflow</strong> - domyślne ustawienia</p></li>
+</ul></li>
+</ul></li>
+<li><p>Ustawienia solvera:</p>
+<ul>
+<li>Methods:
+<ul>
+<li>Schemat: <strong>Coupled</strong></li>
+</ul></li>
+<li>Monitors/Residual
+<ul>
+<li>Domyślne wartości zbieżności</li>
+</ul></li>
+</ul></li>
+<li><p>Zainicjalizuj <strong>standardową metodą inicjalizacji</strong></p>
+<p>Jako punkt odniesienia wybierz wlot.</p></li>
+<li><p>Prowadź obliczenia aż do osiągnięcia oczekiwanej zbieżności. (W zakładce Run Calculation zmień tylko <strong>Number of Iterations</strong> w polu <strong>Parameters</strong>)</p>
+<pre><code> Ze względu na obliczenia trójwymiarowe, czas obliczeń będzie zauważalnie większy.</code></pre></li>
+<li><p>Stwórz wizualizacje przepływu Twojej analizy. Zastanów się jakie wizualizacje najwięcej powiedzą o stworzonej analizie. Zaprezentuj je.</p></li>
+</ol>
+<div class="figure">
+<img src="figures/momp_inst4/instr4_wiz.svg#center" title="Wizualizacja" alt="Rys.7. Jedna z wizualizacji przepływu" />
+<p class="caption"><strong>Rys.7.</strong> <em>Jedna z wizualizacji przepływu</em></p>
 </div>
-<div id="zadanie-dodatkowe" class="section level2">
-<h2>4. Zadanie dodatkowe</h2>
-<p>Metody rozwiązywania równań nieliniowych mogą być również użyte do znajdowania ekstremów funkcji. Spróbuj znaleźć ekstremum funkcji: <span class="math display">\[
-f(x) = (1 + x) \cdot \arctan(x)
-\]</span></p>
 </div>
 </div>
 
