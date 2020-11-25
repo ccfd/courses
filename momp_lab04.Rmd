@@ -252,3 +252,18 @@ Po zaznaczeniu powierzchni wcisnamy **n** na klawiaturze i wypełniamy nazwę wa
 7. Stwórz wizualizacje przepływu Twojej analizy. Zastanów się jakie wizualizacje najwięcej powiedzą o stworzonej analizie. Zaprezentuj je.
 
 ![**Rys.7.** *Jedna z wizualizacji przepływu*](figures/momp_inst4/instr4_wiz.svg#center "Wizualizacja")
+
+8. Wyjdź z programu fluent. 
+Przy wychodzeniu z programu zaznacz drugą odpowiedź. 
+Pozwoli to na zachowanie wszystkich ustawień postrocesingu (wizualizacji i obróbki danych).
+
+![**Rys.8.** *Opcje zapisu*](figures/momp_inst4/instr4_accept.svg#center "Wizualizacja")
+
+9. Zduplikuj system obliczeniowy.
+
+10. ""Włącz śmigło" - W warunku brzegowym **fan** wpisz wartość **200** Pa (patrz punkt 3).
+
+11. Zainicjalizuj przypadek i prowadź obliczenia aż do osiągnięcia oczekiwanej zbieżności.
+
+12. Powtórz wizualizacje i porównaj z wynikami bez śmigła.
+
