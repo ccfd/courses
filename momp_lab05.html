@@ -11,7 +11,7 @@
 
 
 
-<title>test_main_site.utf8</title>
+<title>Ustalony nieściśliwy przepływ trójwymiarowy z oderwaniem</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -657,14 +657,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="test_main_site.pdf">
+  <a class="hidden">
     <span class="fa fa-file-pdf-o fa-lg"></span>
      
     PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/test_main_site.Rmd">
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab05.Rmd">
     <span class="fa fa-github fa-lg"></span>
      
     GitHub
@@ -687,108 +687,179 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Ustalony nieściśliwy przepływ trójwymiarowy z oderwaniem</h1>
 
 </div>
 
 
-<p><link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css"/><div class="w3-row">
-<div class="w3-col s12 l6 w3-animate-bottom">
-<div class="w3-container w3-margin">
-<div class="w3-card-4">
-<header class="w3-container w3-light-grey">
-<h3>Informatyka I</h3>
-</header>
-<div class="w3-container" style="padding:16px 16px">
-<p>Basic course in C programming</p>
-<hr/>
-<img src="figures/computer.png" alt="icon" class="w3-left" style="padding:0px 12px"/>
-<p>...</p>
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Symulacja przepływu turbulentnego ściśliwego (liczba Macha &gt; 0.3) w dyszy zbieżno-rozbieżnej o przekroju kołowym, jak również zapoznanie z opcją dynamicznej adaptacji siatki.</p>
+</div>
+<div id="streszczenie" class="section level1">
+<h1>Streszczenie</h1>
+<p>W ramach ćwiczenia należy przeprowadzić symulację ustaloqnego przepływu turbulentnego (model k-<span class="math inline">\(\omega\)</span> SST) z wykorzystaniem solvera density based. Obliczenia należy wykonać dla powietrza traktowanego jako gaz idealny, na stworzonej podczas zajęć siatce, z wykorzystaniem solvera density based, a następnie porównanie wyników przy użyciu solvera pressure based. Wyniki ćwiczenia należy przedstawić prowadzącemu w formie sprawozdania.</p>
+</div>
+<div id="przebieg-ćwiczenia" class="section level1">
+<h1>Przebieg ćwiczenia</h1>
+<div id="geometria" class="section level2">
+<h2>Geometria</h2>
+<div class="figure">
+<img src="figures/momp_inst5/instr5_geom.svg#center" title="Geometria" alt="Rys.1. Szkic na płaszczyźnie X-Y" />
+<p class="caption"><strong>Rys.1.</strong> <em>Szkic na płaszczyźnie X-Y</em></p>
+</div>
+<p>Stwórz <strong>powierzchnię</strong> przedstawioną na rysunku 1.</p>
+</div>
+<div id="siatka-obliczeniowa" class="section level2">
+<h2>Siatka obliczeniowa</h2>
+<div class="figure">
+<img src="figures/momp_inst5/instr5_mesh.svg#center" title="Mesh" alt="Rys.2. Nazwy warunków brzegowych wraz z podziałami" />
+<p class="caption"><strong>Rys.2.</strong> <em>Nazwy warunków brzegowych wraz z podziałami</em></p>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Nazwij warunki brzegowe zdognie z rysunkiem 2.</p></li>
+<li><p>Nadaj podziały zgodnie z rysunkiem 2.</p></li>
+<li><p>Zadając pionowe podziały, zastosuj opcję bias tak, aby siatka zagęszczała się w kierunku warunku brzegowego <strong>wall</strong>.</p></li>
+<li><p>Do powierzchni <em>Powietrze</em> dodaj narzędzie <strong>Mapped Meshing</strong> (korzystałeś z niej w <a href="http://ccfd.github.io/courses/momp_lab01.html">Instrukcji I</a> )</p></li>
+<li><p>Manipuluj opcjami programu aby siatka wyglądała jak na rysunku 3.</p>
+<details>
+<summary>Podgląd gotowej siatki</summary>
+<p>
+<div class="figure">
+<img src="figures/momp_inst5/instr5_mesh2.svg#center" title="Mesh" alt="Rys.3. Gotowa siatka obliczeniowa" />
+<p class="caption"><strong>Rys.3.</strong> <em>Gotowa siatka obliczeniowa</em></p>
+</div>
+</p>
+</details></li>
+</ol>
+</div>
+<div id="obliczenia-w-programie-fluent" class="section level2">
+<h2>Obliczenia w programie Fluent</h2>
+<div id="przepływ-poddźwiękowy" class="section level3">
+<h3>Przepływ poddźwiękowy</h3>
+<ol style="list-style-type: decimal">
+<li><p>Ponieważ będziemy modelować, ze względu na osiową symetrię, tylko górną połówkę dyszy, ustaw w opcjach wyświetlania odpowiednią płaszczyznę symetrii aby zobaczyć dolną część domeny.</p></li>
+<li><p>Zmień (dla wygody) jednostkę miary dla ciśnienia na atmosfery ( <strong>Setup / General / Units…</strong> lub w górnej belce programu <strong>Physics / General… / Units…</strong>).</p></li>
+<li><p>Ustaw solver density based (<strong>Setup / General</strong>), który można używać dla przepływów ściśliwych, transonicznych, w których nie ma regionów o niskiej prędkości przepływu. W przypadkach kiedy w dużym obszarze przepływu prędkość jest niska należy użyć solvera pressure-based (np. opływ profilu/samolotu)</p></li>
+<li><p>Włącz odpowiedni <strong>model turbulencji</strong>.</p></li>
+<li><p>Ponieważ w przepływie ściśliwym występuje znaczna zmiana temperatury ośrodka należy włączyć do rozwiązania <strong>równanie energii</strong> (włącza się automatycznie przy wyborze odpowiednich właściwości płynu).</p></li>
+<li><p>Płynem, który będziemy symulować jest powietrze. Zmień gęstość płynu na <strong>ideal-gas</strong>.</p></li>
+<li>Warunki brzegowe (dwukrotnie klikamy na <strong>Boundary conditions</strong> w <strong>Setup</strong> lub <strong>Physics/Zones/Boundaries</strong> w górnej belce programu.
+<ol style="list-style-type: lower-alpha">
+<li><p>W <strong>Operating Conditions…</strong> ustaw <strong>Operting pressure (jednostka)</strong> na 0 atm (ponieważ ustaliliśmy ciśnienie operacyjne na zero, ciśnienie w warunkach brzegowych będzie ciśnieniem absolutnym)</p>
+<pre><code>Sprawdź w *Fluent Users Guide* rozdział 8.14 lub w przewodniku po Fluencie co to jest operating pressure</code></pre></li>
+<li><p>Wlot (pressure inlet - używamy kiedy znane jest ciśnienie wlotowe a nieznane są prędkości i wydatki masowe na wlocie)</p>
+<ol style="list-style-type: decimal">
+<li><p>Gauge Total Pressure 0.9 [atm] (ciśnienie stagnacji)</p></li>
+<li><p>Supersonic/Initial Gauge Pressure 0.7369 [atm] (wartość ciśnienia statycznego na wlocie w przypadku gdy przepływ stanie się lokalnie naddźwiękowy, również używane do policzenia początkowych wartości ciśnienia, temperatury i prędkości jeśli wlot zostanie wybrany do inicjalizowania przepływu)</p></li>
+<li><p>Turb intensity 1.5%, viscosity ratio 10</p></li>
+</ol></li>
+<li><p>Wylot (pressure outlet - w przypadku przepływu poddźwiękowego pozwala zdefiniować ciśnienie statyczne na wylocie z obszaru obliczeniowego)</p>
+<ol style="list-style-type: decimal">
+<li><p>gauge pressure 0.7369 [atm]</p></li>
+<li><p>backflow turbulent intensity 1.5, viscosity ratio 10</p></li>
+</ol></li>
+</ol></li>
+<li><p><strong>Solution / Methods</strong> - we wszystkich polach pod dyskretyzacją ustawić równania 1go rzędu.</p></li>
+<li><p><strong>Solution / Controls</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Ustaw liczbę Couranta na 50. Pisząc sprawozdanie, sprawdź czym jest liczba Couranta (jaka jest jej definicja).</p></li>
+<li><p>W <strong>Limits…</strong>, ustawić minimalną temp. statyczną na 200 K, a maksymalną na 400 K (wprowadzając limity na rozwiązanie, zmniejszamy prawdopodobieństwo rozbiegnięcia się obliczeń w wyniku osiągnięcia nieprawdopodobnie dużych, bądź też małych wartości).</p></li>
+</ol></li>
+<li><p>W celu monitorowania zbieżności rozwiązania, monitoruj różnicę strumienia masy na wylocie i wlocie z dyszy:</p>
+<ol style="list-style-type: decimal">
+<li>Otwórz <strong>Solutions / Report Definitions </strong></li>
+<li>Użyj opcji <strong>New / Surface Report / Mass Flow Rate…</strong></li>
+<li>W oknie tworzenia raportu <strong>wpisz nazwę</strong> oraz zaznacz <strong>wlot i wylot Twojej domeny</strong></li>
+<li>Zaakceptuj zmiany.</li>
+</ol></li>
+<li><p>Wyłącz kryterium zbieżności reszt <strong>Convergence Criterion = none</strong> (<strong>Solution / Monitors / Residual</strong>). Ta opcja pojawi się po zaznaczeniu <strong>Show Advanced Options</strong>.</p></li>
+<li><p>W <strong>Solution / Monitors</strong> stwórz nowy raport za pomocą opcji <strong>Report Plots</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><strong>New…</strong></li>
+<li>Odpowiednio nazwij wykres</li>
+<li>Zaznacz stworzony wcześniej raport i za pomocą opcji <strong>Add&gt;&gt;</strong> dodaj raport do wykresu.</li>
+<li>W opcjach wykresu wybierz:
+<ul>
+<li>nazwę która pojawi się na wykresie</li>
+<li>nazwę osi Y (zmiennej którą będziesz monitorował)</li>
+<li>okno w którym pojawi się wykres (tą opcję możesz pozostawić domyślną</li>
+</ul></li>
+<li>Zaznacz opcję <strong>Print to Console</strong> abyś mógł dokładnie monitorować zbieżność.</li>
+</ol></li>
+<li><p>Rozpocznij obliczenia i monitoruj zbieżność strumienia masy. Twoje zdefiniowane okno z wykresem wydatku masowego znajduje się w drugiej zakładce w oknie graficznym.</p>
+<pre><code>Śledź zbieżność na podstawie wyświetlanego wykresu wydatku masowego oraz wartości wydatku masowego w konsoli w dolnej części programu 
+
+Sprawdź w której kolumnie konsoli znajduje się zdefiniowana przez Ciebie zmienna.</code></pre>
+<p>Obliczenia możemy zakończyć gdy wydatek masowy zbiegnie się w okolicy zera. (Zmienna zacznie oscylować w granicy 1e-6)</p></li>
+<li><p>Aby sczytać wartość różnicy strumieni masy na wlocie i wylocie przejdź do <strong>Results / Reports / Fluxes</strong> i zaznacz odpowiednie powierzchnie.</p></li>
+<li><p>Sprawdź czy wyniki obliczeń mają sens bazując na intuicji inżynierskiej. Stwórz wykresy ciśnienia w osi symetrii oraz w najwęższym miejscu kanału (zapisz je w formie obrazka oraz serii danych), kontury ciśnienia i liczby Macha, sprawdź czy w którymś miejscu zachodzi oderwanie (linie prądu / wektory), oraz czy zostaje przekroczona prędkość dźwięku – wykonać odpowiednie wizualizacje.</p></li>
+</ol>
+</div>
+<div id="przepływ-nadddźwiękowy" class="section level3">
+<h3>Przepływ nadddźwiękowy</h3>
+<ol start="14" style="list-style-type: decimal">
+<li>Przeprowadź symulację dla zwiększonego ciśnienia na wlocie do dyszy (gauge pressure = 1.1 atm). Teraz spodziewamy się wystąpienia przepływu lokalnie znacznie przekraczającego prędkość dźwięku.</li>
+</ol>
+</div>
+<div id="solver-pressure-based" class="section level3">
+<h3>Solver pressure based</h3>
+<ol start="15" style="list-style-type: decimal">
+<li>Przeprowadź symulacje z wykorzystaniem solvera pressure based (jak wcześniej dla dwóch różnych ciśnień wlotowych) i porównaj wyniki. W przypadku wykresów, najłatwiej będzie wskazać różnice, zestawiając wyniki dla obu przypadków w jednym oknie wykresu.</li>
+</ol>
+</div>
+<div id="przepływ-nadddźwiękowy---adaptacja-siatki" class="section level3">
+<h3>Przepływ nadddźwiękowy - adaptacja siatki</h3>
+<p>Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem density based, porównać wyniki z przypadkami: bez zagęszczenia siatki oraz dla solvera density based.</p>
+<ol style="list-style-type: decimal">
+<li><p>W celu dokładnego rozwiązania równań w miejscach dużych skoków wartości zmiennych włącz automatyczne zagęszczanie siatki (Górna belka programu <strong>Domain / Adapt / Refine/Coarsen…</strong>) z opcjami:</p>
+<pre><code>Zanim to zrobisz musisz zainicjalizować rozwiązanie</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Stworz warunek dla rozrzedzenia <strong>Cell registers / New / Field Variable…</strong></p>
+<ul>
+<li>Nazwij warunek jako <strong>Coarsen</strong></li>
+<li>Typ wybierz jaki <strong>Cell less than</strong></li>
+<li><strong>Derivative Option</strong> ustaw na <strong>Gradient</strong></li>
+<li>Wpisz w polu <strong>Cells having value less than</strong> wartość <strong>0.3</strong></li>
+<li>Wybierz ciśnienie statyczne w polu <strong>Gradient of</strong></li>
+<li>w <strong>Scaling Option</strong> wybierz <strong>Scale by Zone Average</strong> (gradient będzie porównywany z lokalną średnią prędkością.)</li>
+<li><p><strong>Save</strong></p>
+<p>Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się poniżej 0.3.</p></li>
+</ul></li>
+<li><p>Stworz warunek dla zagęszczenia <strong>Cell registers / New / Field Variable…</strong></p>
+<ul>
+<li>Nazwij warunek jako <strong>Refine</strong></li>
+<li>Typ wybierz jaki <strong>Cell more than</strong></li>
+<li><strong>Derivative Option</strong> ustaw na <strong>Gradient</strong></li>
+<li>Wpisz w polu <strong>Cells having value more than</strong> wartość <strong>0.7</strong></li>
+<li>Wybierz ciśnienie statyczne w polu <strong>Gradient of</strong></li>
+<li>w <strong>Scaling Option</strong> wybierz <strong>Scale by Zone Average</strong> (gradient będzie porównywany z lokalną średnią prędkością.)</li>
+<li><strong>Save</strong></li>
+</ul>
+<p>Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się powyżej 0.7.</p></li>
+<li><p>Zaznacz <strong>Dynamic Adaption</strong>, wpisz <strong>Interwał</strong> 100 iteracji (adaptacja siatki nastąpi raz co 100 kroków);</p></li>
+<li><p>W polu <strong>Refinement Criterion</strong> wybierz Twój warunek <strong>Refine</strong></p></li>
+<li><p>W polu <strong>Coarsening Criterion</strong> wybierz Twój warunek <strong>Coarsen</strong></p></li>
+<li><p>W polu <strong>Maximum Refinement Level</strong> wpisujemy <strong>2</strong>.</p></li>
+<li><p>Warto w tym miejscu zapisać przypadek obliczeniowy. Jeżeli fluent modyfikuje siatkę, skutki są nieodwracalne. Jeżeli po modyfikacji będzie niezadowalająca, trzeba będzie zaczynać od zera.</p></li>
+</ol></li>
+<li><p>Rozpocznij obliczenia i monitoruj zbieżność strumienia masy.</p></li>
+<li><p>Po dokładnie 100 iteracjach (tak wynika z ustawień z pkt. 1b) powinna nastąpić adaptacja siatki, w celu sprawdzenia czy wszystko działa poprawnie przerwij obliczenia po ~ 110 iteracjach. Sprawdź jak wygląda siatka. Jeśli można zauważyć miejsca zagęszczenia / rozrzedzenia oczek to znaczy, że ustawienia dotyczące dynamicznej adaptacji siatki są poprawne. W przeciwnym przypadku powtórz ustawienia adaptacji, pkt. 1.</p>
+<details>
+<summary>Podgląd gotowej siatki</summary>
+<p>
+<div class="figure">
+<img src="figures/momp_inst5/instr5_meshref.svg#center" title="Mesh Refinement" alt="Rys.4. Zagęszczona siatka obliczeniowa" />
+<p class="caption"><strong>Rys.4.</strong> <em>Zagęszczona siatka obliczeniowa</em></p>
+</div>
+</p>
+</details></li>
+<li><p>Kontynuuj obliczenia. W przypadku adaptowanej siatki zbieżność wydatku masowego może już nie być taki gładki. Przerwij obliczenia w zadowalającym momencie.</p></li>
+<li><p>Dokonaj analizy wyników.</p></li>
+</ol>
 </div>
 </div>
-<a class="w3-button w3-block w3-dark-grey" href="info1.html">Go to course</a>
 </div>
-</div>
-<div class="w3-col s12 l6 w3-animate-bottom">
-<div class="w3-container w3-margin">
-<div class="w3-card-4">
-<header class="w3-container w3-light-grey">
-<h3>Informatyka II</h3>
-</header>
-<div class="w3-container" style="padding:16px 16px">
-<p>Basic numerical methods</p>
-<hr/>
-<img src="figures/function.png" alt="icon" class="w3-left" style="padding:0px 12px"/>
-<p>Mainly function and ODE integration ... </p>
-</div>
-</div>
-<a class="w3-button w3-block w3-dark-grey" href="info1.html">Go to course</a>
-</div>
-</div>
-<div class="w3-col s12 l6 w3-animate-bottom">
-<div class="w3-container w3-margin">
-<div class="w3-card-4">
-<header class="w3-container w3-light-grey">
-<h3>Informatyka III</h3>
-</header>
-<div class="w3-container" style="padding:16px 16px">
-<p>Information Technologies</p>
-<hr/>
-<img src="figures/linux.png" alt="icon" class="w3-left" style="padding:0px 12px"/>
-<p>Linux system, bash programming, SQL, cyphering, techniques of parallel programming, TCP/IP communication</p>
-</div>
-</div>
-<a class="w3-button w3-block w3-dark-grey" href="info1.html">Go to course</a>
-</div>
-</div>
-<div class="w3-col s12 l6 w3-animate-bottom">
-<div class="w3-container w3-margin">
-<div class="w3-card-4">
-<header class="w3-container w3-light-grey">
-<h3>C++</h3>
-</header>
-<div class="w3-container" style="padding:16px 16px">
-<p>Introduction to object oriented programming in c++</p>
-<hr/>
-<img src="figures/programmer.png" alt="icon" class="w3-left" style="padding:0px 12px"/>
-<p> ... </p>
-</div>
-</div>
-<a class="w3-button w3-block w3-dark-grey" href="info1.html">Go to course</a>
-</div>
-</div>
-<div class="w3-col s12 l6 w3-animate-bottom">
-<div class="w3-container w3-margin">
-<div class="w3-card-4">
-<header class="w3-container w3-light-grey">
-<h3>Python</h3>
-</header>
-<div class="w3-container" style="padding:16px 16px">
-<p>Usage of scripting language Python for solving engineering problems</p>
-<hr/>
-<img src="figures/python.png" alt="icon" class="w3-left" style="padding:0px 12px"/>
-<p> ... </p>
-</div>
-</div>
-<a class="w3-button w3-block w3-dark-grey" href="info1.html">Go to course</a>
-</div>
-</div>
-<div class="w3-col s12 l6 w3-animate-bottom">
-<div class="w3-container w3-margin">
-<div class="w3-card-4">
-<header class="w3-container w3-light-grey">
-<h3>Metody Numeryczne</h3>
-</header>
-<div class="w3-container" style="padding:16px 16px">
-<p>Methods for iterative solving of linear and non-linear set of equations</p>
-<hr/>
-<img src="figures/binary-code.png" alt="icon" class="w3-left" style="padding:0px 12px"/>
-<p> ... </p>
-</div>
-</div>
-<a class="w3-button w3-block w3-dark-grey" href="info1.html">Go to course</a>
-</div>
-</div>
-</div></p>
 
 <!-- Dummy footer -->
 
