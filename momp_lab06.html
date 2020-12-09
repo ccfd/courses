@@ -9,10 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="B. Górecki, rev. W. Gryglas" />
 
 
-<title>info2_lab01.utf8</title>
+<title>Wentylator promieniowy</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,99 +36,6 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
 <style type="text/css">
@@ -752,14 +658,14 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="info2_lab01.pdf">
+  <a href="momp_lab06.pdf">
     <span class="fas fa-file-pdf-o fa-lg"></span>
      
     PDF
   </a>
 </li>
 <li>
-  <a href="https://github.com/ccfd/courses/edit/master/info2_lab01.Rmd">
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab06.Rmd">
     <span class="fas fa-github fa-lg"></span>
      
     GitHub
@@ -782,112 +688,182 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Wentylator promieniowy</h1>
 
 </div>
 
 
-<div id="interpolacja" class="section level1">
-<h1>Interpolacja</h1>
-<p>Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:</p>
-<ul>
-<li><a href="http://ccfd.github.io/courses/code/info2/inter.h">Plik nagłówkowy inter.h</a></li>
-<li><a href="http://ccfd.github.io/courses/code/info2/inter.cpp">Plik źródłowy inter.cpp</a></li>
-</ul>
-<div id="interpolacja-w-praktyce-inżynierskiej" class="section level2">
-<h2>1. Interpolacja w praktyce inżynierskiej</h2>
-<p>Dziś będziemy się zajmować zagadnieniem interpolacji. Załóżmy, że w pewnym urządzeniu technicznym ze zbiornika, który może być umieszczony na różnej wysokości, rurą wypływa woda aż do jego opróżnienia. Wykonaliśmy eksperyment, umieszczając rzeczony zbiornik na kilku różnych wysokościach (np. 2, 3 i 4 m) i dla każdej z tych wysokości dokonaliśmy pomiaru czasu, po jakim następuje opróżnienie zbiornika. W procesie projektowania (może optymalizacji?) zależy nam zwykle na tym, aby umieć przewidzieć czas opróżniania dla dowolnej wysokości umieszczenia zbiornika. Wysokość ta zawiera się między ustalonymi wartościami skrajnymi, a więc np. na wysokości wynoszącej 3.27 m. Musimy więc przez nasze dane pomiarowe umieć przeprowadzić krzywą, która wiarygodnie przybliży taką zależność. Mówimy wtedy o interpolacji, czyli interpolowaniu zbioru dyskretnych (punktowych) danych w ciągłą zależność określoną dla każdego argumentu leżącego między skrajnymi punktami, na których opieramy interpolację.</p>
-<div id="meritum" class="section level3">
-<h3>Meritum</h3>
-<p>Interpolacja to zagadnienie przeprowadzenia krzywej (pewnej zależności) przez wszystkie punkty ze zbioru danych tak, aby otrzymać przebieg domniemanej zależności między punktami pomiarowymi. Liczba stopni swobody dopasowanej krzywej musi być równa liczbie punktów w zbiorze danych (liczba równań musi być równa liczbie niewiadomych).</p>
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Zapoznanie się z metodami symulowania ruchu w obliczeniach ustalonych.</p>
 </div>
+<div id="streszczenie" class="section level1">
+<h1>Streszczenie</h1>
+<p>Geometria wentylatora może być podzielona na część ruchomą (powierzchnia wirnika) i nieruchomą (powierzchnia dyfuzora oraz wlotu). Przypadek ten może być modelowany jako stacjonarny, dzięki użyciu opcji ruchomego układu odniesienia (Moving Reference Frame). Fragmenty siatki, które powinny się poruszać, pozostają nieruchome ale następuje przypisanie im prędkości (wynikającej z ruchu jaki miałby mieć miejsce). Takie podejście daje mniej dokładne wyniki niż modelowanie stanu nieustalonego, ale znacznie skraca czas obliczeń.</p>
 </div>
-<div id="interpolacja-wielomianowa" class="section level2">
-<h2>2. Interpolacja wielomianowa</h2>
-<p>W tym momencie przejdziemy do zagadnienia interpolacji wielomianowej Lagrange’a. Funkcja interpolująca to wielomian postaci: <span class="math display">\[
-w(x) = \sum_{i=0}^{n} y_i \prod_{j=0 \land j\neq i}^{n} \frac{x - x_j}{x_i - x_j}
-\]</span> gdzie <span class="math inline">\((x_i, y_i)\)</span> to punkt pomiarowy.</p>
-<div id="ćwiczenia" class="section level3">
-<h3>Ćwiczenia</h3>
+<div id="przebieg-ćwiczenia" class="section level1">
+<h1>Przebieg ćwiczenia</h1>
+<div id="geometria" class="section level2">
+<h2>Geometria</h2>
 <ol style="list-style-type: decimal">
-<li>Napisz program, który wygeneruje zestaw n punktów (będących punktami eksperymentalnymi) o współrzędnych: <span class="math display">\[
-\left( x_i, \exp(-x_i^2) \right)
-\]</span> gdzie <span class="math display">\[
-x_i = a + i \cdot h
-\]</span> <span class="math display">\[
-h = \frac{b - a}{n-1}
-\]</span> <span class="math display">\[
-i = 0, \ldots n-1
-\]</span> zaś <span class="math inline">\(a = -2.0\)</span> i <span class="math inline">\(b = 2.0\)</span>.<br />
-<strong>Przypomnienie:</strong> użycie funkcji <code>malloc</code> do alokacji pamięci:</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">double</span> *x;</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">x = (<span class="dt">double</span> *) malloc(n * <span class="kw">sizeof</span>(<span class="dt">double</span>));</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="cf">if</span> (x == NULL) {</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">  fprintf(stderr, <span class="st">&quot;malloc: can not allocate x.</span><span class="sc">\n</span><span class="st">&quot;</span>);</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">  exit(<span class="dv">1</span>);</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">/* operacje z wykorzystaniem tablicy x */</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">free(x);</a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Oblicz wartość wielomianu interpolacyjnego Lagrange’a w punktach rozmieszczonych czterokrotnie gęściej, tzn. o współrzędnych: <span class="math display">\[
-t_i = a + i \cdot \frac{h}{4}, \; i = 0, \ldots 4n - 4.
-\]</span> Wartość funkcji w dowolnie wybranym punkcie <span class="math inline">\(t_i\)</span> oblicz, korzystając z funkcji <code>lagrange(double *x, double *y, int n, double xx)</code>.<br />
-Parametry funkcji oznaczają:</li>
-</ol>
+<li><p>Podczas tworzenia geometrii wentylatora użyjemy trzech szkiców do wykonania:</p>
 <ul>
-<li><code>x</code>, <code>y</code> - wskaźniki do n-elementowych tablic zawierających współrzędne punktów interpolowanych,</li>
-<li><code>n</code> - długość wektora (liczba jego elementów),</li>
-<li><code>xx</code> - bieżąca wartość argumentu (zmienna rzeczywista), dla którego obliczamy wartość wielomianu Lagrange’a. Przykład najprostszego użycia funkcji <code>lagrange</code> pokazany jest poniżej:</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">int</span> main() {</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">double</span> x[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>};</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="dt">double</span> y[<span class="dv">3</span>] = {<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>};</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">double</span> f, t = <span class="fl">1.5</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="co">/* Wyznacz wartosc paraboli dla t = 1.5 */</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">  f = lagrange(x, y, <span class="dv">3</span>, t);</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">}</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Wydrukuj uzyskane wyniki (dla każdego <span class="math inline">\(t_i\)</span>) na ekran.</li>
-<li>Wyświetl je graficznie, korzystając z funkcji <code>scale(double x0, double y0, double x1, double y1)</code> zaimplementowanej w bibliotece graficznej. Kod poniżej pokazuje prosty przykład wyświetlenia wykresu funkcji sinus.</li>
+<li>Geometria dyfuzora</li>
+<li>Geometrii objętości obracającej się</li>
+<li>Łopatek wentylatora.</li>
+</ul></li>
+<li><p>Sprawdź czy opcja <strong>Auto Constraints</strong> jest włączona.</p></li>
+<li><p><strong>Spirala</strong>. Wchodząc w szkic 1 rysujemy 3 łuki (<strong>Arc by center</strong> w zakładce <strong>Draw</strong> wewnątrz szkicu):</p>
+<ol style="list-style-type: decimal">
+<li>Łuk najmnijeszy:
+<ul>
+<li>Rysujemy dolną część półokręgu.</li>
+<li>Środek i początek łuku mocujemy do <strong>dodatniej osi X</strong> za pomocą więzu <strong>Coincident</strong> (Jeżeli tworząc łuk najedziemy kursorem na oś powinna pojawić się litera <strong>C</strong>).</li>
+<li>Koniec łuku</li>
+<li>Nadaj wymiar tak aby środek łuku znalazł się <strong>3 cm</strong> od środka układu współrzędnych.</li>
+<li>Promień - 25 cm.</li>
+</ul></li>
+<li>Łuk średni:
+<ul>
+<li>Rysujemy prawą górna część ćwierćokręgu.</li>
+<li>Środek mocujemy do <strong>ujemnej osi X</strong> za pomocą więzu <strong>Coincident</strong>.</li>
+<li>Nadaj wymiar tak aby środek łuku znalazł się <strong>5 cm</strong> od środka układu współrzędnych.</li>
+<li>Za pomocą więzu <strong>Coincident</strong> mocujemy jeden z końców łuku z <strong>końcem łuku najmniejszego</strong></li>
+</ul></li>
+<li>Łuk najwiekszy:
+<ul>
+<li>Rysujemy lewą część półokręgu.</li>
+<li>Środek łuku połóż w 3 ćwiartce układu współrzędnych (-X, -Y).</li>
+<li>Nadaj wymiary tak aby środek łuku miał wymiary (-5cm, -2cm).</li>
+<li>Za pomocą więzu <strong>Coincident</strong> mocujemy jeden z końców łuku z <strong>końcem łuku średniego</strong></li>
+<li><p>Promień - 25 cm.</p>
+<pre><code>  Najwygodniejsza jest taka kolejność operacji:
+
+  Narysuj łuki korzystając z automatycznego nadawania wiezów
+  Zwymiaruj ich środki
+  Połącz łuki za pomocą więzu Coincident
+  Zwymiaruj promienie</code></pre></li>
+</ul></li>
+</ol></li>
+<li><strong>Wylot</strong>. Do powstałej spirali dorysujmy wylot prosty.
+<ol style="list-style-type: decimal">
+<li>Za pomocą 3 linii narysuj kształt <strong>U</strong>. Upewnij się, że za pomocą opcji automatycznego nadawania więzów, linie zostały połączone i są odpowiednio pionowe i poziome (litery <strong>V</strong> i <strong>H</strong> podczas rysowania).</li>
+<li>Za pomocą więzu <strong>Coincident</strong> połącz końce linii tak, aby zamknąć obwód rysowanej figury.</li>
+<li>Do największego łuku oraz lewego boku wylotu dodaj więz <strong>Tangent</strong>.</li>
+<li>Zwymiaruj:
+<ul>
+<li>Długość wylotu - <strong>30 cm</strong></li>
+<li>Szerokość wylotu - <strong>23 cm</strong></li>
+</ul></li>
+</ol></li>
+<li><p>W środku układu współrzędnych narysuj okrąg o promieniu <strong>7 cm</strong>.</p></li>
+<li><p>Wyjdź ze szkicu 1.</p></li>
+<li>W <strong>szkicu drugim</strong> narysuj dwa okręgi ze środkiem w środku układu współrzędnych.
+<ul>
+<li>Pierwszy okrąg o promieniu <strong>9 cm</strong></li>
+<li>Drugi okrąg o promieniu <strong>21 cm</strong></li>
+</ul></li>
+<li><p>Wyjdź ze szkicu 2.</p></li>
+<li>W <strong>szkicu trzecim</strong> stwórz kształt łopatki.
+<ol style="list-style-type: decimal">
+<li>Narysuj prostokąt tak aby przez figurę przechodziła oś Y.</li>
+<li>Nadaj cztery wymiary
+<ul>
+<li><strong>Wysokość - 10 cm</strong></li>
+<li><strong>Szerokość - 1 cm</strong></li>
+<li><strong>Odległość boku od osi Y - 0.5 cm</strong></li>
+<li><strong>Odległość dolnej krawędzi łopatki od osi X - 10 cm</strong></li>
+</ul></li>
+</ol></li>
+<li><p>Wyjdź ze szkicu 3.</p></li>
+<li><p>Na podstawie szkiców stwórz powierzchnie. (<strong>Concept/Surfaces from Sketches</strong>)</p></li>
+<li><p>Za pomocą operacji <strong>Create/Boolean</strong></p>
+<ul>
+<li>W polu <strong>Operation</strong> wybierz opcję <strong>Substract</strong></li>
+<li><strong>Target Bodies</strong>: Zaznacz powierzchnię powietrza wentylatora (od czego odejmujemy)</li>
+<li><strong>Tool Bodies</strong>: Zaznacz powierzchnie wirnika (Co odejmujemy)</li>
+<li><p><strong>Preserve Tool Bodies?</strong>: <strong>Yes</strong> (Pozostawiamy powierzchnie odejmowaną)</p>
+<p>Przyda się umiejętność zaznaczania nakładających się powierzchni z poprzedniej instrukcji.</p></li>
+</ul></li>
+<li><p>Za pomocą opcji <strong>Create/Pattern</strong>:</p>
+<ul>
+<li><strong>Pattern Type</strong>: Circular</li>
+<li><strong>Geometry</strong>: Zaznaczamy powierzchnię łopatki</li>
+<li><strong>Axis</strong>: Zaznaczamy oś obrotu (klikamy <strong>XYPlane</strong> w drzewie historii)</li>
+<li><strong>FD3, Copies</strong>: 11</li>
+</ul></li>
+<li><p>Za pomocą operacji <strong>Create/Boolean</strong> odejmujemy powierzchnie łopatek od powierzchni wirującej</p>
+<ul>
+<li>Powtórz kroki z punktu 12.</li>
+<li>Tym razem nie chcemy pozostawiać łopat po operacji:
+<ul>
+<li><strong>Preserve Tools Bodies?</strong>: No</li>
+</ul></li>
+<li>Zaznaczając powierzchnię łopat możesz skorzystać z rozwijanego menu geometrii w drzewie historii.
+<ul>
+<li>Zaznacz Surface body odpowiadający pierwszej łopacie na liście.</li>
+<li>Z wciśniętym klawiszem shift zaznacz Surface body odpowiadający ostatniej łopacie na liście.</li>
+</ul></li>
+</ul></li>
+<li>Na tym etapie w liście geometrii powinny znajdować się 3 powierzchnie.
+<ul>
+<li>Powierzchnia przy wlocie</li>
+<li>Powierzchnia wirnika</li>
+<li>Powierzchnia kanału wylotowego</li>
+</ul></li>
+<li><p>Stwórz złożenie z tych 3 geometrii: <strong>Form New Part</strong></p></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">int</span> main() {</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">double</span> pi = <span class="fl">4.</span> * atan(<span class="fl">1.</span>);</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  graphics(<span class="dv">600</span>, <span class="dv">400</span>);</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  scale(<span class="dv">0</span>, <span class="fl">-1.2</span>, <span class="dv">7</span>, <span class="fl">1.2</span>);    <span class="co">// xmin = 0, ymin = -1.2, x_max = 7, ymax = 1.2</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">double</span> x = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="cf">while</span>(x &lt; <span class="dv">2</span> * pi) {</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">    point(x, sin(x));</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">    x += <span class="fl">0.01</span>;</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">  wait();</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">}</a></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Obejrzyj wyniki na wykresie dla różnych wartości parametru <span class="math inline">\(n\)</span>.</li>
-<li>Zapisz wyniki do pliku.</li>
-<li>Dla wybranego <span class="math inline">\(n\)</span> stwórz w arkuszu kalkulacyjnym wykres błędu interpolacji.</li>
-<li>Powtórz wyniki dla innej funkcji interpolowanej. Przyjrzyj się dokładnie wynikom otrzymanym dla funkcji <span class="math inline">\(|x|\)</span>. Dlaczego tak wyglądają?</li>
+</div>
+<div id="mesh" class="section level2">
+<h2>Mesh</h2>
+<ol style="list-style-type: decimal">
+<li>Przechodzimy do modułu siatek obliczeniowych. Upewnij się co do jednostek.</li>
+<li>Na początku nadajemy nazwy:
+<ul>
+<li>Pionowa krawędź wylotu: <strong>pressure_outlet</strong></li>
+<li>Okrągła krawędź wlotu: <strong>pressure_inlet</strong></li>
+<li>Krawędzie łopatek: <strong>Wirnik</strong></li>
+<li>Powierzchnia wirnika: <strong>Rotor</strong></li>
+</ul></li>
+<li>Nadajemy podziały w domenie:
+<ul>
+<li>Pierścien na wlocie:
+<ul>
+<li>Wstaw <strong>Mapped Mesh</strong></li>
+<li>Wstaw <strong>Sizing</strong>: 0.9 cm (zaznaczamy całą powierzchnie)</li>
+</ul></li>
+<li>Powierzchnia wirnika:
+<ul>
+<li>Wstaw <strong>Sizing</strong>: 1 cm (zaznaczamy całą powierzchnie)</li>
+</ul></li>
+<li>Powierzchnia kanału wylotowego:
+<ul>
+<li>Wstaw <strong>Sizing</strong>: 1.8 cm (zaznaczamy całą powierzchnie)</li>
+</ul></li>
+<li>Powierzchnie wirnika i kanału wylotowego:
+<ul>
+<li>Wstaw <strong>Method</strong> (zaznaczamy powierzchnię) i w polu <strong>Method</strong> wybieramy <strong>Triangles</strong></li>
+</ul></li>
+</ul></li>
 </ol>
 </div>
-</div>
-<div id="dla-ambitnych" class="section level2">
-<h2>3. Dla ambitnych</h2>
-<p>Sprawdźmy czy można coś zrobić, aby poprawić zachowanie i stabilność interpolacji wielomianowej. Posłużymy się w tym celu dalej funkcją <span class="math inline">\(|x|\)</span> jako jedną z bardziej wymagających.</p>
-<div id="węzły-czebyszewa" class="section level3">
-<h3>Węzły Czebyszewa</h3>
-<p>Spróbujmy oprzeć naszą interpolację na punktach, których odcięte będą dobrane w odpowiedni sposób. Do tej pory punkty były rozłożone równomiernie. Teraz rozłóżmy je w taki sposób, aby były gęściej rozłożone przy brzegach obszaru i rzadziej w środku. Można tego dokonać następująco. Chcemy rozłożyć punkty w przedziale <span class="math inline">\(x = [-1, 1]\)</span>. Wykreślmy zatem półokrąg o środku w połowie tego przedziału i promieniu równym połowie długości przedziału (czyli u nas półokrąg o środku w <span class="math inline">\(x = 0\)</span> i promieniu <span class="math inline">\(R = 1\)</span>). Podzielmy łuk równomiernie (mierząc wzdłuż łuku) na <span class="math inline">\(n - 1\)</span> fragmentów. Teraz dokonajmy rzutowania punktów podziału na oś <span class="math inline">\(x\)</span>. Tak wygenerowane węzły mają więc współrzędne (wyprowadź w domu ten wzór) na osi <span class="math inline">\(x\)</span> dane wzorem: <span class="math display">\[
-x_i = -\cos\left( \frac{i \cdot \pi}{n-1} \right), \; i = 0, \ldots n - 1
-\]</span> Dla ogólnego przypadku przedziału <span class="math inline">\(x = [a, b]\)</span> wzór wyglądałby tak: <span class="math display">\[
-x_i = -\frac{b-a}{2} \cos\left( \frac{i \cdot \pi}{n-1} \right) + \frac{a+b}{2}, \; i = 0, \ldots n - 1
-\]</span></p>
-<p><img src="info2_lab01_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<div id="ćwiczenie" class="section level3">
-<h3>Ćwiczenie</h3>
-<p>Zmodyfikuj swój program tak, aby początkowy zestaw punktów generowany był dla współrzędnych zdefiniowanych w powyższy sposób. Sprawdź działanie interpolacji funkcji <span class="math inline">\(|x|\)</span> z użyciem węzłów Czebyszewa. Czy wyniki są inne?</p>
-</div>
+<div id="fluent" class="section level2">
+<h2>Fluent</h2>
+<ol style="list-style-type: decimal">
+<li>2D, Single Precision, 1 proces</li>
+<li>Model turbulencji: <strong>Spalart-Allmaras</strong></li>
+<li><p>Sprawdź warunki brzegowe, upewnij się czy każda z nazw ma odpowiedni warunek. Warunki turbulencji na wlocie: - <strong>Turbulent intensity</strong>: 5% - <strong>Hydraulic Diameter</strong>: 0.1 m</p></li>
+<li>W <strong>Cell zone conditions</strong> dla powierzchni rotor wprowadzamy ustawienie obrotu:
+<ul>
+<li>Włączamy opcję <strong>Frame Motion</strong></li>
+<li><strong>Rotation Axis Origin</strong> zostawiamy na współrzędnych (0.0, 0.0)</li>
+<li><strong>Rotational Velocity</strong>: 300 rad/s</li>
+</ul></li>
+<li>Ustaw równania pędu na <strong>First Order Upwind</strong></li>
+<li>Zainicjalizuj standardową metodą inicjalizacji z wlotu.</li>
+<li>Prowadź obliczenia do zbieżności.</li>
+<li><p>Przeanalizuj wyniki.</p></li>
+</ol>
 </div>
 </div>
 
