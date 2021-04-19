@@ -151,7 +151,7 @@ Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem dens
 		- **Derivative Option** ustaw na **Gradient**
 		- Wpisz w polu **Cells having value less than** wartość **0.3**
 		- Wybierz ciśnienie statyczne w polu **Gradient of**
-		- w **Scaling Option** wybierz **Scale by Zone Average** (gradient będzie porównywany z lokalną średnią prędkością.)
+		- w **Scaling Option** wybierz **Scale by Zone Maximum** (gradient będzie porównywany z lokalną średnią prędkością.)
 		- **Save**
 		
 			Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się poniżej 0.3.
@@ -163,7 +163,7 @@ Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem dens
 		- **Derivative Option** ustaw na **Gradient**
 		- Wpisz w polu **Cells having value more than** wartość **0.7**
 		- Wybierz ciśnienie statyczne w polu **Gradient of**
-		- w **Scaling Option** wybierz **Scale by Zone Average** (gradient będzie porównywany z lokalną średnią prędkością.)
+		- w **Scaling Option** wybierz **Scale by Zone Maximum** (gradient będzie porównywany z lokalną średnią prędkością.)
 		- **Save**
 
 		Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się powyżej 0.7.
