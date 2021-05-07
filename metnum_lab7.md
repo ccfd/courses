@@ -30,15 +30,11 @@ Trzecie równanie to równanie ma gradient funkcji celu względem parametrów:
 
 ### Zadanie
 
-Wprowadź w funkcji mnożącej przez macierz sztywności `SMult` parametr $\gamma=3$ (`gamma`) podnosząc `thick` do potęgi `gamma`. Zdefiniuj zmienną $\text`frac` = 0.5$ i ustaw początkowe $\theta$ (`thick`) na równe `frac`. 
-
-
+Wprowadź w funkcji mnożącej przez macierz sztywności `SMult` parametr $\gamma=3$ (`gamma`) podnosząc `thick` do potęgi `gamma`. Zdefiniuj zmienną `frac = 0.5` i ustaw początkowe $\theta$ (`thick`) na równe `frac`.
 
 ### Zadanie
 
 Zdefiniuj wektor $g$ i rozwiąż równanie sprzężone (zauważ że $S$ jest symetryczna).
-
-
 
 ### Zadanie
 
@@ -52,10 +48,7 @@ na:
 
 Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długość jak `thick`, czyli `mx*my`. Pamiętaj także by wyzerować `grad` i wyciąć część murującą stopnie swobody.
 
-
-
-
-# Optymalizacja
+## Optymalizacja
 
 Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:
 
@@ -89,16 +82,10 @@ Na nasz projekt musimy jednak narzucić bardziej istotne warunki. Po pierwsze ni
 
 Wynik dodania gradientu do parametrów wstaw do nowego wektora `nt[i] = thick[i] + grad[i];`. Dla danego parametru `scale` oblicz `thick[i] = scale * nt[i];`. Na tak obliczone `thick` narzuć powyżej opisane 4 warunki, obcinając za duże, bądź za małe wartości.
 
-
-
 ### Zadanie
 
 Zsumuj wartości `thick` po poprzedniej procedurze. Dobierz `scale` metodą bisekcji tak by $\sum_i\text{thick[i]} = \text{frac*mx*my}$.
 
-
-
 ### Zadanie
 
 Przetestuj program dla różnych obciążeń, ustawień parametru `move` i ustawień maksymalnej liczby iteracji w metodze gradientów sprzężonych.
-
-

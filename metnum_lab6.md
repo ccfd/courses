@@ -24,9 +24,12 @@ Po podstawieniu dostajemy:
 \ddot{f}(t) \mathbf{M} \mathbf{w} = -f(t)\mathbf{S} \mathbf{w}
 \]
 Jeśli znajdziemy $\mathbf{w}$ takie, że:
-\[
-\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}
-\]
+$$
+\begin{align}
+\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w} 
+\tag{1}
+\end{align}
+$$
 to otrzymamy:
 \[
 \lambda \ddot{f}(t) = -f(t) \quad \Rightarrow \quad
@@ -35,12 +38,13 @@ f(t) = \sin\left( t\frac{1}{\sqrt{\lambda}} \right)
 
 To oznacza, że $\mathbf{x} = \sin\left( t\frac{1}{\sqrt{\lambda}} \right) \mathbf{w}$ jest oscylującym w czasie rozwiązaniem naszego równania dynamiki.
 Takie rozwiązanie nazywamy **drganiem własnym** układu.
-Równanie $\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}$ nazywamy **równaniem własnym** a $\lambda$ to **wartość własna**.
+Równanie $\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}$ nazywamy **równaniem własnym**, a $\lambda$ to **wartość własna**.
 
-Dziś skupimy się na znalezieniu zestawu wektorów $\mathbf{w}$ i wartości $\lambda$ dla naszego układu.
+Dziś skupimy się na znalezieniu zestawu **wektorów własnych** $\mathbf{w}$ i wartości $\lambda$ dla naszego układu.
 
+## Zacznijmy od dominującej pary $\mathbf{w}, \lambda $
 
-# Zacznijmy od największej wartości własnej $\lambda$
+### Jak wyznaczyć największy $\mathbf{w}$ ?
 
 Zaczniemy od największej wartości własnej $\lambda$.
 Warto zauważyć, że największa wartość własna odpowiada najniższej częstotliwości.
@@ -58,16 +62,38 @@ Otrzymamy:
 \mathbf{w} = \frac{1}{\lambda} \mathbf{S}^{-1} \mathbf{M} \mathbf{w}
 \]
 Na podstawie tego wzoru możemy skonstruować prostą iterację:
+
+$$
 \begin{align*}
 \mathbf{p} &= \mathbf{S}^{-1} \mathbf{M} \mathbf{w} \\
-\mathbf{w} &= \mathbf{p} \frac{1}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}}
+\mathbf{w} &= \frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}}
 \end{align*}
+$$
 
-W pierwszym etapie liczymy wynik $\mathbf{S}^{-1} \mathbf{M} \mathbf{w}$, a następnie go normalizujemy tak aby $\mathbf{w}^T \mathbf{M} \mathbf{w} = 1$.
+W pierwszym etapie liczymy wynik $\mathbf{S}^{-1} \mathbf{M} \mathbf{w}$, a następnie normalizujemy go tak aby $\mathbf{w}^T \mathbf{M} \mathbf{w} = 1$.
+Łatwo pokazać, że:
+$$
+\mathbf{w}^T \mathbf{M} \mathbf{w} = 
+\left(\frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}} \right)^T
+\mathbf{M}
+\frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}} = 
+\frac{\mathbf{p}^T \mathbf{M} \mathbf{p}}{\mathbf{p}^T \mathbf{M} \mathbf{p}} = 1
+$$
 Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować.
-Ostatecznie $\mathbf{w}$ będzie składać się tylko z tego wektora, a $\mathbf{p}^T \mathbf{M} \mathbf{p}$ zbiegnie do największej wartości własnej $\lambda$.
+Ostatecznie $\mathbf{w}$ będzie składać się tylko z tego wektora.
 
-### Zadanie 1
+### Jak wyznaczyć największą $\lambda$ ?
+
+Zależnośc $ \mathbf{p} = \mathbf{S}^{-1} \mathbf{M} \mathbf{w} = \lambda \mathbf{w} $ transponujmy i pomnóżmy przez $ \mathbf{M} \mathbf{w}$. 
+Otrzymujemy:
+$$
+\mathbf{p}^T \mathbf{M} \mathbf{w} = \lambda \underbrace{\mathbf{w}^T \mathbf{M} \mathbf{w}}_{=1}
+$$
+
+Zatem $\mathbf{p}^T \mathbf{M} \mathbf{w}$ zbiegnie do największej wartości własnej $\lambda$.
+
+## Zadanie 1
+
 Znajdź wektor $\mathbf{w}$ odpowiadający największej wartości własnej według następującego schematu iteracji:
 
 - Oblicz $\mathbf{b} = \mathbf{M} \mathbf{w}$,
@@ -75,12 +101,12 @@ Znajdź wektor $\mathbf{w}$ odpowiadający największej wartości własnej wedł
 - Oblicz $\mathbf{M} \mathbf{p}$,
 - Oblicz $\mathbf{w} = \frac{1}{\sqrt{\langle \mathbf{p}, \mathbf{M} \mathbf{p} \rangle}} \mathbf{p}$.
 
-### Zadanie 2
+## Zadanie 2
+
 Pokaż przemieszczenie $\mathbf{w}$ za pomocą funkcji `draw`.
 Zrób animację tego przemieszczenia przemnożonego przez $\sin\left( t\frac{1}{\sqrt{\lambda}} \right)$.
 
-
-# Kolejne wartości własne $\lambda$
+## Kolejne wartości własne $\lambda$
 
 Chcielibyśmy aby wektory własne (drgania własne) były niezależne w energii kinetycznej.
 To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych
@@ -99,6 +125,7 @@ Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem mac
 Takiej ortonormalizacji możemy dokonać za pomocą znanej z Analizy Matematycznej metody Grama-Schmidta.
 
 ## Ortonormalizacja Grama-Schmidta
+
 Załóżmy, że mamy $N$ liniowo niezależnych wektorów.
 Możemy przeprowadzić ortonormalizację tego układu za pomocą klasycznej metody Grama-Schmidta znanej z algebry.
 Metoda ta jest jednak niestabilna numerycznie --- na skutek błędów numerycznych będziemy tracić ortogonalność.
@@ -115,7 +142,7 @@ Aby zortonormalizować układ $N$ wektorów:
 
 Po tej procedurze wszystkie wektory $\mathbf{w}^i$ są ortogonalne i długości $1$ względem macierzy $M$.
 
-### Zadanie 3
+## Zadanie 3
 Znajdź wektory $\mathbf{w}^i$ odpowiadające $10$-ciu największym wartościom własnym według następującego schematu iteracji:
 
 - Oblicz $\mathbf{b} = \mathbf{M} \mathbf{w}^i$,
@@ -123,8 +150,8 @@ Znajdź wektory $\mathbf{w}^i$ odpowiadające $10$-ciu największym wartościom 
 - Przepisz $\mathbf{w}^i = \mathbf{p}^i$,
 - Wykonaj ortonormalizację G-S wektorów $\mathbf{w}$.
 
-### Zadanie 4
+## Zadanie 4
 Wyznacz odpowiednie $\lambda_i$.
 
-### Zadanie 5
+## Zadanie 5
 Zrób animację dla kolejnych przemieszczeń $\mathbf{w}^i$ przemnożonych przez $\sin\left( t\frac{1}{\sqrt{\lambda_i}} \right)$.
