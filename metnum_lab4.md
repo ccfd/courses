@@ -38,6 +38,7 @@ Aby nie pomylić się w następnych krokach, należy najpierw zrefaktoryzować (
 - Zmienna `fix` jest globalna.
 
 # Element po elemencie
+
 Skopiuj funkcję do mnożenia macierz-wektor i nazwij kopię `SMult`.
 W funkcji `SMult` będziemy chcieli napisać funkcję mnożącą przez globalną macierz sztywności $S$ nie używając samej tej macierzy. Chcemy wykonać operację $r=Sx$, tzn: $r_i = \sum_jS_{ij}x_j$.
 
@@ -53,6 +54,7 @@ Analogicznie jeśli dodamy do elementu $S_{ij}$ liczbę $w$, to tak jak byśmy d
 Jako, że macierz $S$ konstruujemy właśnie przez dodawanie do kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w powyższej postaci.
 
 ### Zadanie
+
 Przekopiuj fragment kodu funkcji `main` odpowiedzialny za konstrukcję macierzy $S$. Następnie, każde wystąpienie
 
 `S[i,j] += cos;`
@@ -67,14 +69,17 @@ Nawiasem mówiąc, takie rozwiązanie może się okazać nieco bardziej wydajne 
 Wynika to z faktu, że korzystając z alokowanego na stosie bufora dokonujemy mniejszej liczby dostępów (operacji `+=`) do tablicy `r`, która zaalokowana jest na stercie.
 
 ### Zadanie
+
 Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy diagonalnej?
 Jeśli w macierzy $S$ $i$-ty wiersz zamienimy na same zera i $1$ na przekątnej, to tak jak byśmy postawili $r_i = x_i$.
 Zamień pętlę wycinającą $i$ty wiersz, na `r[i]=x[i]`
 
 ### Zadanie 8
+
 Jeśli nie zrobiłeś tego w poprzednim ćwiczeniu, napisz trywialny preconditioner `Precond_I(int N, double **A, double *r, double *p)` przepisujący tablicę reszt wskazywaną przez `r` na tablicę poprawek wskazywaną przez `p`.
 
 # A teraz na poważnie
+
 Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy $S$.
 Możemy ją całkowicie wyeliminować.
 Funkcję `Solve` będziemy chcieli jednak używać dla różnych macierzy --- dlatego jako argument, zamiast macierzy `double ** A` będziemy przekazywać funkcję mnożenia `void (*mult)(double *, double *)`.
@@ -86,7 +91,10 @@ A w miejscu mnożenia przez macierz $r=Ax$ będziemy mieli `mult(x,r);`. Teraz f
 
 Na koniec możesz spróbować przerobić funkcję `Solve` tak, aby także preconditioner przyjmowany był jako argument (wskaźnik do funkcji) i wywołać ją z preconditionerem Jacobiego.
 
+Pamiętaj aby *zamurować* stopnie swobody.
+
 # Równoległość\*
+
 W tej części laboratorium zajmiemy się paralelizacją (zrównolegleniem) napisanego dotychczas kodu.
 Plik nagłówkowy z funkcjami ułatwiającymi pisanie równoległego kodu:
 
