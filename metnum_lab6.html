@@ -675,8 +675,8 @@ f(t) = \sin\left( t\frac{1}{\sqrt{\lambda}} \right)
 \]</span></p>
 <p>To oznacza, że <span class="math inline">\(\mathbf{x} = \sin\left( t\frac{1}{\sqrt{\lambda}} \right) \mathbf{w}\)</span> jest oscylującym w czasie rozwiązaniem naszego równania dynamiki. Takie rozwiązanie nazywamy <strong>drganiem własnym</strong> układu. Równanie <span class="math inline">\(\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}\)</span> nazywamy <strong>równaniem własnym</strong>, a <span class="math inline">\(\lambda\)</span> to <strong>wartość własna</strong>.</p>
 <p>Dziś skupimy się na znalezieniu zestawu <strong>wektorów własnych</strong> <span class="math inline">\(\mathbf{w}\)</span> i wartości <span class="math inline">\(\lambda\)</span> dla naszego układu.</p>
-<div id="zacznijmy-od-dominującej-pary" class="section level2">
-<h2>Zacznijmy od dominującej pary $, $</h2>
+<div id="zacznijmy-od-dominującej-pary-mathbfw-lambda" class="section level2">
+<h2>Zacznijmy od dominującej pary <span class="math inline">\(\mathbf{w}, \lambda\)</span></h2>
 <div id="jak-wyznaczyć-największy-mathbfw" class="section level3">
 <h3>Jak wyznaczyć największy <span class="math inline">\(\mathbf{w}\)</span> ?</h3>
 <p>Zaczniemy od największej wartości własnej <span class="math inline">\(\lambda\)</span>. Warto zauważyć, że największa wartość własna odpowiada najniższej częstotliwości. W zastosowaniach inżynierskich, są to zazwyczaj drgania własne najmniej tłumione i niosące najwięcej energii.</p>
@@ -700,7 +700,7 @@ f(t) = \sin\left( t\frac{1}{\sqrt{\lambda}} \right)
 </div>
 <div id="jak-wyznaczyć-największą-lambda" class="section level3">
 <h3>Jak wyznaczyć największą <span class="math inline">\(\lambda\)</span> ?</h3>
-<p>Zależnośc $  = ^{-1}   =  $ transponujmy i pomnóżmy przez $  $. Otrzymujemy: <span class="math display">\[
+<p>Zależnośc <span class="math inline">\(\mathbf{p} = \mathbf{S}^{-1} \mathbf{M} \mathbf{w} = \lambda \mathbf{w}\)</span> transponujmy i pomnóżmy przez <span class="math inline">\(\mathbf{M} \mathbf{w}\)</span>. Otrzymujemy: <span class="math display">\[
 \mathbf{p}^T \mathbf{M} \mathbf{w} = \lambda \underbrace{\mathbf{w}^T \mathbf{M} \mathbf{w}}_{=1}
 \]</span></p>
 <p>Zatem <span class="math inline">\(\mathbf{p}^T \mathbf{M} \mathbf{w}\)</span> zbiegnie do największej wartości własnej <span class="math inline">\(\lambda\)</span>.</p>
