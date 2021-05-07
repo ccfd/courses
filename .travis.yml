@@ -16,7 +16,7 @@ install:
 - export RMARKDOWN_MATHJAX_PATH=$PWD/MathJax-master
 script:
 - R -e "rmarkdown::render_site()"
-- travis_wait 60 tools/pdf_all
+# - travis_wait 60 tools/pdf_all
 - travis_wait 60 tools/headers
 after_success:
 - ./tools/deploy.sh
