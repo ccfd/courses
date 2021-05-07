@@ -42,7 +42,7 @@ Równanie $\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}$ nazywamy **ró
 
 Dziś skupimy się na znalezieniu zestawu **wektorów własnych** $\mathbf{w}$ i wartości $\lambda$ dla naszego układu.
 
-## Zacznijmy od dominującej pary $\mathbf{w}, \lambda $
+## Zacznijmy od dominującej pary $\mathbf{w}, \lambda$
 
 ### Jak wyznaczyć największy $\mathbf{w}$ ?
 
@@ -84,7 +84,7 @@ Ostatecznie $\mathbf{w}$ będzie składać się tylko z tego wektora.
 
 ### Jak wyznaczyć największą $\lambda$ ?
 
-Zależnośc $ \mathbf{p} = \mathbf{S}^{-1} \mathbf{M} \mathbf{w} = \lambda \mathbf{w} $ transponujmy i pomnóżmy przez $ \mathbf{M} \mathbf{w}$. 
+Zależnośc $\mathbf{p} = \mathbf{S}^{-1} \mathbf{M} \mathbf{w} = \lambda \mathbf{w}$ transponujmy i pomnóżmy przez $\mathbf{M} \mathbf{w}$. 
 Otrzymujemy:
 $$
 \mathbf{p}^T \mathbf{M} \mathbf{w} = \lambda \underbrace{\mathbf{w}^T \mathbf{M} \mathbf{w}}_{=1}
