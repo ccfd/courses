@@ -20,6 +20,15 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,32 +46,6 @@
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -74,10 +57,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -94,40 +73,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -155,7 +107,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -167,7 +119,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -178,10 +130,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -193,7 +158,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -325,7 +289,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -657,7 +621,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="metnum_lab6.pdf">
+  <a class="hidden">
     <span class="fas fa-file-pdf-o fa-lg"></span>
      
     PDF
@@ -683,7 +647,7 @@ div.tocify {
 </div><!--/.navbar -->
 <!-- Dummy header -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -701,26 +665,49 @@ div.tocify {
 \]</span> Po podstawieniu dostajemy: <span class="math display">\[
 \ddot{f}(t) \mathbf{M} \mathbf{w} = -f(t)\mathbf{S} \mathbf{w}
 \]</span> Jeśli znajdziemy <span class="math inline">\(\mathbf{w}\)</span> takie, że: <span class="math display">\[
-\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}
+\begin{align}
+\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w} 
+\tag{1}
+\end{align}
 \]</span> to otrzymamy: <span class="math display">\[
 \lambda \ddot{f}(t) = -f(t) \quad \Rightarrow \quad
 f(t) = \sin\left( t\frac{1}{\sqrt{\lambda}} \right)
 \]</span></p>
-<p>To oznacza, że <span class="math inline">\(\mathbf{x} = \sin\left( t\frac{1}{\sqrt{\lambda}} \right) \mathbf{w}\)</span> jest oscylującym w czasie rozwiązaniem naszego równania dynamiki. Takie rozwiązanie nazywamy <strong>drganiem własnym</strong> układu. Równanie <span class="math inline">\(\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}\)</span> nazywamy <strong>równaniem własnym</strong> a <span class="math inline">\(\lambda\)</span> to <strong>wartość własna</strong>.</p>
-<p>Dziś skupimy się na znalezieniu zestawu wektorów <span class="math inline">\(\mathbf{w}\)</span> i wartości <span class="math inline">\(\lambda\)</span> dla naszego układu.</p>
-<div id="zacznijmy-od-największej-wartości-własnej-lambda" class="section level1">
-<h1>Zacznijmy od największej wartości własnej <span class="math inline">\(\lambda\)</span></h1>
+<p>To oznacza, że <span class="math inline">\(\mathbf{x} = \sin\left( t\frac{1}{\sqrt{\lambda}} \right) \mathbf{w}\)</span> jest oscylującym w czasie rozwiązaniem naszego równania dynamiki. Takie rozwiązanie nazywamy <strong>drganiem własnym</strong> układu. Równanie <span class="math inline">\(\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}\)</span> nazywamy <strong>równaniem własnym</strong>, a <span class="math inline">\(\lambda\)</span> to <strong>wartość własna</strong>.</p>
+<p>Dziś skupimy się na znalezieniu zestawu <strong>wektorów własnych</strong> <span class="math inline">\(\mathbf{w}\)</span> i wartości <span class="math inline">\(\lambda\)</span> dla naszego układu.</p>
+<div id="zacznijmy-od-dominującej-pary" class="section level2">
+<h2>Zacznijmy od dominującej pary $, $</h2>
+<div id="jak-wyznaczyć-największy-mathbfw" class="section level3">
+<h3>Jak wyznaczyć największy <span class="math inline">\(\mathbf{w}\)</span> ?</h3>
 <p>Zaczniemy od największej wartości własnej <span class="math inline">\(\lambda\)</span>. Warto zauważyć, że największa wartość własna odpowiada najniższej częstotliwości. W zastosowaniach inżynierskich, są to zazwyczaj drgania własne najmniej tłumione i niosące najwięcej energii.</p>
 <p>Nasz wektor <span class="math inline">\(\mathbf{w}\)</span> będziemy znajdować <strong>metodą potęgową</strong> (iteracyjnie). Zauważmy najpierw, że wektor <span class="math inline">\(\mathbf{w}\)</span> może być dowolnej długości. To znaczy, jeśli wektor <span class="math inline">\(\mathbf{w}\)</span> spełnia równanie własne, to także wektor <span class="math inline">\(2 \mathbf{w}\)</span> je spełnia. Możemy więc arbitralnie wybrać ,,skalę’’ wektora <span class="math inline">\(\mathbf{w}\)</span>. Przyjmijmy więc, że <span class="math inline">\(\mathbf{w}^T \mathbf{M} \mathbf{w} = 1\)</span>, tzn., że niesie on energię kinetyczną <span class="math inline">\(\frac{1}{2}\)</span>.</p>
 <p>Pomnóżmy równanie własne przez <span class="math inline">\(\mathbf{S}^{-1}\)</span>. Otrzymamy: <span class="math display">\[
 \mathbf{w} = \frac{1}{\lambda} \mathbf{S}^{-1} \mathbf{M} \mathbf{w}
-\]</span> Na podstawie tego wzoru możemy skonstruować prostą iterację: <span class="math display">\[\begin{align*}
+\]</span> Na podstawie tego wzoru możemy skonstruować prostą iterację:</p>
+<p><span class="math display">\[
+\begin{align*}
 \mathbf{p} &amp;= \mathbf{S}^{-1} \mathbf{M} \mathbf{w} \\
-\mathbf{w} &amp;= \mathbf{p} \frac{1}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}}
-\end{align*}\]</span></p>
-<p>W pierwszym etapie liczymy wynik <span class="math inline">\(\mathbf{S}^{-1} \mathbf{M} \mathbf{w}\)</span>, a następnie go normalizujemy tak aby <span class="math inline">\(\mathbf{w}^T \mathbf{M} \mathbf{w} = 1\)</span>. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie <span class="math inline">\(\mathbf{w}\)</span> będzie składać się tylko z tego wektora, a <span class="math inline">\(\mathbf{p}^T \mathbf{M} \mathbf{p}\)</span> zbiegnie do największej wartości własnej <span class="math inline">\(\lambda\)</span>.</p>
-<div id="zadanie-1" class="section level3">
-<h3>Zadanie 1</h3>
+\mathbf{w} &amp;= \frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}}
+\end{align*}
+\]</span></p>
+<p>W pierwszym etapie liczymy wynik <span class="math inline">\(\mathbf{S}^{-1} \mathbf{M} \mathbf{w}\)</span>, a następnie normalizujemy go tak aby <span class="math inline">\(\mathbf{w}^T \mathbf{M} \mathbf{w} = 1\)</span>. Łatwo pokazać, że: <span class="math display">\[
+\mathbf{w}^T \mathbf{M} \mathbf{w} = 
+\left(\frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}} \right)^T
+\mathbf{M}
+\frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}} = 
+\frac{\mathbf{p}^T \mathbf{M} \mathbf{p}}{\mathbf{p}^T \mathbf{M} \mathbf{p}} = 1
+\]</span> Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie <span class="math inline">\(\mathbf{w}\)</span> będzie składać się tylko z tego wektora.</p>
+</div>
+<div id="jak-wyznaczyć-największą-lambda" class="section level3">
+<h3>Jak wyznaczyć największą <span class="math inline">\(\lambda\)</span> ?</h3>
+<p>Zależnośc $  = ^{-1}   =  $ transponujmy i pomnóżmy przez $  $. Otrzymujemy: <span class="math display">\[
+\mathbf{p}^T \mathbf{M} \mathbf{w} = \lambda \underbrace{\mathbf{w}^T \mathbf{M} \mathbf{w}}_{=1}
+\]</span></p>
+<p>Zatem <span class="math inline">\(\mathbf{p}^T \mathbf{M} \mathbf{w}\)</span> zbiegnie do największej wartości własnej <span class="math inline">\(\lambda\)</span>.</p>
+</div>
+</div>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
 <p>Znajdź wektor <span class="math inline">\(\mathbf{w}\)</span> odpowiadający największej wartości własnej według następującego schematu iteracji:</p>
 <ul>
 <li>Oblicz <span class="math inline">\(\mathbf{b} = \mathbf{M} \mathbf{w}\)</span>,</li>
@@ -729,13 +716,12 @@ f(t) = \sin\left( t\frac{1}{\sqrt{\lambda}} \right)
 <li>Oblicz <span class="math inline">\(\mathbf{w} = \frac{1}{\sqrt{\langle \mathbf{p}, \mathbf{M} \mathbf{p} \rangle}} \mathbf{p}\)</span>.</li>
 </ul>
 </div>
-<div id="zadanie-2" class="section level3">
-<h3>Zadanie 2</h3>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
 <p>Pokaż przemieszczenie <span class="math inline">\(\mathbf{w}\)</span> za pomocą funkcji <code>draw</code>. Zrób animację tego przemieszczenia przemnożonego przez <span class="math inline">\(\sin\left( t\frac{1}{\sqrt{\lambda}} \right)\)</span>.</p>
 </div>
-</div>
-<div id="kolejne-wartości-własne-lambda" class="section level1">
-<h1>Kolejne wartości własne <span class="math inline">\(\lambda\)</span></h1>
+<div id="kolejne-wartości-własne-lambda" class="section level2">
+<h2>Kolejne wartości własne <span class="math inline">\(\lambda\)</span></h2>
 <p>Chcielibyśmy aby wektory własne (drgania własne) były niezależne w energii kinetycznej. To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych <span class="math display">\[
 E_k(\mathbf{w}^0 + \mathbf{w}^1) = E_k(\mathbf{w}^0)+E_k(\mathbf{w}^1)
 \]</span> To w połączeniu z naszą <em>skalą</em> daje nam bardzo ważny układ warunków: <span class="math display">\[
@@ -745,6 +731,7 @@ E_k(\mathbf{w}^0 + \mathbf{w}^1) = E_k(\mathbf{w}^0)+E_k(\mathbf{w}^1)
 \end{cases}
 \]</span></p>
 <p>Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem macierzy <span class="math inline">\(\mathbf{M}\)</span>. Takiej ortonormalizacji możemy dokonać za pomocą znanej z Analizy Matematycznej metody Grama-Schmidta.</p>
+</div>
 <div id="ortonormalizacja-grama-schmidta" class="section level2">
 <h2>Ortonormalizacja Grama-Schmidta</h2>
 <p>Załóżmy, że mamy <span class="math inline">\(N\)</span> liniowo niezależnych wektorów. Możemy przeprowadzić ortonormalizację tego układu za pomocą klasycznej metody Grama-Schmidta znanej z algebry. Metoda ta jest jednak niestabilna numerycznie — na skutek błędów numerycznych będziemy tracić ortogonalność. Użyjemy modyfikacji tej metody, która jest bardziej stabilna.</p>
@@ -764,8 +751,9 @@ E_k(\mathbf{w}^0 + \mathbf{w}^1) = E_k(\mathbf{w}^0)+E_k(\mathbf{w}^1)
 </ul></li>
 </ul>
 <p>Po tej procedurze wszystkie wektory <span class="math inline">\(\mathbf{w}^i\)</span> są ortogonalne i długości <span class="math inline">\(1\)</span> względem macierzy <span class="math inline">\(M\)</span>.</p>
-<div id="zadanie-3" class="section level3">
-<h3>Zadanie 3</h3>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
 <p>Znajdź wektory <span class="math inline">\(\mathbf{w}^i\)</span> odpowiadające <span class="math inline">\(10\)</span>-ciu największym wartościom własnym według następującego schematu iteracji:</p>
 <ul>
 <li>Oblicz <span class="math inline">\(\mathbf{b} = \mathbf{M} \mathbf{w}^i\)</span>,</li>
@@ -774,15 +762,13 @@ E_k(\mathbf{w}^0 + \mathbf{w}^1) = E_k(\mathbf{w}^0)+E_k(\mathbf{w}^1)
 <li>Wykonaj ortonormalizację G-S wektorów <span class="math inline">\(\mathbf{w}\)</span>.</li>
 </ul>
 </div>
-<div id="zadanie-4" class="section level3">
-<h3>Zadanie 4</h3>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
 <p>Wyznacz odpowiednie <span class="math inline">\(\lambda_i\)</span>.</p>
 </div>
-<div id="zadanie-5" class="section level3">
-<h3>Zadanie 5</h3>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
 <p>Zrób animację dla kolejnych przemieszczeń <span class="math inline">\(\mathbf{w}^i\)</span> przemnożonych przez <span class="math inline">\(\sin\left( t\frac{1}{\sqrt{\lambda_i}} \right)\)</span>.</p>
-</div>
-</div>
 </div>
 
 <!-- Dummy footer -->
@@ -815,7 +801,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

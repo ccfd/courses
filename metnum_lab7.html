@@ -20,6 +20,15 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,32 +46,6 @@
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -74,10 +57,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -94,40 +73,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -155,7 +107,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -167,7 +119,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -178,10 +130,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -193,7 +158,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -325,7 +289,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -657,7 +621,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="metnum_lab7.pdf">
+  <a class="hidden">
     <span class="fas fa-file-pdf-o fa-lg"></span>
      
     PDF
@@ -683,7 +647,7 @@ div.tocify {
 </div><!--/.navbar -->
 <!-- Dummy header -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -696,57 +660,59 @@ div.tocify {
 <p>Na dzisiejszych zajęciach dobierzemy wektor grubości elementów <span class="math inline">\(\theta=\text{thick}\)</span>, tak by ugięcie belki było jak najmniejsze. Jedynym elementem który zależy od <span class="math inline">\(\theta\)</span> jest macierz sztywności:</p>
 <p><span class="math display">\[S(\theta)x = F\]</span></p>
 <p>A dokładniej: macierz sztywności jest sumą macierzy elementów przemnożonych przez elementy <span class="math inline">\(\theta\)</span>. Dla późniejszej poprawy zbieżności dołożymy potęgę <span class="math inline">\(\gamma=3\)</span> do tej zależności: <span class="math display">\[S(\theta) = \sum_i\theta_k^\gamma K^k\]</span></p>
-<p>Będziemy chcieli zoptymalizować przesunięcie węzła w którym przyłożyliśmy siłę. Stwórzmy wektor <span class="math inline">\(g\)</span>, który ma <span class="math inline">\(-1\)</span> w miejscu tego przemieszczenia, a resztę wartości ma zerową. Teraz nasza funkcja celu to <span class="math inline">\(J = -\langle x, g \rangle\)</span>. Potraktujmy nasze równanie statyki jako więz i rozpiszmy funkcję celu powiększoną o mnożniki Lagrange: <span class="math display">\[-\sum_i x_i g_i  + \sum_j\lambda_j (\sum_iS_{ji}(\theta)x_i - F_j)\]</span> Optymalne rozwiązanie powinno zerować pochodne po <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span> i <span class="math inline">\(\theta\)</span>: <span class="math display">\[\begin{cases}
--g_i + \sum_j\lambda_j S_{ji} (\theta) &amp;= 0\\
+<p>Będziemy chcieli zoptymalizować przesunięcie węzła w którym przyłożyliśmy siłę. Stwórzmy wektor wag <span class="math inline">\(g\)</span>, który ma <span class="math inline">\(-1\)</span> w miejscu tego przemieszczenia, a resztę wartości ma zerową. Teraz nasza funkcja celu to <span class="math inline">\(J = -\langle x, g \rangle\)</span>. Potraktujmy nasze równanie statyki jako więz i rozpiszmy funkcję celu powiększoną o mnożniki Lagrange’a: <span class="math display">\[L = -\sum_i x_i g_i  + \sum_j\lambda_j (\sum_iS_{ji}(\theta)x_i - F_j)\]</span> Optymalne rozwiązanie powinno zerować pochodne po <span class="math inline">\(x\)</span>, <span class="math inline">\(\lambda\)</span> i <span class="math inline">\(\theta\)</span>: <span class="math display">\[\begin{cases}
 \sum_i S_{ji}(\theta)x_i - F_j &amp;= 0\\
+-g_i + \sum_j\lambda_j S_{ji} (\theta) &amp;= 0\\
 \sum_{ij}\lambda_j \frac{\partial}{\partial \theta_k}S_{ji}(\theta)x_i &amp;= 0
 \end{cases}\]</span></p>
-<p>Drugie równanie to nasze równanie statyki. Pierwsze równanie to równanie sprzężone (adjoint): <span class="math display">\[S^T(\theta)\lambda = g\]</span> Trzecie równanie to równanie ma gradient funkcji celu względem parametrów: <span class="math display">\[\frac{d}{d\theta_k}J = \sum_{ij}\lambda_j \frac{\partial}{\partial \theta_k}S_{ji}(\theta)x_i = \gamma\theta_k^{\gamma-1}\sum_{ij}K^k_{ji}(\theta)\lambda_jx_i\]</span></p>
-<div id="zadanie" class="section level3">
-<h3>Zadanie</h3>
-<p>Wprowadź w funkcji mnożącej przez macierz sztywności <code>SMult</code> parametr <span class="math inline">\(\gamma=3\)</span> (<code>gamma</code>) podnosząc <code>thick</code> do potęgi <code>gamma</code>. Zdefiniuj zmienną <span class="math inline">\(\text`frac` = 0.5\)</span> i ustaw początkowe <span class="math inline">\(\theta\)</span> (<code>thick</code>) na równe <code>frac</code>.</p>
-</div>
+<p>Pierwsze równanie to równanie statyki, opisuje ograniczenia jakie muszą być spełnione.</p>
+<p>Drugie równanie to równanie sprzężone (adjoint): <span class="math display">\[S^T(\theta)\lambda = g\]</span> Zwróćmy uwagę, że w punkcie optymalnym kierunek gradientu funkcji celu jest równoległy do kierunku gradientu ograniczeń, <span class="math inline">\(\nabla_x J || \nabla_x \lambda (S(\theta)x - F)\)</span>. Mnożniki Lagrange’a, <span class="math inline">\(\lambda_j\)</span>, mogą być więc interpretowane jako <em>intesywność kary</em> zmuszającej do spełnienia <span class="math inline">\(j\)</span>-tego ograniczenia.</p>
+<p>Trzecie równanie to równanie na gradient funkcji Lagrange’a względem parametrów <span class="math inline">\(\theta\)</span>: <span class="math display">\[\frac{d}{d\theta_k} L = \sum_{ij}\lambda_j \frac{\partial}{\partial \theta_k}S_{ji}(\theta)x_i = \gamma\theta_k^{\gamma-1}\sum_{ij}K^k_{ji}(\theta)\lambda_jx_i\]</span></p>
 <div id="zadanie-1" class="section level3">
-<h3>Zadanie</h3>
-<p>Zdefiniuj wektor <span class="math inline">\(g\)</span> i rozwiąż równanie sprzężone (zauważ że <span class="math inline">\(S\)</span> jest symetryczna).</p>
+<h3>Zadanie 1</h3>
+<p>Wprowadź w funkcji mnożącej przez macierz sztywności <code>SMult</code> parametr <span class="math inline">\(\gamma=3\)</span> (<code>gamma</code>) podnosząc <code>thick</code> do potęgi <code>gamma</code>. Zdefiniuj zmienną <code>frac = 0.5</code> i ustaw początkowe <span class="math inline">\(\theta\)</span> (<code>thick</code>) na równe <code>frac</code>.</p>
 </div>
 <div id="zadanie-2" class="section level3">
-<h3>Zadanie</h3>
+<h3>Zadanie 2</h3>
+<p>Zdefiniuj wektor <span class="math inline">\(g\)</span> i rozwiąż równanie sprzężone (zauważ że <span class="math inline">\(S\)</span> jest symetryczna).</p>
+</div>
+<div id="zadanie-3" class="section level3">
+<h3>Zadanie 3</h3>
 <p>Zdefiniuj funkcję <code>calc_grad(int n, double * x, double * lambda, double * grad)</code>. Skopiuj do niej zawartość funkcji mnożącej <code>SMult</code> i zmień:</p>
 <p><code>r[♦] += x[♠]*pow(thick[♣],gamma)*♥;</code></p>
 <p>na:</p>
 <p><code>grad[♣] += gamma*pow(thick[♣],gamma-1)*lambda[♦]*x[♠]*♥;</code></p>
 <p>Wyświetl tak policzony gradient. Pamiętaj, że gradient ma taką samą długość jak <code>thick</code>, czyli <code>mx*my</code>. Pamiętaj także by wyzerować <code>grad</code> i wyciąć część murującą stopnie swobody.</p>
 </div>
-<div id="optymalizacja" class="section level1">
-<h1>Optymalizacja</h1>
+<div id="optymalizacja" class="section level2">
+<h2>Optymalizacja</h2>
 <p>Gradient wskazuje nam w jakim kierunku powinniśmy przesuwać nasze wartości parametrów by uzyskać lepszy wynik. Pierwszym nasuwającym się schematem postępowania byłoby:</p>
 <p><code>thick[i] += grad[i];</code></p>
-<div id="zadanie-3" class="section level3">
-<h3>Zadanie</h3>
+<div id="zadanie-4" class="section level3">
+<h3>Zadanie 4</h3>
 <p>Dodaj gradient do parametrów <code>thick[i] += grad[i];</code>. Iteruj taką procedurę, oglądając wyniki.</p>
 <p>Tak ustawiony problem optymalizacyjny jest nieograniczony. Chcemy jednak uzyskać najmniejsze ugięcie przy ustalonej ,,masie’’ belki. Tzn: chcemy zachować sumę parametrów <span class="math inline">\(\theta\)</span>: <span class="math inline">\(\sum_i\text{thick[i]} = \text{frac*mx*my}\)</span>. Możemy łatwo nałożyć ten więz na <code>grad</code>:</p>
 </div>
-<div id="zadanie-4" class="section level3">
-<h3>Zadanie</h3>
+<div id="zadanie-5" class="section level3">
+<h3>Zadanie 5</h3>
 <p>Odejmij od wektora <code>grad</code> jego sumę.</p>
 <p>W kolejnych iteracjach grad ma różną skalę. Na początku jest duży, a później mały. Typową techniką w takich wypadkach jest normalizacja:</p>
 </div>
-<div id="zadanie-5" class="section level3">
-<h3>Zadanie</h3>
+<div id="zadanie-6" class="section level3">
+<h3>Zadanie 6</h3>
 <p>Zdefiniuj zmienną <code>move = 0.05</code>. Podziel <code>grad</code> przez jego największy element i pomnóż przez <code>move*5</code>.</p>
 <p>Na nasz projekt musimy jednak narzucić bardziej istotne warunki. Po pierwsze nigdzie grubość nie może przekroczyć <span class="math inline">\(1\)</span>, i musi być powyżej <span class="math inline">\(0\)</span>. Ponadto zazwyczaj chcemy, by zmiana w pojedynczej iteracji nie przekroczyła <code>move</code>. Te warunki dość trudno pogodzić z warunkiem stałej sumy elementów.</p>
 </div>
-<div id="zadanie-6" class="section level3">
-<h3>Zadanie</h3>
+<div id="zadanie-7" class="section level3">
+<h3>Zadanie 7</h3>
 <p>Wynik dodania gradientu do parametrów wstaw do nowego wektora <code>nt[i] = thick[i] + grad[i];</code>. Dla danego parametru <code>scale</code> oblicz <code>thick[i] = scale * nt[i];</code>. Na tak obliczone <code>thick</code> narzuć powyżej opisane 4 warunki, obcinając za duże, bądź za małe wartości.</p>
 </div>
-<div id="zadanie-7" class="section level3">
-<h3>Zadanie</h3>
+<div id="zadanie-8" class="section level3">
+<h3>Zadanie 8</h3>
 <p>Zsumuj wartości <code>thick</code> po poprzedniej procedurze. Dobierz <code>scale</code> metodą bisekcji tak by <span class="math inline">\(\sum_i\text{thick[i]} = \text{frac*mx*my}\)</span>.</p>
 </div>
-<div id="zadanie-8" class="section level3">
-<h3>Zadanie</h3>
+<div id="zadanie-9" class="section level3">
+<h3>Zadanie 9</h3>
 <p>Przetestuj program dla różnych obciążeń, ustawień parametru <code>move</code> i ustawień maksymalnej liczby iteracji w metodze gradientów sprzężonych.</p>
 </div>
 </div>
@@ -781,7 +747,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
