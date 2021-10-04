@@ -8,7 +8,7 @@ author: S. Gepner
 
 # Programowanie Obiektowe w Języku C++
 
-Regulamin przedmiotu oraz zasady zaliczenia w roku 2021/22
+Regulamin przedmiotu oraz zasady zaliczenia w roku 2021/2022
 
 ## Kierownik przedmiotu
 
@@ -59,21 +59,22 @@ Weryfikacja: Bieżąca praca na laboratorium i kolokwium zaliczeniowe.
 1. Przedmiot składa się z:
     * 7 wykładów (15h) i 7 (15h) obowiązkowych ćwiczeń,
     * kolokwium zaliczeniowego,
-    * obowiązkowego projektu zaliczeniowego.
+    * 2 obowiązkowych projektów zaliczeniowych.
 
 2. Postępy studenta opisane są skalą punktową w zakresie 0-100 punktów. Punkty otrzymuje się za:
-    * Zaliczenie wejściówek przeprowadzonych na 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt..
-    * Projekt zaliczeniowy, 35 punktów.
+    * Zaliczenie wejściówek przeprowadzonych na 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt
+    * Projekt zaliczeniowy 1, 15 punktów
+    * Projekt zaliczeniowy 2, 25 punktów
         * W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów bez możliwości poprawy.
         * Ostateczny termin zaliczenia projektu ustala prowadzący ćwiczenia, jednak nie może być to termin późniejszy niż ostatni dzień semestru.
-    * Kolokwium zaliczeniowe oceniane do 40 punktów.
-        * Kolokwium przeprowadzane jest bez wykorzystania materiałów dodatkowych, tj. notatek, książek, pamięci zewnętrznych, itp..
+    * Kolokwium zaliczeniowe oceniane do 35 punktów.
+        * Na kolokwium wolno korzystać ze strony cppreference.com. Wszelkie inne materiały są niedozwolone.
         * W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów.
 
 3. Zaliczenie przedmiotu jest możliwe jedynie w przypadku uzyskania minimalnej liczby punktów z każdej ocenianej części, tj.:
     * 13 punktów z ćwiczeń,
-    * 18 z projektu,
-    * 21 punktów z kolokwium
+    * 21 z projektu,
+    * 18 punktów z kolokwium
   
     W przypadku nieuzyskania minimalnej liczby punktów student otrzymuje ocenę niedostateczną (2.0).
 
