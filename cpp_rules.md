@@ -8,15 +8,15 @@ author: S. Gepner
 
 # Programowanie Obiektowe w Języku C++
 
-Regulamin przedmiotu oraz zasady zaliczenia w roku 2019/20
+Regulamin przedmiotu oraz zasady zaliczenia w roku 2021/22
 
 ## Kierownik przedmiotu
 
-dr inż. Stanisław Gepner, sgepner@meil.pw.edu.pl, pokój 117.
+dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
 ## Prowadzący ćwiczenia
 
-Jakub Gałecki, Krzysztof Marchlewski, Grzegorz Gruszczyński, pokój 123.
+dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
 ### Liczba punktów ECTS: 5
 
