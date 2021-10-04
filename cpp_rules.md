@@ -12,7 +12,11 @@ Regulamin przedmiotu oraz zasady zaliczenia w roku 2021/2022
 
 ## Kierownik przedmiotu
 
-dr inż. Stanisław Gepner, sgepner@meil.pw.edu.pl, pokój 117.
+dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
+
+## Prowadzący ćwiczenia
+
+dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
 ### Liczba punktów ECTS: 5
 
