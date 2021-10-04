@@ -1,9 +1,12 @@
 name: Publish to GitHub Pages
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  publish:
+  Build and publish:
     runs-on: ubuntu-latest
     steps:
 
@@ -22,14 +25,13 @@ jobs:
 
       - name: Build site
         run: |
-          R -e "rmarkdown::render_site()"
-          tools/headers
+          R -e "rmarkdown::render_site()";
+          tools/headers;
 
       - name: Publish
         uses: crazy-max/ghaction-github-pages@v2
         with:
           build_dir: _site
           verbose: true
-          dry_run: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
