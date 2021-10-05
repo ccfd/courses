@@ -1,0 +1,35 @@
+name: Publish to GitHub Pages
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install tools
+        run: |
+          sudo apt install -y pandoc libxml2-dev libssl-dev libcurl4-openssl-dev r-base r-base-dev;
+          sudo R -e "install.packages('devtools')";
+          sudo R -e "devtools::install_github('rstudio/rmarkdown')";
+          wget https://github.com/mathjax/MathJax/archive/master.zip;
+          unzip master.zip >/dev/null;
+          rm master.zip;
+          export RMARKDOWN_MATHJAX_PATH=$PWD/MathJax-master;
+
+      - name: Build site
+        run: |
+          R -e "rmarkdown::render_site()";
+          tools/headers;
+
+      - name: Upload site artifact for review
+        uses: actions/upload-artifact@v2
+        with:
+          name: site_for_review
+          path: _site
