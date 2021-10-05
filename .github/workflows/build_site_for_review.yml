@@ -1,4 +1,4 @@
-name: Publish to GitHub Pages
+name: Build site for review
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build_and_publish:
+  build_site_and_upload:
     runs-on: ubuntu-latest
     steps:
 
