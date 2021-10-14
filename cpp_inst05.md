@@ -42,6 +42,7 @@ Kontener zbliżony do wektora poznaliśmy już na 2. laboratorium - wtedy pisali
 
 ### Tworzenie i niszczenie wektora
 Najczęściej korzystamy z poniższych konstruktorów wektora typu `std::vector<T>`:
+
 1. konstruktor domyślny - tworzy pusty wektor
 2. konstruktor przyjmujący `unsigned int` - tworzy wektor o rozmiarze równym podanej liczbie, wypełniony elementami skonstruowanymi przy pomocy konstruktora domyślnego klasy T (jeżeli takiego nie ma, to nasz kod się nie skompiluje)
 3. konstruktor przyjmujący `unsigned int` i obiekt typu `T` - wypełnia wektor liczbą kopii przyjętego obiektu równą podanej liczbie
@@ -54,6 +55,7 @@ Zachowanie to jest zgodne z naszymi oczekiwaniami i pozwala nam skupić się na 
 ### Dodawanie elementów do wektora
 Nowe elementy dodajemy do wektora przy pomocy metod `push_back` oraz `emplace_back`.
 Nazewnictwo to zgodne jest z konwencją biblioteki standardowej:
+
 - `push` - sugeruje, że wkładamy do tablicy element, który istnieje gdzie indziej w programie, tzn. wykonuje jego kopię i dodaje do wektora
 - `emplace` - sugeruje, że element jest tworzony w miejscu (*in place*), tzn. `emplace_back` przyjmuje argumenty konstruktora elementu, który tworzony jest już w wektorze - omijamy kopię
 - `back` - ten sufiks sugeruje, że element dodawany jest na końcu wektora (niektóre kontenery potrafią dodawać elementy także od przodu)
@@ -121,7 +123,7 @@ Składa się ona z węzłów (ang. *node*) - każdy węzeł przechowuje 1 elemen
 Jeżeli węzły przechowują także wskaźnik do poprzedniego węzła, mówimy o liście dwukierunkowej.
 Pomocna w zrozumieniu tej struktury danych może być następująca wizualizacja rozkładu w pamięci elementów listy jednokierunkowej:
 
-![list.png](graphics/list.png)
+![list.png](figures/cpp_inst5/list.png)
 
 Jak widać, możemy dodawać nowe elementy na dowolnej pozycji listy (z przodu, z tyłu, gdzieś w środku) bez konieczności przesuwania elementów już istniejących.
 Ceną, którą płacimy za tę wygodę jest czas dostępu do elementów - aby dostać się do *i*-tego elementu, musimy przejść przez *i* - 1 elementów go poprzedzających.
@@ -136,6 +138,7 @@ Jak nietrudno się domyślić, destruktor listy niszczy wszystkie jej węzły, d
 ### Dodawanie elementów do listy
 Na zajęciach pominiemy dodawanie elementów w środku listy (choć nie jest szczególnie skomplikowane, zainteresowanych odsyłamy do dokumentacji metody `insert`).
 Rozważymy następujące 4 metody służące do dodawania elementów na końcach:
+
 - `push_back`
 - `emplace_back`
 - `push_front`
@@ -179,6 +182,7 @@ Jak zobaczyliśmy w zadaniu 11, lista nie ma zdefiniowanego operatora `[ ]`.
 Aby dostać się do jej elementów, musimy użyć iteratorów.
 Iterator jest koncepcyjnie podobny do wskaźnika, gdyż jego zadaniem jest wskazywanie na elementy kontenera (nie tylko listy).
 Iteratorem nazywamy obiekt klasy, która ma zdefiniowane następujące operatory:
+
 - operator dereferencji (`*`) - dereferencjonując operator uzyskujemy dostęp do elementu, na który wskazuje
 - (opcjonalnie) operator `->` - pozwala na dostęp do pól i metod elementów (zdefiniowany dla naszej wygody, możemy to także osiągnąć przy pomocy operatora dereferencji)
 - operator pre- lub post-inkrementacji (`++`) - po inkrementacji, iterator wskazuje na następny element kontenera
@@ -224,13 +228,14 @@ Dekrementacja iteratora poprzedzającego `list.end()` nie doprowadzi zatem nigdy
 Ponieważ problem trawersowania kontenerów od końca jest dość powszechny, biblioteka standardowa oferuje mechanizm, który to ułatwia: iteratory odwrotne (*reverse iterator*).
 Ideę ich działania zobrazowano poniżej.
 
-![iterators.png](graphics/iterators.png)
+![iterators.png](figures/cpp_inst5/iterators.png)
 
 Ostatni rodzaj iteratora, jaki poznamy, to iterator `const`.
 Nie oznacza to, że nie możemy zmieniać jego wartości (taki iterator nie jest szczególnie przydatny, poza tym możemy go stworzyć po prostu deklarując np. `const std::vector<int>::iterator it = ...`), oznacza to, że nie możemy zmienić wartości elementu, na który wskazuje.
 Możemy za to wskazać nim na inny element (tak samo jak każdym innym operatorem).
 Iteratory `const` są przydatne, gdy trawersujemy kontener celem odczytu elementów - odbieramy sobie wtedy możliwość nieumyślnej zmiany ich wartośi.
 Podsumowując, poznaliśmy następujące typy iteratorów:
+
 - (forward) iterator - metody `begin()` i `end()`
 - reverse iterator - metody `rbegin()` i `rend()`
 - `const` (forward) iterator - metody `cbegin()` i `cend()`

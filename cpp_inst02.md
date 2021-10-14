@@ -62,7 +62,7 @@ double*      liczba_wsk     = (double*)wynik_alokacji;
 free(liczba_wsk);
 ```
 
-Powyższe odwołanie do funkcji `malloc` czytamy jako "zaalokuj blok pamięci o wielkości \[rozmiar `double`\] bajtów, a następnie podaj mi adres tego bloku pamięci".
+Powyższe odwołanie do funkcji `malloc` czytamy jako "zaalokuj blok pamięci o wielkości `rozmiar_doubla` bajtów, a następnie podaj mi adres tego bloku pamięci".
 Dodatkowo przed przypisaniem otrzymanego adresu do zmiennej `liczba` musimy zrzutować go na typ `double*`, gdyż funkcja `malloc` otrzymuje jedynie informację o liczbie bajtów, nie tym, jakiego typu zmienne chcemy tam umieścić (zwraca typ `void*`).
 Jest to typowe dla języka C - operujemy na gołej pamięci i sami musimy martwić się o typ zmiennych, które w tej pamięci umieszczamy.
 W C++ kierujemy się fundamentalnie inną filozofią: operujemy na obiektach, których życie zaczyna się od konstruktora, a  kończy na destruktorze.

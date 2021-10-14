@@ -37,17 +37,18 @@ Zdecydowana większość przyjmuje parę iteratorów, która definiuje zakres zg
 Dzięki temu algorytm jest niezależny od kontenera, na którego elementach ma operować.
 Zobaczmy teraz, że już para iteratorów wystarczy, aby zrobić coś ciekawego.
 
+> Do generacji losowych wektorów w zadaniach poniżej możesz wykorzystać np. [szablon funkcji makeRandomVector](https://godbolt.org/z/9zrE4bqoa).
+
 #### Zadanie 1
-Wygeneruj wektor losowych liczb całkowitych z przedziału \[0, 10\] (użyj funkcji dołączonej do instrukcji).
-Wyświetl go.
-Posortuj go rosnąco używając algorytmu `std::sort`.
+Wygeneruj wektor losowych liczb całkowitych z przedziału [0, 10] i wyświetl go.
+Następnie posortuj go rosnąco używając algorytmu `std::sort`.
 Zweryfikuj poprawność działania algorytmu wyświetlając ponownie wektor.
 
 Wiele algorytmów przyjmuje także dodatkowe parametry.
 Zobaczmy to na przykładzie.
 
 #### Zadanie 2
-Wygeneruj wektor losowych liczb całkowitych z przedziału \[0, 10\] (użyj funkcji dołączonej do instrukcji).
+Wygeneruj wektor losowych liczb całkowitych z przedziału [0, 10].
 Policz wystąpienia liczby 7 używając algorytmu `std::count`.
 
 ## Funktory
@@ -70,7 +71,7 @@ Zweryfikuj poprawność działania algorytmu wyświetlając ponownie wektor.
 Zobaczmy inny przykład, gdzie przydatne mogą być funktory.
 
 #### Zadanie 4
-Wygeneruj wektor losowych liczb całkowitych z przedziału \[0, 10\] (użyj funkcji dołączonej do instrukcji).
+Wygeneruj wektor losowych liczb całkowitych z przedziału [0, 10].
 Policz wystąpienia liczb większych od 7 używając algorytmu `std::count_if`.
 
 W zadaniu 4 wykorzystaliśmy fakt, że liczba, do której porównywaliśmy elementy wektora, była znana w czasie kompilacji (ponieważ 7 występuje jawnie w treści zadania).
@@ -184,55 +185,55 @@ Oblicz ich iloczyn skalarny używając algorytmu `std::inner_product`.
 
 ### Łączenie algorytmów
 #### Ćwiczenie V - sortowanie podciągu
-Stwórz wektor losowych liczb całkowitych z przedziału \[0, 10\].
+Stwórz wektor losowych liczb całkowitych z przedziału [0, 10].
 Znajdź w nim pierwsze wystąpienie liczby 7.
 Posortuj elementy wektora występujące przed znalezioną liczbą 7 (lub cały wektor, jeżeli 7 nie występuje).
 Użyj `std::find` i `std::sort`.
 
 Przykład:
 
-- input: \[3 2 1 7 9 7 8 10\]
-- output: \[1 2 3 7 9 7 8 10\]
+- input: [3 2 1 7 9 7 8 10]
+- output: [1 2 3 7 9 7 8 10]
 
 #### Ćwiczenie VI - idiom *remove-erase*
-Stwórz wektor losowych liczb całkowitych z przedziału \[0, 10\].
+Stwórz wektor losowych liczb całkowitych z przedziału [0, 10].
 Następnie usuń z niego wszystkie wystąpienia liczby 3.
 Użyj algorytmu `std::remove` oraz metody wektora `erase`.
 Spróbuj wykonać zadanie w 1 linijce (wyjąwszy stworzenie wektora).
-Rozmiar (*size*) wektora powinien być po operacji mniejszy o liczbę wystąpień liczby 3.
+Rozmiar (`size`) wektora powinien być po operacji mniejszy o liczbę wystąpień liczby 3.
 
 #### Ćwiczenie VII - obrót względem wartości
-Stwórz wektor losowych liczb całkowitych z przedziału \[0, 10\].
+Stwórz wektor losowych liczb całkowitych z przedziału [0, 10].
 Znajdź w nim pierwsze wystąpienie liczby 7.
 Przesuń elementy wektora występujące przed znalezioną liczbą 7 na koniec wektora (zachowaj ich kolejność).
 Użyj `std::find` i `std::rotate`.
 
 Przykład:
 
-- input: \[3 2 1 7 9 7 8 10\]
-- output: \[7 9 7 8 10 3 2 1\]
+- input: [3 2 1 7 9 7 8 10]
+- output: [7 9 7 8 10 3 2 1]
 
 ### Algorytmy przyjmujące funktory
 #### Ćwiczenie VIII - sprawdzenie czy elementy z zakresu spełniają warunek logiczny
-Stwórz wektor losowych liczb zmiennoprzecinkowych z przedziału \[-1, 1\].
+Stwórz wektor losowych liczb zmiennoprzecinkowych z przedziału [-1, 1].
 Sprawdź, czy co najmniej jedna ze stworzonych liczb jest większa niż 0.9.
 Użyj algorytmu `std::any_of`.
 
 #### Ćwiczenie IX - sinus zakresu
-Stwórz wektor losowych liczb zmiennoprzecinkowych z przedziału \[-1, 1\].
+Stwórz wektor losowych liczb zmiennoprzecinkowych z przedziału [-1, 1].
 Stwórz drugi wektor tego samego rozmiaru i wypełnij go sinusami wartości z pierwszego wektora.
 Użyj algorytmu `std::transform`.
 
 #### Ćwiczenie X - sortowanie elementów wektora mniejszych od wartości
-Stwórz wektor losowych liczb całkowitych z przedziału \[0, 10\].
+Stwórz wektor losowych liczb całkowitych z przedziału [0, 10].
 Przestaw jego elementy tak, aby najpierw wystąpiły wszystkie liczby większe od 6 (poza tym wymaganiem mogą być one dowolnie przestawione).
 Następnie posortuj część zakresu zawierającą elementy większe od 6.
 Użyj `std::partition` i `std::sort`.
 
 Przykład:
 
-- input: \[1 10 2 9 3 8 4 7 5 6\]
-- output (jeden z dopuszczalnych): \[7 8 9 10 3 1 5 6 2 4\]
+- input: [1 10 2 9 3 8 4 7 5 6]
+- output (jeden z dopuszczalnych): [7 8 9 10 3 1 5 6 2 4]
 
 ### Zadanie trudniejsze
 #### Ćwiczenie XI - indeksy sortowania
@@ -261,8 +262,8 @@ for(size_t i = 0; i < v.size(); ++i)
 
 Przykład:
 
-- input: \[1 10 2 9 3 8 4 7 5 6\]
-- output: \[0 2 4 6 8 9 7 5 3 1\]
+- input: [1 10 2 9 3 8 4 7 5 6]
+- output: [0 2 4 6 8 9 7 5 3 1]
 
 Podpowiedzi:
 
