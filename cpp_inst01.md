@@ -46,6 +46,7 @@ C\+\+ stanowi obszerny temat, którego zgłębienie wymaga wiele czasu, wysiłku
 Nadzieja autorów jest taka, że czytelnik, który w przyszłości potrzebował będzie wykorzystać ten język, posiadał będzie solidny fundament wiedzy, znał będzie "filozofię" programowania w C\+\+ i wiedział będzie gdzie szukać zasobów do rozwijania swoich umiejętności.
 
 Prerekwizytami do niniejszego kursu są:
+
 - Znajomość języka C: zmienne, pętle, funkcje, zarządzanie pamięcią (czyli czym różni się stos od sterty, `malloc`, `free`) itp.
 - Dostęp do kompilatora wspierającego standard C\+\+11 (a najlepiej C\+\+17). Instrukcje przygotowane są w sposób niezależny od platformy, ale sugestia autorów to gcc lub clang na systemie Linux i MSVC na systemie Windows (dostępne przez IDE Visual Studio). Ostatnią deskę ratunku stanowią kompilatory online, wśród których króluje niewątpliwie [Compiler Explorer](https://godbolt.org/).
 - Dostęp do internetu w trakcie zajęć: wątpliwości co do standardu (oraz biblioteki standardowej) najlepiej wyjaśniać zaglądając do [dokumentacji](https://en.cppreference.com/). Będzie ona także dostępna w czasie zaliczenia.
@@ -353,6 +354,7 @@ Napisz publiczną, statyczną metodę `Wektor2D kart(double, double)`, która tw
 Teraz dodaj kolejną publiczną, statyczną metodę `Wektor2D bieg(double, double)`, która tworzy wektor na podstawie podanych współrzędnych w układzie biegunowym (musisz skonwertować je do układu kartezjańskiego).
 Zmodyfikuj odpowiednio kod w `main`ie (wszystkie wektory tworzone bezpośrednio muszą teraz być tworzone przez zawołanie odpowiedniej metody statycznej).
 Zweryfikuj, czy konwersja współrzędnych z jednego układu współrzędnych na drugi przebiegła (matematycznie) poprawnie. Parę uwag do zadania:
+
 - Funkcje trygonometryczne znajdziesz w nagłówku `#include <cmath>`. Wszystkie nagłówki wykorzystywane w języku C zostały przeniesione do C++ w sposób `nazwa_nagłówka.h` &#8594; `cnazwa_nagłówka`.
 - Domyślny konstruktor wektora może pozostać publiczny. Punkt (0, 0) pokrywa się w obu układach współrzędnych, nie ma tu dwuznaczności.
 

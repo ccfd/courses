@@ -21,6 +21,7 @@ Powszechnie przyjęte podejście polega na zwracaniu z funkcji kodów błędu.
 Innymi słowy, zwracamy z funkcji, których działanie może się nie powieść, liczbę całkowitą.
 Na podstawie wartości tej liczby stwierdzamy następnie, czy (i jaki) błąd nastąpił.
 Podejście to ma następujące wady:
+
 - tracimy możliwość zwracania z funkcji wyniku, musimy robić to przez argument będący wskaźnikiem
 - musimy ręcznie propagować kody błędów przez stos wywołań funkcji (jeżeli funkcja A woła B, B woła C, itd., to jeżeli funkcja Z może zwrócić błąd, jesteśmy zmuszeni ręcznie propagować jego wartość przez wszystkie funkcje A-Y)
 - obsługiwanie wyjątków zakłóca nieco czytelność kodu - zamiast wołać funkcję i pracować z wynikiem jej wywołania, musimy w samym środku kodu umieścić blok sprawdzający wartość kodu błędu
@@ -90,6 +91,7 @@ Zbadaj zachowanie programu w zależności od podanych z klawiatury zmiennych.
 W przypadku, gdy istnieje więcej niż 1 blok `catch`, wyjątki dopasowywane są do pierwszego bloku (w kolejności, w której występuje w kodzie), do którego jest to możliwe.
 W związku z tym, jeżeli wyjątki są polimorficzne, przeważnie najlepiej umieścić klasy bazowe na końcu, aby obsłużyć wyjątek w możliwie jak najbardziej "wyspecjalizowany" sposób.
 W praktyce, pisząc bloki `catch` powinniśmy trzymać się następującj hierarchii:
+
 1. Wyjątki konkretnych typów, zdefiniowanych przez nas lub biblioteki, z których korzystamy
 2. Wyjątki STL klas pochodnych (np. `std::bad_alloc` i `std::bad_variant_access`)
 3. `std::exception`
