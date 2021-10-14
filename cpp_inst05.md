@@ -228,7 +228,7 @@ Dekrementacja iteratora poprzedzającego `list.end()` nie doprowadzi zatem nigdy
 Ponieważ problem trawersowania kontenerów od końca jest dość powszechny, biblioteka standardowa oferuje mechanizm, który to ułatwia: iteratory odwrotne (*reverse iterator*).
 Ideę ich działania zobrazowano poniżej.
 
-![iterators.png](figures/cpp_int5/iterators.png)
+![iterators.png](figures/cpp_inst5/iterators.png)
 
 Ostatni rodzaj iteratora, jaki poznamy, to iterator `const`.
 Nie oznacza to, że nie możemy zmieniać jego wartości (taki iterator nie jest szczególnie przydatny, poza tym możemy go stworzyć po prostu deklarując np. `const std::vector<int>::iterator it = ...`), oznacza to, że nie możemy zmienić wartości elementu, na który wskazuje.
