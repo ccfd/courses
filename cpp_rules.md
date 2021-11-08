@@ -18,6 +18,10 @@ dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
 dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
+## Konsultacje
+
+Poniedziałki 15:00
+
 ### Liczba punktów ECTS: 5
 
 ### Efekty uczenia się
