@@ -157,7 +157,7 @@ navbar:
         href: python_inst04.html
       - text: "Instrukcja V"
         href: python_inst05.html
-        
+<!---        
     - text: "MOMP"
       menu:
       - text: "Informacje"
@@ -174,7 +174,7 @@ navbar:
         href: momp_lab05.html 
       - text: "Instrukcja VI"
         href: momp_lab06.html 
-
+--->
         
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
