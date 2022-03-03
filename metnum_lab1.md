@@ -76,27 +76,55 @@ $$
 Napisz program w C, który obliczy siły i momenty przenoszone w parach kinematycznych.
 Do rozwiązania układu równań wykorzystaj metodę eliminacji Gaussa, której implementacja jest dostępna w pliku `gauss.cpp`.
 (Uwaga: Funkcja `gauss(int N, double **A, double *x, double *b)` przyjmuje podwójny wskaźnik do macierzy - z tego względu pamiętaj o zaalokowaniu dynamicznym dwuwymiarowej tablicy - tablica statyczna miałaby typ niezgodny z nagłówkiem funkcji).
-Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
 
-$$\left[ \begin{array}{c} R_{Ax} \\
-R_{Ay} \\
-M_A \\
-R_{Bx} \\
-R_{By} \\
-R_{Cx} \\
-R_{Cy} \\
-R_{Dx} \\
-R_{Dy} \\
-\end{array} \right] = \left[
-\begin{array}{c} 8.117647 \\
-		39.088235 \\
-		47.294118 \\
-		- 8.117647 \\
-		- 14.088235 \\
-		- 8.117647 \\
-		1.911765 \\
-		- 8.117647 \\
-		54.911765 \\ \end{array} \right]$$
+W celu zaoszczędzenia czasu, skorzystaj z poniższej funkcji inicjalizującej macierz
+```c++
+void init_matrix(int N, double **A) {
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++)
+      A[i][j] = 0.;
+
+  A[0][0] = 1.;  A[0][3] = 1.;
+  A[1][1] = 1.;  A[1][4] = 1.;
+  A[2][2] = 1.;  A[2][3] = -4.;  A[2][4] = 3.;
+  A[3][3] = -1.; A[3][5] = 1.;
+  A[4][4] = -1.; A[4][6] = 1.;
+  A[5][5] = -3.; A[5][6] = 4.;
+  A[6][5] = -1.; A[6][7] = 1.;
+  A[7][6] = -1.; A[7][8] = 1.;
+  A[8][7] = 7.;  A[8][8] = 2.;
+}
+```
+
+Sprawdź, czy otrzymujesz poprawne rozwiązanie wynoszące:
+$$
+\left[
+\begin{array}{c}
+  R_{Ax} \\
+  R_{Ay} \\
+  M_A \\
+  R_{Bx} \\
+  R_{By} \\
+  R_{Cx} \\
+  R_{Cy} \\
+  R_{Dx} \\
+  R_{Dy} \\
+\end{array}
+\right] =
+\left[
+\begin{array}{c}
+  8.117647 \\
+  39.088235 \\
+  47.294118 \\
+  -8.117647 \\
+  -14.088235 \\
+  -8.117647 \\
+  1.911765 \\
+  -8.117647 \\
+  54.911765 \\
+\end{array}
+\right]
+$$
 
 # Problem nieliniowy
 
@@ -157,7 +185,7 @@ Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 - Przypisz $k = k+1$.
 - Wróć do punktu 3. i powtarzaj aż do osiągnięcia zbieżności.
 
-**Uwaga:** Metoda Newtona-Raphsona jest niezawsze zbieżna.
+**Uwaga:** Metoda Newtona-Raphsona jest nie zawsze zbieżna.
 
 ## Zadanie 2
 
