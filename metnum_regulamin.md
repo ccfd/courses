@@ -4,9 +4,9 @@ course: Metody Numeryczne
 material: Regulamin
 ---
 
-# Regulamin przedmiotu Metody Numeryczne (semestr: 2020L)
+# Regulamin przedmiotu Metody Numeryczne
 
-Przedmiot składa się z 15 h wykładów oraz 7 spotkań laboratoryjnych (po 1,5 h). 
+Przedmiot składa się z 15 h wykładów oraz 7 h spotkań laboratoryjnych (po 1,5 h). 
 
 ## Punktacja
 
@@ -37,10 +37,11 @@ Ocenie podlegać będzie zrozumienie przez studenta zagadnienia oraz kodu progra
 Ważne zagadnienia podlegające sprawdzeniu podczas wejściówki to:
 
 - składnia funkcji,
-- zwracanie wyniku działania funkcji przez jej wartość zwracaną oraz przez wskaźnik,
+- zwracanie wyniku działania funkcji przez jej wartość,
+- "zwracanie" wybranych rezultatów działania funkcji wykorzystując wskaźniki będące jej argumentami,
 - dynamiczna alokacja, wypełnianie oraz zwalnianie tablic,
 - składnia pętli `for`,
-- zapisywanie danych liczbowych do pliku.
+- zapisywanie i odczytywanie danych liczbowych z pliku.
 
 #### Przykładowe zadanie na wejściówkę:
 
