@@ -6,7 +6,7 @@ material: Regulamin
 
 # Regulamin przedmiotu Metody Numeryczne
 
-Przedmiot składa się z 15 h wykładów oraz 7 h spotkań laboratoryjnych (po 1,5 h). 
+Przedmiot składa się z 15 h wykładów oraz 7 spotkań laboratoryjnych (po 1,5 h). 
 
 ## Punktacja
 
