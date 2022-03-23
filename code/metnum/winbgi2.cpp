@@ -101,7 +101,7 @@ static int font_family[] =
     VARIABLE_PITCH|FF_DONTCARE   // BoldFont
   };
 
-static char* font_name[] = 
+static const char* font_name[] = 
 {
     "Console",          // DefaultFont
     "Times New Roman",  // TriplexFont
@@ -629,7 +629,7 @@ int getcolor()
     return color;
 }
 
-char* getdrivername()
+const char* getdrivername()
 {
     return "EGAVGA";
 }
@@ -2221,7 +2221,7 @@ void log_scale(double x0, double y0, double x1, double y1) {
 	all_scale(x0,y0,x1,y1,1);
 }
 
-void title(char * xlab, char * ylab, char * main_title)
+void title(const char * xlab, const char * ylab, const char * main_title)
 {
 	double mar = 130, mag=10;
 	int sx = 90;

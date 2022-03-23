@@ -222,7 +222,7 @@ void getaspectratio PROTO((int *, int *));
 int getbkcolor PROTO((void));
 int getcolor PROTO((void));
 palettetype* getdefaultpalette PROTO((void));
-char* getdrivername PROTO((void));
+const char* getdrivername PROTO((void));
 void getfillpattern PROTO((char const *));
 void getfillsettings PROTO((fillsettingstype *));
 int getgraphmode PROTO((void));
@@ -324,7 +324,7 @@ inline int wait() {
 
 void scale (double, double, double, double);
 void log_scale (double, double, double, double);
-void title PROTO((char *, char *, char *));
+void title PROTO((const char *, const char *, const char *));
 void chart PROTO((double * x, double * y, int n, char * xlab, char * ylab, char * main_title));
 
 void lineto(double x0, double y0);
