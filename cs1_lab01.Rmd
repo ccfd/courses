@@ -21,7 +21,7 @@ Declare two integer variables (a and b) and print results of: sum, subtraction, 
 The results should be printed in a single line.
 
 ## 2.
-Write a program which reads from a keyboard two numbers of double type and prints results of the following operations: multiplication, division, square root, cube root, fourth power, sinus and cosinus.
+Write a program which reads from the keyboard two numbers of double type and prints results of the following operations: multiplication, division, square root, cube root, fourth power, sine and cosine.
 Print information on what kind of input is expected before the program starts waiting for the input:
 ```c++
 printf("Input the first number:\n");

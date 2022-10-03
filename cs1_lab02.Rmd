@@ -26,25 +26,25 @@ void FunView()           // function header: contains return type and name
 
 ## 2.
 Modify the program by adding three new functions.
-First function should increment the global variable `Liczba` by $5$, e.g.:
+First function should increment the global variable `Number` by $5$, e.g.:
 ```c++
 void IncNumber()
 {
-    Liczba = Liczba + 5; // or better: Liczba += 5;
+    Number = Number + 5; // or better: Number += 5;
 }
 ```
-Second function should decrement variable `Liczba` by 3.
-Third function should print current value of variable `Liczba`.
+Second function should decrement variable `Number` by 3.
+Third function should print current value of variable `Number`.
 The variable should be declared as global (e.g. after declaration of the function but before the beginning of the main function) and initialize it with $10$.
 Remember about proper declaration of the functions.
 Inside main function call the function according to the following pattern:
 
-- print value of the variable `Liczba`;
-- increment value of the `Liczba` by 5 and repeat it three times;
-- print value of the variable `Liczba`;
-- decrement value of the `Liczba` by 3; do it two times;
-- increment value of the `Liczba` by 5;
-- print value of the variable `Liczba`;
+- print value of the variable `Number`;
+- increment value of the `Number` by 5 and repeat it three times;
+- print value of the variable `Number`;
+- decrement value of the `Number` by 3; do it two times;
+- increment value of the `Number` by 5;
+- print value of the variable `Number`;
 
 ## 3.
 Create a new program which solves the quadratic equation.
