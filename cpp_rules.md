@@ -8,7 +8,7 @@ author: S. Gepner
 
 # Programowanie Obiektowe w Języku C++
 
-Regulamin przedmiotu oraz zasady zaliczenia w roku 2021/2022
+Regulamin przedmiotu oraz zasady zaliczenia w roku 2022/2023
 
 ## Kierownik przedmiotu
 
@@ -17,6 +17,8 @@ dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 ## Prowadzący ćwiczenia
 
 dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
+
+mgr inż. Jakub Gałecki, jakub.galecki.dokt@pw.edu.pl, pokój 123
 
 ## Konsultacje
 
@@ -34,29 +36,31 @@ Cel: Nauczenie programowania w języku C++, zapoznanie z metodologią programowa
 2. Obiekty w C++ - atrybuty i metody, konstruktory i destruktory.
 3. Przeciążanie operatorów.
 4. Dziedziczenie, klasy abstrakcyjne, polimorfizm.
-5. Wzorce (template’y) dla funkcji i klas. Konkretyzacja wzorców.
+5. Szablony (template’y) dla funkcji i klas. Konkretyzacja szablonów.
 6. Obiektowe strumienie wejścia/wyjścia.
 7. Biblioteka standardowa STL.
+8. Kontenery, iteratory i algorytmy.
+9. Wyjątki.
 
 Zalecana literatura:
 
-* B. Stroustrup: Język C++, WNT, Warszawa, 2002.
+* B. Stroustrup: Język C++. Kompendium wiedzy, Wydawnictwo Helion, 2014.
 * inna dowolna książka o programowaniu w C++.
 
 Dodatkowa literatura:
 
-* Materiały na stronie <http://www.cplusplus.com/>
+* Materiały na stronie <https://en.cppreference.com/w/cpp>
 * Materiały dostarczone przez wykładowcę.
 
 ### Efekty typu W(iedza)
 
 Opis: Znajomość podstaw języka programowania C++.
-Weryfikacja: Bieżąca praca na laboratorium i kolokwium zaliczeniowe.
+Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
 
 ### Efekty typu U(miejętności)
 
 Opis: Potrafi programować w języku C++ przy wykorzystaniu mechanizmów obiektowych.
-Weryfikacja: Bieżąca praca na laboratorium i kolokwium zaliczeniowe.
+Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
 
 ## Sposób weryfikacji efektów i oceniania, warunki zaliczenia oraz szczegółowy regulamin przedmiotu
 
@@ -66,7 +70,7 @@ Weryfikacja: Bieżąca praca na laboratorium i kolokwium zaliczeniowe.
     * 2 obowiązkowych projektów zaliczeniowych.
 
 2. Postępy studenta opisane są skalą punktową w zakresie 0-100 punktów. Punkty otrzymuje się za:
-    * Zaliczenie wejściówek przeprowadzonych na 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt
+    * Zaliczenie zejściówek przeprowadzonych po 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt
     * Projekt zaliczeniowy 1, 15 punktów
     * Projekt zaliczeniowy 2, 25 punktów
         * W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów bez możliwości poprawy.
