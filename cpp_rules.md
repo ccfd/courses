@@ -2,7 +2,7 @@
 number: 0
 course: Programowanie Obiektowe w Języku C++
 material: Regulamin przedmiotu
-author: S. Gepner
+author: S. Gepner, J. Gałecki
 ---
 
 
@@ -16,15 +16,17 @@ dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
 ## Prowadzący ćwiczenia
 
-dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
+dr inż. Stanisław Gepner -- wtorki 8:15
 
-mgr inż. Jakub Gałecki, jakub.galecki.dokt@pw.edu.pl, pokój 123
+mgr inż. Jakub Gałecki -- środy 14:15
 
 ## Konsultacje
 
-Poniedziałki 15:00
+dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117 -- środy 15
 
-### Liczba punktów ECTS: 5
+mgr inż. Jakub Gałecki, jakub.galecki.dokt@pw.edu.pl, pokój 123 -- środy 16
+
+### Liczba punktów ECTS: 3
 
 ### Efekty uczenia się
 
