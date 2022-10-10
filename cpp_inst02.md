@@ -468,10 +468,11 @@ Jeżeli `S` jest klasą RAII, to ma miejsce następująca sekwencja wydarzeń:
 
 1. Stworzenie zasobów wewnątrz `getS`
 2. Zasoby zostają przypisane do bezimiennego, tymczasowego wyniku `getS`
-3. Kopiujący operator przypisania klasy `S` przypisuje zasoby tego wyniku do obiektu `s`
-4. Podejmujemy pracę z `s`
+3. Kopiujący operator przypisania klasy `S` przypisuje kopię zasobów tego wyniku do obiektu `s`
+4. Zasoby bezimiennego wyniku zostają zwolnione w destruktorze
+5. Podejmujemy pracę z `s`
 
-Punkt 3. jest niepotrzebny - naszym zamiarem było przypisanie zasobów od razu do `s`.
+Punkty 3. i 4. są niepotrzebne - naszym zamiarem było przypisanie zasobów od razu do `s`.
 Semantyka przenoszenia pozwala wyeliminować w takiej sytuacji nadmiarową kopię (bez żadnej modyfikacji funkcji `main`).
 
 ### lvalue vs rvalue
@@ -543,7 +544,7 @@ Zamiast tego korzystamy z argumentów wyjściowych.
 Często stosujemy tę opcję obok innych przeciążeń (np. obok stałej referencji) jako optymalizacja dla szczególnego przypadku.
 
 ### `std::move`
-W C\+\+ istnieje także sposób, aby zamienić referencję do rvalue na referencję do lvalue.
+W C\+\+ istnieje także sposób, aby zamienić referencję do lvalue na referencję do rvalue.
 Zobaczmy, dlaczego w ogóle moglibyśmy chcieć to zrobić:
 
 ```C++
