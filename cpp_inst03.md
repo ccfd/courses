@@ -82,6 +82,7 @@ Nie będziemy tego ćwiczyć, ale dla kompletności bieżącego tekstu podajemy 
 ### Konstruktory klas pochodnych
 Fakt, że klasa pochodna zawiera w sobie podobiekt klasy bazowej ma konsekwencje dla sposobu jej konstrukcji.
 Przypomnijmy, że dla niedziedziczących klas tworzenie obiektu przebiego wg. następującego schematu:
+
 1. Następuje alokacja pamięci na obiekt (na stosie lub na stercie, dla przebiegu procesu konstrukcji nie jest to istotne)
 2. Wołany jest konstruktor
 3. Pola obiektu są inicjalizowane przy pomocy listy inicjalizacyjnej i/lub konstruktorów domyślnych tych pól
@@ -95,6 +96,7 @@ Czy kod się skompiluje?
 
 Błąd kompilacji w powyższym zadaniu wynika z tego, że - z punktu widzenia konstrukcji - klasa bazowa zachowuje się jak pole klasy pochodnej.
 Ogólny schemat tworzenia obiektu wygląda więc nieco inaczej, niż ten przedstawiony powyżej:
+
 1. Następuje alokacja pamięci na obiekt
 2. Wołany jest konstruktor
 3. Obiekty klas bazowych konstruowane są za pomocą wskazanych konstruktorów (lub, jeżeli takowe nie zostały wskazane, konstruktorów domyślnych)
