@@ -82,6 +82,7 @@ Nie będziemy tego ćwiczyć, ale dla kompletności bieżącego tekstu podajemy 
 ### Konstruktory klas pochodnych
 Fakt, że klasa pochodna zawiera w sobie podobiekt klasy bazowej ma konsekwencje dla sposobu jej konstrukcji.
 Przypomnijmy, że dla niedziedziczących klas tworzenie obiektu przebiego wg. następującego schematu:
+
 1. Następuje alokacja pamięci na obiekt (na stosie lub na stercie, dla przebiegu procesu konstrukcji nie jest to istotne)
 2. Wołany jest konstruktor
 3. Pola obiektu są inicjalizowane przy pomocy listy inicjalizacyjnej i/lub konstruktorów domyślnych tych pól
@@ -95,6 +96,7 @@ Czy kod się skompiluje?
 
 Błąd kompilacji w powyższym zadaniu wynika z tego, że - z punktu widzenia konstrukcji - klasa bazowa zachowuje się jak pole klasy pochodnej.
 Ogólny schemat tworzenia obiektu wygląda więc nieco inaczej, niż ten przedstawiony powyżej:
+
 1. Następuje alokacja pamięci na obiekt
 2. Wołany jest konstruktor
 3. Obiekty klas bazowych konstruowane są za pomocą wskazanych konstruktorów (lub, jeżeli takowe nie zostały wskazane, konstruktorów domyślnych)
@@ -161,7 +163,7 @@ Jeżeli nie będzie do końca jasne, czemu tak postępujemy, zachęcamy czytelni
 Jak widzieliśmy w zadaniach 9. i  10., gdy patrzyliśmy na obiekt przez pryzmat typu, po którym dziedziczy (tzn. uzyskując do niego dostęp przez referencję lub wskaźnik typu bazowego), nie mieliśmy możliwości dostania się do pól i metod tego obiektu pochodzących z jego faktycznej klasy.
 Jest to zupełnie logiczne - wolnostojącą funkcję `id` moglibyśmy napisać oraz skompilować zanim w ogóle rozpoczęlibyśmy pracę nad `Kwadrat` i `Kolo` (oczywiście zakładając odpowiedni podział na pliki źródłowe i nagłówkowe).
 `id(const Figura&)` zawoła wtedy metodę `id` klasy `Figura` - żadna inna klasa jeszcze nie istnieje.
-Naszym celem w tym rozdziale jest przedstawienie sposobu, który pozwoliłby oddalić decyzję o metodzie, która zostanie zawołana, do momentu wykonania programu.
+Naszym celem w tym rozdziale jest przedstawienie sposobu, który pozwoliłby oddalić decyzję o metodzie, która zostanie zawołana do momentu wykonania programu.
 Możemy wtedy zawołać metodę nie klasy `Figura`, ale klasy obiektu, do którego referencja `const Figura&` tak naprawdę się odnosi.
 Mechanizmem w C++, który do tego służy, jest słowo kluczowe `virtual`.
 Klasę, która posiada choć jedną metodę oznaczoną tym słowem nazywamy klasą polimorficzną.
@@ -175,7 +177,7 @@ Czy efekt będzie taki sam jak wcześniej?
 Czy kod wymagał od Ciebie jakiejkolwiek modyfikacji poza słowami `virtual` i `override`?
 
 ### Rzutowanie dynamiczne
-Ponieważ jesteśmy teraz w stanie dynamicznie określić "prawdziwe" typy obiektów, na które wskazują wskaźniki i do których odnoszą się referencje, możemy polimorficzne klasy rzutować także w dół oraz na boki hierarchii dziedziczenia (dynamiczne rzutowanie w górę hierarchii jest ekwiwalentne statycznemu).
+Ponieważ jesteśmy teraz w stanie dynamicznie określić "prawdziwe" typy obiektów, na które wskazują wskaźniki i do których odnoszą się referencje, to możemy polimorficzne klasy rzutować także w dół oraz na boki hierarchii dziedziczenia (dynamiczne rzutowanie w górę hierarchii jest ekwiwalentne statycznemu).
 Służy do tego konwersja `dynamic_cast`.
 Zwróćmy uwagę, że dynamicznie rzutować możemy jedynie wskaźnik i referencje, ale nie obiekty.
 Jeżeli obiekt, wskaźnik do którego rzutujemy nie jest "tak naprawdę" typu, na który rzutujemy, to wynikiem rzutowania jest wyzerowany wskaźnik (`nullptr`).
@@ -187,7 +189,7 @@ Jaki będzie wynik dynamicznego rzutowania na `f` na `Kwadrat*`, a jaki na `Kolo
 
 ### Destruktor
 W klasach polimorficznych zawsze powinniśmy oznaczać destruktory jako wirtualne.
-Jeżeli tego nie zrobimy, a obiekt typu pochodnego zostanie usunięty (w znaczeniu `delete`) przy pomocy wskaźnika na typ bazowy, destruktor typu pochodnego nigdy nie zostanie zawołany.
+Jeżeli tego nie zrobimy, a obiekt typu pochodnego zostanie usunięty (w znaczeniu `delete`) przy pomocy wskaźnika na typ bazowy, wtedy destruktor typu pochodnego nigdy nie zostanie zawołany.
 Może to doprowadzić do wycieku zasobów i innych nieprzyjemnych sytuacji.
 
 #### Zadanie 13
@@ -204,7 +206,7 @@ Jak zmieni się sytuacja, gdy uczynisz destruktory wirtualnymi?
 
 ### Metody i klasy abstrakcyjne
 Omówione wyżej metody wirtualne to metody, które możemy nadpisać.
-Metody abstrakcyjne (zwane też czysto wirtualnymi) to metody, które musimy nadpisać.
+Metody abstrakcyjne (zwane też czysto wirtualnymi) to metody, które *musimy* nadpisać.
 Klasy posiadające takie metody nazywamy abstrakcyjnymi.
 Nie wolno nam bezpośrednio instancjonować klas abstrakcyjnych, ale możemy oczywiście tworzyć obiekty typów dziedziczących po typach abstrakcyjnych.
 Metody abstrakcyjne oznaczamy następująco:
@@ -315,11 +317,11 @@ Nie musimy modyfikować żadnych napisanych wcześniej klas!
 Ponownie zachowujemy się zgodnie z zasadą *open-closed*.
 Prześledźmy teraz co dokładnie dzieje się przy wizytowaniu każdej figury.
 Najpierw wołana jest metoda `akceptuj` figury.
-Jest ona wirtualna, a zatem, pomimo tego, że nigdzie jawnie nie trzymamy informacji o "prawdziwym" typie figury, wołana jest metoda odpowiedniej klasy pochodnej.
+Jest ona wirtualna, a zatem - pomimo tego, że nigdzie jawnie nie trzymamy informacji o "prawdziwym" typie figury - wołana jest metoda odpowiedniej klasy pochodnej.
 Następnie, metoda `akceptuj` klasy pochodnej (`Kwadrat` lub `Kolo`), woła "na sobie" metodę `wizytuj` wizytatora, która przeciążona jest zarówno dla `Kwadrat` jak i dla `Kolo`.
 Dość charakterystyczna jest tutaj "podwójna delegacja" (ang. *double dispatch*) - wizytator wizytuje, ale także obiekt wizytowany akceptuje.
 Osiągnęliśmy zatem to, co chcieliśmy - możemy dokonywać na trzymanych figurach dowolnie zdefiniowanych operacji zależnych od "prawdziwego" typu figury.
 
 #### Zadanie 27
 Przetestuj działanie napisanego kodu.
-Jeżeli masz wątpliwości, że jest ono w pełni dynamiczne, możesz uzależnić typ wkładanych do kontenera figur od wejścia z konsoli (pomocna będzie do tego fabryka).
+Jeżeli masz wątpliwości, że jest ono w pełni dynamiczne możesz uzależnić typ wkładanych do kontenera figur od wejścia z konsoli (pomocna będzie do tego fabryka).
