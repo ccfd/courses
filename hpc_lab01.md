@@ -1,10 +1,9 @@
 ---
-number: 1
+number: 2
 course: HPC
-material: Lab 1
 author: J. Gałecki
+title: HPC Lab 1
 ---
-
 
 # Lab I
 
