@@ -168,7 +168,6 @@ navbar:
         href: cpp_projects.html
       - text: "Stare materiały"
         href: cpp_old_link.html
-
     - text: "Python"
       menu:
       - text: "Instrukcja I"
@@ -181,6 +180,12 @@ navbar:
         href: python_inst04.html
       - text: "Instrukcja V"
         href: python_inst05.html
+    - text: "HPC"
+      menu:
+      - text: "Resources"
+        href: hpc_resources.html
+      - text: "Lab 1"
+        href: hpc_lab01.html
         
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
