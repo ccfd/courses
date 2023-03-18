@@ -42,8 +42,8 @@ To compile from the command line:
 $ mkdir naive_time
 $ cd naive_time
 $ vim main.cpp # paste the code above
-$ wget https://gist.githubusercontent.com/kubagalecki/8b89de1850cf701441e031b878ae1552/raw/
-    a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp
+$ wget https://gist.githubusercontent.com/kubagalecki/
+    8b89de1850cf701441e031b878ae1552/raw/a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp
 $ g++ -std=c++20 main.cpp
 ```
 
