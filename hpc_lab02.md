@@ -12,7 +12,7 @@ title: Lab 2
 [Started project](http://ccfd.github.io/courses/code/hpc/lab2_starter_code.zip)
 
 ## Warmup -- conditional sum
-Create a vector of random floating point numbers from the interval \[-pi, pi\].
+Create a vector of random floating point numbers from the interval (0, pi/2).
 Compute the sum of the numbers whose sine is larger than 0.5.
 Measure the throughput of your approach and pass the vector size as an argument to your benchmark.
 Now sort the values before computing the sum.
