@@ -239,13 +239,16 @@ The general structure of a benchmark is as follows:
 void my_benchmark(benchmark::State& state) // 1. Function defining the benchmark
 {
     // 2. Setup code
+    const auto input = makeInput();
 
     for(auto _ : state) // 3. Benchmark loop
     {
         // 4. Code to be benchmarked
+        const auto output = functionToBenchmark(input);
     }
 
     // 5. Tear-down code
+    cleanup();
 }
 BENCHMARK(my_benchmark) /* <- 6. register benchmark; 7. options -> */ -> option1(args...) -> option2(args...);
 ```
