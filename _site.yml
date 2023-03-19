@@ -186,6 +186,8 @@ navbar:
         href: hpc_resources.html
       - text: "Lab 1"
         href: hpc_lab01.html
+      - text: "Lab 2"
+        href: hpc_lab02.html
         
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:

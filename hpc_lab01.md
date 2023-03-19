@@ -1,8 +1,9 @@
 ---
 number: 1
 course: HPC
-material: Lab 1
+material: Labs
 author: J. Gałecki
+title: Lab 1
 ---
 
 
@@ -19,6 +20,7 @@ Parameters other than execution time can further be quantified.
 
 To demonstrate that a dedicated benchmarking library is, in fact, needed, let us try the naive approach.
 We will attempt to measure the time needed to compute the sine of 100 double precision floating point values.
+Paste the following into src.cpp:
 
 ```C++
 #include "MakeRandomVector.hpp"
@@ -38,12 +40,11 @@ int main()
 To compile from the command line:
 
 ```bash
-$ mkdir naive_time
-$ cd naive_time
-$ vim main.cpp # paste the code above
-$ wget https://gist.githubusercontent.com/kubagalecki/8b89de1850cf701441e031b878ae1552/raw/
-    a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp
-$ g++ -std=c++20 main.cpp
+# First, download MakeRandomVector.hpp
+$ wget https://gist.githubusercontent.com/kubagalecki/
+    8b89de1850cf701441e031b878ae1552/raw/a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp
+# Now compile the code
+$ g++ -std=c++20 src.cpp
 ```
 
 Let us now measure the execution time:
@@ -77,6 +78,13 @@ Below, we propose 2 ways of installing Google benchmark
 
 Manual installation is described [in the repository readme](https://github.com/google/benchmark#installation).
 The only prerequisites are a working C++ compiler and CMake 3.5 or newer.
+Note that if you install the library in a custom directory, you'll later need to tell CMake how to find it.
+This can be done by setting the `benchmark_DIR` CMake variable at configure time.
+Your configure command will therefor have to look like this:
+
+```bash
+cmake -Dbenchmark_DIR="your/path/to/benchmark/installation" [other options] ..
+```
 
 ### Installation using `spack`
 
@@ -231,13 +239,16 @@ The general structure of a benchmark is as follows:
 void my_benchmark(benchmark::State& state) // 1. Function defining the benchmark
 {
     // 2. Setup code
+    const auto input = makeInput();
 
     for(auto _ : state) // 3. Benchmark loop
     {
         // 4. Code to be benchmarked
+        const auto output = functionToBenchmark(input);
     }
 
     // 5. Tear-down code
+    cleanup();
 }
 BENCHMARK(my_benchmark) /* <- 6. register benchmark; 7. options -> */ -> option1(args...) -> option2(args...);
 ```
