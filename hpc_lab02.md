@@ -9,7 +9,7 @@ title: Lab 2
 
 # Lab II
 
-[Started project](http://ccfd.github.io/courses/code/hpc/lab2_starter_code.zip)
+[Starter project](http://ccfd.github.io/courses/code/hpc/lab2_starter_code.zip)
 
 ## Warmup -- conditional sum
 Create a vector of random floating point numbers from the interval (0, pi/2).
@@ -23,6 +23,6 @@ When is sorting a viable strategy?
 
 ## Goto algorithm
 Implement the Goto algorithm.
-Take advantage of the provided started code, so that you can use existing functions for allocation, initialization, etc.
+Take advantage of the provided starter code, so that you can use existing functions for allocation, initialization, etc.
 Consult the lecture notes and the instructors if you have any questions.
 You may use [this diagram](http://ccfd.github.io/courses/figures/hpc/Goto_gemm.png) as a reference.
