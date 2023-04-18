@@ -49,3 +49,49 @@ The region of the code our threads might interfere is the **citical section**, o
 We will use the `mutex` (Mutually Exclusive Lock) mechanism. See thred4.cpp for an example. Compile and run the code.
 Than, modify thread3.cpp to use `mutex` instead of `atomic`.
 
+## TBB
+Thread Building Blocks is a library designed to make parallelization of the already existing, or new code (relativly easy).
+The objective of TBB is to provide a template library, very much like STL for managing creation of and working with threads.
+
+### Serial implementation
+Examine serial.cpp, compile and run it. It is a very simple program that puts data in to an array and terminates. Nothing fancy.  
+Extend the code, so an average value is evaluated at the end.
+
+### prallel_for
+The for loop used to initialize the vector content is a great example of an embarrassingly parallel problem.
+There should be no data race, and no problem with concurent manipulation, and it should parallelize very eaisly.
+For this task, TBB ofers a simple `parallel_for`, which with little modification to the code manages starting, stoping and executing working threads.
+
+```
+tbb::parallel_for(range, kernel);
+```
+For `range` we will use `tbb::blocked_range<T>(T n0, T n1)`, which is a template class describing a one-dimensional iteration space from $n_0$ to $n_1-1$.
+For our problem it is the same as the the range of the for `(0,y.size())`.  
+`kernel` is a collable object that takes `tbb::blocked_range<T> r` as an argument and processes the chunk of the problem defined by `r`.
+In our problem we will use lambda expression `[&](tbb::blocked_range<int> r){}`.
+
+Note: Our problem is very simple, but a rule of thumb is to put frequently accessed values into local variables of the `kernel`. This should help compiler to optimize the loop better. It seems local variables are easier for the compiler to track.
+
+Examine the execution times and prepere a speedup plot using `tbb_parallel_for.cpp`. Than move the definition of `double x` out of the body of the lambda expresion (Note, this causes the race condition!) and examine resulting speedup, is there any difference?
+
+### [False Sharing](https://en.wikipedia.org/wiki/False_sharing)
+is a performance degrading event that results from threads sharing resorurces that *lie to close to each other*.
+
+> When a system participant attempts to periodically access data that is not being altered by another party, but that data shares a cache block with data that is being altered, the caching protocol may force the first participant to reload the whole cache block despite a lack of logical necessity.
+
+Examine, compile and run `tbb_false_sharing.cpp` example.
+
+### parallel_reduce
+The loop initializing the data was easy to parallelize with `parallel_for`.
+How about summation over all elements? In this operation elements of an array are *reduced* into a single result - the sum.
+TBB offers a `parallel_reduce` function template to perform reduction operations over the range.
+The simplest syntax is `parallel_reduce(range, identity_value, func, reduction)`, where:
+* `range` defines a a range, to which sub-ranges `func` will be applied.
+* `identity_value` is identity for the operation performed by `func` (0 for summation and 1 for multiplication).
+* `func` is a collable object. Could be a lambda expression.
+* `reduction` defines how sub-range reductions are joined to produce the final result. This can also be defined as a lambda expression,
+or we could use standard function objects. 
+
+## More complex problem
+Solve linear advection problem $\frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = 0$, with periodic boundary conditions and an appropariate initial condition.
+Use `advection_serial.cpp` as a starting point, here first order forward finite difference and an explicit time integration is used. Examine possible speedup due to parallelization. Then consider implementation of the implicit method.
