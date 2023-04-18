@@ -28,3 +28,8 @@ title: Resources
 
 - [Presentation](http://ccfd.github.io/courses/data/hpc/lecture3.pdf)
 - [Demo code](http://ccfd.github.io/courses/code/hpc/lecture3_code.zip)
+
+## Lecture 4-5
+
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture45.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture45_code.zip)
