@@ -31,8 +31,13 @@ title: Resources
 
 ## Lecture 4-5
 
-- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture45.pdf)
-- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture45_code.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture4-5.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture4-5_code.zip)
+
+## Lecture 6
+
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture6.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture6_code.zip)
 
 ## GPU Lecture and Labs
 
