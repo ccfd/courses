@@ -39,6 +39,10 @@ title: Resources
 - [Presentation](http://ccfd.github.io/courses/data/hpc/lecture6.pdf)
 - [Demo code](http://ccfd.github.io/courses/code/hpc/lecture6_code.zip)
 
+## Lecture 7
+
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture7.pdf)
+
 ## GPU Lecture and Labs
 
 - [Repository: Lectures + Labs](https://github.com/ggruszczynski/gpu_colab)
