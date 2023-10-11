@@ -16,15 +16,17 @@ dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
 
 ## Prowadzący ćwiczenia
 
-dr inż. Stanisław Gepner -- wtorki 8:15
-
-mgr inż. Jakub Gałecki -- środy 14:15
+1. Poniedziałek o 12:15, Olszański Bartosz, (grupa 3 1130-ARROB-ISP-7017)
+2. Wtorek o 8:15, Stanisław Gepner (nie mogę siebie otagować  ), (grupa 1 1130-00000-MSP-2027)
+3. Wtorek o 16:15, Gumowski Konrad, (grupa 2 1130-00000-MSP-2027)
+4. Środa o 10:15, Fabisiak Jakub (DOKT), (grupa 1 1130-ARROB-ISP-7017)
+5. Środa o 16:15, Fabisiak Jakub (DOKT), (grupa 2 1130-ARROB-ISP-7017)
 
 ## Konsultacje
 
 dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117 -- środy 15
 
-mgr inż. Jakub Gałecki, jakub.galecki.dokt@pw.edu.pl, pokój 123 -- środy 16
+TBA
 
 ### Liczba punktów ECTS: 3
 
@@ -113,11 +115,3 @@ Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
     *b)* Z zaliczonym projektem zaliczeniowym. Brak pozytywnej oceny z projektu uniemożliwia poprawę kolokwium.
 
     *c)* Obecny na 5 z 7 wykładów.
-
-7. Zapisy do grup laboratoryjnych odbywają się na pierwszym wykładzie. Kolejność zapisu wg. list rankingowych dostępnych w wirtualnym dziekanacie w dniu zapisu.
-
-    *a)* Studenci zapisani, zapisani po terminie i nie wymienieni na listach dziekańskich zapisują się jako ostatni.
-
-    *b)* Studenci niezapisani na przedmiot nie mają prawa uczestniczyć w laboratoriach.
-
-    *c)* Studenci ignorujący punkt 7b, otrzymują ocenę, która zostanie im wystawiona przy pierwszej rejestracji na przedmiot, bez możliwości jej poprawy.
