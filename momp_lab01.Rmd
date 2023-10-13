@@ -8,7 +8,7 @@ author: rev. M. Rutkowski
 
 # Cel ćwiczenia
 
-Zapoznanie z podstawowymi funkcjami programów: **ANSYS DesignModeler** (tworzenie geometrii) i **ANSYS Meshing** (tworzenie siatki), oraz ich współdziałaniem z **ANSYS Fluent** (obliczenia przepływowe) wewnątrz i poza środowiskiem Workbench.
+Zapoznanie z podstawowymi funkcjami programów: **ANSYS DesignModeler** (tworzenie geometrii) i **ANSYS Meshing** (dyskretyzacja domeny), oraz ich współdziałaniem z **ANSYS Fluent** (obliczenia przepływowe) wewnątrz i poza środowiskiem Workbench.
 
 Więcej informacji znajduje się w pomocy programu ANSYS Workbench lub na stronie [ANSYS Workbench](https://ansyshelp.ansys.com/)
 
@@ -134,7 +134,7 @@ Rozwinięte menu kontekstowe zawiera elementy, które będą przydatne w trakcie
 		- ctrl + wciśnięta rolka myszki - Przesuwanie kamery
 		- shift + wciśnięta rolka myszki - powiększanie aktualnego widoku (przed wciśnięciem kombinacji warto najechać kursorem na miejsce, które chcemy powiększyć)
 	c. Menu szkicu. Niebieska ikona (po zaznaczeniu odpowiedniej płaszczyzny w **drzewie historii**) tworzy nowy szkic.
-	d. Po każdej nowo wstawionej operacji w trybie modelingu powinniśmy ją stworzyć przy pomocy guzika **Generate**
+	d. Po każdej nowo wstawionej operacji w trybie modelingu powinniśmy ją stworzyć przy pomocy przycisku **Generate**
 
 3. W menu kontekstowym **units** upewnij się, czy wybrana są dobre jednostki. **Przy każdym nowo otwartym programie w środowisku Workbench należy się upewnić czy jednostka jest dobrze ustawiona**
 
@@ -142,7 +142,7 @@ Rozwinięte menu kontekstowe zawiera elementy, które będą przydatne w trakcie
 		
 		Aby wykadrować widok na płaszczyznę pracy, możesz kliknąć prostopadłą oś do tej płaszczyzny na układzie współrzędnym widocznym w oknie graficznym. Jeżeli jesteś w trybie szkicownika, dodatkowo można to zrobić za pomocą najbardziej wysuniętego guzika na prawo w menu kontekstowym (Rys. 6)
 
-5. Aby teraz przejść do trybu szkicownika, **zaznacz** nowo utworzony szkic w oknie drzewa historii i w tym samym oknie wejdź w zakładkę **Sketching**. Pojawi się nowe okno z zakładkami. Każda zakładka ma **dwie czarne strzałki** do nawigowania - Rys. 8a. Mamy do dyspozycji zakładkę **Draw**, w której znajdziemy wszystkie potrzebne "kreski". Zakładkę **Dimensions**, w której znajdziemy wszystkie narzędzia do wymiarowania (przydatna tutaj jest opcja **move** do przesuwania wymiaru).
+5. Aby teraz przejść do trybu szkicownika, **zaznacz** nowo utworzony szkic w oknie drzewa historii i w tym samym oknie wejdź w zakładkę **Sketching**. Pojawi się nowe okno z zakładkami. Każda zakładka ma **dwie czarne strzałki** do nawigowania - Rys. 7a. Mamy do dyspozycji zakładkę **Draw**, w której znajdziemy wszystkie potrzebne "kreski". Zakładkę **Dimensions**, w której znajdziemy wszystkie narzędzia do wymiarowania (przydatna tutaj jest opcja **move** do przesuwania wymiaru).
 <details><summary>Rys. 7</summary>
 <p>
 ![**Rys. 7.** Menu szkicownika](figures/momp_inst1/sketchMenu.svg#center)
