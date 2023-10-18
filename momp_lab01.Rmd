@@ -1,13 +1,14 @@
 ---
-title: Wprowadzenie do środowiska ANSYS Workbench 2020 R2
-number: 0
+title: Wprowadzenie do środowiska ANSYS Workbench 2023 R2
+number: 1
 course: Metody Obliczeniowe Mechaniki Płynów
 material: Instrukcja 1
+author: rev. M. Rutkowski
 ---
 
 # Cel ćwiczenia
 
-Zapoznanie z podstawowymi funkcjami programów: **ANSYS DesignModeler** (tworzenie geometrii) i **ANSYS Meshing** (tworzenie siatki), oraz ich współdziałaniem z **ANSYS Fluent** (obliczenia przepływowe) wewnątrz i poza środowiskiem Workbench.
+Zapoznanie z podstawowymi funkcjami programów: **ANSYS DesignModeler** (tworzenie geometrii) i **ANSYS Meshing** (dyskretyzacja domeny), oraz ich współdziałaniem z **ANSYS Fluent** (obliczenia przepływowe) wewnątrz i poza środowiskiem Workbench.
 
 Więcej informacji znajduje się w pomocy programu ANSYS Workbench lub na stronie [ANSYS Workbench](https://ansyshelp.ansys.com/)
 
@@ -110,7 +111,7 @@ W ten sposób możemy tworzyć duże schematy projektów (Rys. 4).
 
 ## Moduł geometryczny - DesignModeler
 
-W ramach poznawania modułu CAD wykonajmy geometrię na potrzeby [Instrukcji II - poprawić link!!!!](https://ansyshelp.ansys.com/).
+W ramach poznawania modułu CAD wykonajmy geometrię na potrzeby [Instrukcji II](http://ccfd.github.io/courses/momp_lab02.html).
 
 Geometrią do wykonania jest fragment dwuwymiarowego kanału z uskokiem. Na potrzeby ćwiczenia, geometrię powinno się stworzyć za pomocą dwóch prostokątów:
 
@@ -133,7 +134,7 @@ Rozwinięte menu kontekstowe zawiera elementy, które będą przydatne w trakcie
 		- ctrl + wciśnięta rolka myszki - Przesuwanie kamery
 		- shift + wciśnięta rolka myszki - powiększanie aktualnego widoku (przed wciśnięciem kombinacji warto najechać kursorem na miejsce, które chcemy powiększyć)
 	c. Menu szkicu. Niebieska ikona (po zaznaczeniu odpowiedniej płaszczyzny w **drzewie historii**) tworzy nowy szkic.
-	d. Po każdej nowo wstawionej operacji w trybie modelingu powinniśmy ją stworzyć przy pomocy guzika **Generate**
+	d. Po każdej nowo wstawionej operacji w trybie modelingu powinniśmy ją stworzyć przy pomocy przycisku **Generate**
 
 3. W menu kontekstowym **units** upewnij się, czy wybrana są dobre jednostki. **Przy każdym nowo otwartym programie w środowisku Workbench należy się upewnić czy jednostka jest dobrze ustawiona**
 
@@ -141,7 +142,7 @@ Rozwinięte menu kontekstowe zawiera elementy, które będą przydatne w trakcie
 		
 		Aby wykadrować widok na płaszczyznę pracy, możesz kliknąć prostopadłą oś do tej płaszczyzny na układzie współrzędnym widocznym w oknie graficznym. Jeżeli jesteś w trybie szkicownika, dodatkowo można to zrobić za pomocą najbardziej wysuniętego guzika na prawo w menu kontekstowym (Rys. 6)
 
-5. Aby teraz przejść do trybu szkicownika, **zaznacz** nowo utworzony szkic w oknie drzewa historii i w tym samym oknie wejdź w zakładkę **Sketching**. Pojawi się nowe okno z zakładkami. Każda zakładka ma **dwie czarne strzałki** do nawigowania - Rys. 8a. Mamy do dyspozycji zakładkę **Draw**, w której znajdziemy wszystkie potrzebne "kreski". Zakładkę **Dimensions**, w której znajdziemy wszystkie narzędzia do wymiarowania (przydatna tutaj jest opcja **move** do przesuwania wymiaru).
+5. Aby teraz przejść do trybu szkicownika, **zaznacz** nowo utworzony szkic w oknie drzewa historii i w tym samym oknie wejdź w zakładkę **Sketching**. Pojawi się nowe okno z zakładkami. Każda zakładka ma **dwie czarne strzałki** do nawigowania - Rys. 7a. Mamy do dyspozycji zakładkę **Draw**, w której znajdziemy wszystkie potrzebne "kreski". Zakładkę **Dimensions**, w której znajdziemy wszystkie narzędzia do wymiarowania (przydatna tutaj jest opcja **move** do przesuwania wymiaru).
 <details><summary>Rys. 7</summary>
 <p>
 ![**Rys. 7.** Menu szkicownika](figures/momp_inst1/sketchMenu.svg#center)
@@ -225,8 +226,8 @@ Na tym etapie mamy utworzone dwie powierzchnie. W takim stanie, powierzchnie są
 
 9. Należy zauważyć, że po wyjściu z programu **Meshing** status komórki jest oznaczony znakiem **Zaktualizuj dane**. Tak jak to zostało opisane w akapicie ["Symbole..."](#symbole-w-komórkach-komponentów-systemu), program lokalnie wykonał zadanie, jednak nie przekazał informacji do środowiska gdzie znajduje się cały projekt. Klikamy na komórkę **Mesh** prawym przyciskiem myszy i z menu podręcznego wybieramy opcję **Update**. Środowisko Workbench skomunikuje się z programem i zaktualizuje dane.
 
-		Przy tej okazji warto przyjrzeć się temu co znajduje się w menu podręcznym. 
-		Pomocną opcją jest opcja reset. 
+		Przy tej okazji warto przyjrzeć się temu co znajduje się w menu podręcznym.
+		Pomocną opcją jest opcja reset.
 		Jeżeli nie jesteśmy zadowoleni z pracy i/lub chcemy wyczyścić całą komórkę do stanu początkowego uzywamy właśnie opcji reset.
 		
 10. Zapisujemy projekt. Nasz blok *Instrukcja I* jest gotowy do wykonania Instrukcji II.
@@ -235,7 +236,7 @@ Na tym etapie mamy utworzone dwie powierzchnie. W takim stanie, powierzchnie są
 
 Sprawdźmy jak można "poprawić" wygenerowaną siatkę.
 
-1. W środowisku Workbench, do schematu projektu, dołącz komponent **Mesh** i zlinkuj geometrie nowo dodany blok z blokiem *Instrukcja I*. Jest to opisane w akapicie [Tworzenie własnych systemów (alternatywa)](#tworzenie-własnych-systemów-(alternatywa))
+1. W środowisku Workbench, do schematu projektu, dołącz komponent **Mesh** i zlinkuj geometrie nowo dodany blok z blokiem *Instrukcja I*. Jest to opisane w akapicie [Tworzenie własnych systemów (alternatywa)](#tworzenie-własnych-systemów-alternatywa)
 ![](figures/momp_inst1/denseMesh.PNG#center)
 Jest to blok tymczasowy, po skończeniu ćwiczenia możesz go usunąć.
 

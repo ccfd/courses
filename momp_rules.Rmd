@@ -1,11 +1,8 @@
 ---
-title: Regulamin przedmiotu Metody Obliczeniowe Mechaniki Płynów
+title: "Regulamin przedmiotu Metody Obliczeniowe Mechaniki Płynów"
 number: 0
 course: Metody Obliczeniowe Mechaniki Płynów
 material: Regulamin
-output:
-  html_document:
-    toc: no
 ---
 
 #### Kierownik przedmiotu:
@@ -15,12 +12,24 @@ output:
 
 -----
 
-### Warunki zaliczenia
+#### Wykład
+Wykład przedmiotu odbywa się w czwartki o godzinie 12:15 w sali A1 (ITLiMS).
+
+#### Zajęcia laboratoryjne
+
+1. **Obecność na laboratoriach jest obowiązkowa.** Każda nieobecność musi zostać usprawiedliwiona np. w formie zwolnienia lekarskiego. Nieobecność należy usprawiedliwić na najbliższych zajęciach laboratoryjnych. Dopuszcza się jedną nieobecność usprawiedliwioną na zajęciach laboratoryjnych. W przypadku nieobecności nieusprawiedliwionej, konieczne jest odrobienie zajęć w innym terminie.
+2. Zajęcia odbywają się z wykorzystaniem komputerów, w wymiarze 7 spotkań, dwie godziny w tygodniu. 
+3. Na ostatnich 7 zajęciach laboratoryjnych przeprowadzony jest test (z wykorzystaniem odpowiedniego pakietu inżynierskiego) weryfikujący osiągnięcia efektów EU2 i EU3. 
+4. Student ma obowiązek przygotowania trzech sprawozdań z wykonanych zadań obliczeniowych. Sprawozdania mają dotyczyć analizy uzyskanych wyników obliczeń numerycznych i oceny jakości tych wyników. Sprawozdania te oceniane są przez osobę prowadzącą zajęcia.
+5. Osoby które nie zaliczyły przedmiotu w poprzednich semestrach muszą zrealizować zajęcia laboratoryjne od nowa. Nie ma możliwości
+przepisania punktów z lab na aktualny semestr. 
+
+#### Warunki zaliczenia
 
 1. Przedmiot składa się z części wykładowej i laboratoryjnej. Liczebność grupy laboratoryjnej – 12 osób.
 2. Ocena końcowa uzależniona jest od globalnej liczby uzyskanych punktów z przedmiotu. Punkty uzyskać można poprzez:
 	a. Wykład: 60 pkt
-	(Egzamin; wymagane jest uzyskanie minimum 20% z egzaminu)
+	(Egzamin; wymagane jest uzyskanie minimum 20 punktów z egzaminu)
 	b. Laboratoria: 40 pkt
 	(Sprawozdania + kolokwium)
 3. Warunkiem zaliczenia przedmiotu jest zdobycie sumarycznej liczby punktów nie mniejszej niż 50 pkt.
@@ -31,13 +40,6 @@ output:
 	d. 80-89 pkt => 4.5
 	e. 90-100 pkt => 5.0
 	
-#### Zajęcia laboratoryjne
-
-1. **Obecność na laboratoriach jest obowiązkowa.** Każda nieobecność musi zostać usprawiedliwiona np. w formie zwolnienia lekarskiego. Nieobecność należy usprawiedliwić na najbliższych zajęciach laboratoryjnych.
-2. Zajęcia odbywają się z wykorzystaniem komputerów, w wymiarze 7 spotkań, dwie godziny w tygodniu. 
-3. Na ostatnich 7 zajęciach laboratoryjnych przeprowadzony jest test (z wykorzystaniem odpowiedniego pakietu inżynierskiego) weryfikujący osiągnięcia efektów EU2 i EU3. 
-4. Student ma obowiązek przygotowania trzech sprawozdań z wykonanych zadań obliczeniowych. Sprawozdania mają dotyczyć analizy uzyskanych wyników obliczeń numerycznych i oceny jakości tych wyników. Sprawozdania te oceniane są przez osobę prowadzącą zajęcia.
-
 #### Egzamin
 
 Kurs kończy się egzaminem – 2 terminy w sesji letniej, 2 terminy w sesji zimowej + 2 terminy poprawkowe w sesji jesiennej.
