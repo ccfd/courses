@@ -140,7 +140,7 @@ Stwórz wykresy ciśnienia w osi symetrii oraz w najwęższym miejscu kanału (z
 
 Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem density based, porównać wyniki z przypadkami: bez zagęszczenia siatki oraz dla solvera density based.
 
-1.	W celu dokładnego rozwiązania równań w miejscach dużych skoków wartości zmiennych włącz automatyczne zagęszczanie siatki (Górna belka programu **Domain / Adapt / Refine/Coarsen...**) z opcjami:
+1.	W celu dokładnego rozwiązania równań w miejscach dużych skoków wartości zmiennych włącz automatyczne zagęszczanie siatki (Górna belka programu **Domain / Adapt / Automatic...**) z opcjami:
 
 		Zanim to zrobisz musisz zainicjalizować rozwiązanie
 
@@ -151,7 +151,7 @@ Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem dens
 		- **Derivative Option** ustaw na **Gradient**
 		- Wpisz w polu **Cells having value less than** wartość **0.3**
 		- Wybierz ciśnienie statyczne w polu **Gradient of**
-		- w **Scaling Option** wybierz **Scale by Zone Maximum** (gradient będzie porównywany z lokalną średnią prędkością.)
+		- w **Scaling Option** wybierz **Scale by Zone Average** (gradient będzie porównywany z lokalną średnią prędkością.)
 		- **Save**
 		
 			Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się poniżej 0.3.
@@ -163,18 +163,18 @@ Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem dens
 		- **Derivative Option** ustaw na **Gradient**
 		- Wpisz w polu **Cells having value more than** wartość **0.7**
 		- Wybierz ciśnienie statyczne w polu **Gradient of**
-		- w **Scaling Option** wybierz **Scale by Zone Maximum** (gradient będzie porównywany z lokalną średnią prędkością.)
+		- w **Scaling Option** wybierz **Scale by Zone Average** (gradient będzie porównywany z lokalną średnią prędkością.)
 		- **Save**
 
 		Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się powyżej 0.7.
 	
-	3.	Zaznacz **Dynamic Adaption**, wpisz **Interwał** 100 iteracji (adaptacja siatki nastąpi raz co 100 kroków);
+	3.	W polu **Frequency(Iteration)**, wpisz **Interwał** 100 iteracji (adaptacja siatki nastąpi raz co 100 kroków);
 	
 	4. W polu **Refinement Criterion** wybierz Twój warunek **Refine**
 	
 	5. W polu **Coarsening Criterion** wybierz Twój warunek **Coarsen**
 	
-	6. W polu **Maximum Refinement Level** wpisujemy **2**.
+	6. Wejdź w opcję **General Adaption Controls** i w polu **Maximum Refinement Level** wpisujemy **2**.
 	
 	7. Warto w tym miejscu zapisać przypadek obliczeniowy. Jeżeli fluent modyfikuje siatkę, skutki są nieodwracalne. Jeżeli po modyfikacji będzie niezadowalająca, trzeba będzie zaczynać od zera.
 	
