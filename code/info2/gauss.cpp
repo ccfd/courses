@@ -11,7 +11,18 @@ Argumenty:
   b - wskaznik na tablice prawych stron ukladu rownan.
 */
 
-#include "gauss.h"
+/*
+Function solves a system of linear equations
+A * x = b
+using the Gauss elimination method.
+
+Functions arguments:
+  N - number of equations,
+  A - pointer to two-dimensional array,
+  x - pointer to an array storing solution of the system of equations,
+  b - pointer to an array storing the right hand side vector b.
+*/
+//#include "gauss.h"
 
 void gauss(int N, double **A, double *x, double *b) {
   double sum, wsp;

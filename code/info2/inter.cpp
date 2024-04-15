@@ -4,6 +4,11 @@
 // tablice *x i *y zawieraja wspolrzedne wezlow interpolacji
 // n liczba wezlow interpolacji
 // xx wartosc dla ktorej liczy sie wielomian
+
+// function computing the value of Lagrange interpolation polynomial
+// arrays *x and *y contain information about interpolation nodes
+// n defines number of interpolation nodes 
+// xx value for which the value of polynomial is evaluated
 double lagrange( double *x, double *y, int n, double xx )
 {
 	int		i, j;
