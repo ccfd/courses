@@ -22,4 +22,4 @@
 //
 double bisec( double a, double b, double (*pf)(double), double eps, int *i_iter);
 
-#endif // __NONLIN_H__
+#endif __NONLIN_H__
