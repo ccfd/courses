@@ -2,31 +2,28 @@
 number: 0
 course: Programowanie Obiektowe w Języku C++
 material: Regulamin przedmiotu
-author: S. Gepner, J. Gałecki
+author: J. Gałecki
 ---
 
 
 # Programowanie Obiektowe w Języku C++
 
-Regulamin przedmiotu oraz zasady zaliczenia w roku 2022/2023
+Regulamin przedmiotu oraz zasady zaliczenia w roku 2024/2025
 
-## Kierownik przedmiotu
+## Prowadzący (wykład oraz laboratorium)
 
-dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117.
+mgr inż. Jakub Gałecki, jakub.galecki@pw.edu.pl, pokój 123.
 
-## Prowadzący ćwiczenia
+## Termin laboratorium
 
-1. Poniedziałek o 12:15, Olszański Bartosz, (grupa 3 1130-ARROB-ISP-7017)
-2. Wtorek o 8:15, Stanisław Gepner (nie mogę siebie otagować  ), (grupa 1 1130-00000-MSP-2027)
-3. Wtorek o 16:15, Gumowski Konrad, (grupa 2 1130-00000-MSP-2027)
-4. Środa o 10:15, Fabisiak Jakub (DOKT), (grupa 1 1130-ARROB-ISP-7017)
-5. Środa o 16:15, Fabisiak Jakub (DOKT), (grupa 2 1130-ARROB-ISP-7017)
+1. Poniedziałek 12:15
+2. Poniedziałek 14:15
+3. Wtorek 8:15
+4. Wtorek 10:15
 
 ## Konsultacje
 
-dr inż. Stanisław Gepner, stanislaw.gepner@pw.edu.pl, pokój 117 -- środy 15
-
-TBA
+mgr inż. Jakub Gałecki, jakub.galecki@pw.edu.pl, pokój 123 -- poniedziałek 18:15, inne terminy możliwe do uzgodnienia
 
 ### Liczba punktów ECTS: 3
 
@@ -59,11 +56,13 @@ Dodatkowa literatura:
 ### Efekty typu W(iedza)
 
 Opis: Znajomość podstaw języka programowania C++.
+
 Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
 
 ### Efekty typu U(miejętności)
 
 Opis: Potrafi programować w języku C++ przy wykorzystaniu mechanizmów obiektowych.
+
 Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
 
 ## Sposób weryfikacji efektów i oceniania, warunki zaliczenia oraz szczegółowy regulamin przedmiotu
@@ -80,12 +79,12 @@ Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
         * W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów bez możliwości poprawy.
         * Ostateczny termin zaliczenia projektu ustala prowadzący ćwiczenia, jednak nie może być to termin późniejszy niż ostatni dzień semestru.
     * Kolokwium zaliczeniowe oceniane do 35 punktów.
-        * Na kolokwium wolno korzystać ze strony cppreference.com. Wszelkie inne materiały są niedozwolone.
-        * W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów.
+        * Na kolokwium wolno korzystać ze strony cppreference.com. Wszelkie inne materiały online są niedozwolone.
+        * W razie stwierdzenia niesamodzielności pracy student otrzymuje 0 punktów.
 
 3. Zaliczenie przedmiotu jest możliwe jedynie w przypadku uzyskania minimalnej liczby punktów z każdej ocenianej części, tj.:
     * 13 punktów z ćwiczeń,
-    * 21 z projektu,
+    * 21 z projektów,
     * 18 punktów z kolokwium
   
     W przypadku nieuzyskania minimalnej liczby punktów student otrzymuje ocenę niedostateczną (2.0).
@@ -114,4 +113,4 @@ Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
 
     *b)* Z zaliczonym projektem zaliczeniowym. Brak pozytywnej oceny z projektu uniemożliwia poprawę kolokwium.
 
-    *c)* Obecny na 5 z 7 wykładów.
+    *c)* Obecny na 4 z 7 wykładów.
