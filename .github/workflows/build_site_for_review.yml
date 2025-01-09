@@ -16,9 +16,8 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update
-          sudo apt install -y build-essential libcurl4-gnutls-dev pandoc libxml2-dev libssl-dev libcurl4-openssl-dev r-base r-base-dev;
+          sudo apt install -y build-essential pandoc libxml2-dev libssl-dev libcurl4-openssl-dev r-base r-base-dev r-cran-devtools;
           sudo apt install -y libharfbuzz-dev libfribidi-dev;
-          sudo R -e "install.packages('devtools')";
           sudo R -e "devtools::install_github('rstudio/rmarkdown')";
           wget https://github.com/mathjax/MathJax/archive/master.zip;
           unzip master.zip >/dev/null;
