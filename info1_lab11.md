@@ -15,17 +15,74 @@ Na tych zajęciach użyjemy płytkę prototypową kompatybilną z Arduino. Urzą
 
 Dziś będziemy używać narzędzia Arduino IDE.
 
-### Przygotowanie
-
 Programy dla Arduino mają dwa komponenty: `setup()` w której inicjalizujemy stan mikrokontrolera i wszystkie zmienne, i `loop()` która jest powtarzana w nieskończoność i wykonuje zazwyczaj zawiera gówną logikę programu. Można sobie wyobrazić, że mikrokontroler będzie wykonywał następujący program:
 ```c
-void main() {
-    setup();
-    while (1) {
-        loop();
-    }
+//some stuff
+setup();
+while (1) {
+    loop();
+    //some stuff
 }
 ```
+
+### `Piny`
+
+Nasza płytka ma piny typu General Purpose Input Output (GPIO). Oznacza to, że możemy ustawić je w różne stany służące do odczytu danych (input) i wysyłania danych (output). Do ustawiania stanu służy funkcja `pinMode(pin, typ)`. Dziś użyjemy dwóch typów:
+
+#### `OUTPUT`
+`OUTPUT` pozwala na ustawianie wyjscia na pinie na logiczne `0` (`LOW`) i `1` (`HIGH`). Zero to samo co uziemienie (ground), a jedyna to napięcie operacyjne układu (u nas 3V). Jesli podlaczymy taki pin (np. 2) do lampki (jak na rysunku), bedziemy mogli ja zapalac i gasic ustawiajac pin za pomoca `digitalWrite(2,HIGH);` i `digitalWrite(2,LOW);`.
+
+![](figures/info1/micro/led.png)
+
+Jesli zas do takiego pinu (np 10) podlaczymy buzzer (jak na rysunku) i uzyjemy komendy `tone(10,freq)`, uklad zacznie na zmiane podawac 0 i 1 z czestotliwoscia `freq`, wydajac dzwiek.
+
+![](figures/info1/micro/buzzer.png)
+
+#### `INPUT_PULLUP`
+`INPUT_PULLUP` pozwala na sprawdzanie na pinie czy jest on podłączony (`LOW`) czy nie (`HIGH`) do zera (ground). Jesli do takiego pina (np 3) podlaczymy przelacznik, a jego drugi styk podlaczymy do ziemi, bedziemy mogli wykryc czy przelacznik jest nacisniety sprawdzajac czy `digitalRead(3) == LOW`.
+
+![](figures/info1/micro/button.png)
+
+### Buzzer
+Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 10 (`D10`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
+```
+void setup() {
+    pinMode(10, OUTPUT);
+}
+
+void loop() {
+    tone(10, 262, 500); // C4 - 261.626 Hz
+    delay(1000);
+}
+```
+
+Dodatkowo możemy zapalić zintegrowaną diodę LED przy pomocy `digiralWrite(...)`:
+```
+void setup() {
+    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(10, OUTPUT);
+}
+
+void loop() {
+    tone(10, 262, 500); // C4 - 261.626 Hz
+    delay(1000);
+    digitalWrite(LED_BUILTIN,HIGH);
+    delay(1000);
+    digitalWrite(LED_BUILTIN,LOW);
+}
+```
+
+
+## Nasz uklad
+
+Możemy teraz podłączyć przyciski. Każdy przycisk ma 4 porty, dwa styki przełącznika i dwa styki LED. Dioda LED jest w obudowie zlutowana w opornikiem limitującym natężenie, wiec nie bedziemy potrzebować dodatkowych komponentów. **Nigdy nie należy podłączać diody LED bez rezystora**.
+
+![](figures/info1/micro/button_led.png)
+
+
+W każdym przycisku jeden styk przełącznika i jeden styk LED podłączymy do zera (`GND`) a pozostały styk przełącznika podłączymy do pinu w stanie `INPUT_PULLUP`, a styk LED do `OUTPUT`. Ostatecznie będziemy mieli 4x2 stykow podłączonych do pinów od `D2` do `D9`, i łańcuszek styków podłączonych do zera.Piny 2,4,6 i 8 podłączymy do LEDow w przyciskach, zaś 3,5,7 i 9 podłączymy do przycisków. Pin 10, jak wczesniej, użyjemy do buzzera.
+
+![](figures/info1/micro/complete.png)
 
 Na początek ustawimy stany wszystkich pinów które będziemu używać:
 ```c
@@ -47,34 +104,7 @@ void loop() {
 }
 ```
 
-Piny na płytce można ustawić na wiele stanów. Tu używamy `OUTPUT`, który pozwala na ustawianie wyjscia na pinie na `0` (`LOW`) i `1` (`HIGH`), i `INPUT_PULLUP`, który pozwala na sprawdzanie na pinie czy jest on podłączony (`LOW`) czy nie (`HIGH`) do zera (ground). Piny 2,4,6 i 8 podłączymy do LEDow w przyciskach, zaś 3,5,7 i 9 podłączymy do przycisków. Pin 10 użyjemy do buzzera.
-
-### Buzzer
-Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 10 (`D10`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
-```
-void loop() {
-    tone(10, 262, 500); // C4 - 261.626 Hz
-    delay(1000);
-}
-```
-
-Dodatkowo możemy zapalić zintegrowaną diodę LED:
-
-```
-void loop() {
-    tone(10, 262, 500); // C4 - 261.626 Hz
-    delay(1000);
-    digitalWrite(LED_BUILTIN,HIGH);
-    delay(1000);
-    digitalWrite(LED_BUILTIN,LOW);
-}
-```
-
 ### Przyciski
-Możemy teraz podłączyć przyciski. Każdy przycisk ma 4 porty, dwa styki przełącznika i dwa styki LED. Dioda LED jest w obudowie zlutowana w opornikiem limitującym natężenie, wiec nie bedziemy potrzebować dodatkowych komponentów. **Nigdy nie należy podłączać diody LED bez rezystora**.
-
-W każdym przycisku jeden styk przełącznika i jeden styk LED podłączymy do zera (`GND`) a pozostały styk przełącznika podłączymy do pinu w stanie `INPUT_PULLUP`, a styk LED do `OUTPUT`. Ostatecznie będziemy mieli 4x2 stykow podłączonych do pinów od `D2` do `D9`, i łańcuszek styków podłączonych do zera.
-
 Teraz możemy obsłużyć przyciski:
 ```
 void loop() {
