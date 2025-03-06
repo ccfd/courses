@@ -11,7 +11,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
 
       - name: Install tools
         run: |
@@ -30,7 +30,7 @@ jobs:
           tools/headers;
 
       - name: Publish
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v4.1.0
         with:
           build_dir: _site
           verbose: true
