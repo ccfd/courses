@@ -41,16 +41,15 @@ To compile from the command line:
 
 ```bash
 # First, download MakeRandomVector.hpp
-$ wget https://gist.githubusercontent.com/kubagalecki/
-    8b89de1850cf701441e031b878ae1552/raw/a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp
+wget https://gist.githubusercontent.com/kubagalecki/8b89de1850cf701441e031b878ae1552/raw/a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp
 # Now compile the code
-$ g++ -std=c++20 src.cpp
+g++ -std=c++20 src.cpp
 ```
 
 Let us now measure the execution time:
 
 ```bash
-$ time ./a.out
+time ./a.out
 ```
 
 We can see that our code took several milliseconds to execute.
@@ -72,7 +71,7 @@ It's best to rely on solutions provided by people who have put considerable thou
 Below, we propose 2 ways of installing Google benchmark
 
 - Manual installation. This requires root privileges (`sudo`) and installs the library globally on the system.
-- Installation using the `spack` package manager. This does not require root privileges and is generally simpler.
+- Installation using the Spack package manager. This does not require root privileges and is generally simpler.
 
 ### Manual installation
 
@@ -86,27 +85,37 @@ Your configure command will therefor have to look like this:
 cmake -Dbenchmark_DIR="your/path/to/benchmark/installation" [other options] ..
 ```
 
-### Installation using `spack`
+### Installation using Spack
 
-`Spack` is a package manager, which allows for easy installation and management of various libraries and tools.
+Spack is a package manager, which allows for easy installation and management of various libraries and tools.
 It's distinct in that it *builds* all required binaries, as opposed to downloading them from the relevant vendors.
 We will give a more in-depth explanation and guide later on in this course.
 For the time being, we only present a step-by-step instruction on how to install the library under discussion.
-`Spack`'s documentation is available [here](https://spack.readthedocs.io/en/latest/).
+Spack's documentation is available [here](https://spack.readthedocs.io/en/latest/).
 We do the following:
 
 ```bash
-$ git clone -c feature.manyFiles=true https://github.com/spack/spack.git
-$ spack/bin/spack external find # find available system packages, this will speed up the process
-$ spack/bin/spack install benchmark
+git clone -c feature.manyFiles=true https://github.com/spack/spack.git
+spack/bin/spack external find # find available system packages, this will speed up the installation process
+spack compiler find           # find available compilers
+spack/bin/spack install benchmark ~performance_counters
 ```
 
-`Spack` will recursively build and install all required tools and libraries.
+Spack will recursively build and install all required tools and libraries.
 We only need to remember to call the following command each time we set up our build environment.
 
 ```bash
-$ spack/bin/spack load benchmark
+spack/bin/spack load benchmark
 ```
+
+To load Spack's shell support, you can source the relevant script:
+
+```bash
+. /path/to/spack/share/spack/setup-env.sh
+```
+
+This will let you invoke Spack without specifying the full path.
+You can add this line to your `.bashrc` file to avoid having to retype it every time you open a new shell.
 
 ## Project configuration
 
@@ -156,11 +165,11 @@ To build and run our binary, we execute the following
 
 ```bash
 # starting directory is project_dir
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./bench_demo
+mkdir build
+cd build
+cmake ..
+make
+./bench_demo
 ```
 
 The following text should be printed to the screen:
@@ -227,7 +236,7 @@ Please use targets, set their properties individually, and express the relations
 If you need to set global properties, do it from the command line, for example
 
 ```bash
-$ cmake -DCMAKE_CXX_FLAGS="-std=c++20" ..
+cmake -DCMAKE_CXX_FLAGS="-std=c++20" ..
 ```
 
 ## Learning Google benchmark
@@ -338,7 +347,7 @@ Since building a project in Debug (no or minimal optimization) and Release (full
 We can leave our `CMakeLists.txt` file unchanged and simply call
 
 ```bash
-$ cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 After that we proceed as usual.
@@ -367,7 +376,7 @@ We can use the `DoNotOptimize` function to prevent the compiler from optimizing 
 ```C++
 for (auto _ : state)
 {
-    const double y = sin(x);
+    double y = sin(x);
     benchmark::DoNotOptimize(y);
 }
 ```
