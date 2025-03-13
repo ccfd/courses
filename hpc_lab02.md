@@ -21,6 +21,19 @@ Create 2 benchmarks -- one which includes the sort in the measurement, and one w
 
 When is sorting a viable strategy?
 
+## Matrix-vector product
+Implement a matrix-vector product.
+Consider the following strategies for matrix storage:
+
+- Vector of M vectors of size N
+- Flat - one big vector of size M*N (index appropriately)
+
+Where M, N are the matrix dimensions.
+How does loop interchange affect the solution time?
+
+Write 4 benchmarks parametrized by M and N (or assume M == N for simplicity).
+Discuss the results.
+
 ## Goto algorithm
 Implement the Goto algorithm.
 Take advantage of the provided starter code, so that you can use existing functions for allocation, initialization, etc.
