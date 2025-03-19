@@ -175,14 +175,11 @@ residual=function(it,res,name="Unknown") {
 draw.residuals = function(name) {
   if (!missing(name)) resid = resid[resid$name %in% name,,drop=FALSE]
   resid$name = factor(resid$name,levels=unique(resid$name))
-  plot(resid$iteration, resid$residual, log="y", type="n", yaxt="n", xlab="Iteracja", ylab="Residual")
+  plot(resid$iteration, resid$residual, log="y", type="n", xlab="Iteracja", ylab="Residual")
   by(resid,resid$name, function(resid) {
     lines(resid$iteration, resid$residual,col=resid$name)
   })
   legend("topright",levels(resid$name),lty=1,col=1:nlevels(resid$name))
-  a = log10(axTicks(2))
-  l = do.call(c,lapply(a,function(a) substitute(expression(10^a),list(a=a))))
-  axis(2,10^a,labels = l,las=1)
 }
 delete.residuals = function(name) resid <<- resid[! resid$name %in% name,]
 
