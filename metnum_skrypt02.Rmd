@@ -60,13 +60,10 @@ Teraz ostatnie wartości są już niezerowe
 print.few(lam)
 ```
 
-```{r echo=FALSE}
-i=80
-```
-
 Rozważmy teraz przyłożenie siły w `r i`-tym stopniu swobody. Wektor sił $F$ będzie miał zera wszędzie poza `r i`-tym elementem.
 
 ```{r}
+i=80
 F = rep(0,nrow(S))
 F[i] = -10
 ```
@@ -430,7 +427,7 @@ for (i in 1:itmax) {
   alpha = sum(r * Ap)/sum(Ap * Ap)
   x = x + alpha*p
   if (residual(i,r,"MINRES + beta (full)")) break
-  q = cBind(p,q)
+  q = cbind(p,q)
 }
 draw.residuals()
 ```
@@ -459,7 +456,7 @@ for (i in 1:itmax) {
   alpha = sum(r * p)/sum(p * Ap)
   x = x + alpha*p
   if (residual(i,r,"Symmetric, positive MINRES (full)")) break
-  q = cBind(p,q)
+  q = cbind(p,q)
 }
 draw.residuals()
 ```
