@@ -2,156 +2,125 @@
 number: 5
 course: Informatyka 2
 material: Instrukcja 5
-author: W. Gryglas
 ---
 
-# Całkowanie numeryczne układów równań
+# Całkowanie numeryczne układów równań różniczkowych zwyczajnych
 
-Pliki do wykorzystania w poniższym ćwiczenie można pobrać za pomocą poniższych linków:
+Pliki do wykorzystania w poniższym ćwiczeniu można pobrać za pomocą poniższych linków:
 
  - [Plik nagłówkowy rk4.h](http://ccfd.github.io/courses/code/info2/rk4.h)
  - [Plik źródłowy rk4.cpp](http://ccfd.github.io/courses/code/info2/rk4.cpp)
 
+## Wstęp
 
-## 1. Wstęp
+Celem ćwiczenia jest zastosowanie metody **Eulera** oraz metody **Rugego-Kutty 4 rzędu** do numerycznego rozwiązania równań ruchu dynamiki Newtona.
+Jako przykład takiego zagadnienia posłuży nam wahadło matematyczne.
 
-Z poprzednich ćwiczeń dowiedzieliśmy się jak można dokonać całkowania równań różniczkowych zwyczajnych (z ang. Ordinary Differential Equations, ODE). Opisane metody pozwalają na znalezienie konkretnej funkcji spełniającej dowolne równanie pierwszego rzędu, tj. postaci:
-$$ \frac{dy}{dt} = f(t, y(t)) $$
-Jednak świat który opisujemy za pomocą równań różniczkowych nie jest niestety tak prosty. W wielu zagadnieniach napotykamy na sytuacje gdy należy "jednocześnie" rozwiązać dwa równania różniczkowe. Mówiąc "jednocześnie" mamy tutaj na myśli sytuację, w której w obu równaniach pojawiają się nieznane(których poszukujemy rozwiązując równania różniczkowe) funkcje, np.:
-$$ 
-\begin{aligned}
-\frac{dx}{dt} &= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &= sin(y) \cdot t + cos(x)
-\end{aligned}
+## Równania ruchu
+
+Ruch wahadła matematycznego najwygodniej jest opisać w układzie współrzędnych biegunowych związanych z jego punktem zaczepienia.
+Otrzymamy wtedy równanie różniczkowe wraz z warunkami początkowymi:
 $$
-
-Jak widać w powyższym układzie równań poszukiwane funkcje to $x = x(t)$ i $y=y(t)$. Obie są funkcjami zmiennej niezależnej $t$. W obu równaniach pojawia się jednak zarówno funkcja $x$ jak i $y$. Równania te są sprzężone, a zatem nie da się w ogólności rozwiązać (scałkować) tego układu w sposób skwencyjny, tj. znaleźć najpierw pierwszą funkcję, a potem oddzielnie drugą. W szczególnych przypadkach można się pokusić o transofrmację wyjściowych równań, tak aby wyrugować jedną ze zmiennych. Jednak w ogólnym przypadku, gdy mamy doczynienia z silnie uwikłanymi funkcjami prawych stron, taki zabieg jest nie możliwy. Dlatego aby znaleźć poszukiwane rozwiązania należy całkować równocześnie wszystkie równania. Takim zagadnieniem zajemiemy się w poniższym ćwiczeniu. Postaramy się zastosować poznane metody z poprzednich zajęć do rozwiązania układów równań pierwszego rzędu. 
-
-Problem rozwiązywania układów rówań pierwszego rzędu bardzo często pojawia się w związku z problemami opisanymi równaniami różniczkowymi zwyczajnymi wyżych rzędów. Równanie różniczkowe zwyczajne drugiego rzędu są jednymi z bardziej rozpowszechnionych równań w mechanice, ponieważ służą do opisu dynamiki, np. ruchu bryły sztywnej pod działaniem sił zewnętrznych. Równanie te przyjmują następującą postać:
-$$ \frac{d^2x}{dt^2} = f(t, x, \frac{dx}{dt}) $$
-Każde tego typu równanie można przedstawić w równoważnej formie układu rówań **pierwszego** rzędu:
-$$ 
-\begin{aligned}
-\frac{dv_x}{dt} &= f_1(t, x, v_x) \\
-\frac{dx}{dt} &= f_1(t, x, v_x)
-\end{aligned}
-$$
-Powyższy układ jest tożsamy z równanie drugiego rzędu i znalezienie przebiegu funkcji $x=x(t)$ będzie odpowiadało scałkowaniu rówania drugiego rzędu. Tego typu problemem zajmiemy się w drugiej części tego ćwiczenia. 
-
-## 2. Całkowanie układów rówań
-Na poprzednich zajęciach poznaliśmy dwie metody jawnego całkowania równań różniczkowych zwyczajnych pierwszego rzędu:
-
-- Eulera
-- Rungego-Kutty
-
-Metody te należą do klasy metod iteracyjnych i pozwalają znaleź przebieg poszukiwanej funkcji obliczając jej wartość w kolejnych krokach czasowych. W przypadku układów równań czynimy podbnie, tj. obliczamy nowe wartości funkcji bazując na poprzednim rozwiązaniu. Różnica w tym przypadku polega na tym, że musimy kolejny krok całkowania wykonać dla wszystkich równań układu. Weźmy pod uwagę przykładowy układ równań ze wstępu do tych ćwiczeń:
-$$ 
-\begin{aligned}
-\frac{dx}{dt} &= sin(y) + cos(x) \cdot t \\
-\frac{dy}{dt} &= sin(y) \cdot t + cos(x)
-\end{aligned}
-$$
-z warunkami początkowymi:
-$$
-x(t=0) = 0 \\
-y(t=0) = 0
-$$
-Dla tagiego układu równań całkowanie metodą Eulera można opisać za pomocą następującego algorytmu:
-
-1. Ustaw $x_0 = x(t=0)$, $y_0 = y(t=0)$, wartość czasu $t=0$ oraz wybierz krok całkowania $dt$, np. $dt = 0.001$.
-2. Oblicz pochodne funkcji $x$ i $y$ wykorzystując znane wielkości $x_0, y_0, t$, w tym przypadku:
-$$
-dxdt = sin(y_0) + cos(x_0) \cdot t = sin(0) + cos(0) \cdot 0 = 0 \\
-dydt = sin(y_0) \cdot 0 + cos(x_0) = sin(0) \cdot 0 + cos(0) = 1
-$$
-3. Wykorzystując wartości pochodnych dla czasu $t=0$ oblicz nowe wartości funkcji $x$, $y$:
-$$
-x = x_0 + dt  \cdot  dxdt = 0 + 0.001 \cdot 0 = 0 \\
-y = y_0 + dt  \cdot  dydt = 0 + 0.001 \cdot 1 = 0.001
-$$
-4. Zaktualizuj zmienne podstawiając:
-$$
-x_0 = x = 0
-y_0 = y = 0.001
-t = t + dh = 0.001
-$$
-5. Przejdź do punktu 2 i potórz operacje aż zmienna $t$ osiągnie wartość końcową $t_k$
-
-Korzystając z powyższego algorytmu można uzyskać następujący wynik dla czasu w zakresie [0,1]
-```{r, echo=FALSE}
-x_0 = 0; y_0 = 0; dt = 0.001; t = 0
-X=x_0; Y=y_0
-for(i in 1:1000)
-{
-    X = append(X, x_0 + dt*(sin(y_0) + cos(x_0)*t) )
-    Y = append(Y, y_0 + dt*(sin(y_0)*t + cos(x_0)) )
-    x_0 = X[i]; y_0 = Y[i]
-    t = t + dt
-}
-t = seq(from=0, to=1, by=dt)
-plot(t, X, type="l", xlab="t",ylab="Wartosci", col="blue")
-lines(t, Y, col="red")
-legend(0.05,y=0.3, legend = c("x(t)","y(t"), col=c("blue","red"), lty=c(1,1), cex=1.2)
-```
-
-Powyższy algorytm bedzie bardzo podobny dla metody Rungego-Kutty. Różnica będzie jedynie polegała na zastąpieniu sposobu obliczania wartości funkcji parawych stron, tj. w tym przypadku zmiennych $dxdt$ oraz $dydt$.
-
-### Ćwiczenia
-
-1. Zaimplementuj opisany algorytm i dokonaj całkowania układu równań przedstawionego powyżej.
-2. Wartości rozwiązania dla kolejnych kroków zapisz w tablicach X, Y.
-3. Wyświetl wartości funkcji X(t) oraz Y(t) na spólnym wykresie używając biblioteki graficznej.
-4. Zmodyfikuj program tak aby całkowanie odbywało się przy wykorzystaniu metody Rungego-Kutty.
-
-## 3. Sprowadzanie równań wyższego rzędu do układów równań
-
-Teraz przejdźmy do kolejnego zagadnienia. Aby zastosować poznane metody do problemów opisanych równaniami wyższych rzędów należy przekształcić wyjściowy problem do układu równań pierwszego rzędu. Aby przeanalizować ten proces weźmy pod uwagę następujące zagadnienie:
-![Wózek](figures/info2/inst5/carriage.png "Problem do rozwiązania")
-
-Ruch wózka, zakładając, że w pozycji wyjściowej sprężyna jest nierozciągnięta oraz masa kół jest pomijalna, można opisać za pomocą prostego równania dynamiki bazując na III zasadzie dynamiki Newtona:
-$$ F_{wózek} = - k\cdot x = m \cdot a$$
-wiedząc, że przyśpieszenie to druga pochodna przemieszczenia po czasie możemy ostatecznie zapisać:
-$$ \frac{d^2x}{dt^2} = - \frac{k}{m} \cdot x $$
-
-Oprócz równania potrzebujemy jeszcze warunków początkowych. Z racji tego, że jest to równanie drugiego rzędu będziemy potrzebowali dwóch takich warunków. W tym przypadku możemy wprost założyć, że startowe położenie wózka jest w początku układu współrzędnych, czyli:
-$$ x(t=0) = 0 $$
-oraz, że na początku wózek jest w spoczynku:
-$$ \frac{dx}{dt}(t=0)=0 $$
-Teraz musimy przekształcić ten problem do problemu opisanego układem dwóch równań różniczkowych pierwszego rzędu. Można to uczynić na kilka sposobów. Jednym z nich jest skorzystanie z równań kanonicznych, które opsiują ruch ciała za pomocą pary [pęd, położenie]. Innym podjeściem, które najłatwiej w tej chwili zrealizować, bedzie przekształcenie równania wyjściowego przez wprowadzenie nowej zmiennej - $v$ i zastosowanie prostego podstawienia:
-$$ v = \frac{dx}{dt} $$
-Powyższe podstawienie automatycznie definiuje nam nowe równanie, które wiąże prędkość i położenie. Teraz, pozostaje tylko zastosować powyższe podstawienie w kontekście równania wyjściowego:
-$$ \frac{d^2x}{dt^2} = \frac{d}{dt} (\frac{dx}{dt}) = \frac{dv}{dt} = -\frac{k}{m}x $$
-Oprócz równań podobnie należy uczynić z warunkami początkowymi. Ostatcznie otrzymujemy następujący układ równań:
-$$
-\frac{dv}{dt} = -\frac{k}{m} x \\
-\frac{dx}{dt} = v \\
-x(t=0) = 0 \\
-v(t=0) = 0
-$$
-
-### Ćwiczenia
-Ruch wahadła matematycznego opisuje równanie różniczkowe z warunkami początkowymi (pomijamy
-opór powietrza, nić jest nieważka i nierozciągliwa):
-$$
-\begin{aligned}
-\frac{d^2\alpha}{dt^2} &= -\frac{g}{l}sin(\alpha) \\
-\alpha(t_0) &= \alpha_0 \\
-\frac{d\alpha}{dt}(t_0) &= \omega_0
-\end{aligned}
+\left\{
+\begin{array}{l}
+  \dfrac{d^2\alpha}{dt^2} = -\dfrac{g}{l}\sin(\alpha) \\
+  \alpha(t_0) = \alpha_0 \\
+  \dfrac{d\alpha}{dt}(t_0) = \omega_0
+\end{array}
+\right.
 $$
 gdzie:
 
-$\alpha$ - kąt wychylenia wahadła z położenia równowagi,
+- $\alpha$ - kąt wychylenia wahadła z położenia równowagi,
+- $g$ - przyśpieszenie ziemskie,
+- $l$ - długość wahadła,
+- $m$ - masa kulki zaczepionej na końcu wahadła,
+- $\alpha_0$ - początkowe wychylenie wahadła,
+- $\omega_0$ - początkowa prędkość wahadła.
 
-$g$ - przyśpieszenie ziemskie,
+Równanie to możemy sprowadzić do układu równań różniczkowych zwyczajnych pierwszego rzędu za pomocą podstawienia:
+$$
+\dfrac{d\alpha}{dt} = \omega
+$$
+Układ równań ma teraz postać:
+$$
+\tag{*}
+\left\{
+\begin{array}{l}
+  \dfrac{d\omega}{dt} = -\dfrac{g}{l}\sin(\alpha) \\
+  \dfrac{d\alpha}{dt} = \omega \\
+  \alpha(t_0) = \alpha_0 \\
+  \omega(t_0) = \omega_0
+\end{array}
+\right.
+$$
 
-$l$ - długość wahadła,
+## Rozwiązanie układu równań różniczkowych metodą Eulera
 
-$m$ - masa kuli zaczepionej na końcu wahadła.
+Mamy układ dwóch równań różniczkowych pierwszego rzędu:
+$$
+\left\{
+\begin{array}{l}
+  \dfrac{d\omega}{dt} = F_1(\alpha, \omega, t) \\
+  \dfrac{d\alpha}{dt} = F_2(\alpha, \omega, t) \\
+\end{array}
+\right.
+$$
+Szukanymi funkcjami są $\omega = \omega(t)$ oraz $\alpha = \alpha(t)$.
+Układ ten można rozwiązać metodą Eulera.
+Jedna iteracja całkowania z krokiem $h$ będzie miała postać:
+\begin{equation}
+\left\{
+\begin{array}{l}
+  \omega(t_{i+1}) = \omega(t_i) + h \cdot F_1(\alpha(t_i), \omega(t_i), t_i) \\
+  \alpha(t_{i+1}) = \alpha(t_i) + h \cdot F_2(\alpha(t_i), \omega(t_i), t_i) \\
+\end{array}
+\right.
+\end{equation}
 
-1. Sprowadzić powyższe równanie różniczkowe rzędu drugiego do układu równań różniczkowych rzędu pierwszego.
-2. Napisać program który używając metody Rungego-Kutty wyznacza zależność kąta wychylenia wahadła od czasu $\alpha(t)$ oraz prędkość kątową $\omega = \frac{d\alpha}{dt}$ dla czasu $t \in \left[0,10\right]$
-3. Dodatkowo wyznaczyć zależność energii całkowitej wahadła od czasu $E(t)$, energia całkowita wahadła wyraża się wzorem:
-$$E = \frac{ml^2}{2}(\frac{d\alpha}{dt})^2 + mgl(1-cos(\alpha))$$
+## Ćwiczenia
+
+Dla wahadła opisanego układem równań (*):
+
+1. Napisz funkcję o nagłówku:
+```c++
+void rhs_fun(double t, double *X, double *F);
+```
+która oblicza wartości prawych stron równań różniczkowych.
+Argumenty funkcji to:
+
+- `t` - zmienna niezależna (czas),
+- `X` - tablica zmiennych zależnych ($\alpha$ i $\omega$),
+- `F` - tablica do której zapisane zostaną obliczone prawe strony równań różniczkowych.
+
+2. Napisz funkcję:
+```c++
+void veuler(double t, double *X, double h, int n,
+            void (* fun)(double, double *,double *), double *X1);
+```
+która wykonuje jeden krok całkowania układu równań różniczkowych zwyczajnych pierwszego rzędu metodą Eulera.
+Argumenty funkcji to:
+
+- `t` - zmienna niezależna,
+- `X` - tablica wartości zmiennych zależnych w kroku `t`,
+- `h` - krok całkowania,
+- `n` - rozmiar tablicy,
+- `fun` - wskaźnik do funkcji obliczającej prawe strony równań,
+- `X1` - tablica do której zapisane zostaną wartości zmiennych zależnych w kroku `t + h`.
+
+2. Napisz program, który używając metody Eulera wyznacza zależności kąta wychylenia wahadła $\alpha$ oraz prędkości kątowej $\omega$ od czasu dla $t \in \left[0, \ldots 10\right]$.
+
+3. Narysuj wykres trajektorii układu w przestrzeni fazowej ($\alpha-\omega$).
+
+4. Powtórz obliczenia korzystając z metody Rungego-Kutty 4 rzędu, która jest zaimplementowana w bibliotece `rk4.cpp`.
+Odpowiednia funkcja nazywa się `vrk4` a jej nagłówek jest analogiczny do nagłówka funkcji `veuler`.
+
+5. Wyznacz zależność energii całkowitej wahadła od czasu $E(t)$.
+Energia całkowita wahadła wyraża się wzorem:
+$$
+E = \frac{ml^2}{2}\left(\frac{d\alpha}{dt}\right)^2 + mgl(1-\cos(\alpha))
+$$
 **Uwaga**: Przy braku dyssypacji, energia mechaniczna powinna być stała.
-4. Powtórzyć obliczenia dla różnych kroków czasowych.
+
+6. Powtórz obliczenia dla różnych kroków czasowych.
+

@@ -1,5 +1,7 @@
 ---
-author: "M. Dzikowski, rev. K. Marchlewski"
+author:
+- M. Dzikowski
+- rev. K. Marchlewski
 course: Informatyka III
 material: Instrukcja 1
 number: 1
@@ -49,7 +51,7 @@ Wpisz w konsoli polecenie `date` i wciśnij enter. Komputer wyświetli aktualną
 (reverse-i-search)`':
 ```
 
-Wyszukujemy przez wpisywanie kolejnych znaków z szukanego polecenia, a pod dwukropku system pokarze podpowiedź. Kolejne kliknięcie `Ctrl + R` pokarze nastęþną sugestię. Innym ułatwieniem jest kończenie nazw. Jeśli wpiszesz `dat` i naciśniesz 2x klawisz `tab`, wyświetlona zostanie lista poleceń zaczynających się na `dat`. Jeśli jest tylko jedno takie polecenie, nazwa zostanie dokończona. Pamiętaj o tych trikach -- znacznie ułatwiają pracę w trybie tekstowym.
+Wyszukujemy przez wpisywanie kolejnych znaków z szukanego polecenia, a pod dwukropku system pokaże podpowiedź. Kolejne kliknięcie `Ctrl + R` pokaże nastęþną sugestię. Innym ułatwieniem jest kończenie nazw. Jeśli wpiszesz `dat` i naciśniesz 2x klawisz `tab`, wyświetlona zostanie lista poleceń zaczynających się na `dat`. Jeśli jest tylko jedno takie polecenie, nazwa zostanie dokończona. Pamiętaj o tych trikach -- znacznie ułatwiają pracę w trybie tekstowym.
 
 ## Poruszanie się po katalogach
 

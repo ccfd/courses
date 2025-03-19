@@ -1,17 +1,19 @@
 ---
-number: 4
+author: "W. Regulski"
 course: Informatyka I
 material: Instrukcja 4
-author: W. Regulski
+number: 4
 ---
 
-
 # Liczby losowe
-Generacja liczb losowych jest bardzo przydatna w wielu obszarach począwszy od komputerowych gier w kości a na skomplikowanych symulacjach mechanicznych i kryptografii skończywszy.
+Generacja liczb losowych jest bardzo przydatna w wielu obszarach -- począwszy od komputerowych gier w kości a na skomplikowanych symulacjach mechanicznych i kryptografii skończywszy.
 Poniższe zadania przedstawiają mechanizm generacji liczb pseudolosowych w języku C/C++^[Mówimy, że generowane liczby są pseudolosowe, gdyż niemożliwe jest wygenerowanie prawdziwie losowego ciągu liczb. W praktyce świetnym źródłem ciągów liczb losowych są dane uzyskiwane z natury  np. dane meteorologiczne (www.random.org).].
 
-Generatory liczb pseudolosowych wymagają zastosowania tzw. ziarna czyli liczby, która posłuży do inicjalizacji procesu losowania kolejnych liczb. Zazwyczaj do inicjalizacji generatora używa się czasu sczytywanego z procesora komputera, więc konieczne będzie dołączenie biblioteki `time.h`
-Poniższy program generuje losową liczbę całkowitą z przedziału 0 do RAND\_MAX. RAND\_MAX jest zdefiniowane w bibliotece `stdlib.h`, jest ono postaci $2^{n-1}$  np. 32767.
+Generatory liczb pseudolosowych wymagają zastosowania tzw. ziarna czyli liczby, która posłuży do inicjalizacji procesu losowania kolejnych liczb.
+Zazwyczaj do inicjalizacji generatora używa się czasu odczytywanego z komputera, więc konieczne będzie dołączenie biblioteki `time.h`
+
+Poniższy program generuje losową liczbę całkowitą z przedziału 0 do RAND\_MAX.
+Wartość RAND\_MAX jest zdefiniowana w bibliotece `stdlib.h` i jest postaci $2^{n-1}$, np. 32767.
 
 ```c++
 #include <stdio.h>
@@ -19,95 +21,117 @@ Poniższy program generuje losową liczbę całkowitą z przedziału 0 do RAND\_
 #include <stdlib.h>
 #include <time.h>
 
-void main()
-{
-     int i;
+void main() {
+  int i;
 
-     srand ( time(NULL) );        //inicjalizacja generatora
-     i = rand();                  //funkcja losująca liczbę
-     printf(" Wylosowana liczba to %d\n", i);
+  srand(time(NULL));          //inicjalizacja generatora
+  i = rand();                 //funkcja losujaca liczbe
+  printf(" Wylosowana liczba to %d\n", i);
 }
 ```
 
-
 ## Ćwiczenia
-- Wykonaj powyższy program kilka razy z rzędu. Co możesz powiedzieć o wyniku? 
-- Zastąp ziarno generatora `time(NULL)` stałą liczbą. Co się wówczas stanie?
-- Zmodyfikuj program tak, by losował ciąg 40 liczb psedudolosowych i wypisywał je na ekran.
+
+- Wykonaj powyższy program kilka razy z rzędu.
+Co możesz powiedzieć o wyniku? 
+- Zastąp ziarno generatora `time(NULL)` stałą liczbą.
+Co się wówczas stanie?
+- Zmodyfikuj program tak, aby losował ciąg 40 liczb pseudolosowych i wypisywał je na ekran.
 - Wypisz na ekran wartość RAND\_MAX.
 
-Zazwyczaj interesuje nas konkretny przedział liczb. Aby określić kres dolny oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach:
-Po prostu bierzemy  wyłącznie resztę z dzielenia przez zadaną długość przedziału i dodajemy kres dolny jak w poniższym fragmencie kodu:
-
+Zazwyczaj interesuje nas konkretny przedział liczb.
+Aby określić wartość minimalną oraz długość takiego przedziału musimy dokonać kilku transformacji na wylosowanych liczbach.
+Jedną z metod jest wzięcie wyłącznie reszty z dzielenia przez zadaną długość przedziału i dodanie wartości minimalnej
+Przykładowo:
 ```c++
-//  kod losuje liczby z przedzialu [ 20 do 50 ]
+  // kod losuje liczby z przedzialu [ 20 do 50 ]
 	
 	int min = 20;
 	int max = 50;
 	int L = max - min + 1;
 
-	i = rand()%L + min;
+  i = rand()%L + min;
 ```
 
-operator % liczy resztę z dzielenia jednej liczby przez drugą. Tutaj, licząc resztę z dzielenia wyniku losowania przez 31,  otrzymujemy liczbę z przedziału 0 do 30. 
+operator ,,%'' umożliwia wyznaczenie reszty z dzielenia jednej liczby przez drugą.
+Tutaj, licząc resztę z dzielenia wyniku losowania przez 31, otrzymujemy liczbę z przedziału 0 do 30.
 
 ## Uwaga
-Czy taki wzór będzie generował liczby losowe o rokładzie równomiernym? W domu zastanów się nad lepszym rozwiązaniem, a poniżej wykorzystaj to najprostsze.
+Czy taki wzór będzie generował liczby losowe o rozkładzie równomiernym?
+Czy możesz podać lepsze rozwiązanie?
 
 ## Ćwiczenia
-- Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od 0 do 100.
-- Wybierz krótki przedział (rzędu kilku możliwych do wylosowania liczb) i wykonaj 1000 oraz 10000 losowań. W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę.
-- Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie. Co możesz powiedzieć o rozkładzie tego losowania?
+
+- Zmodyfikuj powyższy program tak, aby generował liczby z przedziału od $1$ do $8$.
+- Wykonaj $1000$ oraz $10000$ losowań.
+W obu przypadkach zliczaj, ile razy wylosowano każdą liczbę z ustalonego zakresu (tzn. od $1$ do $8$).
+- Wynik (informację o tym, ile razy wylosowano każdą z wartości) wydrukuj na ekranie.
+Co możesz powiedzieć o rozkładzie tego losowania?
+- Napisz funkcję, która losuje $5$ liczb z zakresu od $1$ do $8$.
+Wylosowane wartości powinny być zapisane pod adresami podanymi jako argumenty funkcji.
 
 
 # Liczby losowe typu rzeczywistego, rzutowanie
-Do tej pory losowane liczby były liczbami całkowitymi. Często potrzebujemy liczb zmiennoprzecinkowych. W tym celu po prostu przeskalujemy wylosowaną liczbę tak, aby zawsze należała do przedziału 0-1. Wystarczy podzielić wylosowaną liczbę przez RAND\_MAX. Dodatkowo należy pamiętać, że wylosowana liczba jest typu całkowitego `int`, więc dzielenie przez RAND\_MAX da nam zazwyczaj 0. Aby tego uniknąć, musimy przekonwertować typ `int` na typ zmiennoprzecinkowy 
-`double`. Taką operację nazywamy rzutowaniem. Rzutowanie ma bardzo szerokie zastosowanie i odnosi się nie tylko do operacji na liczbach.
-Poniższy kod losuje liczbę z przedziału 0-1:
-
+Do tej pory losowane liczby były liczbami całkowitymi.
+Często potrzebujemy liczb zmiennoprzecinkowych.
+Aby je otrzymać, przeskalujemy wylosowaną liczbę tak, aby zawsze należała do przedziału $[0, 1]$.
+Wystarczy podzielić wylosowaną liczbę przez RAND\_MAX.
+Dodatkowo należy pamiętać, że wylosowana liczba jest typu całkowitego `int`, więc dzielenie przez RAND\_MAX da nam zazwyczaj 0.
+Aby tego uniknąć, musimy prze-konwertować typ `int` na typ zmiennoprzecinkowy 
+`double`.
+Taką operację nazywamy rzutowaniem.
+Rzutowanie ma bardzo szerokie zastosowanie i odnosi się nie tylko do operacji na liczbach.
+Poniższy kod losuje liczbę z przedziału $[0, 1]$:
 ```c++
     double x;
-    srand(  time  (NULL)  );
+    srand(time(NULL));
 
-    // instrukcja (double) rzutuje typ int na double
-    x = (double)rand()/RAND_MAX;
-
+    // wyrazenie (double), rzutuje typ na double
+    x = (double) rand() / RAND_MAX;
 ```
 
-
-
-
-
-
-
-
 ## Ćwiczenia
-- Napisz funkcję `isInCircle` typu `bool`, która będzie losowała punkt w kwadracie $[0,1]\times[0,1]$ i zwracała wartość 'true', jeśli punkt znajduje się wewnątrz koła o promieniu 1. Jeśli punkt jest poza kołem, niech funkcja zwraca 'false'.
-- W programie głównym sprawdź, czy punkt wylosowany przez daną funkcję jest w obszarze koła, czy nie. Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję. Funkcja zwraca tylko wartość logiczną.
-- Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie. Jeśli jest on wewnątrz koła, niech oznacza go kółkiem. Jeśli jest na zewnątrz, niech oznacza go krzyżykiem. Najwygodniej będzie przeskalować dane zaznaczenie 200-krotnie. Dodatkowo, narysuj na ekranie ćwiartkę koła o promieniu 200 oraz kwadrat  $[0,200]\times[0,200]$, aby było widać, że wylosowany punkt rzeczysićie jest wewnatrz koła.
-- Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa^[Funkcję zwracajacą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. `a = isInCircle()` jak i po prostu wywołać ją w programie bez przypisania, pisząc po prostu `isInCircle()`. Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane ]. Wynik działania powinien przypominać rysunek poniżej.
 
+- Napisz funkcję `isInCircle()`, która będzie losowała punkt w kwadracie o wymiarach $[0, 1] \times [0, 1]$ i zwracała wartość $1$ jeśli punkt znajduje się wewnątrz koła o promieniu $R = 1$.
+Jeśli punkt jest poza kołem, niech funkcja zwraca $0$.
+- W programie głównym sprawdź czy punkt wylosowany przez daną funkcję leży w obszarze koła, czy nie i wyświetl stosowny komunikat.
+Zauważ, że nie masz dostępu do współrzędnych wylosowanych przez funkcję.
+Funkcja zwraca tylko zero lub jedynkę.
+- Niech powyższa funkcja dodatkowo zaznacza dany punkt na ekranie.
+Jeśli jest on wewnątrz koła, niech oznacza go kółkiem.
+Jeśli jest na zewnątrz, niech oznacza go krzyżykiem.
+Ponieważ wylosowane punkty znajdują się w obszarze kwadratu o wymiarach $[0, 1] \times [0, 1]$, wygodnie będzie przeskalować współrzędne 200-krotnie.
+Dodatkowo, narysuj na ekranie odpowiednio przeskalowaną ćwiartkę koła oraz kwadrat, tak aby było widać, że wylosowany punkt rzeczywiście jest wewnątrz koła.
+- Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa^[Funkcję zwracającą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. `a = isInCircle()` jak i po prostu wywołać ją w programie bez przypisania, pisząc `isInCircle()`.
+Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane ].
+Wynik działania powinien przypominać rysunek poniżej.
 ```{r, echo=FALSE}
-n=300
-p=matrix(runif(n*2),n,2)
-sel = rowSums(p**2)<1
-plot(p,pch=ifelse(sel,16,1),xlim=c(0,1),ylim=c(0,1),xlab="X",ylab="Y",asp=1)
-a = seq(0,pi/2,len=300)
-lines(cos(a),sin(a))
-lines(cbind(c(0,0,1,1,0),c(0,1,1,0,0)))
+n = 300
+a = seq(0, pi/2, len = 300)
+p = matrix(runif(n * 2), n, 2)
+p2 = p
+p2[, 2] = 1 - p2[, 2]
+sel = rowSums(p2**2) < 1
+
+plot(p, pch = ifelse(sel, 1, 3), xlim = c(0, 1), ylim = c(0, 1),
+     xlab = NA, ylab = NA, axes = FALSE, asp = 1)
+
+lines(cos(a), 1 - sin(a))
+lines(cbind(c(0, 0, 1, 1, 0), c(0, 1, 1, 0, 0)))
 ```
 
 # Liczenie przybliżeń liczby $\pi$ metodą Monte Carlo
-Koło wpisane w jednostkowy kwadrat ma powierzchnię równą  $\pi/4$. Toteż losując punkty w kwadracie z prawdopodobieństwem  $\pi/4$ trafiamy w obszar koła. 
-Dzięki temu, zliczając odsetek wylosowanych punktów, które trafiły do wnętrza koła, możemy określić przybliżenie liczby   $\pi$. Taka metoda zalicza się do metod Monte Carlo^[w Monte Carlo mieści się bodaj najsłynniejsze w Europie kasyno, stąd taka nazwa dla metod losowych]. 
-
+Koło wpisane w jednostkowy kwadrat ma powierzchnię równą  $\pi/4$.
+Toteż losując punkty w kwadracie, z prawdopodobieństwem $\pi/4$ trafiamy w obszar koła.
+Wiedząc to, możemy wyznaczyć przybliżenie liczby $\pi$.
+Obliczamy iloraz liczby punktów, które znalazły się wewnątrz koła do całkowitej liczby punktów i mnożymy przez $4$.
+Taka metoda zalicza się do metod Monte Carlo^[w Monte Carlo mieści się bodaj najsłynniejsze w Europie kasyno, stąd taka nazwa dla metod losowych]. 
 
 ## Ćwiczenia
-- Przy użyciu poprzedniej funkcji policz przybliżenie liczby $\pi$. Wykonaj 10000 losowań.
-- Sprawdź, jak zmienia się dokładność przybliżeń, gdy wykonujemy coraz więcej losowań. Wykonaj 100, 1000 i 100000  losowań. 
-- *  Wydrukuj na ekran zależność względnego błędu przybliżenia $\pi$ od potęgi liczby 2 w zakresie  $2^{8}$ do $2^{32}$.
 
-
-
-
-
+- Przy użyciu poprzedniej funkcji policz przybliżenie liczby $\pi$.
+Wykonaj 10000 losowań.
+- Sprawdź, jak zmienia się dokładność przybliżeń, gdy wykonujemy więcej losowań.
+Wykonaj 100, 1000 i 100000 losowań.
+- Wydrukuj na ekranie zależność względnego błędu przybliżenia liczby $\pi$ od liczby losowań.
+Niech liczba losowań będzie równa potędze liczby 2 w zakresie $2^{8}$ do $2^{32}$.

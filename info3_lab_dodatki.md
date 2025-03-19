@@ -47,6 +47,7 @@ Przykładowo:
 - `mv pliki katalog`{.bash} --- Przenosi pliki do katalogu.
 - `mv plik1 plik2`{.bash} --- Zmienia nazwę pliku z ,,plik1'' na ,,plik2''.
 - `sed 's/tekst1/tekst2/g'`{.bash} --- Czyta z klawiatury tekst i wypisuje go zamieniając ,,tekst1'' na ,,tekst2''.
+- `cut -d" " -f1`{.bash} --- Czyta z klawiatury tekst, używając znaku spacji jako separatora dzieli go na pola i wypisuje pierwsze pole.
 - `seq liczba1 liczba2`{.bash} --- Wypisuje na ekran ciąg liczb od ,,liczba1'' do ,,liczba2'' co jeden (wartość domyślna).
 
 ## Przekierowanie wejścia wyjścia
@@ -70,9 +71,9 @@ Odwrócony apostrof ``` ` ``` jest na klawiszu z tyldą `~`.
 Więc wypisze na ekran ,,Teka''.
 - `echo $nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`.
 Rezultat wypisze na ekran.
-- `echo $nazwa | sed 's/.txt/.dat/g'`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę `.txt` na `.dat`.
+- `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz rezultat wypisze do zmiennej `nazwa2`.
+- `echo $(echo $nazwa | cut -d"." -f1).dat`{.bash} --- Zastąpi w zmiennej `nazwa` końcówkę występującą po `.` na `.dat`.
 Rezultat wypisze na ekran.
-- `nazwa2=$(echo $nazwa |sed 's/.txt/.dat/g')`{.bash} --- Jak poprzednio, lecz \uline{rezultat wypisze do zmiennej} `nazwa2`.
 - `ls katalog > plik`{.bash} --- wypisze zawartość katalogu do pliku (plik zostanie nadpisany jeśli istnieje).
 - `cp ls katalog`{.bash} albo `cp $(ls) katalog`{.bash} --- skopiuje pliki do `katalogu` według listy zwróconej przez `ls`.
 - `cp cat plik katalog`{.bash} bądź `cp $(cat plik) katalog`{.bash} --- skopiuje pliki do `katalogu` według listy zawartej w pliku.

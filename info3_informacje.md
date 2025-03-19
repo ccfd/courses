@@ -18,13 +18,11 @@ number: 0
 1. Wykład odbywa się przez pół semestru w pt. 8:15-10:00
 2. Ćwiczenia odbywają się co dwa tygodnie w terminach:
 
-    - pon. 8:15-10:00,
     - wt. 8:15-10:00,
-    - czw. 16:15-18:00.
+    - wt. 10:15-12:00,
+    - pt. 10:15-12:00.
     
-3. Zapisy do grup laboratoryjnych odbywają się na pierwszym wykładzie.
-
-4. Zaliczenie przedmiotu składa się z dwóch części:
+3. Zaliczenie przedmiotu składa się z dwóch części:
 
     - kolokwium wykładowe (warunek konieczny niewystarczający)
     - kolokwium na ćwiczeniach.
@@ -37,3 +35,25 @@ number: 0
 4. Tworzenie dokumentów tekstowych w $\LaTeX u$
 5. Programowanie równoległe
 6. Sieci i protokoły internetowe
+
+# Przykładowe kolokwium z ćwiczeń
+
+Czas trwania: 60 min
+
+Ocena: 2 zadania: dst., 3 zadania: db. 4 zadania: bdb.
+
+1. Wyświetl tabelę zawierającą nazwy europejskich krajów i liczbę języków jakimi mówią ich mieszkańcy.
+2. Napisz skrypt tworzący listę plików znajdujących się w każdym z katalogów podrzędnych (jeden poziom) względem katalogu, w którym znajduje się skrypt. Przykładowy wynik działania programu:  
+*katalogA:*  
+*plik.txt* *plik.dat*  
+*katalogB:*  
+*plik1.txt* *plik2.txt* *plik.dat*  
+                  
+3. Napisz skrypt wyświetlający nazwę pliku o największym rozmiarze. Skrypt powinien sprawdzać wyłącznie pliki znajdujące się w tym samym katalogu co on.  
+**Podpowiedź:** skorzystaj z wyniku polecenia *du -b plik*
+
+4. Utwórz plik *.pdf* zawierający równanie zapisane w systemie $\LaTeX$.
+$$
+1-|\mu_0|^2=\frac{(\mathfrak{R} f_0)^2+(\mathfrak{B}f_0-kR_x)^2-(\mathfrak{R}f_0)^2-(\mathfrak{B}f_0-kR_x)^2}{(\mathfrak{R}f_0)^2-(\mathfrak{B}f_0-kR_x)^2}
+$$  
+**Podpowiedź:** w celu zmiany czcionki skorzystaj z pakietu *amsfonts* i polecenia *\\mathfrak*.

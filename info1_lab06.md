@@ -1,164 +1,198 @@
 ---
-number: 6
 course: Informatyka I
 material: Instrukcja 6
-author: B. Górecki
+number: 6
+author: "B. Górecki"
 ---
 
-
-
 # Współpraca z plikami
-Praktyczny program (szczególnie inżynierski) bardzo często musi współpracować z plikami. Czasem, przy obliczeniach trwających wiele godzin lub dni wręcz zależy nam na tym, by program działał samodzielnie bez potrzeby interakcji ze strony użytkownika. Wróćmy jednak do plików. Najczęściej chodzi o możliwość wczytania danych wejściowych z jednego (bądź wielu) plików, przeprowadzenie obliczeń wewnątrz programu i zapisanie wyników do innego pliku (bądź wielu plików).\\
-W języku C komunikacja z plikami prowadzona jest niemalże identycznie, jak czytanie danych z klawiatury i wydruk na ekran, co realizowaliśmy za pomocą znanych już funkcji `scanf` oraz `printf`. Musimy jednak najpierw określić, jaki plik chcemy utworzyć bądź otworzyć i w jakim celu go tworzymy/otwieramy. Ponadto, analogiem instrukcji `printf` do zapisu do plików jest instrukcja `fprintf`, zaś funkcja `scanf` jest zastąpiona przez funkcję `fscanf`. Przyjrzyjmy się przykładowemu kodowi źródłowemu.
-```c++
-FILE *f; // deklarujemy zmienną typu FILE o nazwie f
-         // tak naprawde to wskaznik (o tym jednak w pozniej)
+Do tej pory posługiwaliśmy się danymi, które pochodziły ze standardowego wejścia (klawiatury) i były zapisywane do standardowego wyjścia (terminala).
+Wykorzystywanie takich danych jest jednak często niewygodne i nieefektywne (wyobraźmy sobie ilość pracy jaka by nas czekała przy podawaniu kilkudziesięciu parametrów za pomocą klawiatury, za każdym razem kiedy uruchamiamy program).
+W takich przypadkach posługujemy się plikami.
+Pliki pozwalają na wczytanie i zapisanie dużych ilości przygotowanych wcześniej danych.
 
-errno_t err_f = fopen_s( &f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
-                            // z zamiarem zapisu ("w") i przypi-
-                            // sujemy go do zmiennej o nazwie f
-                            // errno_t określa wynik otwarcia
-                            // kod err_f = 0 oznacza, że operacja przebiegła pomyślnie
+W języku C, komunikacja z plikami przebiega niemalże identycznie, jak czytanie danych z klawiatury i drukowanie ich na ekranie.
+Odpowiednikiem funkcji `scanf()` jest `fscanf()` a funkcji `printf()` jest `fprintf()`. 
+Różnica polega na tym, że w przypadku funkcji służących do obsługi plików, jako pierwszy argument musimy podać wskaźnik zawierający adres pliku.  
+Wskaźniki przechowujące adresy plików mają typ `FILE`, a sam adres można pobrać za pomocą funkcji `fopen()`.
+
+Przyjrzyjmy się przykładowemu kodowi źródłowemu:
+```c++
+FILE *f;              // deklarujemy wskaznik do typu FILE, o nazwie f
+
+f = fopen("dane.txt", "w");
+                      // otwieramy plik o nazwie dane.txt z zamiarem
+                      // zapisu ("w") a do zmiennej o nazwie f przypisujemy adres pliku
 
 fprintf(f, "Zapisujemy wlasnie ten tekst do pliku\n");
 
-fclose(f); // zamykamy plik
+fclose(f);            // zamykamy plik
 ```
-Warto zwrócić uwagę na dwie kwestie. Po pierwsze, w funkcji `fprintf` (to samo dotyczy funkcji `fscanf` jako pierwszy argument trzeba podać *strumień* - de facto nazwę zmiennej typu `FILE`, z którym zachodzi komunikacja (zapis lub odczyt). Dlatego tu podajemy *f*, bo tak właśnie nazwaliśmy naszą zmienną. Ponadto, istotne jest, by sprawdzić, czy plik udało się otworzyć. W przeciwnym razie jakiekolwiek operacje nie miałyby sensu lub skończyły się błędem naszego programu. Zmodyfikujmy więc nasze instrukcje. Teraz wyglądają tak:
-```c++
 
+W tym momencie należy zwrócić uwagę na pewną kwestię.
+Funkcja `fopen()` zgłasza żądanie otworzenia nowego pliku.
+Nie oznacza to jednak, że system operacyjny zawsze dysponuje odpowiednimi zasobami i takie żądanie zostanie spełnione.
+Jeśli system operacyjny nie przydzieli nam dostępu do pliku, do wskaźnika typu `FILE` zostanie przypisana wartość `NULL`.
+Dlatego należy koniecznie sprawdzić czy plik został poprawnie otworzony.
+Zmodyfikujmy odpowiednio nasze instrukcje.
+
+Teraz wyglądają one tak:
+```c++
 FILE *f;
-errno_t err_f = fopen_s( &f, "plik.txt", "w"); // otwieramy plik o nazwie plik.txt
-                            // z zamiarem zapisu ("w") i przypi-
-                            // sujemy go do zmiennej o nazwie f
-                            // errno_t określa wynik otwarcia
-                            // kod err_f = 0 oznacza, że operacja przebiegła pomyślnie
-if(err_f != 0)
-{
-   printf("Blad otwarcia pliku %d \n", err_f); // możemy przeczytać kod błędnu i sprawdzic w google co jest jego przyczyna
-   exit(-1); // zakonczenie programu
+f = fopen("dane.txt", "w");
+
+if(f == NULL) {
+   printf("Blad otwarcia pliku!\n");  // drukujemy komunikat o bledzie
+   exit(1);                           // konczymy prace programu (funkcja exit()
+                                      // znajduje sie w bibliotece stdlib.h)
 }
 
-// Tu wykonujemy operacje na pliku (w naszym przypadku zapis)
-// Gdy plik juz nie bedzie wiecej potrzebny w naszym programie,
-// koniecznie go zamykamy!
+// Tutaj wykonujemy operacje na pliku (w naszym przypadku zapis).
+// Gdy plik nie bedzie juz wiecej potrzebny zamykamy go.
 
 fclose(f);
 ```
-Pliki można otworzyć nie tylko w trybie zapisu *(ang. write)* `w` (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku *(ang. append)* `a` lub czytania z pliku *(ang. read)* `r`. Można również wybrać, czy tworzony/czytany plik ma być obsługiwany w trybie tekstowym czy binarnym. Służą do tego odpowiednio sekwencje `t` i `b`. Przykładowe instrukcje zaprezentowano poniżej. Zauważmy też, że można otworzyć w tym samym czasie kilka plików.
+
+Pliki można otwierać nie tylko w trybie zapisu *(ang. write)* `w` (który zawsze czyści plik i wypełnia go od nowa), ale również w trybie dopisywania do pliku *(ang. append)* `a` lub czytania z pliku *(ang. read)* `r`.
+Można również wybrać czy tworzony/odczytywany plik ma być obsługiwany w trybie tekstowym, czy binarnym.
+Aby móc obsługiwać plik binarny należy dodać literę `b` do trybu zapisu.
+
+Przykładowe instrukcje zaprezentowano poniżej.
 ```c++
-int main()
-{
-   int a = 3;
+void main() {
+  int a;
+  FILE *f, *g, *innyPlik;
+  
+  f = fopen("plik1.txt", "w");       // Zapis w trybie tekstowym
+  g = fopen("plik2.dat", "wb");      // Zapis w trybie binarnym
+  innyPlik = fopen("Dane.txt", "r"); // Czytanie z pliku
+  
+  if (f == NULL || g == NULL || innyPlik == NULL) {
+    printf("Nie udalo sie otworzyc co najmniej jednego pliku!\n");
+    exit(1);
+  }
 
-   FILE *f, *g, *InnyPlik;
-   errno_t err_f = fopen_s("plik1.txt", "wt"); // Zapis w trybie tekstowym
-   errno_t err_h = fopen_s("plik2.dat", "wb"); // Zapis w trybie binarnym
-   errno_t err_InnyPlik = fopen_s("Dane.txt", "r"); // Czytanie z pliku
+  fscanf(innyPlik, "%d", &a);        // wczytujemy liczbe calkowita z pliku Dane.txt
+                                     // i zapisujemy jej wartosc do zmiennej a
 
-         if (err_f != 0 || errf_g != 0 || errf_InnyPlik != 0)
-         {
-                  printf("Nie udalo sie otwarcie choc jednego z plikow\n");
-                  exit(-1);
-         }
+  fprintf(f, "Zapisujemy wartosc a do plik1.txt, a = %d\n", a);
+  fprintf(g, "Binarnie zapisujemy ten tekst do plik2.dat\n");
 
-   fprintf(f, "Zapisujemy wartosc a do plik1.txt, a = %d\n", a);
-   fprintf(g, "Binarnie zapisujemy ten tekst do plik2.dat\n");
-   fscanf_s(InnyPlik, "%d", &a); // Wczytujemy z pliku Dane.txt
-// liczbe calkowita i przypisujemy jej wartosc do zmiennej a
-
-   // Tu mozemy wykonac jeszcze inne operacje na otwartych plikach
-   
-   fclose(f);
-   fclose(g);
-   fclose(InnyPlik);
-   
-   exit(0);
+  // Tu mozemy wykonac jeszcze inne operacje na otwartych plikach
+ 
+  fclose(f);
+  fclose(g);
+  fclose(innyPlik);
 }
 ```
-W powyższym przykładzie zaprezentowaliśmy jednocześnie użycie funkcji `fscanf`, która działa analogicznie do dobrze już znanej funkcji `scanf`.
 
-### Bufor
-Zapisywanie danych do pliku jest "względnie" czasochłonną operacją. Jest to spowodowane róznicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD. Aby nie zapisywać co chwilę drobnych ilości danych na dysk system operacyjny zbiera je w buforze, a gdy uzna że jest on już odpowiednio pełny to czyści go przepisując dane na dysk. 
-Funkcja `fclose(plik)` zapisuje dane z bufora do pliku, a następnie zamykana plik.
-Chcąc wywołać jedynie opróżnienie bufora należy użyć funkcji `fflush(plik)`.
+W powyższym przykładzie, zaprezentowaliśmy użycie funkcji `fscanf()`, która działa analogicznie do funkcji `scanf()`.
 
-Process ten ma istotne konsekwencje:
+## Bufor
+Zapisywanie danych do pliku jest ,,względnie'' czasochłonną operacją.
+Jest to spowodowane różnicą pomiędzy czasem dostępu do pamięci RAM a dyskiem HDD.
+Aby nie zapisywać co chwilę drobnych ilości danych na dysk, system operacyjny gromadzi je w buforze.
+Gdy uzna, że jest on już pełny, przepisuje dane na dysk a sam bufor -- czyści. 
+Funkcja `fclose(plik)` zapisuje dane z bufora do pliku, a następnie zamyka plik.
+Chcąc wywołać jedynie opróżnienie bufora, należy użyć funkcji `fflush(plik)`.
 
-         - jeżeli nastąpi "crash" programu przed wykonaniem komendy `fclose(plik)` może się zdarzyć, że żadne dane nie zostaną zapisane.
-         - wyjmując pendrive z komputera bez korzystania z opcji "bezpieczne usuwanie sprzętu" narażamy się na błędnie zapisanie pliku. Część danych może być jeszcze w buferze, mimo że okienko kopiowania zostało już formalnie zamknięte.
+Opisane zachowanie ma istotne konsekwencje:
 
-## Uwaga
-Wszystkie funkcje związane z obsługą plików znajdują się w bibliotece `cstdio`. W związku z tym do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: `#include <cstdio>`
+  - Jeżeli przed wykonaniem komendy `fclose(plik)` nastąpi błąd programu, może się zdarzyć, że żadne dane nie zostaną zapisane.
+  - Wyjmując pendrive z komputera bez skorzystania z opcji ,,bezpieczne usuwanie sprzętu'' narażamy się na błędne zapisanie pliku.
+  Część danych może być jeszcze w buforze, mimo że okienko kopiowania zostało już formalnie zamknięte.
+
+**Uwaga:** wszystkie funkcje związane z obsługą plików znajdują się w bibliotece `stdio.h`.
+W związku z tym, do pliku programu należy dołączyć instrukcję preprocesora załączającą tę bibliotekę: `#include <stdio.h>`
 
 ## Ćwiczenia
-W praktyce inżynierskiej pliki często zawierają dane pochodzące z eksperymentu lub symulacji. Plik `przebieg.txt` ([do ściągnięcia tu](data/przebieg.txt)) zawiera fragment przebiegu czasowego wartości trzech składowych prędkości *(u, v, w)* pochodzących z symulacji przepływu powietrza przez dużą turbinę wiatrową. Chwilowe wartości tych składowych zostały zebrane z punktu znajdującego się tuż za turbiną. Napisz program, który:
-- Otworzy plik.
-- Wczyta dane z pliku do trzech tablic `u`, `v`, `w` zadeklarowanych statycznie (każda o rozmiarze 2000 - za tydzień będzie o lepszej metodzie deklaracji dużych tablic). Czytanie zrealizuj z użyciem pętli `for`. Obejrzyj plik, aby przyjrzeć się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości *(u, v, w)*; kolejne wiersze odpowiadają kolejnym krokom czasowym).
-- Po wczytaniu wszystkich wartości do tablic obliczy średnią każdej ze składowych. Średnia wyrażona jest wzorem:
-$$
-\bar{u} = \frac{\displaystyle{\sum_{i=1}^n u_i}}{n}
-$$
-- Obliczy odchylenie standardowe dla każdej ze składowych. Odchylenie standardowe dane jest wzorem:
-$$
-\displaystyle{\sigma = \sqrt{\frac{\displaystyle{\sum_{i=1}^n (u_i - \bar{u})^2}}{n-1}}}
-$$
-- Zapisze do innego pliku raport z obliczeń, w którym poda wszystkie obliczone wielkości oraz wydrukuje to samo na ekran.
-- Wczytaj też plik `przebieg.txt` do arkusza kalkulacyjnego i utwórz wykres obrazujący te przebiegi. Oceń krytycznie wyniki uzyskane swoim programem na podstawie obserwacji wykresu. Czy średnie i odchylenia standardowe mają wiarygodne wartości?
+W praktyce inżynierskiej, pliki często zawierają dane pochodzące z eksperymentu lub symulacji.
+Plik [przebieg.txt](data/info1/przebieg.txt) zawiera fragment przebiegu czasowego dla wartości trzech składowych prędkości $(u, v, w)$ pochodzących z symulacji przepływu powietrza przez turbinę wiatrową.
+Wartości tych składowych zostały zmierzone w punkcie znajdującym się tuż za turbiną.
+Otwórz i obejrzy plik, aby przekonać się, w jaki sposób ułożone są dane (każda z kolumn odpowiada jednej ze składowych prędkości $(u, v, w)$ a kolejne wiersze odpowiadają kolejnym krokom czasowym).
 
-## Wskazówka
-Zauważ, że każda suma daje się łatwo policzyć z użyciem pętli `for` w następujący sposób:
+Napisz program, który:
+
+  - Otworzy plik `przebieg.txt`.
+  - Wczyta dane z pliku do trzech zadeklarowanych statycznie tablic `u`, `v` oraz `w`.
+  Każda z tablic powinna mieć wymiar $2000$.
+  Odczytywanie danych z pliku zrealizuj za pomocą pętli `for`.
+  - Po wczytaniu wszystkich wartości do tablic, obliczy średnią dla każdej ze składowych. 
+  Średnia dana jest wzorem:
+  $$
+    \mu = \frac{\displaystyle{\sum_{i=1}^n u_i}}{n}
+  $$
+  - Obliczy odchylenie standardowe dla każdej ze składowych.
+  Odchylenie standardowe dane jest wzorem:
+  $$
+    \sigma = \sqrt{\frac{\displaystyle{\sum_{i=1}^n (u_i - \mu)^2}}{n-1}}
+  $$
+  - Zapisze do innego pliku raport z obliczeń, w którym poda wszystkie obliczone wielkości.
+  - Wydrukuje na ekran to samo co w powyższym punkcie.
+  - Za pomocą biblioteki `winbgi2.h` narysuje wykres każdego z wczytanych przebiegów i zaznaczy na nim wartości $\mu$, $\mu + \sigma$ oraz $\mu - \sigma$.
+  Oceń krytycznie wyniki uzyskane swoim programem na podstawie obserwacji wykresu.
+  Czy średnie i odchylenia standardowe mają wiarygodne wartości?
+
+Dla sprawdzenia wczytaj też plik `przebieg.txt` do arkusza kalkulacyjnego i utwórz wykres obrazujący te przebiegi.
+
+**Wskazówka:** Zauważ, że każda suma daje się policzyć z wykorzystaniem pętli `for` w następujący sposób:
 ```c++
 double suma = 0;
+int i;
 
-for(int i = 0; i<n; i++)
-{
+for(i = 0; i < n; i++) {
    suma += a[i];
 }
 ```
-To tylko wskazówka. Oczywiście musisz zmodyfikować powyższy kod tak, aby liczył sumy z powyższych wzorów.
 
-# Ważne: Dalej o funkcjach
-Wiemy, że funkcje mogą przyjmować argumenty. Dowiedzieliśmy się też, że funkcje mogą zwracać wartości. Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach `Srednia` i `OdchylenieStandardowe`. Powinny mieć takie nagłówki:
+### Wykorzystanie funkcji do poprawienia przejrzystości programu
+Zmodyfikuj swój kod tak, aby odpowiednie bloki instrukcji były realizowane w funkcjach `srednia()` i `odchStd()`.
+Funkcje te powinny mieć poniższe nagłówki:
 ```c++
-double Srednia(double *tablica, int n);
-double OdchStd(double *tablica, double WartoscSrednia, int n);
+double srednia(double tablica[], int n);
+double odchStd(double tablica[], int n, double wartoscSrednia);
 ```
-Następnie zmodyfikuj kod funkcji `main` tak, aby część dotycząca obliczeń dała się zwięźle zapisać w poniższej postaci:
+
+Następnie zmodyfikuj kod funkcji `main()` tak, aby część dotycząca obliczeń dała się zwięźle zapisać w poniższej postaci:
 ```c++
-void main()
-{
-   (...) // Deklaracje i kod wczytujacy dane
+void main() {
+   // deklaracje i kod wczytujacy dane
 
-   um = Srednia(u, n);
-   vm = Srednia(v, n);
-   wm = Srednia(w, n);
+   um = srednia(u, n);
+   vm = srednia(v, n);
+   wm = srednia(w, n);
 
-   u_std = OdchStd(u, um, n);
-   v_std = OdchStd(v, vm, n);
-   w_std = OdchStd(w, wm, n);
+   u_std = odchStd(u, n, um);
+   v_std = odchStd(v, n, vm);
+   w_std = odchStd(w, n, wm);
 
-   (...) // Dalsza czesc programu zajmujaca sie raportowaniem wynikow
+   // dalsza czesc programu zajmujaca sie raportowaniem wynikow
 }
 ```
 
-# Dla dociekliwych \*
-Obliczenia na komputerze prowadzone są ze skończoną dokładnością. Zmodyfikuj swój kod tak, aby bieżąca wartość średniej była liczona ,,w locie'' - w trakcie czytania danych z pliku (naturalnie będzie to średnia wartość przeczytanych dotąd elementów). Wystarczy, że zrobisz to dla jednej składowej prędkości (np. *u*). Możesz tę średnią też na bieżąco podczas czytania danych drukować na ekran. Na końcu porównaj wartość średniej uzyskanej w ten sposób z wartością policzoną *a posteriori* w poprzednim poleceniu.\\
-Pseudokod algorytmu znajdziesz poniżej. Zapisz go w sposób zrozumiały dla komputera, w języku C.
+# \* Dla dociekliwych
+Obliczenia na komputerze prowadzone są ze skończoną dokładnością.
+Zmodyfikuj swój kod tak, aby bieżąca wartość średniej była liczona ,,w locie'' -- w trakcie czytania danych z pliku (będzie to średnia wartość przeczytanych dotąd elementów).
+Wystarczy, że zrobisz to dla jednej składowej prędkości (np. *u*).
+Możesz średnią obliczaną podczas czytania danych drukować na bieżąco na ekran.
+Na końcu, porównaj wartość średniej uzyskanej w ten sposób z wartością policzoną w poprzednim poleceniu.  
+Pseudokod algorytmu znajdziesz poniżej.
+Zapisz go w sposób zrozumiały dla komputera, w języku C.
 ```c++
 biezaca_srednia = 0
 
-Petla po i od 1 do n (czytajaca dane)
+petla po i od 1 do n (czytajaca dane)
 {
-   PrzeczytajNowyElementZPlikuIWpiszGoDoTablicy
+   przeczytajNowyElementZPlikuIWpiszGoDoTablicy
 
-   biezaca_srednia = (biezaca_srednia*(i-1) + u[i])/i
+   biezaca_srednia = (biezaca_srednia * (i - 1) + u[i]) / i
 }
 
-// Po zakonczeniu petli biezaca_srednia to srednia z calego zbioru
+// Po zakonczeniu petli, biezaca_srednia to srednia z calego zbioru
 ```
-Zastanów się, dlaczego taki algorytm liczenia średniej w sensie matematycznym prowadzi do tak samo zdefiniowanej średniej. Jeśli trudno ci go zrozumieć, wymyśl sobie zbiór czteroelementowy i wykonaj go krok po kroku na kartce.
 
-## Pytanie
-Czy obie średnie (policzone na komputerze dwoma sposobami) mają tę samą wartość? Czy coś się zmieni, gdy weźmiesz inną składową prędkości?
+Zastanów się, dlaczego taki algorytm liczenia średniej w sensie matematycznym prowadzi do tak samo zdefiniowanej średniej.
+Jeśli trudno Ci go zrozumieć, wymyśl sobie zbiór 4-elementowy i zastosuj do niego powyższy algorytm krok po kroku na kartce.
 
+**Pytanie:** Czy obie średnie (policzone na komputerze dwoma sposobami) mają tę samą wartość?
+Czy coś się zmieni, gdy uśrednisz inną składową prędkości?

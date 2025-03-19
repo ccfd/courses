@@ -1,0 +1,203 @@
+---
+title: Ustalony przepływ 2D przez dyszę zbieżno-rozbieżną
+number: 0
+course: Metody Obliczeniowe Mechaniki Płynów
+material: Instrukcja 5
+---
+
+# Cel ćwiczenia
+
+Symulacja przepływu turbulentnego ściśliwego (liczba Macha > 0.3) w dyszy zbieżno-rozbieżnej o przekroju kołowym, jak również zapoznanie z opcją dynamicznej adaptacji siatki.
+
+# Streszczenie
+
+W ramach ćwiczenia należy przeprowadzić symulację ustaloqnego przepływu turbulentnego (model k-\(\omega\) SST) z wykorzystaniem solvera density based. 
+Obliczenia należy wykonać dla powietrza traktowanego jako gaz idealny, na stworzonej podczas zajęć siatce, z wykorzystaniem solvera density based, a następnie porównanie wyników przy użyciu solvera pressure based. 
+Wyniki ćwiczenia należy przedstawić prowadzącemu w formie sprawozdania.
+
+# Przebieg ćwiczenia
+
+## Geometria
+
+![**Rys.1.** *Szkic na płaszczyźnie X-Y*](figures/momp_inst5/instr5_geom.svg#center "Geometria")
+
+
+
+Stwórz **powierzchnię** przedstawioną na rysunku 1.
+
+
+## Siatka obliczeniowa
+
+![**Rys.2.** *Nazwy warunków brzegowych wraz z podziałami*](figures/momp_inst5/instr5_mesh.svg#center "Mesh")
+
+1. Nazwij warunki brzegowe zdognie z rysunkiem 2.
+
+2. Nadaj podziały zgodnie z rysunkiem 2.
+
+3. Zadając pionowe podziały, zastosuj opcję bias tak, aby siatka zagęszczała się w kierunku warunku brzegowego **wall**.
+
+4. Do powierzchni *Powietrze* dodaj narzędzie **Mapped Meshing** (korzystałeś z niej w [Instrukcji I]( http://ccfd.github.io/courses/momp_lab01.html ) )
+
+5. Manipuluj opcjami programu aby siatka wyglądała jak na rysunku 3.
+
+	<details><summary>Podgląd gotowej siatki</summary>
+	<p>
+
+	![**Rys.3.** *Gotowa siatka obliczeniowa*](figures/momp_inst5/instr5_mesh2.svg#center "Mesh")
+
+	</p>
+	</details>
+
+
+## Obliczenia w programie Fluent
+
+### Przepływ poddźwiękowy
+
+1.	Ponieważ będziemy modelować, ze względu na osiową symetrię, tylko górną połówkę dyszy, ustaw w opcjach wyświetlania odpowiednią płaszczyznę symetrii aby zobaczyć dolną część domeny.
+
+2.	Zmień (dla wygody) jednostkę miary dla ciśnienia na atmosfery ( **Setup / General / Units...** lub w górnej belce programu **Physics / General... / Units...**).
+
+3.	Ustaw solver density based (**Setup / General**), który można używać dla przepływów ściśliwych, transonicznych, w których nie ma regionów o niskiej prędkości przepływu.
+W przypadkach kiedy w dużym obszarze przepływu prędkość jest niska należy użyć solvera pressure-based (np. opływ profilu/samolotu)
+
+4. Włącz odpowiedni **model turbulencji**.
+
+5.	Ponieważ w przepływie ściśliwym występuje znaczna zmiana temperatury ośrodka należy włączyć do rozwiązania **równanie energii** (włącza się automatycznie przy wyborze odpowiednich właściwości płynu).
+
+6. Płynem, który będziemy symulować jest powietrze. Zmień gęstość płynu na **ideal-gas**.
+
+5.	Warunki brzegowe (dwukrotnie klikamy na **Boundary conditions** w **Setup** lub **Physics/Zones/Boundaries** w górnej belce programu.
+	a.	W **Operating Conditions...** ustaw **Operting pressure (jednostka)** na 0 atm (ponieważ ustaliliśmy ciśnienie operacyjne na zero, ciśnienie w warunkach brzegowych będzie ciśnieniem absolutnym) 
+			
+			Sprawdź w *Fluent Users Guide* rozdział 8.14 lub w przewodniku po Fluencie co to jest operating pressure
+	
+	b.	Wlot (pressure inlet - używamy kiedy znane jest ciśnienie wlotowe a nieznane są prędkości i wydatki masowe na wlocie)
+		
+		1.	Gauge Total Pressure 0.9 [atm] (ciśnienie stagnacji)
+		
+		2.	Supersonic/Initial Gauge Pressure 0.7369 [atm] (wartość ciśnienia statycznego na wlocie w przypadku gdy przepływ stanie się lokalnie naddźwiękowy, również używane do policzenia początkowych wartości ciśnienia, temperatury i prędkości jeśli wlot zostanie wybrany do inicjalizowania przepływu)
+		
+		3.	Turb intensity 1.5%, viscosity ratio 10
+	
+	c.	Wylot (pressure outlet - w przypadku przepływu poddźwiękowego pozwala zdefiniować ciśnienie statyczne na wylocie z obszaru obliczeniowego)
+		
+		1.	gauge pressure 0.7369 [atm]
+		
+		2.	backflow turbulent intensity 1.5, viscosity ratio 10
+
+6.	**Solution / Methods** - we wszystkich polach pod dyskretyzacją ustawić równania 1go rzędu.
+
+7.	**Solution / Controls**
+
+	1. Ustaw liczbę Couranta na 50. Pisząc sprawozdanie, sprawdź czym jest liczba Couranta (jaka jest jej definicja).
+	
+	2.	W **Limits...**, ustawić  minimalną temp. statyczną na 200 K, a maksymalną na 400 K (wprowadzając limity na rozwiązanie, zmniejszamy prawdopodobieństwo rozbiegnięcia się obliczeń w wyniku osiągnięcia nieprawdopodobnie dużych, bądź też małych wartości).
+	
+8.	W celu monitorowania zbieżności rozwiązania, monitoruj różnicę strumienia masy na wylocie i wlocie z dyszy:
+	
+	1. Otwórz **Solutions / Report Definitions **
+	2. Użyj opcji **New / Surface Report / Mass Flow Rate...**
+	3. W oknie tworzenia raportu **wpisz nazwę** oraz zaznacz **wlot i wylot Twojej domeny**
+	4. Zaakceptuj zmiany.
+
+9.  Wyłącz kryterium zbieżności reszt **Convergence Criterion = none** (**Solution / Monitors / Residual**).
+Ta opcja pojawi się po zaznaczeniu **Show Advanced Options**.
+
+10. W **Solution / Monitors** stwórz nowy raport za pomocą opcji **Report Plots**:
+
+	1. **New...**
+	2. Odpowiednio nazwij wykres
+	3. Zaznacz stworzony wcześniej raport i za pomocą opcji **Add>>** dodaj raport do wykresu.
+	4. W opcjach wykresu wybierz:
+		- nazwę która pojawi się na wykresie
+		- nazwę osi Y (zmiennej którą będziesz monitorował)
+		- okno w którym pojawi się wykres (tą opcję możesz pozostawić domyślną
+	5. Zaznacz opcję **Print to Console** abyś mógł dokładnie monitorować zbieżność.
+			
+
+11.	Rozpocznij obliczenia i monitoruj zbieżność strumienia masy. Twoje zdefiniowane okno z wykresem wydatku masowego znajduje się w drugiej zakładce w oknie graficznym.
+
+		Śledź zbieżność na podstawie wyświetlanego wykresu wydatku masowego oraz wartości wydatku masowego w konsoli w dolnej części programu 
+		
+		Sprawdź w której kolumnie konsoli znajduje się zdefiniowana przez Ciebie zmienna.
+		
+	Obliczenia możemy zakończyć gdy wydatek masowy zbiegnie się w okolicy zera. (Zmienna zacznie oscylować w granicy 1e-6)
+
+12.	Aby sczytać wartość różnicy strumieni masy na wlocie i wylocie przejdź do **Results / Reports / Fluxes** i zaznacz odpowiednie powierzchnie.
+
+13.	Sprawdź czy wyniki obliczeń mają sens bazując na intuicji inżynierskiej. 
+Stwórz wykresy ciśnienia w osi symetrii oraz w najwęższym miejscu kanału (zapisz je w formie obrazka oraz serii danych), kontury ciśnienia i liczby Macha, sprawdź czy w którymś miejscu zachodzi oderwanie (linie prądu / wektory), oraz czy zostaje przekroczona prędkość dźwięku – wykonać odpowiednie wizualizacje.
+
+### Przepływ nadddźwiękowy
+
+14.	Przeprowadź symulację dla zwiększonego ciśnienia na wlocie do dyszy (gauge pressure = 1.1 atm). Teraz spodziewamy się wystąpienia przepływu lokalnie znacznie przekraczającego prędkość dźwięku.
+
+### Solver pressure based
+
+15.	Przeprowadź symulacje z wykorzystaniem solvera pressure based (jak wcześniej dla dwóch różnych ciśnień wlotowych) i porównaj wyniki. W przypadku wykresów, najłatwiej będzie wskazać różnice, zestawiając wyniki dla obu przypadków w jednym oknie wykresu.
+
+### Przepływ nadddźwiękowy - adaptacja siatki
+
+Obliczenia wykonać dla przepływu z ciśnieniem wlotowym 1.1 atm, solverem density based, porównać wyniki z przypadkami: bez zagęszczenia siatki oraz dla solvera density based.
+
+1.	W celu dokładnego rozwiązania równań w miejscach dużych skoków wartości zmiennych włącz automatyczne zagęszczanie siatki (Górna belka programu **Domain / Adapt / Automatic...**) z opcjami:
+
+		Zanim to zrobisz musisz zainicjalizować rozwiązanie
+
+	1.	Stworz warunek dla rozrzedzenia **Cell registers / New / Field Variable...**
+		
+		- Nazwij warunek jako **Coarsen**
+		- Typ wybierz jaki **Cell less than**
+		- **Derivative Option** ustaw na **Gradient**
+		- Wpisz w polu **Cells having value less than** wartość **0.3**
+		- Wybierz ciśnienie statyczne w polu **Gradient of**
+		- w **Scaling Option** wybierz **Scale by Zone Average** (gradient będzie porównywany z lokalną średnią prędkością.)
+		- **Save**
+		
+			Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się poniżej 0.3.
+			
+	2.	Stworz warunek dla zagęszczenia **Cell registers / New / Field Variable...**
+	
+		- Nazwij warunek jako **Refine**
+		- Typ wybierz jaki **Cell more than**
+		- **Derivative Option** ustaw na **Gradient**
+		- Wpisz w polu **Cells having value more than** wartość **0.7**
+		- Wybierz ciśnienie statyczne w polu **Gradient of**
+		- w **Scaling Option** wybierz **Scale by Zone Average** (gradient będzie porównywany z lokalną średnią prędkością.)
+		- **Save**
+
+		Ten warunek będzie oznaczał komórki w których gradient ciśnienia statycznego znajdzie się powyżej 0.7.
+	
+	3.	W polu **Frequency(Iteration)**, wpisz **Interwał** 100 iteracji (adaptacja siatki nastąpi raz co 100 kroków);
+	
+	4. W polu **Refinement Criterion** wybierz Twój warunek **Refine**
+	
+	5. W polu **Coarsening Criterion** wybierz Twój warunek **Coarsen**
+	
+	6. Wejdź w opcję **General Adaption Controls** i w polu **Maximum Refinement Level** wpisujemy **2**.
+	
+	7. Warto w tym miejscu zapisać przypadek obliczeniowy. Jeżeli fluent modyfikuje siatkę, skutki są nieodwracalne. Jeżeli po modyfikacji będzie niezadowalająca, trzeba będzie zaczynać od zera.
+	
+2.	Rozpocznij obliczenia i monitoruj zbieżność strumienia masy.
+
+3.	Po dokładnie 100 iteracjach (tak wynika z ustawień z pkt. 1b) powinna nastąpić adaptacja siatki, w celu sprawdzenia czy wszystko działa poprawnie przerwij obliczenia po ~ 110 iteracjach. 
+Sprawdź jak wygląda siatka. 
+Jeśli można zauważyć miejsca zagęszczenia / rozrzedzenia oczek to znaczy, że ustawienia dotyczące dynamicznej adaptacji siatki są poprawne. 
+W przeciwnym przypadku powtórz ustawienia adaptacji, pkt. 1.
+
+
+	<details><summary>Podgląd gotowej siatki</summary>
+	<p>
+
+	![**Rys.4.** *Zagęszczona siatka obliczeniowa*](figures/momp_inst5/instr5_meshref.svg#center "Mesh Refinement")
+
+	</p>
+	</details>
+
+4. Kontynuuj obliczenia. W przypadku adaptowanej siatki zbieżność wydatku masowego może już nie być taki gładki. Przerwij obliczenia w zadowalającym momencie.
+
+5.	Dokonaj analizy wyników.
+
+
+
+

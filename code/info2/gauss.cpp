@@ -1,39 +1,53 @@
 
-void gauss( int n, double a[][N],double b[],double x[] )
-{
-	int i,j,k;
-	double s;
-	double wsp;
+/*
+Funkcja gauss znajduje rozwiazanie ukladu rownan liniowych
+A * x = b
+metoda eliminacji Gaussa.
 
-	//eliminacja
+Argumenty:
+  N - liczba rownan,
+  A - wskaznik na tablice dwuwymiarowa,
+  x - wskaznik na tablice przechowujaca rozwiazanie ukladu rownan,
+  b - wskaznik na tablice prawych stron ukladu rownan.
+*/
 
-	// wiersz przy pomocy którego eliminujemy elementy
-	for( i = 0; i < n-1; i++ )
-	{
-		// wersz którego elementy eliminujemy
-		for( k = i+1; k < n; k++ )
-		{
-			wsp = a[k][i] / a[i][i];
-			// odejmowanie elementów wiersza "i" od wiersza "k"
-			for( j = i+1; j < n; j++ )
-				a[k][j] -= a[i][j] * wsp ;
-    
-			// odejmowanie prawych stron
-			b[k] -= b[i] * wsp;
-		}
-	}
+/*
+Function solves a system of linear equations
+A * x = b
+using the Gauss elimination method.
 
-	//rozwiazanie ukladu
-	x[n-1] = b[n-1] / a[n-1][n-1];
+Functions arguments:
+  N - number of equations,
+  A - pointer to two-dimensional array,
+  x - pointer to an array storing solution of the system of equations,
+  b - pointer to an array storing the right hand side vector b.
+*/
+//#include "gauss.h"
+
+void gauss(int N, double **A, double *x, double *b) {
+  double sum, wsp;
+
+  for (int i = 0; i < N-1; i++) {
+
+    for (int k = i+1; k < N; k++) {
+      wsp = A[k][i] / A[i][i];
+
+      for (int j = i; j < N; j++)
+        A[k][j] -= A[i][j] * wsp;
+
+      b[k] -= b[i] * wsp;
+    }
+  }
+
+  x[N-1] = b[N-1] / A[N-1][N-1];
  
-	for( i = n-1; i >=0; i-- )
-	{
-		s=0.0;
-		for( j = i+1; j < n; j++ )
-		   s += a[i][j] * x[j];
+  for (int i = N-1; i >= 0; i--) {
+    sum = 0.;
 
-	    x[i] = ( b[i] - s ) / a[i][i];
-	}
+    for (int j = i+1; j < N; j++)
+      sum += A[i][j] * x[j];
+
+    x[i] = (b[i] - sum) / A[i][i];
+  }
 }
-
 

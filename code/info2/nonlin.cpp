@@ -1,4 +1,6 @@
 #include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 double bisec( double xa, double xb, double (*pf)(double), double eps, int *i_iter )
 {
@@ -37,3 +39,4 @@ double bisec( double xa, double xb, double (*pf)(double), double eps, int *i_ite
 	*i_iter = i;
 	return xc;
 }
+

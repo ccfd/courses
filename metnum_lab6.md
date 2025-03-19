@@ -6,103 +6,152 @@ author: Ł. Łaniewski-Wołłk
 title: Zagadnienie własne
 ---
 
-Z poprzednich zajęć wiemy, że równanie ruchu wygląda następująco:
-\[M\ddot{x} = F - Sx\]
-Policzmy ,,rozwiązanie ogólne równania jednorodnego''. Tzn: jakie funkcje $x=f(t)\phi$ spełniają równanie bez sił:
-\[M\ddot{x} = - Sx\]
-\[\ddot{f}(t)M\phi = - f(t)S\phi\]
+Na poprzednich zajęciach zajmowaliśmy się równaniem ruchu postaci:
+\[
+\mathbf{M} \ddot{\mathbf{x}} = \mathbf{f} - \mathbf{S} \mathbf{x}
+\]
+Pozwalało ono na znalezienie ruchu układu pod działaniem sił.
+W szczególności, jeśli przyłożyliśmy siłę do układu a następnie ją usunęliśmy dostawaliśmy drgania swobodne.
+W zależności od naszego modelu, drgania te mogły być mniej lub bardziej skomplikowane.
+Na dzisiejszych zajęciach zajmiemy się problemem znalezienia harmonicznych składowych drgań, które po zsumowaniu (z odpowiednimi współczynnikami) dadzą rzeczywiste drgania jakie można zaobserwować w układzie.
 
-Jeśli znajdziemy takie $\phi$, że:
-$$\label{rownanie:wlasne}M\phi = \lambda S\phi$$
+Znajdźmy najpierw *rozwiązanie ogólne równania jednorodnego*, tzn. zapytajmy jakie funkcje postaci $\mathbf{x} = f(t) \mathbf{w}$ spełniają równanie bez sił:
+\[
+\mathbf{M} \ddot{\mathbf{x}} = -\mathbf{S} \mathbf{x}
+\]
+Po podstawieniu dostajemy:
+\[
+\ddot{f}(t) \mathbf{M} \mathbf{w} = -f(t)\mathbf{S} \mathbf{w}
+\]
+Jeśli znajdziemy $\mathbf{w}$ takie, że:
+$$
+\begin{align}
+\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w} 
+\tag{1}
+\end{align}
+$$
 to otrzymamy:
-\[\lambda\ddot{f}(t) = -  f(t) \quad\Rightarrow\quad f(t) = sin \left(t\frac{1}{\sqrt{\lambda}}\right)\]
+\[
+\lambda \ddot{f}(t) = -f(t) \quad \Rightarrow \quad
+f(t) = \sin\left( t\frac{1}{\sqrt{\lambda}} \right)
+\]
 
-To oznacza, że $sin(t\sqrt{\lambda})\phi$ jest oscylującym w czasie rozwiązaniem naszego równania dynamiki. Takie rozwiązanie nazywamy drganiem własnym układu. Równanie \eqref{rownanie:wlasne} nazywamy równaniem własnym.
+To oznacza, że $\mathbf{x} = \sin\left( t\frac{1}{\sqrt{\lambda}} \right) \mathbf{w}$ jest oscylującym w czasie rozwiązaniem naszego równania dynamiki.
+Takie rozwiązanie nazywamy **drganiem własnym** układu.
+Równanie $\mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w}$ nazywamy **równaniem własnym**, a $\lambda$ to **wartość własna**.
 
-Dziś skupimy się na znalezieniu zestawu wektorów $\phi$ i wartości $\lambda$ dla naszej belki
+Dziś skupimy się na znalezieniu zestawu **wektorów własnych** $\mathbf{w}$ i wartości $\lambda$ dla naszego układu.
 
+## Zacznijmy od dominującej pary $\mathbf{w}, \lambda$
 
-# Zacznijmy od największej $\lambda$
-Zaczniemy od największej $\lambda$. Dobrze zauważyć, że największa wartość własna odpowiada najniższej częstotliwości. Są to drgania własne najmniej tłumione w fizycznym układzie i niosące zazwyczaj najwięcej energii w inżynierskich zastosowaniach.
+### Jak wyznaczyć największy $\mathbf{w}$ ?
 
-Będziemy znajdywać nasz wektor $\phi$ iteracyjnie. Zauważmy, że wektor $\phi$ może być dowolnej długości. To znaczy: jeśli wektor $\phi$ spełnia równanie \eqref{rownanie:wlasne}, to także $2\phi$ go spełnia. Możemy więc arbitralnie wybrać ,,skale'' wektora $\phi$. Przyjmijmy, że $\phi^T M \phi = 1$, tzn: niesie on energię kinetyczną $\frac{1}{2}$.
+Zaczniemy od największej wartości własnej $\lambda$.
+Warto zauważyć, że największa wartość własna odpowiada najniższej częstotliwości.
+W zastosowaniach inżynierskich, są to zazwyczaj drgania własne najmniej tłumione i niosące najwięcej energii.
 
-Pomnóżmy równanie \eqref{rownanie:wlasne} przez $S^{-1}$. Otrzymamy:
-\[\phi = \frac{1}{\lambda}S^{-1}M\phi\]
+Nasz wektor $\mathbf{w}$ będziemy znajdować **metodą potęgową** (iteracyjnie).
+Zauważmy najpierw, że wektor $\mathbf{w}$ może być dowolnej długości.
+To znaczy, jeśli wektor $\mathbf{w}$ spełnia równanie własne, to także wektor $2 \mathbf{w}$ je spełnia.
+Możemy więc arbitralnie wybrać ,,skalę'' wektora $\mathbf{w}$.
+Przyjmijmy więc, że $\mathbf{w}^T \mathbf{M} \mathbf{w} = 1$, tzn., że niesie on energię kinetyczną $\frac{1}{2}$.
+
+Pomnóżmy równanie własne przez $\mathbf{S}^{-1}$.
+Otrzymamy:
+\[
+\mathbf{w} = \frac{1}{\lambda} \mathbf{S}^{-1} \mathbf{M} \mathbf{w}
+\]
 Na podstawie tego wzoru możemy skonstruować prostą iterację:
+
+$$
 \begin{align*}
-p &= S^{-1}M\phi\\
-\phi &= p\frac{1}{\sqrt{p^TMp}}
+\mathbf{p} &= \mathbf{S}^{-1} \mathbf{M} \mathbf{w} \\
+\mathbf{w} &= \frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}}
 \end{align*}
-W pierwszym etapie liczymy wynik $S^{-1}M\phi$, a następnie go normalizujemy tak by $\phi^T M \phi = 1$. Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować. Ostatecznie $\phi$ będzie składać się tylko z tego wektora, a $p^TMp$ zbiegnie do największej $\lambda$.
+$$
 
+W pierwszym etapie liczymy wynik $\mathbf{S}^{-1} \mathbf{M} \mathbf{w}$, a następnie normalizujemy go tak aby $\mathbf{w}^T \mathbf{M} \mathbf{w} = 1$.
+Łatwo pokazać, że:
+$$
+\mathbf{w}^T \mathbf{M} \mathbf{w} = 
+\left(\frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}} \right)^T
+\mathbf{M}
+\frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}} = 
+\frac{\mathbf{p}^T \mathbf{M} \mathbf{p}}{\mathbf{p}^T \mathbf{M} \mathbf{p}} = 1
+$$
+Jeśli odpowiednio długo będziemy wykonywać taką iterację, wektor własny odpowiadający największej wartości własnej zacznie dominować.
+Ostatecznie $\mathbf{w}$ będzie składać się tylko z tego wektora.
 
-### Zadanie
+### Jak wyznaczyć największą $\lambda$ ?
 
-Znajdź wektor $\phi$ odpowiadający największej wartości własnej wg. następującego schematu iteracji:
-- Oblicz $b = M\cdot phi$
-- Rozwiąż układ $S\cdot p = b$
-- Oblicz $Mp = M\cdot p$
-- Oblicz $phi = \frac{1}{\sqrt{\langle p, Mp \rangle}} p$
+Zależnośc $\mathbf{p} = \mathbf{S}^{-1} \mathbf{M} \mathbf{w} = \lambda \mathbf{w}$ transponujmy i pomnóżmy przez $\mathbf{M} \mathbf{w}$. 
+Otrzymujemy:
+$$
+\mathbf{p}^T \mathbf{M} \mathbf{w} = \lambda \underbrace{\mathbf{w}^T \mathbf{M} \mathbf{w}}_{=1}
+$$
 
+Zatem $\mathbf{p}^T \mathbf{M} \mathbf{w}$ zbiegnie do największej wartości własnej $\lambda$.
 
+## Zadanie 1
 
-### Zadanie
+Znajdź wektor $\mathbf{w}$ odpowiadający największej wartości własnej według następującego schematu iteracji:
 
-Pokaż przemieszczenie $\phi$ przy pomocy funkcji `draw`. Zrób animację tego przemieszczenia przemnożonego przez $\sin{t}$.
+- Oblicz $\mathbf{b} = \mathbf{M} \mathbf{w}$,
+- Rozwiąż układ $\mathbf{S} \mathbf{p} = \mathbf{b}$,
+- Oblicz $\mathbf{M} \mathbf{p}$,
+- Oblicz $\mathbf{w} = \frac{1}{\sqrt{\langle \mathbf{p}, \mathbf{M} \mathbf{p} \rangle}} \mathbf{p}$.
 
+## Zadanie 2
 
+Pokaż przemieszczenie $\mathbf{w}$ za pomocą funkcji `draw`.
+Zrób animację tego przemieszczenia przemnożonego przez $\sin\left( t\frac{1}{\sqrt{\lambda}} \right)$.
 
-### Zadanie
-[Dla ciekawych]
-By otrzymać bardziej płynną animację dodaj:\\
-`static int pg=0; `\\
-`setvisualpage(pg % 2);`\\
-na początku funkcji `animate` w `winbgi2.cpp`. Zaś na końcu tej funkcji (przed  `return`):\\
-`pg++;`\\
-`setactivepage(pg % 2);`\\
+## Kolejne wartości własne $\lambda$
 
+Chcielibyśmy aby wektory własne (drgania własne) były niezależne w energii kinetycznej.
+To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych
+\[
+E_k(\mathbf{w}^0 + \mathbf{w}^1) = E_k(\mathbf{w}^0)+E_k(\mathbf{w}^1)
+\]
+To w połączeniu z naszą *skalą* daje nam bardzo ważny układ warunków:
+\[
+\begin{cases}
+(\mathbf{w}^i)^T \mathbf{M} \mathbf{w}^j = 0 & \quad \text{dla} \quad i\neq j \\
+(\mathbf{w}^i)^T \mathbf{M} \mathbf{w}^j = 1 & \quad \text{dla} \quad i = j \\
+\end{cases}
+\]
 
+Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem macierzy $\mathbf{M}$.
+Takiej ortonormalizacji możemy dokonać za pomocą znanej z Analizy Matematycznej metody Grama-Schmidta.
 
-# A teraz następne $\lambda$
-Chcemy by wektory własne (drgania własne) były niezależne w energii kinetycznej. To znaczy, żeby energia kinetyczna ich sumy była równa sumie ich energii kinetycznych (,,$E_k(\phi_0+\phi_1) = E_k(\phi_0)+E_k(\phi_1)$''). To w połączeniu z naszą ,,skalą'' daje nam bardzo ważny warunek:
-\[\begin{cases}
-\phi_i^T M \phi_j = 0 &\quad \text{dla}\quad i\neq j \\
-\phi_i^T M \phi_j = 1 &\quad \text{dla}\quad i = j \\
-\end{cases}\]
+## Ortonormalizacja Grama-Schmidta
 
-Mówiąc językiem numeryki: wektory te są do siebie ortonormalne względem macierzy $M$. Takiej ortonormalizacji możemy dokonać znaną z Analizy Matematycznej metodą Grama-Schmidta:
+Załóżmy, że mamy $N$ liniowo niezależnych wektorów.
+Możemy przeprowadzić ortonormalizację tego układu za pomocą klasycznej metody Grama-Schmidta znanej z algebry.
+Metoda ta jest jednak niestabilna numerycznie --- na skutek błędów numerycznych będziemy tracić ortogonalność.
+Użyjemy modyfikacji tej metody, która jest bardziej stabilna.
 
-\fbox{\begin{minipage}{8cm}
-**Ortonormalizacja Grama-Schmidta**\\
-Dla każdego $i$ od $1$ do $n$ wykonaj:
-- dla każdego $i$ od $1$ do $i-1$ wykonaj (dla $i=1$ nic nie rób):
-- Oblicz $\phi_i = \phi_i - \phi_j \langle \phi_j, M\phi_i \rangle$
-- Oblicz $\phi_i = \frac{1}{ \sqrt{\langle \phi_i, M\phi_i \rangle}}\phi_i$
-\end{minipage}}\\
-\vspace{1cm}\\
-Po tej procedurze wszystkie wektory $\phi$ są ortogonalne i długości $1$ względem macierzy $M$.
+Aby zortonormalizować układ $N$ wektorów:
 
+- dla $i=1$:
+    - oblicz: $\mathbf{w}^1 = \frac{1}{\sqrt{\langle \mathbf{w}^1, \mathbf{M} \mathbf{w}^1 \rangle}} \mathbf{w}^1$,
+- dla każdego $i$ od $2$ do $N$:
+    - dla każdego $j$ od $1$ do $i-1$ należy wykonać:
+        - oblicz $\mathbf{w}^i = \mathbf{w}^i - \frac{\langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^i \rangle}{\langle \mathbf{w}^j, \mathbf{M} \mathbf{w}^j \rangle} \mathbf{w}^j$,
+    - oblicz $\mathbf{w}^i = \frac{1}{\sqrt{\langle \mathbf{w}^i, \mathbf{M} \mathbf{w}^i \rangle}}\mathbf{w}^i$.
 
-### Zadanie
+Po tej procedurze wszystkie wektory $\mathbf{w}^i$ są ortogonalne i długości $1$ względem macierzy $M$.
 
-Znajdź wektory $\phi_i$ odpowiadające $10$ciu największym wartościom własnym wg. następującego schematu iteracji:
-- Oblicz $b = M\cdot \phi_j$
-- Rozwiąż układ $S\cdot p_j = b$
-- Przepisz $\phi_i = p_i$
-- Wykonaj ortonormalizację G-S wektorów $\phi$
+## Zadanie 3
+Znajdź wektory $\mathbf{w}^i$ odpowiadające $10$-ciu największym wartościom własnym według następującego schematu iteracji:
 
+- Oblicz $\mathbf{b} = \mathbf{M} \mathbf{w}^i$,
+- Rozwiąż układ $\mathbf{S} \mathbf{p}^i = \mathbf{b}$,
+- Przepisz $\mathbf{w}^i = \mathbf{p}^i$,
+- Wykonaj ortonormalizację G-S wektorów $\mathbf{w}$.
 
+## Zadanie 4
+Wyznacz odpowiednie $\lambda_i$.
 
-### Zadanie
-
-Zrób animację dla kolejnych przemieszczeń $\phi_i$ przemnożonych przez $\sin{t}$.
-
-
-
-### Zadanie
-
-Wyznacz odpowiednie $\lambda_i$
-
-
-
+## Zadanie 5
+Zrób animację dla kolejnych przemieszczeń $\mathbf{w}^i$ przemnożonych przez $\sin\left( t\frac{1}{\sqrt{\lambda_i}} \right)$.

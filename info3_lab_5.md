@@ -1,6 +1,6 @@
 ---
 author: "K. Marchlewski"
-course: Informatyka III
+course: Informatyka 3
 material: Instrukcja 5
 number: 5
 ---
@@ -19,19 +19,19 @@ Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwag�
 Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych.
 Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.
 
-Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program $\LaTeX$ (wł. zestaw makr i instrukcji do obsługi programu $\TeX$).
-Nazwę $\LaTeX$ czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
+Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program `LaTeX` (wł. zestaw makr i instrukcji do obsługi programu `TeX`).
+Nazwę `LaTeX` czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
 
-Pisanie w $\LaTeX u$ w pewnym stopniu przypomina pisanie w języku HTML.
+Pisanie w `LaTeXu` w pewnym stopniu przypomina pisanie w języku HTML.
 "Program" składa się z właściwego tekstu i zestawu instrukcji, które mówią o tym jak nasz tekst ma wyglądać po "kompilacji".
-Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie $\LaTeX$ można tworzyć wiele różnych typów dokumentów.
+Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie `LaTeX` można tworzyć wiele różnych typów dokumentów.
 Na dzisiejszych zajęciach skorzystamy z podstawowego typu `article`.
 
-W celu poszerzenia wiedzy, autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu $\LaTeX 2_{\varepsilon}$*.
+W celu poszerzenia wiedzy, autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu `LaTeX`$2_{\varepsilon}$*.
 
 # Pierwszy dokument
 
-Przejdziemy teraz do stworzenia pierwszego dokumentu w $\LaTeX u$.
+Przejdziemy teraz do stworzenia pierwszego dokumentu w `LaTeXu`.
 Najpierw musimy zadeklarować klasę dokumentu.
 Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`{.tex}, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
 
@@ -60,7 +60,7 @@ Kompilator utworzy kilka plików, m. in. plik `dokument.pdf`, który zawiera nas
 Otwórz plik `dokument.pdf` i naciesz oczy wynikiem swojej pracy.
 Ale co to?
 Okazuje się, że brakuje kilku liter!
-Podstawowe możliwości $\LaTeX a$ nie sięgają bowiem języka polskiego.
+Podstawowe możliwości `LaTeXa` nie sięgają bowiem języka polskiego.
 
 ### Pakiety
 
@@ -72,12 +72,12 @@ Przykładowo, kompletną obsługę języka polskiego włączamy dodając pakiety
 * `\usepackage[english, polish]{babel}`{.tex} - definiuje język dokumentu,
 * `\usepackage{polski}`{.tex} - wymusza polskie reguły składu dokumentu. 
 
-Pakiety, z których planujemy korzystać umieszczamy za instrukcją `\documentclass`.
+Pakiety, z których planujemy korzystać umieszczamy w t.zw. *preambule*: za instrukcją `\documentclass`, a przed instrukcją `\begin{document}`.
 Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
 
 ### Strona tytułowa
 
-Ponieważ teraz tekst wygląda elegancko, warto pochwalić się swoim osiągnięciem światu.
+Ponieważ tekst wygląda teraz elegancko, warto pochwalić się swoim osiągnięciem światu.
 Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
 ```{.tex}
 \author{Gall Anonim}
@@ -97,7 +97,7 @@ Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włą
 
 Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
 Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie.
-W $\LaTeX u$ podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
+W `LaTeXu` podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
 ```{.tex}
 \section{Nazwa}
 \subsection{Nazwa}
@@ -112,6 +112,19 @@ W tym celu dodaj instrukcję
 \tableofcontents
 ```
 na początku ciała dokumentu.
+
+Tak otrzymany spis treści jest mało interaktywny -- możemy dowiedzieć się gdzie jest szukany rozdział, ale przejść do niego musimy sami.
+W celu automatycznego tworzenia zakładek oraz linków w obrębie spisu treści, które zaprowadzą nas do poszukiwanego fragmentu, należy użyć pakietu:
+```{.tex}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue}
+```
+Pakiet ten pozwala także na umieszczanie linków w tekście.
+Przykładowo, instrukcja:
+```{.tex}
+\href{https://google.com/}{Google}
+```
+zaprowadzi nas do popularnej wyszukiwarki.
 
 ### Listy i numeracje
 
@@ -148,7 +161,7 @@ Utwórz teraz zagnieżdżoną listę:
 # Wzory i równania matematyczne
 
 Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
-W $\LaTeX u$ istnieje kilka sposobów dodawania wyrażeń matematycznych.
+W `LaTeXu` istnieje kilka sposobów dodawania wyrażeń matematycznych.
 Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
 ```{.tex}
   wzór $E=mc^2$ powstał \ldots
@@ -168,16 +181,23 @@ Dla utrzymania porządku często warto numerować równania
 ```
 
 Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię.
-Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w $\LaTeX u$ przy wpisywaniu równań matematycznych.
+Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w `LaTeXu` przy wpisywaniu równań matematycznych.
 
 Greckie litery są jednym z podstawowych elementów.
-Są dość łatwe do zapamiętania ze względu na zapis fonetyczny:
+Są dość łatwe do zapamiętania ze względu na zapis "fonetyczny".
+Małe litery uzyskamy stosując:
 ```{.tex}
   \[
     \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
   \]
 ```
-Wielkie litery, będące odpowiednikami małych, otrzymuje się przez zamianę na dużą pierwszej litery danej nazwy (np. `\alpha`{.tex} -> `\Alpha`{.tex}).
+
+Duże, natomiast:
+```{.tex}
+  \[
+    \Gamma, \Delta, \Theta, \Lambda, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega
+  \]
+```
 
 Indeksy górne i dolne otrzymuje się przez użycie symboli `^` i `_`:
 ```{.tex}
@@ -234,7 +254,7 @@ Natomiast sumy:
 \[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]
 ```
 
-Macierze zapisujemy stosując otoczenie `array`{.tex}
+Tablice (macierze, wyznaczniki itd\ldots) zapisujemy stosując otoczenie `array`{.tex}.
 ```{.tex}
 \[
   \left|
@@ -246,6 +266,8 @@ Macierze zapisujemy stosując otoczenie `array`{.tex}
   \right|
 \]
 ```
+Parametry `{ccc}`{.tex} oznaczają, że utworzona tablica będzie miała trzy kolumny, z których każda będzie zawierała tekst wyrównany do środka.
+Dwie pozostałe możliwości to `r` -- wyrównanie do prawej i `l` -- wyrównanie do lewej.
 
 Otoczenie te można także wykorzystać do zapisu warunków
 ```{.tex}
@@ -261,18 +283,16 @@ Otoczenie te można także wykorzystać do zapisu warunków
 
 ## Ćwiczenia
 
-Zapisz poniższe równania wykorzystując system $\LaTeX$.
+Zapisz poniższe równania wykorzystując system `LaTeX`.
 Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej.
 W sieci Internet można znaleźć listy dostępnych symboli.
 W naszej pracowni można skorzystać ze strony: https://www.sharelatex.com/learn/Mathematical_expressions
 
-$$
-  i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
-$$
+Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów.
+Przykładowo, symbol całki podwójnej `\iint`{.tex} uzyskamy po dołączeniu pakietu `amsmath`{.tex}.
 
 $$
-  \frac{\partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla\mathbf{u} =
-  -\frac{1}{\rho}\nabla p+\nu \nabla^{2}\mathbf{u} + \frac{1}{3}\nu \nabla (\nabla \cdot \mathbf{u}) + \mathbf{g}
+  i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
 $$
 
 $$
@@ -283,7 +303,9 @@ $$
 
 $$
 \mathrm{Var} \left(\hat{Z}(x_0)-Z(x_0)\right) =
-\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
+$$
+$$
+=\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
 \underbrace{
 \left(
 \begin{array}{c}
@@ -310,20 +332,20 @@ $$
 
 # Tabele
 
-Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie $\LaTeX$.
+Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie `LaTeX`.
 Pokarzemy najprostszy przykład z wykorzystaniem otoczenia `tabular`.
 Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości.
 Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania.
 Przeanalizuj poniższy kod:
 ```{.tex}
-  \begin{tabular}{c||c|c|c}
+  \begin{tabular}{l||c|c|c}
      & symb. & symb. & symb. \\ \hline \hline
     symb. & X & O & O \\ \hline
     symb. & O & X & X \\ \hline
     symb. & X & O & X \\
   \end{tabular}
 ```
-Jaki wpływ na wygląd tabeli mają parametry `{c||c|c|c}`{.tex}?
+Jaki wpływ na wygląd tabeli ma parametr `{l||c|c|c}`{.tex}?
 
 Otoczenie `tabular` pozwala także na tworzenie wielokolumnowych rubryk.
 Służy do tego polecenie `\multicolumn{l_kolumn}{justowanie}{tekst}`{.tex}.
@@ -366,7 +388,7 @@ Wykonaj poniższą tabelę:
 
 # Grafika
 
-Wstawienie grafiki w $LaTeX u$ ogranicza się do użycia instrukcji `\includegraphics[parametry]{sciezka_do_grafiki}`{.tex}.
+Wstawienie grafiki w $LaTeX u$ ogranicza się do dołączenia pakietu `\usepackage{graphicx}`{.tex} oraz użycia instrukcji `\includegraphics[parametry]{sciezka_do_grafiki}`{.tex}.
 Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa `95%` szerokości tekstu napiszemy:
 ```{.tex}
 \includegraphics[width=.95\textwidth]{rysunek.pdf}
@@ -380,3 +402,39 @@ W przypadku grafiki będzie to otoczenie `figure`:
     \caption{Rysunek.}
 \end{figure}
 ```
+
+# Odwołania
+
+System `LaTeX` umożliwia wstawienie odwołania do niemal każdego obiektu posiadającego numer.
+Oznacza to, że możemy odwołać się do dowolnego rozdziału, równania, tabeli czy rysunku.
+Obiekt, do którego planujemy się odwołać oznaczamy za pomocą polecenia `\label{nazwa_obiektu}`.
+Natomiast w miejscu, w którym odwołujemy się, wstawiamy polecenie `\ref{nazwa_obiektu}`.
+Zamiast numeru obiektu, możemy podać stronę, na której znajduje się dany element.
+W tym celu stosujemy polecenie `\pageref{nazwa_obiektu}`.
+Stosując indywidualne nazwy obiektów, nie musimy martwić się o ewentualne zmiany numeracji wynikające z pracy nad tekstem.
+`LaTeX` zajmie się koniecznymi modyfikacjami.  
+Przykładowo, aby odwołać się do rozdziału piszemy:
+```{.tex}
+\section{Rodzaje sznurówek}\label{sznu}
+W rozdziale \ref{sznu} opiszemy problem doboru sznurówek.
+```
+W celu odwołania się do tabeli:
+```{.tex}
+\begin{table}[h]
+  \begin{tabular}{c|c|c}
+    X & O & O \\ \hline
+    O & X & X \\ \hline
+    X & O & X \\
+  \end{tabular}
+  \caption{Kółko i krzyżyk.}
+  \label{kik}
+\end{table}
+
+Tabela \ref{kik} zawiera przykładową partię w kółko i krzyżyk.
+Znajduje się ona na stronie \pageref{kik}.
+```
+
+### Ćwiczenia
+
+Stwórz odwołania do pozostałych obiektów użytych w trakcie ćwiczeń (równań i rysunków).
+

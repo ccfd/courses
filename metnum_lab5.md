@@ -7,130 +7,164 @@ title: Równania ruchu
 ---
 
 Na tych laboratoriach skupimy się na scałkowaniu równania ruchu:
-\[M\ddot{x} = F - Sx\]
-Gdzie $x$ to odkształcenie, $M$ to macierz masowa, zaś $S$ to macierz sztywności.
+\[
+\mathbf{M} \ddot{\mathbf{x}} = \mathbf{f} - \mathbf{S} \mathbf{x}
+\]
+Gdzie $\mathbf{x}$ to odkształcenie, $\mathbf{f}$ to siła, $\mathbf{M}$ to macierz masowa, zaś $\mathbf{S}$ to macierz sztywności.
 
-Na początek przez $y$ oznaczmy prędkość odkształcenia, czyli $y = \dot{x}$. Teraz mamy układ równań pierwszego rzędu:
+Na początek przez $\mathbf{y}$ oznaczmy prędkość odkształcenia, czyli $\mathbf{y} = \dot{\mathbf{x}}$.
+Teraz mamy układ równań pierwszego rzędu:
 
-\[\begin{cases}
-M\dot{y} &= F - Sx\\
-\dot{x} &= y\\
-\end{cases}\]
+\[
+\begin{cases}
+\mathbf{M} \dot{\mathbf{y}} & = \mathbf{f} - \mathbf{S} \mathbf{x} \\
+\dot{\mathbf{x}} & = \mathbf{y} \\
+\end{cases}
+\]
 
-Zastępując pochodną po lewej stronie przez różnice skończoną mamy:
+Zastępując pochodną po lewej stronie przez różnicę skończoną mamy:
 
-\[\begin{cases}
-M\frac{y_{n+1}-y_n}{\text{dt} } &= F - Sx\\
-\frac{x_{n+1}-x_n}{\text{dt} } &= y\\
-\end{cases}\]
+\[
+\begin{cases}
+\mathbf{M} \frac{\mathbf{y}^{n+1} - \mathbf{y}^n}{\text{dt}} & = \mathbf{f} - \mathbf{S} \mathbf{x} \\
+\frac{\mathbf{x}^{n+1} - \mathbf{x}^n}{\text{dt}} & = \mathbf{y} \\
+\end{cases}
+\]
 
-Po prawej stronie równania możemy użyć $x$ i $y$ z nowej ($n+1$), bądź starej ($n$) iteracji. W zależności co użyjemy otrzymamy mniej lub bardziej uwikłane równanie, a schemat będzie jawny (explicit) bądź niejawny (implicit).
-
-Uwaga: by porównać różne schematy, każdy schemat napisz w nowej funkcji, która powinna brać następujące argumenty: `void Dynamics(int n, double * x, double * y, double T, double dt);`, gdzie `x` i `y` to początkowe wartości $x$ i $y$, `T` to całkowity czas całkowania, a `dt` to krok czasowy.
-
+Po prawej stronie równania możemy użyć $\mathbf{x}$ i $\mathbf{y}$ z nowej ($n+1$), bądź starej ($n$) iteracji.
+W zależności co użyjemy otrzymamy mniej lub bardziej uwikłane równanie, a schemat będzie jawny (explicit) bądź niejawny (implicit).  
+**Uwaga**: aby porównać różne schematy, każdy schemat zapisz w oddzielnej funkcji, której nagłówek powinien mieć postać:
+```c++
+void Dynamics_schemat(int N, double *x, double *y, double *f, double t_max, double dt);
+```
+gdzie `x` i `y` to początkowe wartości $\mathbf{x}$ i $\mathbf{y}$, `f` to wektor sił, `t_max` to całkowity czas całkowania, a `dt` to krok czasowy.
 
 
 # Schemat prawie jawny (almost explicit)
-Na początek wstawmy po prawej stronie wartości ze starej iteracji. Otrzymamy:
 
-\[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - Sx_n)\\
-x_{n+1} &= x_n + \text{dt} y_n\\
-\end{cases}\]
-
-
-### Zadanie
-Napisz funkcję mnożącą przez macierz masową. W pliku `MesLib.h` jest ona zdefiniowana w analogiczny sposób jak macierz sztywności: przez macierz $M$ i stałą $Mm$. UWAGA: W mnożeniu przez macierz masową, należy także zamrozić wybrane stopnie swobody.
-
+Na początek wstawmy po prawej stronie wartości ze starej iteracji.
+Otrzymamy:
+\[
+\begin{cases}
+\mathbf{M} \mathbf{y}^{n+1} & = \mathbf{M} \mathbf{y}^n + \text{dt}(\mathbf{f} - \mathbf{S} \mathbf{x}^n) \\
+\mathbf{x}^{n+1} & = \mathbf{x}^n + \text{dt} \mathbf{y}^n \\
+\end{cases}
+\]
 
 ### Zadanie
-Napisz funkcję całkującą równanie ruchu układu wg. następującego schematu:
-- Oblicz $b = My + dt(F - Sx)$
-- Oblicz $x = x + dt y$
-- Rozwiąż układ: $My=b$
+Napisz funkcję mnożącą przez macierz masową $\mathbf{M}$.
+W pliku `MesLib.h` jest ona zdefiniowana w analogiczny sposób jak macierz sztywności: przez globalną tablicę `M` i globalną stałą `Mm`.  
+**Uwaga**: W mnożeniu przez macierz masową, należy także zamrozić wybrane stopnie swobody.
+
+### Zadanie
+Napisz funkcję całkującą równanie ruchu układu według następującego schematu:
+
+- Oblicz $\mathbf{b}^n = \mathbf{M} \mathbf{y}^n + \text{dt} (\mathbf{f} - \mathbf{S} \mathbf{x}^n)$,
+- Oblicz $\mathbf{x}^{n+1} = \mathbf{x}^n + \text{dt} \mathbf{y}^n$,
+- Rozwiąż układ: $\mathbf{M} \mathbf{y}^{n+1} = \mathbf{b}^n$,
 - Co $10$-tą iterację wyświetl belkę.
 
 
 ### Zadanie
- Przeanalizuj dla jakich $dt$ układ jest stabilny, a dla jakich nie. 
+Przeanalizuj dla jakich $\text{dt}$ układ jest stabilny, a dla jakich nie. 
 
 ### Zadanie
- Jak wygląda wzór na całkowitą energię układu (energia potencjalna sprężystości + praca sił + energia kinetyczna)? Zróżniczkuj ją po $t$ i pokaż, że jest stała
+Jak wygląda wzór na całkowitą energię układu (energia potencjalna sprężystości + energia kinetyczna)?
+Zróżniczkuj ją po $t$ i pokaż, że jest stała.
 
 ### Zadanie
- Wydrukuj w konsoli jak zmienia się całkowita energia układu w czasie.
+Wydrukuj w konsoli jak zmienia się całkowita energia układu w czasie.
 
 
 # Schemat pół niejawny (semi-implicit)
-Prostą modyfikacją jest użycie po prawej stronie $x$ ze starej iteracji i $y$ z nowej, otrzymując:
-\[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - Sx_n)\\
-x_{n+1} &= x_n + \text{dt} y_{n+1}\\
-\end{cases}\]
 
+Prostą modyfikacją jest użycie po prawej stronie $\mathbf{x}$ ze starej iteracji i $\mathbf{y}$ z nowej, otrzymując:
+\[
+\begin{cases}
+\mathbf{M} \mathbf{y}^{n+1} & = \mathbf{M} \mathbf{y}^n + \text{dt}(\mathbf{f} - \mathbf{S} \mathbf{x}^n) \\
+\mathbf{x}^{n+1} & = \mathbf{x}^n + \text{dt} \mathbf{y}^{n+1} \\
+\end{cases}
+\]
 
 ### Zadanie
- Zmodyfikuj kod rozwiązując układ na $y$ przed modyfikacją $x$-a. 
+Przekopiuj funkcję `Dynamics` i zmodyfikuj ją tak aby układ na $\mathbf{y}^{n+1}$ był rozwiązywany przed obliczeniem $\mathbf{x}^{n+1}$. 
 
 ### Zadanie
- Przeanalizuj dla jakich $dt$ układ jest stabilny. Wydrukuj zmienność energii. 
+Przeanalizuj dla jakich $\text{dt}$ układ jest stabilny.
+Wydrukuj zmienność energii. 
 
 
 # Schemat niejawny (fully-implicit)
 
 Możemy także po prawej stronie wziąć obie wartości z nowej iteracji, otrzymując:
-\[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - Sx_{n+1})\\
-x_{n+1} &= x_n + \text{dt} y_{n+1}\\
-\end{cases}\]
+\[
+\begin{cases}
+\mathbf{M} \mathbf{y}^{n+1} & = \mathbf{M} \mathbf{y}^n + \text{dt}(\mathbf{f} - \mathbf{S} \mathbf{x}^{n+1}) \\
+\mathbf{x}^{n+1} & = \mathbf{x}^n + \text{dt} \mathbf{y}^{n+1} \\
+\end{cases}
+\]
 
 Wstawiając drugie równanie do pierwszego otrzymujemy:
-\[My_{n+1} = My_n + \text{dt}( F - S(x_n + \text{dt} y_{n+1}))\]
-Przekształcając:
-\[(M+\text{dt}^2S)y_{n+1} = My_n + \text{dt}( F - S x_n)\]
+\[
+\mathbf{M} \mathbf{y}^{n+1} = \mathbf{M} \mathbf{y}^n + \text{dt}(\mathbf{f} - \mathbf{S} (\mathbf{x}^n + \text{dt} \mathbf{y}^{n+1}))
+\]
+Po przekształceniu:
+\[
+(\mathbf{M} + \text{dt}^2\mathbf{S}) \mathbf{y}^{n+1} = \mathbf{M} \mathbf{y}^n + \text{dt}(\mathbf{f} - \mathbf{S} \mathbf{x}^n)
+\]
 
 ### Zadanie
-Napisz funkcję mnożącą przez $M+\text{dt}^2S$
+Napisz funkcję mnożącą przez $\mathbf{M} + \text{dt}^2 \mathbf{S}$
 
 ### Zadanie
-Zmodyfikuj kod, by realizował schemat w pełni niejawny, zamieniając macierz $M$ na $M+\text{dt}^2S$ w obliczeniu $y$-ka
+Zmodyfikuj kod, by realizował schemat w pełni niejawny, zamieniając macierz $\mathbf{M}$ na $\mathbf{M} + \text{dt}^2 \mathbf{S}$ w obliczeniu $y$-ka.
 
 ### Zadanie
- Przeanalizuj dla jakich $dt$ układ jest stabilny. Wydrukuj zmienność energii. 
+Przeanalizuj dla jakich $\text{dt}$ układ jest stabilny.
+Wydrukuj zmienność energii. 
 
 
 # W pół kroku (midpoint)
 
-Ostatnia z omówionych metod bierze po prawej stronie średnią z wartości w nowej i starej iteracji:
-\[\begin{cases}
-My_{n+1} &= My_n + \text{dt}( F - S\frac{x_{n+1}+x_{n}}{2})\\
-x_{n+1} &= x_n + \text{dt} \frac{y_{n+1}+y_{n}}{2}\\
-\end{cases}\]
+Ostatnia z metod, którymi się zajmiemy bierze po prawej stronie średnią z wartości w nowej i starej iteracji:
+\[
+\begin{cases}
+\mathbf{M} \mathbf{y}^{n+1} & = \mathbf{M} \mathbf{y}^n + \text{dt} \left( \mathbf{f} - \mathbf{S} \frac{\mathbf{x}^{n+1} + \mathbf{x}^n}{2} \right) \\
+\mathbf{x}^{n+1} & = \mathbf{x}^n + \text{dt} \frac{\mathbf{y}^{n+1} + \mathbf{y}^n}{2} \\
+\end{cases}
+\]
 
 Po wstawieniu drugiego równania do pierwszego mamy:
-\[My_{n+1} = My_n + \text{dt}( F - S\frac{x_n + \text{dt} \frac{y_{n+1}+y_{n}}{2}+x_{n}}{2})\]
-Przekształcając:
-\[My_{n+1} = My_n + \text{dt}( F - S(x_n + \text{dt} \frac{y_{n+1}+y_{n}}{4})\]
+\[
+\mathbf{M} \mathbf{y}^{n+1} = \mathbf{M} \mathbf{y}^n + \text{dt} \left( \mathbf{f} - \mathbf{S} \frac{\mathbf{x}^n + \text{dt} \frac{\mathbf{y}^{n+1} + \mathbf{y}^n}{2} + \mathbf{x}^n}{2} \right)
+\]
+Po uproszczeniu:
+\[
+\mathbf{M} \mathbf{y}^{n+1} = \mathbf{M} \mathbf{y}^n + \text{dt} \left( \mathbf{f} - \mathbf{S} \left( \mathbf{x}^n + \text{dt} \frac{\mathbf{y}^{n+1} + \mathbf{y}^n}{4} \right) \right)
+\]
 Ostatecznie:
-\[(M + \frac{\text{dt}^2}{4}S)y_{n+1} = My_n + \text{dt}( F - S(x_n + \text{dt} \frac{y_{n}}{4})\]
-
+\[
+\left( \mathbf{M} + \frac{\text{dt}^2}{4} \mathbf{S} \right) \mathbf{y}^{n+1} =
+\mathbf{M} \mathbf{y}^n + \text{dt} \left( \mathbf{f} - \mathbf{S} \left( \mathbf{x}^n + \text{dt} \frac{\mathbf{y}^n}{4} \right) \right)
+\]
 
 ### Zadanie
-Napisz funkcję mnożącą przez $M+\frac{\text{dt}^2}{4}S$
+Napisz funkcję mnożącą przez $\mathbf{M} + \frac{\text{dt}^2}{4} \mathbf{S}$.
 
 ### Zadanie
-Napisz funkcję całkującą równanie ruchu układu wg. następującego schematu:
-- Oblicz $x = x + \frac{dt}{4} y$
-- Oblicz $b = My + dt(F - Sx)$
-- Oblicz $x = x + \frac{dt}{4} y$
-- Rozwiąż układ: $(M + \frac{\text{dt}^2}{4}S)y=b$
-- Oblicz $x = x + \frac{dt}{2} y$
+Napisz funkcję całkującą równanie ruchu według następującego schematu (dla uproszczenia zapisu pominęliśmy number `n` iteracji):
+
+- Oblicz $\mathbf{x} = \mathbf{x} + \frac{\text{dt}}{4} \mathbf{y}$,
+- Oblicz $\mathbf{b} = \mathbf{M} \mathbf{y} + \text{dt} (\mathbf{f} - \mathbf{S} \mathbf{x})$,
+- Oblicz $\mathbf{x} = \mathbf{x} + \frac{\text{dt}}{4} \mathbf{y}$,
+- Rozwiąż układ: $(\mathbf{M} + \frac{\text{dt}^2}{4} \mathbf{S}) \mathbf{y} = \mathbf{b}$,
+- Oblicz $\mathbf{x} = \mathbf{x} + \frac{\text{dt}}{2} \mathbf{y}$,
 - Co $10$-tą iterację wyświetl belkę.
 
 ### Zadanie
- Przeanalizuj dla jakich $dt$ układ jest stabilny. Wydrukuj zmienność energii. 
+Przeanalizuj dla jakich $\text{dt}$ układ jest stabilny.
+Wydrukuj zmienność energii. 
 
 ### Zadanie
- Udowodnij, że metoda pół kroku zachowuje energię układu.^[Podpowiedz: tak jak $a^2-b^2=(a+b)(a-b)$ to $x_{n+1}^TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} +
+Udowodnij, że metoda ,,w pół kroku'' zachowuje energię całkowitą układu.^[Podpowiedź: tak jak $a^2-b^2=(a+b)(a-b)$ to $x_{n+1}^TMx_{n+1} - x_{n}^TMx_{n} = (x_{n+1} - x_{n})^TM(x_{n+1} +
 x_{n})$]
-

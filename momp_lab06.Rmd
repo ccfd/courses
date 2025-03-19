@@ -1,0 +1,159 @@
+---
+title: Wentylator promieniowy
+number: 0
+course: Metody Obliczeniowe Mechaniki Płynów
+material: Instrukcja 6
+---
+
+# Cel ćwiczenia
+
+Zapoznanie się z metodami symulowania ruchu w obliczeniach ustalonych.
+
+# Streszczenie
+
+Geometria wentylatora może być podzielona na część ruchomą (powierzchnia wirnika) i nieruchomą (powierzchnia dyfuzora oraz wlotu). 
+Przypadek ten może być modelowany jako stacjonarny, dzięki użyciu opcji ruchomego układu odniesienia (Moving Reference Frame). 
+Fragmenty siatki, które powinny się poruszać, pozostają nieruchome ale następuje przypisanie im prędkości (wynikającej z ruchu jaki miałby mieć miejsce). 
+Takie podejście daje mniej dokładne wyniki niż modelowanie stanu nieustalonego, ale znacznie skraca czas obliczeń.
+
+# Przebieg ćwiczenia
+
+## Geometria
+
+1. Podczas tworzenia geometrii wentylatora użyjemy trzech szkiców do wykonania:
+
+	- Geometria dyfuzora
+	- Geometrii objętości obracającej się
+	- Łopatek wentylatora.
+	
+2. Sprawdź czy opcja **Auto Constraints** jest włączona.
+	
+3. **Spirala**. Wchodząc w szkic 1 rysujemy 3 łuki (**Arc by center** w zakładce **Draw** wewnątrz szkicu):
+
+	1. Łuk najmnijeszy:
+		- Rysujemy dolną część półokręgu.
+		- Środek i początek łuku mocujemy do **dodatniej osi X** za pomocą więzu **Coincident** (Jeżeli tworząc łuk najedziemy kursorem na oś powinna pojawić się litera **C**).
+		- Koniec łuku
+		- Nadaj wymiar tak aby środek łuku znalazł się **3 cm** od środka układu współrzędnych.
+		- Promień - 25 cm.
+		
+	2. Łuk średni:
+		- Rysujemy prawą górna część ćwierćokręgu.
+		- Środek mocujemy do **ujemnej osi X** za pomocą więzu **Coincident**.
+		- Nadaj wymiar tak aby środek łuku znalazł się **5 cm** od środka układu współrzędnych.
+		- Za pomocą więzu **Coincident** mocujemy jeden z końców łuku z **końcem łuku najmniejszego**
+		
+	3. Łuk najwiekszy:
+		- Rysujemy lewą część półokręgu.
+		- Środek łuku połóż w 3 ćwiartce układu współrzędnych (-X, -Y).
+		- Nadaj wymiary tak aby środek łuku miał wymiary (-5cm, -2cm).
+		- Za pomocą więzu **Coincident** mocujemy jeden z końców łuku z **końcem łuku średniego**
+		- Promień - 35 cm.
+
+
+				Najwygodniejsza jest taka kolejność operacji:
+
+				Narysuj łuki korzystając z automatycznego nadawania wiezów
+				Zwymiaruj ich środki
+				Połącz łuki za pomocą więzu Coincident
+				Zwymiaruj promienie
+
+4. **Wylot**. Do powstałej spirali dorysujmy wylot prosty.
+	1. Za pomocą 3 linii narysuj kształt **U**. Upewnij się, że za pomocą opcji automatycznego nadawania więzów, linie zostały połączone i są odpowiednio pionowe i poziome (litery **V** i **H** podczas rysowania).
+	2. Za pomocą więzu **Coincident** połącz końce linii tak, aby zamknąć obwód rysowanej figury.
+	3. Do największego łuku oraz lewego boku wylotu dodaj więz **Tangent**.
+	4. Zwymiaruj:
+		- Długość wylotu - **30 cm**
+		- Szerokość wylotu - **23 cm**
+		
+5. W środku układu współrzędnych narysuj okrąg o promieniu **7 cm**.
+
+6. Wyjdź ze szkicu 1.
+
+7. W **szkicu drugim** narysuj dwa okręgi ze środkiem w środku układu współrzędnych.
+	- Pierwszy okrąg o promieniu **9 cm**
+	- Drugi okrąg o promieniu **21 cm**
+	
+8. Wyjdź ze szkicu 2.
+
+9. W **szkicu trzecim** stwórz kształt łopatki.
+	1. Narysuj prostokąt tak aby przez figurę przechodziła oś Y.
+	2. Nadaj cztery wymiary
+		- **Wysokość - 10 cm**
+		- **Szerokość - 1 cm**
+		- **Odległość boku od osi Y - 0.5 cm**
+		- **Odległość dolnej krawędzi łopatki od osi X - 10 cm**
+		
+10. Wyjdź ze szkicu 3.
+
+11. Na podstawie szkiców stwórz powierzchnie. (**Concept/Surfaces from Sketches**)
+
+12. Za pomocą operacji **Create/Boolean**
+
+	- W polu **Operation** wybierz opcję **Substract**
+	- **Target Bodies**: Zaznacz powierzchnię powietrza wentylatora (od czego odejmujemy)
+	- **Tool Bodies**: Zaznacz powierzchnie wirnika (Co odejmujemy)
+	- **Preserve Tool Bodies?**: **Yes** (Pozostawiamy powierzchnie odejmowaną)
+	
+		Przyda się umiejętność zaznaczania nakładających się powierzchni z poprzedniej instrukcji.
+
+13. Za pomocą opcji **Create/Pattern**:
+
+	- **Pattern Type**: Circular
+	- **Geometry**: Zaznaczamy powierzchnię łopatki
+	- **Axis**: Zaznaczamy oś obrotu (klikamy **XYPlane** w drzewie historii)
+	- **FD3, Copies**: 11
+	
+14. Za pomocą operacji **Create/Boolean** odejmujemy powierzchnie łopatek od powierzchni wirującej
+
+	- Powtórz kroki z punktu 12.
+	- Tym razem nie chcemy pozostawiać łopat po operacji:
+		- **Preserve Tools Bodies?**: No
+	- Zaznaczając powierzchnię łopat możesz skorzystać z rozwijanego menu geometrii w drzewie historii.
+		- Zaznacz Surface body odpowiadający pierwszej łopacie na liście.
+		- Z wciśniętym klawiszem shift zaznacz Surface body odpowiadający ostatniej łopacie na liście.
+
+15. Na tym etapie w liście geometrii powinny znajdować się 3 powierzchnie.
+	- Powierzchnia przy wlocie
+	- Powierzchnia wirnika
+	- Powierzchnia kanału wylotowego
+	
+16. Stwórz złożenie z tych 3 geometrii: **Form New Part**
+	
+## Mesh
+
+1. Przechodzimy do modułu siatek obliczeniowych. Upewnij się co do jednostek.
+2. Na początku nadajemy nazwy:
+	- Pionowa krawędź wylotu: **pressure_outlet**
+	- Okrągła krawędź wlotu: **pressure_inlet**
+	- Krawędzie łopatek: **Wirnik**
+	- Powierzchnia wirnika: **Rotor**
+	
+3. Nadajemy podziały w domenie:
+	- Pierścien na wlocie:
+		- Wstaw **Mapped Mesh**
+		- Wstaw **Sizing**: 0.9 cm (zaznaczamy całą powierzchnie)
+	- Powierzchnia wirnika:
+		- Wstaw **Sizing**: 1 cm (zaznaczamy całą powierzchnie)
+	- Powierzchnia kanału wylotowego:
+		- Wstaw **Sizing**: 1.8 cm (zaznaczamy całą powierzchnie)
+	- Powierzchnie wirnika i kanału wylotowego:
+		- Wstaw **Method** (zaznaczamy powierzchnię) i w polu **Method** wybieramy **Triangles**
+		
+## Fluent
+
+1. 2D, Single Precision, 1 proces
+2. Model turbulencji: **Spalart-Allmaras**
+3. Sprawdź warunki brzegowe, upewnij się czy każda z nazw ma odpowiedni warunek.
+	Warunki turbulencji na wlocie:
+		- **Turbulent intensity**: 5%
+		- **Hydraulic Diameter**: 0.1 m 
+
+4. W **Cell zone conditions** dla powierzchni rotor wprowadzamy ustawienie obrotu:
+	- Włączamy opcję **Frame Motion**
+	- **Rotation Axis Origin** zostawiamy na współrzędnych (0.0, 0.0)
+	- **Rotational Velocity**: 300 rad/s
+5. Ustaw równania pędu na **First Order Upwind**
+6. Zainicjalizuj standardową metodą inicjalizacji z wlotu.
+7. Prowadź obliczenia do zbieżności.
+8. Przeanalizuj wyniki.
