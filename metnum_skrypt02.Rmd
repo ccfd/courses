@@ -1,6 +1,8 @@
 ---
-title: "Metody Numeryczne - Skrypt 0"
-output: html_document
+author: "L. Laniewski-Wollk"
+course: Metody Numeryczne
+title: "Metody Numeryczne - Skrypt 2"
+material: Skrypt 2
 ---
 
 ```{r echo=FALSE, include=FALSE}
@@ -117,7 +119,7 @@ r = F - S %*% x
 plot(r)
 ```
 
-Taki wektor nazywamy residualem. Zazwyczaj by go zmierzyć jedną liczbą mówimy że residual to $\|r\|_2=\sqrt{\sum_ir_i^2}$. Aktualnie wynosi on `r sqrt(sum(r))`.
+Taki wektor nazywamy residualem. Zazwyczaj by go zmierzyć jedną liczbą mówimy że residual to $\|r\|_2=\sqrt{\sum_ir_i^2}$. Aktualnie wynosi on `r sqrt(sum(r*r))`.
 
 Zauważmy, że residual mówi nam jak daleko jesteśmy od rozwiązania, ale nie mówi nam praktycznie w jakim kierunku mamy iść. Jesteśmy w $x$, chcemy być $S^{-1}F$, lecz jedyne co wiemy to nie kierunek $S^{-1}F - x$, lecz $F - Sx$. Żeby wiedzieć gdzie należy iść, musimy mieć jakiekolwiek przybliżenie $S^{-1}$. Takie przybliżenie nazywamy preconditionerem. Zwyczajowo piszemy, że construujemy $P\simeq S$, tak by $P^{-1}\simeq S^{-1}$ - lecz w rzeczywistości należy myśleć o preconditionerze jako o operatorze $P^{-1}$, ponieważ wewnątrz programu, tylko on jest realizowany. Najprostrzym przykładem preconditionera jest odwrotność przekątnej macierzy (preconditioner Jacobiego):
 
@@ -166,21 +168,21 @@ Widzimy natychmiast, że wartości te nie są już czysto rzeczywiste - poniewa�
 ```{r echo=FALSE}
 resid = NULL
 residual=function(it,res,name="Unknown") {
-  res = sqrt(sum(res^2))
+  res = sqrt(sum(res*res))
   resid <<- rbind(resid,data.frame(iteration=it,residual=res,name=name))
   res < 1e-6 || res > 1e9
 }
 draw.residuals = function(name) {
-  if (!missing(name)) resid = resid[resid$name %in% name,]
-  resid$name = factor(resid$name)
-  plot(resid$iteration, resid$residual, log="y", type="n", xlab="Iteracja", ylab="Residual")
+  if (!missing(name)) resid = resid[resid$name %in% name,,drop=FALSE]
+  resid$name = factor(resid$name,levels=unique(resid$name))
+  plot(resid$iteration, resid$residual, log="y", type="n", yaxt="n", xlab="Iteracja", ylab="Residual")
   by(resid,resid$name, function(resid) {
     lines(resid$iteration, resid$residual,col=resid$name)
   })
   legend("topright",levels(resid$name),lty=1,col=1:nlevels(resid$name))
-#  a = pretty(log10(par("yaxp"))[1:2])
-#  l = do.call(c,lapply(a,function(a) substitute(expression(10^a),list(a=a))))
-#  axis(2,10^a,labels = l,las=1)
+  a = log10(axTicks(2))
+  l = do.call(c,lapply(a,function(a) substitute(expression(10^a),list(a=a))))
+  axis(2,10^a,labels = l,las=1)
 }
 delete.residuals = function(name) resid <<- resid[! resid$name %in% name,]
 
@@ -516,7 +518,9 @@ draw.residuals()
 ```
 
 Ilość iteracji potrzbnych do osiągnięcia wymaganego residuum:
-
+```{r echo=FALSE}
+resid$name = factor(resid$name, levels=unique(resid$name))
+```
 ```{r}
 it = tapply(resid$iteration,resid$name,max)
 it[it==itmax] = paste(">",itmax)
