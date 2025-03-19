@@ -144,8 +144,12 @@ navbar:
         href: metnum_lab7.html
       - text: "Projekty"
         href: metnum_projekty.html
-      - text: "Ogłoszenia"
-        href: metnum_ogloszenie.html
+      # - text: "Ogłoszenia"
+      #   href: metnum_ogloszenie.html
+      - text: "Skrypt"
+        menu:
+        - text: "Metody Iteracyjne"
+          href: metnum_skrypt02.html
     - text: "C++"
       menu:
       - text: "Regulamin przedmiotu"
