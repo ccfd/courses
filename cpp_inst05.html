@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>cpp_inst05</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst05.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="laboratorium-v" class="section level1">
+<h1>Laboratorium V</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<p>Na dzisiejszych zajęciach przyjrzymy się kontenerom dostępnym w STL.
+Kontenery to klasy, które służą do przechowywania wielu obiektów danego
+typu. Sposób przechowywania obiektów (struktura danych) jest jednym z
+najbardziej kluczowych zagadnień programowania. W 1976r. Niklaus Wirth
+opublikował nawet książkę o słynnym tytule <em>Algorithms + Data
+Structures = Programs</em>. Biblioteka standardowa oferuje szeroką gamę
+różnych kontenerów, której nie mamy niestety czasu omówić w pełni.
+Zamiast tego, postaramy bliżej zapoznać się jedynie z kilkoma wybranymi
+kontenerami i wyciągnąć możliwie ogólne wnioski dotyczące korzystania z
+nich. Podkreślmy, że nie ma kontenerów lepszych i gorszych, a jedynie
+takie, które lepiej lub gorzej nadają się do rozwiązania konkretnego
+problemu.</p>
+<p>Aby móc skupić się na zachowaniu kontenerów, a nie szczegółach typów,
+które mają być w nich przechowywane, do niniejszej instrukcji dołączony
+jest plik <code>Human.hpp</code>, w którym zaimplementowana jest klasa
+reprezentująca człowieka. Zadania zebrane poniżej zakładają, że
+czytelnik ma do niego dostęp.</p>
+</div>
+<div id="wybrane-typy-kontenerów" class="section level2">
+<h2>Wybrane typy kontenerów</h2>
+<p>Poniżej wymienione zostało kilka podstawowych kontenerów STL. Warto
+rozumieć ich działanie, a przynajmniej wiedzieć o ich istnieniu.</p>
+<ul>
+<li><a
+href="https://en.cppreference.com/w/cpp/container/vector"><code>std::vector</code></a>
+- dynamicznie alokuje ciągły blok pamięci na trzymane obiekty. Po
+zapełnieniu alokuje nowy, większy blok pamięci i przepisuje do niego
+elementy.</li>
+<li><a
+href="https://en.cppreference.com/w/cpp/container/array"><code>std::array</code></a>
+- statycznie alokuje blok pamięci o rozmiarze określonym przez parametr
+szablonu. Pozwala na łatwe kopiowanie zawartości (ma dobrze zdefiniowane
+metody specjalne).</li>
+<li><a
+href="https://en.cppreference.com/w/cpp/container/map"><code>std::map</code></a>
+- przechowuje pary klucz-element (typy obu określone przez parametry
+szablonu). Pozwala na dostęp do elementów poprzez klucz, np.
+<code>mapa_ocen["Janina Kowalska"] = 5</code>.</li>
+<li><a
+href="https://en.cppreference.com/w/cpp/container/list"><code>std::list</code></a>
+- rozprasza elementy w pamięci. każdy element należy do komórki, która
+przechowuje wskaźnik do kolejnej komórki. W konsekwencji, aby dostać się
+do <em>i</em>-tego elementu musimy przejść przez <em>i</em>−1 elementów
+go poprzedzających.</li>
+<li><a
+href="https://en.cppreference.com/w/cpp/container/deque"><code>std::deque</code></a>
+- dwukierunkowa kolejka (możemy dodawać elementy na końcu i na
+początku). Typowe implementacje alokują pamięć blokami (np. na 16
+elementów, nie na 1).</li>
+</ul>
+</div>
+<div id="stdvector" class="section level2">
+<h2><code>std::vector</code></h2>
+<p>Kontenerem, po który sięgamy najczęściej, jest wektor. Wynika to z
+wygody, którą nam oferuje: zachowuje się z grubsza jak tradycyjna
+tablica (dane ciągłe w pamięci, indeksowany dostęp przy pomocy operatora
+<code>[ ]</code>), z tą różnicą, że potrafi dynamicznie zwiększać swoją
+pojemność według naszej potrzeby. Pod maską, wektor składa się tak
+naprawdę z 3 pól: wskaźnika do pierwszego elementu, długości
+(<code>size</code>) i pojemności (<code>capacity</code>). Kontener
+zbliżony do wektora poznaliśmy już na 2. laboratorium - wtedy pisaliśmy
+go sami.</p>
+<div id="tworzenie-i-niszczenie-wektora" class="section level3">
+<h3>Tworzenie i niszczenie wektora</h3>
+<p>Najczęściej korzystamy z poniższych konstruktorów wektora typu
+<code>std::vector&lt;T&gt;</code>:</p>
+<ol style="list-style-type: decimal">
+<li>konstruktor domyślny - tworzy pusty wektor</li>
+<li>konstruktor przyjmujący <code>unsigned int</code> - tworzy wektor o
+rozmiarze równym podanej liczbie, wypełniony elementami skonstruowanymi
+przy pomocy konstruktora domyślnego klasy T (jeżeli takiego nie ma, to
+nasz kod się nie skompiluje)</li>
+<li>konstruktor przyjmujący <code>unsigned int</code> i obiekt typu
+<code>T</code> - wypełnia wektor liczbą kopii przyjętego obiektu równą
+podanej liczbie</li>
+<li>konstruktor przyjmujący listę (w znaczeniu
+<code>std::initializer_list</code>) elementów, które mają zostać do
+niego podane</li>
+<li>konstruktory kopiujące is przenoszące</li>
+</ol>
+<p>Destruktor wektora poprawnie dealokuje pamięć, a w konsekwencji
+niszczy wszystkie zawarte w nim obiekty. Zachowanie to jest zgodne z
+naszymi oczekiwaniami i pozwala nam skupić się na ważniejszych rzeczach;
+nie musimy martwić się o wołanie <code>delete[]</code>.</p>
+</div>
+<div id="dodawanie-elementów-do-wektora" class="section level3">
+<h3>Dodawanie elementów do wektora</h3>
+<p>Nowe elementy dodajemy do wektora przy pomocy metod
+<code>push_back</code> oraz <code>emplace_back</code>. Nazewnictwo to
+zgodne jest z konwencją biblioteki standardowej:</p>
+<ul>
+<li><code>push</code> - sugeruje, że wkładamy do tablicy element, który
+istnieje gdzie indziej w programie, tzn. wykonuje jego kopię i dodaje do
+wektora</li>
+<li><code>emplace</code> - sugeruje, że element jest tworzony w miejscu
+(<em>in place</em>), tzn. <code>emplace_back</code> przyjmuje argumenty
+konstruktora elementu, który tworzony jest już w wektorze - omijamy
+kopię</li>
+<li><code>back</code> - ten sufiks sugeruje, że element dodawany jest na
+końcu wektora (niektóre kontenery potrafią dodawać elementy także od
+przodu)</li>
+</ul>
+<p>Zobaczmy różnicę między <code>push_back</code> i
+<code>emplace_back</code> na przykładzie:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>string<span class="op">&gt;</span> vs<span class="op">;</span>      <span class="co">// pusty wektor stringów</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">std::</span>string wyraz<span class="op">{</span><span class="st">&quot;słowo&quot;</span><span class="op">};</span>       <span class="co">// przykładowy string</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>vs<span class="op">.</span>push_back<span class="op">(</span>wyraz<span class="op">);</span>              <span class="co">// dodaj kopię istniejącego stringa do wektora</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>wyraz <span class="op">+=</span> <span class="st">&quot; drugie słowo&quot;</span><span class="op">;</span>         <span class="co">// obiekt wyraz istnieje niezależnie</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>vs<span class="op">.</span>emplace_back<span class="op">(</span><span class="st">&quot;trzecie słowo&quot;</span><span class="op">);</span> <span class="co">// skonstruuj string na końcu wektora na podstawie const char*</span></span></code></pre></div>
+<p>Warto zaznaczyć, że tak naprawdę <code>push_back</code> woła
+<code>emplace_back</code> - wykorzystuje on wtedy konstruktor kopiujący
+(lub przenoszący).</p>
+</div>
+<div id="indeksowanie" class="section level3">
+<h3>Indeksowanie</h3>
+<p>Indeksowanie po wektorze odbywa się przy pomocy operatora
+<code>[ ]</code>, dokładnie tak jak po zwykłej tablicy. Sięgnięcie poza
+zakres (<code>v[i]</code>, gdzie <code>i &gt;= v.size()</code>) jest
+nielegalne (zachowanie analogiczne do tradycyjnej tablicy). Wektor
+trawersować możemy także używając iteratorów, ale o tym później.</p>
+</div>
+<div id="usuwanie-elementów" class="section level3">
+<h3>Usuwanie elementów</h3>
+<p>Ostatni element wektora możemy usunąć przy pomocy metody
+<code>pop_back</code>.</p>
+</div>
+<div id="zadania" class="section level3">
+<h3>Zadania</h3>
+<p>Przećwiczmy teraz wymienioną powyżej funkcjonalność szablonu
+<code>std::vector</code>.</p>
+<div id="zadanie-1" class="section level4">
+<h4>Zadanie 1</h4>
+<p>Stwórz pusty wektor <code>int</code>ów. Wyświetl jego rozmiar i
+pojemość. Napisz pętlę, w której dodasz do niego dowolną liczbę
+całkowitą (użyj <code>push_back</code> lub <code>emplace_back</code>, w
+tym przypadku jest to bez znaczenia), a następnie wyświetlisz rozmiar i
+pojemność wektora. Wykonaj ciało pętli np. 100 razy. Jak zmienia się
+pojemność wektora, gdy jest on zapełniony i dodajesz do niego
+element?</p>
+</div>
+<div id="zadanie-2" class="section level4">
+<h4>Zadanie 2</h4>
+<p>W każdej iteracji napisanej pętli wyświetl dodatkowo adres pierwszego
+elementu (<code>&amp;v[0]</code>). Czy pozostaje on stały wraz ze
+wzrostem rozmiaru wektora? Dlaczego tak/nie?</p>
+</div>
+<div id="zadanie-3" class="section level4">
+<h4>Zadanie 3</h4>
+<p>Stwórz przy pomocy konstruktora nr 3 wektor 100 <code>int</code>ów o
+wartości 42. Wyświetl jego długość i pojemność. Wykonaj program 2 razy,
+raz używając do inicjalizacji nawiasów <code>()</code>, a raz
+<code>{}</code>. Jakie będą efekty? Dlaczego tak się dzieje? Zapytaj
+osobę prowadzącą zajęcia.</p>
+<p><strong>Podpowiedź</strong>: chodzi o specjalne zasady konstrukcji
+dotyczące <code>std::initializer_list</code>.</p>
+<p><strong>Wniosek</strong>: w większości przypadków nadal preferujemy
+inicjalizację przy pomocy nawiasów klamrowych, natomiast w przypadku
+klas posiadających konstruktory przyjmujące
+<code>std::initializer_list</code> musimy zachować czujność i postępować
+ostrożnie.</p>
+</div>
+<div id="zadanie-4" class="section level4">
+<h4>Zadanie 4</h4>
+<p>Napisz program, który tworzy w pętli na podstawie danych podanych do
+konsoli obiekty klasy <code>Human</code> i przechowuje je w wektorze
+(wczytuj z klawiatury przynajmniej imię). Porównaj, jak wyglądał będzie
+program, gdy użyjesz <code>push_back</code> i <code>emplace_back</code>.
+Zastanów się ile kopii obiektu <code>std::string</code> wykonujesz.
+Przemyśl jak może Ci pomóc <code>std::move</code>
+(<code>std::string</code> ma dobrze zdefiniowaną semantykę
+przenoszenia).</p>
+</div>
+<div id="zadanie-5" class="section level4">
+<h4>Zadanie 5</h4>
+<p>Zmodyfikuj program tak, aby podanie do konsoli konkretnej wartości
+(np. “pop”) powodowało usunięcie ostatniego elementu.</p>
+</div>
+<div id="zadanie-6" class="section level4">
+<h4>Zadanie 6</h4>
+<p>Zweryfikuj poprawne wykonanie poprzedniego zadania wyświetlając
+imiona osób zawartych w wektorze.</p>
+</div>
+</div>
+</div>
+<div id="stdlist" class="section level2">
+<h2><code>std::list</code></h2>
+<p>Lista jest jedną z najprostszych struktur danych. Składa się ona z
+węzłów (ang. <em>node</em>) - każdy węzeł przechowuje 1 element oraz
+wskaźnik do kolejnego węzła (ostatni węzeł wskazuje na
+<code>nullptr</code>). Jeżeli węzły przechowują także wskaźnik do
+poprzedniego węzła, mówimy o liście dwukierunkowej. Pomocna w
+zrozumieniu tej struktury danych może być następująca wizualizacja
+rozkładu w pamięci elementów listy jednokierunkowej:</p>
+<div class="float">
+<img src="figures/cpp_inst5/list.png" alt="list.png" />
+<div class="figcaption">list.png</div>
+</div>
+<p>Jak widać, możemy dodawać nowe elementy na dowolnej pozycji listy (z
+przodu, z tyłu, gdzieś w środku) bez konieczności przesuwania elementów
+już istniejących. Ceną, którą płacimy za tę wygodę jest czas dostępu do
+elementów - aby dostać się do <em>i</em>-tego elementu, musimy przejść
+przez <em>i</em> - 1 elementów go poprzedzających.</p>
+<p>Listy są tematem, na który moglibyśmy poświęcić osobne zajęcia. Tutaj
+przytaczamy je jedynie dla kontrastu z wektorem, aby zobrazować, że
+biblioteka standardowa zapewnia podobny interfejs dla drastycznie
+różniących się kontenerów.</p>
+<div id="tworzenie-i-niszczenie-listy" class="section level3">
+<h3>Tworzenie i niszczenie listy</h3>
+<p>Na zajęciach rozważymy jedynie konstruktor domyślny, tworzący pustą
+listę. Jak nietrudno się domyślić, destruktor listy niszczy wszystkie
+jej węzły, dzięki czemu nie doznajemy wycieku pamięci.</p>
+</div>
+<div id="dodawanie-elementów-do-listy" class="section level3">
+<h3>Dodawanie elementów do listy</h3>
+<p>Na zajęciach pominiemy dodawanie elementów w środku listy (choć nie
+jest szczególnie skomplikowane, zainteresowanych odsyłamy do
+dokumentacji metody <code>insert</code>). Rozważymy następujące 4 metody
+służące do dodawania elementów na końcach:</p>
+<ul>
+<li><code>push_back</code></li>
+<li><code>emplace_back</code></li>
+<li><code>push_front</code></li>
+<li><code>emplace_front</code></li>
+</ul>
+<p>Ich działanie jest analogiczne wobec metod szablonu
+<code>std::vector</code>. Jak widzimy ujednolicone nazewnictwo pomaga
+nam przy poznawaniu nowych kontenerów - nie musimy za każdym razem uczyć
+się nowych nazw metod.</p>
+</div>
+<div id="dostęp-do-elementów-listy" class="section level3">
+<h3>Dostęp do elementów listy</h3>
+<p>Dostęp do elementów listy uzyskujemy przeważnie przy pomocy
+iteratorów (o których powiemy niżej). Na chwilę obecną ograniczymy się
+do metod <code>front</code> i <code>back</code>, które zwracają
+referencję odpowiednio do pierwszego i ostatniego elementu listy.</p>
+</div>
+<div id="usuwanie-elementów-z-listy" class="section level3">
+<h3>Usuwanie elementów z listy</h3>
+<p>Pierwszy i ostatni element listy możemy usunąć odpowiednio przy
+użyciu metod <code>pop_front</code> i <code>pop_back</code>. Metodę
+<code>erase</code>, usuwającą elementy ze środka listy, pozostawiamy dla
+chętnych.</p>
+<div id="zadanie-7" class="section level4">
+<h4>Zadanie 7</h4>
+<p>Stwórz pustą listę typu <code>int</code>. Dodaj do niej 1 element.
+Wydrukuj pierwszy i ostatni element listy.</p>
+</div>
+<div id="zadanie-8" class="section level4">
+<h4>Zadanie 8</h4>
+<p>Dodaj do listy drugi element (z przodu lub z tyłu). Wydrukuj je
+ponownie.</p>
+</div>
+<div id="zadanie-9" class="section level4">
+<h4>Zadanie 9</h4>
+<p>Wydrukuj adresy pierwszego i ostatniego elementu. Czy są one blisko
+siebie?</p>
+</div>
+<div id="zadanie-10" class="section level4">
+<h4>Zadanie 10</h4>
+<p>Dodaj z przodu listy kilka elementów. Czy zmienił się adres
+ostatniego elementu? Dlaczego tak/nie?</p>
+</div>
+<div id="zadanie-11" class="section level4">
+<h4>Zadanie 11</h4>
+<p>Sprawdź, czy lista ma zdefiniowany operator nawiasów kwadratowych
+(indeksowania). Jak sądzisz, dlaczego tak jest?</p>
+</div>
+</div>
+</div>
+<div id="iteratory" class="section level2">
+<h2>Iteratory</h2>
+<p>Jak zobaczyliśmy w zadaniu 11, lista nie ma zdefiniowanego operatora
+<code>[ ]</code>. Aby dostać się do jej elementów, musimy użyć
+iteratorów. Iterator jest koncepcyjnie podobny do wskaźnika, gdyż jego
+zadaniem jest wskazywanie na elementy kontenera (nie tylko listy).
+Iteratorem nazywamy obiekt klasy, która ma zdefiniowane następujące
+operatory:</p>
+<ul>
+<li>operator dereferencji (<code>*</code>) - dereferencjonując operator
+uzyskujemy dostęp do elementu, na który wskazuje</li>
+<li>(opcjonalnie) operator <code>-&gt;</code> - pozwala na dostęp do pól
+i metod elementów (zdefiniowany dla naszej wygody, możemy to także
+osiągnąć przy pomocy operatora dereferencji)</li>
+<li>operator pre- lub post-inkrementacji (<code>++</code>) - po
+inkrementacji, iterator wskazuje na następny element kontenera</li>
+<li>operatory porównania (<code>==</code>, <code>!=</code>) - porównują,
+czy dwa iteratory wskazują na ten sam element</li>
+<li>(opcjonalnie) operator pre- lub post-dekrementacji (<code>--</code>)
+- wtedy nazywamy iterator dwukierunkowym (<em>bidirectional</em>), pełni
+on rolę analogiczną do operatora <code>++</code></li>
+<li>(opcjonalnie) operator <code>+</code> lub <code>+=</code>
+przyjmujący liczbę całkowitą - wtedy nazywamy go iteratorem losowego
+dostępu (<em>random access</em>), operator ten pozwala nam przesunąć
+iterator do przodu lub do tyłu o dowolną liczbę elementów</li>
+</ul>
+<p>Jeżeli przyjrzymy się powyższej specyfikacji, możemy dostrzec, że
+wskaźniki są iteratorami losowego dostępu. Kontenerem, na elementy
+którego wskazują, jest cała przestrzeń pamięci naszego komputera
+(podobieństwo do nazwy RAM jest nieprzypadkowe!).</p>
+<p>Nas będą jednak interesowały iteratory odpowiadające konkretnym
+kontenerom. Wszystkie kontenery STL posiadaja zdefiniowane wewnątrz
+siebie klasy iteratorów. Na przykład, najprostszym iteratorem wektora
+elementów typu <code>T</code> jest klasa
+<code>std::vector&lt;T&gt;::iterator</code>. Sam typ nie jest oczywiście
+wystarczający - potrzebujemy konkretnych obiektów. Do ich otrzymania
+służą metody kontenerów: <code>begin</code> i <code>end</code> (oraz ich
+dodatkowe odmiany, o których niżej). <code>begin</code> zwraca iterator
+do pierwszego elementu wektora, <code>end</code> zwraca iterator
+<strong>za</strong> ostatni element. Możemy więc już zobaczyć, jak
+działają iteratory w praktyce:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>           v<span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;::</span>iterator it <span class="op">=</span> v<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">// Jawnie drukujemy zawartość wektora</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="op">*</span>it<span class="op">++;</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="op">*</span>it<span class="op">++;</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="op">*</span>it<span class="op">;</span></span></code></pre></div>
+<div id="zadanie-12" class="section level4">
+<h4>Zadanie 12</h4>
+<p>Wykonaj ponownie zadanie 6, tym razem używając w pętli
+<code>for</code> opartej o iteratory, a nie bezpośrednio indeksy i
+opeator <code>[ ]</code>. Warunkiem zakończenia pętli powina być równość
+bieżącego iteratora oraz obiektu zwróconego przez metodę
+<code>end</code>.</p>
+</div>
+<div id="zadanie-13" class="section level4">
+<h4>Zadanie 13</h4>
+<p>Wydrukuj całą zawartośc listy stworzonej w zadaniu 10.</p>
+</div>
+<div id="zadanie-14" class="section level4">
+<h4>Zadanie 14</h4>
+<p>Teraz wydrukuj zawartość listy od tyłu. wykorzystaj fakt, że
+<code>std::list</code> implementuje listę dwukierunkową.</p>
+<p>W zadaniu 14 nieco niewygodna była konieczność indeksowania od
+iteratora poprzedzającego <code>list.end()</code>. Prowadzi ona do dość
+subtelnego bugu: gdyby nasza lista była pusta, mielibyśmy nieskończoną
+pętle! Jeżeli kontener jest pusty, to iterator do pierwszego elementu
+oraz <strong>za</strong> pierwszy element są równe. Dekrementacja
+iteratora poprzedzającego <code>list.end()</code> nie doprowadzi zatem
+nigdy do iteratora <code>list.begin()</code>. Ponieważ problem
+trawersowania kontenerów od końca jest dość powszechny, biblioteka
+standardowa oferuje mechanizm, który to ułatwia: iteratory odwrotne
+(<em>reverse iterator</em>). Ideę ich działania zobrazowano poniżej.</p>
+<div class="float">
+<img src="figures/cpp_inst5/iterators.png" alt="iterators.png" />
+<div class="figcaption">iterators.png</div>
+</div>
+<p>Ostatni rodzaj iteratora, jaki poznamy, to iterator
+<code>const</code>. Nie oznacza to, że nie możemy zmieniać jego wartości
+(taki iterator nie jest szczególnie przydatny, poza tym możemy go
+stworzyć po prostu deklarując np.
+<code>const std::vector&lt;int&gt;::iterator it = ...</code>), oznacza
+to, że nie możemy zmienić wartości elementu, na który wskazuje. Możemy
+za to wskazać nim na inny element (tak samo jak każdym innym
+operatorem). Iteratory <code>const</code> są przydatne, gdy trawersujemy
+kontener celem odczytu elementów - odbieramy sobie wtedy możliwość
+nieumyślnej zmiany ich wartośi. Podsumowując, poznaliśmy następujące
+typy iteratorów:</p>
+<ul>
+<li>(forward) iterator - metody <code>begin()</code> i
+<code>end()</code></li>
+<li>reverse iterator - metody <code>rbegin()</code> i
+<code>rend()</code></li>
+<li><code>const</code> (forward) iterator - metody <code>cbegin()</code>
+i <code>cend()</code></li>
+<li><code>const</code> reverse iterator - metody <code>crbegin()</code>
+i <code>crend()</code></li>
+</ul>
+</div>
+<div id="zadanie-15" class="section level4">
+<h4>Zadanie 15</h4>
+<p>Wykonaj ponownie zadanie 14, tym razem używając iteratora typu
+<code>std::list&lt;int&gt;::const_reverse_iterator</code></p>
+</div>
+<div id="zadanie-16" class="section level4">
+<h4>Zadanie 16</h4>
+<p>Wykonaj ponownie zadanie 15, tym razem zwiększając zawarte w liście
+liczby o 1 przed ich wydrukowaniem. Czy kod się skompiluje? Jaki
+iterator powinien teraz zostać użyty?</p>
+</div>
+</div>
+<div id="na-deser" class="section level2">
+<h2>Na deser</h2>
+<div id="auto" class="section level3">
+<h3><code>auto</code></h3>
+<p>W rodzinie języków C/C++ nie możemy przeciążać funkcji po typach,
+które zwraca. Oznacza to, że jeżeli podamy do jakiejś funkcji argumenty
+konkretnego typu, to możemy (a co ważniejsze kompilator może)
+jednoznacznie stwierdzić, jaki będzie typ zwróconej wartości. Aby
+skrócić kod, od standardu C++11 możemy więc zastąpić typ zwracanego
+przez funkcję obiektu słowem <code>auto</code>. Na przykład, kod:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v<span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;::</span>const_reverse_iterator it <span class="op">=</span> v<span class="op">.</span>crbegin<span class="op">();</span> it <span class="op">!=</span> v<span class="op">.</span>crend<span class="op">();</span> <span class="op">++</span>it<span class="op">)</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="op">*</span>it<span class="op">;</span></span></code></pre></div>
+<p>możemy skrócić do:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v<span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> it <span class="op">=</span> v<span class="op">.</span>crbegin<span class="op">();</span> it <span class="op">!=</span> v<span class="op">.</span>crend<span class="op">();</span> <span class="op">++</span>it<span class="op">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="op">*</span>it<span class="op">;</span></span></code></pre></div>
+<p>Zaoszczędzony na jego pisaniu czas możemy poświęcić na przyjemniejsze
+czynności, np. głaskanie psów.</p>
+</div>
+<div id="range-based-for-loop" class="section level3">
+<h3>Range-based for loop</h3>
+<p>Ostatnią sztuczką C++11 skracającą kod, jaką dziś poznamy, będzie
+<em>ranged-based for loop</em> (tłumacznie na polski nieznane jest
+autorowi). Najczęstszą pętlą, jaką piszemy, jest przejście w kolejności
+po całej rozpiętości kontenera (od <code>begin</code> do
+<code>end</code>):</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v<span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> it <span class="op">=</span> v<span class="op">.</span>begin<span class="op">();</span> it <span class="op">!=</span> v<span class="op">.</span>end<span class="op">();</span> <span class="op">++</span>it<span class="op">)</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="op">*</span>it<span class="op">;</span></span></code></pre></div>
+<p>Jeżeli kontener wspiera metody <code>begin</code> i <code>end</code>,
+możemy powyższy kod zastąpić:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v<span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">int</span> e <span class="op">:</span> v<span class="op">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> e<span class="op">;</span></span></code></pre></div>
+<p>W powyższym kodzie wykonujemy kopię każdego elementu <code>v</code> i
+drukujemy ją do konsoli. Jeżeli nie chcemy wykonywać kopii, możemy
+napisać:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="at">const</span> <span class="dt">int</span><span class="op">&amp;</span> e <span class="op">:</span> v<span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> e<span class="op">;</span></span></code></pre></div>
+<div id="zadanie-17" class="section level4">
+<h4>Zadanie 17</h4>
+<p>Wykonaj zadania 12 i 13 używając ranged-based for loop.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

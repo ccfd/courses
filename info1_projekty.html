@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="B. Górecki" />
+<meta name="author" content="W. Regulski" />
+
+
+<title>info1_projekty.knit</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info1_projekty.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="projekty-domowe" class="section level1">
+<h1>Projekty Domowe</h1>
+<p>Większość zadań wymaga skorzystania z biblioteki
+<code>winbgi2</code>. Niektóre zadania wymagają zaimplementowania
+obsługi myszki lub klawiatury w celu sterowania przebiegiem programu.
+Niezbędne funkcje można znaleźć także w bibliotece <code>winbgi</code>.
+Dodatkowo, na końcu niniejszej instrukcji umieszczono opisy podstawowych
+funkcji służących do obsługi myszki i klawiatury.</p>
+<div id="gra-w-bilard" class="section level3">
+<h3>1. Gra w bilard</h3>
+<p>Napisz program, który będzie symulował uproszczoną grę w
+bilard.<br />
+Na prostokątnej planszy wylosuj położenia kilku bil. Jedna z nich
+powinna być w dowolny sposób wyróżniona (ma reprezentować białą bilę).
+Użytkownik ma mieć możliwość w dowolny sposób (przez wpisanie składowych
+z klawiatury lub obsługę myszki) zadania kierunku, w jakim rozpędzi tą
+bilę. Będzie to odpowiadać uderzeniu kijem białej bili. Następnie
+zasymuluj ruch bili oraz zderzenia miedzy bilami oraz ściankami.
+Sprawdzaj, czy któraś z rozpędzonych bil, z odpowiednia dokładnością,
+trafi w róg stołu (wykrywaj takie zdarzenie – bila powinna wtedy
+znikać).<br />
+Odpowiednie wzory opisujące zderzenia dwóch bil znajdziesz w <a
+href="http://ccfd.github.io/courses/info1_lab05.html">Instrukcji
+5</a>.</p>
+</div>
+<div id="wykres" class="section level3">
+<h3>2. Wykres</h3>
+<p>Napisz program, który będzie rysował wykresy funkcji matematycznych.
+Program powinien zawierać funkcję rysującą, która jako argumenty będzie
+przyjmować wskaźniki do dwóch tablic (odpowiednio odciętych i rzędnych)
+oraz zmienną typu całkowitego określającą rozmiar tych tablic. Zadbaj o
+to, aby wykres był rysowany na ekranie linia ciągłą, osie rzędnych i
+odciętych były odpowiednio generowane a na osiach były zaznaczone
+wartości (możesz do tego użyć funkcji <code>outtextxy()</code> z
+biblioteki <code>winbgi2</code>, która drukuje zadany tekst w miejscu o
+zadanych współrzędnych). Możesz również dodać możliwość przekazania do
+funkcji nazw (etykiet) obu osi. Przetestuj swoja funkcje dla kilku
+rożnych zestawów danych.</p>
+</div>
+<div id="burzenie-zamku" class="section level3">
+<h3>3. Burzenie zamku</h3>
+<p>Napisz program, który będzie stanowił modyfikacje program opisanego w
+<a href="http://ccfd.github.io/courses/info1_lab09.html">Instukcji
+9</a>. Napisz odpowiednie funkcje, które stworzą zamek piksel po pikselu
+(najwygodniej napisać sobie dwie funkcje, które z pikseli będą potrafiły
+tworzyć prostokąt i trójkąt, a następnie z tych kształtów wygenerować
+zamek). Następnie program ma realizować ten sam algorytm ustawiania
+armaty i oddawania strzału, jednak w momencie, w którym kula znajdzie
+się na dowolnym pikselu należącym do zamku, zakończy swój lot i wytworzy
+w tym miejscu wyrwę w murze (tzn. usunie wszystkie piksele w promieniu
+np. <span class="math inline">\(10\)</span> pikseli od miejsca
+uderzenia). Promień wyrwy uzależnij (np. liniowo) od prędkości, z jaką
+kula uderza w mur.</p>
+</div>
+<div id="gra-w-kółko-i-krzyżyk" class="section level3">
+<h3>4. Gra w kółko i krzyżyk</h3>
+<p>Napisz program, który będzie grał z użytkownikiem w kółko i krzyżyk.
+Plansza ma być rysowana w oknie graficznym, a komunikacja z
+użytkownikiem ma być prowadzona za pośrednictwem klawiatury lub myszki.
+Opracuj dwa rożne algorytmy, według których program będzie wybierał
+kolejne pola, w których postawi swój marker. Najprostszy algorytm ma być
+algorytmem losowym – komputer ma bez zastanawiania się nad ruchami
+losować dowolne, wolne miejsce do postawienia swojego znaku. Program ma
+wykrywać zwycięstwo, przegraną bądź remis. Drugi algorytm powinien
+zawierać analizę, czy dany ruch ma sens. Możesz np. analizować wszystkie
+możliwe ruchy w przód i wybierać takie pole, które będzie dawało
+największe szanse wygranej. Możesz też opracować swój autorski algorytm
+lub spróbować zaczerpnąć wiedzy na temat podstawowych, powszechnie
+stosowanych algorytmów gry w kółko i krzyżyk.</p>
+</div>
+<div id="gra-w-statki" class="section level3">
+<h3>5. Gra w statki</h3>
+<p>Napisz program, który będzie grał z użytkownikiem w statki. Na
+początku program ma losować położenia statków na swojej planszy
+(pamiętaj, że statki nie mogą się stykać ani rogiem ani bokiem).
+Następnie użytkownik ma wybrać miejsca, w których chce ustawić swoje
+statki (może tego dokonać za pomocą myszki lub klawiatury). Ostatecznie,
+program ma przeprowadzić grę w statki (zastanów się nad możliwie
+najsprytniejszym sposobem, w jaki komputer ma ostrzeliwać pole gracza) i
+wykrywać wygraną.</p>
+</div>
+<div id="liczenie-całki-metodą-monte-carlo" class="section level3">
+<h3>6. Liczenie całki metodą Monte Carlo</h3>
+<p>Napisz program, który wyznacza przybliżoną wartość całki <span
+class="math inline">\(R_b = \displaystyle{\int_a^b} f(x)dx\)</span>
+metodą Monte Carlo. Załóż, ze wartości funkcji podcałkowej są dodatnie.
+Metoda Monte Carlo obliczania całek oznaczonych działa w następujący
+sposób:</p>
+<ul>
+<li>znajdź pole prostokąta zawierającego wykres funkcji,</li>
+<li>generuj w sposób losowy punkty z tego prostokąta,</li>
+<li>oblicz przybliżoną wartość całki jako pole prostokąta pomnożone
+przez ułamek określający, ile z wylosowanych punktów trafiło w obszar
+pod wykresem funkcji.</li>
+</ul>
+<p>Wybierz jakąś funkcję i zilustruj funkcję oraz punkty na wykresie
+(por. <a href="http://ccfd.github.io/courses/info1_lab04.html">Instukcja
+4</a>).</p>
+</div>
+<div id="kalkulator-pochodnych" class="section level3">
+<h3>7. Kalkulator pochodnych</h3>
+<p>Napisz program, który drukuje na ekranie wzór na pierwszą pochodną
+funkcji zadanej w pliku. Załóż, że wzór funkcji w pliku jest postaci
+<span class="math inline">\(f(x) \cdot g(x)\)</span>, gdzie funkcje
+<span class="math inline">\(f(x)\)</span> i <span
+class="math inline">\(g(x)\)</span> to jedno z wyrażeń typu <span
+class="math inline">\(x^n\)</span>, <span class="math inline">\(\sin(a
+\cdot x)\)</span> lub <span class="math inline">\(cos(b \cdot
+x)\)</span>. Przykładowy wzór podany w pliku tekstowym to: <span
+class="math inline">\(x^7 \cdot \cos(\pi \cdot x)\)</span>.</p>
+</div>
+<div id="błądzenie-losowe" class="section level3">
+<h3>8. Błądzenie losowe</h3>
+<p>Napisz program, który będzie symulował błądzenie losowe sporej grupy
+ludzi (np. <span class="math inline">\(10000\)</span> osób) startujących
+z jednego punktu. Każda osoba wykonuje w każdym kroku czasowym
+przesuniecie w lewo lub w prawo z zadanym prawdopodobieństwem. Utwórz
+histogram liczby osób od odległości, na którą zaszli. Przetestuj program
+dla rożnych prawdopodobieństw wykonywania kroku w dana stronę.<br />
+Dopuszczalne są tylko dwa ruchy: krok w lewo albo krok w prawo. Nie ma
+możliwości pozostanie w miejscu.</p>
+</div>
+<div id="szyfrowanie-i-deszyfrowanie" class="section level3">
+<h3>9. Szyfrowanie i deszyfrowanie</h3>
+<p>Napisz program, który pozwoli na zaszyfrowanie danego fragmentu
+tekstu oraz złamanie danego szyfru. Zasada szyfrowania jest następująca:
+wszystkie litery wiadomości niezaszyfrowanej mają zostać przesunięte o
+pewną stałą odległość. Np. dla przesunięcia o <span
+class="math inline">\(3\)</span> będzie to wyglądało tak: <span
+class="math inline">\(ALA MA KOTA -&gt; DOD PD NRXD\)</span>. Łamanie
+szyfru będzie się odbywać w oparciu o fakt, że funkcja łamiąca szyfr
+będzie posiadała bazę słów, spośród których któreś na pewno znajduje się
+w tekście. Dzięki temu, próbując wszystkich możliwości dekryptażu (a
+jest ich tyle, ile liter w alfabecie łacińskim), wybierze poprawną
+możliwość przez sprawdzenie czy znajduje się tam dane słowo. Oczywiście
+taki algorytm nie jest jednoznaczny, jednak powinien działać rozsądnie
+przy krótkich wiadomościach. Wiadomość oryginalna, szyfrowana oraz baza
+danych słów-kluczy maja być wczytywane z pliku.</p>
+</div>
+<div id="histogram-z-zadana-podziałką" class="section level3">
+<h3>10. Histogram z zadana podziałką</h3>
+<p>Napisz program, który będzie rysować histogram z zadaną podziałką w
+oparciu o dostarczony zbiór danych z pliku. Podziałka histogramu oznacza
+na ile sektorów należy podzielić wykres. Należy samemu
+zdobyć/wygenerować dane źródłowe (np. poprzez losowanie).</p>
+</div>
+<div id="działania-na-macierzach" class="section level3">
+<h3>11. Działania na macierzach</h3>
+<p>Napisz program, który wykonuje działania algebraiczne na macierzach:
+dodaje, odejmuje oraz mnoży je przez siebie. Macierze mają być
+wczytywane z plików, program ma sprawdzać czy ich wymiary są odpowiednie
+do wykonania danych operacji i jeśli są – generować plik z wynikiem.</p>
+</div>
+<div id="gra-w-węża" class="section level3">
+<h3>12. Gra w węża</h3>
+<p>Napisz program, który będzie realizował grę w węża w oknie graficznym
+biblioteki <code>winbgi.h</code>. W najprostszej wersji wąż może w
+każdym kroku czasowym upominać się o dane z klawiatury, w wersji
+zaawansowanej wąż porusza się, a kierunki są przyjmowane w trakcie
+działania programu. Dane kierunku mogą być wprowadzane za pomocą myszki
+lub klawiatury. Wąż oczywiście rośnie po zdobyciu pokarmu oraz umiera po
+zderzeniu sam ze sobą albo ze ścianą.</p>
+</div>
+<div id="gra-w-życie" class="section level3">
+<h3>13. Gra w życie</h3>
+<p>Napisz program symulujący grę w życie wg. klasycznych zasad Conway’a
+(patrz <a
+href="https://pl.wikipedia.org/wiki/Gra_w_życie">Wikipedia</a>). Program
+ma wyświetlać stan populacji w każdym kroku czasowym używając biblioteki
+<code>winbgi.h</code>.</p>
+</div>
+<div id="ewakuacja-płonącego-budynku" class="section level3">
+<h3>14. Ewakuacja płonącego budynku</h3>
+<p>Napisz program, który symuluje ucieczkę grupy ludzi z płonącego
+pomieszczenia: w momencie wybuchu pożaru ludzie (kółka w oknie
+graficznym) zaczynają się kierować w stronę wyjścia. Niestety biegną na
+oślep i mogą się ze sobą zderzyć (odbijają się wg. schematu z <a
+href="http://ccfd.github.io/courses/info1_lab05.html">Instrukcji 5</a>),
+przez co przez chwilę poruszają się bezwładnie, ale po kilku krokach
+orientują się w przestrzeni i znów nadają sobie prędkość w kierunku
+wyjścia. Może potem dojść do następnych zderzeń. Zbadaj, jak zależy
+możliwość ucieczki takiej grupy od rozmiarów pojedynczego człowieka oraz
+od ilości ludzi wewnątrz. Wyjście jest jedno, kółko po prostu zniknie,
+gdy do niego dotrze.</p>
+</div>
+<div
+id="totolotek-wymaga-sporo-pracy-sugeruje-się-je-grupom-dwuosobowym"
+class="section level3">
+<h3>15. *Totolotek (wymaga sporo pracy, sugeruje się je grupom
+dwuosobowym)</h3>
+<p>Napisz program symulujący maszynę do losowania używaną w Totolotku.
+Program w dużej mierze opiera się na <a
+href="http://ccfd.github.io/courses/info1_lab05.html">Laboratorium 5</a>
+(zderzenia ze ścianami, kolizje), lecz należy uwzględnić także działanie
+pól siłowych: grawitacji (która po prostu powinna zmniejszać składową
+<span class="math inline">\(y\)</span> prędkości w każdym kroku funkcji
+<code>run</code>) oraz dmuchawy (w pewnym obszarze okna graficznego
+piłki powinny być przyspieszane w pewien sposób – tutaj jest miejsce na
+inwencje użytkownika). Dodatkowo należy dodać niewielką ilość dyssypacji
+energii do programu, np. przy każdym zderzeniu niech piłki zachowują
+tylko <span class="math inline">\(95%\)</span> energii kinetycznej.
+Wreszcie, konieczna jest współpraca z myszką/klawiaturą: pierwsze
+kliknięcie zwalnia blokadę (zaczyna się symulacja), drugie rozpoczyna
+dmuchanie a trzecie zasysa piłki do boksu. Należy pamiętać, ze w boksie
+może być tylko jedna piłka. Oczywiście, piłki powinny się ze sobą
+zderzać. Należy w miarę możliwości wprowadzić lekkie zaburzenia na
+początku działania programu (losowo rozmieścić piłki w boksie), by wynik
+był niedeterministyczny.</p>
+</div>
+</div>
+<div id="sterowanie-przebiegiem-programu-za-pomocą-myszki-i-klawiatury"
+class="section level1">
+<h1>Sterowanie przebiegiem programu za pomocą myszki i klawiatury</h1>
+<div id="mysz" class="section level2">
+<h2>Mysz</h2>
+<ul>
+<li><code>mousedown()</code> – funkcja sprawdza czy naciśnięto klawisz
+myszki (zwraca <span class="math inline">\(1\)</span> jeśli naciśnięto i
+<span class="math inline">\(0\)</span> w przeciwnym wypadku)</li>
+<li><code>mouseup()</code> – funkcja sprawdza czy po naciśnięciu
+zwolniono klawisz myszki (zwracana wartość – jw.)</li>
+<li><code>whichmousebutton()</code> – funkcja zwraca <span
+class="math inline">\(1\)</span> jeśli naciśnięto prawy klawisz i <span
+class="math inline">\(0\)</span> jeśli naciśnięto lewy klawisz</li>
+<li><code>mouseclickx()</code> – funkcja zwraca wartość współrzędnej
+<span class="math inline">\(x\)</span> w momencie kliknięcia</li>
+<li><code>mouseclicky()</code> – funkcja zwraca wartość współrzędnej
+<span class="math inline">\(y\)</span> w momencie kliknięcia</li>
+</ul>
+</div>
+<div id="klawiatura" class="section level2">
+<h2>Klawiatura</h2>
+<ul>
+<li><code>kbhit()</code> – funkcja zwraca <span
+class="math inline">\(1\)</span> jeśli naciśnięto klawisz klawiatury i
+<span class="math inline">\(0\)</span> w przeciwnym wypadku</li>
+<li><code>getch()</code> – funkcja zwraca kod <span
+class="math inline">\(ASCI\)</span> klikniętego klawisza</li>
+</ul>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

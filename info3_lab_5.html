@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="K. Marchlewski" />
+
+
+<title>info3_lab_5</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab_5.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="wstęp" class="section level1">
+<h1>Wstęp</h1>
+<p>Statystyczny użytkownik myszki komputerowej żyje w przekonaniu, iż
+stworzenie dokumentu tekstowego wysokiej jakości jest stosunkowo proste.
+Jest prawdopodobne, że przekonanie to zostało mu zaszczepione przez
+edytory typu WYSWIG (What You See is What You Get). Klasycznym
+przykładem takiego programu jest MS Word. Umożliwia on m. in.
+modyfikację kroju czcionki oraz rozmiaru marginesów w taki sposób aby
+dokument był przyjemny dla oka. Czy wizualna atrakcyjność dokumentu
+oznacza jednak, że dokument jest wysokiej jakości? Ciężko powiedzieć…
+nie napisaliśmy jeszcze co to znaczy “dokument wysokiej jakości”.</p>
+<p>Otóż, dokument powinien być tak sformatowany, aby umożliwić
+czytelnikowi całkowite skupienie się na tekście. Nie powinien zawierać
+elementów, które rozpraszają lub odwracają jego uwagę od tego co jest
+najważniejsze – od treści. Aby zrealizować ten cel należy wybrać: krój
+czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50,
+66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w
+linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół)
+oraz wiele innych. Nie jest to proste, zwłaszcza jeśli zmienimy coś w
+gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.</p>
+<p>Aby zachować wysoki poziom zasad typograficznych i jednocześnie
+ułatwić autorowi skupienie się na treści dokumentu stworzono program
+<code>LaTeX</code> (wł. zestaw makr i instrukcji do obsługi programu
+<code>TeX</code>). Nazwę <code>LaTeX</code> czytamy
+<code>la-tech</code>. Program rozdziela funkcję autora od zecera (osoby
+dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za
+prawidłową typografię.</p>
+<p>Pisanie w <code>LaTeXu</code> w pewnym stopniu przypomina pisanie w
+języku HTML. “Program” składa się z właściwego tekstu i zestawu
+instrukcji, które mówią o tym jak nasz tekst ma wyglądać po
+“kompilacji”. Dzięki ogromnej liczbie pakietów i szablonów dostępnych w
+systemie <code>LaTeX</code> można tworzyć wiele różnych typów
+dokumentów. Na dzisiejszych zajęciach skorzystamy z podstawowego typu
+<code>article</code>.</p>
+<p>W celu poszerzenia wiedzy, autorzy polecają pozycję: <em>Nie za
+krótkie wprowadzenie do systemu <code>LaTeX</code><span
+class="math inline">\(2_{\varepsilon}\)</span></em>.</p>
+</div>
+<div id="pierwszy-dokument" class="section level1">
+<h1>Pierwszy dokument</h1>
+<p>Przejdziemy teraz do stworzenia pierwszego dokumentu w
+<code>LaTeXu</code>. Najpierw musimy zadeklarować klasę dokumentu.
+Robimy to za pomocą polecenia <code
+class="sourceCode latex"><span class="bu">\documentclass</span>[opcje]{<span class="ex">typ</span>}</code>,
+które umożliwia nam wybranie typu dokumentu (<code>article</code>,
+<code>report</code>, <code>book</code>, <code>letter</code>) oraz
+dodatkowych opcji, np.</p>
+<ul>
+<li>rozmiaru pisma (<code>10pt</code>, <code>11pt</code>, itp.),</li>
+<li>rozmiaru papieru (<code>a4paper</code>,
+<code>letterpaper</code>),</li>
+<li>czy strona tytułowa ma być wygenerowana osobno
+(<code>titlepage</code>, <code>notitlepage</code>),</li>
+<li>liczby kolumn (<code>onecolumn</code>, <code>twocolumn</code>),</li>
+<li>czy tekst ma być przygotowany do wydruku dwustronnego
+(<code>oneside</code>, <code>twoside</code>), itd.</li>
+</ul>
+<p>Opcje ujęte w nawiasy kwadratowe (<code>[</code> i<code>]</code>) nie
+są obligatoryjne – jeśli nie zdefiniujemy żadnej, zostaną użyte wartości
+domyślne.</p>
+<p>W edytorze tekstu wpisz poniższy kod:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">\documentclass</span>[11pt, a4paper, twoside]{<span class="ex">article</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  Stół z powyłamywanymi nogami!</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>zapisz go w pliku z rozszerzeniem <code>.tex</code>, np.
+<code>dokument.tex</code> i skompiluj za pomocą polecenia</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pdflatex</span> dokument.tex</span></code></pre></div>
+<p>Kompilator utworzy kilka plików, m. in. plik
+<code>dokument.pdf</code>, który zawiera nasz tekst.</p>
+<p>Otwórz plik <code>dokument.pdf</code> i naciesz oczy wynikiem swojej
+pracy. Ale co to? Okazuje się, że brakuje kilku liter! Podstawowe
+możliwości <code>LaTeXa</code> nie sięgają bowiem języka polskiego.</p>
+<div id="pakiety" class="section level3">
+<h3>Pakiety</h3>
+<p>Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując
+dodatkowe pakiety. Przykładowo, kompletną obsługę języka polskiego
+włączamy dodając pakiety:</p>
+<ul>
+<li><code
+class="sourceCode latex"><span class="bu">\usepackage</span>[T1]{<span class="ex">fontenc</span>}</code>
+- zawiera czcionkę z polskimi znakami,</li>
+<li><code
+class="sourceCode latex"><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</code>
+- definiuje kodowanie (<code>utf8</code> - Linux, <code>Cp1250</code> -
+Windows) znaków w pliku źródłowym,</li>
+<li><code
+class="sourceCode latex"><span class="bu">\usepackage</span>[english, polish]{<span class="ex">babel</span>}</code>
+- definiuje język dokumentu,</li>
+<li><code
+class="sourceCode latex"><span class="bu">\usepackage</span>{<span class="ex">polski</span>}</code>
+- wymusza polskie reguły składu dokumentu.</li>
+</ul>
+<p>Pakiety, z których planujemy korzystać umieszczamy w t.zw.
+<em>preambule</em>: za instrukcją <code>\documentclass</code>, a przed
+instrukcją <code>\begin{document}</code>. Zmodyfikuj teraz kod źródłowy
+tak, aby polskie znaki wydrukowały się prawidłowo.</p>
+</div>
+<div id="strona-tytułowa" class="section level3">
+<h3>Strona tytułowa</h3>
+<p>Ponieważ tekst wygląda teraz elegancko, warto pochwalić się swoim
+osiągnięciem światu. Włącz opcję utworzenia osobnej strony tytułowej i
+dodaj (za instrukcjami dołączającymi pakiety) instrukcje “sterujące” jej
+zawartością, np.:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">\author</span>{Gall Anonim}</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">\title</span>{Kroniki}</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">\date</span>{1113-1116}</span></code></pre></div>
+<p>W “ciele” dokumentu (między instrukcjami <code
+class="sourceCode latex"><span class="kw">\begin</span>{<span class="ex">document</span>}</code>
+i <code
+class="sourceCode latex"><span class="kw">\end</span>{<span class="ex">document</span>}</code>)
+umieść instrukcję</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">\maketitle</span></span></code></pre></div>
+<p>i skompiluj ponownie tekst. Sprawdź co się stanie jeśli opcja osobnej
+strony tytułowej nie będzie włączona.</p>
+</div>
+</div>
+<div id="podział-logiczny-dokumentu" class="section level1">
+<h1>Podział logiczny dokumentu</h1>
+<div id="sekcje" class="section level3">
+<h3>Sekcje</h3>
+<p>Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
+Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia
+jej zapamiętanie. W <code>LaTeXu</code> podstawowy podział dokumentu
+można otrzymać wykorzystując instrukcje:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">\section</span>{Nazwa}</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="kw">\subsection</span>{Nazwa}</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="kw">\subsubsection</span>{Nazwa}</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="kw">\paragraph</span>{Nazwa}</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="kw">\subparagraph</span>{Nazwa}</span></code></pre></div>
+<p>Podziel wybrany fragment tekstu za pomocą wymienionych poleceń i
+sprawdź jak działają. Zbuduj teraz spis treści odpowiadający utworzonym
+rozdziałom. W tym celu dodaj instrukcję</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">\tableofcontents</span></span></code></pre></div>
+<p>na początku ciała dokumentu.</p>
+<p>Tak otrzymany spis treści jest mało interaktywny – możemy dowiedzieć
+się gdzie jest szukany rozdział, ale przejść do niego musimy sami. W
+celu automatycznego tworzenia zakładek oraz linków w obrębie spisu
+treści, które zaprowadzą nas do poszukiwanego fragmentu, należy użyć
+pakietu:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">hyperref</span>}</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">\hypersetup</span>{colorlinks=true, urlcolor=blue, linkcolor=blue}</span></code></pre></div>
+<p>Pakiet ten pozwala także na umieszczanie linków w tekście.
+Przykładowo, instrukcja:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">\href</span>{https://google.com/}{Google}</span></code></pre></div>
+<p>zaprowadzi nas do popularnej wyszukiwarki.</p>
+</div>
+<div id="listy-i-numeracje" class="section level3">
+<h3>Listy i numeracje</h3>
+<p>Wypunktowania i numeracje uzyskuje się wykorzystując tzw. otoczenia.
+Charakteryzują się one dwiema instrukcjami: otwierającą <code
+class="sourceCode latex"><span class="kw">\begin</span>{<span class="er">}</span></code>
+i zamykającą <code
+class="sourceCode latex"><span class="kw">\end</span>{<span class="er">}</span></code>.
+W przypadku listy nieuporządkowanej napiszemy:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">itemize</span>}</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">\item</span> A</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">\item</span> B</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">itemize</span>}</span></code></pre></div>
+<p>Z kolei dla listy uporządkowanej</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">enumerate</span>}</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="fu">\item</span> A</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">\item</span> B</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">enumerate</span>}</span></code></pre></div>
+<p>Utwórz teraz zagnieżdżoną listę:</p>
+<ol style="list-style-type: decimal">
+<li>A1</li>
+<li>B1
+<ul>
+<li>A2</li>
+<li>B2
+<ul>
+<li>A3</li>
+<li>B3</li>
+</ul></li>
+<li>C2</li>
+</ul></li>
+<li>C1
+<ol style="list-style-type: decimal">
+<li>D2</li>
+<li>E2</li>
+</ol></li>
+<li>D1</li>
+</ol>
+</div>
+</div>
+<div id="wzory-i-równania-matematyczne" class="section level1">
+<h1>Wzory i równania matematyczne</h1>
+<p>Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź
+znaleźli by się i tacy, którzy twierdzą inaczej). W <code>LaTeXu</code>
+istnieje kilka sposobów dodawania wyrażeń matematycznych. Podstawowy z
+nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang.
+często mówi się <em>inline</em>)</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  wzór <span class="ss">$E=mc^2$</span> powstał <span class="fu">\ldots</span></span></code></pre></div>
+<p>Kolejny sposób to wykorzystanie otoczenia, które pozwala na
+wyświetlenie równania w osobnym wierszu, np.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>dla trójkąta prostokątnego zachodzi:</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ss">  c ^ 2 = a ^ 2 + b ^ 2</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="ss">\]</span></span></code></pre></div>
+<p>Dla utrzymania porządku często warto numerować równania</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">equation</span>}</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ss">  c ^ 2 = a ^ 2 + b ^ 2</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">equation</span>}</span></code></pre></div>
+<p>Aby sprawnie posługiwać się jakimś językiem trzeba znać jego
+składnię. Przedstawimy teraz podstawowe symbole i techniki
+wykorzystywane w <code>LaTeXu</code> przy wpisywaniu równań
+matematycznych.</p>
+<p>Greckie litery są jednym z podstawowych elementów. Są dość łatwe do
+zapamiętania ze względu na zapis “fonetyczny”. Małe litery uzyskamy
+stosując:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  <span class="ss">\[</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ss">    </span><span class="sc">\alpha</span><span class="ss">, </span><span class="sc">\beta</span><span class="ss">, </span><span class="sc">\gamma</span><span class="ss">, </span><span class="sc">\delta</span><span class="ss">, </span><span class="sc">\epsilon</span><span class="ss">, </span><span class="sc">\varepsilon</span><span class="ss">, </span><span class="sc">\zeta</span><span class="ss">, </span><span class="sc">\eta</span><span class="ss">, </span><span class="sc">\theta</span><span class="ss">, </span><span class="sc">\vartheta</span><span class="ss">, </span><span class="sc">\kappa</span><span class="ss">, </span><span class="sc">\lambda</span><span class="ss">, </span><span class="sc">\mu</span><span class="ss">, </span><span class="sc">\nu</span><span class="ss">, </span><span class="sc">\xi</span><span class="ss">, </span><span class="sc">\pi</span><span class="ss">, </span><span class="sc">\rho</span><span class="ss">, </span><span class="sc">\varrho</span><span class="ss">, </span><span class="sc">\sigma</span><span class="ss">, </span><span class="sc">\tau</span><span class="ss">, </span><span class="sc">\upsilon</span><span class="ss">, </span><span class="sc">\phi</span><span class="ss">, </span><span class="sc">\varphi</span><span class="ss">, </span><span class="sc">\chi</span><span class="ss">, </span><span class="sc">\psi</span><span class="ss">, </span><span class="sc">\omega</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ss">  \]</span></span></code></pre></div>
+<p>Duże, natomiast:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="ss">\[</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ss">    </span><span class="sc">\Gamma</span><span class="ss">, </span><span class="sc">\Delta</span><span class="ss">, </span><span class="sc">\Theta</span><span class="ss">, </span><span class="sc">\Lambda</span><span class="ss">, </span><span class="sc">\Pi</span><span class="ss">, </span><span class="sc">\Sigma</span><span class="ss">, </span><span class="sc">\Upsilon</span><span class="ss">, </span><span class="sc">\Phi</span><span class="ss">, </span><span class="sc">\Psi</span><span class="ss">, </span><span class="sc">\Omega</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ss">  \]</span></span></code></pre></div>
+<p>Indeksy górne i dolne otrzymuje się przez użycie symboli
+<code>^</code> i <code>_</code>:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ss">\[ n^3=m^{a^2-d} \]</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ss">\[ </span><span class="sc">\alpha</span><span class="ss">_{1,2}=x_1+y_{1,2} \]</span></span></code></pre></div>
+<p>Zapis pierwiastków wymaga z kolei instrukcji <code
+class="sourceCode latex"><span class="fu">\sqrt</span>{}</code></p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ss">\[ R = </span><span class="sc">\sqrt</span><span class="ss">{x ^ 2 + y ^ 2 + z ^ 2} \]</span></span></code></pre></div>
+<p>Symbol wektora uzyskuje się przez</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ss">\[ </span><span class="sc">\vec</span><span class="ss">{z} = </span><span class="sc">\vec</span><span class="ss">{x} </span><span class="sc">\times</span><span class="ss"> </span><span class="sc">\vec</span><span class="ss">{y} \]</span></span></code></pre></div>
+<p>Podkreślenia i klamry wykorzystywane do komentowania poszczególnych
+części wzorów:</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ss">\[ </span><span class="sc">\overline</span><span class="ss">{x + i </span><span class="sc">\cdot</span><span class="ss"> y}</span><span class="sc">\cdot\underline</span><span class="ss">{v - i </span><span class="sc">\cdot</span><span class="ss"> w} \]</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="ss">\[ </span><span class="sc">\underbrace</span><span class="ss">{M_{</span><span class="sc">\mu</span><span class="ss"> </span><span class="sc">\nu</span><span class="ss">} + 1}_{</span><span class="sc">\neq</span><span class="ss"> 0} </span><span class="sc">\Rightarrow</span><span class="ss"> </span><span class="sc">\overbrace</span><span class="ss">{N_{</span><span class="sc">\nu</span><span class="ss"> </span><span class="sc">\mu</span><span class="ss">}}^{= 0} \]</span></span></code></pre></div>
+<p>Nazwy funkcji powinny być zapisane zwykłą czcionką:</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ss">\[ 1 = </span><span class="sc">\sin</span><span class="ss">^2(x) + </span><span class="sc">\cos</span><span class="ss">^2(x) \]</span></span></code></pre></div>
+<p>a nie pochyloną:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ss">\[ 1 = sin^2(x) + cos^2(x) \]</span></span></code></pre></div>
+<p>Ułamki piętrowe uzyskujemy przez</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ss">\[ </span><span class="sc">\frac</span><span class="ss">{x ^ 3 + </span><span class="sc">\sqrt</span><span class="ss">{x^2}}{x ^ 2 + x - 1} \]</span></span></code></pre></div>
+<p>Nawiasy możemy wprowadzić wprost</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ss">\[ y=((</span><span class="sc">\frac</span><span class="ss">{1}{1 + x})^2 - 1) \]</span></span></code></pre></div>
+<p>Nie jest to jednak elegancki sposób. W przypadku równań, które
+wymagają nawiasów różnej wysokości lepiej jest napisać</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ss">\[ y=</span><span class="sc">\left</span><span class="ss">( </span><span class="sc">\left</span><span class="ss">( </span><span class="sc">\frac</span><span class="ss">{1}{1 + x} </span><span class="sc">\right</span><span class="ss">)^2 - 1 </span><span class="sc">\right</span><span class="ss">) \]</span></span></code></pre></div>
+<p>Całki zapisujemy:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ss">\[ </span><span class="sc">\Gamma</span><span class="ss">(z)=</span><span class="sc">\int</span><span class="ss">_{0}^{</span><span class="sc">\inf</span><span class="ss">}x^{z-1} e^{-x} dx \]</span></span></code></pre></div>
+<p>Natomiast sumy:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ss">\[ S=</span><span class="sc">\sum</span><span class="ss">_{n=1}^{</span><span class="sc">\inf</span><span class="ss">} a </span><span class="sc">\cdot</span><span class="ss"> q^{n-1} \]</span></span></code></pre></div>
+<p>Tablice (macierze, wyznaczniki itd) zapisujemy stosując otoczenie
+<code class="sourceCode latex">array</code>.</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="ss">  </span><span class="sc">\left</span><span class="ss">|</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="ss">    </span><span class="kw">\begin</span>{<span class="ex">array</span>}<span class="ss">{ccc}</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="ss">      a_{11} &amp; a_{12} &amp; a_{13} </span><span class="sc">\\</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="ss">      a_{21} &amp; a_{22} &amp; a_{23} </span><span class="sc">\\</span></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="ss">      a_{31} &amp; a_{32} &amp; a_{33} </span><span class="sc">\\</span></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="ss">    </span><span class="kw">\end</span>{<span class="ex">array</span>}</span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="ss">  </span><span class="sc">\right</span><span class="ss">|</span></span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a><span class="ss">\]</span></span></code></pre></div>
+<p>Parametry <code class="sourceCode latex">{ccc}</code> oznaczają, że
+utworzona tablica będzie miała trzy kolumny, z których każda będzie
+zawierała tekst wyrównany do środka. Dwie pozostałe możliwości to
+<code>r</code> – wyrównanie do prawej i <code>l</code> – wyrównanie do
+lewej.</p>
+<p>Otoczenie te można także wykorzystać do zapisu warunków</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="ss">  </span><span class="sc">\delta</span><span class="ss">(x)=</span><span class="sc">\left\{</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="ss">    </span><span class="kw">\begin</span>{<span class="ex">array</span>}<span class="ss">{lr}</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="ss">      0 &amp; x </span><span class="sc">\ne</span><span class="ss"> 0 </span><span class="sc">\\</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="ss">      +</span><span class="sc">\infty</span><span class="ss"> &amp; x = 0 </span><span class="sc">\\</span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="ss">    </span><span class="kw">\end</span>{<span class="ex">array</span>}</span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="ss">  </span><span class="sc">\right</span><span class="ss">.</span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="ss">\]</span></span></code></pre></div>
+<div id="ćwiczenia" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Zapisz poniższe równania wykorzystując system <code>LaTeX</code>.
+Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej. W
+sieci Internet można znaleźć listy dostępnych symboli. W naszej pracowni
+można skorzystać ze strony: <a
+href="https://www.sharelatex.com/learn/Mathematical_expressions"
+class="uri">https://www.sharelatex.com/learn/Mathematical_expressions</a></p>
+<p>Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu
+odpowiednich pakietów. Przykładowo, symbol całki podwójnej <code
+class="sourceCode latex"><span class="fu">\iint</span></code> uzyskamy
+po dołączeniu pakietu <code class="sourceCode latex">amsmath</code>.</p>
+<p><span class="math display">\[
+  i\hbar\frac{\partial}{\partial
+t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) +
+V(\vec{r}) \Psi(\vec{r},t)
+\]</span></p>
+<p><span class="math display">\[
+  \oint_{\partial \Sigma}\mathbf{B} \cdot \mathrm{dl} =
+  \mu_0 \iint_{\Sigma} \mathbf{J} \cdot \mathrm{d} \mathbf{S} +
+  \mu_0 \varepsilon_0 \frac{\mathrm{d}}{\mathrm{dt}} \iint_{\Sigma}
+\mathbf{E} \cdot \mathrm{d} \mathbf{S}
+\]</span></p>
+<p><span class="math display">\[
+\mathrm{Var} \left(\hat{Z}(x_0)-Z(x_0)\right) =
+\]</span> <span class="math display">\[
+=\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
+\underbrace{
+\left(
+\begin{array}{c}
+c(x_1,x_0) \\
+\vdots \\
+c(x_n,x_0) \\
+\end{array}
+\right)
+\left(
+\begin{array}{ccc}
+c(x_1,x_1) &amp; \cdots &amp; c(x_1,x_n)  \\
+\vdots &amp; \ddots &amp; \vdots  \\
+c(x_n,x_1) &amp; \cdots &amp; c(x_n,x_n)
+\end{array}
+\right)^{-1}
+\left(
+\begin{array}{c}
+c(x_1,x_0) \\
+\vdots \\
+c(x_n,x_0)
+\end{array}
+\right)}_{\mathrm{Var}(\hat{Z}(x_0))}
+\]</span></p>
+</div>
+</div>
+<div id="tabele" class="section level1">
+<h1>Tabele</h1>
+<p>Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w
+systemie <code>LaTeX</code>. Pokarzemy najprostszy przykład z
+wykorzystaniem otoczenia <code>tabular</code>. Otoczenie to tworzy
+tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych
+komórek są dobierane do ich zawartości. Jedyne parametry na jakie mamy
+wpływ to liczba kolumn i sposób ich justowania. Przeanalizuj poniższy
+kod:</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{l||c|c|c}</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>     <span class="op">&amp;</span> symb. <span class="op">&amp;</span> symb. <span class="op">&amp;</span> symb. <span class="fu">\\</span> <span class="fu">\hline</span> <span class="fu">\hline</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>    symb. <span class="op">&amp;</span> X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>    symb. <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>    symb. <span class="op">&amp;</span> X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div>
+<p>Jaki wpływ na wygląd tabeli ma parametr <code
+class="sourceCode latex">{l||c|c|c}</code>?</p>
+<p>Otoczenie <code>tabular</code> pozwala także na tworzenie
+wielokolumnowych rubryk. Służy do tego polecenie <code
+class="sourceCode latex"><span class="fu">\multicolumn</span>{l_kolumn}{justowanie}{tekst}</code>.</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c}</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>    <span class="fu">\multicolumn</span>{3}{c}{symb.} <span class="fu">\\</span> <span class="fu">\hline</span> <span class="fu">\hline</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>    X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>    O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>    X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tabular</span>}</span></code></pre></div>
+<p>Użycie powyższej konstrukcji ma pewną wadę. Tabele dodane do
+dokumentu za pomocą otoczenia <code>tabular</code> nie zawsze znajdą się
+tam gdzie byśmy tego chcieli. Aby mieć kontrolę nad położeniem tabeli
+należy użyć otoczenia <code>table</code>, które ma jeden argument
+opcjonalny mówiący o tym gdzie na stronie ma się znaleźć wstawka z
+tabelą. Dodatkowo, otoczenie to pozwala na dodanie podpisu do naszej
+tabeli. Służy do tego instrukcja <code
+class="sourceCode latex"><span class="fu">\caption</span>{podpis}</code>.
+Przykładowo, jeśli chcemy aby tabela znalazła się dokładnie w miejscu
+użycia, napiszemy:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">table</span>}[h]</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c}</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>    X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>    O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>    X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>  <span class="fu">\caption</span>{Kółko i krzyżyk.}</span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">table</span>}</span></code></pre></div>
+<p>Pozostałe parametry to:</p>
+<ul>
+<li><code>t</code> – umieść wstawkę na górze strony,</li>
+<li><code>b</code> – umieść wstawkę na dole strony,</li>
+<li><code>p</code> – umieść wstawkę na oddzielnej stronie ze
+wstawkami.</li>
+</ul>
+<div id="ćwiczenia-1" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Wykonaj poniższą tabelę:</p>
+<p><img src="figures/info3_lab_5_table.png" title="Tabela" /></p>
+</div>
+</div>
+<div id="grafika" class="section level1">
+<h1>Grafika</h1>
+<p>Wstawienie grafiki w <span class="math inline">\(LaTeX u\)</span>
+ogranicza się do dołączenia pakietu <code
+class="sourceCode latex"><span class="bu">\usepackage</span>{<span class="ex">graphicx</span>}</code>
+oraz użycia instrukcji <code
+class="sourceCode latex"><span class="bu">\includegraphics</span>[parametry]{<span class="ex">sciezka_do_grafiki</span>}</code>.
+Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie
+równa <code>95%</code> szerokości tekstu napiszemy:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="bu">\includegraphics</span>[width=.95<span class="fu">\textwidth</span>]{<span class="ex">rysunek.pdf</span>}</span></code></pre></div>
+<p>Podobnie jak to było w przypadku tabel, kontrolę nad położeniem
+rysunku i możliwość dodawania podpisów otrzymamy po zastosowaniu
+specjalnego otoczenia. W przypadku grafiki będzie to otoczenie
+<code>figure</code>:</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[!h]</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>    <span class="bu">\includegraphics</span>[width=.95<span class="fu">\textwidth</span>]{<span class="ex">rysunek.pdf</span>}</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>    <span class="fu">\caption</span>{Rysunek.}</span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div>
+</div>
+<div id="odwołania" class="section level1">
+<h1>Odwołania</h1>
+<p>System <code>LaTeX</code> umożliwia wstawienie odwołania do niemal
+każdego obiektu posiadającego numer. Oznacza to, że możemy odwołać się
+do dowolnego rozdziału, równania, tabeli czy rysunku. Obiekt, do którego
+planujemy się odwołać oznaczamy za pomocą polecenia
+<code>\label{nazwa_obiektu}</code>. Natomiast w miejscu, w którym
+odwołujemy się, wstawiamy polecenie <code>\ref{nazwa_obiektu}</code>.
+Zamiast numeru obiektu, możemy podać stronę, na której znajduje się dany
+element. W tym celu stosujemy polecenie
+<code>\pageref{nazwa_obiektu}</code>. Stosując indywidualne nazwy
+obiektów, nie musimy martwić się o ewentualne zmiany numeracji
+wynikające z pracy nad tekstem. <code>LaTeX</code> zajmie się
+koniecznymi modyfikacjami.<br />
+Przykładowo, aby odwołać się do rozdziału piszemy:</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="kw">\section</span>{Rodzaje sznurówek}<span class="kw">\label</span>{<span class="ex">sznu</span>}</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>W rozdziale <span class="kw">\ref</span>{<span class="ex">sznu</span>} opiszemy problem doboru sznurówek.</span></code></pre></div>
+<p>W celu odwołania się do tabeli:</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">table</span>}[h]</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>  <span class="kw">\begin</span>{<span class="ex">tabular</span>}{c|c|c}</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>    X <span class="op">&amp;</span> O <span class="op">&amp;</span> O <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>    O <span class="op">&amp;</span> X <span class="op">&amp;</span> X <span class="fu">\\</span> <span class="fu">\hline</span></span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>    X <span class="op">&amp;</span> O <span class="op">&amp;</span> X <span class="fu">\\</span></span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>  <span class="fu">\caption</span>{Kółko i krzyżyk.}</span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>  <span class="kw">\label</span>{<span class="ex">kik</span>}</span>
+<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">table</span>}</span>
+<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a>Tabela <span class="kw">\ref</span>{<span class="ex">kik</span>} zawiera przykładową partię w kółko i krzyżyk.</span>
+<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a>Znajduje się ona na stronie <span class="kw">\pageref</span>{<span class="ex">kik</span>}.</span></code></pre></div>
+<div id="ćwiczenia-2" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Stwórz odwołania do pozostałych obiektów użytych w trakcie ćwiczeń
+(równań i rysunków).</p>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
