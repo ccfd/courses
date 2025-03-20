@@ -1,0 +1,526 @@
+---
+author: "L. Laniewski-Wollk"
+course: Metody Numeryczne
+title: "Metody Numeryczne - Skrypt 2"
+material: Skrypt 2
+---
+
+```{r echo=FALSE, include=FALSE}
+# Przydatne pakiety
+library(Matrix)
+library(knitr)
+set.seed(123)
+```
+
+Wczytajmy pierw macierz sztywności z pliku:
+```{r}
+S = as.matrix(read.table("data/metnum/S.txt"))
+S = Matrix(S,sparse=TRUE)
+```
+
+Możemy sobie teraz wyświetlić gdzie ma ona niezerowe elementy:
+```{r}
+image(S)
+```
+
+Możemy teraz zobaczyć jej wartości własne
+```{r}
+lam = eigen(S)$val
+barplot(lam,main="Wartości właśne S")
+```
+
+Jako, że macierz jest symetryczna wszystkie wartości własne są rzeczywiste. Warto zauważyć, że trzy ostatnie wartości własne są praktycznie równe zero:
+
+```{r echo=FALSE}
+print.few = function(lam,name="\\lambda") {
+  lam = data.frame(as.list(lam))
+  names(lam) = paste0("$",name,"_{",1:length(lam),"}$")
+  lam = lam[,c(1:3,ncol(lam)-4:0)]
+  lam[,3] = "$\\cdots$"
+  names(lam)[3] = "$\\cdots$"
+  kable(lam)
+}
+```
+
+```{r}
+print.few(lam)
+```
+
+Jest to związane z wolnymi stopniami swobody naszego układu. Możemy pozbyć się tych stopni zastępując odpowiednie wiersze wierszami macierzy jednostkowej
+
+```{r}
+fix = c(1,2,42)   # Wybrane wiersze
+I = diag(nrow(S)) # Macierz jednostkowa o odpowiednim rozmiarze
+S[fix,]=I[fix,]   # Zastępujemy wiersze
+S[,fix]=I[,fix]   # Zastępujemy kolumny (by macierz pozostała symetryczna)
+lam = eigen(S)$val
+barplot(lam,main="Wartości właśne S")
+```
+
+Teraz ostatnie wartości są już niezerowe
+
+```{r}
+print.few(lam)
+```
+
+```{r, echo=FALSE}
+i=80
+```
+Rozważmy teraz przyłożenie siły w `r i`-tym stopniu swobody. Wektor sił $F$ będzie miał zera wszędzie poza `r i`-tym elementem.
+
+```{r}
+i=80
+F = rep(0,nrow(S))
+F[i] = -10
+```
+
+Odkształcenie spowodowane taką siłą to $d = S^{-1}F$.
+
+```{r}
+d = solve(S,F) # funkcja solve rozwiązuje S d = F
+plot(d)
+```
+
+Odkształcenie to w tej formie trudno zinterpretować. Po pierwsze co drugi element oznacza odkształcenie w X a co drugi w Y:
+
+```{r}
+plot(d,col=1:2,pch=16)
+legend("topright",c("X","Y"),col=1:2,pch=16)
+```
+
+
+Tutaj warto zauważyć, że choć macierz $S$ jest rzadka (ma mało niezerowych elementów) tak macierz $S^{-1}$ będzie pełna:
+
+```{r}
+Si = solve(S) # funkcja solve zwraca też macierz odwrotną
+image(Si)
+```
+
+Można to sobie wyobrazić w następujący sposób. $k$-ta kolumna macierzy odwrotnej $S^{-1}$ jest równa $S^{-1}v$, gdzie $v$ to wektor samych zer z jedynką na $k$-tym miejscu. Można więc powiedzieć, że $k$-ta kolumna macierzy $S^{-1}$ to odkształcenie belki przy przyłożeniu jednoskowej siły w $k$-tym stopniu swobody. Jak wiemy, niezależnie w którym stopniu swobody przyłożymy siłę, odkształcenia będą występowały we wszystkich stopniach swobody. Oznacza to, że wszystkie kolumny macierzy $S^{-1}$ będą pełne niezerowych elementów.
+
+Zobaczmy `r i`-tą kolumnę:
+```{r}
+plot(Si[,i])
+```
+
+Koszt policzenia $S^{-1}$ jest bardzo wysoki. Nawet przechowanie takiej macierzy może być niemożliwe. Dlatego w większości zagadnień numerycznych nigdy nie liczona jest bezpośrednio odwrotność macierzy, lecz rozwiązywany jest zadany układ $Sx=F$. W naszym wypadku prawa strona to wektor sił $F$, zaś niewiadoma $x$ to odkształcenie. Rozwiązać taki układ można na wiele sposobów. Dla dużych układów liniowych i nieliniowych wykożytujemy metody iteracyjne. Mają one na celu nie roziwiązanie problemu w ogólności (znalezienie $S^{-1}$) lecz w jak najmniejszej ilości iteracji znalezienie najlepszego przybliżenia rozwiązania $x$. Lecz jak można sprawdzić czy rozwiązanie jest bliskie dokładnego, jeśli dokładne nie jest znane?
+
+Weźmy dowolny wektor:
+```{r}
+x0 = rnorm(ncol(S))
+plot(x0)
+```
+
+Jedyne co możemy stwierdzić to jak daleko jesteśmy od spełnienia naszego układu, odejmując lewą od prawej strony równania:
+
+```{r}
+x = x0
+r = F - S %*% x
+plot(r)
+```
+
+Taki wektor nazywamy residualem. Zazwyczaj by go zmierzyć jedną liczbą mówimy że residual to $\|r\|_2=\sqrt{\sum_ir_i^2}$. Aktualnie wynosi on `r sqrt(sum(r*r))`.
+
+Zauważmy, że residual mówi nam jak daleko jesteśmy od rozwiązania, ale nie mówi nam praktycznie w jakim kierunku mamy iść. Jesteśmy w $x$, chcemy być $S^{-1}F$, lecz jedyne co wiemy to nie kierunek $S^{-1}F - x$, lecz $F - Sx$. Żeby wiedzieć gdzie należy iść, musimy mieć jakiekolwiek przybliżenie $S^{-1}$. Takie przybliżenie nazywamy preconditionerem. Zwyczajowo piszemy, że construujemy $P\simeq S$, tak by $P^{-1}\simeq S^{-1}$ - lecz w rzeczywistości należy myśleć o preconditionerze jako o operatorze $P^{-1}$, ponieważ wewnątrz programu, tylko on jest realizowany. Najprostrzym przykładem preconditionera jest odwrotność przekątnej macierzy (preconditioner Jacobiego):
+
+```{r}
+P = S
+P[row(P) != col(P)] = 0
+```
+
+Nie ma dobrej metody stwierdzenia, że dana macierz będzie dobrym preconditionerem dla innej, poza zbadaniem właściwości $P^{-1}S$. Chcielibyśmy by macierz ta była możliwie bliska macierzy jednostkowej. W dużych zagadnieniach oczywiście takiej możliwości zbadania nie mamy, lecz w naszym przykładzie możemy przyjżeć się tej macierzy.
+
+```{r}
+lam = eigen(solve(P,S))$val
+barplot(lam,main="Wartości właśne P^-1 S")
+```
+
+Widzimy, że w porównaniu z $S$ macierz ta ma wartości zgromadzone w około $1$.
+```{r echo=FALSE}
+plot.lam=function(lam) {
+  plot(lam+0i,asp=1,xlim=c(-1,3),xlab=expression(Re(lambda)),ylab=expression(Re(lambda)))
+  a=seq(0,2*pi,len=200)
+  for (d in seq(0,1,0.2)) lines(d*sin(a)+1,d*cos(a),lty=2)
+}
+```
+
+Patrząc w dziedzinie zespolonej, zależy nam by $\lambda$ były wszystkie jak najbardziej zgromadzone blisko $1$:
+```{r}
+plot.lam(lam)
+```
+
+Podobnie prostym preconditionerem jest wzięcie za $P$ dolnej trójkątnej częsci $S$ (preconditioner Gaussa-Seidla):
+
+```{r}
+P = S
+P[row(P) > col(P)] = 0
+```
+
+Taka macierz jest też bardzo łatwa do odwrócenia. Daje ona bardzo przyzwoity rozkład wartości własnych:
+
+```{r}
+lam = eigen(solve(P,S))$val
+plot.lam(lam)
+```
+
+Widzimy natychmiast, że wartości te nie są już czysto rzeczywiste - ponieważ $P$ nie jest teraz symmetryczna.
+
+```{r echo=FALSE}
+resid = NULL
+residual=function(it,res,name="Unknown") {
+  res = sqrt(sum(res*res))
+  resid <<- rbind(resid,data.frame(iteration=it,residual=res,name=name))
+  res < 1e-6 || res > 1e9
+}
+draw.residuals = function(name) {
+  if (!missing(name)) resid = resid[resid$name %in% name,,drop=FALSE]
+  resid$name = factor(resid$name,levels=unique(resid$name))
+  plot(resid$iteration, resid$residual, log="y", type="n", xlab="Iteracja", ylab="Residual")
+  by(resid,resid$name, function(resid) {
+    lines(resid$iteration, resid$residual,col=resid$name)
+  })
+  legend("topright",levels(resid$name),lty=1,col=1:nlevels(resid$name))
+}
+delete.residuals = function(name) resid <<- resid[! resid$name %in% name,]
+
+itmax = 2000
+
+x0[] = 0
+```
+
+Weźmy więc nasz najprostrzy preconditioner
+```{r}
+P = S
+P[row(P) != col(P)] = 0
+```
+
+I w każdej iteracji przesuńmy się o: $P^{-1}r \simeq S^{-1}r = S^{-1}(F-Sx) = S^{-1}F-x$. To powinno nas doprowadzić do rozwiązania:
+
+```{r}
+x = x0
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  x = x + p
+  if (residual(i,r,"Jacobi")) break
+}
+draw.residuals()
+```
+
+Widzimy natychmiast, że residual zamiast spadać rozbiega się wykładniczo. Jeśli spojżymy na naszą procedurę, to odmnarza ona nieustannie $x$ przez $(I-P^{-1}S)$ ponieważ:
+\[x = x + p = x + P^{-1}r = x + P^{1}(F-Sx) = (I-P^{-1}S)x + P^{-1}F\]
+Oznacza to, że wartości własne $(I-P^{-1}S)$ poza jednostkowym okręgiem będą powodować rozbierzność. 
+
+```{r echo=FALSE}
+plot.lam=function(lam) {
+  plot(lam+0i,asp=1,xlim=c(-2,2),xlab=expression(Re(lambda)),ylab=expression(Re(lambda)),col=ifelse(Mod(lam)<1,1,2))
+  a=seq(0,2*pi,len=200)
+  lines(sin(a),cos(a),lty=2)
+}
+I=diag(ncol(P))
+```
+
+```{r}
+lam = eigen(I - solve(P,S))$val
+plot.lam(lam)
+```
+
+By uniknąć takiej sytuacji możemy wprowadzić współczynnik relaksacji $\alpha < 1$, który zeskaluje wartości własne by mieściły się w stabilnym okręgu:
+
+```{r}
+alpha = 0.7
+lam = eigen(I - alpha*solve(P,S))$val
+plot.lam(lam)
+```
+
+Metoda z tak dobranym współczynnikiem jest już zbierzna:
+```{r}
+delete.residuals("Jacobi")
+alpha = 0.7
+x = x0
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  x = x + alpha*p
+  if (residual(i,r,"Jacobi alpha=0.7")) break
+}
+draw.residuals()
+```
+
+Weźmy teraz znów jako preconditioner macierz górno-trójkątną.
+
+```{r}
+P = S
+P[row(P) < col(P)] = 0
+```
+
+Warto zauważyć, że dla preconditionera Gaussa-Seidla, można dobrać współczynnik $\alpha$ nawet większy od jedynki (nadrelaksacja):
+
+```{r}
+alpha = 1.5
+lam = eigen(I - alpha*solve(P,S))$val
+plot.lam(lam)
+```
+
+```{r}
+alpha = 1.5
+x = x0
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  x = x + alpha*p
+  if (residual(i,r,"Gauss-Seidl alpha=1.5")) break
+}
+draw.residuals()
+```
+
+Łatwo zauważyć że dobór jednej wartości $\alpha$ na wszystkie iteracje jest nieoptymalny. W każdym kroku należałoby dobierać $\alpha$ oddzielnie. Jeśli weźmiemy sume kwadratów residuali: $f(\alpha) = \sum_i r_i^2 = r^T r$, to możemy dobrać tak $\alpha$ by $f$ było minimalne **po iteracji**. Residual po iteracji $r^{(n+1)}$ jest równy: \[r^{(n+1)} = F - Sx^{(n+1)} = F - Sx^{n} - \alpha Sp = r^{(n)} - \alpha Sp\]
+Różniczkując $f$ po $\alpha$i przyrównując pochodną do zera dostajmey:
+\[\alpha=\frac{r^T  (Sp)}{(Sp)^T(Sp)}\]
+
+Zobaczmy taką metodę dla preconditionera diagonalnego:
+```{r}
+P = S
+P[row(P) != col(P)] = 0
+```
+
+By lepiej zobaczyć co się dzieję zapiszemy wszystkie kolejne $\alpha$ w wektorze, by później je zwizualizować.
+
+```{r}
+x = x0
+alphas = NULL
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  Ap = S %*% p
+  alpha = sum(r * Ap)/sum(Ap * Ap)
+  x = x + alpha*p
+  alphas = c(alphas,alpha)
+  if (residual(i,r,"Basic MINRES")) break
+}
+draw.residuals()
+```
+
+Jak widać w przy takim optymalnym doborze $\alpha$ residual monotonicznie spada. Możemy teraz zobaczyć jakie wartości przyjmował ten współczynnik w trakcie procesu zbierzności:
+```{r}
+plot(alphas,log="y",ylab=expression(alpha),xlab="Iteracja")
+abline(h=0.7,lty=2)
+```
+
+Jak widać Wykraczają one wielokrotnie poza zakres stabinych współczynników podrelaksacji dla metody Jacobiego. Oznacza to że w danej iteracji współczynnik $\alpha$ nie jest ograniczony przez najbardziej odstające wartości własne $P^{-1}S$.
+
+Dość niejednorodne zachowanie metody MINRES wynika z częstej sytuacji w której to co zyskaliśmy w jednym kroku "tracimy" w następnym. Metoda monotonicznie redukuje residual, więc w rzeczywistości nie "tracimy" w kolejnej iteracji, co raczej "nie uzyskujemy tyle ile byśmy mogli". Można sobie to wyobrazić w następujący sposób. Załużmy że chcemy dotrzeć do portu na jeziorze, lecz z powodu wiatru możemy wykonywać tylko ruchy po skosie. Jeśli będziemy płynąć zawsze w danym kierunku, aż będziemy najbliżej portu (minimalne residuum) i dopiero wtedy wykonywać zwrot, w następnym ruchu musimy znów dużo przepłynąć.
+
+```{r echo=FALSE}
+draw.lake = function(b) {
+  a = seq(0,2*pi,len=100)
+  r = (2+cos(a*2+0.4))
+  p = cbind(cos(a)*r,sin(a)*r)
+  plot(p,asp=1,type="l",xlab="Longnitute",ylab="Latitude")
+  points(b[1],b[2],pch=16,cex=2)
+}
+draw.boat = function(x,p,i=0) {
+  points(x[1],x[2],pch=15)
+  if (!is.na(i)) text(x[1],x[2],paste0("x",i),adj=c(1.1,1.1))
+  arrows(x[1],x[2],x[1]+p[1],x[2]+p[2],angle=10,length=0.15,col=8)
+  if (!is.na(i)) text(x[1]+p[1]*0.6,x[2]+p[2]*0.6,paste0("p",i),adj=c(1.1,1.1))
+}
+```
+
+Weźmy więc jezioro i port ($b$) na nim.
+```{r}
+b = c(2.9,0)
+draw.lake(b)
+```
+
+Do tego weźmy macierz $A$ która będzie realizować zwykłą odległość euklidesową i preconditioner który będzie dawał nam skośne kierunki ruchu:
+
+```{r}
+A = diag(2)
+P = matrix(c(1,0.8,0.9,1),2,2)*4
+```
+
+Dla zadanego punktu początkowego $x_0$ możemy policzyć residual i kierunek $p$:
+
+```{r}
+x = c(-0.5,0.5)
+r = b - A %*% x
+p = solve(P,r)
+draw.lake(b)
+draw.boat(x,p)
+```
+
+Dla takiego układu optymalna $\alpha$ to krok dla którego punkt $x_1$ będzie najbliżej portu. Można ją policzyć za pomocą tego samego wzoru:
+```{r}
+  Ap = A %*% p
+  alpha = sum(r * Ap)/sum(Ap * Ap)
+```
+
+Wynosi ona `r alpha`, więc łódka powędruje nie cały wektor $p$ lecz jego kawałek.
+```{r}
+draw.lake(b)
+draw.boat(x,p)
+x = x + alpha * p
+r = b - A %*% x
+p = solve(P,r)
+draw.boat(x,p,1)
+```
+
+Jednak $\alpha$ w nowym kierunku jest wysoka (`r Ap = A %*% p; sum(r * Ap)/sum(Ap * Ap)`) i punkt x znów przesunie się daleko po skosie.
+
+```{r}
+draw.lake(b)
+x = c(-0.5,0.5)
+for (i in 1:12) { 
+  r = b - A %*% x
+  p = solve(P,r)
+  draw.boat(x,p,NA)
+  Ap = A %*% p
+  alpha = sum(r * Ap)/sum(Ap * Ap)
+  x = x + alpha*p
+}
+```
+
+```{r echo=FALSE}
+P = S
+P[row(P) != col(P)] = 0
+```
+
+By polepszyć zbierzność, możemy zachować poprzedni kierunek $p$ i uzyć go do poprawienia następnej iteracji. Załużmy, że preconditioner wskazuje nam pewien kierunek $p=P^{-1}r$, zaś w poprzedniej iteracji poruszyliśmy się w kierunku $q$. Możemy usunąć część $p$ która już w poprzedniej iteracji uzyskaliśmy modyfikując kierunek $p$ za pomocą $p' = p - \beta q$. Stosując analogiczne rozumowanie jak porzednio otrzymamy $\beta=\frac{(Sq)^T(Sp)}{(Sq)^T(Sq)}$, a dokładniej:
+\[\beta=\left[(Sq)^T(Sq)\right]^{-1}\left[(Sq)^T(Sp)\right]\]
+
+```{r}
+x = x0
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  if (i != 1) {
+    Ap = S %*% p
+    Aq = S %*% q
+    beta = sum(Ap * Aq)/sum(Aq * Aq)
+    p = p - beta * q
+  }
+  Ap = S %*% p
+  alpha = sum(r * Ap)/sum(Ap * Ap)
+  x = x + alpha*p
+  if (residual(i,r,"MINRES + beta")) break
+  q = p
+}
+draw.residuals()
+```
+
+Widać natychmiast, że działanie tak zmodyfikowanej metody MINRES jest szybsze, ale też bardziej stabilne (bez długich płaskich fragmentów). Rozumowanie takie można pociągnąć dłużej i zachowywać wszystkie wcześniejsze wektory, by użyć ich by poprawiać każdy kolejny kierunek.
+
+```{r}
+x = x0
+q = NULL
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  if (i != 1) {
+    Ap = S %*% p
+    Aq = S %*% q
+    beta = solve(t(Aq) %*% Aq, t(Aq) %*% Ap)
+    p = p - q %*% beta
+  }
+  Ap = S %*% p
+  alpha = sum(r * Ap)/sum(Ap * Ap)
+  x = x + alpha*p
+  if (residual(i,r,"MINRES + beta (full)")) break
+  q = cbind(p,q)
+}
+draw.residuals()
+```
+
+Taka metoda ma bardzo szybką zbierzność, lecz wymaga w ogólności przechowywania bardzo dużej ilości wektorów. Wymaga także odwracania macierzy $\left[(Sq)^T(Sq)\right]$ która z iteracji na iterację robi się coraz większa. Macierz ta jest też często źle uwarunkowana i poprawna implementacja tej metody wymaga troche dodatkowej uwagi. Zazwyczaj resetuje się zestaw wektorów $q$ co jakiś czas by uniknąć narastających problemów.
+
+
+### Dodatnio określona macierz symetryczna
+
+Jeśli macierz $A$ jest symmetryczna, to rozwiązanie układu $Ax=b$ jest równoważnie nie tylko z minimalizacją residualu ($r^Tr$), ale też z minimalizacją $a(x) = x^TAx - 2 x^T b$. Jedyna różnica jaka z tego wynika, to inna formuła na $\alpha$ i $\beta$:
+\[\alpha=\frac{r^T A p}{p^T A p}\]
+\[\beta=\left[q^T A q\right]^{-1}\left[q^T A p\right]\]
+
+```{r}
+x = x0
+q = NULL
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  if (i != 1) {
+    Aq = S %*% q
+    beta = solve(t(Aq) %*% q, t(Aq) %*% p)
+    p = p - q %*% beta
+  }
+  Ap = S %*% p
+  alpha = sum(r * p)/sum(p * Ap)
+  x = x + alpha*p
+  if (residual(i,r,"Symmetric, positive MINRES (full)")) break
+  q = cbind(p,q)
+}
+draw.residuals()
+```
+
+Taka metoda ma także bardzo dobrą zbierzność. Widać jednak na wykresie, że zbierzność  jej jest nie monotoniczna:
+
+```{r}
+draw.residuals("Symmetric, positive MINRES (full)")
+```
+
+Nie jest to niespodziewane, ponieważ minimalizujemy teraz $x^TAx-xb$ (i funkcja ta monotocznie spada), a nie $\sum_i r^2_i$.
+
+To czego nie widać odrazu, to to, że wektor $\beta$ we wszystkich iteracjach ma tylko jeden niezerowy element (odpowiadający $q$ bezpośrednio z poprzedniej iteracji). Dla przykładu $\beta$ z ostatniej iteracji to:
+
+```{r}
+print.few(beta,"\\beta")
+```
+
+Nie jest to przypadek, tylko analityczna konsekwencja poprzednich iteracji. Pokazanie tego pozostawiam jako dobre ćwiczenie dla czytelnika. Właściwość ta (przypominam: dla macierzy symmetrycznych i dodatnio określonych) powoduje, że wystarczy zapisać jeden wektor $q$ by uzyskać tak samo dobrą zbierzność jak przy zapisywaniu wszystkich. Taka metoda nazywa się Conjugate Gradient:
+
+```{r}
+x = x0
+for (i in 1:itmax) {
+  r = F - S %*% x
+  p = solve(P,r)
+  if (i != 1) {
+    Aq = S %*% q
+    beta = sum(Aq * p)/sum(Aq * q)
+    p = p - q %*% beta
+  }
+  Ap = S %*% p
+  alpha = sum(r * p)/sum(p * Ap)
+  x = x + alpha*p
+  if (residual(i,r,"Conjugate Gradient")) break
+  q = p
+}
+draw.residuals()
+```
+
+Warto na koniec zauważyć, że metoda ta ma na tyle dobrą zbierzność, że możemy jej użyć nawet bez jakiegokolwiek preconditionera (i troche przeorganizować kolejność obliczeń):
+
+```{r}
+x = x0
+r = F - S %*% x
+q = r
+for (i in 1:itmax) {
+  if (residual(i,r,"Conjugate Gradient (no precond)")) break
+  Aq = S %*% q
+  alpha = sum(r * q)/sum(q * Aq)
+  x = x + alpha*q
+  r = r - alpha*Aq
+  beta = sum(r * Aq)/sum(q * Aq)
+  q = r - beta * q
+}
+draw.residuals()
+```
+
+Ilość iteracji potrzbnych do osiągnięcia wymaganego residuum:
+```{r echo=FALSE}
+resid$name = factor(resid$name, levels=unique(resid$name))
+```
+```{r}
+it = tapply(resid$iteration,resid$name,max)
+it[it==itmax] = paste(">",itmax)
+kable(data.frame(Iteracji=it))
+```
+
