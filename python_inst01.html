@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title>python_inst01</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst01.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="wymagania" class="section level1">
+<h1>Wymagania</h1>
+<ul>
+<li>minimalna znajomość systemów z rodziny Linux,</li>
+<li>podstawowa znajomość programowania (język nie ma znaczenia).</li>
+</ul>
+</div>
+<div id="system-operacyjny" class="section level1">
+<h1>System operacyjny</h1>
+<p>Zalecane jest korzystanie z systemów z rodziny Linux, a w
+szczególności opartych na Debianie. Jednak pakiety pythona są
+przygotowane do instalacji również na systemy z rodziny Windows
+(instalacja dodatkowych pakietów za pomocą <em>pip</em>, o którym w
+dalszej części). W związku z tym istnieje możliwość pracy na takim
+systemie, jednak będzie się to wiązało z ograniczonym wsparciem
+prowadzących kurs.</p>
+</div>
+<div id="kontrola-wersji---git-i-github" class="section level1">
+<h1>Kontrola wersji - git i GitHub</h1>
+<p>Narzędzia kontroli wersji są praktycznie niezbędne podczas pracy nad
+większym kodem, a przede wszystkim w sytuacji gdy nad jednym projektem
+współpracuje więcej osób. Pozwalają one na:</p>
+<ul>
+<li>śledzenie kolejnych zmian w kodzie,</li>
+<li>usuwanie niepotrzebnych zmian,</li>
+<li>tworzenie “podprojektów” w których pracuje się tylko nad częścią
+nowego kodu,</li>
+<li>łączenie kodu różnych osób w obrębie nawet tego samego pliku.</li>
+</ul>
+<p>Więcej informacji o tym czym właściwie jest kontrola wersji można
+przeczytać pod linkiem <a
+href="https://git-scm.com/book/pl/v1/Pierwsze-kroki-Wprowadzenie-do-kontroli-wersji">git
+- wprowadzenie do kontroli wersji</a>. W przypadku naszego kursu do
+kontroli wersji będziemy stosowali narzędzie zwane <em>git</em>, które
+zostało opracowane przez “ojca” systemów Linux Linusa Torwaldsa. Wielu
+programistów obsługuje go z poziomu konsoli. My jednak skupimy się tylko
+na podstawowych jego funkcjach i będziemy z gita korzystali tylko z
+poziomu środowiska programistycznego, o którym więcej powiemy dalej. Na
+poziomie naszego kursu system ten posłuży do pobierania materiałów oraz
+przechowywania własnych wersji rozwiązań zadań. Dzięki temu uczestnicy
+poznają podstawowe sposoby korzystania z gita.</p>
+<p>W ramach przygotowania do zajęć należy przejść na stronę <a
+href="https://github.com/">GitHub</a> i zarejestrować własne konto w tym
+serwisie. Dzięki temu otrzymamy pewną darmową (wersja darmowa wymaga
+publicznego dostępu do zamieszczonego kodu) przestrzeń dyskową na której
+będziemy mogli przechowywać wszystkie niezbędne pliki potrzebne w naszym
+projekcie. Serwis GitHub sam w sobie nie jest potrzebny do działania
+git’a (możemy utworzyć lokalne repozytorium na własnym dysku), jednak
+potrzebujemy jakiegoś miejsca, najlepiej w sieci aby mieć dostęp do kodu
+z każdego miejsca, w którym będziemy mogli składować własne repozytorium
+z tworzonym kodem.</p>
+</div>
+<div id="python" class="section level1">
+<h1>Python</h1>
+<p>W czasie rozwoju języka <em>python</em> wykształciły się dwie jego
+wersje:</p>
+<ul>
+<li><em>python 2</em>,</li>
+<li><em>python 3</em> (nowsza specyfikacja języka, choć niekoniecznie
+częściej używana).</li>
+</ul>
+<p>Oba standardy języka znacząco się nie różnią, jednak są one
+niekompatybilne pomiędzy sobą, w związku z czym na samym początku pracy
+należy się zdecydować na której wersji będziemy pracowali. Należy także
+pamiętać, że każdy nowo zainstalowana biblioteka będzie musiała
+pochodzić z repozytorium właściwego dla używanej wersji. W przypadku
+naszego kursu zajęcia będą prowadzone w oparciu o wersję drugą i
+wszystkie podane informacje odnośnie instalacji i pracy z językiem będą
+właściwe tylko dla standardu języka <em>python 2</em>.</p>
+</div>
+<div id="instalacja-niezbędnych-pakietów" class="section level1">
+<h1>Instalacja niezbędnych pakietów</h1>
+<p>W poniższym punkcie zostaną opisane metody instalacji podstawowych i
+dodatkowych pakietów (zbioru narzędzi przygotowanych i upublicznionych
+przez innych programistów). Dokładny opis zostanie ograniczony jedynie
+do dystrybucji opartych na systemie Debian. W przypadku innych systemów
+uczestnicy powinni samodzielnie zadbać o instalację odpowiednich
+narzędzi.</p>
+<div id="wymagane-pakiety" class="section level2">
+<h2>Wymagane pakiety</h2>
+<p>Poniżej przedstawiamy zbiór pakietów które są najczęściej
+wykorzystywane podczas pracy. Podczas zajęć także będziemy korzystali z
+tych narzędzi, dlatego należy je zainstalować przed rozpoczęciem
+kursu.</p>
+<p>###python-dev podstawowe narzędzia języka python które są niezbędne
+do pracy i rozwoju kodu w tym języku.</p>
+<p>###pip Narzędzia do zarządzania pakietami pythona. Pozwala na
+automatyczne pobranie kodu z oficjalnego repozytorium <em>Python Package
+Index</em> (PyPI), kompilację i instalację wybranego pakietu.
+Korzystając z <em>pip</em> możemy pobrać dowolną wersję danego pakietu,
+co jest najczęściej niemożliwe w przypadku innych metod instalacji
+pakietów. Ponadto często nowsze pakiety są dostępne jedynie za
+pośrednictwem tej platformy.</p>
+<p>###numpy Pakiet zawierający rozszerzenie tablic wielowymiarowych,
+który pozwala na wygodny dostęp do danych oraz na operacji na nich.
+Zawiera także wiele własnych funkcji do obliczeń naukowych, które jednak
+są ograniczone w porównaniu do pakietu <em>scipy</em> o którym
+dalej.</p>
+<p>###matplotlib Zbiór narzędzi służących do tworzenia wykresów
+przeróżnego typu, takich jak:</p>
+<ul>
+<li>proste jedno wymiarowe,</li>
+<li>różne wykresy statystyczne,</li>
+<li>wykresy konturowe,</li>
+<li>wykresy trój wymiarowe.</li>
+</ul>
+<p>###scipy Biblioteka zawierająca szeroki zbiór narzędzi do obliczeń
+naukowych . Nazwa <em>SciPy</em> może odnosić się do całego zbioru
+bibliotek (numpy, matplotlib, scipy, sympy, pandas). Jednak sam pakiet o
+nazwie <em>scipy</em> zawiera tylko narzędzia obliczeniowe. Pakiet
+<em>scipy</em> posiada wiele funkcji o tym samym zastosowaniu co
+<em>numpy</em>. Duplikacja tych narzędzi wynika z tego, że
+<em>scipy</em> jest w dużej części opakowaniem implementacji w języku
+Fortran (które są bardzo wydajne) a <em>numpy</em> jest przygotowane
+tak, aby możliwa była jego instalacja także bez kompilatora Fortran.
+Jednak <em>scipy</em> zawiera dużo więcej i w dodatku nowszych narzędzi
+niż <em>numpy</em>.</p>
+<p>###sympy Pakiet pozwalający na dokonywanie obliczeń
+symbolicznych.</p>
+<p>###pandas Biblioteka służąca do obróbki i analizy danych. W
+szczególności wprowadza wygodne struktury danych i operacje do ich
+obróbki. Biblioteka ta znajduje świetne zastosowanie w analizie
+statystycznej. Dane mogą być reprezentowane jako ciągi czasowe lub
+tablice z dodatkowymi nazwami wierszy i kolumn.</p>
+</div>
+<div id="instalacja---linux-dystrybucje-debian" class="section level2">
+<h2>Instalacja - Linux (dystrybucje Debian)</h2>
+<div id="podstawowe-narzędzia" class="section level3">
+<h3>Podstawowe narzędzia</h3>
+<p>Większość systemów posiada domyślnie zainstalowane podstawowe pakiety
+języka python. Jednak, aby się upewnić, że je posiadamy możemy po prostu
+spróbować je zainstalować. Na początek 2 podstawowe i najważniejsze
+pakiety. Otwieramy konsolę a w niej wpisujemy następujące komendy (Uwaga
+komenda <code
+class="sourceCode bash"><span class="fu">sudo</span></code> oznacza
+uruchomienie zadania jako administrator co będzie wymagało podania
+hasła):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get install python-dev</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">sudo</span> apt-get install python-pip</span></code></pre></div>
+<p>Po dokonaniu instalacji <em>python-pip</em> uzyskujemy dostęp do
+managera pakietów pythona z oficjalnego repozytorium PyPI. Z kolei
+instalacja pakietów za pomocą <em>apt-get</em> dostarcza tylko te
+pakiety które znajdują się w repozytorium wydawcy danego systemu (np.
+Ubuntu Repository) i na ogół są one dość ograniczone i zawierają tylko
+najnowsze wersje pakietów. Pakiety dostarczane za pomocą
+<em>apt-get</em> są wcześniej skompilowane dzięki czemu proces
+instalacji jest znacznie krótszy, ale nie zawsze jest to lepsze
+rozwiązanie.</p>
+</div>
+<div id="dodatkowe-pakiety" class="section level3">
+<h3>Dodatkowe pakiety</h3>
+<p>Aby zainstalować dodatkowe możemy skorzystać z repozytorium
+<em>PyPI</em> lub z repozytorium wydawcy systemu. W obu przypadkach aby
+zainstalować wszystkie biblioteki możemy w linii poleceń podać więcej
+niż jedną nazwę pakietu. Na obecnym etapie kursu będziemy potrzebowali
+tylko 3 dodatkowych pakietów:</p>
+<ul>
+<li><em>apt-get</em> <code
+class="sourceCode bash"><span class="fu">sudo</span> apt-get install python-numpy python-scipy python-matplotlib python-pandas</code></li>
+<li><em>pip</em> <code
+class="sourceCode bash"><span class="fu">sudo</span> pip install numpy scipy matplotlib pandas</code></li>
+</ul>
+</div>
+<div id="instalacja-git" class="section level3">
+<h3>Instalacja git</h3>
+<p>W przypadku systemów Linux większość dystrybucji posiada
+zainstalowane to narzędzie domyślnie. Aby sprawdzić czy pakiet jest
+zainstalowany możemy w konsoli wpisać:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div>
+<p>Jeśli w konsoli zostanie wyświetlona wersja, to znaczy, że posiadamy
+ten program i nie trzeba go instalować. Jeśli w danej dystrybucji nie
+znajduje się zainstalowany git to należy go doinstalować komendą:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get install git-all</span></code></pre></div>
+</div>
+</div>
+<div id="instalacja---windows" class="section level2">
+<h2>Instalacja - Windows</h2>
+<div id="podstawowe-narzędzia-1" class="section level3">
+<h3>Podstawowe narzędzia</h3>
+<p>Osoby zainteresowane instalacją na tym systemie odsyłamy do
+poniższego linku <a
+href="https://www.python.org/downloads/windows/">Windows Installers</a>
+skąd można pobrać i zainstalować podstawowe narzędzia pythona (w
+przypadku naszego kursu należy wybrać wersję 2.x.x). ### Dodatkowe
+pakiety Dodatkowe pakiety można zainstalować z poziomu linii komend.
+Jednak przed uczynieniem tego należy dodać ścieżkę do folderu
+zawierającego skrypty pythona (np. C:\Python27\Scripts) do zmiennej
+środowiskowej PATH (Uwaga: pod edycji zmiennej środowiskowej może być
+wymagane ponowne uruchomienie systemu). Następnie należy otworzyć
+konsolę i wywołać instalację za pomocą <em>pip</em>:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bat"><code class="sourceCode dosbat"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>pip install numpy scipy matplotlib pandas</span></code></pre></div>
+</div>
+<div id="git" class="section level3">
+<h3>git</h3>
+<p>W przypadku systemów Windows program ten musi zostać zainstalowany
+oddzielnie, instrukcje dotyczące instalacji można znaleźć tutaj <a
+href="https://git-scm.com/book/pl/v1/Pierwsze-kroki-Instalacja-Git#Instalacja-w-systemie-Windows">git
+- intalacja Windows</a>.</p>
+</div>
+</div>
+</div>
+<div id="środowisko-graficzne" class="section level1">
+<h1>Środowisko graficzne</h1>
+<p>Do wygodnej pracy przy pisaniu kodu posłużymy się zintegrowanym
+środowiskiem programistycznym (IDE) o nazwie PyCharm Community Edition
+(pochodzącym od firmy JetBrains). Środowisko to pozwoli na zarządzanie
+plikami, kolorowanie składni kodu oraz podpowiedzi do aktualnie
+edytowanego miejsca w kodzie. Ponadto środowisko to ma wbudowaną obsługę
+systemu kontroli wersji.</p>
+<div id="instalacja" class="section level2">
+<h2>Instalacja</h2>
+<p>Aby zainstalować PyCharm na systemie Linux wystarczy pobrać
+odpowiedni plik i rozpakować do dowolnie wybranego miejsca na dysku.
+Spakowaną aplikację można pobrać ze strony <a
+href="https://www.jetbrains.com/pycharm/download/#section=linux">PyCharm
+- Linux</a>. Po zapisaniu pliku na dysku możemy go rozpakować
+komendą:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">tar</span> xfz <span class="op">&lt;</span>sciezka do sciagnietego pliku<span class="op">&gt;</span> -C <span class="op">&lt;</span>sciezka do miejsca gdzie rozpakowac<span class="op">&gt;</span></span></code></pre></div>
+<p>Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli
+(po pierwszym uruchomieniu program doda skróty do systemu):</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="op">&lt;</span>sciezka <span class="cf">do</span> <span class="ex">rozpakowanego</span> folderu<span class="op">&gt;</span>/bin/pycharm.sh</span></code></pre></div>
+<p>Po wywołaniu tej komendy program powinien się uruchomić. Przy
+pierwszym uruchomieniu program wyświetli okno konfiguracji w który
+należało będzie ustawić własne preferencje.</p>
+</div>
+<div id="początek-pracy-w-pycharm" class="section level2">
+<h2>Początek pracy w PyCharm</h2>
+<div class="float">
+<img src="figures/python_inst01/01.png" title="Okno PyCharm"
+alt="Okno PyCharm" />
+<div class="figcaption">Okno PyCharm</div>
+</div>
+<p>Gdy wstępna konfiguracja programu zostanie ukończona powinno
+automatycznie otworzyć się okno programu. Jeśli nie posiadamy żadnego
+ostatnio otwartego projektu, to należy:</p>
+<ol style="list-style-type: decimal">
+<li>Przejść do menu <em>File</em> i wybrać <em>New project</em>.
+Następnie wybrać lokalizację projektu na dysku i nazwę dla nowego
+projektu.</li>
+<li>Nowy projekt otworzy się w drzewie projektu. Aby dodać nowy plik do
+projektu klikamy prawym przyciskiem na ten katalog w drzewie w którym
+plik ma zostać umieszczony.</li>
+</ol>
+<div class="float">
+<img src="figures/python_inst01/02.png" alt="Nowy plik *.py" />
+<div class="figcaption">Nowy plik *.py</div>
+</div>
+<p>W trakcie tworzenia nowego pliku:</p>
+<ol style="list-style-type: decimal">
+<li>Wybierz unikalną nazwę w kontekście wybranego katalogu,</li>
+<li>Upewnij się że <strong><em>Kind</em></strong> jest ustawiony jako
+<strong><em>Python File</em></strong>,</li>
+<li>Zatwierdź utworzenie pliku.</li>
+</ol>
+<div class="float">
+<img src="figures/python_inst01/03.png" alt="Pierwszy kod" />
+<div class="figcaption">Pierwszy kod</div>
+</div>
+<p>Nowo dodany plik zostanie automatycznie otwarty w panelu po prawej
+stronie. PyCharm automatycznie doda do pliku linijkę z kodem:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>__author__ <span class="op">=</span> <span class="st">&quot;user.name&quot;</span></span></code></pre></div>
+<p>Instrukcja <code>__author__ =</code> oznacza utworzenie zmiennej
+globalnej. Nie jest ona konieczna potrzebna, a wręcz rzadko stosowana.
+Głównym celem jej dodawania jest przekazanie metadanych do celów
+tworzenia dokumentacji i pakietów. Opcję automatycznego dodawania tej
+zmiennej można wyłączyć w ustawieniach PyCharm.</p>
+<p>W dalszej części napiszmy pierwszy kod - funkcję której zadaniem
+będzie wyświetlenie tekstu historycznie uznanego za jeden z
+najważniejszych w dziejach programowania, ten od którego wszyscy zaczęli
+- “Hellow World”</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">def</span> first_function():</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Hellow world!</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="er">first_function</span>()</span></code></pre></div>
+<p>Przeanalizujmy powyższy kod. Słowo kluczowe <code>def</code> oznacza
+początek definicji funkcji. Następnie podajemy nazwę definiowanej
+funkcji, w naszym przypadku jest to <em>first_function</em>. W Pythonie
+nie podajemy typu zawracanej wartości, ponieważ typy jako takie w nim
+nie istnieją. Python jest językiem dynamicznie typowany co oznacza, że
+typ zmiennej jest taki jak wartość do niej przypisana, dlatego nie
+trzeba zmiennej deklarować. Każda zmienna może być typu <em>integer</em>
+a następnie może stać się typu <em>string</em>, w związku z czym nie ma
+sensu podawanie typu zwracanego obiektu ponieważ on wyniknie z tego co
+zostanie zwrócone. Po nazwie funkcji podajemy w nawiasie nazwy
+argumentów (tylko nazwy, poniweaż typy nie są potrzebne) a następnie
+wstawiamy znak <strong>:</strong>, który rozpoczyna ciało funkcji. I
+tutaj pojawia się ciekawe zjawisko - brak klamer. W Pythonie klamry
+określające przynależność części kodu do instrukcji, zostały zastąpione
+wcięciem w tekście o 1 tabulację. Koniec ciała funkcji z kolei
+definiujemy poprzez przesunięcie kodu o 1 tabulację z powrotem w lewo.
+Funkcje wywołujemy dokładnie tak samo jak w większości innych języków,
+poprzez podanie nazwy funkcji i argumentów w okrągłych nawiasach.</p>
+<div class="float">
+<img src="figures/python_inst01/19.png"
+alt="Pierwsze uruchomienie nowego pliku" />
+<div class="figcaption">Pierwsze uruchomienie nowego pliku</div>
+</div>
+<p>Gdy posiadamy już kod należy go uruchomić aby sprawdzić czy poprawnie
+zapisaliśmy to co chcemy osiągnąć. W przypadku kodu Pythona wystarczy
+wywołać interpreter ze wskazaniem ścieżki do pliku. Taką operację można
+wykonać z poziomu konsoli:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> python nazwa_pliku.py</span></code></pre></div>
+<p>Jednak w sytuacji gdy korzystamy IDE uruchamianie kodu z konsoli nie
+jest wygodne. Aby to zrobić za pierwszym razem należy przygotować
+konfigurację uruchamiania wybranego pliku. W przypadku gdy chcemy
+uruchomić aktualnie edytowany plik możemy skorzystać z domyślnej
+konfiguracji:</p>
+<ol style="list-style-type: decimal">
+<li>Kliknij prawym przyciskiem w pustym miejscu w edytowanym pliku.</li>
+<li>Wybierz opcję <strong><em>Run</em></strong>.</li>
+</ol>
+<div class="float">
+<img src="figures/python_inst01/04.png" alt="Wynik działania kodu" />
+<div class="figcaption">Wynik działania kodu</div>
+</div>
+<p>Po uruchomieniu kodu PyCharm automatycznie rozwinie konsolę w której
+powinien wyświetlić się napis <em>“Hellow world!”</em>.</p>
+<div class="float">
+<img src="figures/python_inst01/05.png" alt="Panel uruchamiania kodu" />
+<div class="figcaption">Panel uruchamiania kodu</div>
+</div>
+<p>Wróćmy jeszcze do konfiguracji uruchamianiowej.Po kliknięciu na
+<strong><em>Run</em></strong> automatycznie zostaje utworzona domyślna
+konfiguracja, która nazywa się tak jak edytowany plik. Ponadto taka
+konfiugracja zostaje dodana do rozwijanego menu w prawym górnym rogu,
+tuż nad edytorem tekstu. Znajdują się tam 3 przyciski:</p>
+<ol style="list-style-type: decimal">
+<li>Menu służące do wyboru aktualnej konfiguracji.</li>
+<li>Przycisk do uruchamiania wybranej konfiguracji.</li>
+<li>Przycisk służący do uruchamiania wybranej konfiguracji w trybie
+“Debug”.</li>
+</ol>
+<p>Po co nam różne konfiguracje? Otóż w obrębie jednego projektu możemy
+mieć kilka różnych plików zawierających kod który ma wykonać jakieś
+zadania. Często zdaża się tak, że edytuajmy jedan plik, ale żeby
+zobaczyć efekty pracy chcemy jednak uruchomić inny wcześniej
+wybrany.</p>
+<div class="float">
+<img src="figures/python_inst01/06.png"
+alt="Konfiguracja uruchamiania kodu" />
+<div class="figcaption">Konfiguracja uruchamiania kodu</div>
+</div>
+<p>Na koniec jeszcze zobaczmy co zawiera konfiguracja uruchomieniowa
+naszego pliku test.py. Aby otworzyć okno jej edycji należy wybrać opcję
+<strong><em>Edit configuration</em></strong> z rozwijanego menu (<a
+href="figures/python_inst01/05.png">rysunek</a>). W panelu
+<strong><em>Configuration</em></strong> znajdują się 3 najważniejsze
+pola:</p>
+<ol style="list-style-type: decimal">
+<li><strong><em>Script</em></strong> - ścieżka do pliku który ma zostać
+uruchomiony.</li>
+<li><strong><em>Script parameters</em></strong> - parametry jakie
+powinny zostać przkazane do naszego kodu w czasie jego wywołania.
+Paremetry te to nic innego jak parametry przekazywane do programów gdy
+je wywołujemy z konsoli, np.:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> rm directory_name</span></code></pre></div>
+<p>W powyższym przykładzie <strong><em>rm</em></strong> jest nazwą
+programu, a <em>directory_name</em> to parametr który zostaje przekazany
+do programu. W sytuacji gdy będziemy pisali skrypt ogólnego
+zastosowania, który będzie zależał od parametrów przekazanych przez
+użytkownika, to na czas testów kodu warto właśnie w tym miejscu podać
+testowe parmetry, zamiast na sztywno je przypisywać wenątrz kodu.<br />
+3. <strong><em>Working directory</em></strong> - lokalizacja z której ma
+zostać wywołany nasz program. Podobnie jak w przypadku parametrów ta
+informacja jest przekazywana do programu przez system operacyjny w
+czasie uruchamiania go z konsoli. W przykładzie z poprzedniego punkut
+komenda <strong><em>rm</em></strong> służy do usuwania plików wskazanych
+za pomocą parmetrów. Ścieżki tych parametrów mogą być podawane względem
+folderu w którym się znajdujemy, zatem program musi zawsze otrzymać
+dodatkową informację o lokalizacji z której został uruchomiony.</p>
+</div>
+<div id="własne-repozytorium-w-sieci-i-git-w-pycharm"
+class="section level2">
+<h2>Własne repozytorium w sieci i git w PyCharm</h2>
+<p>Jak już wcześniej o tym wspomnieliśmy kod i materiały potrzebne do
+pracy będziemy przechowywali przy wykorzystaniu systemu kontroli wersji
+<strong><em>git</em></strong> oraz zdalnego repozytorium w serwisie
+<strong><em>GitHub</em></strong>. W serwisie tym znajduje się oficjalne
+repozytorium (pewna przestrzeń dyskowa obsługiwana przez system kontroli
+wersji) z materiałami do naszych ćwiczeń. Materiały te mogą edytować
+tylko osoby posiadające odpowiednie uprawnienia. Jednak dostęp do nich
+posiada każdy. Wszyscy mogą skopiować to repozytorium na własne konto i
+modyfikować je. Jednak zmiany te nie będą nigdy wprowadzone do
+oficjalnego repozytorium (chyba, że administratorzy uznają, że warto te
+zmiany dołączyć do swojego repozytorium, ale o tym później). Kopia
+jakiegoś repozytorium na własne konto jest nazywana
+<strong><em>Fork</em></strong>. Oprócz tworzenia kopii repozytorium do
+swojego konta można także utworzyć kopię zwaną
+<strong><em>Branch</em></strong> - gałąź, która będzie znajdowała się
+nadal wewnątrz repozytorium, ale tą operację mogą tworzyć jedynie osoby
+które są przypisane do repozytorium. Od momentu utworzenia kopii kod
+staje się “własnością” osoby która go skopiowała i nie jest powiązany z
+głównym repozytorium. Często jednak chcemy wprowadzać własne zmiany do
+kodu, ale przy okazji chcemy aby nasz kody był cały czas aktualny z
+oficjalnym repozytorium. W takiej sytuacji można połączyć własną kopię
+<strong><em>Fork</em></strong> z drugim zdalnym repozytorium i co jakiś
+czas je aktualizować. Procedurę taką opiszemy na następnych ćwiczeniach,
+a teraz przejdziemy do utworzenia własnego repozytorium na bazie
+istniejącego.</p>
+<div class="float">
+<img src="figures/python_inst01/18.png"
+alt="Kopiowanie istniejącego repozytorium" />
+<div class="figcaption">Kopiowanie istniejącego repozytorium</div>
+</div>
+<p>Należy przejść na stronę <a href="https://github.com"
+title="GitHub">GitHub</a> i zalogować się na własne konto. Następnie
+należy znaleźć repozytorium z materiałami do naszego kursu (za pomocą
+wyszukiwarki bądź wprost z tego <a
+href="https://github.com/ccfd/python_course">linku</a>). Następnie
+należy kliknąć na przycisk znajdujący się w prawym górnym rogu
+<strong><em>Fork</em></strong>. Ta operacja utworzy kopię repozytorium
+na własnym koncie. Poniważ uczestnicy będą pisali własny kod będący
+rozwiązaniem zadań, to właśnie ta kopia repozytorium posłuży im do
+przechowywania własnego kodu i automatycznego pobierania materiałów
+przygotowanych przez prowadzących.</p>
+<div class="float">
+<img src="figures/python_inst01/07.png"
+alt="Tworzenie lokalnego repozytorium w PyCharm" />
+<div class="figcaption">Tworzenie lokalnego repozytorium w PyCharm</div>
+</div>
+<p>Utworzyliśmy właśnie własne repozytorium. Jednak znajduje się ono na
+razie tylko na serwerze. Aby ściągnąć pliki zawarte w tym repozytorium
+należy utowrzyć tzw. lokalne repozytorium. Lokalne repozytorium jest
+kopią kodu zawartego na serwerze na przestrzeń dyskową własnego
+komputera. Dzięki temu można wprowadzać zmiany z pozimu własnego
+komputera. Należy jednak pamiętać, że wszystkie takie zamiany będą tylko
+lokalne, tzn. istniały tylko w obrębie własnego komputera. Aby te zmiany
+mogły się pojawić także na serwerze, trzeba będzie je tam wysłać, ale o
+tym dalej. Operacja kopiowania (pobierania) zdalnego repozytorium na
+własny komputer nazywana jest klonowaniem (clone). Można to uczynić z
+poziumu konsoli za pośrednictwem programu
+<strong><em>git</em></strong>:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> git clone https://github.com/ccfd/python_course.git</span></code></pre></div>
+<p>Ta komenda utworzy repozytorium w folerze o nazwie “python_course”.
+Jeśli chcemy aby to repozytorium zostało zapisane w innmym folderze, to
+należy podać dodatkowy parametr ze ścieżką do wybranego folderu.</p>
+<p>PyCharm jest rozbuodwanym środowsikiem i sam także pozwala na
+utorzenie lokalnej kopii ze zdalnego repozytorium. Aby to ucznić należy:
+1. Wybrać opcję <strong><em>VCS</em></strong> z górnego menu. 2. Wybrać
+opcję <strong><em>Cehckout from Version Control</em></strong>. 3. Na
+koniec wskazać <strong><em>GitHub</em></strong> który jest dodatkowo
+wspierany przez PyCharm.</p>
+<div class="float">
+<img src="figures/python_inst01/08.png"
+alt="Konfiguracja dostępu do konta GitHub" />
+<div class="figcaption">Konfiguracja dostępu do konta GitHub</div>
+</div>
+<p>Następnie PyCharm poprsi o zalogowanie się na nasze konto, poniważ
+będzie chciał pobrać informacje o dostępnych repozytoriach na naszym
+koncie: 1. Podajemy login. 2. Podajemy hasło do naszego konta. 3.
+Logujemy się klikając na wskazany przycisk.</p>
+<div class="float">
+<img src="figures/python_inst01/09.png" alt="Lokalne hasło" />
+<div class="figcaption">Lokalne hasło</div>
+</div>
+<p>Poniważ za każdym razem gdy będziemy chcieli pobrać lub wysłać nową
+wersję kodu będziemy musieli podać login i hasło. Może być to uciążliwe,
+dlatego PyCharm pozwala na wprowadzenie dodatkowego hasła, które będzie
+istniało tylko w obrębie PyCharm. Dzięki temu będziemy mogli wpisać to
+nowe hasło tylko raz na jedną sesję pracy z programem, a on wykorzysta
+zapisane i zaszyfrowane właściwe hasło i login do naszego konta na
+GitHub, co znacząco ułatwia pracę. Jeśli kotś nie chce tego robić
+wystarczy klinkąć <strong><em>Cancel</em></strong> i PyCharm będzie za
+każdym razem (gdy będzie to wymagane) prosił o podanie właściwego loginu
+i hasła do konta na GitHub.</p>
+<div class="float">
+<img src="figures/python_inst01/11.png"
+alt="Wybór adresu własnego repozytorium" />
+<div class="figcaption">Wybór adresu własnego repozytorium</div>
+</div>
+<p>Następnym krokiem jest wybór adresu repozytorium na serwerze. Można
+to zrobić wchodząc na własne konto i wybierając repozytorium które
+skopiwoaliśmy. Następnie można skopiować jego adres za pomocą przycisku
+na stronie.</p>
+<div class="float">
+<img src="figures/python_inst01/10.png"
+alt="Konfiguracja lokalnego repozytorium" />
+<div class="figcaption">Konfiguracja lokalnego repozytorium</div>
+</div>
+<ol style="list-style-type: decimal">
+<li>Z racji tego, że już zalogowaliśmy się na nasze konto za pomocą
+PyCharm, to on sam automatycznie pobrał wszystkie adresy naszych
+repozytoriów. Dlatego w miejscu <strong><em>Git Repository
+URL</em></strong> można wkleić skopiowany adres bądź wybrać jeden z
+rozwijanego menu.</li>
+<li>Oprócz adresu musimy wybrać lokalizajcę na naszym dysku gdzie ma
+zostać przechowana lokalna kopia kodu (w przypadku używania konsoli
+należało przejść do właściwego folderu przed wywołaniem git clone
+…).</li>
+<li>Na koniec zatwierdzamy klikając na
+<strong><em>Clone</em></strong>.</li>
+</ol>
+<div class="float">
+<img src="figures/python_inst01/12.png"
+alt="Dodawanie nowego projektu do PyCharm" />
+<div class="figcaption">Dodawanie nowego projektu do PyCharm</div>
+</div>
+<p>Gdy PyCharm zakończy pobierać dane z serwera zapyta czy otworzyć to
+repozytorium jako nowy projekt - klikamy
+<strong><em>Yes</em></strong>.</p>
+<div class="float">
+<img src="figures/python_inst01/13.png"
+alt="Konfiguracja dodawania projektu" />
+<div class="figcaption">Konfiguracja dodawania projektu</div>
+</div>
+<p>Po kliknięciu na <strong><em>Yes</em></strong> może pojawić się
+powyższy komunikat. Chodzi tutaj o to, że wcześniej utowrzyliśmy
+pierwszy projekt i program pyta się czy nowy projekt powinien zostać
+dodany do drzewka czy powinien otworzyć całkiem nowe okno. Możemy wybrać
+opcję <strong><em>Open in current window</em></strong> choć to nie
+będzie miało większego znaczenia.</p>
+<div class="float">
+<img src="figures/python_inst01/14.png"
+alt="Uruchamianie testowego kodu z repozytorium" />
+<div class="figcaption">Uruchamianie testowego kodu z repozytorium</div>
+</div>
+<p>Gdy załaduje się projekt z naszego repozytorium otwórzmy plik
+“test_script.py”. Plik ten zawiera testowy kod, który wykorzystuje
+biblioteki NumPy i Matplotlib. Jeśli program zadziała poprawnie to
+będzie znaczyło, że udało się zainstalować je poprawnie. Aby uruchomić
+ten plik możemy zrobić tak jak poprzedni, czyli wybrać opcję
+<strong><em>Run</em></strong> z menu otwieranego prawym przyciskiem
+myszy.</p>
+<div class="float">
+<img src="figures/python_inst01/15.png"
+alt="Okno wyniku działania testowego kodu" />
+<div class="figcaption">Okno wyniku działania testowego kodu</div>
+</div>
+<p>Jeśli program zadziałał poprawnie, to powinniśmy zobaczyć powyższy
+wykres w nowym oknie.</p>
+<p>Teraz dokonamy drobnych zmian w naszym kodzie, tak aby można było
+zatwierdzić zmianę (zrobić “Commit”) oraz wysłać ją z lokalnego
+repozytorium na zdalne - serwer.</p>
+<p>W tym celu zamieńmy linijkę:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>numpyArray2 <span class="op">=</span> np.sin(array)</span></code></pre></div>
+<p>na linijkę:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>numpyArray2 <span class="op">=</span> np.sin(array) <span class="op">+</span> np.cos(array)</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst01/16.png"
+alt="Zatwierdzanie zmian w lokalnym i zdalnym repozytorium" />
+<div class="figcaption">Zatwierdzanie zmian w lokalnym i zdalnym
+repozytorium</div>
+</div>
+<p>Teraz musimy zatwierdzić zmianę. W tym celu możemy utworzyć “commit”
+dla pojedyńczego pliku lub wszystkich w naszym projekcie, co zazwyczaj
+jest bardziej wygodne. Aby to zrobić:</p>
+<ol style="list-style-type: decimal">
+<li>Kliknij prawym przyciskiem na folder “python_course” w drzewie.</li>
+<li>Wybierz opcję <strong><em>Git</em></strong>.</li>
+<li>A następnie <strong><em>Commit Directory…</em></strong>.</li>
+</ol>
+<div class="float">
+<img src="figures/python_inst01/20.png"
+alt="Parametry zatwierdzania zmian" />
+<div class="figcaption">Parametry zatwierdzania zmian</div>
+</div>
+<p>Otworzy się teraz nowe okno służące do zatwierdzania zmian. Warto
+robić takie zatwierdzenia jak najczęściej, dzięki czemu każda zmiana w
+kodzie będzie łatwa do odszukania i np. usunięcia. Aby utowrzyć “Commit”
+musimy:</p>
+<ol style="list-style-type: decimal">
+<li>Wybrać zmodyfikowane pliki które mają być zatwierdzone tym
+commitem.</li>
+<li>Wpisać wiadomość informującą jakie zmiany w kodzie zostały
+przeprowadzone.</li>
+<li>Zatwierdzić przyciskiem <strong><em>Commit</em></strong>. Uwaga,
+zanim kliknie się na ten przycisk rozwija się dodakowe menu, które
+pozwala wybrać opcję <strong><em>Commit and Push</em></strong>. Opcja ta
+tworzy nowy commit i automatycznie wysyła zmiany na serwer. Czasami nie
+chcemy wysłać zmian, ponieważ nie jesteśmy pewni czy nie będziemy
+chcieli zrezygnować z nich za jakiś czas. Wybierzmy teraz drugą opcję,
+tj. <strong><em>Commit and Push</em></strong>.</li>
+</ol>
+<div class="float">
+<img src="figures/python_inst01/17.png"
+alt="Wysyłanie zmian do zdalnego repozytorium" />
+<div class="figcaption">Wysyłanie zmian do zdalnego repozytorium</div>
+</div>
+<p>Po utworzeniu commitu PyCharm otworzy nowe okno w którym należy
+zatwierdzić, że chcemy wysłać zmiany na serwer. W naszym przypadku
+commit powinien zostać zaznaczony automatycznie, więc wystarczy kliknąć
+na przycisk <strong><em>Push</em></strong>.</p>
+<div class="float">
+<img src="figures/python_inst01/21.png"
+alt="Pobieranie zmian ze zdalnego repozytorium" />
+<div class="figcaption">Pobieranie zmian ze zdalnego repozytorium</div>
+</div>
+<p>Na koniec pokażemy jeszcze jak pobrać zmiany ze zdalnego repozytorium
+na nasze lokalne, które już istnieje (np. w sytuacji, gdy ktoś inny
+wprowadził zmiany i chcemy aby ten nowszy kod pojawił się także u nas na
+dysku). Do tego celu korzystamy z opcji “Pull” która działa przeciwnie
+do “Push” - czyli pobiera wszystkie zmiany z serwera i dołącza je do
+naszego kodu. Aby dokonać tej operacji z pozimu konsoli należy przejść
+do właściwego folderu zawierającego nasze lokalne repozytorium, a
+następnie wywołać:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> git pull</span></code></pre></div>
+<p>Po tej operacji zostaniemy poproszeni o podanie nazwy użytkownika i
+hasła.</p>
+<p>W naszy przypadku skorzystamy z PyCharma - wystarczy wybrać
+odpowienią opcję z menu (tak jak na rysunku powyżej) a program wykona
+żądaną operację i ściągnie najświeższy kod. Musimy zrócić uwagę na
+jeszcze jedną opcję znajdującą się obok “Push” i “Pull” - “Fetch”. Opcja
+ta służy jedynie do pobrania inforamcji i danych ze zdalnego
+repozytorium. Ona, w przeciwieństwie do “Pull”, nie zmienia plików
+źródłowych w lokalnym repozytorium.</p>
+<p>Git - aktualizacja kopii repozytorium …. todo ….</p>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

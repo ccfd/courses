@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="M. Dzikowski" />
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+
+
+<title>info3_lab_6.knit</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab_6.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="wstęp" class="section level1">
+<h1>Wstęp</h1>
+<p>Obliczenia z wykorzystaniem komputerów są nieodłączną częścią
+współczesnej nauki. Natomiast, podstawą obliczeń komputerowych są
+obliczenia równoległe. Gdy korzystamy z 1 komputera, nawet bardzo
+mocnego, jesteśmy ograniczeni do około 32 procesorów (obecnie) i
+kilkuset Gb pamięci RAM. Co więcej, czas obliczeń spada (przynajmniej
+tego byśmy sobie życzyli) jak 1/(liczba procesów). Dlatego z reguły
+potrzebujemy i chcemy wykorzystać ich jak najwięcej.</p>
+</div>
+<div id="obliczenia-równoległe" class="section level1">
+<h1>Obliczenia równoległe</h1>
+<p>Każdy program przygotowany do pracy równoległej oprócz podstawowego
+algorytmu, potrzebuje mechanizmu komunikacji. W naszym przypadku będzie
+to standard MPI czyli Message Passing Interface. Biblioteka OpenMPI
+dostarcza nam narzędzi niezbędnych do uruchamiania i komunikacji między
+poszczególnymi procesami składającymi się na nasz “program”.</p>
+<div id="ćwiczenie-1" class="section level3">
+<h3>Ćwiczenie 1</h3>
+<p>Przygotuj plik <code>program.cpp</code> o poniższej treści. Następnie
+skompiluj go za pomocą programu <code>mpic++</code>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;mpi.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="dt">int</span> numprocs<span class="op">,</span> rank<span class="op">,</span> namelen<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="dt">char</span> processor_name<span class="op">[</span>MPI_MAX_PROCESSOR_NAME<span class="op">];</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  MPI_Init<span class="op">(&amp;</span>argc<span class="op">,</span> <span class="op">&amp;</span>argv<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    MPI_Comm_size<span class="op">(</span>MPI_COMM_WORLD<span class="op">,</span> <span class="op">&amp;</span>numprocs<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    MPI_Comm_rank<span class="op">(</span>MPI_COMM_WORLD<span class="op">,</span> <span class="op">&amp;</span>rank<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    MPI_Get_processor_name<span class="op">(</span>processor_name<span class="op">,</span> <span class="op">&amp;</span>namelen<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello World! from process </span><span class="sc">%d</span><span class="st"> out of </span><span class="sc">%d</span><span class="st"> on </span><span class="sc">%s\n</span><span class="st">&quot;</span><span class="op">,</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>           rank<span class="op">,</span> numprocs<span class="op">,</span> processor_name<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  MPI_Finalize<span class="op">();</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Powyższy program można skompilować i uruchomić używając komend:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">mpic++</span> <span class="at">-o</span> program program.cpp</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-np</span> 4 program</span></code></pre></div>
+<p>gdzie <code>4</code> to liczba procesorów, na których ma zostać
+uruchomiony program.</p>
+<p>Przeanalizujmy teraz program. Funkcje <code>MPI_Init</code> i
+<code>MPI_Finalize</code> służą do odpowiednio inicjalizacji i
+zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio
+na początku i na końcu programu, ponieważ tylko pomiedzy nimi można
+wykonać jakiekolwiek wywołanie biblioteki <code>MPI</code> i komunikować
+się z innymi procesami w grupie. Wywołanie <code>MPI_Comm_size</code>
+zwroci nam liczbe procesów (np. <code>4</code>), zaś
+<code>MPI_Comm_rank</code> zwróci nam numer <em>naszego</em> procesu
+(np. <code>0</code>,<code>1</code>,<code>2</code> lub <code>3</code>).
+Zmienna <code>rank</code> jest wiec jedną z najważniejszych w kodzie,
+ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to
+wszystkie nasze procesy zrobią dokładnie to samo.</p>
+</div>
+<div id="ćwiczenie-2" class="section level3">
+<h3>Ćwiczenie 2</h3>
+<p>Rozszerz program tak, by każdy proces losował pewne liczby i
+wypisywał pewne statystyki:</p>
+<ol style="list-style-type: decimal">
+<li><a href="info1_lab07.html">Zaalokuj</a> tablicę liczb rzeczywistych
+<code>a</code> o rozmiarze <code>n = 10000 * (rank + 1)</code></li>
+<li>Wypełnij ją <a href="info1_lab04.html">liczbami losowymi</a> z
+przedziału <span class="math inline">\([0,1]\)</span></li>
+<li>Wypisz komunikat o wylosowaniu i wypisz pierwszą liczbę
+<code>a[0]</code></li>
+<li>Oblicz <span class="math inline">\(S_1 = \sum_i a_i\)</span></li>
+<li>Wyświetl średnią: <span class="math inline">\(\mu = \frac{1}{n}
+S_1\)</span></li>
+<li>Oblicz <span class="math inline">\(S_2 = \sum_i (a_i -
+\mu)^2\)</span></li>
+<li>Wyświetl wariancję: <span class="math inline">\(\sigma^2 =
+\frac{1}{n-1} S_2\)</span></li>
+</ol>
+<p>Pamietaj aby we wszystkich komunikatach umieszczać zmienną
+<code>rank</code>, tak by było wiadomo, który komunikat pochodzi, od
+którego procesu. By mieć pewność, że komunikaty wypisywane są
+rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez
+system), dodaj komendę <code
+class="sourceCode cpp">fflush<span class="op">(</span>stdout<span class="op">);</span></code>
+zaraz po każdym wywołaniu <code class="sourceCode cpp">printf</code>.
+Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na
+ekran od razu.</p>
+<p>Aktualnie, losowanie jest bardzo niedoskonałe. Wszystkie procesy
+wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym
+elemencie, który jest identyczny we wszystkich procesach. Żeby tego
+uniknąć przekaż np. wartość <code>time(NULL) + rank</code> jako
+<em>ziarno</em> do funkcji <code>srand</code>, tak aby ciąg losowy był
+zainicjalizowany inną liczbą na każdym procesorze.</p>
+</div>
+<div id="ćwiczenie-3" class="section level3">
+<h3>Ćwiczenie 3</h3>
+<p>Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w
+różnych momentach. Np. średnia dla procesu 0 może być wyznaczona przed
+wypełnieniem liczbami tablicy w procesie 1. Możemy wymusić aby procesy
+czekały na siebie nawzajem dodając instrukcję <code
+class="sourceCode cpp">MPI_Barrier<span class="op">(</span>MPI_COMM_WORLD<span class="op">);</span></code>
+po wywołaniach <code>printf</code>/<code>fflush</code>. Bariera w
+programach wielowątkowych powoduje, że wszystkie procesy czekają w tym
+miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie
+wszystkie razem ruszają dalej. Zauważ, że powoduje to iż program działa
+tak wolno, jak jego najwolniejszy element. Przebieg programu we
+wszystkich procesach jest pokazany poglądowo na poniższym obrazku:</p>
+<p><img src="info3_lab_6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="ćwiczenie-4" class="section level3">
+<h3>Ćwiczenie 4</h3>
+<p>Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po
+wszystkich procesach) i wariancję z <span
+class="math inline">\(a\)</span>. Redukcja w programowaniu równoległym
+polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia
+maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do
+dyspozycji funkcję:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>MPI_Reduce<span class="op">(</span>source<span class="op">,</span> destination<span class="op">,</span> count<span class="op">,</span> datatype<span class="op">,</span> operation<span class="op">,</span> root<span class="op">,</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>           MPI_COMM_WORLD<span class="op">);</span></span></code></pre></div>
+<ul>
+<li><code>source</code> to <strong>wskaźnik</strong> do danych, które
+mamy np. zsumować.</li>
+<li><code>destination</code> to wskaźnik do miejsca, gdzie ma być
+umieszczony wynik.</li>
+<li><code>count</code> to liczba elementów danych do zsumowania. Czyli
+np. <code>1</code> jeśli dane to jedna liczba.</li>
+<li><code>datatype</code> to typ danych, które sumujemy:
+<code>MPI_INT</code> lub <code>MPI_DOUBLE</code>.</li>
+<li><code>operation</code> to operacja, którą wykonujemy, np:
+<code>MPI_SUM</code> lub <code>MPI_MAX</code>.</li>
+<li><code>root</code> to numer procesu, do którego przesyłamy wynik, np:
+<code>0.</code></li>
+<li>Ostatni argument to uchwyt komunikatora, na którym ma zostać
+wykonana redukcja. W naszym wypadku to domyślny komunikator
+<code>MPI_COMM_WORLD</code></li>
+</ul>
+<p>Użyj tej funkcji aby obliczyć globalne statystyki, a następnie
+wyświetl je (pamietaj, że mają one sens tylko na węźle
+<code>root</code>). Weź pod uwagę, że globalne <code>n</code> jest inne
+niż <code>n</code> lokalne.</p>
+<p>Bliźniaczą do funkcji <code>MPI_Reduce</code> jest funkcja
+<code>MPI_Allreduce</code>. Przesyła ona wynik do wszystkich procesów, a
+nie tylko do procesu <code>root</code>.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>MPI_Allreduce<span class="op">(</span>source<span class="op">,</span> destination<span class="op">,</span> count<span class="op">,</span> datatype<span class="op">,</span> operation<span class="op">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>              MPI_COMM_WORLD<span class="op">);</span></span></code></pre></div>
+</div>
+<div id="ćwiczenie" class="section level3">
+<h3>Ćwiczenie *</h3>
+<p>Stwórz nowy program równoległy <code>program2.cpp</code>, który
+będzie obliczał powyższą średnią i wariancję, używając tylko jednej
+pętli, bez alokowania tablicy <code>a</code> (tzn., będzie liczył
+średnią i wariancję bez przechowywania pojedyńczych elementów). By to
+zrobić przekształć wzór na wariancję:</p>
+<p><span class="math inline">\(\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i -
+\frac{1}{n}\sum_j a_j\right)^2\)</span></p>
+<p>tak aby był wyrażony za pomocą <span
+class="math inline">\(S_1\)</span> i nowego <span
+class="math inline">\(\hat S_2 = \sum_i a_i^2\)</span>, który da się
+obliczyć bez znajomości średniej <span
+class="math inline">\(\mu\)</span>. Użyj we wszystkich procesach tego
+samego (bardzo wysokiego) <code>n</code>. Porównaj czas wykonania
+wykonując:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">-np</span> 1 program2</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">-np</span> 2 program2</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">-np</span> 4 program2</span></code></pre></div>
+</div>
+</div>
+<div id="kolejka-pbs" class="section level1">
+<h1>Kolejka PBS</h1>
+<p>W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś
+mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego
+samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy
+do zlecania zadań, pozostałe, tzw. węzły obliczeniowe, przyjmują i
+wykonują zadania. Na <code>info3</code> jest tylko jeden węzeł który
+spełnia obie role.</p>
+<div id="ćwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Sprawdź co zrobi komenda <code
+class="sourceCode bash"><span class="ex">qsub</span> <span class="at">-I</span></code>
+(wielka litera i). To program do wysyłania zadań do wykonania. Opcja
+<code>-I</code> oznacza tryb interaktywny: zostaniemy zalogowani na
+wolny węzeł przez ssh. Wpisz teraz <code>qstat</code>, sprawdź opcje
+<code>-n</code> i <code>-f</code>. Zobacz, że twoje ‘zadanie’ jest
+uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki.
+Jednocześnie mogą być wykorzystywane tylko 4 rdzenie. Ilością
+pobieranych zasobów można sterować poprzez flagę <code>-l</code>,
+np.:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">qsub</span> <span class="at">-l</span> nodes=1:ppn=4 <span class="at">-I</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">qsub</span> <span class="at">-l</span> nodes=1:ppn=2 <span class="at">-l</span> walltime=00:00:10 <span class="at">-I</span></span></code></pre></div>
+<p>Parametr <code>walltime=00:00:10</code> mówi nam o maksymalnym czasie
+trwania zadania. Po upłynięciu tego czasu zadanie zostanie automatycznie
+przerwane.</p>
+</div>
+<div id="zadania-nieinteraktywne" class="section level2">
+<h2>Zadania nieinteraktywne</h2>
+<p>W większości przypadków czas trwania zadania interaktywnego jest
+mocno ograniczony. Bardziej użyteczne są zadania nieinteraktywne. Aby
+zlecić takie zadanie potrzebny jest nam plik zadania
+<code>plik.sh</code>:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">cd</span> <span class="va">$PBS_O_WORKDIR</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">--hostfile</span> <span class="va">$PBS_NODEFILE</span> <span class="at">--display-map</span> ./program</span></code></pre></div>
+<p>Zlecamy jego wykonanie przez</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">qsub</span> plik.sh</span></code></pre></div>
+<p>Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu
+<code>.oXX</code> i <code>.eXX</code>. Czym one są? Dodaj do skryptu
+<code>plik.sh</code> komendę <code
+class="sourceCode bash"><span class="fu">sleep</span> 8</code>, która
+spowoduje ze zadanie <em>zaśnie</em> na 8 sekund, tak by w liście
+wypisywanej przez <code>qstat</code> dało się je zobaczyć. Jako grupa
+możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane
+przez kolejkę PBS.</p>
+<div id="ćwiczenie-5" class="section level3">
+<h3>Ćwiczenie</h3>
+<p>Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących
+obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w
+kolejce.</p>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>cpp_inst02</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst02.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="instrukcja-ii" class="section level1">
+<h1>Instrukcja II</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<div id="zasoby" class="section level3">
+<h3>Zasoby</h3>
+<p>Na tych zajęciach skupimy się na zarządzaniu zasobami, życiem
+obiektów oraz metodach do tego służącym. Jest to temat kluczowy w C++,
+ponieważ język ten nie posiada automatycznego zarządzania zasobami, np.
+w postaci garbage collectora dostępnego w Javie czy C#. Jest to, z
+jednej strony, problematyczne, gdyż zmusza nas do poświęcenia uwagi oraz
+czasu na sprawy, które mogłyby potencjalnie zostać załatwione przez
+runtime programu, bez naszego udziału. Z drugiej strony, nie musimy
+płacić za wygodę takich rozwiązań wydajnością kodu. Jest to zgodne z
+filozofią C++: <em>don’t pay for what you don’t use</em>. Zacznijmy od
+(niekoniecznie ścisłej) definicji: przez zasób rozumiemy byt, który
+wykorzystujemy do prawidłowego funkcjonowania naszego programu i którego
+stworzenie i/lub uwolnienie wymaga nietrywialnego nakładu pracy.
+Przykładami zasobów mogą być:</p>
+<ul>
+<li><strong>zaalokowana pamięć</strong></li>
+<li>otwarty plik</li>
+<li>stworzony wątek</li>
+<li>otwarte połączenie sieciowe</li>
+</ul>
+<p>Każdy z ww. przykładów zasobów wymaga pracy przy stworzeniu oraz
+zniszczeniu (np. pamięć trzeba zaalokować i zwolnić). Mamy tu na myśli
+zarówno pracę programistyczną (napisanie odpowiednich instrukcji) oraz
+pracę komputera (np. alokacja pamięci wymaga komunikacji z systemem
+operacyjnym, który ją przydziela). Drugi typ pracy jest nieunikniony,
+natomiast ten pierwszy możemy znacznie ograniczyć.</p>
+</div>
+<div id="raii" class="section level3">
+<h3>RAII</h3>
+<p>Wzorcem projektowym, który nam do tego posłuży jest RAII -
+<em>resource acquisition is initialization</em>. Akronim ten, pomimo
+dość tajemniczo brzmiącego rozwinięcia, opisuje bardzo prostą koncepcję:
+reprezentujemy zasoby poprzez obiekty, tworzymy zasoby w konstruktorach
+tych obiektów, a zwalniamy w destruktorach. Dzięki temu kod konieczny do
+zarządzania zasobem piszemy w jednym miejscu, a następnie wykorzystujemy
+go w trakcie normalnej pracy z danym obiektem. Takie podejście ma
+następujące zalety:</p>
+<ul>
+<li>Zwiększa poprawność kodu. Obiekty są automatycznie niszczone przy
+wyjściu ze scope’u, także nigdy nie zapomnimy już np. zwolnić pamięci!
+Znak “<code>}</code>” jest naszym przyjacielem.</li>
+<li>Zmniejsza liczbę linijek kodu, które musimy napisać.</li>
+<li>Pozwala zachować poprawność programu w sytuacjach wyjątkowych.</li>
+</ul>
+<p>O wyjątkach mowa będzie dopiero za na ostatnich zajęciach. Na tę
+chwilę powiedzmy tylko, że są sytuacje, w których jakaś operacja może
+się nie powieść i program natychmiast przerwie wykonywanie bieżącej
+funkcji, funkcji, która ją zawołała, itd., aż do momentu, w którym
+przewidziana jest obsługa takiej wyjątkowej sytuacji. Przed opuszczeniem
+tych funkcji, program postara się jednak zniszczyć wszystkie obiekty,
+które zostały dotychczas stworzone (tzw. rozwijanie stosu, ang.
+<em>stack unwinding</em>). Dzięki zastosowaniu RAII zapewniamy poprawne
+zwolnienie zasobów, co jest szczególnie ważne, jeżeli program ma
+odzyskać sprawność. Przykładowo, klient może próbować połączyć się z
+serwerem przy użyciu funkcji, która alokuje pamięć. Serwer nie odpowiada
+jednak przez jakiś czas, w związku z czym klient decyduje się na
+porzucenie próby połączenia w trybie awaryjnym. Klient potrafi sobie
+jednak poradzić z taką sytuacją, np. ponownie wysyłając żądanie do
+serwera, albo wyświetlając odpowiednią wiadomość użytkownikowi i
+zajmując się czymś innym. Dzięki odpowiednio napisanemu destruktorowi,
+można uniknąć wycieku zaalokowanej przez klienta pamięci.</p>
+<p>RAII jest jednak sposobem projektowania kodu, nie elementem języka
+C++ (RAII miało swój początek w C++, ale obecnie wykorzystywane jest
+także np. w językach Ada i Rust). Zapoznajmy się z konkretną
+funkcjonalnością oferowaną przez C++, która pozwala stosować RAII, a
+także inne mechanizmy służące do optymalnego i niekłopotliwego
+zarządzania zasobami. Skupimy się tu na pamięci, ale innymi zasobami
+zarządza się analogicznie. Nadzieją autorów jest, że po wykonaniu tej
+instrukcji czytelnik potrafić będzie pisać czysty kod, który nie
+powoduje wycieków oraz nie wykorzystuje 10kB tam, gdzie wystarczy
+1kB.</p>
+</div>
+</div>
+<div id="dynamiczna-alokacja-pamięci-w-c" class="section level2">
+<h2>Dynamiczna alokacja pamięci w C++</h2>
+<p>Zanim przejdziemy do zarządzania zasobami, musimy dowiedzieć się, jak
+je w ogóle stworzyć. Przypomnijmy, jak wyglądała alokacja pamięci w
+C:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">// Poniższe 3 linijki zazwyczaj zapisywaliśmy w 1, tutaj rozbijamy ją dla celów dydaktycznych</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="dt">const</span> <span class="dt">size_t</span> rozmiar_doubla <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dt">void</span><span class="op">*</span>        wynik_alokacji <span class="op">=</span> malloc<span class="op">(</span>rozmiar_doubla<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="dt">double</span><span class="op">*</span>      liczba_wsk     <span class="op">=</span> <span class="op">(</span><span class="dt">double</span><span class="op">*)</span>wynik_alokacji<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="op">*</span>liczba_wsk <span class="op">=</span> <span class="fl">42.</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">// Użyj do czegoś wartości 42...</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>free<span class="op">(</span>liczba_wsk<span class="op">);</span></span></code></pre></div>
+<p>Powyższe odwołanie do funkcji <code>malloc</code> czytamy jako
+“zaalokuj blok pamięci o wielkości <code>rozmiar_doubla</code> bajtów, a
+następnie podaj mi adres tego bloku pamięci”. Dodatkowo przed
+przypisaniem otrzymanego adresu do zmiennej <code>liczba</code> musimy
+zrzutować go na typ <code>double*</code>, gdyż funkcja
+<code>malloc</code> otrzymuje jedynie informację o liczbie bajtów, nie
+tym, jakiego typu zmienne chcemy tam umieścić (zwraca typ
+<code>void*</code>). Jest to typowe dla języka C - operujemy na gołej
+pamięci i sami musimy martwić się o typ zmiennych, które w tej pamięci
+umieszczamy. W C++ kierujemy się fundamentalnie inną filozofią:
+operujemy na obiektach, których życie zaczyna się od konstruktora, a
+kończy na destruktorze. Jeżeli tworzymy krzesło, to chcemy na nim
+siedzieć, a nie przestawiać jego bity i 4 linijki kodu dalej traktować
+je jak stół. Zobaczmy, jak dynamiczna alokacja wygląda w C++:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="dt">double</span><span class="op">*</span> liczba <span class="op">=</span> <span class="kw">new</span> <span class="dt">double</span><span class="op">{</span><span class="fl">42.</span><span class="op">};</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">// Użyj do czegoś wartości 42</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="kw">delete</span> liczba<span class="op">;</span></span></code></pre></div>
+<p>Powyższy kod czytamy jako “zaalokuj dynamicznie pamięć na obiekt typu
+<code>double</code>, stwórz ten obiekt używając konstruktora<sup>1</sup>
+z argumentem 42, a następnie przypisz adres utworzonego obiektu do
+zmiennej <code>liczba</code>”. Dodatkowo możemy zauważyć, że
+<code>new</code> i <code>delete</code> są słowami kluczowymi języka, nie
+bazują na żadnym z nagłówków biblioteki standardowej (np.
+<code>stdlib.h</code>)<sup>2</sup>. Dodajmy też, że składnia</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> n      <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dt">double</span><span class="op">*</span>            wektor <span class="op">=</span> <span class="kw">new</span> <span class="dt">double</span><span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="kw">delete</span><span class="op">[]</span> wektor<span class="op">;</span></span></code></pre></div>
+<p>ma analogiczną interpretację. Przy alokowaniu tablic musimy jedynie
+pamiętać o użyciu operatora <code>delete[]</code> zamiast
+<code>delete</code>.</p>
+<p>Na tych zajęciach spróbujemy napisać klasę <code>Wektor</code>,
+reprezentującą wektor należacy do przestrzeni R<sup>n</sup>,
+automatycznie dostosowujący swój rozmiar do potrzeb użytkownika
+(podobnie jak zachowują się wektory np. w matlabie). Zaznaczmy tu, że
+zachowanie tej klasy będzie inne, niż klasy
+<code>std::vector&lt;double&gt;</code> (z późniejszych instrukcji), o
+czym należy pamiętać.</p>
+<div id="zadanie-1" class="section level4">
+<h4>Zadanie 1</h4>
+<p>Napisz klasę <code>Wektor</code>, przechowującą liczby typu
+<code>double</code>, która dynamicznie alokuje pamięć przy konstrukcji i
+zwalnia ją przy zniszczeniu. Jako argument konstruktora przyjmij zmienną
+typu całkowitego, reprezentującą ile liczb zmiennoprzecinkowych ma
+przechowywać wektor (jego długość). Na chwilę obecną dostęp do elementów
+wektora udostępnij czyniąc publicznym wskaźnik do tablicy, w której
+przechowujesz elementy wektora.</p>
+</div>
+<div id="zadanie-2" class="section level4">
+<h4>Zadanie 2</h4>
+<p>Zmodyfikuj konstruktor klasy <code>Wektor</code> tak, aby początkowo
+przypiswał elementom wektora wartość <code>0.</code>.</p>
+</div>
+<div id="zadanie-3" class="section level4">
+<h4>Zadanie 3</h4>
+<p>Dodaj do klasy <code>Wektor</code> prywatne pole
+<code>dlugosc</code>, przechowujące informację, ile elementów znajduje
+się obecnie w wektorze (inicjalizuj to pole argumentem konstruktora).
+Napisz getter (ale nie setter) dla tego pola.</p>
+</div>
+<div id="zadanie-4" class="section level4">
+<h4>Zadanie 4</h4>
+<p>Dodaj do klasy <code>Wektor</code> publiczną metodę
+<code>void print()</code> która drukuje obecną zawartość wektora
+(elementy od <code>0</code> do <code>dlugosc - 1</code>).</p>
+</div>
+<div id="zadanie-5" class="section level4">
+<h4>Zadanie 5</h4>
+<p>Dodaj do klasy <code>Wektor</code> prywatne pole
+<code>pojemnosc</code>, reprezentujące rozmiar tablicy (w znaczeniu
+liczby obiektów typu <code>double</code>, nie liczby bajtów)
+przechowującej elementy wektora (w kolejnych zadaniach
+<code>dlugosc</code> i <code>pojemnosc</code> staną się do pewnego
+stopnia niezależne). Napisz getter (ale nie setter) dla tego pola.</p>
+</div>
+<div id="zadanie-6" class="section level4">
+<h4>Zadanie 6</h4>
+<p>Dodaj do klasy <code>Wektor</code> publiczną metodę
+<code>zmienDlugosc</code>, która przyjmuje zmienną typu całkowitego,
+reprezentującą nową długość wektora.</p>
+<ul>
+<li>Jeżeli żądana długość jest mniejsza lub równa obecnej pojemności
+wektora oraz mniejsza lub równa obecnej długości, zmniejsz jedynie
+wartość pola <code>dlugosc</code>.</li>
+<li>Jeżeli żądana długość jest mniejsza lub równa obecnej pojemności
+wektora oraz większa od długości, zwiększ odpowiednio wartość pola
+<code>dlugosc</code> i wyzeruj elementy tablicy, które znalazły się
+teraz w wektorze (nie wiemy, co było tam wcześniej).</li>
+<li>Jeżeli żądana długość jest większa niż obecna pojemność wektora,
+zaalokuj nowy blok pamięci, przepisz do niego istniejące elementy
+wektora i wyzeruj te nowoutworzone. Nie zapomnij o skasowaniu starego
+bloku pamięci!</li>
+<li>Sytuacja, w której pojemność jest mniejsza od długości wektora, jest
+niemożliwa.</li>
+</ul>
+</div>
+<div id="zadanie-7" class="section level4">
+<h4>Zadanie 7</h4>
+<p>Przetestuj, czy stworzona przez Ciebie klasa zachowuje się zgodnie z
+oczekiwaniami. Przydatna do tego może być metoda <code>print</code>.</p>
+<hr />
+<p><sup>1</sup> Formalnie, wbudowane typy (<code>char</code>,
+<code>int</code>, <code>float</code> itd.) nie mają konstruktorów, ale
+także możemy je inicjalizować przy użyciu nawiasów <code>{ }</code>.
+Prezentowany kod zadziała analogicznie dla dowolnego innego typu.</p>
+<p><sup>2</sup> Ściślej mówiąc, operatory <code>new</code>,
+<code>new[]</code>, <code>delete</code> i <code>delete[]</code> są
+zdefiniowane w nagłówku <code>new</code>, ale jest on dołączany nawet
+bez jawnego zawołania <code>#include &lt;new&gt;</code>. Dla ciekawych:
+operatory te także można przeciążać, <em>vide</em> <a
+href="https://en.cppreference.com/w/cpp/memory/new/operator_new">dokumentacja</a>.
+Alokacja pamięci jest dość szerokim tematem, w który nie mamy niestety
+czasu się tu zagłębiać.</p>
+</div>
+</div>
+<div id="referencje" class="section level2">
+<h2>Referencje</h2>
+<p>Skoro wiemy już jak tworzyć i niszczyć zasoby, zastanówmy się teraz
+jak korzystać z nich w wydajny sposób. Bardzo często zdarza się, że
+chcemy wykorzystać jakiś obiekt wewnątrz funkcji (metod tej samej lub
+innej klasy, bądź też funkcji “wolnostojących”). Rozważmy poniższy kod,
+znany nam z C:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="dt">void</span> print_plus1<span class="op">(</span><span class="dt">int</span> arg<span class="op">)</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="op">++</span>arg<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span><span class="op">,</span> arg<span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>    print_plus1<span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> a<span class="op">);</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Taki program wydrukuje oczywiście <code>1 0</code>, gdyż funkcja
+<code>print_plus1</code> robi kopię podanego argumentu, także nie zmieni
+ona wartości zmiennej <code>a</code> w funkcji <code>main</code>.
+Spójrzmy na analogiczny kod w C++:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">class</span> T <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="dt">void</span> fun<span class="op">(</span>T obj<span class="op">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="co">// Zrób coś z obj...</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    T t<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>    fun<span class="op">(</span>t<span class="op">);</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Podobnie jak wyżej, funkcja <code>fun</code> będzie działała na
+<em>kopii</em> argumentu <code>t</code> (o tym, co dokładnie znaczy
+kopia w kontekście klasy powiemy za chwilę). Jak już ustaliliśmy, obiekt
+może być “duży”, tzn. być właścicielem jakichś zasobów, mieć wiele pól,
+itd. Wykonywanie jego kopii może nas wtedy kosztować zarówno czas, jak i
+pamięć. Ponad to, podobnie jak wyżej, nie możemy bezpośrednio
+modyfikować jego wartości. W języku C rozwiązaniem tego problemu były
+wskaźniki. Wskaźniki istnieją także w C++, ale dużo bardziej eleganckim
+rozwiązaniem są referencje. Pozwalają one uniknąć chmary operatorów
+wzięcia adresu (<code>&amp;</code>) oraz dereferencji(<code>*</code>).
+Referencja do obiektu typu <code>T</code> ma typ <code>T&amp;</code>.
+Zauważmy, że znak <code>&amp;</code> jest tutaj częścią typu, nie
+operatorem! Podkreślmy kilka cech referencji:</p>
+<ul>
+<li>Po utworzeniu, korzystamy z referencji dokładnie tak, jak z obiektu,
+do którego się odnosi.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="dt">int</span>  a     <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="dt">int</span><span class="op">&amp;</span> a_ref <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="op">++</span>a_ref<span class="op">;</span>    <span class="co">// Zwiększyliśmy a o 1</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>a_ref <span class="op">=</span> <span class="dv">42</span><span class="op">;</span> <span class="co">// Zmieniliśmy wartość a na 42</span></span></code></pre></div>
+<ul>
+<li>W przeciwieństwie do wskaźników, referencje nie mogą być puste.
+Wymusza to na nas przypisanie do referencji obiektu, do którego się
+odnosi. Poniższy kod się nie skompiluje:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="dt">int</span> a<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="dt">int</span><span class="op">&amp;</span> a_ref<span class="op">;</span> <span class="co">// błąd!</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>a_ref <span class="op">=</span> a<span class="op">;</span></span></code></pre></div>
+<ul>
+<li>Referencja nie może po utworzeniu zacząć odnosić się do innego
+obiektu. Wynika to z pierwszej wymienionej własności.
+<code>a_ref = b</code> przypisuje wartość <code>b</code> do
+<code>a</code>, nie “przypina” referencji do <code>b</code> do obiektu
+<code>a_ref</code>. Ponownie, jest to inne zachowanie, niż w przypadku
+wskaźników.</li>
+<li>Nie istnieje coś takiego jak referencja do referencji
+(<code>T&amp;&amp;</code> oznacza coś zupełnie innego, co zostanie
+wytłumaczone w dalszej części instrukcji). Znów jest inaczej niż przy
+wskaźnikach, które można zagnieżdżać dowolnie wiele razy
+(<code>int****</code> jest w pełni legalnym typem).</li>
+</ul>
+<p>Konsekwencją wypunktowanych powyżej własności jest to, że referencje
+pojawiają się w praktyce prawie tylko w typach argumentów przyjmowanych
+oraz zwracanych przez funkcję. W przykładzie powyżej, zmienna
+<code>a_ref</code> jest nam w zasadzie niepotrzebna. Mamy przecież
+dostęp bezpośrednio do <code>a</code>. Wywołanie <code>fun(a_ref)</code>
+<strong>nadal wykona kopię wartości <code>a</code></strong>. Bardzo
+ważne jest, żeby zrozumieć, dlaczego tak jest. <code>a_ref</code> jest
+typu <code>int&amp;</code>, ale <code>fun</code> spodziewa się wartości
+typu <code>int</code>. To sygnatura funkcji decyduje o tym, jak zostaną
+potraktowane argumenty (czy zostaną skopiowane, czy zostanie użyta ich
+referencja). Aby uniknąć kopii, musimy więc postąpić następująco:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dt">void</span> print_plus2<span class="op">(</span><span class="dt">int</span><span class="op">&amp;</span> arg<span class="op">)</span> <span class="co">// Jedyna zmiana w kodzie jest tu!</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    arg <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> arg<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    print_plus2<span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> a<span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Teraz program wydrukuje <code>2 2</code>. Zanim wykorzystamy
+referencje w praktyce, zauważmy jeszcze, że ze względu na cechy
+uwypuklone powyżej, referencje są nie tylko prostsze, ale też
+bezpieczniejsze w użyciu niż wskaźniki - trudniej jest stworzyć
+referencję, która do niczego się nie odnosi. Jest to trudne, lecz nie
+niemożliwe:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="dt">int</span><span class="op">&amp;</span> getInt<span class="op">()</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>    <span class="dt">int</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Powyższa funkcja zwraca referencję do lokalnego obiektu, który jest
+niszczony wraz z końcem jej wykonania. Wartość
+<code>int a = getInt()</code> jest nieokreślona. Szczęśliwie, kompilator
+powinien wykryć taką sytuację i wydrukować odpowiednie ostrzeżenie.</p>
+<div id="zadanie-8" class="section level4">
+<h4>Zadanie 8</h4>
+<p>Uczyń tablicę, która przechowuje elementy klasy <code>Wektor</code>
+prywatną. Przeciąż odpowiednio operator <code>[]</code> tak, aby zwracał
+referencję do elementu o podanym indeksie. Przyjmij indeksowanie od 0,
+zauważ jednak, że nic nie stoi na przeszkodzie, aby Twój operator
+<code>[]</code> zaczynał indeksowanie od 1.</p>
+</div>
+<div id="zadanie-9" class="section level4">
+<h4>Zadanie 9</h4>
+<p>Sprawdź działanie operatora <code>[]</code>. Co stanie się, gdy
+zawołasz <code>wektor[0] = 42.;</code>? Co stanie się, gdy zawołasz
+<code>double a = wektor[0]; a++;</code>?</p>
+</div>
+<div id="zadanie-10" class="section level4">
+<h4>Zadanie 10</h4>
+<p>Zmodyfikuj operator <code>[]</code> tak, aby sięgnięcie po element
+leżący poza obecnym zakresem wektora skutkowało automatycznym
+zwiększeniem jego długości. Użyj napisanej wcześniej metody
+<code>zmienDlugosc</code>.</p>
+</div>
+<div id="zadanie-11" class="section level4">
+<h4>Zadanie 11</h4>
+<p>Sprawdź działanie klasy <code>Wektor</code>. Zauważ, że nie pozwala
+ona teraz sięgnąć do niedostępnych miejsc pamięci! W najgorszym wypadku
+wyczerpiemy dostępną pamięć RAM.</p>
+</div>
+</div>
+<div id="listy-inicjalizacyjne" class="section level2">
+<h2>Listy inicjalizacyjne</h2>
+<p>Przyjrzyjmy się teraz następującej parze klas:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">struct</span> Kokardka</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    Kokardka<span class="op">()</span>      <span class="op">{</span> dlugosc <span class="op">=</span> <span class="dv">42</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    Kokardka<span class="op">(</span><span class="dt">int</span> d<span class="op">)</span> <span class="op">{</span> dlugosc <span class="op">=</span> d<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    </span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="dt">int</span> dlugosc<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="kw">struct</span> Prezent</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    Prezent<span class="op">(</span><span class="dt">int</span> dk<span class="op">)</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>        <span class="co">// ***</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>        k<span class="op">.</span>dlugosc <span class="op">=</span> dk<span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>    </span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>    Kokardka k<span class="op">;</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>    <span class="co">// Inne pola ...</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Zadajmy sobie teraz pytanie: przy konstrukcji obiektu typu
+<code>Prezent</code>, jaką długość ma jego kokardka w linijce oznaczonej
+3 gwiazdkami? Odpowiedź: 42. Wynika to z faktu, że wszystkie składowe
+pola klasy <code>Prezent</code>, muszą zostać zainicjalizowane przed
+wykonaniem ciała jego kostruktora. “Pod maską” wołamy zatem domyślny
+(bezargumentowy) konstruktor klasy <code>Kokardka</code>. Gdyby było
+inaczej, to w konstruktorze prezentu moglibyśmy odnosić się do kokardki,
+która nie została jeszcze stworzona, co jest logicznie niespójne i
+skutkowałoby błędami.</p>
+<div id="zadanie-12" class="section level4">
+<h4>Zadanie 12</h4>
+<p>Upewnij się, że kawałek kodu przedstawiony powyżej rzeczywiście
+działa tak jak twierdzi jego opis (zamień <code>***</code> na
+odpowiednią komendę drukowania). Usuń domyślny konstruktor klasy
+<code>Kokardka</code>. Czy kod się teraz skompiluje?</p>
+<p>W zadaniu 12. możemy zauważyć 2 problemy:</p>
+<ul>
+<li>Inicjalizujemy pole <code>dlugosc</code> wartością 42, która zaraz
+jest nadpisywana. Jest to potencjalna niewydajność - gdyby pole to było
+drogie w konstrukcji (np. gdyby było typu RAII), wykonywalibyśmy drogą
+operację, która nie byłaby do niczego potrzebna.</li>
+<li>Jeżeli klasa nie posiada domyślnego konstruktora, to, używając
+poznanych dotychczas elementów języka, nie moglibyśmy użyć jej jako pole
+innej klasy. Takie zachowanie byłoby niesamowicie problematyczne!</li>
+</ul>
+<p>Szczęśliwie, istnieje mechanizm, który pozwala nam sterować
+konstrukcją składowych pól klasy: lista inicjalizacyjna. Spójrzmy, jak
+działa:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">struct</span> Kokardka</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    Kokardka<span class="op">(</span><span class="dt">int</span> d<span class="op">)</span> <span class="op">:</span> dlugosc<span class="op">{</span>d<span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    </span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    <span class="dt">int</span> dlugosc<span class="op">;</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="kw">struct</span> Prezent</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    Prezent<span class="op">(</span><span class="dt">int</span> dk<span class="op">)</span> <span class="op">:</span> k<span class="op">{</span>dk<span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>    </span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>    Kokardka k<span class="op">;</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>    <span class="co">// Inne pola ...</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Jak widać, rozwiązanie to jest nie tylko bardziej wydajne, ale także
+zwięźlejsze w zapisie.</p>
+<p><strong>Uwaga:</strong> W przypadku inicjalizowania wielu pól klasy w
+liście inicjalizacyjnej, o kolejności decyduje kolejność deklaracji pól
+w ciele klasy, nie kolejność występowania w liście inicjalizacyjnej. W
+związku z tym dobrą praktyką jest inicjalizacja pól jedynie na podstawie
+argumentów konstruktora, nie innych pól zainicjalizowanych gdzie indziej
+w liście.</p>
+</div>
+<div id="zadanie-13" class="section level4">
+<h4>Zadanie 13</h4>
+<p>Zmień konstruktor klasy <code>Wektor</code> tak, aby korzystał z
+listy inicjalizacyjnej.</p>
+</div>
+</div>
+<div id="szczególne-metody-klas" class="section level2">
+<h2>Szczególne metody klas</h2>
+<p>Referencje i wskaźniki pozwalają nam unikać wykonywania kopii
+obiektów wtedy, gdy nie jest to konieczne. Co jednak zrobić, gdy
+świadomie chcemy skopiować obiekt? W tej części instrukcji powiemy
+trochę o 2 szczególnych metodach każdej klasy, które do tego służą.
+Szczególnych metod jest w sumie 5. Jedną z nich - destruktor - już
+poznaliśmy. Teraz zaznajomimy się z konstruktorem kopiującym i
+kopiującym operatorem przypisania. Poniżej zamieszczono kawałek kodu
+ilustrujący ich definicje.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">class</span> T</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="co">// Konstruktor kopiujący</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    T<span class="op">(</span><span class="at">const</span> T<span class="op">&amp;</span> t<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    </span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="co">// Kopiujący operator przypisania</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>    T<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> T<span class="op">&amp;</span> t<span class="op">)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="cf">return</span> <span class="op">*</span><span class="kw">this</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>    <span class="co">// Destruktor</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="op">~</span>T<span class="op">()</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<div id="konstruktor-kopiujący" class="section level3">
+<h3>Konstruktor kopiujący</h3>
+<p>Konstruktor kopiujący to konstruktor, który tworzy obiekt na
+podstawie innego obiektu jego samego typu. Jest on jednoargumentowy -
+przyjmuje referencję do obiektu, który ma zostać skopiowany. Referencja
+ta jest stała (<code>const</code>), gdyż kopiując obiekt z definicji nie
+mamy prawa zmienić jego stanu. Zaprezentujmy to na trywialnym
+przykładzie:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="kw">struct</span> Liczba</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>    Liczba<span class="op">(</span><span class="dt">int</span> w<span class="op">)</span>           <span class="op">:</span> wartosc<span class="op">{</span>w<span class="op">}</span>         <span class="op">{}</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>    Liczba<span class="op">(</span><span class="at">const</span> Liczba<span class="op">&amp;</span> l<span class="op">)</span> <span class="op">:</span> wartosc<span class="op">{</span>l<span class="op">.</span>wartosc<span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>    </span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="dt">int</span> wartosc<span class="op">;</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>    Liczba a<span class="op">{</span><span class="dv">1</span><span class="op">};</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>    Liczba b<span class="op">{</span>a<span class="op">};</span>  <span class="co">// W celu konstrukcji b wołamy konstruktor kopiujący z argumentem &#39;a&#39;</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>    Liczba c <span class="op">=</span> a<span class="op">;</span> <span class="co">// Tutaj także wołamy konstruktor kopiujący, vide lab. 1</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div id="zadanie-14" class="section level4">
+<h4>Zadanie 14</h4>
+<p>Skompiluj powyższy kod i upewnij się, że działa poprawnie. Dodaj do
+konstruktora kopiującego drukowanie informacji o konstrukcji. Upewnij
+się, że zostanie ona wydrukowana dwukrotnie.</p>
+</div>
+<div id="zadanie-15" class="section level4">
+<h4>Zadanie 15</h4>
+<p>Wykomentuj z kodu konstruktor kopiujący. Czy program się
+skompiluje?</p>
+<p>W zadaniu 15. widzimy, że konstruktor kopiujący jest domyślnie
+tworzony przez kompilator. To dlatego właśnie mówimy, że jest on
+specjalną metodą. Od standardu C++11 specjalne metody możemy jawnie
+“zdefaultować”:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>T<span class="op">(</span><span class="at">const</span> T<span class="op">&amp;</span> t<span class="op">)</span> <span class="op">=</span> <span class="cf">default</span><span class="op">;</span></span></code></pre></div>
+<p>Jeżeli z kolei nie chcemy, aby klasa miała konstruktor kopiujący,
+możemy go także usunąć:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>T<span class="op">(</span><span class="at">const</span> T<span class="op">&amp;</span> t<span class="op">)</span> <span class="op">=</span> <span class="kw">delete</span><span class="op">;</span></span></code></pre></div>
+<p>Usuwać można także inne (niespecjalne) metody oraz “wolnostojące”
+funkcje. Jest to dość często spotykany zabieg, zapobiegający
+niepoprawnemu użytkowaniu kodu, który piszemy. W przypadku zawołania
+usuniętej funkcji, kompilator w jasny i zrozumiały sposób zakomunikuje
+błąd.</p>
+</div>
+<div id="zadanie-16" class="section level4">
+<h4>Zadanie 16</h4>
+<p>Dodaj konstruktor kopiujący do klasy <code>Wektor</code>. Zwróć
+uwagę, że musisz zaalokować nowy blok pamięci. Zdecyduj, czy nowy wektor
+ma mieć pojemność równą długości, czy pojemności starego wektora. Zwróć
+uwagę, że język w żaden sposób nie narzuca żadnej z opcji - kopie
+obiektów nie muszą być wierne.</p>
+</div>
+</div>
+<div id="kopiujący-operator-przypisania" class="section level3">
+<h3>Kopiujący operator przypisania</h3>
+<p>Kolejną specjalną metodą jest kopiujący operator przypisania. Wołany
+jest on w momencie, w którym do istniejącego obiektu <code>a</code>
+próbujemy przypisać wartość istniejącego obiektu <code>b</code>. Jego
+zdefiniowanie pozwala w bezpieczny sposób zwolnić zasoby, które mogą być
+trzymane przez <code>a</code>, zanim <code>a</code> skopiuje zasoby
+trzymane przez <code>b</code>. Zanim przećwiczymy to, zauważmy, że
+operator ten zwraca referencję typu klasy, dla której jest definiowany.
+Konkretnie, zwraca on referencję do obiektu, do którego nastąpiło
+przypisanie (czyli <code>a</code>). Celem tego zabiegu jest umożliwienie
+łączenia przypisań w jeden ciąg, np. <code>a = b = c = d;</code>. Jest
+on możliwy dzięki słowu kluczowemu <code>this</code>. <code>this</code>
+jest wskaźnikiem do obiektu, którego metoda jest wołana i można
+korzystać z niego w każdej metodzie klasy. Dodajmy na koniec, że
+zwracanie referencji do obiektu jest kwestią konwencji (w ten sposób
+postępuje też kompilator, jeżeli nie zdefiniujemy tego operatora), a nie
+obowiązkiem.</p>
+<div id="zadanie-17" class="section level4">
+<h4>Zadanie 17</h4>
+<p>Dodaj do klasy <code>Wektor</code> kopiujący operator przypisania.
+Zadbaj o to, żeby nie nastąpił wyciek pamięci. Upewnij się też, że Twój
+kod działa poprawnie gdy użytkownik spróbuje przypisać obiekt sam do
+siebie (<code>a = a</code>). Logika takiego przypisania jest wątpliwa,
+natomiast jest ono formalnie dopuszczalne.</p>
+</div>
+</div>
+</div>
+<div id="semantyka-przenoszenia" class="section level2">
+<h2>Semantyka przenoszenia</h2>
+<blockquote>
+<p>Semantyka przenoszenia jest trudnym tematem, którego zapewne nie
+należy poruszać na 2. zajęciach. Niemniej jednak, jest ona logicznie
+powiązana z zagadnieniami zarządzania zasobami i metod specjalnych. Z
+tego powodu, autorzy umieścili zadania jej dotyczące poniżej. Polecamy
+jednak czytelnikowi pozostawienie ich wykonania na ostatnie zajęcia
+(instrukcja nr 7 jest odpowiednio krótsza). Na chwilę obecną,
+najważniejsze jest zrozumienie <code>new</code>, <code>delete</code>,
+referencji, list inicjalizacyjnych i kopiujących metod specjalnych.</p>
+</blockquote>
+<p>Na koniec powiedzmy jeszcze o semantyce przenoszenia (ang. <em>move
+semantics</em>), obecnej w języku od standardu C++11. Stanowi ona dość
+obszerny temat, którego nie mamy niestety czasu omówić w pełni. Warto
+jest jednak mieć świadomość istnienia tej funkcjonalności i rozumieć
+ideę, która za nią stoi. Czytelników zainteresowanych pełniejszym opisem
+zagadnienia odsyłamy np. <a
+href="https://youtu.be/St0MNEU5b0o">tutaj</a> lub <a
+href="https://youtu.be/ZG59Bqo7qX4">tutaj</a>.</p>
+<p>Przyjrzyjmy się poniższemu kawałkowi kodu:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="kw">struct</span> S<span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>S getS<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> S<span class="op">{};</span> <span class="op">}</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>    S s<span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>    <span class="co">// Zrób coś z s...</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>    <span class="co">// Nie potrzebujemy już starej wartości s, poddajemy ją &quot;recyklingowi&quot;</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>    s <span class="op">=</span> getS<span class="op">();</span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>W C++98 i C++03, instrukcja <code>s = getS();</code> wiąże się z
+niepotrzebną kopią. Zastanówmy się, dlaczego tak jest. Jeżeli
+<code>S</code> jest klasą RAII, to ma miejsce następująca sekwencja
+wydarzeń:</p>
+<ol style="list-style-type: decimal">
+<li>Stworzenie zasobów wewnątrz <code>getS</code></li>
+<li>Zasoby zostają przypisane do bezimiennego, tymczasowego wyniku
+<code>getS</code></li>
+<li>Kopiujący operator przypisania klasy <code>S</code> przypisuje kopię
+zasobów tego wyniku do obiektu <code>s</code></li>
+<li>Zasoby bezimiennego wyniku zostają zwolnione w destruktorze</li>
+<li>Podejmujemy pracę z <code>s</code></li>
+</ol>
+<p>Punkty 3. i 4. są niepotrzebne - naszym zamiarem było przypisanie
+zasobów od razu do <code>s</code>. Semantyka przenoszenia pozwala
+wyeliminować w takiej sytuacji nadmiarową kopię (bez żadnej modyfikacji
+funkcji <code>main</code>).</p>
+<div id="lvalue-vs-rvalue" class="section level3">
+<h3>lvalue vs rvalue</h3>
+<p>Kluczowa dla problemu opisanego wyżej jest tymczasowa natura wyniku
+inwokacji funkcji <code>getS</code>. Okazuje się, że kompilator potrafi
+rozróżnić tego typu obiekty od tych “namacalnych”, zadeklarowanych przez
+programistę (np. <code>s</code> z przykładu powyżej). Tego typu
+“namacalne” obiekty należą do kategorii <strong>lvalue</strong>, a te
+ulotne <strong>rvalue</strong>. Formalna definicja (wraz z kilkoma
+dodatkowymi elementami taksonomii obiektów w C++) dostępna jest <a
+href="https://en.cppreference.com/w/cpp/language/value_category">w
+dokumentacji</a>, lecz w bieżącym tekście oprzemy się jedynie na
+intuicji. Lvalue i rvalue biorą swoje nazwy od strony operatora
+<code>=</code>, po której zazwyczaj występują (<em>left</em> lub
+<em>right</em>). Jeżeli będziemy umieli rozróżnić te kategorie obiektów,
+to będziemy mogli napisać 2 różne funkcje (w przykładzie wyżej będą to 2
+różne operatory przypisania), które będą wołane w zależności od
+kategorii argumentu. Dla lvalue postępować będziemy tak jak zwykle (tzn.
+wykonujemy kopię zasobów), a dla rvalue będziemy mogli “kraść” zasoby,
+gdyż mamy gwarancję, że obiekt jest tymczasowy i nikt poza nami i tak
+nie może ich wykorzystać. Konstruktem języka C++, który na to pozwala
+jest referencja rvalue (ang. <em>rvalue reference</em>, dalej RVR). RVR
+obiektu typu <code>T</code> zapisywane jest jako
+<code>T&amp;&amp;</code>. Spójrzmy, jak wygląda to w kodzie:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co">// Przeciążenie nr 1, zwykła referencja</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="dt">void</span> print_int<span class="op">(</span><span class="dt">int</span><span class="op">&amp;</span> i<span class="op">)</span>  <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Ref: &quot;</span> <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">};</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co">// Przeciążenie nr 2, RVR</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="dt">void</span> print_int<span class="op">(</span><span class="dt">int</span><span class="op">&amp;&amp;</span> i<span class="op">)</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;RVR: &quot;</span> <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">};</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="dt">int</span> getInt<span class="op">()</span> <span class="op">{</span> <span class="cf">return</span> <span class="dv">42</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>    <span class="dt">int</span> liczba <span class="op">=</span> <span class="dv">314159</span><span class="op">;</span> <span class="co">// liczba to lvalue</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>    </span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>    print_int<span class="op">(</span>liczba<span class="op">);</span>   <span class="co">// przeciążenie 1</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>    print_int<span class="op">(</span>getInt<span class="op">());</span> <span class="co">// przeciążenie 2</span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>    print_int<span class="op">(</span><span class="dv">13</span><span class="op">);</span>       <span class="co">// przeciążenie 2, bo &#39;13&#39; to rvalue</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>W drugim przeciążeniu funkcji <code>print_int</code> pracujemy z
+argumentem normalnie - RVR nie wymaga od nas żadnych szczególnych
+operacji. Mamy za to gwarancję, że argument ten nie “ucieknie” z naszej
+funkcji, tzn. po zakończeniu wykonania naszej funkcji nikt inny nie
+będzie próbował go użyć. Możemy więc zrobić z nim co chcemy, np. zwolnić
+jego zasoby po ich wykorzystaniu. Podkreślmy też, że usunięcie jednego z
+powyższych przeciążeń spowoduje błąd kompilacji.</p>
+<p>Jeżeli piszemy funkcję, dla której nie ma znaczenia, czy argument
+jest RVR czy LVL, wtedy używamy stałej (<code>const</code>)
+referencji:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="dt">void</span> print_int<span class="op">(</span><span class="at">const</span> <span class="dt">int</span><span class="op">&amp;</span> i<span class="op">)</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;const ref: &quot;</span> <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">};</span></span></code></pre></div>
+<p>Jeżeli zdefiniujemy tylko powyższe przeciążenie, <code>main</code> z
+powyższego przykładu skompiluje się poprawnie. Dzieje się tak dzięki
+temu, że stałe referencje rządzą się specjalnymi zasadami przedłużania
+życia (ang. <em>lifetime extension</em>), destrukcja obiektu na które
+wskazują odwlekana jest do czasu wyjścia ze scope’u referencji. W
+praktyce oznacza to, że poniższy kod jest poprawny</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span><span class="op">&amp;</span> i <span class="op">=</span> getInt<span class="op">();</span> <span class="co">// OK, lifetime zwróconej wartości przedłużony</span></span></code></pre></div>
+<p>ale ten już nie</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="dt">int</span><span class="op">&amp;</span> i <span class="op">=</span> getInt<span class="op">();</span> <span class="co">// błąd kompilacji: próba przypisania RVR do LVR</span></span></code></pre></div>
+<p>Podsumowując, jako argumenty funkcji (w tym metod klas) możemy
+przyjąć:</p>
+<ul>
+<li>Stałe referencje (<code>const T&amp;</code>), jeżeli nie
+potrzebujemy modyfikować danego argumentu, a jedynie dokonać jego
+inspekcji. Nie wykonujemy wtedy kopii obiektu. Ta opcja potrafi obsłużyć
+także sytuację, w której użytkownik poda do funkcji obiekt
+tymczasowy.</li>
+<li>Referencję lvalue (<code>T&amp;</code>), jeżeli chcemy zmodyfikować
+w funkcji obiekt spoza niej. Tej opcji raczej nie stosujemy, gdyż może
+ona prowadzić do bugów (niechcący podajemy argument, którego wcale nie
+chcieliśmy modyfikować). Zamiast tego korzystamy z argumentów
+wyjściowych. <code>a = fun(a);</code> bardziej jawnie wyraża nasze
+intencje niż <code>fun(a);</code></li>
+<li>Referencję rvalue (<code>T&amp;&amp;</code>), gdy chcemy obsłużyć
+sytuację, w której nasza funkcja przejmuje własność nad jakimś obiektem.
+Często stosujemy tę opcję obok innych przeciążeń (np. obok stałej
+referencji) jako optymalizacja dla szczególnego przypadku.</li>
+</ul>
+</div>
+<div id="stdmove" class="section level3">
+<h3><code>std::move</code></h3>
+<p>W C++ istnieje także sposób, aby zamienić referencję do lvalue na
+referencję do rvalue. Zobaczmy, dlaczego w ogóle moglibyśmy chcieć to
+zrobić:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="kw">struct</span> S <span class="op">{</span> <span class="co">/* duża klasa trzymająca zasobamy */</span> <span class="op">};</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="dt">void</span> fun<span class="op">(</span><span class="at">const</span> S<span class="op">&amp;)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span> <span class="co">// przypadek ogólny</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="dt">void</span> fun<span class="op">(</span>S<span class="op">&amp;&amp;)</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span>      <span class="co">// optymalizacja dla RVR</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>    S s<span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>    <span class="co">// Pracujemy z s...</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>    fun<span class="op">(</span>s<span class="op">);</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>    <span class="co">// Teraz nie potrzebujemy s</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>    <span class="co">// Pracujemy dalej nad czymś innym...</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>W powyższym przykładzie zostanie wywołane przeciążenie
+<code>fun(const S&amp;)</code>, gdyż <code>s</code> jest lvalue. Po
+zawołaniu funkcji <code>fun</code> zmienna <code>s</code> nie jest nam
+już jednak potrzebna. Chcielibyśmy zatem przenieść <code>s</code> do
+<code>fun</code> i pozwolić tej funkcji zutylizować zasoby trzymane
+przez <code>s</code> w sposób, który uzna za stosowny. Właśnie do tego
+służy funkcja <code>std::move</code> (z nagłówka
+<code>utility</code>).</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co">// S i fun jak wyżej</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>    S s<span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>    fun<span class="op">(</span><span class="bu">std::</span>move<span class="op">(</span>s<span class="op">));</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>    <span class="co">// s zostało przeniesione do fun</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><code>std::move</code> zamienia referencję do lvalue na referencję do
+rvalue, co pozwala zawołać odpowiednie przeciążenie <code>fun</code>.
+Podkreślmy, że sama funkcja <code>std::move</code> nie potrafi w
+magiczny sposób dokonać transferu zasobów, za to odpowiedzialna jest już
+implementacja <code>fun</code>.</p>
+<p>Po przesunięciu obiektu do funkcji lub innego obiektu
+(<code>a = std::move(b);</code>) pozostaje on w nieokreślonym, ale
+poprawnym stanie. Oznacza to, że po zawołaniu <code>std::move(s)</code>,
+nie wolno nam już korzystać z <code>s</code>! Jest to logiczne, gdyż
+<code>fun</code> przejęła własność nad tym obiektem, a zatem
+<code>main</code> nie może już go dotknąć. Zasadę tę musimy jednak
+stosować sami, kompilator nie potraktuje tego jako błąd (może co
+najwyżej wydać ostrzeżenie). Używanie obiektów, które zostały
+przesunięte stanowi przykład nieokreślonego zachowania (ang.
+<em>undefined behavior</em>), tzn. operacji, której efekt nie jest
+określony przez standard języka C++, a zatem konsekwencje mogą być
+dowolne (przeważnie złe), a także różnić się w zależności od
+kompilatora, platformy itp. Jedyne, co wolno nam zrobić dalej ze zmienną
+<code>s</code> to przypisać do niej nową wartość, wtedy możemy ponownie
+podjąć z nią pracę.</p>
+<p>Uważny czytelnik zauważy, że od opisanej wyżej zasady obowiązuje
+jeden kluczowy wyjątek. Obiekt <code>s</code> został zadeklarowany w
+scope’ie funkcji <code>main</code>, a zatem przed jego opuszczeniem musi
+zostać zawołany jego destruktor. Funkcja <code>fun</code> musi zatem
+zadbać o to, żeby obiekt ten został pozostawiony w “zniszczalnym”
+stanie, np. poprzez wyzerowanie wewnętrznych wskaźników swojego
+argumentu (<code>double* a = nullptr; delete a;</code> jest w pełni
+poprawną operacją, która po prostu nic nie zrobi, ang. <em>no-op</em>).
+Z tego powodu często mówi się, że w C++ obowiązuje “nienieszczące
+przesunięcie” (ang. <em>nondestructive move</em>).</p>
+<p>Przećwiczmy to w praktyce. Rozważmy klasę <code>S</code>, która
+dynamicznie alokuje zmienną typu <code>int</code>:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">struct</span> S</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>    S<span class="op">(</span><span class="dt">int</span> li<span class="op">)</span> <span class="op">:</span> liczba<span class="op">{</span><span class="kw">new</span> <span class="dt">int</span><span class="op">{</span>li<span class="op">}}</span> <span class="op">{</span> <span class="op">}</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    <span class="op">~</span>S<span class="op">()</span> <span class="op">{</span> <span class="kw">delete</span> liczba<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> liczba<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Chcielibyśmy napisać funkcję <code>pow2</code>, która przyjmuje
+obiekt typu <code>S</code> i zwraca obiekt tego samego typu, którego
+pole <code>liczba</code> jest kwadratem pola <code>liczba</code>
+argumentu. Wariant dla stałej referencji wygląda następująco:</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>S pow2<span class="op">(</span><span class="at">const</span> S<span class="op">&amp;</span> arg<span class="op">)</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>    <span class="cf">return</span> S<span class="op">{*</span>arg<span class="op">.</span>liczba <span class="op">*</span> <span class="op">*</span>arg<span class="op">.</span>liczba<span class="op">};</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Następujący program zwróci 4:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>    S s1<span class="op">{</span><span class="dv">2</span><span class="op">};</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>    S s2 <span class="op">=</span> pow2<span class="op">(</span>s1<span class="op">);</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">*</span>s2<span class="op">.</span>liczba<span class="op">;</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Mamy tylko jeden problem: w powyższym programie dokonujemy dwukrotnie
+alokacji pamięci. Zobaczmy, jak przy użyciu semantyki przenoszenia
+możemy pozbyć się jednej z alokacji. Dodajemy do <code>S</code> pusty
+(lub lepiej, zdefaultowany: <code>S() = default</code>) konstruktor
+domyślny oraz następujące przeciążenie funkcji <code>pow2</code>, które
+“kradnie” zasoby argumentu:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>S pow2<span class="op">(</span>S<span class="op">&amp;&amp;</span> arg<span class="op">)</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>    <span class="co">// niezainicjalizowany wskaźnik</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>    S ret_val<span class="op">;</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>    </span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>    <span class="co">// przepisujemy wskaźnik, nie ma alokacji</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>    ret_val<span class="op">.</span>liczba <span class="op">=</span> arg<span class="op">.</span>liczba<span class="op">;</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>    <span class="co">// podnosimy liczbę do kwadratu</span></span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>    <span class="op">*</span>ret_val<span class="op">.</span>liczba <span class="op">=</span> <span class="op">*</span>ret_val<span class="op">.</span>liczba <span class="op">*</span> <span class="op">*</span>ret_val<span class="op">.</span>liczba<span class="op">;</span></span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>    <span class="co">// Zerujemy wskaźnik arg</span></span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>    arg<span class="op">.</span>liczba <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>    </span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a>    <span class="cf">return</span> ret_val<span class="op">;</span></span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Teraz możemy wykorzystać <code>std::move</code>, aby zaoszczędzić
+jedną alokację:</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>    S s1<span class="op">{</span><span class="dv">2</span><span class="op">};</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>    S s2 <span class="op">=</span> pow2<span class="op">(</span><span class="bu">std::</span>move<span class="op">(</span>s1<span class="op">));</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">*</span>s2<span class="op">.</span>liczba<span class="op">;</span></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Zauważmy, że gdybyśmy nie wyzerowali w funkcji
+<code>pow2(S&amp;&amp; arg)</code> wskaźnika zmiennej <code>arg</code>,
+to pod koniec funkcji <code>main</code> operator <code>delete</code>
+zostałby zawołany dwukrotnie na wskaźnikach do tego samego adresu w
+pamięci (przy destrukcji <code>s1</code> i <code>s2</code>), co
+spowodowałoby błąd programu. W praktyce, gdy korzystamy z klas
+napisanych przez kogoś innego, bardzo ciężko może być nam zrozumieć w
+jaki sposób zwolnić lub “ukraść” zasoby danego obiektu. Zamiast tego,
+korzystamy ze zdefiniowanych przez autorów danej klasy specjalnych
+metod: konstruktora przenoszącego i przenoszącego operatora
+przypisania.</p>
+</div>
+<div id="konstruktor-przenoszący" class="section level3">
+<h3>Konstruktor przenoszący</h3>
+<p>Jak nietrudno się domyślić, konstruktor przenoszący pozwala
+skonstruować obiekt poprzez “pochłonięcie” innego obiektu tego samego
+typu. Sygnatura takiego konstruktora dla klasy <code>T</code> to
+<code>T(T&amp;&amp;)</code>. Gdyby klasa <code>S</code> z ostatniego
+przykładu miała taki konstruktor, moglibyśmy uprościć funkcję
+<code>pow2</code>:</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>S pow2<span class="op">(</span>S<span class="op">&amp;&amp;</span> arg<span class="op">)</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>    <span class="co">// konstruktor przenoszący wykonuje za nas całą pracę</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>    S ret_val <span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>arg<span class="op">)};</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>    </span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>    <span class="op">*</span>ret_val<span class="op">.</span>liczba <span class="op">=</span> <span class="op">*</span>ret_val<span class="op">.</span>liczba <span class="op">*</span> <span class="op">*</span>ret_val<span class="op">.</span>liczba<span class="op">;</span>    </span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a>    <span class="cf">return</span> ret_val<span class="op">;</span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Jest to zgodne z zasadą DRY (<em>don’t repeat yourself</em>) -
+definiujemy konstruktor przenoszący raz, a następnie korzystamy z niego
+w wielu różnych miejscach. Nie musimy pamiętać za każdym razem o
+zerowaniu wskaźników itp. Dodatkowo nasz kod jest krótszy. Zwróćmy
+jeszcze uwagę, że pomimo tego, że <code>arg</code> jest podane jako RVR,
+musimy wewnątrz <code>pow2</code> ponownie zawołać
+<code>std::move</code>. Argument podany z zewnątrz jako RVR funkcjonuje
+wewnątrz jak LVL. Może to być nieco mylące, ale łatwo zapamiętać to w
+następujący sposób: przenosząc obiekt do każdej kolejnej funkcji musimy
+zawołać <code>std::move</code>, czyli jeżeli “zanurzamy” obiekt na
+głębokość <em>n</em> funkcji, to musimy zawołać <code>std::move</code>
+<em>n</em> razy.</p>
+<div id="zadanie-18" class="section level4">
+<h4>Zadanie 18</h4>
+<p>Dodaj do klasy <code>Wektor</code> konstruktor przenoszący. Pamiętaj,
+że musisz zmodyfikować także obiekt <strong>z którego</strong>
+przenosisz tak, aby jego zniszczenie nie powodowało niepożądanych
+skutków ubocznych.</p>
+</div>
+</div>
+<div id="przenoszący-operator-przypisania" class="section level3">
+<h3>Przenoszący operator przypisania</h3>
+<p>Ostatnią szczególną metodą klas jest przenoszący operator
+przypisania, o sygnaturze <code>T&amp; operator=(T&amp;&amp;)</code>.
+Przenosi on obiekt <code>b</code> na obiekt <code>a</code> (gdzie
+<code>a</code> i <code>b</code> nie muszą być różne).</p>
+<div id="zadanie-19" class="section level4">
+<h4>Zadanie 19</h4>
+<p>Dodaj do klasy <code>Wektor</code> przenoszący operator przypisania.
+Pamiętaj o odpowiedniej modyfikacji obiektu <strong>z którego</strong>
+przenosisz oraz wykryciu przypadku, w którym obiekt przenoszony jest sam
+na siebie (<code>v = std::move(v)</code> nie powinno skutkować
+błędami).</p>
+</div>
+</div>
+<div id="zasada-0-zasada-5" class="section level3">
+<h3>Zasada 0, Zasada 5</h3>
+<p>Znamy już 5 szczególnych metod klas:</p>
+<ul>
+<li>konstruktor kopiujący</li>
+<li>kopiujący operator przypisania</li>
+<li>konstruktor przenoszący</li>
+<li>przenoszący operator przypisania</li>
+<li>destruktor</li>
+</ul>
+<p>Jednymi z elementarnych zasad w programowaniu obiektowym w C++ są
+zasady zera i zasada pięciu. Zasada 0 mówi, że jeżeli nie chcemy wymusić
+żadnego szczególnego zachowania przy kopiowaniu, prznoszeniu lub
+niszczeniu obiektów, to nie należy definiować żadnej ze szczególnych
+metod i korzystać z tych, które zostaną domyślnie wygenerowane przez
+kompilator. Zasada 5 mówi z kolei, że jeżeli definiujemy choć jedną ze
+szczególnych metod, to powinniśmy także zdefiniować (lub zdefaultować,
+jeżeli to możliwe) wszystkie pozostałe. Zasady te pomagają unikać bugów
+wynikających np. z nieświadomego zawołania kopiowania tam, gdzie możnaby
+jakiś obiekt przenieść.</p>
+</div>
+<div id="przydatna-sztuczka-przyjmij-kopię-i-przenieś"
+class="section level3">
+<h3>Przydatna sztuczka: przyjmij kopię i przenieś</h3>
+<p>Na koniec pokażemy jeszcze często spotykany schemat, pozwalający
+zaoszczędzić kilka linijek kodu. Powiedzmy, że chcemy napisać klasę
+<code>ParaWektorow</code>, która wiąże ze sobą 2 obiekty typu
+<code>Wektor</code>. W najprostszym wydaniu, może wyglądać ona
+następująco:</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="kw">struct</span> ParaWektorow</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>    Wektor pierwszy<span class="op">;</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>    Wektor drugi<span class="op">;</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Musimy teraz dopisać konstruktory. Aby w pełni wykorzystać
+optymalizacje opisane powyżej, możemy zdefiniować 4 konstruktory:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="kw">struct</span> ParaWektorow</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>    ParaWektorow<span class="op">(</span><span class="at">const</span> Wektor<span class="op">&amp;</span> w1<span class="op">,</span> <span class="at">const</span> Wektor<span class="op">&amp;</span> w2<span class="op">)</span> <span class="op">:</span> pierwszy<span class="op">{</span>w1<span class="op">},</span> drugi<span class="op">{</span>w2<span class="op">}</span>             <span class="op">{}</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>    ParaWektorow<span class="op">(</span><span class="at">const</span> Wektor<span class="op">&amp;</span> w1<span class="op">,</span> Wektor<span class="op">&amp;&amp;</span> w2<span class="op">)</span> <span class="op">:</span> pierwszy<span class="op">{</span>w1<span class="op">},</span> drugi<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w2<span class="op">)}</span>       <span class="op">{}</span></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>    ParaWektorow<span class="op">(</span>Wektor<span class="op">&amp;&amp;</span> w1<span class="op">,</span> <span class="at">const</span> Wektor<span class="op">&amp;</span> w2<span class="op">)</span> <span class="op">:</span> pierwszy<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w1<span class="op">)},</span> drugi<span class="op">{</span>w2<span class="op">}</span>       <span class="op">{}</span></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>    ParaWektorow<span class="op">(</span>Wektor<span class="op">&amp;&amp;</span> w1<span class="op">,</span> Wektor<span class="op">&amp;&amp;</span> w2<span class="op">)</span> <span class="op">:</span> pierwszy<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w1<span class="op">)},</span> drugi<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w2<span class="op">)}</span> <span class="op">{}</span></span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>    Wektor pierwszy<span class="op">;</span></span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>    Wektor drugi<span class="op">;</span></span>
+<span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Jest to nieco uciążliwe, a złożoność tego rozwiązania rośnie
+kombinatorycznie wraz z liczbą pól klasy. Zamiast tego, możemy
+zdefiniować tylko jeden konstruktor:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="kw">struct</span> ParaWektorow</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>    ParaWektorow<span class="op">(</span>Wektor w1<span class="op">,</span> Wektor w2<span class="op">)</span> <span class="op">:</span> pierwszy<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w1<span class="op">)},</span> drugi<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w2<span class="op">)}</span> <span class="op">{}</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>    Wektor pierwszy<span class="op">;</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>    Wektor drugi<span class="op">;</span></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>    Wektor w1 <span class="op">=</span> getW1<span class="op">();</span></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>    Wektor w2 <span class="op">=</span> getW2<span class="op">();</span></span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>    ParaWektorow pw1<span class="op">{</span>w1<span class="op">,</span> w2<span class="op">};</span>                       <span class="co">// *</span></span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>    ParaWektorow pw2<span class="op">{</span><span class="bu">std::</span>move<span class="op">(</span>w1<span class="op">),</span> <span class="bu">std::</span>move<span class="op">(</span>w2<span class="op">)};</span> <span class="co">// **</span></span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Ceną, którą płacimy za takie rozwiązanie, jest dodatkowe wywołanie
+konstruktora <em>przenoszącego</em>. W linijce oznaczonej jedną
+gwiazdką, <code>w1</code> i <code>w2</code> są najpierw kopiowane, a
+następnie ich kopie są przenoszone do pól <code>pw1</code>. W linijce
+oznaczonej 2 gwiazdkami, <code>w1</code> i <code>w2</code> są najpierw
+przenoszone do konstruktora, a następnie dalej przenoszone do pól
+<code>pw2</code>. Koszt przenoszenia jest jednak bardzo niewielki, gdyż
+wiąże się jedynie z przestawieniem paru wskaźników, nie ma konieczności
+realokacji, ani kopiowania zawartości wektora. Rozwiązanie to jest zatem
+lepsze, gdyż zwiększa czytelność kodu i zmniejsza pole do popełnienia
+błędu.</p>
+<p>Przykłady te ilustrują także bardzo dobrze działanie zasady 0. Dzięki
+odpowiedniemu zdefiniowaniu metod specjalnych klasy <code>Wektor</code>,
+możemy pozostawić stworzenie tych metod dla klasy
+<code>ParaWektorow</code> kompilatorowi. Ponownie, oszczędzamy pracy i
+nie dajemy sobie możliwości popełnienia błędu.</p>
+<div id="zadanie-na-koniec" class="section level4">
+<h4>Zadanie na koniec</h4>
+<p>Jeżeli nie jest dla Ciebie do końca jasne, kiedy wołany jest który
+konstruktor lub operator przenoszenia, nie przejmuj się. Pobaw się <a
+href="https://godbolt.org/z/34YxMq">tym kawałkiem kodu</a> - np.
+zakomentuj dla zawartej klasy semantykę przenoszenia, stwórz nowe
+obiekty i zobacz, jakie będą efekty (oraz w jakiej kolejności drukowane
+będą informacje). Być może pomocne okaże się także <a
+href="https://youtu.be/zUQz4LBBz7M">to nagranie</a> (nie przejmuj się
+kodem obecnym na ekranie przez pierwszą minutę).</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

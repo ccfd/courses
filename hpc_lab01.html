@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>Lab 1</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/hpc_lab01.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 1</h1>
+<h4 class="author">J. Gałecki</h4>
+
+</div>
+
+
+<div id="lab-i" class="section level1">
+<h1>Lab I</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The aim of today’s class is to get acquainted with the <a
+href="https://github.com/google/benchmark">Google benchmark</a> library.
+The purpose of this library is to provide various facilities for
+microbenchmarking. Benchmarking is a term used to describe the
+measurement of execution time, the prefix “micro” indicates that these
+measurements should remain reliable even for very short execution times
+(which is not trivial!). Parameters other than execution time can
+further be quantified.</p>
+<div id="is-a-dedicated-library-really-necessary-isnt-time-sufficient"
+class="section level3">
+<h3>Is a dedicated library really necessary? Isn’t <code>time</code>
+sufficient?</h3>
+<p>To demonstrate that a dedicated benchmarking library is, in fact,
+needed, let us try the naive approach. We will attempt to measure the
+time needed to compute the sine of 100 double precision floating point
+values. Paste the following into src.cpp:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;MakeRandomVector.hpp&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cstdint&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="kw">using</span> <span class="bu">std::</span>ptrdiff_t<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> random_vector <span class="op">=</span> makeRandomVector<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="op">-</span><span class="fl">3.14</span><span class="op">,</span> <span class="fl">3.14</span><span class="op">);</span> <span class="co">// 100 random values from [-3.14, 3.14]</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="kw">auto</span>       results       <span class="op">=</span> random_vector<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">ptrdiff_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="dt">double</span> x <span class="op">:</span> random_vector<span class="op">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>        results<span class="op">[</span>i<span class="op">++]</span> <span class="op">=</span> sin<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To compile from the command line:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># First, download MakeRandomVector.hpp</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">wget</span> https://gist.githubusercontent.com/kubagalecki/8b89de1850cf701441e031b878ae1552/raw/a07d4847e5746b94fcc5653ca1bfaa865fb59e90/MakeRandomVector.hpp</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Now compile the code</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-std</span><span class="op">=</span>c++20 src.cpp</span></code></pre></div>
+<p>Let us now measure the execution time:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">time</span> ./a.out</span></code></pre></div>
+<p>We can see that our code took several milliseconds to execute.
+However, a couple issues arise:</p>
+<ul>
+<li>If we perform a few more measurements, we will see that we get
+slightly different results each time. Which result is correct?</li>
+<li>We would like to measure only the time of the calculation. However,
+we have measured the execution time of the entire program. This includes
+the startup time, vector allocation, etc. Is this result even close to
+correct?</li>
+</ul>
+<p>The latter problem could be solved by comparing clock values before
+and after the execution of the <code>for</code> loop (which is also an
+imperfect solution, since reading the clock takes a non-zero amount of
+time). However, to solve the former, we need to generate a set of
+measurements and perform some statistical analysis thereon. But how big
+should this set be? Should its size be a constant, or depend on the
+measured time? How should outliers be treated? As we can see,
+microbenchmarking is far from trivial. It’s best to rely on solutions
+provided by people who have put considerable thought and effort into
+this topic.</p>
+</div>
+</div>
+<div id="library-installation" class="section level2">
+<h2>Library installation</h2>
+<p>Below, we propose 2 ways of installing Google benchmark</p>
+<ul>
+<li>Manual installation. This requires root privileges
+(<code>sudo</code>) and installs the library globally on the
+system.</li>
+<li>Installation using the Spack package manager. This does not require
+root privileges and is generally simpler.</li>
+</ul>
+<div id="manual-installation" class="section level3">
+<h3>Manual installation</h3>
+<p>Manual installation is described <a
+href="https://github.com/google/benchmark#installation">in the
+repository readme</a>. The only prerequisites are a working C++ compiler
+and CMake 3.5 or newer. Note that if you install the library in a custom
+directory, you’ll later need to tell CMake how to find it. This can be
+done by setting the <code>benchmark_DIR</code> CMake variable at
+configure time. Your configure command will therefor have to look like
+this:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-Dbenchmark_DIR</span><span class="op">=</span><span class="st">&quot;your/path/to/benchmark/installation&quot;</span> [other options] ..</span></code></pre></div>
+</div>
+<div id="installation-using-spack" class="section level3">
+<h3>Installation using Spack</h3>
+<p>Spack is a package manager, which allows for easy installation and
+management of various libraries and tools. It’s distinct in that it
+<em>builds</em> all required binaries, as opposed to downloading them
+from the relevant vendors. We will give a more in-depth explanation and
+guide later on in this course. For the time being, we only present a
+step-by-step instruction on how to install the library under discussion.
+Spack’s documentation is available <a
+href="https://spack.readthedocs.io/en/latest/">here</a>. We do the
+following:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">-c</span> feature.manyFiles=true https://github.com/spack/spack.git</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">spack/bin/spack</span> external find <span class="co"># find available system packages, this will speed up the installation process</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">spack</span> compiler find           <span class="co"># find available compilers</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">spack/bin/spack</span> install benchmark ~performance_counters</span></code></pre></div>
+<p>Spack will recursively build and install all required tools and
+libraries. We only need to remember to call the following command each
+time we set up our build environment.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">spack/bin/spack</span> load benchmark</span></code></pre></div>
+<p>To load Spack’s shell support, you can source the relevant
+script:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">.</span> /path/to/spack/share/spack/setup-env.sh</span></code></pre></div>
+<p>This will let you invoke Spack without specifying the full path. You
+can add this line to your <code>.bashrc</code> file to avoid having to
+retype it every time you open a new shell.</p>
+</div>
+</div>
+<div id="project-configuration" class="section level2">
+<h2>Project configuration</h2>
+<p>To demonstrate how to use Google benchmark, we will first need to
+create a basic C++ project. We’re going to require the following:</p>
+<ul>
+<li>Header files (in our case <code>MakeRandomVector.hpp</code>)</li>
+<li>Source files (in our case a single source file named
+<code>BenchmarkDemo.cpp</code>, though you may choose a different
+name)</li>
+<li>A <code>CMakeLists.txt</code> file, which contains the “recipe” for
+how to build our project</li>
+</ul>
+<p>We will assume the following directory structure:</p>
+<pre><code>project_dir/
+|
+|__src/
+|  |__BenchmarkDemo.cpp
+|
+|__include/
+|  |__MakeRandomVector.hpp
+|
+|__CMakeLists.txt</code></pre>
+<p>The <code>CMakeLists.txt</code> file should contain the
+following:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="kw">project</span>(my_project_name) <span class="co"># this does not matter for our simple case</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">bench_demo</span> src/BenchmarkDemo.cpp) <span class="co"># this determines the executable name</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="kw">target_include_directories</span>(<span class="bn">bench_demo</span> <span class="ot">PUBLIC</span> include)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="kw">target_compile_features</span>(<span class="bn">bench_demo</span> <span class="ot">PUBLIC</span> <span class="ot">cxx_std_20</span>) <span class="co"># we need C++20</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="kw">find_package</span>(benchmark <span class="ot">REQUIRED</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">bench_demo</span> <span class="ot">PUBLIC</span> <span class="bn">benchmark::benchmark</span>)</span></code></pre></div>
+<p>To make sure we did everything correctly, let us test out the
+following code in <code>BenchmarkDemo.cpp</code>:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;benchmark/benchmark.h&quot;</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;MakeRandomVector.hpp&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>BENCHMARK_MAIN<span class="op">();</span></span></code></pre></div>
+<p>To build and run our binary, we execute the following</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># starting directory is project_dir</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">mkdir</span> build</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="bu">cd</span> build</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">cmake</span> ..</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">make</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="ex">./bench_demo</span></span></code></pre></div>
+<p>The following text should be printed to the screen:</p>
+<pre><code>Failed to match any benchmarks against regex: .</code></pre>
+<p>The failure is expected, as we have not defined any benchmarks just
+yet.</p>
+<div id="a-brief-explanation-of-what-just-happened"
+class="section level3">
+<h3>A brief explanation of what just happened</h3>
+<p>If you are even vaguely familiar with C++ development on Linux, you
+likely understand what we just did. If this is the case, feel free to
+skip ahead to the next section. For those who may be a little lost, we
+provide the following explanation. While not a prerequisite for the
+completion of this lab assignment, it’s probably best to have at least a
+high-level understanding of the build process, especially since you’ll
+need to build your own projects by the end of the semester. If after
+reading the explanation you still feel like you don’t understand much,
+please ask the instructor for help.</p>
+<p>Building a C++ binary is a multi-step process. An in-depth review can
+be found, e.g., <a href="https://youtu.be/4V9QWHjRPMc">here</a> (though
+for our purposes, this level of detail is not needed). The two most
+important steps are:</p>
+<ul>
+<li>compilation of translation units (i.e. <code>.cpp</code> files) into
+object files</li>
+<li>linking of the compiled object files (and possibly outside
+libraries, as is the case here) into a binary</li>
+</ul>
+<p>These require invoking the compiler and linker multiple times with
+various flags and arguments. Instead of doing this manually, the
+“recipe” for a binary is gathered into a <code>Makefile</code>, which
+can then be used as an input to the build tool <code>make</code> (this
+is done in the penultimate line of the build script above). However, the
+<code>Makefile</code> is still fairly low-level and writing one takes
+quite a bit of effort. Furthermore, it is strictly a Unix creation, so
+if we wish to build our project on Windows, we need a different
+solution. CMake was created to solve these problems. It has become the
+<em>de facto</em> standard, so, while other solutions exist, it is best
+to learn how to use it. CMake is not a build system, but a build system
+generator. In other words, it allows us to represent our project in a
+high-level and human-readable way, and then generates the
+<code>Makefile</code> (or its equivalent on other platforms) for us! It
+can also do other things, such as detect our compiler, find libraries,
+package software, and much more. CMake uses the concept of a “target” to
+describe a logical piece of a project. These can include executables,
+libraries (not necessarily buildable ones, e.g., header-only libraries
+can be targets too) and more. Targets can have properties, and we can
+model dependencies between different targets.</p>
+<p>In our case, we have 2 targets:</p>
+<ul>
+<li>The executable <code>bench_demo</code>, which is defined by
+<code>add_executable(bench_demo src/BenchmarkDemo.cpp)</code>. Had our
+binary consisted of multiple <code>.cpp</code> files, we would have
+provided them all here, separated by spaces.</li>
+<li>The target <code>benchmark::benchmark</code>, which represents the
+Google benchmark library. This target is created by the call to
+<code>find_package(benchmark)</code>. As we can see, libraries packaged
+with CMake can be easily used by projects also using CMake.</li>
+</ul>
+<p>Let us now go over the CMake file step-by-step.</p>
+<ol style="list-style-type: decimal">
+<li><code>cmake_minimum_required(VERSION 3.5)</code> sets the required
+version of CMake. This is done to produce a clear error when attempting
+to use an older version.</li>
+<li><code>project(my_project_name)</code> simply names our project.</li>
+<li><code>add_executable(bench_demo src/BenchmarkDemo.cpp)</code>
+defines our executable target.</li>
+<li><code>target_include_directories(bench_demo PUBLIC include)</code>
+specifies the include directories for source files from the
+<code>bench_demo</code> target. Thanks to this line, we can call
+<code>#include "MakeRandomVector.hpp"</code> without specifying the full
+path. The modifier <code>PUBLIC</code> specifies that this property is
+inherited by all targets which depend on <code>bench_demo</code>. The
+other two options are <code>PRIVATE</code> - affects only the specified
+target and <code>INTERFACE</code> - affects only the targets which
+depend on <code>bench_demo</code>. This choice does not matter for our
+simple example (it becomes important for more complex projects).</li>
+<li><code>target_compile_features(bench_demo PUBLIC cxx_std_20)</code>
+specifies that we require C++20. This will result in the appropriate
+compiler flags being set.</li>
+<li><code>find_package(benchmark REQUIRED)</code> finds the Google
+benchmark library. <code>REQUIRED</code> specifies that CMake should
+produce an error if it can’t find the requested package.</li>
+<li><code>target_link_libraries(bench_demo PUBLIC benchmark::benchmark)</code>
+specifies that our target <code>bench_demo</code> should be linked
+against the Google benchmark library. This utility can also be used more
+broadly to express dependencies between targets.</li>
+</ol>
+<p>Now let’s go over the build script</p>
+<ol style="list-style-type: decimal">
+<li>First we create the directory where we’ll be building our binary
+(CMake produces quite a bit of files, so it’s best to do this is a
+separate directory) and <code>cd</code> into it.</li>
+<li>We invoke CMake with the argument <code>..</code>, i.e., the project
+directory. This tells CMake to look for a <code>CMakeLists.txt</code>
+file in the specified directory. Since one is found, CMake then
+automatically detects our compiler and environment, configures our
+project, and creates the <code>Makefile</code>.</li>
+<li>We invoke <code>make</code>, based on the file generated by CMake.
+This builds our executable. Note that we do not need to know anything
+about the syntax or structure of the generated
+<code>Makefile</code>.</li>
+<li>We run the produced executable.</li>
+</ol>
+<p><strong>A note on using CMake</strong>: When looking for resources
+online, you may encounter the old style of writing CMake files, which
+uses lots and lots of variables to set global properties
+(e.g. <code>set(CMAKE_CXX_FLAGS "-std=c++20")</code>). This is very much
+<strong>not</strong> recommended. Please use targets, set their
+properties individually, and express the relationships between them
+using <code>target_link_libraries</code>. If you need to set global
+properties, do it from the command line, for example</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_CXX_FLAGS</span><span class="op">=</span><span class="st">&quot;-std=c++20&quot;</span> ..</span></code></pre></div>
+</div>
+</div>
+<div id="learning-google-benchmark" class="section level2">
+<h2>Learning Google benchmark</h2>
+<p>Let us now move on to the main part of this class. The general
+structure of a benchmark is as follows:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="dt">void</span> my_benchmark<span class="op">(</span>benchmark<span class="op">::</span>State<span class="op">&amp;</span> state<span class="op">)</span> <span class="co">// 1. Function defining the benchmark</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>    <span class="co">// 2. Setup code</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="at">const</span> <span class="kw">auto</span> input <span class="op">=</span> makeInput<span class="op">();</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="kw">auto</span> _ <span class="op">:</span> state<span class="op">)</span> <span class="co">// 3. Benchmark loop</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>        <span class="co">// 4. Code to be benchmarked</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>        <span class="at">const</span> <span class="kw">auto</span> output <span class="op">=</span> functionToBenchmark<span class="op">(</span>input<span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>    <span class="co">// 5. Tear-down code</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>    cleanup<span class="op">();</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>BENCHMARK<span class="op">(</span>my_benchmark<span class="op">)</span> <span class="co">/* &lt;- 6. register benchmark; 7. options -&gt; */</span> <span class="op">-&gt;</span> option1<span class="op">(</span>args<span class="op">...)</span> <span class="op">-&gt;</span> option2<span class="op">(</span>args<span class="op">...);</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Our benchmarks are defined as functions of type
+<code>void(benchmark::State&amp;)</code>. The state object is used to
+interact with the library. The interaction works both ways - we can use
+this object to, e.g., query some parameters, and the library can use
+this object to determine whether to keep running the main loop.</li>
+<li>This is the setup code for our benchmark. Its execution time does
+not get measured. In the example from the beginning of this class, this
+is where we would create the vectors of values.</li>
+<li>This is the main benchmark loop. It is run until the library has
+collected enough data to be statistically significant. Note that
+<code>_</code> is just a name for an unused variable, it’s not some
+special syntax.</li>
+<li>This is the code which gets benchmarked.</li>
+<li>In the tear-down code. Here we can perform any required final tasks,
+e.g. deallocate memory.</li>
+<li>The <code>BENCHMARK</code> macro registers our function as a
+benchmark (without it, the library cannot magically ascertain that the
+function we wrote should be run).</li>
+<li>We can pass some additional options using the <code>-&gt;</code>
+operator. We will discuss some commonly used options later, the full
+list can be found in the documentation.</li>
+</ol>
+<p>The last piece needed to perform the measurements is a
+<code>main</code> function. If we don’t wish to do anything special (and
+in this class we do not), we can just use the
+<code>BENCHMARK_MAIN()</code> macro as shown in the previous section.
+This will run all registered benchmarks and print the results to the
+screen as they are computed.</p>
+<div id="how-long-does-it-take-to-do-nothing" class="section level3">
+<h3>How long does it take to do nothing?</h3>
+<p>The first operation we will be benchmarking is… doing nothing. Such
+an operation is commonly known as a noop (pronounced “no-op”). To do
+this, we can simply run the empty benchmark structure above (just make
+sure to delete the meaningless options). After building and running we
+should get an output similar to that below</p>
+<pre><code>2021-12-23T15:38:01+01:00
+Running ./bench_demo
+Run on (16 X 5100 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x8)
+  L1 Instruction 32 KiB (x8)
+  L2 Unified 256 KiB (x8)
+  L3 Unified 16384 KiB (x1)
+Load Average: 0.63, 0.35, 0.22
+***WARNING*** CPU scaling is enabled, the benchmark real time measurements may be noisy and will incur extra overhead.
+-----------------------------------------------------
+Benchmark           Time             CPU   Iterations
+-----------------------------------------------------
+bench_noop       1.08 ns         1.08 ns    607058268</code></pre>
+<p>We can see that some information regarding our CPU is printed. Below,
+we have a table containing the data for our benchmark. The information
+in the columns describes:</p>
+<ol style="list-style-type: decimal">
+<li>The name of the benchmark</li>
+<li>The time it took the benchmark to execute</li>
+<li>The time the CPU was busy</li>
+<li>The size of the measurement set (number of loop iterations). This
+will increase as the time of a single iteration decreases.</li>
+</ol>
+<p>To demonstrate the difference between the “Time” and “CPU” columns,
+we will now benchmark waiting for a short period of time. To suspend the
+current thread of execution, we will use STL facilities from the
+<code>chrono</code> and <code>thread</code> headers:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> <span class="bu">std::</span>chrono_literals<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">std::</span>this_thread::sleep_for<span class="op">(</span><span class="dv">1</span><span class="bu">s</span><span class="op">);</span> <span class="co">// waits 1 second</span></span></code></pre></div>
+<p>Benchmarking the code above reveals that the execution time was
+roughly 1 second, however the CPU was busy for much less. To present the
+measurement in a more readable fashion, we can change the units as
+follows:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>BENCHMARK<span class="op">(</span>bench_wait<span class="op">)-&gt;</span>Unit<span class="op">(</span>benchmark<span class="op">::</span>kSecond<span class="op">);</span></span></code></pre></div>
+<p>We can also name our benchmark:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>BENCHMARK<span class="op">(</span>bench_wait<span class="op">)-&gt;</span>Unit<span class="op">(</span>benchmark<span class="op">::</span>kSecond<span class="op">)-&gt;</span>Name<span class="op">(</span><span class="st">&quot;Wait 1 second&quot;</span><span class="op">);</span> <span class="co">// order of options doesn&#39;t matter</span></span></code></pre></div>
+</div>
+<div id="some-useful-features" class="section level3">
+<h3>Some useful features</h3>
+<p>Let us now take a step towards solving the problem posed in the
+introduction. Before we compute the sine of a vector of values, we will
+start with just one.</p>
+<div id="sine-of-a-value" class="section level4">
+<h4>Sine of a value</h4>
+<p>We are now ready to write a benchmark which measures how much time it
+takes to compute the sine of an arbitrarily chosen value. Please do so
+on your own and note the result. Calculate the number of cycles it took
+to compute the sine (multiply the time by the clock frequency).</p>
+<p>If we paid attention during the lecture, we will notice that one
+piece of the puzzle is missing. Namely, we are not enabling compiler
+optimization. To do this, we need to reconfigure our CMake project. We
+could manually set the compiler optimization flags, however this is not
+recommended. Since building a project in Debug (no or minimal
+optimization) and Release (full optimization) modes is ubiquitous, CMake
+provides a simple way of doing this - setting the
+<code>CMAKE_BUILD_TYPE</code> variable. We can leave our
+<code>CMakeLists.txt</code> file unchanged and simply call</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release ..</span></code></pre></div>
+<p>After that we proceed as usual. If we rerun our benchmarks, we will
+see the following results:</p>
+<pre><code>----------------------------------------------------------
+Benchmark                Time             CPU   Iterations
+----------------------------------------------------------
+noop                 0.000 ns        0.000 ns   1000000000
+Wait 1 second         1.00 s         0.000 s            10
+Sine of a value      0.000 ns        0.000 ns   1000000000</code></pre>
+<p>The first result is good news - under an optimized build, doing
+nothing takes no time at all. The second benchmark should also not be a
+surprise - we asked to wait 1 second, and optimization should not affect
+the correctness of our code. However, the last result should give us
+pause. Is the CPU a trigonometric oracle, which knows the sine of all
+values without performing any operations at all? Of course not. What
+happened is simple - since the computed value is not used anywhere else
+in our program, it was optimized away by the compiler. We are therefore
+effectively benchmarking a noop - with the expected results. We
+therefore seem to be facing an impossible dilemma - either we compile
+under debug and get unrealistic results (since any real world
+computations will have optimization enabled), or we get no result at
+all. Fortunately, this is a common problem, for which the Google
+benchmark library provides a solution. We can use the
+<code>DoNotOptimize</code> function to prevent the compiler from
+optimizing away the result:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> _ <span class="op">:</span> state<span class="op">)</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>    <span class="dt">double</span> y <span class="op">=</span> sin<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>    benchmark<span class="op">::</span>DoNotOptimize<span class="op">(</span>y<span class="op">);</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A benchmark written this way should give us a meaningful result.
+Before you run it, take an educated guess as to how many cycles it takes
+to compute a sine. Now run the benchmark and see if your reasoning was
+correct!</p>
+</div>
+<div id="sine-of-a-vector-of-values" class="section level4">
+<h4>Sine of a vector of values</h4>
+<p>We can now proceed to the problem posed in the introduction -
+computing the sine of a vector of values. Knowing the number of cycles
+it took to compute a single sine, take a guess as to how long it will
+take to process the whole 100-element vector. Now please write the
+relevant benchmark and take look at the results. Were you close?</p>
+<p><strong>Note on optimization</strong>: As of the writing of this
+text, <code>gcc</code> is not smart enough to optimize away the
+computation performed in this exercise, so <code>DoNotOptimize</code>
+isn’t needed. However, if your compiler is able to do this (or you just
+want to be extra careful), please add the following code to the end of
+you benchmark loop:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>benchmark<span class="op">::</span>DoNotOptimize<span class="op">(</span>y<span class="op">.</span>data<span class="op">());</span> <span class="co">// y is the result vector</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>benchmark<span class="op">::</span>ClobberMemory<span class="op">();</span></span></code></pre></div>
+<p>The first line will prevent optimizing away the result
+(<code>y.data()</code> is the address of the vector’s underlying
+allocation) and <code>ClobberMemory</code> will prevent any clever
+tricks involving writing to memory.</p>
+</div>
+<div id="passing-arguments-to-benchmarks" class="section level4">
+<h4>Passing arguments to benchmarks</h4>
+<p>It is often the case that we are tuning a piece of software and wish
+to establish optimal values for some heuristic parameters. Such examples
+were shown during the lecture (tile size, among others). The most
+straightforward way to achieve this is by performing an exhaustive
+search in the admissible parameter space, i.e., try all possible
+parameter combinations and see which one yields the best results. It
+would be quite inconvenient to have to write separate benchmarks for
+every parameter combination. Therefore, Google benchmark allows the user
+to define a parameter range as an option and query the current value
+using the state object. The code looks as follows:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="dt">void</span> benchmark_fun<span class="op">(</span>benchmark<span class="op">::</span>State<span class="op">&amp;</span> state<span class="op">)</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> param <span class="op">=</span> state<span class="op">.</span>range<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    <span class="co">// the rest of the benchmark uses the parameter value</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>BENCHMARK<span class="op">(</span>benchmark_fun<span class="op">)-&gt;</span>Arg<span class="op">(</span><span class="dv">1</span><span class="op">)-&gt;</span>Arg<span class="op">(</span><span class="dv">2</span><span class="op">)-&gt;</span>Arg<span class="op">(</span><span class="dv">13</span><span class="op">)-&gt;</span>Arg<span class="op">(</span><span class="dv">42</span><span class="op">)</span> <span class="co">/* -&gt; other options */</span><span class="op">;</span></span></code></pre></div>
+<p>This will result in <code>benchmark_fun</code> being run 4 times,
+once for each of the arguments 1, 2, 13, and 42. If we wish to search a
+sparse parameter space, we can use the convenient shorthand of</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>BENCHMARK<span class="op">(</span>benchmark_fun<span class="op">)-&gt;</span>Range<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">4096</span><span class="op">)</span> <span class="co">/* -&gt; other options */</span><span class="op">;</span></span></code></pre></div>
+<p>This will run the benchmark on the geometric sequence 1, 8, 64, 512,
+4096. More generally, <code>-&gt;Range(min, max)</code> will choose some
+suitable parameters between <code>min</code> and <code>max</code>, each
+of them being 8 times greater than the previous one. This multiplier can
+be adjusted with the <code>RangeMultiplier</code> option. For
+example,</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>BENCHMARK<span class="op">(</span>benchmark_fun<span class="op">)-&gt;</span>RangeMultiplier<span class="op">(</span><span class="dv">2</span><span class="op">)-&gt;</span>Range<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">4096</span><span class="op">);</span></span></code></pre></div>
+<p>will run the benchmark for each power of 2 between 1 and 4096. Google
+benchmark provides some more ways of passing arguments (including all
+possible combinations of multiple parameter sets), but the simple ones
+shown above should be sufficient for this course. If you are curious,
+you can always refer to the documentation.</p>
+<p>Let us now practice passing arguments. Write a benchmark which
+computes the sine of a vector of values. The length of this vector
+should be a parameter of this benchmark. Measure the results for the
+lengths 256, 1024, 4096, 16,384, and 65,536.</p>
+</div>
+<div id="throughput-oriented-benchmarks" class="section level4">
+<h4>Throughput-oriented benchmarks</h4>
+<p>In the last example, reviewing the results may have been a little
+inconvenient. Different values of the passed parameter imply different
+amounts of work, so we need to divide the time by the problem size
+before comparing the results. For more complex examples, this can get
+quite tricky. For this reason, Google benchmark provides a way of
+explicitly printing how much work was done during execution. During the
+tear-down phase of the benchmark, we can call
+<code>state.SetBytesProcessed(&lt;integral value&gt;)</code> to indicate
+how much work was done during benchmarking. We will then get a nice
+bytes per second value in the results table. Note that this function
+expects the amount of work done during all iterations, not just a single
+one, so we need to use the <code>iterations</code> member function of
+the state object to query how many iterations were run. The code looks
+something like this:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="dt">void</span> benchmark_fun<span class="op">(</span>benchmark<span class="op">::</span>State<span class="op">&amp;</span> state<span class="op">)</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> work_per_iteration <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>    <span class="co">// main loop</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>    state<span class="op">.</span>SetBytesProcessed<span class="op">(</span>state<span class="op">.</span>iterations<span class="op">()</span> <span class="op">*</span> work_per_iteration<span class="op">);</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We can further pass the
+<code>--benchmark_counters_tabular=true</code> option when calling our
+executable to get better looking results (the throughput is aligned in a
+separate column).</p>
+</div>
+<div id="pausing-and-resuming-the-timer" class="section level4">
+<h4>Pausing and resuming the timer</h4>
+<p>The last feature of the Google benchmark library we will learn about
+today is controlling the timer from within the main benchmark loop. It
+is sometimes necessary to do some setup or tear-down every iteration,
+but without counting the time it takes towards the measurement (see item
+1 below for a concrete example). If we encounter such a situation, we
+can call <code>state.PauseTiming()</code> and
+<code>state.ResumeTiming()</code> to create a section of the loop which
+does not count towards the measured execution time. However, this
+functionality should be used only when absolutely necessary, since it
+introduces overhead and may skew the results.</p>
+</div>
+</div>
+<div id="problems-for-self-study" class="section level3">
+<h3>Problems for self-study</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Sorting.</strong> Write a benchmark which measures the time
+it takes to sort <code>vector&lt;double&gt;</code>. See how it behaves
+for different sizes of the vector. Try to estimate the time complexity
+of the sorting algorithm and compare it with the theoretical value of
+O(n*log(n)). Does it take longer to sort a vector of <code>int</code>s
+or <code>double</code>s? <strong>Note</strong>: You will need to pause
+the timer at the beginning of every iteration to generate a new random
+vector (or to shuffle the old one, or assign a pre-computed random
+vector to the one which gets sorted), otherwise you will be measuring
+the time it takes to sort a sorted vector (which is a valid benchmark
+for a sorting algorithm, just not one that we’re interested in right
+now).</li>
+<li><strong>Matrix-matrix multiply.</strong> Try for yourself some of
+the code shown during the lecture. Confirm that the parameters (e.g. for
+the tiling approach) were chosen correctly. Maybe the optimal values are
+different for your CPU?</li>
+<li><strong>Follow your curiosity.</strong> Are there any problems that
+you’d be interested in benchmarking? Maybe you think you can beat the
+implementation of some feature from some library (or the standard
+library). Maybe you’re just curious why something seemingly simple takes
+a long time. Take the time to explore the questions you’d like to
+answer, and be sure to ask the instructor for help with interpreting the
+results, if you need it.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

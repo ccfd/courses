@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>cpp_inst03</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst03.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="instrukcja-iii" class="section level1">
+<h1>Instrukcja III</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<p>Na tych zajęciach zaznajomimy się z dziedziczeniem oraz dynamicznym
+(wirtualnym) polimorfizmem. Są to podstawowe narzędzia programowania
+obiektowego, którym zawdzięcza ono w dużej mierze swoją popularność.
+Pozwalają one na pisanie przejrzystego kodu i konstruowanie łatwych w
+użyciu interfejsów. Dodajmy jednak, że współcześnie w C++ odchodzi się
+od tych metod na rzecz statycznych (tzn. rozstrzyganych w czasie
+kompilacji) rozwiązań. Powodem tej zmiany jest ich koszt w wydajności
+programu. Warto je jednak znać, szczególnie, że w wielu przypadkach
+czytelność kodu może być ważniejsza od kilku nanosekund czasu
+wykonania.</p>
+</div>
+<div id="dziedziczenie" class="section level2">
+<h2>Dziedziczenie</h2>
+<p>Dziedziczenie jest prostym, ale bardzo potężnym konceptem. Sprowadza
+się do następującej zasady: jeżeli klasa <code>D</code> dziedziczy po
+klasie <code>B</code>, to <code>D</code> otrzymuje “w spadku”
+funkcjonalność (pola i metody) <code>B</code>, którą może dodatkowo
+rozszerzyć. Mówiąc ściślej, obiekt typu <code>D</code> zawiera w sobie
+podobiekt klasy <code>B</code>. Pozwala nam to na uproszczenie struktury
+kodu poprzez komponowanie nowych klas z już istniejących. Na przykład,
+jeżeli mamy klasy <code>Ołówek</code> i <code>Gumka</code>, to chcąc
+zaimplementować klasę reprezentującą ołówek z gumką na końcu, możemy po
+prostu stworzyć pustą klasę, która dziedziczy po <code>Ołówek</code> i
+<code>Gumka</code>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="kw">class</span> Ołówek <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="kw">class</span> Gumka  <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="kw">class</span> OłówekZGumką <span class="op">:</span> <span class="kw">public</span> Ołówek<span class="op">,</span> <span class="kw">public</span> Gumka <span class="op">{};</span></span></code></pre></div>
+<p>Tego typu strategię możemy znaleźć w <a
+href="https://en.cppreference.com/w/cpp/io">bibliotece I/O</a>. Klasy
+strumieni dziedziczą po odpowiednich klasach bazowych w zależności od
+tego czy mają być strumieniami wejścia, wyjścia, czy obu.</p>
+<p>Inne możliwe zastosowanie dziedziczenia polega na użyciu klasy
+bazowej jako wspólnego interfejsu dla wielu klas pochodnych. Zobaczmy,
+jak może to wyglądać w praktyce.</p>
+<div id="zadanie-1" class="section level4">
+<h4>Zadanie 1</h4>
+<p>Napisz klasę <code>Figura</code>, która posiada prywatną zmienną
+<code>double pole</code>.</p>
+</div>
+<div id="zadanie-2" class="section level4">
+<h4>Zadanie 2</h4>
+<p>Napisz setter i getter dla pola tej klasy.</p>
+</div>
+<div id="zadanie-3" class="section level4">
+<h4>Zadanie 3</h4>
+<p>Napisz klasy <code>Kolo</code> i <code>Kwadrat</code>, które
+dziedziczą po <code>Figura</code>.</p>
+</div>
+<div id="zadanie-4" class="section level4">
+<h4>Zadanie 4</h4>
+<p>Dodaj do napisanych klas konstruktory, które liczą pole figury na
+podstawie podanych wymiarów geometrycznych.</p>
+<p>Dzięki dziedziczeniu po klasie <code>Figura</code> omijamy
+wielokrotne definiowanie pola <code>pole</code> oraz settera i gettera.
+Nie trudno wyobrazić sobie, że dla większych klas taki zabieg pozwala
+zaoszczędzić wiele linijek kodu.</p>
+</div>
+<div id="modyfikatory-dostępu" class="section level3">
+<h3>Modyfikatory dostępu</h3>
+<p>W przykładzie powyżej, w konstruktorach klas pochodnych zmuszeni
+byliśmy używać settera pola klasy bazowej, gdyż było ono prywatne.
+Wygodniej nam jednak operować bezpośrednio na zmiennej. Z drugiej
+strony, nie chcemy wystawiać tej zmiennej bezpośrednio do użytkownika.
+Rozwiązaniem tego dylematu jest trzeci (i ostatni) specyfikator dostępu
+w C++: <code>protected</code> (chroniony). Pola chronione mogą być
+czytane i modyfikowane przez metody klas, które dziedziczą po klasie, do
+której chronione pole należy, ale nie przez żadne inne.</p>
+<div id="zadanie-5" class="section level4">
+<h4>Zadanie 5</h4>
+<p>Uczyń pole <code>pole</code> chronionym. Usuń setter tego pola i
+zmodyfikuj odpowiednio konstruktory klas <code>Kwadrat</code> i
+<code>Kolo</code>.</p>
+<p>Dodatkowo możemy przy dziedziczeniu zmodyfikować dostęp do pól i
+metod klasy bazowej za pomocą modyfikatorów dostępu. Nie będziemy tego
+ćwiczyć, ale dla kompletności bieżącego tekstu podajemy niżej wygodną
+“ściągawkę”.</p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="34%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Modyfikator dostępu</th>
+<th align="center">Dostęp w klasie bazowej</th>
+<th align="center">Dostęp w klasie pochodnej</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>public</code></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="center"><code>public</code></td>
+<td align="center"><code>public</code></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="center"><code>protected</code></td>
+<td align="center"><code>protected</code></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="center"><code>private</code></td>
+<td align="center">brak dostępu</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>protected</code></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="center"><code>public</code></td>
+<td align="center"><code>protected</code></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="center"><code>protected</code></td>
+<td align="center"><code>protected</code></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="center"><code>private</code></td>
+<td align="center">brak dostępu</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>private</code></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="center"><code>public</code></td>
+<td align="center"><code>private</code></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="center"><code>protected</code></td>
+<td align="center"><code>private</code></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="center"><code>private</code></td>
+<td align="center">brak dostępu</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="konstruktory-klas-pochodnych" class="section level3">
+<h3>Konstruktory klas pochodnych</h3>
+<p>Fakt, że klasa pochodna zawiera w sobie podobiekt klasy bazowej ma
+konsekwencje dla sposobu jej konstrukcji. Przypomnijmy, że dla
+niedziedziczących klas tworzenie obiektu przebiego wg. następującego
+schematu:</p>
+<ol style="list-style-type: decimal">
+<li>Następuje alokacja pamięci na obiekt (na stosie lub na stercie, dla
+przebiegu procesu konstrukcji nie jest to istotne)</li>
+<li>Wołany jest konstruktor</li>
+<li>Pola obiektu są inicjalizowane przy pomocy listy inicjalizacyjnej
+i/lub konstruktorów domyślnych tych pól</li>
+<li>Wykonywane jest ciało konstruktora</li>
+</ol>
+<p>Zobaczmy, co stanie się, gdy spróbujemy bezpośrednio przenieść ten
+schemat na klasy dziedziczące.</p>
+<div id="zadanie-6" class="section level4">
+<h4>Zadanie 6</h4>
+<p>Zmodyfikuj konstruktory klas <code>Kolo</code> i <code>Kwadrat</code>
+tak, aby inicjalizowały pole <code>pole</code> w swojej liście
+inicjalizacyjnej. Czy kod się skompiluje?</p>
+<p>Błąd kompilacji w powyższym zadaniu wynika z tego, że - z punktu
+widzenia konstrukcji - klasa bazowa zachowuje się jak pole klasy
+pochodnej. Ogólny schemat tworzenia obiektu wygląda więc nieco inaczej,
+niż ten przedstawiony powyżej:</p>
+<ol style="list-style-type: decimal">
+<li>Następuje alokacja pamięci na obiekt</li>
+<li>Wołany jest konstruktor</li>
+<li>Obiekty klas bazowych konstruowane są za pomocą wskazanych
+konstruktorów (lub, jeżeli takowe nie zostały wskazane, konstruktorów
+domyślnych)</li>
+<li>Pola obiektu są inicjalizowane przy pomocy listy inicjalizacyjnej
+i/lub konstruktorów domyślnych tych pól</li>
+<li>Wykonywane jest ciało konstruktora</li>
+</ol>
+<p>W kodzie wygląda to następująco:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">class</span> B1 <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="kw">class</span> B2 <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="kw">class</span> D <span class="op">:</span> <span class="kw">public</span> B1<span class="op">,</span> <span class="kw">public</span> B2 <span class="co">// ...</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    D<span class="op">(</span><span class="co">/* ... */</span><span class="op">)</span> <span class="op">:</span> B1<span class="op">{</span><span class="co">/* ... */</span><span class="op">},</span> B2<span class="op">{</span><span class="co">/* ... */</span><span class="op">}</span> <span class="co">// ...</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>        <span class="co">// ...</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+</div>
+<div id="zadanie-7" class="section level4">
+<h4>Zadanie 7</h4>
+<p>Zmodyfikuj konstruktory klas <code>Kolo</code> i <code>Kwadrat</code>
+tak, aby inicjalizowały odpowiednio obiekt bazowy. Zauważ, że możesz
+teraz uczynić pole <code>pole</code> prywatnym, gdyż odwołujesz się nie
+bezpośrednio do niego, tylko do konstruktora <code>Figura</code>.</p>
+</div>
+</div>
+<div id="rzutowanie-statyczne" class="section level3">
+<h3>Rzutowanie statyczne</h3>
+<p>Dotychczas mówiliśmy o dziedziczeniu jako sposobie uproszczenia kodu
+- omijaliśmy wielokrotne definiowanie tych samych metod i pól w klasach
+pochodnych. Hierarchie dziedziczenia dają nam jednak także możliwość
+polimorficznego myślenia, tzn. myślenia o obiekcie w kontekście nie
+tylko jego typu, ale także typów po których dziedziczy (lub które
+dziedziczą po nim, ale o tym w dalszej części instrukcji).</p>
+<div id="zadanie-8" class="section level4">
+<h4>Zadanie 8</h4>
+<p>Dodaj do wszystkich 3 stworzonych dotychczas klas metodę
+<code>void id()</code>, która drukuje informację o typie figury oraz jej
+polu.</p>
+</div>
+<div id="zadanie-9" class="section level4">
+<h4>Zadanie 9</h4>
+<p>Napisz wolnostojącą funkcję <code>void id(const Figura&amp;)</code>,
+która przyjmuje obiekt typu <code>Figura</code> i woła jego metodę
+<code>id</code>. Stwórz obiekt typu <code>Kwadrat</code>. Czy możesz
+podać go jako argument do funkcji <code>id</code>? Jeżeli tak, jaka
+wiadomość zostanie wydrukowana?</p>
+<p>Jak widzimy, wszędzie, gdzie spodziewamy się obiektu klasy bazowej,
+możemy podać także obiekt klasy pochodnej. Dzieje się tak dzięki
+niejawnemu rzutowaniu <em>w górę</em> hierarchii dziedziczenia (tzn. w
+stronę klasy bazowej), które wykonuje za nas kompilator. Rzutowanie
+takie możemy także wykonać jawnie, za pomocą konwersji
+<code>static_cast</code>. Wygląda ona następująco:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>Pochodna p<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>Baza b <span class="op">=</span> <span class="kw">static_cast</span><span class="op">&lt;</span> Baza <span class="op">&gt;(</span> p <span class="op">);</span></span></code></pre></div>
+<p>Rzutować w ten sposób możemy także wskaźniki oraz referencje.</p>
+</div>
+<div id="zadanie-10" class="section level4">
+<h4>Zadanie 10</h4>
+<p>Stwórz obiekt typu <code>Kwadrat</code>. Zawołaj jego metodę
+<code>id</code>. Następnie zawołaj metodę <code>id</code> jego rzutu na
+typ <code>Figura</code>. Czy wołana jest ta sama metoda?</p>
+</div>
+</div>
+</div>
+<div id="dynamiczny-polimorfizm" class="section level2">
+<h2>Dynamiczny polimorfizm</h2>
+<p>Jak sama nazwa wskazuje, w statycznym polimorfizmie typy, przy pomocy
+których interpretujemy obiekty, muszą być znane w czasie kompilacji.
+Powiemy teraz jak decydować o typach obiektów w czasie wykonania
+programu. Językiem, który do tego wykorzystamy będą wskaźniki i
+referencje. Jeżeli nie będzie do końca jasne, czemu tak postępujemy,
+zachęcamy czytelnika do zawieszenia swojego sceptycyzmu do kolejnego
+rozdziału, w którym pokażemy praktyczne aplikacje przedstawionej tutaj
+metodologii i wszelkie wątpliwości zostaną rozwiane (a przynajmniej taka
+jest nadzieja autorów).</p>
+<div id="metody-wirtualne" class="section level3">
+<h3>Metody wirtualne</h3>
+<p>Jak widzieliśmy w zadaniach 9. i 10., gdy patrzyliśmy na obiekt przez
+pryzmat typu, po którym dziedziczy (tzn. uzyskując do niego dostęp przez
+referencję lub wskaźnik typu bazowego), nie mieliśmy możliwości dostania
+się do pól i metod tego obiektu pochodzących z jego faktycznej klasy.
+Jest to zupełnie logiczne - wolnostojącą funkcję <code>id</code>
+moglibyśmy napisać oraz skompilować zanim w ogóle rozpoczęlibyśmy pracę
+nad <code>Kwadrat</code> i <code>Kolo</code> (oczywiście zakładając
+odpowiedni podział na pliki źródłowe i nagłówkowe).
+<code>id(const Figura&amp;)</code> zawoła wtedy metodę <code>id</code>
+klasy <code>Figura</code> - żadna inna klasa jeszcze nie istnieje.
+Naszym celem w tym rozdziale jest przedstawienie sposobu, który
+pozwoliłby oddalić decyzję o metodzie, która zostanie zawołana do
+momentu wykonania programu. Możemy wtedy zawołać metodę nie klasy
+<code>Figura</code>, ale klasy obiektu, do którego referencja
+<code>const Figura&amp;</code> tak naprawdę się odnosi. Mechanizmem w
+C++, który do tego służy, jest słowo kluczowe <code>virtual</code>.
+Klasę, która posiada choć jedną metodę oznaczoną tym słowem nazywamy
+klasą polimorficzną. W reprezentacji obiektu takiej klasy, kompilator
+tworzy dodatkowy wskaźnik (<em>vpointer</em>), który wskazuje na
+“prawdziwy” typ danego obiektu (a dokładniej mówiąc, wskazuje miejsce, w
+którym zapisane jest “prawdziwe” zachowanie obiektu, tzw.
+<em>vtable</em>, o szczegółach można przeczytać np. <a
+href="https://pabloariasal.github.io/2017/06/10/understanding-virtual-tables/">tutaj</a>).</p>
+<div id="zadanie-11" class="section level4">
+<h4>Zadanie 11</h4>
+<p>Oznacz metodę <code>id</code> klasy <code>Figura</code> jako
+wirtualną. Oznacz metody <code>id</code> klas po niej dziedziczących
+jako nadpisujące (<code>override</code>). Powtórz zadanie 9. Czy efekt
+będzie taki sam jak wcześniej? Czy kod wymagał od Ciebie jakiejkolwiek
+modyfikacji poza słowami <code>virtual</code> i
+<code>override</code>?</p>
+</div>
+</div>
+<div id="rzutowanie-dynamiczne" class="section level3">
+<h3>Rzutowanie dynamiczne</h3>
+<p>Ponieważ jesteśmy teraz w stanie dynamicznie określić “prawdziwe”
+typy obiektów, na które wskazują wskaźniki i do których odnoszą się
+referencje, to możemy polimorficzne klasy rzutować także w dół oraz na
+boki hierarchii dziedziczenia (dynamiczne rzutowanie w górę hierarchii
+jest ekwiwalentne statycznemu). Służy do tego konwersja
+<code>dynamic_cast</code>. Zwróćmy uwagę, że dynamicznie rzutować możemy
+jedynie wskaźnik i referencje, ale nie obiekty. Jeżeli obiekt, wskaźnik
+do którego rzutujemy nie jest “tak naprawdę” typu, na który rzutujemy,
+to wynikiem rzutowania jest wyzerowany wskaźnik (<code>nullptr</code>).
+Przypomnijmy, że wskaźniki są konwertowalne na typ <code>bool</code>,
+także <code>dynamic_cast</code> może być np. używany jako mechanizm
+sprawdzenia, czy wskaźnik klasy bazowej “tak naprawdę” wskazuje na
+obiekt zadanej klasy pochodnej.</p>
+<div id="zadanie-12" class="section level4">
+<h4>Zadanie 12</h4>
+<p>Stwórz dynamicznie obiekt typu <code>Kwadrat</code> i przypisz go do
+wskaźnika typu <code>Figura*</code>
+(<code>Figura* f = new Kwadrat{/* ... */};</code>). Jaki będzie wynik
+dynamicznego rzutowania na <code>f</code> na <code>Kwadrat*</code>, a
+jaki na <code>Kolo*</code>?</p>
+</div>
+</div>
+<div id="destruktor" class="section level3">
+<h3>Destruktor</h3>
+<p>W klasach polimorficznych zawsze powinniśmy oznaczać destruktory jako
+wirtualne. Jeżeli tego nie zrobimy, a obiekt typu pochodnego zostanie
+usunięty (w znaczeniu <code>delete</code>) przy pomocy wskaźnika na typ
+bazowy, wtedy destruktor typu pochodnego nigdy nie zostanie zawołany.
+Może to doprowadzić do wycieku zasobów i innych nieprzyjemnych
+sytuacji.</p>
+<div id="zadanie-13" class="section level4">
+<h4>Zadanie 13</h4>
+<p>Zdefiniuj dla stworzonych dotychczas klas destruktor, drukujący
+informację o zniszczeniu obiektu. Zawołaj w funkcji
+<code>main</code></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>Figura<span class="op">*</span> f <span class="op">=</span> <span class="kw">new</span> Kwadrat<span class="op">{</span><span class="co">/* ... */</span><span class="op">};</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="kw">delete</span> f<span class="op">;</span></span></code></pre></div>
+<p>Które destruktory zostały zawołane? Jak zmieni się sytuacja, gdy
+uczynisz destruktory wirtualnymi?</p>
+</div>
+</div>
+<div id="metody-i-klasy-abstrakcyjne" class="section level3">
+<h3>Metody i klasy abstrakcyjne</h3>
+<p>Omówione wyżej metody wirtualne to metody, które możemy nadpisać.
+Metody abstrakcyjne (zwane też czysto wirtualnymi) to metody, które
+<em>musimy</em> nadpisać. Klasy posiadające takie metody nazywamy
+abstrakcyjnymi. Nie wolno nam bezpośrednio instancjonować klas
+abstrakcyjnych, ale możemy oczywiście tworzyć obiekty typów
+dziedziczących po typach abstrakcyjnych. Metody abstrakcyjne oznaczamy
+następująco:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">class</span> C</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="kw">virtual</span> T metoda<span class="op">(</span><span class="co">/* argumenty */</span><span class="op">)</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<div id="zadanie-14" class="section level4">
+<h4>Zadanie 14</h4>
+<p>Stwórz klasę <code>BytGeometryczny</code> i zmodyfikuj
+<code>Figura</code> tak, aby po niej dziedziczyła. Dodaj do
+<code>BytGeometryczny</code> abstrakcyjną metodę <code>void id()</code>.
+Co stanie się, gdy spróbujesz stworzyć obiekt typu
+<code>BytGeometryczny</code>? Co stanie się, gdy wykomentujesz z klasy
+<code>Figura</code> metodę <code>id</code>?</p>
+<p>Metody abstrakcyjne mogą być np. używane przez autorów bibliotek do
+zdefiniowania schematu, wg. którego ma być używana dana funkcjonalność,
+a następnie wymuszenia na użytkowniku dostarczenia własnej implementacji
+tejże funkcjonalności.</p>
+</div>
+</div>
+</div>
+<div id="przykłady-zastosowań" class="section level2">
+<h2>Przykłady zastosowań</h2>
+<p>Przećwiczmy teraz kilka wzorców, które występują często w praktyce
+programistycznej.</p>
+<div id="heterogeniczny-kontener" class="section level3">
+<h3>Heterogeniczny kontener</h3>
+<p>Fakt, że możemy wskazywać na obiekty klasy pochodnej wskaźnikiem do
+klasy bazowej, może być przez nas wykorzystany do trzymania obiektów
+różnego typu w jednym miejscu.</p>
+<div id="zadanie-15" class="section level4">
+<h4>Zadanie 15</h4>
+<p>Napisz klasę <code>WektorFigur</code>, która przechowuje tablicę
+wskaźników do obiektów typu <code>Figura</code>. Dla uproszczenia możesz
+zaalokować pamięć na wskaźniki statycznie (np. 1000 elementów). Dodaj
+także do klasy licznik, który śledzi, ile obiektów zostało już
+przypisane.</p>
+</div>
+<div id="zadanie-16" class="section level4">
+<h4>Zadanie 16</h4>
+<p>Przeciąż dla klasy <code>WektorFigur</code> operator <code>[]</code>
+tak, aby móc indeksować się po trzymanych wskaźnikach. Jeżeli indeks
+przekroczy liczbę trzymanych obecnie elementów, zwróć
+<code>nullptr</code>.</p>
+</div>
+<div id="zadanie-17" class="section level4">
+<h4>Zadanie 17</h4>
+<p>Dodaj do klasy <code>WektorFigur</code> destruktor, który zawoła dla
+każdego trzymanego obiektu operator <code>delete</code>.</p>
+</div>
+<div id="zadanie-18" class="section level4">
+<h4>Zadanie 18</h4>
+<p>Napisz metodę <code>push</code>, która dopisuje na końcu trzymanego
+zakresu podany wskaźnik i inkrementuje licznik.</p>
+</div>
+<div id="zadanie-19" class="section level4">
+<h4>Zadanie 19</h4>
+<p>Napisz metodę <code>pop</code>, która niszczy ostatni element
+trzymanego zakresu i dekrementuje licznik.</p>
+<p>W napisanej właśnie klasie <code>WektorFigur</code> możemy trzymać
+różnego typu figury. Zauważmy, że jeżeli dopisalibyśmy nową klasę
+dziedziczącą po <code>Figura</code>, np. trójkąt, nie musimy zmieniać w
+<code>WektorFigur</code> ani jednej linijki. Nasz kod jest zgodny z
+zasadą <em>open for extension, closed for modification</em>.</p>
+</div>
+</div>
+<div id="fabryka" class="section level3">
+<h3>Fabryka</h3>
+<p>Fabryka to klasa, której obiekty są używane do tworzenia innych
+obiektów.</p>
+<div id="zadanie-20" class="section level4">
+<h4>Zadanie 20</h4>
+<p>Napisz klasę <code>FabrykaFigur</code> i przeciąż dla niej operator
+<code>()</code> tak, aby jego sygnaturą było
+<code>Figura* operator()(const std::string&amp;, double)</code>. Jeżeli
+podanym stringiem jest “kwadrat”, niech operator nawiasów konstruuje
+przy pomocy podanej liczby kwadrat, a jeżeli podano “kolo”, niech
+konstruuje koło. W innym przypadku zwróć <code>nullptr</code>.</p>
+<p>W taki sposób możemy decydować o typie tworzonych obiektów dopiero w
+czasie wykonania programu. Nic nie stoi na przeszkodzie, aby argument
+podawany do fabryki figur był np. wczytywany z klawiatury lub pobierany
+z sieci.</p>
+</div>
+</div>
+<div id="wizytator" class="section level3">
+<h3>Wizytator</h3>
+<blockquote>
+<p>Wizytator stanowi nieco bardziej zaawansowany przykład zastosowania
+polimorfizmu. Poznanie go nie jest niezbędne do kontynuowania bieżącego
+kursu. Czytelnik powinien w pierwszej kolejności skupić się na solidnym
+zrozumieniu treści zawartej wyżej. Niemniej jednak, zagadnienie iteracji
+po elementach różnych typów pojawia się powszechnie i, zdaniem autorów,
+warto wiedzieć po jakie rozwiązania sięgnąć, gdy taki problem się
+napotka. Więcej informacji nt. wizytatora dostępne jest np. w <a
+href="https://en.wikipedia.org/wiki/Visitor_pattern#C++_example">artykule
+na wikipedii</a>, napisanym w dość zrozumiały sposób.</p>
+</blockquote>
+<p>Wizytator to jeden z częściej stosowanych schematów projektowych
+(ang. <em>design pattern</em>) w C++. Mając dany wskaźnik do obiektu
+polimorficznego, chcielibyśmy potrafić wykonać na nim różne operacje w
+zależności od typu obiektu, na który “tak naprawdę” wskazuje. Mając dany
+kontener takich wskaźników, chcielibyśmy móc się po nim odpowiednio
+przeiterować. Zacznijmy od prostych rzeczy.</p>
+<div id="zadanie-21" class="section level4">
+<h4>Zadanie 21</h4>
+<p>Dodaj to klasy <code>WektorFigur</code> metodę
+<code>void idWszystkie()</code>, która woła po kolei metodę
+<code>id</code> trzymanych figur. Pamiętaj, że mając wskaźnik do
+obiektu, możesz zawołać jego metodę przy użyciu operatora
+<code>-&gt;</code>.</p>
+<p>W powyższym zadaniu zakładamy, że chcemy zawołać dla zawartości
+kontenera konkretą metodę. Jest to dość mało ogólne rozwiązanie.
+Postawmy się w sytuacji, w której piszemy bibliotekę, z której korzystać
+będą osoby trzecie. Nie możemy do końca przewidzieć, co będą one chciały
+zrobić z trzymanymi w kontenerze figurami. Musimy zatem przygotować
+mechanizm, za pomocą którego użytkownik może zdefiniować własną funkcję,
+która wykona na obiektach operacje zależne od typu obiektu. Rozwiązaniem
+tego problemu jest właśnie wizytator.</p>
+</div>
+<div id="zadanie-22" class="section level4">
+<h4>Zadanie 22</h4>
+<p>Napisz klasę <code>WizytatorFigurBaza</code>. Dodaj do niej 2
+abstrakcyjne przeciążenia metody <code>void wizytuj(...)</code>: jedno
+przyjmujące typ <code>Kwadrat&amp;</code> i jedno przyjmujące typ
+<code>Kolo&amp;</code>.</p>
+</div>
+<div id="zadanie-23" class="section level4">
+<h4>Zadanie 23</h4>
+<p>Dodaj do klasy <code>Figura</code> abstrakcyjną metodę
+<code>void akceptuj(WizytatorFigurBaza&amp;)</code>.</p>
+</div>
+<div id="zadanie-24" class="section level4">
+<h4>Zadanie 24</h4>
+<p>Nadpisz w klasach <code>Kwadrat</code> i <code>Kolo</code> metodę
+<code>akceptuj</code> tak, aby wołała metodę <code>wizytuj</code>
+podanego wizytatora na danym obiekcie geometrycznym
+(<code>v.wizytuj(*this);</code>).</p>
+</div>
+<div id="zadanie-25" class="section level4">
+<h4>Zadanie 25</h4>
+<p>Dodaj do klasy <code>WektorFigur</code> metodę
+<code>void wizytujWszystkie(WizytatorFigurBaza&amp;)</code>, która woła
+po kolei dla każdej trzymanej figury metodę <code>akceptuj</code> na
+podanym wizytatorze.</p>
+<p>Jako autorzy biblioteki, zakończyliśmy właśnie pracę. Ostatni krok
+leży po stronie użytkownika.</p>
+</div>
+<div id="zadanie-26" class="section level4">
+<h4>Zadanie 26</h4>
+<p>Napisz klasę <code>WizytatorDrukujacy</code>, która dziedziczy po
+klasie <code>WizytatorFigurBaza</code>. Nadpisz oba przeciążenia metody
+<code>wizytuj</code> tak, aby drukowały informację o typie wizytowanej
+figury.</p>
+<p>Właśnie w pełni zaimplementowaliśmy wizytator! Aby przetestować jego
+działanie, wystarczy stworzyć wizytator drukujący oraz kontener figur,
+wypełnić kontener, a następnie zawołać metodę
+<code>wizytujWszystkie</code> na zdefiniowanym wizytatorze. Zastanówmy
+się, jak dokładnie działa napisany przez nas kod. Zacznijmy od tego, że
+podany przez nas wizytator jest z punktu widzenia
+<code>wizytujWszystkie</code> referencją do bazowej klasy wizytatora.
+Fakt ten pozwala nam ujednolicić interfejs kontenera - jeżeli chcemy
+zdefiniować nowy wizytator, który robi coś zupełnie innego, wystarczy,
+że powtórzymy zadanie 26. Nie musimy modyfikować żadnych napisanych
+wcześniej klas! Ponownie zachowujemy się zgodnie z zasadą
+<em>open-closed</em>. Prześledźmy teraz co dokładnie dzieje się przy
+wizytowaniu każdej figury. Najpierw wołana jest metoda
+<code>akceptuj</code> figury. Jest ona wirtualna, a zatem - pomimo tego,
+że nigdzie jawnie nie trzymamy informacji o “prawdziwym” typie figury -
+wołana jest metoda odpowiedniej klasy pochodnej. Następnie, metoda
+<code>akceptuj</code> klasy pochodnej (<code>Kwadrat</code> lub
+<code>Kolo</code>), woła “na sobie” metodę <code>wizytuj</code>
+wizytatora, która przeciążona jest zarówno dla <code>Kwadrat</code> jak
+i dla <code>Kolo</code>. Dość charakterystyczna jest tutaj “podwójna
+delegacja” (ang. <em>double dispatch</em>) - wizytator wizytuje, ale
+także obiekt wizytowany akceptuje. Osiągnęliśmy zatem to, co chcieliśmy
+- możemy dokonywać na trzymanych figurach dowolnie zdefiniowanych
+operacji zależnych od “prawdziwego” typu figury.</p>
+</div>
+<div id="zadanie-27" class="section level4">
+<h4>Zadanie 27</h4>
+<p>Przetestuj działanie napisanego kodu. Jeżeli masz wątpliwości, że
+jest ono w pełni dynamiczne możesz uzależnić typ wkładanych do kontenera
+figur od wejścia z konsoli (pomocna będzie do tego fabryka).</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
