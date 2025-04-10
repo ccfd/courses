@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="rev. M. Rutkowski" />
+
+
+<title>Wprowadzenie do środowiska ANSYS Workbench 2023 R2</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab01.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Wprowadzenie do środowiska ANSYS Workbench
+2023 R2</h1>
+<h4 class="author">rev. M. Rutkowski</h4>
+
+</div>
+
+
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Zapoznanie z podstawowymi funkcjami programów: <strong>ANSYS
+DesignModeler</strong> (tworzenie geometrii) i <strong>ANSYS
+Meshing</strong> (dyskretyzacja domeny), oraz ich współdziałaniem z
+<strong>ANSYS Fluent</strong> (obliczenia przepływowe) wewnątrz i poza
+środowiskiem Workbench.</p>
+<p>Więcej informacji znajduje się w pomocy programu ANSYS Workbench lub
+na stronie <a href="https://ansyshelp.ansys.com/">ANSYS
+Workbench</a></p>
+</div>
+<div id="rozpoczęcie-pracy---środowisko-workbench"
+class="section level1">
+<h1>Rozpoczęcie pracy - Środowisko Workbench</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<div class="float">
+<img src="figures/momp_inst1/Workbench.PNG#center"
+title="ANSYS Workbench 2020 R2"
+alt="Rys.1. Okno główne środowiska Workbench" />
+<div class="figcaption"><strong>Rys.1.</strong> <em>Okno główne
+środowiska Workbench</em></div>
+</div>
+<p>Okno główne środowiska Workbench składa się z okna wyboru narzędzi
+(panel po lewej stronie okna) oraz okna schematu projektu (główna część
+okna). Panel narzędzi jest podzielony na pięć zakładek, z czego dwie
+pierwsze są potrzebne by zacząć podstawową pracę ze środkowiskiem
+Workbench. Zakładka <strong>Component systems</strong> jest listą
+dostępnych programów jakie możemy używać w obrębie środowiska Workbench.
+Zakładka <strong>Analysis Systems</strong> zawiera zestaw standardowych
+systemów do analizy złożonych z omówionych wcześniej komponentów.</p>
+<div id="rozpoczynanie-pracy-z-wykorzystaniem-gotowego-systemu"
+class="section level4">
+<h4>Rozpoczynanie pracy z wykorzystaniem gotowego systemu</h4>
+<p>Aby rozpocząć pracę, należy przeciągnąć <strong>Fluid
+Flow(Fluent)</strong> do zaznaczonego pola w oknie schematu projektu
+(Rys. 2). Z tego sposobu tworzenia projektów będziemy korzystać na
+wszystkich zajęciach.</p>
+<div class="float">
+<img src="figures/momp_inst1/create_system.svg#center"
+title="ANSYS Workbench 2020 R2"
+alt="Rys.2. Sposób dodawania gotowego systemu obliczeniowego" />
+<div class="figcaption"><strong>Rys.2.</strong> <em>Sposób dodawania
+gotowego systemu obliczeniowego</em></div>
+</div>
+<p>Jak można zauważyć, wyciągnięty blok zawiera komplet modułów z
+zakładki <strong>Component systems</strong>, który pozwala na
+przeprowadzenie pełnej analizy numerycznej. Od stworzenia geometrii,
+przez dyskretyzacje domeny po obróbkę wyników. Klikamy na napis
+<em>Fluid Flow(Fluent)</em> pod stworzonym blokiem i <strong>zmianiamy
+nazwę</strong> na Instrukcja N, gdzie N to numer instrukcji. Na potrzeby
+tych laboratoriów, <strong>niech to będzie standardowy sposób</strong>
+tworzenia kolejnych analiz.</p>
+<hr />
+</div>
+<div id="tworzenie-własnych-systemów-alternatywa"
+class="section level4">
+<h4>Tworzenie własnych systemów (alternatywa)</h4>
+<details>
+<summary>
+Rozwiń
+</summary>
+<p>
+<p>Czasem się zdaża, chociażby przy duzych projektach obliczeniowych, że
+nasz system do analizy wymaga podejścia uszytego na miarę. Wtedy możemy
+wykorzystać pełną funkcjonalność okna schematu projektu. Tworzenie
+pierwszego elementu naszego schematu nie różni się niczym od
+poprzedniego podejścia. Wyciągamy interesujący nas bloczek z
+<strong>Component systems</strong> i puszczamy w zaznaczone pole w
+<strong>Project schematic</strong>.</p>
+<p>Dodanie każdego kolejnego można zrobić na dwa sposoby.</p>
+<ul>
+<li>Pierwszym sposobem jest upuszczenie w dowolne miejsce kolejnego
+komponentu i połączenie ich przez przeciągnięcie komórki z jednego
+komponentu do odpowiadającej jej nazwą komórki w drugim komponencie
+(Rys. 3a).</li>
+<li>Drugim sposobem jest, upuszczenie nowo dodawanego komponentu w
+podświetloną komórkę wcześniej dodanego komponentu (Rys. 3b)</li>
+</ul>
+<div class="float">
+<img src="figures/momp_inst1/addblocks.svg#center"
+title="ANSYS Workbench 2020 R2"
+alt="Rys.3. Sposoby dodawania nowych elementów do schematu projektu" />
+<div class="figcaption"><strong>Rys.3.</strong> <em>Sposoby dodawania
+nowych elementów do schematu projektu</em></div>
+</div>
+<p>W ten sposób możemy tworzyć duże schematy projektów (Rys. 4).</p>
+<div class="float">
+<img src="figures/momp_inst1/Schematic_sample.PNG#center"
+title="ANSYS Workbench 2020 R2"
+alt="Rys.4. Przykład rozwiniętego schematu projektu" />
+<div class="figcaption"><strong>Rys.4.</strong> <em>Przykład
+rozwiniętego schematu projektu</em></div>
+</div>
+</p>
+</details>
+<hr />
+</div>
+<div id="symbole-w-komórkach-komponentów-systemu"
+class="section level4">
+<h4>Symbole w komórkach komponentów systemu</h4>
+<details>
+<summary>
+Rozwiń
+</summary>
+<p>
+<p><img src="figures/momp_inst1/cellState.PNG#center"
+title="ANSYS Workbench 2020 R2" /></p>
+<p><strong>Poszczególne komórki programów mogą mieć różne stany w
+zależności od aktywności użytkownika:</strong></p>
+<p><img src="figures/momp_inst1/wb2_unfulfilled.jpg"
+title="Unfulfilled" /> - <em>Brak danych</em> - Wymagane są dane z
+poprzedzających komórek. W tym stanie komórki mogą się nie otworzyć.</p>
+<p><img src="figures/momp_inst1/wb2_refreshrequired.jpg"
+title="Refresh required" /> - <em>Odśwież dane</em> - Dane w komórkach
+poprzedzających zostały zmienione od ostatniego stanu.</p>
+<p><img src="figures/momp_inst1/wb2_attentionrequired.jpg"
+title="Attention required" /> - <em>Program wymaga uwagi</em> - Program
+w tym stanie nie zwróci żadnych danych do kolejnych komórek, dopóki nie
+uzupełni się braków.</p>
+<p><img src="figures/momp_inst1/wb2_updaterequired.jpg"
+title="Update required" /> - <em>Zaktualizuj dane</em> - Wewnętrzne dane
+zostały zmienione, jednak program nie przekazał wyniku do środowiska
+Workbench. Należy odświeżyć daną komórkę, aby zsynchronizować dane.</p>
+<p><img src="figures/momp_inst1/wb2_uptodate.jpg" title="Up to date" />
+- <em>Aktualne dane</em> - dane są aktualne i nie znaleziono błędów.</p>
+<p><img src="figures/momp_inst1/wb2_inputchgpending.jpg"
+title="Input pending" /> - <em>Zmienione dane</em> - Komorka jest
+aktualna ale może się zmienić w związku z wykrytą zmianą wcześniejszych
+komórek.</p>
+<p><strong>Stany typowe dla programów obliczeniowych:</strong></p>
+<p><img src="figures/momp_inst1/wb2_interrupted_update_required.png"
+title="Interrupted update" /> - <em>Przerwano, zaktualizuj dane</em> -
+Przerwano podczas obliczeń. Wygenerowane dane do momentu przerwania są
+dostępne jednak plik z wynikami jest pusty.</p>
+<p><img src="figures/momp_inst1/wb2_interrupted.gif"
+title="Interrupted up to date" /> - <em>Przerwano, aktualny</em> -
+Przerwano podczas obliczeń. Plik z wynikiem zawiera dane. Ten stan
+występuje, jeżeli przerwano kilka obliczeń pod rząd.</p>
+<p><img src="figures/momp_inst1/wb2_pending.jpg" title="Pending" /> -
+<em>Oczekuje</em> - W trakcie analizy w trybie batch. Można wykonywać
+operacje w innych systemach w projekcie.</p>
+<p><strong>Stany błędów:</strong></p>
+<p><img src="figures/momp_inst1/wb2_refreshFailed.png"
+title="Refresh failed" /> - <em>Nie udało się odświeżyć, Odśwież
+dane</em></p>
+<p><img src="figures/momp_inst1/wb2_updFailedUpdReqd.png"
+title="Update failed" /> - <em>Nie udało się zaktualizować, Zaktualizuj
+dane</em></p>
+<p><img src="figures/momp_inst1/wb2_updFailedAttReqd.png"
+title="Update failed" /> - <em>Nie udało się zaktualizować, Program
+wymaga uwagi</em></p>
+</p>
+</details>
+<hr />
+</div>
+</div>
+<div id="moduł-geometryczny---designmodeler" class="section level2">
+<h2>Moduł geometryczny - DesignModeler</h2>
+<p>W ramach poznawania modułu CAD wykonajmy geometrię na potrzeby <a
+href="http://ccfd.github.io/courses/momp_lab02.html">Instrukcji
+II</a>.</p>
+<p>Geometrią do wykonania jest fragment dwuwymiarowego kanału z
+uskokiem. Na potrzeby ćwiczenia, geometrię powinno się stworzyć za
+pomocą dwóch prostokątów:</p>
+<div class="float">
+<img src="figures/momp_inst1/instr1_geom.svg#center"
+alt="Rys.5. Kanał z uskokiem" />
+<div class="figcaption"><strong>Rys.5.</strong> <em>Kanał z
+uskokiem</em></div>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Stwórz projekt wg. opisu w <a
+href="#rozpoczynanie-pracy-z-wykorzystaniem-gotowego-systemu">Rozpoczynanie
+pracy…</a></p></li>
+<li><p>Otwórz Desing modeler klikając prawym klawiszem myszki na komórkę
+geometry i wybierz <strong>New DesignModeler geometry…</strong>. Okno
+DesingModeler składa się z trzech elementów: <strong>okno
+grafiki</strong>, <strong>drzewo historii operacji</strong> oraz
+<strong>okno szczegółów</strong>. Rozwinięte menu kontekstowe zawiera
+elementy, które będą przydatne w trakcie pracy:</p>
+<details>
+<summary>
+<p>Rys. 6</p>
+</summary>
+<p>
+<div class="float">
+<img src="figures/momp_inst1/DMmenu.svg#center"
+alt="Rys. 6. Rozwinięte menu kontekstowe" />
+<div class="figcaption"><strong>Rys. 6.</strong> Rozwinięte menu
+kontekstowe</div>
+</div>
+</p>
+</details>
+<ol style="list-style-type: lower-alpha">
+<li>Menu wyboru elementów. Przydatne, jeżeli chcemy zaznaczyć konkretny
+typ elementu (linia, powierzchnia, itd.).</li>
+<li>Menu manipulacji widokiem w oknie graficznym. Warto również znać
+kombinacje klawiszy.
+<ul>
+<li>Wciśnięta rolka myszki - Obracanie kamery względem środka układu
+wspólrzędnych</li>
+<li>ctrl + wciśnięta rolka myszki - Przesuwanie kamery</li>
+<li>shift + wciśnięta rolka myszki - powiększanie aktualnego widoku
+(przed wciśnięciem kombinacji warto najechać kursorem na miejsce, które
+chcemy powiększyć)</li>
+</ul></li>
+<li>Menu szkicu. Niebieska ikona (po zaznaczeniu odpowiedniej
+płaszczyzny w <strong>drzewie historii</strong>) tworzy nowy szkic.</li>
+<li>Po każdej nowo wstawionej operacji w trybie modelingu powinniśmy ją
+stworzyć przy pomocy przycisku <strong>Generate</strong></li>
+</ol></li>
+<li><p>W menu kontekstowym <strong>units</strong> upewnij się, czy
+wybrana są dobre jednostki. <strong>Przy każdym nowo otwartym programie
+w środowisku Workbench należy się upewnić czy jednostka jest dobrze
+ustawiona</strong></p></li>
+<li><p>Utwórz <strong>nowy szkic</strong> (Rys. 6c). Upewnij się, czy
+wybrana została dobra płaszczyzna.</p>
+<pre><code> Aby wykadrować widok na płaszczyznę pracy, możesz kliknąć prostopadłą oś do tej płaszczyzny na układzie współrzędnym widocznym w oknie graficznym. Jeżeli jesteś w trybie szkicownika, dodatkowo można to zrobić za pomocą najbardziej wysuniętego guzika na prawo w menu kontekstowym (Rys. 6)</code></pre></li>
+<li><p>Aby teraz przejść do trybu szkicownika, <strong>zaznacz</strong>
+nowo utworzony szkic w oknie drzewa historii i w tym samym oknie wejdź w
+zakładkę <strong>Sketching</strong>. Pojawi się nowe okno z zakładkami.
+Każda zakładka ma <strong>dwie czarne strzałki</strong> do nawigowania -
+Rys. 7a. Mamy do dyspozycji zakładkę <strong>Draw</strong>, w której
+znajdziemy wszystkie potrzebne “kreski”. Zakładkę
+<strong>Dimensions</strong>, w której znajdziemy wszystkie narzędzia do
+wymiarowania (przydatna tutaj jest opcja <strong>move</strong> do
+przesuwania wymiaru).</p>
+<details>
+<summary>
+<p>Rys. 7</p>
+</summary>
+<p>
+<div class="float">
+<img src="figures/momp_inst1/sketchMenu.svg#center"
+alt="Rys. 7. Menu szkicownika" />
+<div class="figcaption"><strong>Rys. 7.</strong> Menu szkicownika</div>
+</div>
+</p>
+</details></li>
+<li><p>Po wejściu do szkicownika, należy ustawić <strong>automatyczne
+nadawanie więzów</strong> (Rys. 7b i 7c). Dzięki temu program nadaje
+więzy w trakcie dodawania nowych elementów do szkicu wyświatlając
+pierwszą literę więzu. Na przykład, rysując poziomą linię pojawia się
+litera <em>H</em> odpowiadająca więzowi <em>Poziom</em>
+(<strong>H</strong>orizontal).</p></li>
+</ol>
+<p>Przejdźmy w końcu do rysowania:</p>
+<ol start="7" style="list-style-type: decimal">
+<li><p>W stworzonym szkicu, narysuj prawą część kanału za pomocą
+prostokąta. Nadaj więzy tak, aby lewą krawędzią dotykał osi Y, natomiast
+dolną krawędzią osi X (<strong>Constraints -&gt; Coincident</strong>).
+Prostokąt zwymiaruj (<strong>Dimensions -&gt;
+General/Horizontal/Vertical</strong>). W pełni zwymiarowany geometria
+powinna mieć kolor granatowy.</p>
+<pre><code> Najwygodniej jest wymiarować linię wymiarując pozycję jej węzłów (końców).</code></pre></li>
+<li><p>Wyjdź ze szkicownika klikając zakładkę
+<strong>Modeling</strong>.</p></li>
+<li><p>Stwórz kolejny szkic (Pamiętaj o wybraniu poprawnej
+płaszczyzny!). W nowym szkicu narysuj drugi prostokąt i za pomocą więzu
+<strong>Coincident</strong> połącz prostokąty górnymi wierzchołkami aby
+utworzyć ostateczny kształt kanału. <strong>Zwymiaruj</strong>
+prostokąt. Wyjdź do trybu <strong>Modeling</strong></p></li>
+<li><p>Na tym etapie musimy utworzyć powierzchnię która będzie
+reprezentować nasz dwuwymiarowy płyn. Wywołaj opcję <strong>Concept
+-&gt; Surfaces From Sketches</strong>.</p>
+<details>
+<summary>
+<p>Rys. 8.</p>
+</summary>
+<p>
+<div class="float">
+<img src="figures/momp_inst1/newsurface.svg#center"
+alt="Rys. 8. Stwórz powierzchnię ze szkicu" />
+<div class="figcaption"><strong>Rys. 8.</strong> Stwórz powierzchnię ze
+szkicu</div>
+</div>
+</p>
+</details>
+<p>W oknie szczegółów pojawi się nowe menu:</p></li>
+</ol>
+<ul>
+<li><strong>Base Objects</strong>: Tutaj należy wybrać szkic z którego
+ma powstać powierzchnia. Wystarczy zaznaczyć jedną z linii szkicu i
+kliknąć <strong>Apply</strong></li>
+<li><strong>Operation</strong>: Tutaj mamy dwie opcje:
+<ul>
+<li><p><strong>Add material</strong> tworzona powierzchnia zostanie
+dodana do już znajdującej się powierzchni w geometrii, jeżeli ta pokrywa
+się z nią. Oczywiście w naszej geometrii nie ma jeszcze żadnych innych
+elementów. <strong>Wybieramy tą opcję</strong></p></li>
+<li><p><strong>Add frozen</strong> tworzona powierzchnia zostanie dodana
+do geometrii jako odrębny element.</p>
+<pre><code>  Za każdym razem, gdy chcemy zaakceptować wybór i stworzyć
+  geometrię wciskamy przycisk generate (Rys. 6d)</code></pre></li>
+</ul></li>
+</ul>
+<ol start="11" style="list-style-type: decimal">
+<li><p>Powtarzamy krok 10 dla drugiego szkicu. Tym razem wybieramy opcję
+<strong>Add frozen</strong>. (<em>Generate</em>)</p></li>
+<li><p>Nasze drzewo historii powinno wyglądać tak:</p></li>
+</ol>
+<p><img src="figures/momp_inst1/historyTree.PNG#center" /></p>
+<p>Na tym etapie mamy utworzone dwie powierzchnie. W takim stanie,
+powierzchnie są widziane jako dwa niezależne, nie połączone ze sobą
+elementy. Zależy nam teraz, aby dwie odrębne powierzchnie traktowane
+były jako złożenie.</p>
+<ol start="13" style="list-style-type: decimal">
+<li><p>Rozwińmy ostatni element w drzewie historii operacji. Powinny
+znajdować się tu dwie utworzone przez nas powierzchnie. Wciskając
+<em>ctrl</em> <strong>zaznaczmy</strong> obydwie pozycje. Prawym
+przyciskiem myszy otwieramy menu i wybieramy <strong>Form new
+part</strong> (Rys. 9a). Właśnie utworzyliśmy
+<strong>złożenie</strong>.</p>
+<details>
+<summary>
+<p>Rys. 9.</p>
+</summary>
+<p>
+<div class="float">
+<img src="figures/momp_inst1/formnewpart.svg#center"
+alt="Rys. 9. Stwórz złożenie" />
+<div class="figcaption"><strong>Rys. 9.</strong> Stwórz złożenie</div>
+</div>
+</p>
+</details></li>
+<li><p>W szczegółach nowopowstałego złożenia, należy zmienić typ
+geometrii na <strong>Fluid</strong> (Rys. 9b).</p></li>
+<li><p><strong>Zamykamy</strong> DesignModeler.</p></li>
+</ol>
+<hr />
+<pre><code>    Zanim przejdziemy do kolejnego modułu, dobrym nawykiem jest zapisanie naszej pracy.
+    Pozwoli to uniknąć utraty danych w razie awarii lub naszego błędu.</code></pre>
+<hr />
+</div>
+<div id="moduł-mesh" class="section level2">
+<h2>Moduł Mesh</h2>
+<ol style="list-style-type: decimal">
+<li><p>Otwieramy moduł Mesh, dwukrotnie klikając na odpowiednią
+komórkę.</p></li>
+<li><p>Interface jest bardzo podobny do tego w DesignModelerze. (Drzewo
+historii, okno szczegółow oraz okno graficzne). Dodatkowym elementem
+jest belka z narzędziami w górnej części okna.</p></li>
+<li><p>W oknie historii najważniejszym elementem jest gałąź
+<strong>Mesh</strong>. To tu znajdą się wszystkie operacje do wykonania
+siatki obliczeniowej. <img src="figures/momp_inst1/meshMenu.svg#center"
+alt="Rys. 9. Stwórz złożenie" /></p></li>
+<li><p>Aby wygenerować siatkę zaznaczamy <strong>Mesh</strong> i w oknie
+szczegółów przechodzimy do <strong>Defaults</strong> i w <strong>Element
+size</strong> zmieniamy domyślną wartość na <strong>3
+mm</strong>.</p></li>
+<li><p><strong>Generate</strong> Powinniśmy zobaczyć gotową siatkę
+składającą się z czworokątów. Upewnij się, że wyższa część domeny
+podzielona jest na około 10 elementów w kierunku pionowym.</p></li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst1/meshresult.svg#center"
+alt="Rys. 10. Siatka na potrzeby obliczeń w instrukcji 2." />
+<div class="figcaption"><strong>Rys. 10.</strong> Siatka na potrzeby
+obliczeń w instrukcji 2.</div>
+</div>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Ostanitą rzeczą, jest nazwanie elementów domeny. Dzięki temu, w
+programie fluent, można definiować warunki brzegowe. Nadawanie nazwy
+polega na <strong>zaznaczeniu</strong> elementów w oknie graficznym,
+wywołaniu menu podręcznego za pomocą <strong>prawego przycisku
+myszki</strong> i wybraniu opcji <em>Create named selection…</em>.
+<strong>Szybszym sposobem</strong> jest zaznaczenie elementów (kilka
+elementów zaznaczamy wciskając <em>ctrl</em>) i na klawiaturze wciskamy
+literę <em>n</em>.</p></li>
+<li><p>Zaznaczamy kolejno elementy domeny (krawędzie) i nazywamy je tak
+jak zostały nazwane w rysunku poglądowym w akapicie <a
+href="#moduł-geometryczny---designmodeler">“Moduł geometryczny…”</a>.
+Dla obu powierzchni tworzymy jedną nazwę <strong>Woda</strong>.</p></li>
+<li><p>Wychodzimy z programu <strong>Meshing</strong>.</p></li>
+<li><p>Należy zauważyć, że po wyjściu z programu
+<strong>Meshing</strong> status komórki jest oznaczony znakiem
+<strong>Zaktualizuj dane</strong>. Tak jak to zostało opisane w akapicie
+<a href="#symbole-w-komórkach-komponentów-systemu">“Symbole…”</a>,
+program lokalnie wykonał zadanie, jednak nie przekazał informacji do
+środowiska gdzie znajduje się cały projekt. Klikamy na komórkę
+<strong>Mesh</strong> prawym przyciskiem myszy i z menu podręcznego
+wybieramy opcję <strong>Update</strong>. Środowisko Workbench
+skomunikuje się z programem i zaktualizuje dane.</p>
+<pre><code> Przy tej okazji warto przyjrzeć się temu co znajduje się w menu podręcznym.
+ Pomocną opcją jest opcja reset.
+ Jeżeli nie jesteśmy zadowoleni z pracy i/lub chcemy wyczyścić całą komórkę do stanu początkowego uzywamy właśnie opcji reset.</code></pre></li>
+<li><p>Zapisujemy projekt. Nasz blok <em>Instrukcja I</em> jest gotowy
+do wykonania Instrukcji II.</p></li>
+</ol>
+<div id="podstawowe-elementy-kontroli-jakości-siatki"
+class="section level3">
+<h3>Podstawowe elementy kontroli jakości siatki</h3>
+<p>Sprawdźmy jak można “poprawić” wygenerowaną siatkę.</p>
+<ol style="list-style-type: decimal">
+<li><p>W środowisku Workbench, do schematu projektu, dołącz komponent
+<strong>Mesh</strong> i zlinkuj geometrie nowo dodany blok z blokiem
+<em>Instrukcja I</em>. Jest to opisane w akapicie <a
+href="#tworzenie-własnych-systemów-alternatywa">Tworzenie własnych
+systemów (alternatywa)</a> <img
+src="figures/momp_inst1/denseMesh.PNG#center" /> Jest to blok
+tymczasowy, po skończeniu ćwiczenia możesz go usunąć.</p></li>
+<li><p>Otwórz nowo dodaną komórkę mesh.</p></li>
+<li><p>Za pomocą opisanych poniżej opcji, odtwórz siatkę pokazaną na
+ilustracji.</p></li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst1/fineMesh.svg#center"
+alt="Rys. 11. Zagęszczona siatka. Cała geometria niezmieściłaby się w całości. Na rysunku powiększone obszary początku (wlotu), uskoku i końca (wylotu)." />
+<div class="figcaption"><strong>Rys. 11.</strong> Zagęszczona siatka.
+Cała geometria niezmieściłaby się w całości. Na rysunku powiększone
+obszary początku (wlotu), uskoku i końca (wylotu).</div>
+</div>
+<p>Wszystkie opisane niżej opcje, możemy dodać do geometrii za pomocą
+górnej belki programu, w zakładce <strong>Mesh</strong>. Można je także
+aktywować po przez kliknięcie prawym klawiszem myszy na gałąź
+<strong>Mesh</strong> następnie <strong>Insert</strong> -
+<strong>Sizing</strong>. Podstawowymi narzędziami do kontroli siatki
+obliczeniowej w programie Meshing, które poznamy na tym etapie zajęć
+są:</p>
+<details>
+<summary>
+Sizing
+</summary>
+<p>
+<p><strong>Sizing</strong> - ta opcja pozwala na narzucenie podziału na
+krawędzi/powierzchni. <img src="figures/momp_inst1/Sizing.PNG#center" />
+Opcjami, funkcji sizing, które nas interesują na tym etapie to:</p>
+<ul>
+<li><strong>Type</strong> - typ podziału na elementy. Do wyboru mamy
+opcje wymuszenia rozmiaru elementów siatki na danym obiekcie lub ilości
+podziałów na obiekcie.</li>
+<li><strong>Bias Type</strong> - opcja dostępna w podziale krawędzi -
+Kierunkowe zagęszczenie linii.</li>
+</ul>
+</p>
+</details>
+<hr />
+<details>
+<summary>
+Inflation
+</summary>
+<p>
+<p><strong>Inflation</strong> - Siatka warstwy przyściennej. Ta opcja
+pozwala nam na stworzenie strefy kierunkowego zagęszczenia na
+powierzchni lub objętości. Takie strefy powinny być tworzone przy
+fizycznych ścianach domeny.</p>
+<ul>
+<li><p><strong>Geometry</strong> w tej rubryce należy zaznaczyć
+powierzchnie (w siatce dwuwymiarowej) lub objętość (w siatce
+trójwymiarowej)</p></li>
+<li><p><strong>Boundary</strong> zaznaczmy krawędź (2D), powierzchnie
+(3D) przy której tworzymy siatkę warstwy przyściennej.</p></li>
+<li><p><strong>Maximum Layers</strong> - ile warstw powinna mieć siatka
+warstwy przyściennej.</p></li>
+<li><p>Na potrzeby tej instrukcji użyjemy opcji Smooth Transition (o
+pozostałe opcje zapytaj prowadzącego)</p>
+<pre><code>      UWAGA: Opcja Inflation wyklucza się z opcją Mapped Meshing</code></pre></li>
+</ul>
+</p>
+</details>
+<hr />
+<details>
+<summary>
+Mapped Meshing/Face Meshing
+</summary>
+<p>
+<p><strong>Mapped Meshing</strong> - Siatka strukturalna. Ta opcja
+pozwala na zastosowanie prostokątów(2D)/graniastosłupów(3D) zamiast
+trójkątów(2D)/Czworościanów(3D). Zastosowanie tej opcji jest obarczone
+spełnieniem kilku zasad.</p>
+<ul>
+<li>Suma elementów siatki na przeciwległych ścianach musi być taka
+sama.</li>
+<li>Geometria powinna mieć 4 wierzchołki. W przypadku wieloboków (&gt;4)
+program może nie być w stanie rozpoznać tych wierzchołków, wtedy możemy
+określić je przy pomocy opcji <strong>Specified Corners</strong>.</li>
+</ul>
+<p><img src="figures/momp_inst1/mapped.svg#center" /></p>
+<pre><code>    UWAGA: Opcja Mapped meshing wyklucza się z opcją Inflation</code></pre>
+</p>
+</details>
+<hr />
+<details>
+<summary>
+Zaawansowane funkcje rozmiaru
+</summary>
+<p>
+<p><strong>Zaawansowane funkcje rozmiaru</strong> - opcje dostepne w
+gałęzi <strong>Mesh</strong> w drzewie historii operacji, w zakładce
+<strong>sizing</strong>: <img
+src="figures/momp_inst1/Sizing.svg#center" /></p>
+<ul>
+<li><strong>Mesh defeaturing</strong> - Opcja pomijania elementów
+geometrii, które są mniejsze niż: -<strong>Defeature Size</strong> -
+poniżej ten wartości, elementy geometrii mogą być pomijane w
+siatkowaniu. Włączamy tą opcję, jeżeli zależy nam, aby model do obliczeń
+być uproszczony.</li>
+<li><strong>Capture Curvature</strong> - funkcja zagęszczająca siatkę w
+okolicy i na krzywiznach.
+<ul>
+<li><strong>Curvature Min Size</strong> - Minimalny rozmiar elementu
+siatki na krzywiźnie.</li>
+<li><strong>Curvature Normal Angle</strong> - Sterowanie zagęszczeniem
+na krzywiźnie aby zachować zadany kąt pomiędzy wektorami normalnymi
+sąsiadujących ze sobą elementów.</li>
+</ul></li>
+<li><strong>Capture proximity</strong> - włączając tą opcję, wprowadzamy
+zagęszczenie w przewężeniach.
+<ul>
+<li><strong>Proximity Min Size</strong> - Jeżeli pomiędzy elementami
+geometrii odstęp jest mniejszy niż ta wartość, funkcja zagęści siatkę w
+tym miejscu.</li>
+<li><strong>Num Cells Across Gap</strong> - Najmniejsza liczba elementow
+siatki pomiędzy sąsiadującymi ze sobą geometriami.</li>
+</ul></li>
+</ul>
+</p>
+</details>
+<hr />
+</div>
+</div>
+</div>
+<div id="zadanie-dla-chętnych" class="section level1">
+<h1>Zadanie dla chętnych</h1>
+<ul>
+<li>Narysuj i posiatkuj geometrię pokazaną na ilustracji na dwa sposoby:
+<ul>
+<li>Zagęść siatkę przy ścianach za pomocą funkcji
+<strong>Inflation</strong>.</li>
+<li>Spróbuj wygenerować podobną siatkę za pomoca opcji <strong>Sizing (z
+opcją bias)</strong> oraz <strong>Mapped mesh</strong>. Jak powinieneś
+przygotować geometrię aby spełniała wymogi zastosowania funkcji
+<strong>Mapped Mesh</strong>?</li>
+</ul></li>
+<li>Wloty zaznaczono strzałkami, wylot znajduje się u góry
+geometrii.</li>
+<li>Tak, to są cale.</li>
+</ul>
+<div class="float">
+<img src="figures/momp_inst1/dlachetnych.PNG#center"
+alt="Rys. 12. Zadanie dla chętnych" />
+<div class="figcaption"><strong>Rys. 12.</strong> Zadanie dla
+chętnych</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

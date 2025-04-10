@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title>info1_lab03</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info1_lab03.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p>Niniejsza instrukcja poświęcona jest trzem zagadnieniom:</p>
+<ul>
+<li>Obsłudze standardowego wejścia i wyjścia,</li>
+<li>Wprowadzeniu do wskaźników,</li>
+<li>Zwracaniu wartości przez funkcje.</li>
+</ul>
+<div id="instrukcje-wejściawyjścia" class="section level1">
+<h1>Instrukcje wejścia/wyjścia</h1>
+<p>Praktyczny program powinien mieć możliwość interaktywnej komunikacji
+z użytkownikiem. W celu drukowania informacji często wykorzystywane jest
+standardowe wyjście (ekran).</p>
+<div id="drukowanie-tekstu" class="section level2">
+<h2>Drukowanie tekstu</h2>
+<p>Utwórz nowy projekt pakietu MS Visual Studio i napisz program, który
+wydrukuje tekst <em>Witaj na trzecim laboratorium!</em></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dt">void</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   printf<span class="op">(</span><span class="st">&quot;Witaj na trzecim laboratorium!&quot;</span><span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Funkcja <code>printf()</code> służy do wypisywania tekstu na ekran.
+Jako pierwszy argument przyjmuje sformatowany tekst. Do formatowania
+tekstu służą <em>kody sterujące</em>, które pozwalają wprowadzić znak
+nowej linii, tabulacji itp. Przykładowo, umieszczona wewnątrz tekstu
+sekwencja znaków:</p>
+<ul>
+<li><code>"\n"</code> – wprowadza znak nowej linii,</li>
+<li><code>"\t"</code> – wprowadza znak tabulacji.</li>
+</ul>
+<div id="ćwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Używając <strong>pojedynczej</strong> funkcji <code>printf()</code>
+oraz odpowiednich kodów sterujących, wygeneruj tekst identyczny z
+poniższym:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>To jest pierwsze zdanie w mojej instrukcji<span class="op">.</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>To jest tuz po znaku nowej linii<span class="op">.</span>      Zas ten fragment</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                                       oddzielony jest znakiem</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                                       tabulacji<span class="op">!</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>W ponizszej linii wszystkie liczby oddzielono tabulatorami<span class="op">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fl">5.2</span>    <span class="fl">3.14</span>    <span class="op">-</span><span class="dv">7</span>    <span class="dv">8</span></span></code></pre></div>
+<p><strong>Uwaga:</strong> jeśli instrukcja jest długa, a przez to mało
+czytelna, warto kontynuować ją w nowej linii. W tym celu należy posłużyć
+się ukośnikiem wstecznym ,,\’’. Przykładowo:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Ta instrukcja kontynuowana jest </span><span class="op">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="st">w kolejnej linii</span><span class="sc">\n</span><span class="st">);</span></span></code></pre></div>
+<p>Spróbuj osiągnąć ten sam efekt, co powyżej, ale tym razem użyj
+osobnej instrukcji <code>printf</code> dla każdego ze zdań.</p>
+<p>W instrukcji <code>printf()</code> nie używaj polskich znaków
+diakrytycznych. Można to zrobić, jednak ze względu na przenośność w
+prostych programach nie jest praktykowane.</p>
+</div>
+</div>
+<div id="znaki-specjalne" class="section level2">
+<h2>Znaki specjalne</h2>
+<p>Pewne znaki są w języku C zarezerwowane na potrzeby wykonania
+konkretnych operacji. Jeśli chcemy je wydrukować na ekran, nie mogą być
+użyte wprost. Przykładowo, jeśli chcemy za pomocą funkcji
+<code>printf()</code> wydrukować znaki ,,%’’ i ,,\’’ należy je zapisać
+podwójnie, tzn. ,,%%’’ i ,,\\’’.</p>
+<p>Dopisz do swojego programu instrukcję, która wydrukuje następujący
+tekst:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="dv">82</span><span class="op">%</span> dysku C<span class="op">:</span>\ jest w uzyciu<span class="op">!</span></span></code></pre></div>
+</div>
+<div id="drukowane-liczb" class="section level2">
+<h2>Drukowane liczb</h2>
+<p>Przepisz do funkcji main następujące instrukcje:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="dt">int</span> a <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="dt">double</span> b <span class="op">=</span> <span class="fl">8.2</span><span class="op">,</span> c <span class="op">=</span> <span class="fl">7.5</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%lf</span><span class="st">, c = </span><span class="sc">%lf\n</span><span class="st">&quot;</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>c <span class="op">+=</span> b<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>c <span class="op">-=</span> a<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;a = </span><span class="sc">%d</span><span class="st">, b = </span><span class="sc">%lf</span><span class="st">, c = </span><span class="sc">%lf\n</span><span class="st">&quot;</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">,</span> c<span class="op">);</span></span></code></pre></div>
+<p>Zauważ, że do drukowania wartości przechowywanych w zmiennych służą
+tzw. <em>specyfikatory formatu</em>. Na zajęciach najczęściej będą
+używane:</p>
+<pre><code>- %lf -- dla zmiennych typu `double`
+- %d -- dla zmiennych typu `int`
+- %f -- dla zmiennych typu `float`
+- %c -- dla zmiennych typu `char`</code></pre>
+<div id="ćwiczenia-1" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Dodaj po linijce kodu, który wydrukuje na ekran bieżącą wartość
+przechowywaną w zmiennych. Co oznaczają operatory <code>+=</code> i
+<code>-=</code>?</li>
+<li>Dla liczb zmiennoprzecinkowych o ekstremalnie małych, umiarkowanych
+i ogromnych wartościach użyj poniższych sekwencji i zobacz, jaki będzie
+efekt działania:
+<ul>
+<li><code>%lg</code>, <code>%e</code>, <code>%.2lf</code>,
+<code>%.4lf</code> (dla zmiennych typu <code>double</code>),</li>
+<li><code>%.3f</code> (dla zmiennych typu <code>float</code>).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="czytanie-z-klawiatury" class="section level2">
+<h2>Czytanie z klawiatury</h2>
+<p>Instrukcją służącą do czytania danych ze standardowego wejścia
+(klawiatury) jest funkcja <code>scanf()</code>. Przykład jej użycia
+wygląda następująco:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="dt">int</span> a<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">&amp;</span>a<span class="op">);</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Wczytana liczba: </span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> a<span class="op">);</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="dt">double</span> c<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%lf</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">&amp;</span>c<span class="op">);</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Wczytana liczba: </span><span class="sc">%lf\n</span><span class="st">&quot;</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="dt">int</span> b<span class="op">,</span> d<span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="dt">double</span> g<span class="op">,</span> h<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>scanf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%lf</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%lf</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">&amp;</span>g<span class="op">,</span> <span class="op">&amp;</span>d<span class="op">,</span> <span class="op">&amp;</span>b<span class="op">,</span> <span class="op">&amp;</span>h<span class="op">);</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;Wczytane liczby: </span><span class="sc">%lf</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%d</span><span class="st"> </span><span class="sc">%lf\n</span><span class="st">&quot;</span><span class="op">,</span> g<span class="op">,</span> d<span class="op">,</span> b<span class="op">,</span> h<span class="op">);</span></span></code></pre></div>
+<p><strong>Uwaga:</strong></p>
+<ul>
+<li>Zwróć szczególną uwagę na znak ,,&amp;’’ występujący przed nazwami
+zmiennych, do których wczytujemy wartości. Znak ten służy do ustalenia
+zmiennej występującej za raz po nim. Funkcja <code>scanf()</code>
+wczytuje dane z klawiatury, które musi gdzieś zapisać. Stosując znak
+,,&amp;’’ dostarczamy informacji o tym gdzie znajduje się zmienna, do
+której należy zapisać wczytaną wartość.</li>
+<li>Zauważ również, że używając pojedynczej instrukcji
+<code>scanf</code> możesz wczytać wiele liczb. Należy przy tym pamiętać
+o podaniu specyfikatorów formatu w takiej kolejności jak zmienne na
+liście argumentów. Powinno się unikać stosowania innych symboli niż
+spacje i specyfikatory formatu. Inaczej należy pamiętać o podaniu liczb
+razem z tymi dodatkowymi symbolami.</li>
+</ul>
+<div id="ćwiczenia-2" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>Napisz prosty kalkulator, który wczyta z klawiatury dwie liczby typu
+rzeczywistego i wykona na nich dodawanie, odejmowanie, mnożenie i
+dzielenie. Pamiętaj, że odejmowanie i dzielenie nie jest przemienne –
+policz zatem każdą z możliwych różnic i ilorazów. Wydrukuj wszystkie
+wyniki na ekran.</p>
+</div>
+</div>
+</div>
+<div id="wskaźniki" class="section level1">
+<h1>Wskaźniki</h1>
+<p>Każdy element programu musi być zapisany gdzieś w pamięci komputera.
+Oznacza to, że musi mieć swój adres. Adres ten można zapisać w pewnej
+zmiennej i posłużyć się nim w programie. Zmienną zawierającą adres innej
+zmiennej nazywamy <strong>wskaźnikiem</strong>. Wskaźniki mogą zawierać
+adresy różnych elementów (zmiennych, tablic, funkcji, …). Z tego powodu
+będą pojawiały się na różnych etapach tego kursu. W tej instrukcji
+opiszemy jedynie podstawy.</p>
+<p>Jak już wspomnieliśmy, każda zmienna ma swój adres. Można go uzyskać
+stosując operator &amp; i zapisać w zmiennej typu wskaźnikowego.
+Mówiliśmy o tym podczas zajmowania się funkcją <code>scanf()</code>.
+Zmienne różnych typów wymagają różnej wielkości pamięci. Dlatego
+deklaracja wskaźnika zawierającego adres zmiennej danego typu, ma postać
+<code>typ *wskaznik;</code>.</p>
+<p>Przykładowo:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dt">double</span> x<span class="op">;</span>              <span class="co">// Deklaracja zmiennej typu double</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">4.2</span><span class="op">;</span>               <span class="co">// Definicja - nadanie zmiennej wartosci</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="dt">double</span> <span class="op">*</span>wsk_x<span class="op">;</span>         <span class="co">// Deklaracja wskaznika mogacego przechowac</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>                       <span class="co">// adres zmiennej typu double</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>wsk_x <span class="op">=</span> <span class="op">&amp;</span>x<span class="op">;</span>            <span class="co">// Definicja - nadanie zmiennej wartosci</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>                       <span class="co">// bedacej adresem zmiennej x</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%p</span><span class="st">&quot;</span><span class="op">,</span> wsk_x<span class="op">);</span>   <span class="co">// wydrukowanie adresu przechowywanego przez</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>                       <span class="co">// wskaznik na ekran</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%lf</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">*</span>wsk_x<span class="op">);</span> <span class="co">// wydrukowanie wartosci zmiennej, ktorej</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>                       <span class="co">// adres przechowuje wskaznik</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%lf</span><span class="st">&quot;</span><span class="op">,</span> x<span class="op">);</span>      <span class="co">// wydrukowanie wartosci zmiennej x</span></span></code></pre></div>
+<p>Podsumowując:</p>
+<ul>
+<li><code>&amp;x</code> – pobiera adres zmiennej,</li>
+<li><code>*wsk_k</code>– pobiera wartość zmiennej, na którą wskazuje
+wskaźnik,</li>
+<li><code>"%p"</code> – informuje funkcję <code>printf()</code>, że
+wyświetlana wartość to adres.</li>
+</ul>
+<div id="ćwiczenia-3" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Stwórz trzy zmienne <code>a</code>, <code>b</code> i <code>c</code>
+tego samego typu.</li>
+<li>Do zmiennej <code>a</code> wczytaj liczbę.</li>
+<li>Utwórz dwa wskaźniki na pozostałe zmienne.</li>
+<li>Wykorzystaj wskaźniki do <em>przepisania</em> wartości wczytanej do
+zmiennej <code>a</code> do pozostałych zmiennych.</li>
+<li>Dla sprawdzenia, wyświetl zawartość wszystkich zmiennych.</li>
+</ul>
+</div>
+</div>
+<div id="funkcje-i-zwracanie-argumentu" class="section level1">
+<h1>Funkcje i zwracanie argumentu</h1>
+<p>Do tej pory, funkcje deklarowaliśmy i definiowaliśmy w tym samym
+samym miejscu (przed funkcją <code>main()</code>). W przypadku gdy kod
+programu jest długi lub ma być wykorzystany przez innego użytkownika
+rozdziela się deklarację od definicji. Instrukcja:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="dt">void</span> NazwaFunkcji<span class="op">(</span><span class="dt">int</span> argument1<span class="op">,</span> <span class="dt">double</span> argument2<span class="op">);</span></span></code></pre></div>
+<p>jest deklaracją (zauważ, że kończy się średnikiem).</p>
+<p>Instrukcja:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="dt">void</span> NazwaFunkcji<span class="op">(</span><span class="dt">int</span> argument1<span class="op">,</span> <span class="dt">double</span> argument2<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="co">// Tu znajduje sie cialo funkcji.</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>jest definicją i może być umieszczona także za funkcją
+<code>main()</code>.</p>
+<p>Funkcje nie tylko grupują pewne logicznie wydzielone bloki
+instrukcji, których używamy wielokrotnie (jak funkcja rysująca ludzika z
+kółek i kresek. W takim przypadku wystarczyło zadeklarować, że funkcja
+nic nie zwraca wykorzystując słowo kluczowe <code>void</code>.</p>
+<p>Funkcje mogą jednak zwracać także wartość. Typ zmiennej, jaka jest
+zwracana znajduje się przed nazwą funkcji.</p>
+<p>Weźmy dla przykładu funkcję, która przyjmuje dwie wartości (jedną
+typu <code>double</code>, drugą typu <code>float</code>) i zwraca liczbę
+całkowitą równą 5, gdy większą wartość ma pierwszy argument lub wartość
+10 w przeciwnym razie. Przeanalizujmy odpowiednio deklarację i kod
+takiej funkcji:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="dt">int</span> KtoryWiekszy<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">float</span> b<span class="op">);</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="dt">int</span> KtoryWiekszy<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">float</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>   <span class="dt">int</span> Wynik<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>   <span class="cf">if</span><span class="op">(</span>a <span class="op">&gt;</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>      Wynik <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>   <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>      Wynik <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>   <span class="cf">return</span> Wynik<span class="op">;</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Zwróć uwagę na instrukcję <code>return</code>, która służy do
+zwracania <strong>wartości przechowywanej w konkretnej
+zmiennej</strong>.</p>
+<p>Ponadto, zmienna zadeklarowana w danej funkcji będzie dla programu
+widoczna <strong>tylko i wyłącznie wewnątrz tej funkcji</strong>, a nie
+będzie rozpoznawana w innych fragmentach kodu (np. wewnątrz funkcji
+<code>main</code>). Prześledźmy jeszcze kod funkcji <code>main()</code>,
+w której występuje wywołanie naszej funkcji.</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="dt">void</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="dt">float</span> c <span class="op">=</span> <span class="fl">8.14</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="dt">double</span> d <span class="op">=</span> <span class="op">-</span><span class="fl">7.3814</span><span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="dt">int</span> InnaZmienna <span class="op">=</span> <span class="dv">15</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a> </span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  KtoryWiekszy<span class="op">(</span>d<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  InnaZmienna <span class="op">=</span> KtoryWiekszy<span class="op">(</span>d<span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  InnaZmienna <span class="op">=</span> KtoryWiekszy<span class="op">(</span><span class="fl">12.5</span><span class="op">,</span> c<span class="op">);</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div id="ćwiczenia-4" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Dodaj do powyższego kodu instrukcje, które po każdym wywołaniu
+funkcji <code>KtoryWiekszy</code> wydrukują wartość aktualnie
+przechowywaną przez zmienną <code>InnaZmienna</code>. Zastanów się, jaki
+będzie wynik i sprawdź czy masz rację.</li>
+<li>Zmodyfikuj napisany dziś kalkulator tak, aby instrukcje sumowania,
+odejmowania, mnożenia i dzielenia były realizowane przez osobne funkcje
+<code>Sumuj</code>, <code>Odejmij</code>, <code>Pomnoz</code> i
+<code>Podziel</code>.</li>
+</ul>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

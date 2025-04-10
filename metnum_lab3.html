@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+
+
+<title>Metody iteracyjne</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/metnum_lab3.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Metody iteracyjne</h1>
+<h4 class="author">Ł. Łaniewski-Wołłk</h4>
+
+</div>
+
+
+<p>Na tych laboratoriach skupimy się na rozwiązaniu układu równań: <span
+class="math display">\[
+\mathbf{A} \mathbf{x} = \mathbf{b}
+\]</span> W tym celu rozpatrzymy kilka metod, których działanie
+sprawdzimy na układzie równań otrzymanym na poprzednich zajęciach dzięki
+metodzie MES.<br />
+Naszym celem będzie napisanie funkcji <code>Solve</code>, która zastąpi
+funkcję <code>Gauss</code> i wyznaczy wartość wektora <span
+class="math inline">\(\mathbf{x}\)</span>. Nie będziemy jednak tego
+układu rozwiązywać metodą bezpośrednią, taką jak eliminacja Gaussa, ale
+<strong>metodą iteracyjną</strong>. Skonstruujemy ciąg <span
+class="math inline">\(\left(\mathbf{x}^{k}\right)\)</span>, którego
+elementy <span class="math inline">\(\mathbf{x}^{k}\)</span> będą dążyły
+do rozwiązania dokładnego <span
+class="math inline">\(\mathbf{x}\)</span>.</p>
+<p><strong>Niezbędne definicje</strong></p>
+<ul>
+<li>Wektorem błędu w k-tym kroku nazywamy: <span class="math display">\[
+\mathbf{e}^k = \mathbf{x} - \mathbf{x}^k
+\]</span></li>
+<li>Wektorem residualnym (<strong>residuum</strong>) w k-tym kroku
+nazywamy: <span class="math display">\[
+\mathbf{r}^k = \mathbf{b} - \mathbf{b}^k
+\]</span></li>
+</ul>
+<p>Łatwo zauważyć, że zachodzi zależność <span
+class="math inline">\(\mathbf{r}^k = \mathbf{A}
+\mathbf{e}^k\)</span>.<br />
+Widać także, że skoro <span
+class="math inline">\(\mathbf{x}^{k}\)</span> dąży do <span
+class="math inline">\(\mathbf{x}\)</span> to <span
+class="math inline">\(\mathbf{r}^{k}\)</span> dąży do zera.</p>
+<div id="zadanie" class="section level3">
+<h3>Zadanie</h3>
+<p>Wyznacz residuum dla zadania z poprzednich zajęć. Następnie oblicz i
+wyświetl jego normę: <span class="math inline">\(\|\mathbf{r}\| =
+\sqrt{\mathbf{r}^T\mathbf{r}}\)</span> (napisz funkcję liczącą normę
+wektora <code>norm(int, double *)</code>). Ile wynosi ta norma przed i
+po rozwiązaniu układu metodą eliminacji Gaussa?</p>
+</div>
+<div id="początki" class="section level1">
+<h1>Początki</h1>
+<p>Weźmy dowolny wektor <span
+class="math inline">\(\mathbf{x}^0\)</span> i obliczmy odpowiadający mu
+wektor prawych stron <span class="math inline">\(\mathbf{b}^0 =
+\mathbf{A} \mathbf{x}^0\)</span>. Różnica między ,,prawdziwym’’ wektorem
+<span class="math inline">\(\mathbf{b}\)</span> a przybliżeniem jest
+wtedy równa <span class="math display">\[
+\mathbf{r}^0 = \mathbf{b} -\mathbf{b}^0 = \mathbf{A} \mathbf{x} -
+\mathbf{A} \mathbf{x}^0 = \mathbf{A} \mathbf{e}^0
+\]</span> Zatem różnica między ,,prawdziwym’’ rozwiązaniem a
+przybliżonym <span class="math inline">\(\mathbf{e}^0 = \mathbf{A}^{-1}
+\mathbf{r}^0\)</span>. Co ostatecznie pozwala nam zapisać: <span
+class="math inline">\(\mathbf{x} = \mathbf{x}^0 +
+\mathbf{A}^{-1}\mathbf{r}^0\)</span>. Nie mamy jednak <span
+class="math inline">\(\mathbf{A}^{-1}\)</span> (w tym rzecz). Zamiast
+niej użyjemy macierzy <span
+class="math inline">\(\mathbf{M}^{-1}\)</span>. Wtedy jednak nie
+dostaniemy dokładnej wartości<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a> <span
+class="math inline">\(\mathbf{x}\)</span> a jedynie przybliżenie.
+Prowadzi to nas do wzoru: <span class="math display">\[
+\mathbf{x}^{k+1} = \mathbf{x}^k + \mathbf{p}^k = \mathbf{x}^k +
+\mathbf{M}^{-1}\mathbf{r}^k
+\]</span> Wektor <span class="math inline">\(\mathbf{p}^k\)</span> jest
+,,poprawką’’ w k-tej iteracji a macierz <span
+class="math inline">\(\mathbf{M}\)</span> nazywamy
+<strong>preconditioner’em</strong>. Najlepiej byłoby gdyby macierz <span
+class="math inline">\(\mathbf{M}\)</span> była ,,podobna’’ do macierzy
+<span class="math inline">\(\mathbf{A}\)</span> a jednocześnie łatwo
+odwracalna.</p>
+<p>Rozpatrzmy układ <span class="math inline">\(\mathbf{r}^k =
+\mathbf{A} \mathbf{p}^k\)</span>. Widać, że jeśli pominiemy większość
+jego elementów: <span class="math display">\[
+\left\{
+\begin{array}{ccccccccccc}
+A_{11} p_1^k &amp;+&amp; \color{Gray}{A_{12} p_2^k} &amp;+&amp;
+\color{Gray}{A_{13} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp;
+\color{Gray}{A_{1N} p_N^k} &amp;=&amp; r_1^k \\
+\color{Gray}{A_{21} p_1^k} &amp;+&amp; A_{22} p_2^k &amp;+&amp;
+\color{Gray}{A_{23} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp;
+\color{Gray}{A_{2N} p_N^k} &amp;=&amp; r_2^k \\
+\color{Gray}{A_{31} p_1^k} &amp;+&amp; \color{Gray}{A_{32} p_2^k}
+&amp;+&amp; A_{33} p_3^k &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp;
+\color{Gray}{A_{3N} p_N^k} &amp;=&amp; r_3^k \\
+\vdots &amp; &amp; \vdots &amp; &amp; \vdots &amp; &amp; \ddots &amp;
+&amp; \vdots &amp; &amp; \vdots \\
+\color{Gray}{A_{N1} p_1^k} &amp;+&amp; \color{Gray}{A_{N2} p_2^k}
+&amp;+&amp; \color{Gray}{A_{N3} p_3^k} &amp;+&amp; \color{Gray}{\ldots}
+&amp;+&amp; A_{NN} p_N^k &amp;=&amp; r_N^k \\
+\end{array}
+\right.
+\]</span> dostaniemy prosty wzór na <span
+class="math inline">\(\mathbf{p}^k\)</span>: <span
+class="math display">\[
+p^k_i = \frac{1}{A_{ii}}{r^k_i}
+\]</span></p>
+<p>Jest to równoważne z wzięciem za macierz <span
+class="math inline">\(\mathbf{M}\)</span> diagonalnej części macierzy
+<span class="math inline">\(\mathbf{A}\)</span>. Ten prosty schemat
+iteracji z powyższą poprawką nazywamy <strong>metodą
+Jacobiego</strong>.</p>
+<div id="zadania" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Zaimplementuj metodę Jacobiego i wykonaj np. 1000 iteracji
+zaczynając od <span class="math inline">\(\mathbf{x}^0 = 0\)</span>. W
+każdej iteracji wyświetl normę residuum. Napisz także funkcję
+<code>res_draw(double)</code>, która posłuży do wykonania wykresu
+zbieżności.</li>
+<li>Taki proces iteracyjny nie zbiega się. Wprowadź współczynnik <span
+class="math inline">\(\alpha\)</span>, który ,,przytłumi’’ wykonywane
+iteracje: <span class="math display">\[
+\mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha \mathbf{p}^k
+\]</span></li>
+<li>Sprawdź zbieżność tego schematu dla różnych wartości <span
+class="math inline">\(\alpha\)</span>. Sprawdź liczby <span
+class="math inline">\(0.5\)</span>, <span
+class="math inline">\(0.9\)</span>, <span
+class="math inline">\(1.1\)</span> i <span
+class="math inline">\(2\)</span>.</li>
+<li>Wydziel z funkcji <code>Solve</code> część odpowiedzialną za
+mnożenie przez <span class="math inline">\(\mathbf{A}\)</span>:
+<code>Mult(int N, double **A, double *x, double *r)</code> i
+preconditioner:
+<code>Precond(int N, double **A, double *x, double *p).</code></li>
+</ol>
+<p>Spróbujmy poprawić nasz schemat biorąc lepszy preconditioner.
+Zauważmy, że obliczając <span class="math inline">\(p_2^k\)</span> mamy
+już obliczone <span class="math inline">\(p_1^k\)</span> i możemy go
+użyć. Nie musimy zatem pomijać elementów układu ,,pod diagonalą’’: <span
+class="math display">\[
+\left\{
+\begin{array}{ccccccccccc}
+A_{11} p_1^k &amp;+&amp; \color{Gray}{A_{12} p_2^k} &amp;+&amp;
+\color{Gray}{A_{13} p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp;
+\color{Gray}{A_{1N} p_N^k} &amp;=&amp; r_1^k \\
+A_{21} p_1^k &amp;+&amp; A_{22} p_2^k &amp;+&amp; \color{Gray}{A_{23}
+p_3^k} &amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{2N}
+p_N^k} &amp;=&amp; r_2^k \\
+A_{31} p_1^k &amp;+&amp; A_{32} p_2^k &amp;+&amp; A_{33} p_3^k
+&amp;+&amp; \color{Gray}{\ldots} &amp;+&amp; \color{Gray}{A_{3N} p_N^k}
+&amp;=&amp; r_3^k \\
+\vdots &amp; &amp; \vdots &amp; &amp; \vdots &amp; &amp; \ddots &amp;
+&amp; \vdots &amp; &amp; \vdots \\
+A_{N1} p_1^k &amp;+&amp; A_{N2} p_2^k &amp;+&amp; A_{N3} p_3^k
+&amp;+&amp; \ldots &amp;+&amp; A_{NN} p_N^k &amp;=&amp; r_N^k \\
+\end{array}
+\right.
+\]</span> Daje nam to prosty wzór na <span
+class="math inline">\(\mathbf{p}^k\)</span>: <span
+class="math display">\[
+p_i^k = \frac{1}{A_{ii}}\left( r_i - \sum_{j=1}^{i-1} A_{ij} p_j^k
+\right)
+\]</span> Gdy <span class="math inline">\(\alpha = 1\)</span> schemat
+taki nazywamy <strong>metodą Gaussa-Seidla</strong>.</p>
+</div>
+<div id="zadania-1" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Wypróbuj nowy wzór na <span
+class="math inline">\(\mathbf{p}\)</span>. Sprawdź różne wartości <span
+class="math inline">\(\alpha\)</span>.</li>
+</ol>
+<p>Schematy, dla których <span class="math inline">\(\alpha &gt;
+1\)</span> nazywamy metodami <strong>Successive Over-Relaxation</strong>
+(SOR).</p>
+</div>
+</div>
+<div id="dobieramy-alpha" class="section level1">
+<h1>Dobieramy <span class="math inline">\(\alpha\)</span></h1>
+<p>Widać wyraźnie, że zbieżność bardzo zależy od wartości współczynnika
+<span class="math inline">\(\alpha\)</span> i jasnym jest, że najlepiej
+byłoby dobierać ten współczynnik w każdej iteracji: <span
+class="math display">\[
+\mathbf{x}^{k+1} = \mathbf{x}^{k} + \alpha^k \mathbf{p}^k
+\]</span> Zastanówmy się teraz jak będzie się zmieniało residuum w
+zależności od kroku. Jeśli pomnożymy powyższy wzór przez <span
+class="math inline">\(-\mathbf{A}\)</span> a następnie dodamy <span
+class="math inline">\(\mathbf{b}\)</span> i skorzystamy z definicji
+residuum otrzymamy: <span class="math display">\[
+\mathbf{r}^{k+1} = \mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k
+\]</span> Kwadrat normy tego residuum jest równy: <span
+class="math display">\[
+\|\mathbf{r}^{k+1}\| = (\mathbf{r}^{k+1})^T \mathbf{r}^{k+1} =
+(\mathbf{r}^{k} - \alpha^k \mathbf{A} \mathbf{p}^k)^T (\mathbf{r}^{k} -
+\alpha^k \mathbf{A} \mathbf{p}^k) =
+\]</span> <span class="math display">\[
+(\mathbf{r}^{k})^T \mathbf{r}^{k} -
+2 \alpha^k (\mathbf{r}^{k})^T \mathbf{A} \mathbf{p}^k +
+(\alpha^k)^2(\mathbf{A}\mathbf{p}^k)^T \mathbf{A}\mathbf{p}^k
+\]</span> Widać, że kwadrat normy jest kwadratową funkcją <span
+class="math inline">\(\alpha^k\)</span> a współczynnik przed <span
+class="math inline">\((\alpha^k)^2\)</span> jest dodatni. Oznacza to, że
+funkcja ta ma minimum. Obliczamy pochodną po <span
+class="math inline">\(\alpha^k\)</span>: <span class="math display">\[
+\frac{d}{d\alpha^k} \left( \|\mathbf{r}^{k+1}\| \right) =
+-2(\mathbf{r}^{k})^T \mathbf{A} \mathbf{p}^k +
+2 \alpha^k (\mathbf{A} \mathbf{p}^k)^T \mathbf{A} \mathbf{p}^k
+\]</span> i przyrównujemy do zera co ostatecznie daje wartość: <span
+class="math display">\[
+\alpha^k = \frac{(\mathbf{r}^{k})^T \mathbf{A} \mathbf{p}^k}{(\mathbf{A}
+\mathbf{p}^k)^T \mathbf{A} \mathbf{p}^k}
+\]</span> Schemat z taką wartością <span
+class="math inline">\(\alpha^k\)</span> nazywamy <strong>metodą
+najmniejszych residuów</strong> (Minimal Residual Method —
+<strong>MINRES</strong>).</p>
+<div id="zadania-2" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Sprawdź zbieżność dla nowego <span
+class="math inline">\(\alpha^k\)</span>. W tym celu:
+<ul>
+<li>Wyznacz wektor <span class="math inline">\(\mathbf{A}
+\mathbf{p}^k\)</span>.</li>
+<li>Zauważ, że wyrażenie typu <span class="math inline">\(\mathbf{a}^T
+\mathbf{b}\)</span> to iloczyn skalarny dwóch wektorów <span
+class="math inline">\(\mathbf{a}^T \mathbf{b} = \mathbf{a} \cdot
+\mathbf{b}\)</span>. Napisz funkcję
+<code>skal(int, double *, double *)</code> liczącą iloczyn skalarny i
+oblicz <span class="math inline">\(\alpha^k\)</span> z powyższego
+wzoru.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="wykorzystujemy-historię" class="section level1">
+<h1>Wykorzystujemy historię</h1>
+<p>Do tej pory ignorowaliśmy informację o poprawkach z poprzednich
+iteracji i poprawkę w k-tym kroku obliczaliśmy ze wzoru <span
+class="math display">\[
+\mathbf{p}^k = \mathbf{M}^{-1}\mathbf{r}^k
+\]</span> Zmienimy to przez wykorzystanie informacji o poprawce z <span
+class="math inline">\(k-1\)</span> kroku: <span class="math display">\[
+\mathbf{p}^k = \mathbf{p}^k - \beta^k \mathbf{p}^{k-1}
+\]</span> Teraz wzór na nowe residuum będzie miał postać: <span
+class="math display">\[
+\mathbf{r}^{k+1} =
+\mathbf{r}^{k} - \alpha^k \mathbf{A} \left(\mathbf{p}^k - \beta^k
+\mathbf{p}^{k-1}\right)
+\]</span> Musimy jeszcze wyznaczyć wartość nowego współczynnika <span
+class="math inline">\(\beta^k\)</span>.</p>
+<div id="zadania-3" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Wypisz wzór na <span
+class="math inline">\(\|\mathbf{r}^{k+1}\|\)</span> i zróżniczkuj go po
+współczynniku <span class="math inline">\(\beta^k\)</span>. Przyjmij, że
+<span class="math inline">\((\mathbf{r}^{k+1})^T \mathbf{A}
+\mathbf{p}^{k} = 0\)</span> (wynika to z poprzedniej iteracji).</li>
+</ol>
+<p>Schemat, w którym współczynniki <span
+class="math inline">\(\alpha^k\)</span> i <span
+class="math inline">\(\beta^k\)</span> obliczane są po przez
+minimalizację residuów nazywamy <strong>uogólnioną metodą najmniejszych
+residuów</strong> (Generalized Minimal Residual Method —
+<strong>GMRES</strong>).</p>
+</div>
+<div id="zadania-4" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Zmodyfikuj proces iteracji według schematu:
+<ul>
+<li>oblicz residuum <span class="math inline">\(\mathbf{r}^k =
+\mathbf{b} - \mathbf{A} \mathbf{x}^k\)</span></li>
+<li>oblicz poprawkę <span class="math inline">\(\mathbf{p}^k =
+\mathbf{M}^{-1} \mathbf{r}^k\)</span></li>
+<li>jeżeli nie jest to pierwsza iteracja: oblicz <span
+class="math inline">\(\beta^k\)</span> i nową poprawkę <span
+class="math inline">\(\mathbf{p}^k = \mathbf{p}^k -\beta^k
+\mathbf{p}^{k-1}\)</span></li>
+<li>oblicz <span class="math inline">\(\alpha^k\)</span></li>
+<li>wyznacz nowe rozwiązanie <span
+class="math inline">\(\mathbf{x}^{k+1} = \mathbf{x}^k + \alpha^k
+\mathbf{p}^k\)</span></li>
+<li>zachowaj starą poprawkę <span class="math inline">\(\mathbf{p}^k =
+\mathbf{p}^{k-1}\)</span> (opłaca się też zachować wektor <span
+class="math inline">\(\mathbf{A} \mathbf{p}^{k-1}\)</span>).</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="jeśli-macierz-mathbfa-jest-symetryczna-i-dodatnio-określona"
+class="section level1">
+<h1>Jeśli macierz <span class="math inline">\(\mathbf{A}\)</span> jest
+symetryczna i dodatnio określona…</h1>
+<p>W przypadku naszego zadania MES możemy wykorzystać fakt, że macierz
+<span class="math inline">\(\mathbf{A}\)</span> jest symetryczna i
+dodatnio określona. Wtedy zamiast minimalizować <span
+class="math inline">\((\mathbf{r}^{k+1})^T \mathbf{r}^{k+1}\)</span>
+możemy zminimalizować pewien specjalny funkcjonał: <span
+class="math display">\[
+f(\mathbf{x}) = \frac{1}{2} \mathbf{x}^T \mathbf{A} \mathbf{x} -
+\mathbf{b}^T \mathbf{x}
+\]</span></p>
+<div id="zadania-5" class="section level3">
+<h3>Zadania</h3>
+<ol style="list-style-type: decimal">
+<li>Odwołując się do fizyki naszego przypadku, odpowiedz na poniższe
+pytania:
+<ul>
+<li>Czym jest funkcjonał <span
+class="math inline">\(f(\mathbf{x})\)</span>?</li>
+<li>Dlaczego macierz <span class="math inline">\(\mathbf{A}\)</span>
+jest symetryczna?</li>
+<li>Dlaczego <span class="math inline">\(\mathbf{A}\)</span> jest
+dodatnio określona?</li>
+</ul></li>
+<li>Podstaw w powyższym wzorze <span
+class="math inline">\(\mathbf{x}^{k+1} = \mathbf{x}^k + \alpha^k
+\mathbf{p}^k\)</span>, zróżniczkuj i oblicz <span
+class="math inline">\(\alpha^k\)</span>. Zauważ, że <span
+class="math inline">\(\frac{1}{2}\mathbf{x}^T \mathbf{A} \mathbf{x} -
+\mathbf{b}^T \mathbf{x} = \text{const.} + \frac{1}{2}(\alpha^k
+\mathbf{p}^k)^T \mathbf{A} (\alpha^k \mathbf{p}^k) -
+\mathbf{r}^T(\alpha^k \mathbf{p}^k)\)</span>.</li>
+<li>Analogicznie jak w poprzednim punkcie, podstaw <span
+class="math inline">\(\mathbf{x}^{k+1} = \mathbf{x}^k + \alpha^k
+\left(\mathbf{p}^k-\beta^k \mathbf{p}^{k-1}\right)\)</span>, zróżniczkuj
+względem <span class="math inline">\(\beta^k\)</span> i wyznacz <span
+class="math inline">\(\beta^k\)</span> (tym razem <span
+class="math inline">\((\mathbf{p}^{k-1})^T \mathbf{r}^k =
+0\)</span>).</li>
+</ol>
+</div>
+<div id="zadanie-1" class="section level3">
+<h3>Zadanie</h3>
+<p>Zastosuj identyczny schemat iteracji jak w poprzednim punkcie ale
+zmień <span class="math inline">\(\alpha^k\)</span> i <span
+class="math inline">\(\beta^k\)</span>. Zbadaj zbieżność.</p>
+<p>Taki schemat nazywamy metodą <strong>gradientu sprzężonego</strong>
+(Conjugate Gradient Method — <strong>CG</strong>).</p>
+<p><strong>Uwaga:</strong> Aktualnie zbieżność jest bardzo słaba. Wynika
+to z faktu, że choć <span class="math inline">\(\mathbf{A}\)</span> jest
+symetryczna to preconditioner z metody Gaussa-Seidla <span
+class="math inline">\(\mathbf{M}^{-1}\)</span> już nie jest.</p>
+</div>
+<div id="zadanie-2" class="section level3">
+<h3>Zadanie</h3>
+<p>Zbadaj zbieżność z preconditionerem diagonalnym, lub wyrażeniem <span
+class="math inline">\(\mathbf{p}^k = \mathbf{r}^k\)</span> (brakiem
+preconditionera).</p>
+<p><strong>Uwaga:</strong> Metodę Conjugate Gradient można
+zaimplementować w bardziej ,,zwartej’’ formie. Taki schemat można
+znaleźć na <a
+href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">Wikipedii</a>,
+bądź w notatkach z wykładu.</p>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>I tak nie dostalibyśmy dokładnej wartości ze względu na
+błędy numeryczne.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

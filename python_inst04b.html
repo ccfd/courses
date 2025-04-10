@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title>python_inst04b</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst04b.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p>#Wprowadzenie</p>
+<div id="numpy-array---zamiana-wymiarów" class="section level2">
+<h2>NumPy array - zamiana wymiarów</h2>
+<p>Jak wiemy z poprzednich zajęć, tablice numpy.array są stałego
+wymiaru. W przypadku np. dwu-wymiarowym są to zawsze tablice
+prostokątne, co oznacza, że nie nie może zdarzyć się sytuacja w której
+jeden z wierszy będzie krótszy. Aby zobaczyć wymiary tablicy korzystamy
+ze zmiennej “shape”:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>t <span class="op">=</span> np.ones((<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="bu">print</span> t.shape <span class="co"># &gt;&gt; (2, 3)</span></span></code></pre></div>
+<p>Czasami istnieje jednak potrzeba zamiany tablicy np. dwu-wymiarowej
+na jednowymiarową poprzez połączenie kolejnych wierszy w jeden wektor.
+Do tego celu służy funkcja “reshape”, którą możemy wywołać na dwa
+sposoby:</p>
+<ul>
+<li>Jako funkcja biblioteki numpy, tworząc nową tablicę</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">2</span><span class="op">+</span>j <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># tab2D = [[0 1]</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#                 [2 3]</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#           [4 5]]</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>tab1D <span class="op">=</span> np.reshape(tab2D, (<span class="dv">6</span>, <span class="dv">1</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># tab1D = array([[0],</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#                [1],</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#                    [2],</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#                    [3],</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#                    [4],</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#                    [5]])</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>tab1D <span class="op">=</span> np.reshape(tab2D, (<span class="dv">1</span>, <span class="dv">6</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co"># array([[0, 1, 2, 3, 4, 5]])</span></span></code></pre></div>
+<p>Należy tutaj zwrócić uwagę, że nowo utworzona tablica jest także
+dwu-wymiarowa, ponieważ nowy “kształt” został przekazany jako tuple. Aby
+uzyskać w pełni jednowymiarową tablicę wystarczy podać wymiar jako tylko
+“6”:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>tab1D <span class="op">=</span> np.reshape(tab2D, <span class="dv">6</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># array([0, 1, 2, 3, 4, 5])</span></span></code></pre></div>
+<ul>
+<li>Jako metoda obiektu tablica, tworząc także nową tablicę:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">3</span><span class="op">+</span>j <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>tab1D <span class="op">=</span> tab2D.reshape(<span class="dv">6</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># array([0, 1, 2, 3, 4, 5])</span></span></code></pre></div>
+<p>Powyżej pokazaliśmy, jak zmienić kształt z tablicy 2D na 1D. Podobnie
+można uczynić w drugą stronę:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>tab1D <span class="op">=</span> np.array( [ i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>) ] )</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>tab2D <span class="op">=</span> tab1D.reshape((<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># [[0 1]</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#  [2 3]</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#  [4 5]]</span></span></code></pre></div>
+<p>Gdy będziemy używali funkcji <strong><em>reshape</em></strong> musimy
+mieć pewność, że nowy wymiar będzie pasował. Pomocna może być zmienna
+<strong><em>size</em></strong> należąca do tablic, która informuje o
+całkowitej liczbie elementów:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>tab2D <span class="op">=</span> np.array( [[ i<span class="op">*</span><span class="dv">3</span><span class="op">+</span>j <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)])</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>tab1D <span class="op">=</span> tab2D.reshape(tab2D.size)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># array([0, 1, 2, 3, 4, 5])</span></span></code></pre></div>
+</div>
+<div id="numpy---loadsave-data" class="section level2">
+<h2>NumPy - load/save data</h2>
+<p>Kolejną bardzo przydatną funkcją z biblioteki numpy jest
+<strong><em>load</em></strong> i <strong><em>save</em></strong>. Podczas
+poprzednich zajęć pokazaliśmy jak wczytywać/zapisywać dane z pliku linia
+po linii. Jak wiadomo w praktyce inżynierskiej zapisywanie danych do
+pliku zazwyczaj sprowadza się tylko do zapisu pewnego zbioru liczb. I
+właśnie do tego celu bardzo dobrze nadają się wspomniane funkcje.
+Potrafią one zapisać dowolną tablicę numpy.array do pliku o rozszerzeniu
+<strong><em>npy</em></strong>. Plik taki zostaje zapisany w postaci
+binarnej, dzięki czemu proces zapisywania i wczytywania jest możliwie
+najbardziej wydajny. Zobaczmy jak to działa w praktyce:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>xy <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">2</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>xy[:,<span class="dv">0</span>] <span class="op">=</span> x</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>xy[:,<span class="dv">1</span>] <span class="op">=</span> y</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>np.save(<span class="st">&quot;nazwa_pliku&quot;</span>, xy)</span></code></pre></div>
+<p>W miejscu “nazwa_pliku” możemy wstawić dowolną ścieżkę. Jeśli nie
+podamy ścieżki tylko samą nazwę, to zostanie utworzony plik w aktualnym
+roboczym katalogu. Wczytywanie tych danych jest tak samo proste jak ich
+zapisywanie:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>xy <span class="op">=</span> np.load(<span class="st">&quot;nazwa_pliku&quot;</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>plt.figure()</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>plt.plot(xy[:,<span class="dv">0</span>],xy[:,<span class="dv">1</span>])</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>plt.title(<span class="st">&quot;Funkcja sinus&quot;</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>Oprócz opisanych powyżej funkcji do zapisu danych można skorzystać z
+funkcji: -
+<code>numpy.savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\n', header='', footer='', comments='# ')</code>
+- funkcja zapisuje dane w postaci tekstowej. Wymagane jest przekazanie
+dwóch pierwszych parametrów: nazwa pliku i tablica. Pozostałe parametry
+są opcjonalne. Domyślne wartości przedstawiono powyżej. -
+<code>numpy.loadtxt(fname, dtype=&lt;type 'float'&gt;, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0)</code>
+- funkcja wczytuje dane z pliku tekstowego. Wymagany parametr to ścieżka
+do pliku. Pozostałe parametry są opcjonalne. Warto tutaj zwrócić uwagę
+na parametr <strong><em>dtype</em></strong> który określa typ zmiennych
+do jakich mają być wczytane dane. Domyślnie ustawiony jest typ
+<strong><em>float</em></strong>, który nie zawsze jest tym którego
+oczekujemy.</p>
+<p>Z powyższych funkcji korzysta się dokładnie tak samo jak z
+poprzednich. Funkcje te zapisują/wczytują jednak dane w postaci
+tekstowej, co jest znacznie wolniejsze ale za to bardziej uniwersalne.
+Wykorzystując parametry funkcji możemy zdefiniować</p>
+<p>Sprawdź format zapisu tych danych. Jakie informacje są zawarte w
+pliku? Czy wczytywanie takich danych jest optymalne? Jeśli nie to
+dlaczego?</p>
+</div>
+<div id="obiekty-klasy-dict" class="section level2">
+<h2>Obiekty klasy “dict”</h2>
+<p>Do tej pory pokazaliśmy kilka podstawowych typów, takich jak
+<strong><em>list</em></strong> czy <strong><em>string</em></strong>.
+Python zawiera jeszcze jeden bardzo ważny typ
+<strong><em>dictionary</em></strong> - oznaczany jako
+<strong><em>dict</em></strong>. Type ten jest odpowiednikiem typu mapa
+spotykanego w innych językach. Mapuje on wartości jednego typu na
+wartości drugiego, np. string -&gt; integer. Jest on bardzo przydatny,
+ponieważ pozwala na przechowywanie liczb(ewentualnie jakiś obiektów) ale
+przy okazji pozwala się do nich odwoływać za pomocą nazwy zamiast
+indeksów np.: “dom” -&gt; 1 “drzwi” -&gt; 2 Gdy nie chcemy pamiętać jaki
+indeks ma “dom” to wystarczy przechować te nazwy i indeksy za pomocą
+typu “dict”, a następnie pobierać wartości już tylko za pomocą ich nazw.
+W Pythonie typ <strong><em>dict</em></strong> możemy utworzyć na dwa
+sposobu: * wywołując funkcje <strong><em>dict()</em></strong> która
+utworzy pustą mapę <code>mapa=dict()</code> * przypisując do zmiennej
+konkretne pary:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>mapa <span class="op">=</span> { <span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</span></code></pre></div>
+<p>Aby skorzystać następnie z takiej mapy wystarczy odwołać się do jej
+elementów za pomocą klucza - czyli pierwszej zmiennej w parze:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>mapa <span class="op">=</span> { <span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Indeks przypisany do domu to &quot;</span>, mapa[<span class="st">&quot;dom&quot;</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;a indeks przypisany do drzwi to &quot;</span>, mapa[<span class="st">&quot;drzwi&quot;</span>]</span></code></pre></div>
+<p>W przypadku gdy będziemy chcieli dodać nowy element do mapy wystarczy
+przypisać do nowej nazwy nową wartość:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>mapa <span class="op">=</span> <span class="bu">dict</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>mapa[<span class="st">&quot;dom&quot;</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>mapa[<span class="st">&quot;drzwi&quot;</span>] <span class="op">=</span> <span class="dv">2</span></span></code></pre></div>
+<p>Należy pamiętać, ze mapa wcale nie musi mapować tylko nazw do liczb.
+Możemy zapisać za jej pomocą na przykład pary obiekt okno graficzne -
+jego tytuł</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>okno1 <span class="op">=</span> plt.figure()</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>okno2 <span class="op">=</span> plt.figure()</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>tytuly<span class="op">=</span>{okno1:<span class="st">&quot;Okno pierwsze&quot;</span>, tytuly[okno2]:<span class="st">&quot;Okno drugie&quot;</span>}</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Tytul okna pierwszego to &quot;</span>, tytuly[okno1]</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#ustawiamy tutul okna</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>okno1.fig.canvas.set_window_title( tytuly[okno1] )</span></code></pre></div>
+<p>Należy jednak pamiętać, że aby jakiś typ mógł być użyty jako klucz
+mapy musi być on “hashowalny”. Nie będziemy tego opisywali, tylko
+zwracamy uwagę, że nie wszystkie typy mogą być użyte jako klucze, np.
+skorzystanie z listy spowoduje wyrzucenie błędu.</p>
+</div>
+<div id="sprawdzanie-czy-klucz-znajduje-się-w-słowniku-dict"
+class="section level2">
+<h2>Sprawdzanie czy klucz znajduje się w słowniku “dict”</h2>
+<p>Bardzo często będzie zachodziła sytuacja, gdy będziemy chcieli
+dowiedzieć się, czy dany obiekt jest już w jakimś kontenerze
+<strong><em>dict</em></strong>. Podobnie do list i tutaj wystarczy
+skorzystać z słowa kluczowego <strong><em>in</em></strong>, np.:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="cf">if</span> <span class="st">&quot;dom&quot;</span> <span class="kw">in</span> mapa:</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Dom jest w mapie, a jego indeks to&quot;</span>, mapa[<span class="st">&quot;dom&quot;</span>]</span></code></pre></div>
+<p>Do słowa kluczowego <strong><em>in</em></strong> można dodać
+<strong><em>not</em></strong>, co odwróci jego działanie:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>}</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="cf">if</span> <span class="st">&quot;okno&quot;</span> <span class="kw">not</span> <span class="kw">in</span> mapa:</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    mapa[<span class="st">&quot;okno&quot;</span>] <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Okno ma indeks&quot;</span>, mapa[<span class="st">&quot;okno&quot;</span>]</span></code></pre></div>
+<p>Powyższy kod pozwala nam upewnić się, że okno znajdzie się w mapie, a
+linijka z “print” nie wygeneruje błędu.</p>
+</div>
+<div id="iterowanie-po-elementach-słownika" class="section level2">
+<h2>Iterowanie po elementach słownika</h2>
+<p>W przypadku list i tablic iterowanie po ich elementach jest dość
+oczywiste - kolejne parametry pojawiające się w pętli
+<strong><em>for</em></strong> są kolejnymi elementami list. A jak to
+jest w przypadku słownika, gdzie operujemy na parach klucz-wartość? Jest
+podobnie, tylko elementami po których iterujemy są klucze. A zatem jeśli
+mamy mapę o parach string-integer to kolejnymi elementami w pętli for
+będą nazwy:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>mapa <span class="op">=</span> {<span class="st">&quot;dom&quot;</span>:<span class="dv">1</span>, <span class="st">&quot;drzwi&quot;</span>:<span class="dv">2</span>, <span class="st">&quot;okno&quot;</span>:<span class="dv">5</span>}</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> mapa:</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;klucz to:&quot;</span>, key, <span class="st">&quot; a wartosc&quot;</span>, mapa[key]</span></code></pre></div>
+<p>Podsumowując, w przypadku kontenerów typu
+<strong><em>dict</em></strong> iterujemy w pętlach zawsze po jej
+kluczach, a wartości możemy uzyskać pobierając wartość z mapy za
+kolejnego klucza w pętli.</p>
+</div>
+<div id="funkcje-zwracające-więcej-niż-jeden-argument"
+class="section level2">
+<h2>Funkcje zwracające więcej niż jeden argument</h2>
+<p>W większości znanych języków funkcje zazwyczaj mogą zwracać tylko
+jeden lub żaden argument. W przypadku Pythonie jest i nie jest tak samo
+jednocześnie. Jest tak samo, ponieważ fizycznie Python zwraca jeden
+argument. Nie jest tak samo, bo w praktyce wygląda to tak jakbyśmy
+pracowali na kodzie, gdzie może być zwracanych więcej niż jeden
+argument. Przyjrzyjmy się następującej funkcji:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="kw">def</span> funkcja(a,b):</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</span></code></pre></div>
+<p>Funkcja ta przyjmuje 2 liczby i zwraca także dwie liczby, ponieważ po
+przecinku wypisaliśmy sumę i różnicę przekazanych parametrów a i b. Taka
+konstrukcja służy do zwracania większej liczby parametrów. Zobaczmy w
+takim razie jaki to typ zwraca nasza funkcja:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="kw">def</span> funkcja(a,b):</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="bu">print</span> <span class="bu">type</span>( funkcja(<span class="dv">1</span>,<span class="dv">2</span>) ) <span class="co"># &gt;&gt; &lt;type &#39;tuple&#39;&gt;</span></span></code></pre></div>
+<p>Jak widać Python parę liczb zwraca jako typ
+<strong><em>tuple</em></strong>. Przypomnijmy,
+<strong><em>tuple</em></strong> to kontener, który przechowuje dowolne
+typy (elementy mogą być różnego typu) ale nie można zmieniać tych
+elementów. Zatem w wyniku dostajemy niemodyfikowalną listę różnych
+obiektów. A sprawdź co zwraca funkcja jedno i bez argumentowa:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="kw">def</span> funkcja(a,b):</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="bu">print</span> <span class="bu">type</span>( funkcja(<span class="dv">1</span>,<span class="dv">2</span>) ) <span class="co"># &gt;&gt; &lt;type &#39;int&#39;&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="kw">def</span> funkcja(a,b):</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>    c  <span class="op">=</span> a<span class="op">-</span>b</span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="bu">print</span> funkcja(<span class="dv">1</span>,<span class="dv">2</span>) <span class="co"># &gt;&gt; None</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="bu">print</span> <span class="bu">type</span>(funkcja(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># &gt;&gt; &lt;type &#39;NoneType&#39;&gt;</span></span></code></pre></div>
+<p>Jak widzimy w przypadku jednego argumentu Python automatycznie zwraca
+ten jeden konkretny obiekt, nie opakowuje go w kontener
+<strong><em>tuple</em></strong>. Z kolei gdy funkcja nic nie zwraca, to
+okazuje się, że w rzeczywistości Python zwraca domyślnie zmienną typu
+<strong><em>NoneType</em></strong> o wartości
+<strong><em>None</em></strong>. Zmienna ta jest czymś co przypomina
+pusty wskaźnik “Null” w innych językach. Można go testować w konstrukcji
+<strong><em>if</em></strong>:</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="kw">def</span> funkcja(a,b):</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>    c  <span class="op">=</span> a<span class="op">-</span>b</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>wynik <span class="op">=</span> funkcja(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="cf">if</span> wynik:</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Funkcja zwraca argument&quot;</span></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Funkcja nie zwraca argumentow&quot;</span></span></code></pre></div>
+<p>Wróćmy do zwracania wielu argumentów pod postacią tuple. Na
+poprzednich ćwiczeniach mówiliśmy, że w Pythonie dowolną listę, tablicę
+czy tuple (coś po czym można iterować jak w pętli for) można “rozwinąć”
+do zmiennych. W tym celu korzysta się z konstrukcji</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>dane <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;cos&quot;</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>liczba1, liczba2, text <span class="op">=</span> dane</span></code></pre></div>
+<p>która przypisuje zmiennym po przecinku dane z kontenera. Z racji
+tego, że funkcja zwracająca wiele argumentów zwraca fizycznie
+<strong><em>tuple</em></strong> to dokładnie w ten sam sposób możemy
+wynik z funkcji przypisać do kilku zmiennych:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="kw">def</span> funkcja(a,b):</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">+</span>b, a<span class="op">-</span>b</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>suma, roznica <span class="op">=</span> funkcja(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Suma =&quot;</span>,suma <span class="co"># &gt;&gt; Suma = 3</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Roznica =&quot;</span>,roznica <span class="co"># &gt;&gt; Roznica = -1 </span></span></code></pre></div>
+</div>
+<div id="domyślne-wartości-argumentów-funkcji" class="section level2">
+<h2>Domyślne wartości argumentów funkcji</h2>
+<p>W Pythonie w odróżnieniu od innych języków programowania nie można
+zdefiniować funkcji o tej samej nazwie, tak aby różniła się tylko inną
+liczbą argumentów. W języku C++ czy Java jest to bardzo często
+wykorzystywane, jednak tam nazwa funkcji nie jest prawdziwą jej nazwą,
+ponieważ kompilator zawsze dopisuje do niej jeszcze typy argumentów.
+Zazwyczaj wykorzystuje się takie zduplikowane funkcje do tego aby
+przekazać domyślne argumenty funkcji, np.:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="dt">double</span> root<span class="op">(</span><span class="dt">double</span> a<span class="op">,</span> <span class="dt">double</span> order<span class="op">)</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>    <span class="cf">return</span> pow<span class="op">(</span>a<span class="op">,</span> <span class="fl">1.</span><span class="op">/</span>order<span class="op">);</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="dt">double</span> root<span class="op">(</span><span class="dt">double</span> a<span class="op">)</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>    <span class="cf">return</span> root<span class="op">(</span>a<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>W związku z tym w tych językach można korzystać z tej samej nazwy dla
+różnych zadań. W Pythonie jak już wspominaliśmy typy argumentów nie mają
+znaczenia, dlatego wpisanie nowej funkcji spowoduje nadpisanie jej.</p>
+<p>W Pythonie z kolei (w języku C++ także jest to dozwolone) można
+dodawać domyślne wartości do zmiennych. Dzięki temu, możemy napisać
+jedną funkcję, która będzie obsługiwała różne przypadki. W tym celu
+posługujemy się operatorem = tuż za nazwą zmiennej przy argumentach
+funkcji, np.:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">**</span>(<span class="fl">1.</span><span class="op">/</span>order)</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 to&quot;</span>, root(<span class="dv">2</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Pierwiastek trzeciego stopnia z 2 to&quot;</span>, root(<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre></div>
+<p>Jak widać, powyższa funkcja została wywołana 2 razy, jednak za
+pierwszym razem argument “order” został po cichu ustawiony jako 2, a w
+drugim explicite podaliśmy jego wartość jako 3.</p>
+<p>Należy tutaj zauważyć, że takie domyślne (opcjonalne) parametry
+funkcji muszą znajdować się tuż za koniecznymi argumentami.</p>
+<p>Teraz zajmijmy się przypadkiem, gdy mamy więcej niż jeden domyślny
+argument, ale tylko jeden konkretny chcemy zmienić. W takim przypadku
+odwołujemy się do konkretnego argumentu za pomocą jego nazwy. Załóżmy,
+że chcemy aby funkcja “root” mogła zwracać wynik w postaci wybranego
+typu. W związku z tym zmienimy definicję naszej funkcji poprzez dodanie
+trzeciego argumentu rtype (“return type”):</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">float</span>):</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>    <span class="cf">return</span> rtype(a<span class="op">**</span>(<span class="fl">1.</span><span class="op">/</span>order))</span></code></pre></div>
+<p>W powyższej definicji funkcji skorzystaliśmy z faktu, że Python
+posiada wbudowane funkcje o nazwie danego typu, które automatycznie
+konwertują przekazany argument do wybranego typu (np. rtype=int oznacza,
+że a**(1./order) zostanie zamienione w zmienną typu całkowitego).
+Zastosujmy teraz naszą funkcję tak, aby zostawić domyślny parametr
+order, a zamienić tylko zwracany typ:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="kw">def</span> root(a, order<span class="op">=</span><span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">float</span>):</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>    <span class="cf">return</span> rtype(a<span class="op">**</span>(<span class="fl">1.</span><span class="op">/</span>order))</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 jako l. domyślna to&quot;</span>, root(<span class="dv">2</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Pierwiastek z 2 jako l. calkowita to&quot;</span>, root(<span class="dv">2</span>, rtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Pierwiastek 3-ciego stopnia z 2 jako int to&quot;</span>, root(<span class="dv">2</span>, <span class="dv">3</span>, <span class="bu">str</span>)</span></code></pre></div>
+<p>Jak widać powyżej, w sytuacji gdy podajemy kolejne argumenty, tak
+samo jak zostały one zdefiniowane w funkcji, nie musimy korzystać z nazw
+argumentów. Jednak gdy chcemy przekazać argumenty w dowolnej kolejności,
+to już niestety tak musimy uczynić.</p>
+</div>
+<div id="definiowanie-funkcji-ze-zmienną-liczbą-argumentów"
+class="section level2">
+<h2>Definiowanie funkcji ze zmienną liczbą argumentów</h2>
+<p>Ponieważ Python jest bardzo elastycznym językiem to pozwala na
+stosowanie zmiennej ilości argumentów. Taka zmienna liczba argumentów
+jest przekazywana do funkcji za pomocą jednej zmiennej która w praktyce
+jest jakimś kontenerem (sekwencją obiektów). Przyjrzyjmy się
+następującej funkcji:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="kw">def</span> fun(<span class="op">*</span>args):</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>       <span class="cf">for</span> a <span class="kw">in</span> args:</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>               <span class="bu">print</span> a</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>fun(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;dos&quot;</span>,<span class="st">&quot;beta&quot;</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co">#&gt;&gt; 1</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="co">#&gt;&gt; 2</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="co">#&gt;&gt; dos</span></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a><span class="co">#&gt;&gt; beta</span></span></code></pre></div>
+<p>W powyższej funkcji zdefiniowaliśmy jeden argument o nazwie
+<strong><em>args</em></strong> dodając przed nim gwiazdkę “<em>“.
+Oznacza to, że pod zmienną”args” może znajdować się dowolna liczba
+parametrów. Sprawdźmy jakiego typu jest zmienna
+</em><strong>args</strong>*:</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="kw">def</span> fun(<span class="op">*</span>args):</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>    <span class="bu">print</span> <span class="bu">type</span>(args)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>fun(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;dos&quot;</span>,<span class="st">&quot;beta&quot;</span>) <span class="co"># &gt;&gt; &lt;type &#39;tuple&#39;&gt;</span></span></code></pre></div>
+<p>Jak łatwo było się domyślić kontener ten to
+<strong><em>tuple</em></strong>, ponieważ wszystkie argumenty
+zdefiniowaliśmy w trakcie przekazania ich do funkcji, zatem ich liczba
+ani wartości nie powinny być modyfikowalne, co zapewnia typ
+<strong><em>tuple</em></strong>.</p>
+<p>Funkcje ze zmienną liczbą argumentów wcale nie muszą być pozbawione
+zwyczajowych argumentów, ważne jest tylko aby argument ****args***
+(nazwa może być dowolna) był na końcu, np.:</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="kw">def</span> suma(a, b, <span class="op">*</span>args):</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>    s <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>    <span class="cf">for</span> arg <span class="kw">in</span> args:</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>        s <span class="op">+=</span> arg</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>    <span class="cf">return</span> s</span></code></pre></div>
+<p>Powyższa funkcja potrafi zsumować wszystkie przekazane argumenty. Z
+racji tego, że argumenty <strong><em>a, b</em></strong> zostały
+zdefiniowane dodatkowo, to w przypadku gdy ktoś zechce z niej skorzystać
+przekazując mniej liczb otrzyma błąd, ponieważ sumowanie ma sens tylko
+gdy mamy co najmniej 2 liczby. Sprawdźmy jej działanie:</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="kw">def</span> suma(a, b, <span class="op">*</span>args):</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>    s <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>    <span class="cf">for</span> arg <span class="kw">in</span> args:</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>        s <span class="op">+=</span> arg</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>    <span class="cf">return</span> s</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Suma 1,2,3,4,5 to&quot;</span>, suma(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) </span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="co"># &gt;&gt; 15</span></span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Suma tylko 1 to&quot;</span>, suma(<span class="dv">1</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a><span class="co">#&gt;&gt; TypeError                                 Traceback (most recent call last)</span></span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a><span class="co">#&gt;&gt; &lt;ipython-input-198-5304d71f0cc4&gt; in &lt;module&gt;()</span></span>
+<span id="cb29-12"><a href="#cb29-12" tabindex="-1"></a><span class="co">#&gt;&gt; ----&gt; 1 print &quot;Suma 1 to&quot;, suma(1)</span></span>
+<span id="cb29-13"><a href="#cb29-13" tabindex="-1"></a><span class="co">#&gt;&gt;</span></span>
+<span id="cb29-14"><a href="#cb29-14" tabindex="-1"></a><span class="co">#&gt;&gt; TypeError: suma() takes at least 2 arguments (1 given)</span></span></code></pre></div>
+</div>
+<div id="przekazywanie-listy-wprost-do-argumentów-funkcji"
+class="section level2">
+<h2>Przekazywanie listy wprost do argumentów funkcji</h2>
+<p>Bardzo często zdarza się tak, że w wyniku jakiś operacji
+przechowujemy w liście/tablicy pewne dane, które następnie wszystkie
+muszą być przekazane do kolejnej funkcji. W takiej sytuacji zazwyczaj po
+prostu wyciągamy kolejne argumenty z listy za pomocą indeksów, a
+następnie je przekazujemy do funkcji, np.:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a><span class="bu">print</span> dziwnafunkcja(lista[<span class="dv">0</span>], lista[<span class="dv">1</span>], lista[<span class="dv">2</span>], lista[<span class="dv">3</span>], lista[<span class="dv">4</span>]) </span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a><span class="co"># &gt;&gt; (443, 123)</span></span></code></pre></div>
+<p>Przekazywanie takich argumentów jest uciążliwe. Ale zaraz zaraz,
+przecież możemy skorzystać z rozwijania sekwencji do argumentów, a zatem
+możemy przerobić naszą funkcję na taką która przyjmuje listę:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="kw">def</span> dziwnafunkcja(lista):</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>    a,b,c,x1,x2 <span class="op">=</span> lista</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="bu">print</span> dziwnafunkcja(lista) </span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co"># &gt;&gt; (443, 123)</span></span></code></pre></div>
+<p>Teraz wywołanie funkcji jest bardzo krótkie, ale za to, aby przekazać
+liczby wprost do niej będziemy musieli je zawsze opakować w nawis
+kwadratowy, np.:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="bu">print</span> dziwnafunkcja( [ <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">12</span>] ) </span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="co"># &gt;&gt; (443, 123)</span></span></code></pre></div>
+<p>Okazuje się, że Python potrafi obejść także taki problem. W tej
+sytuacji znów skorzystamy z operatora gwiazdka “*“, ale posłuży on nam
+do rozwinięcia sekwencji na argumenty funkcji. W przypadku zwykłych
+zmiennych wystarczyło przypisać listę do zmiennych po przecinku. W
+przypadku funkcji już tak łatwo nie jest, ponieważ musimy poinformować
+interpreter, że chcemy aby nasza lista była użyta jako ==kolejne
+argumenty, a nie jako pierwszy argument==. Aby móc zastosować
+rozwinięcie sekwencji do argumentów funkcja nie wymaga zmian a
+nieznacznie musi być zmodyfikowane jej wywołanie:</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="kw">def</span> dziwnafunkcja(a,b,c,x1,x2):</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x1 <span class="op">+</span> c, a<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x2 <span class="op">+</span> c</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>lista <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="op">-</span><span class="dv">12</span>]</span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a><span class="bu">print</span> dziwnafunkcja(<span class="op">*</span>lista) </span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="co"># &gt;&gt; (443, 123)</span></span></code></pre></div>
+<p>Oczywiście takie rozwijanie sekwencji może być zastosowane na
+dowolnym typie, po którym możemy iterować, np. tuple albo
+numpy.array.</p>
+</div>
+<div id="definiowanie-funkcji-z-nazwanymi-argumentami"
+class="section level2">
+<h2>Definiowanie funkcji z nazwanymi argumentami</h2>
+<p>Teraz przedstawimy ostatni element dotyczący samych funkcji - nazwane
+argumenty o dowolnej ich liczbie. Wcześniej pokazaliśmy, że podczas
+wywoływania funkcji można skorzystać z nazw argumentów i przekazać je w
+dowolnej kolejności. Jednak w tej sytuacji wszystkie takie argumenty
+musiały być zdefiniowane w nagłówku funkcji. Teraz przejdziemy do trochę
+bardziej zaawansowanej kwestii, a mianowicie sytuacji gdy liczba tych
+nazwanych argumentów może być dowolna. W takiej sytuacji, kod zawarty w
+funkcji musi sam sprawdzać, czy argument został przekazany czy nie.</p>
+<p>W celu zdefiniowania dowolnej liczby nazwanych argumentów korzystamy
+znów z operatora “<em>” ale tym razem podwojonego, aby odróżnić go od
+sekwencji argumentów bez nazw. Ponadto wszystkie te argumenty zostaną
+przekazane do funkcji za pomocą obiektu o typie
+</em><strong>dict</strong>* który będzie zawierał pary: nazwa zmiennej -
+wartość.</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="kw">def</span> funkcja(<span class="op">**</span>kwargs):</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>    <span class="cf">for</span> argName <span class="kw">in</span> kwargs:</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>        <span class="bu">print</span> <span class="st">&quot;Argument &quot;</span>,argName, <span class="st">&quot; zostal przekazany z wartoscia&quot;</span>, kwargs[argName]</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">&quot;speak&quot;</span> <span class="kw">in</span> kwargs <span class="kw">and</span> kwargs[<span class="st">&quot;speak&quot;</span>]:</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>        <span class="bu">print</span> <span class="st">&quot;You&#39;ve asked to say Hellow!&quot;</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>funkcja(cos<span class="op">=</span><span class="dv">20</span>, ktos<span class="op">=</span><span class="st">&quot;ada&quot;</span>, speak<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>W powyższym kodzie na początku zadeklarowaliśmy funkcję przyjmującą
+dowolną ilość nazwanych parametrów. To od użytkownika tej funkcji zależy
+czy ją wywoła poprawnie czy nie. Z racji tego ważne jest, aby
+dokumentacja tej funkcji była odpowiednio przygotowana. Funkcja ta na
+początek iteruje po wszystkich przekazanych argumentach i wyświetla ich
+wraz z wartością. Następnie sprawdzamy czy do
+<strong><em>kwargs</em></strong> został przekazany argument “speak” i
+czy wartość tego argumentu jest prawdą (kwargs[“speak”] zwraca wartość,
+która z założenia ma być równa True/False)</p>
+<p>W tym momencie powinno pojawić się nam w głowie czerwone światełko -
+po co w ogóle to robić, skoro i tak następnie w kodzie musimy znów
+sprawdzać czy zmienna jest przekazana, czy nie. Lepiej już pozostawić to
+w gestii domyślnych wartości argumentów tak aby użytkownik mógł łatwo
+zauważyć jakie zmienne należy przekazać. I to jest prawda, w przypadku
+większości funkcji lepszym rozwiązaniem są domyślne parametry. Jednak są
+dwie sytuacje w których jest to użyteczne:</p>
+<ol style="list-style-type: decimal">
+<li>Gdy nasza funkcja ma mieć bardzo dużo opcjonalnych argumentów. Wtedy
+nagłówek funkcji będzie bardzo nieczytelny i lepiej jest pozostawić
+takie parametry schowane. Jednak to rozwiązanie może być nadal
+dyskusyjne.</li>
+<li>Gdy wewnątrz naszej funkcji wywołujemy następną funkcję, która
+posiada dużo parametrów, o których czasami nawet nie wiemy, a chcemy aby
+użytkownik mógł z poziomu wywołania naszej funkcji wykorzystać je. Ten
+opis może być niewystarczający, więc przyjrzyjmy się poniższej funkcji,
+która służy to rysowania sinusa:</li>
+</ol>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="kw">def</span> sinus(num_divisions<span class="op">=</span><span class="dv">100</span>, a<span class="op">=</span><span class="dv">0</span>, b<span class="op">=</span>np.pi, <span class="op">**</span>kwargs):   </span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(a, b, num_divisions)</span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>    y <span class="op">=</span> np.sin(x)</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>    plt.plot(x,y,<span class="op">**</span>kwargs)</span></code></pre></div>
+<p>Funkcja ta ma zadeklarowane 3 argumenty z domyślnymi parametrami.
+Ponadto możemy przekazać do niej dowolnie nazwane argumenty w miejscu
+“kwargs”. Zastosowanie podstawowych zmiennych jest oczywiste. Należy
+jednak zwrócić uwagę na przekazanie *****kwargs*** do funkcji
+<strong><em>plt.plot</em></strong>. Tam przed argumentem
+<strong><em>kwargs</em></strong> umieściliśmy podwójny znak <strong>.
+Oznacza on w tym przypadku, że chcemy zamienić słownik
+</strong><em>kwargs</em>** z powrotem na argumenty funkcji. Podobną
+operację wykonywał operator * gdy chcieliśmy przekazać listę jako
+kolejne argumenty funkcji. W tej sytuacji musimy zastosować operator **
+ponieważ chcemy aby słownik został rozwinięty do zbioru nazwanych
+argumentów. Dzięki takiej konstrukcji możemy kontrolować parametry
+rysowania linii tak samo jak to miało miejsce w czystej funkcji
+<strong><em>plt.plot</em></strong>:</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="kw">def</span> sinus(num_divisions<span class="op">=</span><span class="dv">100</span>, a<span class="op">=</span><span class="dv">0</span>, b<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="op">**</span>kwargs): </span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(a, b, num_divisions)</span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>    y <span class="op">=</span> np.sin(x)</span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>    plt.plot(x, y, <span class="op">**</span>kwargs)</span>
+<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a>plt.figure()</span>
+<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a>sinus() <span class="co">#domyslne parametry</span></span>
+<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a>sinus(linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, markersize<span class="op">=</span><span class="dv">10</span>) <span class="co">#domyslny zakres, inne parametry graficzne</span></span>
+<span id="cb36-12"><a href="#cb36-12" tabindex="-1"></a>sinus(<span class="dv">25</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, color<span class="op">=</span><span class="st">&quot;grey&quot;</span>) <span class="co"># kombinacja argumentow f. sinus i przekazanych do plot</span></span>
+<span id="cb36-13"><a href="#cb36-13" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</div>
+<div id="wykresy-konturowe" class="section level2">
+<h2>Wykresy konturowe</h2>
+<p>Biblioteka Matplotlib poza prostymi wykresami 2D może służyć do
+tworzenia wykresów słupkowych, kołowych a także wykresów
+trójwymiarowych. W poniższym opracowaniu pokażemy jak przygotować wykres
+konturowy (mapa konturowa). Na koniec przedstawimy jak utworzyć także
+wykres w pełni trójwymiarowy.</p>
+<p>Aby utworzyć jakiś wykres trójwymiarowy musimy zdefiniować na
+początek pewną przestrzeń próbkowania. W przypadku dwuwymiarowych
+wykresów taką przestrzeń stanowiła np. tablica równomiernie rozłożonych
+liczba w danym zakresie. W przypadku wykresów trójwymiarowych zamiast
+jednej osi mamy płaszczyznę. W związku z tym musimy na niej określić w
+jakich punktach będą znajdowały się nasze próbki (dla których punktów
+x,y powinna zostać zaznaczona wartość na osi Z). Taka przestrzeń powinna
+być zdefiniowana jako tablica dwuwymiarowa współrzędnych X oraz druga
+tablica dwuwymiarowa współrzędnych Y. Dlaczego muszą być to dwie tablice
+dwuwymiarowe? Ponieważ każdy punkt na płaszczyźnie musi mieć przypisaną
+swoją współrzędną x i y. Para takich tablic tworzy siatkę. Można te
+tablice uzupełnić ręcznie, ale to tego celu lepiej nadaje się funkcja
+<strong><em>numpy.meshgrid</em></strong> która generuje dwie tablice X,Y
+na podstawie zadanych podziałów wzdłuż jednego kierunku i wzdłuż
+drugiego:</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">6</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">11</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>X,Y <span class="op">=</span> np.meshgrid(x, y)</span></code></pre></div>
+<p>Tablice X, Y będą tablicami dwuwymiarowymi. Każda kolumna tablicy X
+będzie miała dokładnie te same wartości. Z kolei każdy wiersz tablicy Y
+będzie także miał te same wartości co inne wiersze. Tablica X będzie
+zatem wyglądać tak | | | | | | | |:-:|:-:|:-:|:-:|:-:|:-:|
+|0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1|
+|0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1|
+|0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1|
+|0|0.2|0.4|0.6|0.8|1| |0|0.2|0.4|0.6|0.8|1|</p>
+<p>Analogicznie tablic Y z tą różnicą, że zmieniać się będą wartości w
+wierszach.</p>
+<p>Gdy już posiadamy siatkę (czyli pary [x,y]) to możemy wyznaczyć
+kolejną tablicę, o tym samym rozmiarze, która każdej z par [x,y]
+przypisze wartość na osi z, np. za pomocą funkcji sin(x*y):</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">6</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">11</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>X,Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</span></code></pre></div>
+<p>Domyślny iloczynem w przypadku tablic numpy jest iloczyn dwóch
+odpowiadających sobie elementów (w przypadku gdybyśmy chcieli wykonać
+mnożenie macierzowe, to należało by skorzystać z funkcji numpy.dot).</p>
+<p>Posiadamy już dane, teraz przejdźmy do utworzenia mapy
+konturowej:</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" tabindex="-1"></a>X,Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb39-8"><a href="#cb39-8" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" tabindex="-1"></a>Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</span>
+<span id="cb39-10"><a href="#cb39-10" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" tabindex="-1"></a>plt.figure()</span>
+<span id="cb39-12"><a href="#cb39-12" tabindex="-1"></a>plt.contour(X, Y, Z)</span>
+<span id="cb39-13"><a href="#cb39-13" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst04/contour.png"
+title="Najprostszy wykres konturowy" alt="contour" />
+<div class="figcaption">contour</div>
+</div>
+<p>Jak widać utworzenie wykresu konturowego, jest tak proste jak
+zwykłego. Wykres konturowy może zostać także wyświetlony jako
+wypełniony, jednak należy wtedy skorzystać z zamiast funkcji
+<strong><em>contour</em></strong> funkcję
+<strong><em>contourf</em></strong>. Trudno jest odczytywać wykresy
+konturowe po samych kolorach bo musimy posiadać ich definicję. W tym
+celu korzystamy z funkcji <strong><em>colorbar</em></strong>. Do skali
+kolorów można także dodać tytuł:</p>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>X,Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a>plt.figure()</span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a>cnt <span class="op">=</span> plt.contourf(X, Y, Z)</span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(cnt)</span>
+<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a>cbar.ax.set_ylabel(<span class="st">&quot;values of sin(x*y)&quot;</span>)</span>
+<span id="cb40-15"><a href="#cb40-15" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst04/contourf_colorbar.png"
+title="Wypełniony wykres konturowy ze skalą kolorów" alt="contourf" />
+<div class="figcaption">contourf</div>
+</div>
+<p>Do funkcji <strong><em>contourf</em></strong> można przekazać za
+pomocą argumentu <strong><em>levels</em></strong> wartości określające
+poziomy na których powinny zmieniać się kolory:</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>plt.figure()</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>cnt <span class="op">=</span> plt.contourf(X, Y, Z, levels<span class="op">=</span>[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="fl">0.5</span>,<span class="fl">0.</span>, <span class="fl">0.5</span>, <span class="dv">1</span>])</span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(cnt)</span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>Domyślne skala kolorów może zostać zamieniona. W tym celu należy
+przekazać do funkcji <strong><em>contourf</em></strong> parametr
+<strong><em>cmap</em></strong> który jest obiektem typu ColorMap. Pewne
+określone mapy kolorów są z góry zdefiniowane w pakiecie
+<strong><em>matplotlib.cm</em></strong> gdzie znajdują się wszystkie
+stałe i domyślne parametry biblioteki matplotlib:</p>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a><span class="im">import</span> matplotlib.cm</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>X,Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a>Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a>plt.figure()</span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a>cnt <span class="op">=</span> plt.contourf(X, Y, Z, levels<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">21</span>),  cmap<span class="op">=</span>matplotlib.cm.winter)</span>
+<span id="cb42-14"><a href="#cb42-14" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(cnt)</span>
+<span id="cb42-15"><a href="#cb42-15" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst04/contourf_winter_colormap.png"
+title="Wykres konturowy ze zmienioną mapą kolorów"
+alt="contourf_winter" />
+<div class="figcaption">contourf_winter</div>
+</div>
+</div>
+<div id="wykresy-trójwymiarowe" class="section level2">
+<h2>Wykresy trójwymiarowe</h2>
+<p>Elementy grafiki 3D znajdują się w pakiecie
+<strong><em>mplot3d</em></strong>. Znajdują się tam funkcje pozwalające
+na rysowanie linii oraz powierzchni w trzech wymiarach. Na początek
+przedstawimy rysowanie linii na przykładzie spirali:</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>angles <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span><span class="op">*</span>np.pi, <span class="dv">200</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>x <span class="op">=</span> np.cos(angles)</span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a>y <span class="op">=</span> np.sin(angles)</span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb43-11"><a href="#cb43-11" tabindex="-1"></a>ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>) <span class="co">#dodajemy osie 3D</span></span>
+<span id="cb43-12"><a href="#cb43-12" tabindex="-1"></a>ax3D.plot(x,y,z)</span>
+<span id="cb43-13"><a href="#cb43-13" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst04/spiral.png"
+title="Przykład zastosowania Axes3D.plot" alt="spirala" />
+<div class="figcaption">spirala</div>
+</div>
+<p>Aby przedstawić wyświetlanie powierzchni zastosujemy te same dane co
+w przypadku wykresów konturowych. Dane w tym przypadku muszą być
+przygotowane w podobny sposób, tj. za pomocą tablic dwuwymiarowych dla
+współrzędnych X, Y i Z:</p>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="im">import</span> matplotlib.cm</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">40</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a>X,Y <span class="op">=</span> np.meshgrid(x, y)</span>
+<span id="cb44-10"><a href="#cb44-10" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" tabindex="-1"></a>Z <span class="op">=</span> np.sin(X <span class="op">*</span> Y)</span>
+<span id="cb44-12"><a href="#cb44-12" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb44-14"><a href="#cb44-14" tabindex="-1"></a>ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)</span>
+<span id="cb44-15"><a href="#cb44-15" tabindex="-1"></a>psurf<span class="op">=</span> ax3D.plot_surface(X, Y, Z,  cmap <span class="op">=</span> matplotlib.cm.coolwarm)</span>
+<span id="cb44-16"><a href="#cb44-16" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(psurf)</span>
+<span id="cb44-17"><a href="#cb44-17" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst04/surf.png"
+title="Przykład zastosowania Axes3D.plot_surf" alt="plot_surf" />
+<div class="figcaption">plot_surf</div>
+</div>
+<p>Widać, że na powierzchni pojawiają się duże prostokąty, pomimo, że
+danych jest znacznie więcej. Wynika to z tego że domyślnie jest rysowany
+tylko co dziesiąty element. Aby się tego pozbyć należy ustawić parametry
+rstride i cstride na 1. Ponadto aby linie nie były widoczne należy
+ustawić grubość linii na 0:</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>ax3D <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">&quot;3d&quot;</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>psurf<span class="op">=</span> ax3D.plot_surface(X, Y, Z,  cmap <span class="op">=</span> matplotlib.cm.coolwarm, linewidth<span class="op">=</span><span class="dv">0</span>, rstride<span class="op">=</span><span class="dv">1</span>, cstride<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>cbar <span class="op">=</span> fig.colorbar(psurf)</span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst04/surf2.png"
+title="Bardziej dokładna powierzchnia" alt="plot_surf_adjusted" />
+<div class="figcaption">plot_surf_adjusted</div>
+</div>
+</div>
+<div id="zadania" class="section level1">
+<h1>Zadania</h1>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>Skopiuj plik resources/lab3/zadanie1-template.py do swojego katalogu
+roboczego i zmień jego nazwę na “zadanie1.py”. Następnie uzupełnij ciało
+funkcji <strong><em>animate_contour_plot</em></strong>. Zadaniem tej
+funkcji jest wykonanie animacji wykresu konturowego na bazie przekazanej
+listy tablic 2D. Każda kolejna tablica 2D jest zbiorem wartości jakiejś
+funkcji z(x,y) w kolejnych węzłach siatki kartezjańskiej (nie koniecznie
+kwadratowej) dla kolejnych klatek animacji.</p>
+<div class="float">
+<img src="figures/python_inst04/grid_and_numbering.png"
+title="Siatka 2D dla wykresu konturowego" alt="grid" />
+<div class="figcaption">grid</div>
+</div>
+<p>Funkcja ta powinna także obsługiwać sytuację gdy przekazana jest
+tylko jedna tablica - wyświetlenie mapy konturowej bez uruchamiania
+animacji. Zadeklarowana funkcja posiada dodatkowe domyślne argumenty,
+które powinny zostać wykorzystane.</p>
+<p>Przygotowaną funkcję przetestuj wywołując kod znajdujący się pod
+funkcją. Gdy uznasz, że funkcja działa poprawnie usuń kod służący do
+testowania, ponieważ nie chcemy aby był on wywoływany podczas
+importowania funkcji do innych plików.</p>
+<p>Uwagi: * Aby skorzystać z animacji należy zaimportować pakiet
+animation: <strong><em>from matplotlib import animation</em></strong> *
+Aby animacja zadziałała obiekt z funkcji
+<strong><em>FuncAnimation</em></strong> musi zostać przypisany do
+zmiennej (zabezpiecza to przed automatycznym wyczyszczeniem) *
+Przykładowe zastosowanie: anim = animation.FuncAnimation(fig, animate,
+frames=100), gdzie <strong><em>fig</em></strong> to uchwyt do okna,
+<strong><em>animate</em></strong> to nazwa funkcji aktualizującej wykres
+a <strong><em>frames</em></strong> to liczba klatek. * Funkcja
+aktualizująca dane powinna przyjmować jako parametr jeden argument -
+numer aktualnej klatki. * Aby zaktualizować wykres konturowy należy po
+prostu jeszcze raz wywołać funkcję
+<strong><em>plt.contourf(…)</em></strong> * Aby animacja się uruchomiła
+należy na koniec wywołać funkcję plt.show()</p>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Rozwiąż równanie nieustalonego przewodnictwa cieplnego w kwadracie o
+boku 1 dla przedziału czasowego od 0 do 1s:</li>
+</ol>
+<p><span class="math display">\[\frac{\partial T(x,y,t)}{\partial t} -
+\Delta T(x,y,t) = 0\]</span> z warunkami: <span class="math display">\[
+T|_{y=0} = 1 \]</span> <span class="math display">\[ T|_ {y=1} = T|_
+{x=0} = T|_{x=1}= 0 \]</span> <span class="math display">\[ T(x, y, t=0)
+= 0 \]</span></p>
+<p>W tym celu zaimplementuj metodę różnic skończonych z jawnym schematem
+eulera kroczenia w czasie. Zacznij od skopiowania pliku
+<strong><em>resources/lab3/zadanie2-template.py</em></strong> do swojego
+katalogu roboczego i zmiany jego nazwy na
+<strong><em>zadanie2</em></strong>. Wypełnij pozostawione miejsce w
+kodzie.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Zmodyfikuj swój kod tak, aby pozbyć się pętli
+<strong><em>for</em></strong> i zamiast niej skorzystać z wektoryzacji
+operacji na tablicach numpy.array</p></li>
+<li><p>Zmodyfikuj warunki początkowe, tak aby obszar ochładzał się
+zamiast ogrzewać:</p></li>
+</ol>
+<p><span class="math display">\[ T(x,y,t=0)=1\]</span></p>
+<p>Uwagi: Jawna schemat Eulera otrzymujemy za pomocą prostego
+uproszczenia równania różniczkowego:</p>
+<p><span class="math display">\[ \frac{\partial T}{\partial t} =
+g(t)\]</span></p>
+<p>do:</p>
+<p><span class="math display">\[ \frac{T^{n+1} - T^{n}}{\Delta t} = g^n
+\]</span></p>
+<p>gdzie indeks <strong><em>n</em></strong> oznacza numer kroku
+czasowego. Wykorzystując to uproszczenie otrzymujemy prosty wzór
+pozwalający obliczyć rozwiązanie w nowym korku czasowym
+<strong><em>n+1</em></strong>:</p>
+<p><span class="math display">\[ T^{n+1} = T^{n} + \Delta t \cdot g^n
+\]</span></p>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
