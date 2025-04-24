@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="L. Laniewski-Wollk" />
+
+
+<title>Metody Numeryczne - Skrypt 2</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/metnum_skrypt02.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Metody Numeryczne - Skrypt 2</h1>
+<h4 class="author">L. Laniewski-Wollk</h4>
+
+</div>
+
+
+<p>Wczytajmy pierw macierz sztywności z pliku:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>S <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">&quot;data/metnum/S.txt&quot;</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>S <span class="ot">=</span> <span class="fu">Matrix</span>(S,<span class="at">sparse=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Możemy sobie teraz wyświetlić gdzie ma ona niezerowe elementy:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">image</span>(S)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Możemy teraz zobaczyć jej wartości własne</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(S)<span class="sc">$</span>val</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">barplot</span>(lam,<span class="at">main=</span><span class="st">&quot;Wartości właśne S&quot;</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Jako, że macierz jest symetryczna wszystkie wartości własne są
+rzeczywiste. Warto zauważyć, że trzy ostatnie wartości własne są
+praktycznie równe zero:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">print.few</span>(lam)</span></code></pre></div>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="7%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(\lambda_{1}\)</span></th>
+<th align="right"><span class="math inline">\(\lambda_{2}\)</span></th>
+<th align="left"><span class="math inline">\(\cdots\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{248}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{249}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{250}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{251}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{252}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">418.4178</td>
+<td align="right">411.8008</td>
+<td align="left"><span class="math inline">\(\cdots\)</span></td>
+<td align="right">1.554674</td>
+<td align="right">0.3134155</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Jest to związane z wolnymi stopniami swobody naszego układu. Możemy
+pozbyć się tych stopni zastępując odpowiednie wiersze wierszami macierzy
+jednostkowej</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>fix <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">42</span>)   <span class="co"># Wybrane wiersze</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>I <span class="ot">=</span> <span class="fu">diag</span>(<span class="fu">nrow</span>(S)) <span class="co"># Macierz jednostkowa o odpowiednim rozmiarze</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>S[fix,]<span class="ot">=</span>I[fix,]   <span class="co"># Zastępujemy wiersze</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>S[,fix]<span class="ot">=</span>I[,fix]   <span class="co"># Zastępujemy kolumny (by macierz pozostała symetryczna)</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(S)<span class="sc">$</span>val</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">barplot</span>(lam,<span class="at">main=</span><span class="st">&quot;Wartości właśne S&quot;</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Teraz ostatnie wartości są już niezerowe</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">print.few</span>(lam)</span></code></pre></div>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="7%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(\lambda_{1}\)</span></th>
+<th align="right"><span class="math inline">\(\lambda_{2}\)</span></th>
+<th align="left"><span class="math inline">\(\cdots\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{248}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{249}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{250}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{251}\)</span></th>
+<th align="right"><span
+class="math inline">\(\lambda_{252}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">418.4139</td>
+<td align="right">411.7858</td>
+<td align="left"><span class="math inline">\(\cdots\)</span></td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0.7062446</td>
+<td align="right">0.208298</td>
+<td align="right">0.0559314</td>
+</tr>
+</tbody>
+</table>
+<p>Rozważmy teraz przyłożenie siły w 80-tym stopniu swobody. Wektor sił
+<span class="math inline">\(F\)</span> będzie miał zera wszędzie poza
+80-tym elementem.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>i<span class="ot">=</span><span class="dv">80</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>F <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">nrow</span>(S))</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>F[i] <span class="ot">=</span> <span class="sc">-</span><span class="dv">10</span></span></code></pre></div>
+<p>Odkształcenie spowodowane taką siłą to <span class="math inline">\(d
+= S^{-1}F\)</span>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">solve</span>(S,F) <span class="co"># funkcja solve rozwiązuje S d = F</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">plot</span>(d)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Odkształcenie to w tej formie trudno zinterpretować. Po pierwsze co
+drugi element oznacza odkształcenie w X a co drugi w Y:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">plot</span>(d,<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Tutaj warto zauważyć, że choć macierz <span
+class="math inline">\(S\)</span> jest rzadka (ma mało niezerowych
+elementów) tak macierz <span class="math inline">\(S^{-1}\)</span>
+będzie pełna:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>Si <span class="ot">=</span> <span class="fu">solve</span>(S) <span class="co"># funkcja solve zwraca też macierz odwrotną</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">image</span>(Si)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Można to sobie wyobrazić w następujący sposób. <span
+class="math inline">\(k\)</span>-ta kolumna macierzy odwrotnej <span
+class="math inline">\(S^{-1}\)</span> jest równa <span
+class="math inline">\(S^{-1}v\)</span>, gdzie <span
+class="math inline">\(v\)</span> to wektor samych zer z jedynką na <span
+class="math inline">\(k\)</span>-tym miejscu. Można więc powiedzieć, że
+<span class="math inline">\(k\)</span>-ta kolumna macierzy <span
+class="math inline">\(S^{-1}\)</span> to odkształcenie belki przy
+przyłożeniu jednoskowej siły w <span
+class="math inline">\(k\)</span>-tym stopniu swobody. Jak wiemy,
+niezależnie w którym stopniu swobody przyłożymy siłę, odkształcenia będą
+występowały we wszystkich stopniach swobody. Oznacza to, że wszystkie
+kolumny macierzy <span class="math inline">\(S^{-1}\)</span> będą pełne
+niezerowych elementów.</p>
+<p>Zobaczmy 80-tą kolumnę:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">plot</span>(Si[,i])</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Koszt policzenia <span class="math inline">\(S^{-1}\)</span> jest
+bardzo wysoki. Nawet przechowanie takiej macierzy może być niemożliwe.
+Dlatego w większości zagadnień numerycznych nigdy nie liczona jest
+bezpośrednio odwrotność macierzy, lecz rozwiązywany jest zadany układ
+<span class="math inline">\(Sx=F\)</span>. W naszym wypadku prawa strona
+to wektor sił <span class="math inline">\(F\)</span>, zaś niewiadoma
+<span class="math inline">\(x\)</span> to odkształcenie. Rozwiązać taki
+układ można na wiele sposobów. Dla dużych układów liniowych i
+nieliniowych wykożytujemy metody iteracyjne. Mają one na celu nie
+roziwiązanie problemu w ogólności (znalezienie <span
+class="math inline">\(S^{-1}\)</span>) lecz w jak najmniejszej ilości
+iteracji znalezienie najlepszego przybliżenia rozwiązania <span
+class="math inline">\(x\)</span>. Lecz jak można sprawdzić czy
+rozwiązanie jest bliskie dokładnego, jeśli dokładne nie jest znane?</p>
+<p>Weźmy dowolny wektor:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>x0 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">ncol</span>(S))</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">plot</span>(x0)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Jedyne co możemy stwierdzić to jak daleko jesteśmy od spełnienia
+naszego układu, odejmując lewą od prawej strony równania:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">plot</span>(r)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Taki wektor nazywamy residualem. Zazwyczaj by go zmierzyć jedną
+liczbą mówimy że residual to <span
+class="math inline">\(\|r\|_2=\sqrt{\sum_ir_i^2}\)</span>. Aktualnie
+wynosi on 2909.149542.</p>
+<p>Zauważmy, że residual mówi nam jak daleko jesteśmy od rozwiązania,
+ale nie mówi nam praktycznie w jakim kierunku mamy iść. Jesteśmy w <span
+class="math inline">\(x\)</span>, chcemy być <span
+class="math inline">\(S^{-1}F\)</span>, lecz jedyne co wiemy to nie
+kierunek <span class="math inline">\(S^{-1}F - x\)</span>, lecz <span
+class="math inline">\(F - Sx\)</span>. Żeby wiedzieć gdzie należy iść,
+musimy mieć jakiekolwiek przybliżenie <span
+class="math inline">\(S^{-1}\)</span>. Takie przybliżenie nazywamy
+preconditionerem. Zwyczajowo piszemy, że construujemy <span
+class="math inline">\(P\simeq S\)</span>, tak by <span
+class="math inline">\(P^{-1}\simeq S^{-1}\)</span> - lecz w
+rzeczywistości należy myśleć o preconditionerze jako o operatorze <span
+class="math inline">\(P^{-1}\)</span>, ponieważ wewnątrz programu, tylko
+on jest realizowany. Najprostrzym przykładem preconditionera jest
+odwrotność przekątnej macierzy (preconditioner Jacobiego):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>P <span class="ot">=</span> S</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>P[<span class="fu">row</span>(P) <span class="sc">!=</span> <span class="fu">col</span>(P)] <span class="ot">=</span> <span class="dv">0</span></span></code></pre></div>
+<p>Nie ma dobrej metody stwierdzenia, że dana macierz będzie dobrym
+preconditionerem dla innej, poza zbadaniem właściwości <span
+class="math inline">\(P^{-1}S\)</span>. Chcielibyśmy by macierz ta była
+możliwie bliska macierzy jednostkowej. W dużych zagadnieniach oczywiście
+takiej możliwości zbadania nie mamy, lecz w naszym przykładzie możemy
+przyjżeć się tej macierzy.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(<span class="fu">solve</span>(P,S))<span class="sc">$</span>val</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">barplot</span>(lam,<span class="at">main=</span><span class="st">&quot;Wartości właśne P^-1 S&quot;</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Widzimy, że w porównaniu z <span class="math inline">\(S\)</span>
+macierz ta ma wartości zgromadzone w około <span
+class="math inline">\(1\)</span>.</p>
+<p>Patrząc w dziedzinie zespolonej, zależy nam by <span
+class="math inline">\(\lambda\)</span> były wszystkie jak najbardziej
+zgromadzone blisko <span class="math inline">\(1\)</span>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">plot.lam</span>(lam)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Podobnie prostym preconditionerem jest wzięcie za <span
+class="math inline">\(P\)</span> dolnej trójkątnej częsci <span
+class="math inline">\(S\)</span> (preconditioner Gaussa-Seidla):</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>P <span class="ot">=</span> S</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>P[<span class="fu">row</span>(P) <span class="sc">&gt;</span> <span class="fu">col</span>(P)] <span class="ot">=</span> <span class="dv">0</span></span></code></pre></div>
+<p>Taka macierz jest też bardzo łatwa do odwrócenia. Daje ona bardzo
+przyzwoity rozkład wartości własnych:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(<span class="fu">solve</span>(P,S))<span class="sc">$</span>val</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">plot.lam</span>(lam)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Widzimy natychmiast, że wartości te nie są już czysto rzeczywiste -
+ponieważ <span class="math inline">\(P\)</span> nie jest teraz
+symmetryczna.</p>
+<p>Weźmy więc nasz najprostrzy preconditioner</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>P <span class="ot">=</span> S</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>P[<span class="fu">row</span>(P) <span class="sc">!=</span> <span class="fu">col</span>(P)] <span class="ot">=</span> <span class="dv">0</span></span></code></pre></div>
+<p>I w każdej iteracji przesuńmy się o: <span
+class="math inline">\(P^{-1}r \simeq S^{-1}r = S^{-1}(F-Sx) =
+S^{-1}F-x\)</span>. To powinno nas doprowadzić do rozwiązania:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> p</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Jacobi&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>}</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Widzimy natychmiast, że residual zamiast spadać rozbiega się
+wykładniczo. Jeśli spojżymy na naszą procedurę, to odmnarza ona
+nieustannie <span class="math inline">\(x\)</span> przez <span
+class="math inline">\((I-P^{-1}S)\)</span> ponieważ: <span
+class="math display">\[x = x + p = x + P^{-1}r = x + P^{1}(F-Sx) =
+(I-P^{-1}S)x + P^{-1}F\]</span> Oznacza to, że wartości własne <span
+class="math inline">\((I-P^{-1}S)\)</span> poza jednostkowym okręgiem
+będą powodować rozbierzność.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(I <span class="sc">-</span> <span class="fu">solve</span>(P,S))<span class="sc">$</span>val</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">plot.lam</span>(lam)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>By uniknąć takiej sytuacji możemy wprowadzić współczynnik relaksacji
+<span class="math inline">\(\alpha &lt; 1\)</span>, który zeskaluje
+wartości własne by mieściły się w stabilnym okręgu:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.7</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(I <span class="sc">-</span> alpha<span class="sc">*</span><span class="fu">solve</span>(P,S))<span class="sc">$</span>val</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="fu">plot.lam</span>(lam)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Metoda z tak dobranym współczynnikiem jest już zbierzna:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">delete.residuals</span>(<span class="st">&quot;Jacobi&quot;</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.7</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Jacobi alpha=0.7&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>}</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>Weźmy teraz znów jako preconditioner macierz górno-trójkątną.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>P <span class="ot">=</span> S</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>P[<span class="fu">row</span>(P) <span class="sc">&lt;</span> <span class="fu">col</span>(P)] <span class="ot">=</span> <span class="dv">0</span></span></code></pre></div>
+<p>Warto zauważyć, że dla preconditionera Gaussa-Seidla, można dobrać
+współczynnik <span class="math inline">\(\alpha\)</span> nawet większy
+od jedynki (nadrelaksacja):</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">1.5</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>lam <span class="ot">=</span> <span class="fu">eigen</span>(I <span class="sc">-</span> alpha<span class="sc">*</span><span class="fu">solve</span>(P,S))<span class="sc">$</span>val</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="fu">plot.lam</span>(lam)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">1.5</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Gauss-Seidl alpha=1.5&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>}</span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>Łatwo zauważyć że dobór jednej wartości <span
+class="math inline">\(\alpha\)</span> na wszystkie iteracje jest
+nieoptymalny. W każdym kroku należałoby dobierać <span
+class="math inline">\(\alpha\)</span> oddzielnie. Jeśli weźmiemy sume
+kwadratów residuali: <span class="math inline">\(f(\alpha) = \sum_i
+r_i^2 = r^T r\)</span>, to możemy dobrać tak <span
+class="math inline">\(\alpha\)</span> by <span
+class="math inline">\(f\)</span> było minimalne <strong>po
+iteracji</strong>. Residual po iteracji <span
+class="math inline">\(r^{(n+1)}\)</span> jest równy: <span
+class="math display">\[r^{(n+1)} = F - Sx^{(n+1)} = F - Sx^{n} - \alpha
+Sp = r^{(n)} - \alpha Sp\]</span> Różniczkując <span
+class="math inline">\(f\)</span> po <span
+class="math inline">\(\alpha\)</span>i przyrównując pochodną do zera
+dostajmey: <span
+class="math display">\[\alpha=\frac{r^T  (Sp)}{(Sp)^T(Sp)}\]</span></p>
+<p>Zobaczmy taką metodę dla preconditionera diagonalnego:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>P <span class="ot">=</span> S</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>P[<span class="fu">row</span>(P) <span class="sc">!=</span> <span class="fu">col</span>(P)] <span class="ot">=</span> <span class="dv">0</span></span></code></pre></div>
+<p>By lepiej zobaczyć co się dzieję zapiszemy wszystkie kolejne <span
+class="math inline">\(\alpha\)</span> w wektorze, by później je
+zwizualizować.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>alphas <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>  Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> Ap)<span class="sc">/</span><span class="fu">sum</span>(Ap <span class="sc">*</span> Ap)</span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a>  alphas <span class="ot">=</span> <span class="fu">c</span>(alphas,alpha)</span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Basic MINRES&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a>}</span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>Jak widać w przy takim optymalnym doborze <span
+class="math inline">\(\alpha\)</span> residual monotonicznie spada.
+Możemy teraz zobaczyć jakie wartości przyjmował ten współczynnik w
+trakcie procesu zbierzności:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">plot</span>(alphas,<span class="at">log=</span><span class="st">&quot;y&quot;</span>,<span class="at">ylab=</span><span class="fu">expression</span>(alpha),<span class="at">xlab=</span><span class="st">&quot;Iteracja&quot;</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">0.7</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>Jak widać Wykraczają one wielokrotnie poza zakres stabinych
+współczynników podrelaksacji dla metody Jacobiego. Oznacza to że w danej
+iteracji współczynnik <span class="math inline">\(\alpha\)</span> nie
+jest ograniczony przez najbardziej odstające wartości własne <span
+class="math inline">\(P^{-1}S\)</span>.</p>
+<p>Dość niejednorodne zachowanie metody MINRES wynika z częstej sytuacji
+w której to co zyskaliśmy w jednym kroku “tracimy” w następnym. Metoda
+monotonicznie redukuje residual, więc w rzeczywistości nie “tracimy” w
+kolejnej iteracji, co raczej “nie uzyskujemy tyle ile byśmy mogli”.
+Można sobie to wyobrazić w następujący sposób. Załużmy że chcemy dotrzeć
+do portu na jeziorze, lecz z powodu wiatru możemy wykonywać tylko ruchy
+po skosie. Jeśli będziemy płynąć zawsze w danym kierunku, aż będziemy
+najbliżej portu (minimalne residuum) i dopiero wtedy wykonywać zwrot, w
+następnym ruchu musimy znów dużo przepłynąć.</p>
+<p>Weźmy więc jezioro i port (<span class="math inline">\(b\)</span>) na
+nim.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">2.9</span>,<span class="dv">0</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">draw.lake</span>(b)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>Do tego weźmy macierz <span class="math inline">\(A\)</span> która
+będzie realizować zwykłą odległość euklidesową i preconditioner który
+będzie dawał nam skośne kierunki ruchu:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">diag</span>(<span class="dv">2</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>P <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">0.8</span>,<span class="fl">0.9</span>,<span class="dv">1</span>),<span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">*</span><span class="dv">4</span></span></code></pre></div>
+<p>Dla zadanego punktu początkowego <span
+class="math inline">\(x_0\)</span> możemy policzyć residual i kierunek
+<span class="math inline">\(p\)</span>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">0.5</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>r <span class="ot">=</span> b <span class="sc">-</span> A <span class="sc">%*%</span> x</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="fu">draw.lake</span>(b)</span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="fu">draw.boat</span>(x,p)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Dla takiego układu optymalna <span
+class="math inline">\(\alpha\)</span> to krok dla którego punkt <span
+class="math inline">\(x_1\)</span> będzie najbliżej portu. Można ją
+policzyć za pomocą tego samego wzoru:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>  Ap <span class="ot">=</span> A <span class="sc">%*%</span> p</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> Ap)<span class="sc">/</span><span class="fu">sum</span>(Ap <span class="sc">*</span> Ap)</span></code></pre></div>
+<p>Wynosi ona 0.6535693, więc łódka powędruje nie cały wektor <span
+class="math inline">\(p\)</span> lecz jego kawałek.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">draw.lake</span>(b)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">draw.boat</span>(x,p)</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>x <span class="ot">=</span> x <span class="sc">+</span> alpha <span class="sc">*</span> p</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>r <span class="ot">=</span> b <span class="sc">-</span> A <span class="sc">%*%</span> x</span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a><span class="fu">draw.boat</span>(x,p,<span class="dv">1</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>Jednak <span class="math inline">\(\alpha\)</span> w nowym kierunku
+jest wysoka (2.7389444) i punkt x znów przesunie się daleko po
+skosie.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">draw.lake</span>(b)</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">0.5</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) { </span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>  r <span class="ot">=</span> b <span class="sc">-</span> A <span class="sc">%*%</span> x</span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>  <span class="fu">draw.boat</span>(x,p,<span class="cn">NA</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>  Ap <span class="ot">=</span> A <span class="sc">%*%</span> p</span>
+<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> Ap)<span class="sc">/</span><span class="fu">sum</span>(Ap <span class="sc">*</span> Ap)</span>
+<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a>}</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>By polepszyć zbierzność, możemy zachować poprzedni kierunek <span
+class="math inline">\(p\)</span> i uzyć go do poprawienia następnej
+iteracji. Załużmy, że preconditioner wskazuje nam pewien kierunek <span
+class="math inline">\(p=P^{-1}r\)</span>, zaś w poprzedniej iteracji
+poruszyliśmy się w kierunku <span class="math inline">\(q\)</span>.
+Możemy usunąć część <span class="math inline">\(p\)</span> która już w
+poprzedniej iteracji uzyskaliśmy modyfikując kierunek <span
+class="math inline">\(p\)</span> za pomocą <span
+class="math inline">\(p&#39; = p - \beta q\)</span>. Stosując
+analogiczne rozumowanie jak porzednio otrzymamy <span
+class="math inline">\(\beta=\frac{(Sq)^T(Sp)}{(Sq)^T(Sq)}\)</span>, a
+dokładniej: <span
+class="math display">\[\beta=\left[(Sq)^T(Sq)\right]^{-1}\left[(Sq)^T(Sp)\right]\]</span></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>    Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>    Aq <span class="ot">=</span> S <span class="sc">%*%</span> q</span>
+<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a>    beta <span class="ot">=</span> <span class="fu">sum</span>(Ap <span class="sc">*</span> Aq)<span class="sc">/</span><span class="fu">sum</span>(Aq <span class="sc">*</span> Aq)</span>
+<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a>    p <span class="ot">=</span> p <span class="sc">-</span> beta <span class="sc">*</span> q</span>
+<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a>  }</span>
+<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a>  Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb36-12"><a href="#cb36-12" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> Ap)<span class="sc">/</span><span class="fu">sum</span>(Ap <span class="sc">*</span> Ap)</span>
+<span id="cb36-13"><a href="#cb36-13" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb36-14"><a href="#cb36-14" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;MINRES + beta&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb36-15"><a href="#cb36-15" tabindex="-1"></a>  q <span class="ot">=</span> p</span>
+<span id="cb36-16"><a href="#cb36-16" tabindex="-1"></a>}</span>
+<span id="cb36-17"><a href="#cb36-17" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Widać natychmiast, że działanie tak zmodyfikowanej metody MINRES jest
+szybsze, ale też bardziej stabilne (bez długich płaskich fragmentów).
+Rozumowanie takie można pociągnąć dłużej i zachowywać wszystkie
+wcześniejsze wektory, by użyć ich by poprawiać każdy kolejny
+kierunek.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>q <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>    Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>    Aq <span class="ot">=</span> S <span class="sc">%*%</span> q</span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>    beta <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(Aq) <span class="sc">%*%</span> Aq, <span class="fu">t</span>(Aq) <span class="sc">%*%</span> Ap)</span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>    p <span class="ot">=</span> p <span class="sc">-</span> q <span class="sc">%*%</span> beta</span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a>  }</span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a>  Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> Ap)<span class="sc">/</span><span class="fu">sum</span>(Ap <span class="sc">*</span> Ap)</span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;MINRES + beta (full)&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>  q <span class="ot">=</span> <span class="fu">cbind</span>(p,q)</span>
+<span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>}</span>
+<span id="cb37-18"><a href="#cb37-18" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Taka metoda ma bardzo szybką zbierzność, lecz wymaga w ogólności
+przechowywania bardzo dużej ilości wektorów. Wymaga także odwracania
+macierzy <span class="math inline">\(\left[(Sq)^T(Sq)\right]\)</span>
+która z iteracji na iterację robi się coraz większa. Macierz ta jest też
+często źle uwarunkowana i poprawna implementacja tej metody wymaga
+troche dodatkowej uwagi. Zazwyczaj resetuje się zestaw wektorów <span
+class="math inline">\(q\)</span> co jakiś czas by uniknąć narastających
+problemów.</p>
+<div id="dodatnio-określona-macierz-symetryczna" class="section level3">
+<h3>Dodatnio określona macierz symetryczna</h3>
+<p>Jeśli macierz <span class="math inline">\(A\)</span> jest
+symmetryczna, to rozwiązanie układu <span
+class="math inline">\(Ax=b\)</span> jest równoważnie nie tylko z
+minimalizacją residualu (<span class="math inline">\(r^Tr\)</span>), ale
+też z minimalizacją <span class="math inline">\(a(x) = x^TAx - 2 x^T
+b\)</span>. Jedyna różnica jaka z tego wynika, to inna formuła na <span
+class="math inline">\(\alpha\)</span> i <span
+class="math inline">\(\beta\)</span>: <span
+class="math display">\[\alpha=\frac{r^T A p}{p^T A p}\]</span> <span
+class="math display">\[\beta=\left[q^T A q\right]^{-1}\left[q^T A
+p\right]\]</span></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>q <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>    Aq <span class="ot">=</span> S <span class="sc">%*%</span> q</span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a>    beta <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(Aq) <span class="sc">%*%</span> q, <span class="fu">t</span>(Aq) <span class="sc">%*%</span> p)</span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a>    p <span class="ot">=</span> p <span class="sc">-</span> q <span class="sc">%*%</span> beta</span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a>  }</span>
+<span id="cb38-11"><a href="#cb38-11" tabindex="-1"></a>  Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> p)<span class="sc">/</span><span class="fu">sum</span>(p <span class="sc">*</span> Ap)</span>
+<span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb38-14"><a href="#cb38-14" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Symmetric, positive MINRES (full)&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb38-15"><a href="#cb38-15" tabindex="-1"></a>  q <span class="ot">=</span> <span class="fu">cbind</span>(p,q)</span>
+<span id="cb38-16"><a href="#cb38-16" tabindex="-1"></a>}</span>
+<span id="cb38-17"><a href="#cb38-17" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>Taka metoda ma także bardzo dobrą zbierzność. Widać jednak na
+wykresie, że zbierzność jej jest nie monotoniczna:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">draw.residuals</span>(<span class="st">&quot;Symmetric, positive MINRES (full)&quot;</span>)</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>Nie jest to niespodziewane, ponieważ minimalizujemy teraz <span
+class="math inline">\(x^TAx-xb\)</span> (i funkcja ta monotocznie
+spada), a nie <span class="math inline">\(\sum_i r^2_i\)</span>.</p>
+<p>To czego nie widać odrazu, to to, że wektor <span
+class="math inline">\(\beta\)</span> we wszystkich iteracjach ma tylko
+jeden niezerowy element (odpowiadający <span
+class="math inline">\(q\)</span> bezpośrednio z poprzedniej iteracji).
+Dla przykładu <span class="math inline">\(\beta\)</span> z ostatniej
+iteracji to:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">print.few</span>(beta,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">beta&quot;</span>)</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="8%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"><span class="math inline">\(\beta_{1}\)</span></th>
+<th align="right"><span class="math inline">\(\beta_{2}\)</span></th>
+<th align="left"><span class="math inline">\(\cdots\)</span></th>
+<th align="right"><span class="math inline">\(\beta_{105}\)</span></th>
+<th align="right"><span class="math inline">\(\beta_{106}\)</span></th>
+<th align="right"><span class="math inline">\(\beta_{107}\)</span></th>
+<th align="right"><span class="math inline">\(\beta_{108}\)</span></th>
+<th align="right"><span class="math inline">\(\beta_{109}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-0.2660422</td>
+<td align="right">0</td>
+<td align="left"><span class="math inline">\(\cdots\)</span></td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Nie jest to przypadek, tylko analityczna konsekwencja poprzednich
+iteracji. Pokazanie tego pozostawiam jako dobre ćwiczenie dla
+czytelnika. Właściwość ta (przypominam: dla macierzy symmetrycznych i
+dodatnio określonych) powoduje, że wystarczy zapisać jeden wektor <span
+class="math inline">\(q\)</span> by uzyskać tak samo dobrą zbierzność
+jak przy zapisywaniu wszystkich. Taka metoda nazywa się Conjugate
+Gradient:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>  r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>  p <span class="ot">=</span> <span class="fu">solve</span>(P,r)</span>
+<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>    Aq <span class="ot">=</span> S <span class="sc">%*%</span> q</span>
+<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>    beta <span class="ot">=</span> <span class="fu">sum</span>(Aq <span class="sc">*</span> p)<span class="sc">/</span><span class="fu">sum</span>(Aq <span class="sc">*</span> q)</span>
+<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a>    p <span class="ot">=</span> p <span class="sc">-</span> q <span class="sc">%*%</span> beta</span>
+<span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a>  }</span>
+<span id="cb41-10"><a href="#cb41-10" tabindex="-1"></a>  Ap <span class="ot">=</span> S <span class="sc">%*%</span> p</span>
+<span id="cb41-11"><a href="#cb41-11" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> p)<span class="sc">/</span><span class="fu">sum</span>(p <span class="sc">*</span> Ap)</span>
+<span id="cb41-12"><a href="#cb41-12" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>p</span>
+<span id="cb41-13"><a href="#cb41-13" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Conjugate Gradient&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb41-14"><a href="#cb41-14" tabindex="-1"></a>  q <span class="ot">=</span> p</span>
+<span id="cb41-15"><a href="#cb41-15" tabindex="-1"></a>}</span>
+<span id="cb41-16"><a href="#cb41-16" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Warto na koniec zauważyć, że metoda ta ma na tyle dobrą zbierzność,
+że możemy jej użyć nawet bez jakiegokolwiek preconditionera (i troche
+przeorganizować kolejność obliczeń):</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>x <span class="ot">=</span> x0</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>r <span class="ot">=</span> F <span class="sc">-</span> S <span class="sc">%*%</span> x</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>q <span class="ot">=</span> r</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>itmax) {</span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">residual</span>(i,r,<span class="st">&quot;Conjugate Gradient (no precond)&quot;</span>)) <span class="cf">break</span></span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>  Aq <span class="ot">=</span> S <span class="sc">%*%</span> q</span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>  alpha <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> q)<span class="sc">/</span><span class="fu">sum</span>(q <span class="sc">*</span> Aq)</span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>  x <span class="ot">=</span> x <span class="sc">+</span> alpha<span class="sc">*</span>q</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>  r <span class="ot">=</span> r <span class="sc">-</span> alpha<span class="sc">*</span>Aq</span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a>  beta <span class="ot">=</span> <span class="fu">sum</span>(r <span class="sc">*</span> Aq)<span class="sc">/</span><span class="fu">sum</span>(q <span class="sc">*</span> Aq)</span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a>  q <span class="ot">=</span> r <span class="sc">-</span> beta <span class="sc">*</span> q</span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a>}</span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a><span class="fu">draw.residuals</span>()</span></code></pre></div>
+<p><img src="metnum_skrypt02_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Ilość iteracji potrzbnych do osiągnięcia wymaganego residuum:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>it <span class="ot">=</span> <span class="fu">tapply</span>(resid<span class="sc">$</span>iteration,resid<span class="sc">$</span>name,max)</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>it[it<span class="sc">==</span>itmax] <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">&quot;&gt;&quot;</span>,itmax)</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(<span class="at">Iteracji=</span>it))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Iteracji</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Jacobi alpha=0.7</td>
+<td align="left">&gt; 2000</td>
+</tr>
+<tr class="even">
+<td align="left">Gauss-Seidl alpha=1.5</td>
+<td align="left">&gt; 2000</td>
+</tr>
+<tr class="odd">
+<td align="left">Basic MINRES</td>
+<td align="left">&gt; 2000</td>
+</tr>
+<tr class="even">
+<td align="left">MINRES + beta</td>
+<td align="left">551</td>
+</tr>
+<tr class="odd">
+<td align="left">MINRES + beta (full)</td>
+<td align="left">109</td>
+</tr>
+<tr class="even">
+<td align="left">Symmetric, positive MINRES (full)</td>
+<td align="left">110</td>
+</tr>
+<tr class="odd">
+<td align="left">Conjugate Gradient</td>
+<td align="left">110</td>
+</tr>
+<tr class="even">
+<td align="left">Conjugate Gradient (no precond)</td>
+<td align="left">126</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
