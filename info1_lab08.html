@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="B. Górecki" />
+
+
+<title>info1_lab08</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info1_lab08.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p>Tydzień temu nauczyliśmy się jak dynamicznie alokować pamięć dla
+tablicy jednowymiarowej. Wyraz ,,dynamicznie’’ oznaczał tyle, że rozmiar
+tablicy, którą chcemy zaalokować, poznamy dopiero w trakcie wykonywania
+programu i nie jesteśmy w stanie go określić (konkretną liczbą) na
+etapie kompilacji. Kod dokonujący dynamicznej alokacji tablicy
+jednowymiarowej wygląda tak:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dt">void</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="dt">double</span> <span class="op">*</span>tab<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Podaj n: &quot;</span><span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  scanf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">&amp;</span>n<span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  tab <span class="op">=</span> <span class="op">(</span><span class="dt">double</span> <span class="op">*)</span>malloc<span class="op">(</span>n <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="co">// ... operacje na tablicy</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  free<span class="op">(</span>tab<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Dziś nauczymy się:</p>
+<ul>
+<li>stosowania statycznych tablic wielowymiarowych oraz</li>
+<li>dynamicznej alokacji tablic wielowymiarowych.</li>
+</ul>
+<div id="statyczne-tablice-wielowymiarowe" class="section level1">
+<h1>Statyczne tablice wielowymiarowe</h1>
+<p>Język C pozwala na używanie tablic wielowymiarowych. Wyobraźmy sobie
+– tablica dwuwymiarowa doskonale nadaje się do przechowywania np.
+macierzy<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a>. Przyjrzyjmy się więc fragmentowi kodu,
+który zadeklaruje dwuwymiarową tablicę o wymiarze <span
+class="math inline">\(3 \times 4\)</span>. Możemy ją utożsamić z
+macierzą o takim samym wymiarze.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="dt">void</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>   <span class="dt">double</span> A<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">4</span><span class="op">];</span>        <span class="co">// deklaracja tablicy 2-wymiarowej</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>   </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>   A<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="fl">1.</span><span class="op">;</span>          <span class="co">// przypisanie wartosci</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>   A<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="fl">1.5</span><span class="op">;</span>         <span class="co">// poszczegolnym elementom</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>   A<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="fl">0.</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>   A<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="op">-</span><span class="fl">2.7</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>   <span class="co">//...</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>   A<span class="op">[</span><span class="dv">2</span><span class="op">][</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="fl">8.</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Przypomnijmy, że w przypadku tablic deklarowanych statycznie nie ma
+potrzeby ich zwalniania. Kompilator sam o to dba (tak jak w przypadku
+wszystkich zmiennych, które do tej pory deklarowaliśmy – one też są
+automatycznie niszczone przez kompilator). Powyższą macierz możemy też
+wypełnić wartościami w nieco zgrabniejszy sposób niż przez zapisanie
+dwunastu kolejnych linijek przypisań. Możemy to zrobić już w trakcie
+deklaracji tablicy, dzięki liście inicjalizującej. Dokonuje się tego tak
+(dla przypomnienia: znak ,,\’’ oznacza, że długa instrukcja będzie
+kontynuowana w następnej linii):</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="dt">double</span> A<span class="op">[</span><span class="dv">3</span><span class="op">][</span><span class="dv">4</span><span class="op">]</span> <span class="op">=</span> <span class="op">{{</span><span class="fl">1.</span><span class="op">,</span> <span class="fl">1.5</span><span class="op">,</span> <span class="fl">0.</span><span class="op">,</span> <span class="op">-</span><span class="fl">2.7</span><span class="op">},</span>\</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                  <span class="op">{-</span><span class="fl">3.</span><span class="op">,</span> <span class="fl">2.5</span><span class="op">,</span> <span class="fl">7.</span><span class="op">,</span> <span class="fl">0.</span><span class="op">},</span>\</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                  <span class="op">{</span><span class="fl">0.</span><span class="op">,</span> <span class="fl">1.</span><span class="op">,</span> <span class="op">-</span><span class="fl">3.</span><span class="op">,</span> <span class="fl">8.</span><span class="op">}};</span></span></code></pre></div>
+<p>W ten sposób stworzymy poniższą macierz: <span
+class="math display">\[
+\mathbf{A} =
+\left(
+\begin{array}{cccc}
+1 &amp; 1.5 &amp; 0 &amp; -2.7 \\ -3 &amp; 2.5 &amp; 7 &amp; 0 \\ 0
+&amp; 1 &amp; -3 &amp; 8
+\end{array}
+\right)
+\]</span> Pozostaje wytłumaczyć jeszcze, w jaki sposób odwołujemy się do
+elementów w dwuwymiarowej tablicy. Robimy to analogicznie do tablicy
+jednowymiarowej, tylko tym razem podajemy dwa indeksy. Wartość
+pierwszego indeksu to numer wiersza, drugiego – numer kolumny.
+Przykładowo, do elementu macierzy <span
+class="math inline">\(a_{32}\)</span> odwołamy się przez napisanie
+<code>a[2][1]</code>. W ten sposób możemy wyłuskać wartość przechowywaną
+pod tym elementem lub za pomocą operatora ,,=’’ przypisać temu
+elementowi nową wartość.</p>
+<div id="ćwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>W funkcji <code>main()</code> napisz kod, w którym zadeklarujesz i
+zainicjalizujesz dowolnymi wartościami dwie różne tablice dwuwymiarowe.
+Jedna ma przechowywać macierz kwadratową o wymiarze <span
+class="math inline">\(2 \times 2\)</span>, a druga macierz kwadratową o
+wymiarze <span class="math inline">\(3 \times 3\)</span>. Napisz kod,
+który dla każdej z tych macierzy policzy wyznacznik.</p>
+</div>
+</div>
+<div id="dynamiczna-alokacja-tablic-wielowymiarowych"
+class="section level1">
+<h1>Dynamiczna alokacja tablic wielowymiarowych</h1>
+<p>Czas na dynamiczną alokację. Dwuwymiarową tablicę o rozmiarze <span
+class="math inline">\(N \times M\)</span> alokujemy w następujący
+sposób:</p>
+<ul>
+<li>tworzymy jednowymiarową tablicę wskaźników o rozmiarze <span
+class="math inline">\(N\)</span> (każdy jej element będzie wskazywać na
+początek odpowiadającego mu wiersza),</li>
+<li>dla każdego z elementów tej tablicy alokujemy blok o długości <span
+class="math inline">\(M\)</span> (będą to jednowymiarowe tablice do
+przechowywania wierszy).</li>
+</ul>
+<p>Podsumowując, będziemy mieli w pamięci <span
+class="math inline">\(N\)</span> bloków, każdy o długości <span
+class="math inline">\(M\)</span>. Spójrzmy na poniższy kod:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  <span class="dt">double</span> <span class="op">**</span>A<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  A <span class="op">=</span> <span class="op">(</span><span class="dt">double</span> <span class="op">**)</span>malloc<span class="op">(</span>N <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span> <span class="op">*));</span></span></code></pre></div>
+<p>Przypomnijmy sobie, że jednowymiarową tablicę alokowaliśmy
+wykorzystując wskaźnik do typu <code>double</code>. Tym razem będziemy
+alokować wskaźnik do wskaźnika na typ <code>double</code>. Dlatego
+używamy ,,podwójnego’’ wskaźnika. W instrukcji powyżej, adres zwracany
+przez funkcję <code>malloc()</code> rzutujemy więc na podwójny wskaźnik
+<code>double **</code>. Wywołując funkcję <code>malloc()</code> musimy
+wiedzieć, ile miejsca potrzebujemy. Przechowywać będziemy wskaźniki (do
+odpowiednich tablic jednowymiarowych przechowujących wiersze), dlatego
+jako argument funkcji <code>sizeof()</code> podajemy
+<code>double *</code>.</p>
+<p>Teraz możemy zaalokować tablice jednowymiarowe do przechowywania
+wierszy:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  A<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span><span class="dt">double</span> <span class="op">*)</span>malloc<span class="op">(</span>M <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span></code></pre></div>
+<p>Każdemu z elementów pierwszej tablicy przyporządkowaliśmy tablicę do
+przechowywania każdego z wierszy. Tym razem adres zwrócony przez funkcję
+<code>malloc()</code> rzutujemy na typ <code>double *</code>, a
+argumentem funkcji <code>sizeof()</code> jest typ zmiennej
+przechowywanej w tej tablicy, czyli już zwykła zmienna
+<code>double</code>. Tablica dwuwymiarowa jest już gotowa – możemy jej
+używać.</p>
+<p>Po zakończeniu pracy z tablicą, trzeba koniecznie <strong>zwolnić
+pamięć</strong> wykorzystywaną przez nią. Najpierw zwalniamy tablice
+odpowiadające każdemu z wierszy, a na końcu zwalniamy pierwotną tablicę
+wskaźników do wierszy. Dokonuje tego poniższy kod:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  free<span class="op">(</span>A<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>free<span class="op">(</span>A<span class="op">);</span></span></code></pre></div>
+<div id="podsumowanie" class="section level2">
+<h2>Podsumowanie</h2>
+<p>Zbierzmy wszystkie instrukcje w jednym miejscu. Chcemy zaalokować
+dwuwymiarową tablicę zmiennych typu <code>int</code>. Dokonujemy tego
+tak:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">/* alokacja pamieci */</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="dt">int</span> <span class="op">**</span>A<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>A <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">**)</span>malloc<span class="op">(</span>N <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span> <span class="op">*));</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  A<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>malloc<span class="op">(</span>M <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">/* wykonujemy dowolne operacje na tablicy */</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">/* zwalniamy pamiec */</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  free<span class="op">(</span>A<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>free<span class="op">(</span>A<span class="op">);</span></span></code></pre></div>
+<div id="ćwiczenia-1" class="section level3">
+<h3>Ćwiczenia</h3>
+<ol style="list-style-type: decimal">
+<li>Zaalokuj w funkcji <code>main</code> w sposób dynamiczny miejsce dla
+macierzy <span class="math inline">\(A\)</span> o wymiarze <span
+class="math inline">\([3 \times 3]\)</span> oraz dwóch 3-elementowych
+wektorów <span class="math inline">\(v1\)</span> i <span
+class="math inline">\(v2\)</span>. Wypełnij macierz i jeden z wektorów
+dowolnymi liczbami.</li>
+<li>Napisz funkcję <code>drukujMacierz</code>, która:
+<ul>
+<li>jako argumenty przyjmuje: podwójny wskaźnik (wskaźnik do dynamicznie
+alokowanej tablicy dwuwymiarowej) oraz liczbę kolumn i liczbę wierszy
+macierzy,</li>
+<li>dokonuje wydruku macierzy na ekran w postaci do jakiej jesteśmy
+przyzwyczajeni z lekcji algebry.</li>
+</ul></li>
+<li>Napisz funkcję <code>maxElem</code>, która dla zadanej macierzy
+zwraca do funkcji <code>main</code> wartość największego co do modułu
+elementu tej macierzy oraz jego indeksy <span
+class="math inline">\(i\)</span> i <span
+class="math inline">\(j\)</span>.</li>
+<li>Napisz w funkcji <code>main</code> kod, który dokona mnożenia
+macierzy <span class="math inline">\(A\)</span> przez wektor <span
+class="math inline">\(v1\)</span> a wynik zapisze do wektora <span
+class="math inline">\(v2\)</span>. Mnożenie macierzy przez wektor
+określone jest wzorem: <span class="math display">\[
+w_i = \sum\limits_{j=0}^{m-1}{a_{ij}v_j}
+\]</span></li>
+<li>Zamknij powyższe operacje w funkcji o nagłówku</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dt">void</span> matVecMultiply<span class="op">(</span><span class="dt">double</span> <span class="op">**</span>A<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>v1<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>v2<span class="op">,</span> <span class="dt">int</span> n<span class="op">)</span></span></code></pre></div>
+<p>i dokonaj wywołania z funkcji <code>main</code>. 6. Zmodyfikuj
+powyższy program tak, aby rozmiar <span class="math inline">\(n\)</span>
+był wczytywany z klawiatury. Zaś elementy tablicy były generowane
+zgodnie ze wzorem <span class="math display">\[
+a_{ij} = \frac{i+1}{j+1}, (i, j = 0, \ldots, n-1)
+\]</span> a elementy wektora według wzoru <span class="math display">\[
+v_i = i+1, (i = 0,\ldots,n-1)
+\]</span> Następnie oblicz iloczyn tej macierzy przez ten wektor,
+korzystając ze swojej funkcji <code>matVecMultiply</code>. Wynik
+wyświetl na ekranie oraz sprawdź czy jest poprawny<a href="#fn2"
+class="footnote-ref" id="fnref2"><sup>2</sup></a>. 7. Napisz funkcję</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>matMatMultiply<span class="op">(</span><span class="dt">double</span> <span class="op">**</span>A<span class="op">,</span> <span class="dt">double</span> <span class="op">**</span>B<span class="op">,</span> <span class="dt">double</span> <span class="op">**</span>C<span class="op">,</span>\</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>               <span class="dt">int</span> nA<span class="op">,</span> <span class="dt">int</span> mA<span class="op">,</span> <span class="dt">int</span> nB<span class="op">,</span> <span class="dt">int</span> mB<span class="op">)</span></span></code></pre></div>
+<p>służącą do mnożenia dwóch macierzy prostokątnych (<span
+class="math inline">\(\bf{A}\)</span> o wymiarze <span
+class="math inline">\(n_A \times m_A\)</span> i <span
+class="math inline">\(\bf{B}\)</span> o wymiarze <span
+class="math inline">\(n_B \times m_B\)</span>). Wynik powinien być
+zapisany do macierzy <span class="math inline">\(\bf{C}\)</span>. Zadbaj
+w funkcji <code>main</code> o to, aby pamięć zaalokowana dla macierzy
+<span class="math inline">\(\bf{C}\)</span> była odpowiedniej wielkości
+– zgodnej z regułami mnożenia macierzy. <strong>Uwaga:</strong>
+Pamiętaj, aby zwolnić dynamicznie alokowaną pamięć<a href="#fn3"
+class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+</div>
+</div>
+</div>
+<div id="alokacja-pamięci-wewnątrz-funkcji" class="section level1">
+<h1>Alokacja pamięci wewnątrz funkcji</h1>
+<p>Zastanów się dlaczego poniższy kod nie działa poprawnie?</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="dt">void</span> initialize_vec_BAD<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>ptr<span class="op">,</span> <span class="dt">int</span> N<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  ptr <span class="op">=</span> <span class="op">(</span><span class="dt">int</span> <span class="op">*)</span>malloc<span class="op">(</span>N <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">int</span><span class="op">));</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    ptr<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> j<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  </span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Wewn. funkcji initialize:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span><span class="op">,</span> ptr<span class="op">[</span>j<span class="op">]);</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>  <span class="dt">int</span> N <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>  <span class="dt">int</span> <span class="op">*</span>v<span class="op">;</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>  </span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>  initialize_vec_BAD<span class="op">(</span>v<span class="op">,</span> N<span class="op">);</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>  </span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;Wewn. funkcji main:</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>j<span class="op">){</span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%d</span><span class="st"> &quot;</span><span class="op">,</span> v<span class="op">[</span>j<span class="op">]);</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>  </span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>  free<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>  </span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a>  getchar<span class="op">();</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Popraw deklarację i ciało funkcji
+<code>initialize_vec_BAD</code>.</p>
+<p><strong>Wskazówka:</strong> prawidłowa deklaracja w języku C powinna
+wyglądać tak:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="dt">void</span> initialize_vec<span class="op">(</span><span class="dt">int</span> <span class="op">**</span>ptr<span class="op">,</span> <span class="dt">int</span> N<span class="op">)</span></span></code></pre></div>
+</div>
+<div id="dla-ambitnych" class="section level1">
+<h1>* Dla ambitnych</h1>
+<ol style="list-style-type: decimal">
+<li>Napisz funkcję alokującą pamięć dla tablicy 2-wymiarowej wewnątrz
+funkcji.</li>
+<li>Zastanów się, jak wyglądałaby dynamiczna alokacja i zwolnienie
+pamięci dla tablicy trójwymiarowej – przykładowo gdybyś chciał napisać
+grę w trójwymiarowe kółko i krzyżyk.</li>
+</ol>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Tak naprawdę, tablica może przechowywać o wiele więcej
+struktur. Przykładowo programując grę w szachy moglibyśmy użyć
+dwuwymiarowej tablicy o wymiarze <span class="math inline">\(8 x
+8\)</span> i w odpowiednie pola tej tablicy wpisać liczby, które
+symbolizowałyby konkretną figurę. A gra w statki? Można podobnie. Z
+drugiej strony, w obliczeniach numerycznych wielkie macierze o rozmiarze
+rzędu kilkuset tysięcy do kilku milionów elementów i większe,
+przechowuje się w postaci tablicy jednowymiarowej. W zagadnieniach
+inżynierskich macierze są często rzadkie, tzn. takie, które w stosunku
+do całkowitej liczby swoich elementów mają bardzo niewiele elementów,
+które nie są zerem. Taką macierz efektywnie jest trzymać w pamięci jako
+tablicę jednowymiarową (przyjmując specjalny format, który pomija
+wszystkie zera – np. format CSR <em>(ang. Compressed Sparse Row)</em>
+jest szeroko stosowanym formatem zapisywania macierzy rzadkiej w trzech
+tablicach jednoelementowych). Tak wielka macierz przechowywana jawnie
+najpewniej nie zmieściłaby się w pamięci żadnego dostępnego nam
+komputera.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Dla takiej macierzy i takiego wektora łatwo jest
+wygenerować analityczny wynik. Zapisz sobie małą macierz według zadanego
+wzoru i odpowiadający wektor a na pewno szybko zauważysz prawidłowość.
+Będziesz wtedy wiedzieć, jaki wynik powinien dać program. Tak się
+testuje programy na wczesnych etapach rozwoju.<a href="#fnref2"
+class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Niezwolnienie pamięci prowadzi do jej wycieków i w
+przypadku pewnych operacji wykonywanych w pętlach może doprowadzić do
+tego, że Twój program wykorzysta całą pamięć operacyjną komputera i
+przestanie działać.<a href="#fnref3"
+class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+
+
+<title>Mnożenie przez macierz jako funkcja</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/metnum_lab4.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Mnożenie przez macierz jako funkcja</h1>
+<h4 class="author">Ł. Łaniewski-Wołłk</h4>
+
+</div>
+
+
+<div id="wstęp" class="section level1">
+<h1>Wstęp</h1>
+<p>Na tym laboratorium nie poznamy <em>sensum stricte</em> nowych metod
+numerycznych. Zamiast tego przyjrzymy się, jak w optymalny sposób
+zaimplementować metody, które już znamy. Wykonując poprzednie
+laboratorium powinniśmy byli zauważyć, że najbardziej wydajną metodą
+iteracyjną (przynajmniej z tych rozważanych) rozwiązania układu
+algebraicznego wynikającego z MES jest metoda gradientów sprzężonych z
+preconditionerem Jacobiego. Wobec tego skupimy się tylko na niej, ale
+warto zaznaczyć, że prezentowane poniżej rozwiązania z powodzeniem można
+stosować również dla pozostałych metod iteracyjnych.</p>
+<p>Macierz <span class="math inline">\(N \times N\)</span> typu
+<code>double</code> zajmuje w pamięci <span
+class="math inline">\(8N^2\)</span> byte’ów, także np. mając 16GB
+pamięci RAM możemy zaalokować macierz reprezentującą układ równań o ok.
+45tys. niewiadomych (nawet mniej, gdy uwzględnimy pamięć zarezerwowaną
+na inne zmienne, system operacyjny itd). Implementacja z poprzednich
+zajęć jest wobec tego zupełnie nieadekwatna do ,,prawdziwych’’ problemów
+inżynierskich, które potrafią mieć nawet dziesiątki milionów stopni
+swobody. Szczęśliwie okazuje się, że trzymanie w pamięci całego <span
+class="math inline">\(A\)</span> nie jest potrzebne. Nietrudno zauważyć,
+że w metodzie gradientów sprzężonych nie używamy elementów macierzy,
+lecz tylko możliwości mnożenia przez nią. Innymi słowy, nie musimy
+wiedzieć jak wygląda <span class="math inline">\(A\)</span>, wystarczy
+że dla danego wektora <span class="math inline">\(x\)</span> potrafimy
+policzyć <span class="math inline">\(Ax\)</span>. Dziś wykorzystamy to
+spostrzeżenie, aby przyspieszyć program i drastycznie zredukować ilość
+wykorzystywanej przez niego pamięci.</p>
+<p>Dodatkowo, chętni mogą dowiedzieć się, jak wykorzystać współczesne
+wielordzeniowe procesory do przyspieszenia obliczeń.</p>
+</div>
+<div id="przygotowanie" class="section level1">
+<h1>Przygotowanie</h1>
+<p>Aby nie pomylić się w następnych krokach, należy najpierw
+zrefaktoryzować (tzn. przeorganizować i ,,posprzątać’’) kod. W tym celu
+upewnij się, że Twoja implementacja spełnia poniższe wymagania:</p>
+<ul>
+<li><p>Implementacja metody CG jest wydzielona do osobnej funkcji (dla
+ustalenia uwagi w tej instrukcji nazwiemy ją
+<code>Solve</code>)</p></li>
+<li><p><code>Solve</code> przyjmuje następujące argumenty: rozmiar
+układu równań <code>N</code> (typ całkowity), macierz <code>A</code>
+(typ <code>double **</code>), wektor <code>b</code> (typ
+<code>double *</code>), wektor przybliżenia początkowego <code>x0</code>
+(typ <code>double *</code>) oraz wektor, do którego wpisane zostać ma
+rozwiązanie <code>x</code> (typ <code>double*</code>).</p></li>
+<li><p><code>Solve</code> nie zwraca wartości lub ewentualnie zwraca kod
+błędu (typ <code>int</code>).</p></li>
+<li><p>Wewnątrz <code>Solve</code> jasno zdefiniowana jest maksymalna
+liczba iteracji <code>max_it</code> (typ <code>const int</code>) oraz
+poziom zbieżności <code>eps</code> (typ <code>const double</code>).
+Opcjonalnie możesz te wielkości przekazywać jako dodatkowe
+argumenty.</p></li>
+<li><p>Poszczególne elementy danej iteracji, np. liczenie residuum,
+mnożenie macierz-wektor, mnożenie skalarne wektorów itp. są wydzielone
+do osobnych funkcji.</p></li>
+<li><p>Bezpośrednio w <code>Solve</code> nie występują odniesienia do
+poszczególnych elementów <code>A</code> (są one przeniesione do
+odpowiednich funkcji, z których <code>Solve</code> korzysta)</p></li>
+<li><p>Zmienna <code>fix</code> jest globalna.</p></li>
+</ul>
+</div>
+<div id="element-po-elemencie" class="section level1">
+<h1>Element po elemencie</h1>
+<p>Skopiuj funkcję do mnożenia macierz-wektor i nazwij kopię
+<code>SMult</code>. W funkcji <code>SMult</code> będziemy chcieli
+napisać funkcję mnożącą przez globalną macierz sztywności <span
+class="math inline">\(S\)</span> nie używając samej tej macierzy. Chcemy
+wykonać operację <span class="math inline">\(r=Sx\)</span>, tzn: <span
+class="math inline">\(r_i = \sum_jS_{ij}x_j\)</span>.</p>
+<p>Chcielibyśmy aby funkcja <code>Mult_A</code> wykonywała mnożenie
+pewnego wektora <span class="math inline">\(\mathbf{v}\)</span> przez
+globalną macierz sztywności nie używając samej macierzy <span
+class="math inline">\(\mathbf{A}\)</span>. To znaczy, że chcemy wykonać
+operację <span class="math inline">\(\mathbf{t} = \mathbf{A}
+\mathbf{v}\)</span> czyli: <span class="math display">\[
+t_i = \sum_{j=1}^N A_{ij} v_j, \; (i=1\ldots N)
+\]</span> Przypomnijmy, że globalną macierz sztywności <span
+class="math inline">\(\mathbf{A}\)</span> tworzy się przez sumowanie
+elementów macierzy lokalnych. Zastanówmy się więc co się dzieje z
+wynikiem mnożenia <span class="math inline">\(\mathbf{t}\)</span> jeśli
+do macierzy <span class="math inline">\(\mathbf{A}\)</span> dodamy
+coś.</p>
+<p>Analogicznie jeśli dodamy do elementu <span
+class="math inline">\(S_{ij}\)</span> liczbę <span
+class="math inline">\(w\)</span>, to tak jak byśmy dodali do elementu
+<span class="math inline">\(r_i\)</span> liczbę <span
+class="math inline">\(w\cdot x_j\)</span>. Jako, że macierz <span
+class="math inline">\(S\)</span> konstruujemy właśnie przez dodawanie do
+kolejnych jej elementów, możemy całość mnożenia przez nią zapisać w
+powyższej postaci.</p>
+<div id="zadanie" class="section level3">
+<h3>Zadanie</h3>
+<p>Przekopiuj fragment kodu funkcji <code>main</code> odpowiedzialny za
+konstrukcję macierzy <span class="math inline">\(S\)</span>. Następnie,
+każde wystąpienie</p>
+<p><code>S[i,j] += cos;</code></p>
+<p>zamień na:</p>
+<p><code>r[i] += cos * x[j];</code></p>
+<p>Jeżeli planujesz realizować część instrukcji dot. równoległości,
+przerób kod tak, aby aktualizował tablicę <code>r</code> blokami, tzn.
+wykonywał mnożenie <em>lokalnej</em> macierzy sztywności przez
+odpowiedni ,,wycinek’’ wektora <code>x</code>, wynik wpisywał do bufora
+(typ <code>double[8]</code>), a bufor dodawał do tablicy <code>r</code>
+dopiero po wykonaniu tego mnożenia. Pomoże to uniknąć nadmiernej
+synchronizacji wątków. Nawiasem mówiąc, takie rozwiązanie może się
+okazać nieco bardziej wydajne również dla sekwencyjnej (nierównoległej)
+implementacji. Wynika to z faktu, że korzystając z alokowanego na stosie
+bufora dokonujemy mniejszej liczby dostępów (operacji <code>+=</code>)
+do tablicy <code>r</code>, która zaalokowana jest na stercie.</p>
+</div>
+<div id="zadanie-1" class="section level3">
+<h3>Zadanie</h3>
+<p>Co z częścią, która zamieniała wybrane wiersze na wiersze macierzy
+diagonalnej? Jeśli w macierzy <span class="math inline">\(S\)</span>
+<span class="math inline">\(i\)</span>-ty wiersz zamienimy na same zera
+i <span class="math inline">\(1\)</span> na przekątnej, to tak jak byśmy
+postawili <span class="math inline">\(r_i = x_i\)</span>. Zamień pętlę
+wycinającą <span class="math inline">\(i\)</span>ty wiersz, na
+<code>r[i]=x[i]</code></p>
+</div>
+<div id="zadanie-8" class="section level3">
+<h3>Zadanie 8</h3>
+<p>Jeśli nie zrobiłeś tego w poprzednim ćwiczeniu, napisz trywialny
+preconditioner
+<code>Precond_I(int N, double **A, double *r, double *p)</code>
+przepisujący tablicę reszt wskazywaną przez <code>r</code> na tablicę
+poprawek wskazywaną przez <code>p</code>.</p>
+</div>
+</div>
+<div id="a-teraz-na-poważnie" class="section level1">
+<h1>A teraz na poważnie</h1>
+<p>Na tym etapie nigdzie w kodzie nie potrzebujemy macierzy <span
+class="math inline">\(S\)</span>. Możemy ją całkowicie wyeliminować.
+Funkcję <code>Solve</code> będziemy chcieli jednak używać dla różnych
+macierzy — dlatego jako argument, zamiast macierzy
+<code>double ** A</code> będziemy przekazywać funkcję mnożenia
+<code>void (*mult)(double *, double *)</code>. Tzn: nagłówek funkcji
+<code>Solve</code> będzie następujący:</p>
+<p><code>void Solve(int n, void (*mult)(double *, double *), double *b, double *x0, double *x)</code></p>
+<p>A w miejscu mnożenia przez macierz <span
+class="math inline">\(r=Ax\)</span> będziemy mieli
+<code>mult(x,r);</code>. Teraz funkcję <code>Solve</code> będziemy
+wywoływać przekazując jej konkretną funkcję mnożącą:
+<code>Solve(n, SMult, F, d);</code>.</p>
+<p>Na koniec możesz spróbować przerobić funkcję <code>Solve</code> tak,
+aby także preconditioner przyjmowany był jako argument (wskaźnik do
+funkcji) i wywołać ją z preconditionerem Jacobiego.</p>
+<p>Pamiętaj aby <em>zamurować</em> stopnie swobody.</p>
+</div>
+<div id="równoległość" class="section level1">
+<h1>Równoległość*</h1>
+<p>W tej części laboratorium zajmiemy się paralelizacją
+(zrównolegleniem) napisanego dotychczas kodu. Plik nagłówkowy z
+funkcjami ułatwiającymi pisanie równoległego kodu:</p>
+<p><a href="http://ccfd.github.io/courses/code/metnum/ParLib.hpp">Plik
+nagłówkowy ParLib.hpp</a></p>
+<p>Chcielibyśmy teraz wykorzystać fakt, że współczesne procesory
+posiadają wiele rdzeni. Są one w związku z tym zdolne do wykonywania
+więcej niż jednego ciągu instrukcji jednocześnie. Nawet bezwiednie
+korzystamy z tego na co dzień, np. jednocześnie słuchając muzyki i
+pisząc maile. System operacyjny przydziela wtedy zasoby obliczeniowe
+(dostęp do rdzeni) do różnych procesów w miarę potrzeby. Rozróżnijmy
+teraz 2 kluczowe pojęcia:</p>
+<ul>
+<li><p>Proces: wykonywany program. Blok kontrolny procesu zawiera
+informację nt. m.in. jego priorytetu, identyfikatora i innych własności.
+Procesy mają niezależne stosy pamięci i nie komunikują się wzajemnie w
+wydajny sposób.</p></li>
+<li><p>Wątek: część wykonywanego procesu (jeden proces składa się z co
+najmniej jednego wątku). Wątki danego procesu mają dostęp do jego stosu
+pamięci i komunikują się wzajemnie w wydajny sposób.</p></li>
+</ul>
+<p>Krótko mówiąc, wątki są ,,lekkimi’’ podjednostkami procesu. Kluczowy
+jest tutaj fakt, że różne wątki jednego procesu mogą jednocześnie
+wykonywać się na osobnych rdzeniach. Zajmiemy się teraz napisaniem
+programu, który tworzy kilka wątków i wykonuje obliczenia
+równoległe.</p>
+<p>Zacznijmy od prostego przykładu. Mamy daną stuelementową tablicę
+<code>tab</code>, której wszystkie elementy chcielibyśmy zwiększyć o 1.
+W tym celu stworzymy 4 wątki, z których każdy zajmie się wydzielonym
+kawałkiem <code>tab</code>. Program wygląda następująco:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cstdlib&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;ParLib.hpp&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="dt">void</span> inc1<span class="op">(</span><span class="dt">double</span><span class="op">*</span> tab<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> tab_size<span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="co">// Numer bieżącego wątku</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> id          <span class="op">=</span> self_id<span class="op">();</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    </span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="co">// Liczba wszystkich wątków</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">int</span> n_thr       <span class="op">=</span> no_threads<span class="op">();</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="co">// Bieżący wątek inkrementuje tylko elementy tab o indeksach podzielnych przez swój identyfikator.</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> id<span class="op">;</span> i <span class="op">&lt;</span> tab_size<span class="op">;</span> i <span class="op">+=</span> n_thr<span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>        tab<span class="op">[</span>i<span class="op">]</span> <span class="op">+=</span> <span class="fl">1.</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>        </span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>    <span class="co">// Stwórz tab</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>    <span class="dt">double</span><span class="op">*</span> tab <span class="op">=</span> <span class="op">(</span><span class="dt">double</span><span class="op">*)</span>malloc<span class="op">(</span><span class="dv">100</span> <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">double</span><span class="op">));</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>    </span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>    <span class="co">// Wypełnij tab</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++)</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>        tab<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> rand<span class="op">();</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>        </span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>    <span class="co">// Wywołaj inc1 równolegle</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>    execute_in_parallel<span class="op">(</span><span class="dv">4</span><span class="op">,</span> inc1<span class="op">,</span> tab<span class="op">,</span> <span class="dv">100</span><span class="op">);</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>    </span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>    <span class="co">// Zwolnij pamięć</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>    free<span class="op">(</span>tab<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Zwróć uwagę, że o liczbie wątków, które zostaną stworzone decyduje
+dopiero argument funkcji <code>execute_in_parallel</code> - funkcja
+<code>inc1</code> napisana jest w sposób ogólny.</p>
+<p>Powyższy przykład nie ilustruje jednak głównego problemu
+programowania równoległego. Wątki działają zupełnie niezależnie - nie
+muszą się komunikować, a adresy, do których wpisują wartości nie
+pokrywają się. Rozważmy teraz następujący przykład: mamy funkcję
+<code>double skomplikowane_obliczenia(double input)</code>, która
+przyjmuje liczbę <code>input</code>, wykonuje na niej pracochłonne
+działania, a następnie zwraca wynik. Chcielibyśmy teraz wywołać ją dla
+argumentów 3.14 oraz 42.42, a następnie zsumować wyniki. Wywołania dla
+osobnych argumentów są od siebie niezależne, więc od razu nasuwa się
+prosty schemat paralelizacji. Naiwna implementacja wygląda
+następująco:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cstdlib&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;ParLib.hpp&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="dt">double</span> skomplikowane_obliczenia<span class="op">(</span><span class="dt">double</span> input<span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="co">// Wyobraźmy sobie, że tutaj dzieją się złożone obliczenia</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>    <span class="cf">return</span> input <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">// Funkcja wywołująca skomplikowane_obliczenia i dodająca wynik do wkazanego adresu</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="dt">void</span> fun<span class="op">(</span><span class="dt">double</span> inputs<span class="op">[],</span> <span class="dt">double</span><span class="op">*</span> adres<span class="op">)</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    <span class="co">// Dany wątek bierze z tablicy inputs argument odpowiadający jego identyfikatorowi</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">double</span> argument <span class="op">=</span> inputs<span class="op">[</span>self_id<span class="op">()];</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    </span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>    <span class="op">*</span>adres <span class="op">+=</span> skomplikowane_obliczenia<span class="op">(</span>argument<span class="op">);</span>  <span class="co">// BŁĄD: race condition</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    <span class="co">// Wartości wsadowe</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    <span class="dt">double</span> inputs<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>    inputs<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="fl">3.14</span><span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>    inputs<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="fl">42.42</span><span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>    </span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>    <span class="co">// Zmienna do której wpisujemy sumę wyników</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>    <span class="dt">double</span> wynik       <span class="op">=</span> <span class="fl">0.</span><span class="op">;</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>    <span class="dt">double</span><span class="op">*</span> wynik_ptr  <span class="op">=</span> <span class="op">&amp;</span>wynik<span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>    </span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>    <span class="co">// Wywołaj obliczenia równoległe</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>    execute_in_parallel<span class="op">(</span><span class="dv">2</span><span class="op">,</span> fun<span class="op">,</span> inputs<span class="op">,</span> wynik_ptr<span class="op">);</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Problem polega na tym, że oba stworzone wątki będą próbować pisać do
+tego samego adresu <code>wynik_ptr</code>. Tempo wykonywania przez wątki
+instrukcji nie jest deterministyczne. Może zdarzyć się, że system
+operacyjny uzna, że inny proces jest ważniejszy od naszego programu i na
+jakiś czas pozbawi jednego (lub obu) z naszych wątków zasobów. Nie
+jesteśmy wobec tego w stanie przewidzieć, który z nich skończy pracę
+pierwszy. W szczególności może zdarzyć się, że oba wątki będą
+<em>jednocześnie</em> starały się zmodyfikować zawartość adresu
+<code>wynik_ptr</code>. W takim wypadku wartość, która będzie finalnie
+znajdować się pod adresem <code>wynik_ptr</code> nie będzie spodziewaną
+sumą. Taką sytuację nazywamy race condition. Mówiąc nieco dokładniej:
+race condition (lub data race) to sytuacja, w której co najmniej jeden
+wątek próbuje czytać albo pisać z/do danego adresu w tym samym momencie,
+gdy inny wątek do niego pisze.</p>
+<p>Najpopularniejszym mechanizmem wykorzystywanym do eliminowania race
+condition są tzw. mutexy (od ang. mutual exclusion). Idea mutexu jest
+prosta: przed wykonaniem potencjalnie problematycznej operacji, wątek
+próbuje zablokować mutex (w tym celu komunikuje się z pozostałymi
+wątkami). Jeżeli mutex jest wolny (tzn. nie został wcześniej zablokowany
+przez inny wątek), operacja zostaje wykonana, a następnie mutex jest
+zwalniany. Jeżeli mutex jest zablokowany (przez inny wątek), wtedy
+wykonanie instrukcji zostaje wstrzymane do momentu zwolnienia mutexu.
+Taka konstrukcja programu gwarantuje, że co najwyżej jeden wątek będzie
+wykonywał zestaw potencjalnie problematycznych operacji jednocześnie.
+Przyjrzyjmy się teraz, jak uniknąć race condition w przypadku powyżej.
+Modyfikujemy funkcję <code>fun</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="dt">void</span> fun<span class="op">(</span><span class="dt">double</span> inputs<span class="op">[],</span> <span class="dt">double</span><span class="op">*</span> adres<span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="co">// Dany wątek bierze z tablicy inputs argument odpowiadający jego identyfikatorowi</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">double</span> argument <span class="op">=</span> inputs<span class="op">[</span>self_id<span class="op">()];</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    </span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="co">// Blokujemy mutex o numerze 0</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    mutex_lock<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    </span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>    <span class="op">*</span>adres <span class="op">+=</span> skomplikowane_obliczenia<span class="op">(</span>argument<span class="op">);</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    </span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>    <span class="co">// Zwalniamy mutex po wykonaniu dodawania</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    mutex_unlock<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Dodatkowo musimy w funkcji <code>main</code> zadeklarować, ile
+mutexów chcemy używać, także przed wykonaniem
+<code>execute_in_parallel</code> musimy zawołać</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">// Korzystamy tylko z jednego mutexu (o indeksie 0, patrz wyżej)</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>init_mutex<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span></code></pre></div>
+<p>Biblioteka ParLib wspiera używanie wielu mutexów, ich liczbę należy
+tylko wcześniej zadeklarować przy użyciu <code>init_mutex</code>.
+Korzystając z mutexów należy zachować ostrożnośc i konstruować algorytmy
+tak, aby wątki się nie zakleszczyły (ang. deadlock), tzn. np. żeby wątek
+0 nie czekał na wątek 1, a wątek 1 na wątek 0. W takiej sytuacji
+wykonanie programu nigdy się nie zakończy.</p>
+<p>Zrozumienie powyższych przykładów umożliwi nam przystąpienie do
+paralelizacji naszej implementacji metody gradientów sprzężonych. Zanim
+przystąpimy do właściwej pracy, zmierzmy czas, który zajmuje nam
+rozwiązanie układu <span class="math inline">\(Ax = b\)</span> w sposób
+szeregowy, aby mieć się do czego później porównać.</p>
+<div id="zadanie-2" class="section level3">
+<h3>Zadanie</h3>
+<p>Użyj funkcji <code>tic</code> i <code>toc</code>, aby zmierzyć czas,
+który zajmuje Twojemu programowi wykonanie funkcji <code>Solve</code>.
+Dobierz <code>mx</code> i <code>my</code> tak, aby czas ten był
+,,wyczuwalny’’, np. kilka sekund. Dzięki temu będziemy mogli miarodajnie
+kwantyfikować przyspieszenie (lub spowolnienie) kodu wynikające z
+wielowątkowości.</p>
+</div>
+<div id="zadanie-3" class="section level3">
+<h3>Zadanie</h3>
+<p>Zauważmy, że najbardziej kosztowne obliczeniowo jest wykonanie
+operacji mnożenia macierz-wektor (funkcja <code>SMult</code>). Wobec
+tego, zajmiemy się jej paralelizacją w pierwszej kolejności. Napisz
+funkcję <code>Smult_par</code> (będącą później argumentem
+<code>Solve</code>), która przy użyciu <code>execute_in_parallel</code>
+woła wielowątkowo funkcję <code>Smult_worker</code>. Clou tego zadania
+polega na poprawnej konstrukcji funkcji <code>Smult_worker</code>.
+<code>Smult_worker</code> powinna:</p>
+<ul>
+<li><p>Na podstawie numeru wątku (<code>self_id</code>) oraz sumarycznej
+liczby wątków (<code>no_threads</code>) identyfikować zakres elementów,
+na którym będzie dokonywać mnożenia. Zakresy między wątkami powinny być
+możliwie równe. Zagadnienie podziału pracy na wiele wątków/procesów
+nazywa się load balancing.</p></li>
+<li><p>Korzystać z mutexów, aby uniknąć jednoczesnego dodawania do
+wektora wyniku z różnych wątków. Sprawdź, co jest bardziej optymalne:
+blokowanie całego wektora wyników jednym mutexem, czy blokowanie go
+kawałkami, tak, aby umożliwić jednoczesny dostęp wątkom piszącym do
+różnych elementów.</p></li>
+</ul>
+</div>
+<div id="zadanie-4" class="section level3">
+<h3>Zadanie</h3>
+<p>Przyjrzyj się pozostałym elementom funkcji <code>Solve</code>. Które
+z nich można korzystnie zrównoleglić, a które nie? Przetestuj swoje
+hipotezy posługując się funkcjami <code>tic</code> i
+<code>toc</code>.</p>
+</div>
+</div>
+<div id="dokumentacja-biblioteki-parlib" class="section level1">
+<h1>Dokumentacja biblioteki ParLib</h1>
+<p>Podstawowa wielowątkowość:</p>
+<ul>
+<li><p><code>void execute_in_parallel(int n_threads, fun, arg1, arg2, ...)</code>
+— funkcja generuje <code>n_threads</code> wątków. Każny z nich zaczyna
+wykonywać funkcję <code>fun</code>, wywołaną z argumentami
+<code>arg1</code>, <code>arg2</code>, itd. Liczba argumentów jest
+dowolna. Wyjście z funkcji następuje po tym, gdy ostatni ze stworzonych
+wątków zakończy wykonywanie <code>fun</code>.
+<code>execute_in_parallel</code> nie wspiera rekurencji (nie można wołać
+jej wewnątrz <code>fun</code>). Jest to ograniczenie biblioteki ParLib,
+w ,,prawdziwych’’ bibliotekach do programowania równoległego wątki mogą
+mieć dzieci, wnuki, itd.</p></li>
+<li><p><code>int self_id()</code> — funkcja zwracająca numer wątka
+stworzonego przez <code>execute_in_parallel</code>. Każdy wątek
+stworzony w ten sposób posiada unikatowy numer z zakresu 0 -
+<code>n_threads</code>-1.</p></li>
+<li><p><code>int no_threads()</code> — funkcja zwracająca liczbę wątków
+stworzonych przez <code>execute_in_parallel</code>.</p></li>
+<li><p><code>void init_mutex(int n_mutex)</code> — funkcja
+inicjalizująca <code>n_mutex</code> mutexów. Można z nich korzystać do
+końca trwania programu, są później dealokowane automatycznie.
+<code>init_mutex</code> można zawołać jedynie raz.</p></li>
+<li><p><code>void mutex_lock(int mutex_no)</code> — funkcja blokująca
+mutex o numerze <code>mutex_no</code>. <code>mutex_no</code> musi
+należeć do zakresu 0 - <code>n_mutex</code>-1. Blokowanie mutexu, który
+został już wcześniej zablokowany przez dany wątek powoduje
+błąd.</p></li>
+<li><p><code>void mutex_unlock(int mutex_no)</code> — funkcja
+zwalniająca mutex o numerze <code>mutex_no</code>. <code>mutex_no</code>
+musi należeć do zakresu 0 - <code>n_mutex</code>-1. Zwalnianie mutexu,
+który został już wcześniej zwolniony przez dany wątek powoduje
+błąd.</p></li>
+</ul>
+<p>Synchronizacja:</p>
+<ul>
+<li><code>void sync()</code> — funkcja synchronizująca wszystkie wątki
+stworzone przez <code>execute_in_parallel</code>, tzn. każdy wątek
+zatrzymuje się dopóty, dopóki wszystkie pozostałe wątki nie wywołają
+<code>sync()</code>. Łatwo zauważyć, że wszystkie wątki muszą wywołać
+<code>sync()</code> dokładnie tyle samo razy, w innym wypadku program
+nigdy nie przestanie się wykonywać.</li>
+</ul>
+<p>Pomiar czasu:</p>
+<ul>
+<li><p><code>void tic(unsigned int tic_id)</code> — przypisuje ,,stempel
+czasowy’’ do identyfikatora <code>tic_id</code>. <code>tic_id</code>
+może być dowolne, w przypadku wykonywania wielu pomiarów nie ma
+obowiązku sekwencyjnego numerowania.</p></li>
+<li><p><code>double toc(unsigned int toc_id)</code> — zwraca czas (w
+sekundach), który upłynął od wywołania <code>tic(toc_id)</code>. Jeżeli
+<code>tic(toc_id)</code> nie było wcześniej wołane, zostanie zwrócone
+0.</p></li>
+</ul>
+<p>Uwaga: <code>tic</code> i <code>toc</code> mają domyślny argument 0,
+także zawołanie</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>tic<span class="op">()</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">//</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">// Tutaj skomplikowane obliczenia</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">//</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>toc<span class="op">()</span></span></code></pre></div>
+<p>zwróci czas wykonania obliczeń.</p>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

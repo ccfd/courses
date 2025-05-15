@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>cpp_inst06</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst06.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="laboratorium-vi" class="section level1">
+<h1>Laboratorium VI</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<p>Dzisiejsze zajęcia dotyczyły będą algorytmów biblioteki STL. Zanim
+przejdziemy do ich opisu, podsumujmy pokrótce poznane dotychczas
+zagadnienia, które pozwolą nam na zrozumienie zasady ich działania:</p>
+<ul>
+<li>szablony funkcji - wszystkie algorytmy dostępne w STL to szablony
+funkcji</li>
+<li>kontenery i iteratory - algorytmy operują na zakresach elementów
+kontenerów zdefiniowanych przez parę iteratorów</li>
+<li>przeciążanie operatorów - działanie algorytmów możemy dodatkowo
+modyfikować podając do nich funktory, tzn. obiekty posiadające
+przeciążenie operatora <code>( )</code>.</li>
+</ul>
+<p>Biblioteka standardowa oferuje w nagłówkach <code>algorithm</code> i
+<code>numeric</code> szeroki wachlarz różnych algorytmów. Zwięzły
+przegląd algorytmów dostępnych w STL można zobaczyć np. <a
+href="https://youtu.be/2olsGf6JIkU">tutaj</a>. Celem zajęć nie jest
+jednak omówienie ich wszystkich, lecz zaprezentowanie ogólnej idei ich
+wykorzystania. Nadzieją autora jest, aby po wykonaniu instrukcji do
+poznania działania nowego algorytmu wystarczyło czytelnikowi jedynie
+szybkie zerknięcie do odpowiedniej referencji. Z tego powodu nie
+będziemy też tłumaczyć szczegółów dzałania poszczególnych algorytmów,
+lecz odsyłamy czytelnika do <a
+href="https://en.cppreference.com/w/cpp/algorithm">dokumentacji</a>.</p>
+<p>Z algorytmów STL warto korzystać z następujących 3 powodów:</p>
+<ul>
+<li>Uzyskujemy dostęp do wydajnych implementacji dużej liczby
+algorytmów. Najlepszym przykładem jest tutaj sortowanie. Jest to jeden z
+najstarszych problemów w informatyce, którego wydajne rozwiązanie
+stanowi jednak temat badań po dzień dzisiejszy (bardzo ciekawy wykład na
+ten temat można znaleźć <a
+href="https://youtu.be/FJJTYQYB1JQ">tutaj</a>).</li>
+<li>Skracamy kod oraz czas jego pisania. Często zawiłe pętle for można
+zamienić na 1 elegancką linijkę.</li>
+<li>Zwiększenie ekspresyjności kodu. Jest to kluczowa sprawa przy
+programowaniu, szczególnie w środowisku komercyjnym. Gdy praca odbywa
+się w zespołach, bardzo ważne jest, aby ich członkowie mogli możliwie
+jak najszybciej zrozumieć kod napisany przez innych.</li>
+</ul>
+</div>
+<div id="anatomia-stdalgorytmu" class="section level2">
+<h2>Anatomia std::algorytmu</h2>
+<p>Każdy algorytm STL operuje na zakresie elementów, definiowanych przez
+iteratory. Zdecydowana większość przyjmuje parę iteratorów, która
+definiuje zakres zgodnie z konwencją <code>[first, last)</code>, tzn.
+przedział na który wskazują jest domknięty z lewej strony i otwarty z
+prawej (podobnie jak iteratory zwracane przez metody <code>begin</code>
+i <code>end</code> kontenerów). Dzięki temu algorytm jest niezależny od
+kontenera, na którego elementach ma operować. Zobaczmy teraz, że już
+para iteratorów wystarczy, aby zrobić coś ciekawego.</p>
+<blockquote>
+<p>Do generacji losowych wektorów w zadaniach poniżej możesz wykorzystać
+np. <a href="https://godbolt.org/z/9zrE4bqoa">szablon funkcji
+makeRandomVector</a>.</p>
+</blockquote>
+<div id="zadanie-1" class="section level4">
+<h4>Zadanie 1</h4>
+<p>Wygeneruj wektor losowych liczb całkowitych z przedziału [0, 10] i
+wyświetl go. Następnie posortuj go rosnąco używając algorytmu
+<code>std::sort</code>. Zweryfikuj poprawność działania algorytmu
+wyświetlając ponownie wektor.</p>
+<p>Wiele algorytmów przyjmuje także dodatkowe parametry. Zobaczmy to na
+przykładzie.</p>
+</div>
+<div id="zadanie-2" class="section level4">
+<h4>Zadanie 2</h4>
+<p>Wygeneruj wektor losowych liczb całkowitych z przedziału [0, 10].
+Policz wystąpienia liczby 7 używając algorytmu
+<code>std::count</code>.</p>
+</div>
+</div>
+<div id="funktory" class="section level2">
+<h2>Funktory</h2>
+<p>Czasem możemy chcieć dostroić nie tylko parametry, ale także elementy
+zachowania algorytmu. Na przykład, możemy chcieć posortować zakres nie
+rosnąco, lecz malejąco. Domyślnie, algorytm <code>std::sort</code>
+porównuje elementy operatorem <code>&lt;</code>. Aby sortować malejąco,
+wystarczy zamienić operator <code>&lt;</code> na operator
+<code>&gt;</code>. <code>std::sort</code> daje nam możliwie ogólny
+interfejs: możemy podać dodatkowy argument, który definiuje dla
+algorytmu operację porównania. Argument ten musi być funktorem
+przyjmującym 2 argumenty sortowanego typu. Funktor to po prostu obiekt,
+dla którego możemy zawołać metodę <code>operator()</code>. Może to być
+zatem np. obiekt klasy, dla której odpowiednio przeciążony jest ten
+operator, albo wskaźnik do odpowiedniej funkcji. Po szczegółową dyskusję
+dotyczącą funktorów odsyłamy czytelnika do drugiego akapitu podrozdziału
+pt. <code>std::visit</code> instrukcji nr 4.</p>
+<div id="zadanie-3" class="section level4">
+<h4>Zadanie 3</h4>
+<p>Wygeneruj wektor losowych liczb całkowitych. Wyświetl go. Posortuj go
+malejąco używając algorytmu <code>std::sort</code> i odpowiedniego
+funktora. Zweryfikuj poprawność działania algorytmu wyświetlając
+ponownie wektor.</p>
+<p>Zobaczmy inny przykład, gdzie przydatne mogą być funktory.</p>
+</div>
+<div id="zadanie-4" class="section level4">
+<h4>Zadanie 4</h4>
+<p>Wygeneruj wektor losowych liczb całkowitych z przedziału [0, 10].
+Policz wystąpienia liczb większych od 7 używając algorytmu
+<code>std::count_if</code>.</p>
+<p>W zadaniu 4 wykorzystaliśmy fakt, że liczba, do której porównywaliśmy
+elementy wektora, była znana w czasie kompilacji (ponieważ 7 występuje
+jawnie w treści zadania). W kodzie wystąpiła zatem w pewnym miejscu
+linijka typu <code>return x &gt; 7</code>. Co jednak, jeżeli
+potrzebujemy przekazać do funktora parametry, które poznamy dopiero w
+czasie wykonania programu? Przykładem takiego problemu jest zadanie 5.
+Przeczytajmy teraz jego treść (ale jeszcze go nie wykonujmy). Zazwyczaj,
+gdy chcemy przekazać do funkcji (lub funktora) jakieś parametry,
+dołączamy je do listy argumentów. Tutaj nie mamy jednak tej opcji, gdyż
+<code>std::count_if</code> wymaga konkrentej sygnatury funkcji
+(funktora). Najprostszym (i najgorszym) sposobem rozwiązania tego
+problemu jest zdefiniowanie globalnych zmiennej, której wartość
+wczytujemy z konsoli, a następnie odczytujemy w ciele funkcji
+(funktora). Spróbujmy teraz wykonać w ten sposób poniższe polecenie.</p>
+</div>
+<div id="zadanie-5" class="section level4">
+<h4>Zadanie 5</h4>
+<p>Napisz program, który generuje wektor losowych liczb z przedziału [0,
+10], wczytuje z konsoli liczbę całkowitą <code>a</code>, a następnie
+drukuje liczbę elementów wektora większych od <code>a</code>.</p>
+<p>W języku C++ unikamy za wszelką cenę obiektów globalnych, gdyż ich
+czas życia nie jest w żaden sposób ograniczony (jest równy czasowi
+wykonania progrmu). Ich destruktor wołany jest więc dopiero po wyjściu z
+funkcji <code>main</code>. Jest to mało optymalne oraz bardzo pogarsza
+przejrzystość kodu (czytając kod i natrafiając nagle na jakieś dziwne
+parametry globalne możemy nie rozumieć, skąd one się w ogóle biorą).
+Szczęśliwie, w odróżnieniu od C, w C++ możemy korzystać z funktorów
+posiadających stan (ang. <em>stateful</em>). Oznacza to, że możemy
+zdefiniować klasę, przeciążającą operator <code>( )</code> oraz
+posiadającą jakieś pola. Możemy następnie podać do algorytmu obiekt
+takiej klasy, którego polom wcześniej przypisaliśmy odpowiednie
+parametry. Czas jego życia jest ograniczony, a jego sens istnienia
+widoczny jest na pierwszy rzut oka (nie ma więc problemu z
+czytelnością).</p>
+</div>
+<div id="zadanie-6" class="section level4">
+<h4>Zadanie 6</h4>
+<p>Wykonaj zadanie 5, tym razem posługując się funktorem posiadającym
+stan. Zdefiniuj klasę posiadającą pole typu całkowitego oraz
+przeciążającą odpowiednio operator <code>( )</code>. Stwórz obiekt tej
+klasy, przypisz do jego pola wartość wczytaną z klawiatury, a następnie
+podaj go do <code>std::count_if</code>.</p>
+</div>
+<div id="wyrażenia-lambda" class="section level3">
+<h3>Wyrażenia lambda</h3>
+<p>Aby uniknąć konieczności definiowania nowych klas za każdym razem,
+gdy chcemy stworzyć relatywnie prosty funktor, od C++11 możemy używać
+wyrażeń lambda (zwanych także funkcjami anonimowymi, a potocznie po
+prostu lambdami). Wyrażenie lambda ma następującą składnię (po wszystkie
+szczegóły odsyłamy jak zawsze do <a
+href="https://en.cppreference.com/w/cpp/language/lambda">dokumentacji</a>):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="op">[</span> <span class="co">/* capture */</span> <span class="op">]</span> <span class="op">(</span> <span class="co">/* argumenty */</span> <span class="op">)</span> <span class="op">{</span> <span class="co">/* ciało */</span> <span class="op">}</span></span></code></pre></div>
+<p>Tworzy ono obiekt funkcyjny (funktor), którego operator nawiasów
+okrągłych przyjmuje argumenty wskazanego typu i wykonuje na nich
+operacje zdefiniowane w ciele (zupełnia jak tradycyjna funkcja!).
+Nawiasy kwadratowe i rolę <em>capture</em> omówimy za chwilę. Na razie
+zobaczmy prosty przykład definicji lambdy, która zwraca sinus
+argumentu:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">auto</span> lambda_sin <span class="op">=</span> <span class="op">[](</span><span class="dt">double</span> x<span class="op">){</span> <span class="cf">return</span> sin<span class="op">(</span>x<span class="op">);</span> <span class="op">};</span> <span class="co">// lambda_sin jest funktorem</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="dt">double</span> x <span class="op">=</span> M_PI <span class="op">/</span> <span class="fl">2.</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dt">double</span> sin_x <span class="op">=</span> lambda_sin<span class="op">(</span>x<span class="op">);</span> <span class="co">// sin_x == 1. (+/- błąd zmiennoprzecinkowy)</span></span></code></pre></div>
+<p>Typ zmiennej <code>lambda_sin</code> jest nadawany przez kompilator,
+w związku z czym musimy użyć słowa kluczowego <code>auto</code>. Nie
+musimy jednak przypisywać lambdy do zmiennej, możemy użyć jej jako
+rvalue:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="dt">double</span> x <span class="op">=</span> M_PI <span class="op">/</span> <span class="fl">2.</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="dt">double</span> sin_x <span class="op">=</span> <span class="op">[](</span><span class="dt">double</span> x<span class="op">){</span> <span class="cf">return</span> sin<span class="op">(</span>x<span class="op">);</span> <span class="op">}(</span>x<span class="op">);</span></span></code></pre></div>
+<p>Tak będziemy też najczęściej postępować w przypadku algorytmów, gdzie
+zazwyczaj definiujemy wyrażenie lambda bezpośrednio w liście argumentów.
+Korzystanie z prostych lambd obrazuje także ten <a
+href="https://godbolt.org/z/K8PqeW">kawałek kodu</a>. Zachęcamy
+czytelnika do podejrzenia, jak tak naprawdę kompilator je rozwija
+(należy wcisnąć przycisk “Cpp Insights”, a następnie przycisk “Play”).
+Jak widać nie dzieje się tu nic magicznego, po prostu definiowane są za
+nas klasy z odpowiednimi polami i operatorami. Użycie funkcji
+anonimowych pozwala nam jednak oszczędzić sporo wysiłku.</p>
+<p>Lambdy przedstawione powyżej można śmiało zastąpić tradycyjnymi
+funkcjami, jedyna korzyść z ich użycia to niewielka oszczędność czasu
+oraz ograniczenie widoczności nazwy funkcji pomocniczej do bieżącego
+scope’u. Zobaczmy teraz, do czego służy <em>capture</em> lambdy (autor
+nie zna dokładnego i zwięzłego ekwiwalentu tego określenia w języku
+polskim, <em>capture</em> w kontekście regexów nazywa się czasem
+kolokwialnie “grupą kapturkową”). W nawiasach kwadratowych możemy
+“łapać” zmienne ze scope’u, w którym zdefiniowana została lambda. Możemy
+to robić przez kopię lub referencję (a także przeniesienie, jeżeli jest
+taka potrzeba). W instrukcji ograniczymy się do łapania przez referencję
+całego scope’u. Dodając do definicji lambdy jeden znak -
+<code>&amp;</code> - zyskujemy w jej ciele dostęp do wszystkich
+zmiennych, które widoczne są dla jej definicji. Na przykład:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="dt">double</span> omega <span class="op">=</span> M_PI<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="dt">double</span> phi   <span class="op">=</span> M_PI <span class="op">/</span> <span class="fl">2.</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">// Błąd kompilacji - omega i phi są niewidoczne w środku lambdy</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="kw">auto</span> bad_harmonic <span class="op">=</span> <span class="op">[](</span><span class="dt">double</span> t<span class="op">){</span> <span class="cf">return</span> sin<span class="op">(</span>omega <span class="op">*</span> t <span class="op">+</span> phi<span class="op">);</span> <span class="op">};</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">// OK - łapiemy referencje do omega i phi</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="kw">auto</span> good_harmonic <span class="op">=</span> <span class="op">[&amp;](</span><span class="dt">double</span> t<span class="op">){</span> <span class="cf">return</span> sin<span class="op">(</span>omega <span class="op">*</span> t <span class="op">+</span> phi<span class="op">);</span> <span class="op">};</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">// Korzystamy tak samo</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="dt">double</span> t0 <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="dt">double</span> y0 <span class="op">=</span> good_harmonic<span class="op">(</span>t0<span class="op">);</span></span></code></pre></div>
+<p>Nie musimy zatem samodzielnie definiować dodatkowej klasy, tak jak w
+zadaniu 6!</p>
+<div id="zadanie-7" class="section level4">
+<h4>Zadanie 7</h4>
+<p>Wykonaj ponownie zadanie 6, tym razem posługując się lambdą zamiast
+funktorem jawnie zdefiniowanej klasy.</p>
+</div>
+</div>
+</div>
+<div id="ćwiczenia" class="section level2">
+<h2>Ćwiczenia</h2>
+<p>Poniżej zamieszczono zadania treningowe, rozwiązanie których pomoże
+poznać kilka nowych algorytmów oraz przećwiczyć pracę z szablonami
+funkcji dostępnymi w nagłówkach <code>algorithm</code> i
+<code>numeric</code>. Kolejność zadań dobrana została zgodnie z rosnącym
+stopniem trudności (w opinii autora). Zachęcamy czytelnika do wykonania
+jak największej ich liczby. Zdecydowanie wskazane jest wykonanie
+przynajmniej pierwszego zadania z każdej kategorii poza ostatnią.</p>
+<div id="bezpośrednie-zastosowania-algorytmów" class="section level3">
+<h3>Bezpośrednie zastosowania algorytmów</h3>
+<div id="ćwiczenie-i---szukanie-identycznych-sąsiadów"
+class="section level4">
+<h4>Ćwiczenie I - szukanie identycznych sąsiadów</h4>
+<p>Napisz program, który wcztuje z klawiatury ciąg znaków
+(<code>std::string</code>) i zwraca <code>1</code> jeżeli występują w
+nim 2 te same znaki pod rząd i <code>0</code> w innym wypadku. użyj
+algorytmu <code>std::adjacent_find</code>.</p>
+</div>
+<div id="ćwiczenie-ii---szukanie-podciągu" class="section level4">
+<h4>Ćwiczenie II - szukanie podciągu</h4>
+<p>Napisz program, który wczytuje z klawiatury ciąg znaków, a następnie
+zwraca <code>1</code> jeżeli podany ciąg zawiera w sobie podciąg
+“piesek” lub “kotek” i <code>0</code> w innym wypadku. Użyj algorytmu
+<code>std::search</code>.</p>
+</div>
+<div id="ćwiczenie-iii---odwracanie-ciągów" class="section level4">
+<h4>Ćwiczenie III - odwracanie ciągów</h4>
+<p>Napisz program, który wczytuje z klawiatury ciąg znaków, a następnie
+drukuje go do konsoli w odwróconej kolejności. Użyj algorytmu
+<code>std::reverse</code>.</p>
+</div>
+<div id="ćwiczenie-iv---iloczyn-skalarny" class="section level4">
+<h4>Ćwiczenie IV - iloczyn skalarny</h4>
+<p>Stwórz 2 wektory liczb zmiennoprzecinkowych. Oblicz ich iloczyn
+skalarny używając algorytmu <code>std::inner_product</code>.</p>
+</div>
+</div>
+<div id="łączenie-algorytmów" class="section level3">
+<h3>Łączenie algorytmów</h3>
+<div id="ćwiczenie-v---sortowanie-podciągu" class="section level4">
+<h4>Ćwiczenie V - sortowanie podciągu</h4>
+<p>Stwórz wektor losowych liczb całkowitych z przedziału [0, 10]. Znajdź
+w nim pierwsze wystąpienie liczby 7. Posortuj elementy wektora
+występujące przed znalezioną liczbą 7 (lub cały wektor, jeżeli 7 nie
+występuje). Użyj <code>std::find</code> i <code>std::sort</code>.</p>
+<p>Przykład:</p>
+<ul>
+<li>input: [3 2 1 7 9 7 8 10]</li>
+<li>output: [1 2 3 7 9 7 8 10]</li>
+</ul>
+</div>
+<div id="ćwiczenie-vi---idiom-remove-erase" class="section level4">
+<h4>Ćwiczenie VI - idiom <em>remove-erase</em></h4>
+<p>Stwórz wektor losowych liczb całkowitych z przedziału [0, 10].
+Następnie usuń z niego wszystkie wystąpienia liczby 3. Użyj algorytmu
+<code>std::remove</code> oraz metody wektora <code>erase</code>. Spróbuj
+wykonać zadanie w 1 linijce (wyjąwszy stworzenie wektora). Rozmiar
+(<code>size</code>) wektora powinien być po operacji mniejszy o liczbę
+wystąpień liczby 3.</p>
+</div>
+<div id="ćwiczenie-vii---obrót-względem-wartości"
+class="section level4">
+<h4>Ćwiczenie VII - obrót względem wartości</h4>
+<p>Stwórz wektor losowych liczb całkowitych z przedziału [0, 10]. Znajdź
+w nim pierwsze wystąpienie liczby 7. Przesuń elementy wektora
+występujące przed znalezioną liczbą 7 na koniec wektora (zachowaj ich
+kolejność). Użyj <code>std::find</code> i <code>std::rotate</code>.</p>
+<p>Przykład:</p>
+<ul>
+<li>input: [3 2 1 7 9 7 8 10]</li>
+<li>output: [7 9 7 8 10 3 2 1]</li>
+</ul>
+</div>
+</div>
+<div id="algorytmy-przyjmujące-funktory" class="section level3">
+<h3>Algorytmy przyjmujące funktory</h3>
+<div
+id="ćwiczenie-viii---sprawdzenie-czy-elementy-z-zakresu-spełniają-warunek-logiczny"
+class="section level4">
+<h4>Ćwiczenie VIII - sprawdzenie czy elementy z zakresu spełniają
+warunek logiczny</h4>
+<p>Stwórz wektor losowych liczb zmiennoprzecinkowych z przedziału [-1,
+1]. Sprawdź, czy co najmniej jedna ze stworzonych liczb jest większa niż
+0.9. Użyj algorytmu <code>std::any_of</code>.</p>
+</div>
+<div id="ćwiczenie-ix---sinus-zakresu" class="section level4">
+<h4>Ćwiczenie IX - sinus zakresu</h4>
+<p>Stwórz wektor losowych liczb zmiennoprzecinkowych z przedziału [-1,
+1]. Stwórz drugi wektor tego samego rozmiaru i wypełnij go sinusami
+wartości z pierwszego wektora. Użyj algorytmu
+<code>std::transform</code>.</p>
+</div>
+<div
+id="ćwiczenie-x---sortowanie-elementów-wektora-mniejszych-od-wartości"
+class="section level4">
+<h4>Ćwiczenie X - sortowanie elementów wektora mniejszych od
+wartości</h4>
+<p>Stwórz wektor losowych liczb całkowitych z przedziału [0, 10].
+Przestaw jego elementy tak, aby najpierw wystąpiły wszystkie liczby
+większe od 6 (poza tym wymaganiem mogą być one dowolnie przestawione).
+Następnie posortuj część zakresu zawierającą elementy większe od 6. Użyj
+<code>std::partition</code> i <code>std::sort</code>.</p>
+<p>Przykład:</p>
+<ul>
+<li>input: [1 10 2 9 3 8 4 7 5 6]</li>
+<li>output (jeden z dopuszczalnych): [7 8 9 10 3 1 5 6 2 4]</li>
+</ul>
+</div>
+</div>
+<div id="zadanie-trudniejsze" class="section level3">
+<h3>Zadanie trudniejsze</h3>
+<div id="ćwiczenie-xi---indeksy-sortowania" class="section level4">
+<h4>Ćwiczenie XI - indeksy sortowania</h4>
+<p>Napisz algorytm <code>sorted_indices</code>, o sygnaturze:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span> <span class="kw">typename</span> ConstIt<span class="op">,</span> <span class="kw">typename</span> Comp <span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span> <span class="dt">size_t</span> <span class="op">&gt;</span> sorted_indices<span class="op">(</span>ConstIt first<span class="op">,</span> ConstIt last<span class="op">,</span> Comp compare<span class="op">);</span></span></code></pre></div>
+<p>który zwraca indeksy elementów podanego zakresu
+<code>[first, last)</code> po jego posortowaniu przy użyciu funktora
+porównującego <code>compare</code>. Algorytm nie powinien modyfikować
+zakresu. Zachowanie jest analogiczne do napisania w MATLABie
+<code>[~, i] = sort(v)</code>. Innymi słowy, poniższy kod powinien się
+wykonać:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">unsigned</span><span class="op">&gt;</span> v <span class="op">=</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="kw">auto</span> r <span class="op">=</span> sorted_indices<span class="op">(</span>v<span class="op">.</span>begin<span class="op">(),</span> v<span class="op">.</span>end<span class="op">(),</span> <span class="bu">std::</span>less<span class="op">&lt;</span><span class="dt">unsigned</span><span class="op">&gt;{});</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="dt">int</span> a <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">size_t</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> v<span class="op">.</span>size<span class="op">();</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="ot">assert</span><span class="op">(</span>a <span class="op">&lt;=</span> v<span class="op">[</span>r<span class="op">[</span>i<span class="op">]]);</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    a <span class="op">=</span> v<span class="op">[</span>r<span class="op">[</span>i<span class="op">]];</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Przykład:</p>
+<ul>
+<li>input: [1 10 2 9 3 8 4 7 5 6]</li>
+<li>output: [0 2 4 6 8 9 7 5 3 1]</li>
+</ul>
+<p>Podpowiedzi:</p>
+<ol style="list-style-type: decimal">
+<li>Załóż, że podany iterator jest losowego dostępu. Iteratory losowego
+dostępu STL mają zdefiniowany operator <code>[]</code>, który pozwala na
+indeksowanie elementów następujących po danym iteratorze. Na
+przykład:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">std::</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">};</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="kw">auto</span> it <span class="op">=</span> v<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="dt">int</span> a <span class="op">=</span> it<span class="op">[</span><span class="dv">2</span><span class="op">];</span> <span class="co">// a ma wartość 3</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Funkcja <code>std::distance</code> zwraca odległość między dwoma
+iteratorami (np. dla <code>begin</code> i <code>end</code> będzie to
+rozmiar kontenera).</li>
+<li>Możesz użyć algorytmu <code>std::iota</code> (z nagłówka
+<code>numeric</code>) do generacji wektora kolejnych rosnących liczb
+całkowitych (zwięźlejszy zapis niż pętla for).</li>
+<li>W ostateczności możesz spojrzeć na <a
+href="https://godbolt.org/z/bnvTcaeMf">rozwiązanie</a>.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

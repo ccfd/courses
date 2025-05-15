@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title>python_inst02</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst02.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="wprowadzenie" class="section level1">
+<h1>Wprowadzenie</h1>
+<div id="kilka-słów-o-pythonie" class="section level2">
+<h2>Kilka słów o Pythonie</h2>
+<p>Python jest <strong>dynamicznie typowanym</strong> i
+<strong>interpretowanym</strong> (w szczególnych przypadkach
+kompilowanym) językiem. Dynamiczne typowanie oznacza, że jakakolwiek
+zmienna (globalna czy lokalna w funkcji) nie posiada przypisanego typu.
+Dzięki temu kod jest bardzo krótki, elastyczny oraz jest pozbawiony
+sprawdzania typów na poziomie kompilacji, co znacząco skraca czas
+potrzebny od wprowadzenia zmian do uruchomienia kodu. Typ zmiennej jest
+sprawdzany dopiero w momencie wykonywania instrukcji, czyli jej
+konkretnego użycia. Dowolna zmienna staje się, np. integerem, w momencie
+gdy do niej przypiszemy wartość:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">5</span></span></code></pre></div>
+<p>W powyższym przykładzie nie został przypisany żaden typ do zmiennej
+“a”, tylko konkretna wartość 5 która automatycznie informuje, że “a” od
+tej pory będzie integerem. Dynamiczne typowanie pozwala także na
+przypisanie innego typu do tej samej zmiennej, tzn.:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">5</span> <span class="co"># zmienna jest typu integer</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">5.</span> <span class="co"># a teraz jest typu float</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>a <span class="op">=</span> <span class="st">&quot;jakis text&quot;</span> <span class="co"># i na koniec typu string</span></span></code></pre></div>
+<p>Podobnie ma się sytuacja z funkcjami - nie trzeba deklarować typu
+argumentu, wystarczy że przekazaną wartość będzie dało się zastosować do
+instrukcji znajdujących się wewnątrz funkcji. Na przykład do
+funkcji:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">def</span> funkcja(argument1):</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    a <span class="op">=</span> argument1[<span class="dv">3</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="cf">return</span> a</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">print</span> funkcja([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) <span class="co"># wyswietli sie liczba 4</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="bu">print</span> funkcja(<span class="st">&quot;to jest string&quot;</span>) <span class="co">#wyswietli sie znak &quot;j&quot;</span></span></code></pre></div>
+<p>można bez problemu przekazać zarówno listę jak i string, ponieważ oba
+te typy obsługują operator “[ ]”. Ważne jest jedynie, aby dało się
+wykonać wszystkie instrukcje znajdujące się wewnątrz funkcji, a nie ma
+znaczenia to czy przekazana jest lista, string czy jakikolwiek inny
+typ.</p>
+<p>Pythona na ogół należy postrzegać jako język
+<strong>interpretowany</strong>, ponieważ w taki sposób zazwyczaj
+będziemy uruchamiać kod. Język interpretowany to taki, w którym nie
+dokonuje się kompilacji całości kodu na raz(przetwarzania kodu z języka
+w miarę łatwo zrozumiałego dla człowiek do kodu w postaci instrukcji
+przesyłanych do procesora). Kod w tym przypadku jest “kompilowany” w
+czasie jego wykonywania. Oznacza to, że w następna linijka naszego kodu
+zostanie “skompilowana” dopiero w momencie gdy skończy się wywoływać
+poprzednia instrukcja. Z językiem interpretowanym spotykamy się bardzo
+często, ponieważ jest nim “bash” - język obsługujący powłokę systemową
+Linuxa. Dlatego też wiele podobnych cech będzie widocznych w języku
+Python, jednak jest on dużo bardziej wygodny i naturalny w użytkowaniu.
+Oprócz swobody pisania kodu chyba najważniejszą zaletą Pythona jest
+właśnie czas od zapisania kodu do jego uruchomienia. Z racji tego że kod
+jest “kompilowany w locie” program uruchamia się błyskawicznie, co w
+przypadku dużych kodów w języku C/C++ bywa bardzo uciążliwe.</p>
+</div>
+<div id="kod-i-jego-uruchamianie" class="section level2">
+<h2>Kod i jego uruchamianie</h2>
+<p>Kod Pythona może być pisany i uruchamiany w dwóch trybach:</p>
+<ul>
+<li>interaktywnym,</li>
+<li>wsadowym.</li>
+</ul>
+<p>Praca interaktywna z kodem sprowadza się do uruchomienia konsoli
+języka Python w której kod jest wykonywany po jego zatwierdzeniu
+klawiszem Enter. Aby uruchomić konsolę Pythona wystarczy z poziomu
+konsoli systemowej uruchomić aplikację “python”:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> python</span></code></pre></div>
+<p>Po tej operacji środowisko konsoli systemowej zamieni się w
+środowisko konsoli Pythona i każda linijka będzie zaczynała się od znaku
+<strong><em>&gt;&gt;&gt;</em></strong>:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">Python</span> 2.7.6 <span class="er">(</span><span class="ex">default,</span> Jun 22 2015, 17:58:13<span class="kw">)</span> </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">[GCC</span> 4.8.2] on linux2</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">Type</span> <span class="st">&quot;help&quot;</span>, <span class="st">&quot;copyright&quot;</span>, <span class="st">&quot;credits&quot;</span> or <span class="st">&quot;license&quot;</span> for more information.</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre></div>
+<p>Od tego momentu możemy pisać i od razu uruchamiać kolejne instrukcje,
+np.:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> a=5</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> b=5</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> print <span class="ex">a+b</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">10</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> </span></code></pre></div>
+<p>W trybie konsolowym można także definiować wieloliniowe instrukcje
+takie jak funkcje lub pętle. Dzięki temu, że każde takie wyrażenie
+kończy się znakiem “:”, to po naciśnięciu klawisza
+<strong><em>Enter</em></strong> środowisko automatycznie przechodzi w
+tryb wieloliniowy:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> def <span class="ex">funkcja_suma</span><span class="er">(</span><span class="ex">a,</span> b<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">...</span>     c = a + b</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">...</span>     return c</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">...</span> </span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
+<p>W powyższym przykładzie znak <strong><em>&gt;&gt;&gt;</em></strong>
+został zamieniony na <strong><em>…</em></strong> który oznacza kolejne
+linie. Należy tutaj pamiętać, że ciała funkcji są zawsze przesunięte o
+jedną tabulację, w związku z czym w konsoli po znaku
+<strong><em>…</em></strong> także należy dodać jedną tabulację. W
+momencie gdy uznamy, że ciało funkcji należy zakończyć, to wystarczy
+wcisnąć <strong><em>Enter</em></strong> w linijce niezawierającej
+tabulacji, co zakończy definicję funkcji i konsola powróci do znaku
+<strong><em>&gt;&gt;&gt;</em></strong>.</p>
+<p>Na koniec, aby opuścić tryb konsolowy wystarczy wywołać funkcję
+<strong><em>exit</em></strong> lub w przypadku systemów Linux można
+także użyć skrótu <strong><em>CTRL+d</em></strong>:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> print <span class="ex">a+b</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> exit<span class="kw">()</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">$</span></span></code></pre></div>
+<p>Interaktywna konsola Pythona jest bardzo użyteczna w przypadku gdy
+chcemy zrobić jakąś prostą operację, np. obliczyć proste wyrażenie
+matematyczne bądź chcemy wykonać prostą operację na zbiorze plików.</p>
+<p>Przejdźmy teraz do drugiego trybu - wsadowego. Ten tryb pozwala na
+uruchamianie kodu znajdującego się w pliku. Kod napisany w języku Python
+powinien zostać umieszczony w pliku o rozszerzeniu
+<strong><em>.py</em></strong> i każdy taki plik nazywany jest modułem
+(więcej o modułach się dalej). Aby uruchomić wybrany plik wystarczy
+przekazać ścieżkę do pliku do interpretera Pythona:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> python /home/uzytkownik/nazwa_pliku.py</span></code></pre></div>
+<p>Można także pominąć interpreter przy wywołaniu i uruchamiać skrypt ta
+jak zwykłą aplikację. W takiej sytuacji trzeba dodać do pliku komentarz
+który poinformuje system który interpreter powinien być użyty do
+uruchomienia pliku</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">#!/bin/usr/python</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>... kod pythona ...</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>... kod pythona ...</span></code></pre></div>
+<p>Oprócz linijki <strong><em>#!/bin/usr/python</em></strong> należy
+także zezwolić na uruchamianie pliku na poziomie systemu:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> chmod a+x sciezka/do/pliku.py <span class="co">#zmiana uprawnień </span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">$</span> sciezka/do/pliku.py <span class="co">#uruchomienie programu</span></span></code></pre></div>
+<p>Powyższa metoda działa dokładnie tak samo jak w przypadku skryptów
+<strong><em>bash</em></strong>, gdzie w miejscu ścieżki korzystamy
+zazwyczaj z <em>/bin/bash</em>.</p>
+</div>
+<div id="moduły" class="section level2">
+<h2>Moduły</h2>
+<p>Każdy pojedynczy plik napisany w języku Python nazywany jest modułem.
+Każdy z modułów może być uruchamiany wprost (tak jak to zostało
+wcześniej opisane) lub zostać użyty w innym module. W tej sytuacji można
+w drugim module korzystać z funkcji, klas i zmiennych zawartych w
+pierwszym. Jednak aby skorzystać z funkcji należy odwołać się nie do
+samej nazwy np. funkcji, ale należy poprzedzić ją nazwą modułu
+(pliku):</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co">#wywołanie funkcji z innego modułu:</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>nazwapliku.nazwafunkcji()</span></code></pre></div>
+<p>Dzięki temu nazwy funkcji mogą być takie same w różnych plikach i nie
+powstanie konflikt. Każdy moduł stanowi swego rodzaju przestrzeń nazw
+wewnątrz której nazwy elementów języka nie mogą się powtarzać. Moduły
+rozpinają się nie tylko na pliki, ale także na struktury folderów. Jeśli
+plik znajduje się wewnątrz folderu o nazwie <em>folder2</em>, który z
+kolei znajduje w folderze <em>folder1</em>, to odwołanie do funkcji
+będzie miało następującą postać:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>folder1.folder2.nazwapliku.nazwafunkcji()</span></code></pre></div>
+</div>
+<div id="komentarze-w-plikach-źródłowych" class="section level2">
+<h2>Komentarze w plikach źródłowych</h2>
+<p>Jednym z najczęściej używanych elementów każdego języka są
+komentarze, które pozwalają na chwilowe wyłączenie kodu bądź dodanie
+notatki na temat danej instrukcji. W języku python w odróżnieniu od
+C/C++ komentować można tylko linię za pomocą znaku
+<strong><em>#</em></strong></p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># To jest komentarz, a poniżej zwykły kod</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">5</span></span></code></pre></div>
+<p>Jeśli chcemy dodać komentarz do kilku linii tekstu to niestety należy
+znak <strong><em>#</em></strong> umieścić na początku każdej z
+linii:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># linia 1 komentarza</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># linia 2 komentarza</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">5</span></span></code></pre></div>
+<p>Może być to mało wygodne, jednak w praktyce, gdy korzystamy ze
+środowiska graficznego PyCharm wystarczy posłużyć się odpowiednim
+skrótem klawiszowym. Na przykład, gdy chcemy zamienić linijkę w której
+znajduje się nasz kursor to wystarczy wcisnąć na klawiaturze kombinację
+<strong><em>CTRL + /</em></strong></p>
+<div class="float">
+<img src="figures/python_inst02/comment_line.png"
+title="Komentowanie 1 linii w PyCharm" alt="komentarz_linia" />
+<div class="figcaption">komentarz_linia</div>
+</div>
+<p>Z kolei jeśli chcemy zamienić blok kodu na komentarz to należy go
+zaznaczyć a następnie ponownie skorzystać z kombinacji <strong><em>CTRL
++ /</em></strong></p>
+<div class="float">
+<img src="figures/python_inst02/comment_block.png"
+title="Komentowanie bloku tekstu w PyCharm" alt="komentarz_blok" />
+<div class="figcaption">komentarz_blok</div>
+</div>
+<p>Aby odkomentować ten sam blok tekstu wystarczy znów go zaznaczyć i
+użyć kombinacji <strong><em>CTRL + /</em></strong>.</p>
+<p>Oprócz zwykłych komentarzy specyfikacja języka python przewiduje
+dodatkowy rodzaj komentarza, który jest automatycznie uznawany za
+dokumentację. Tekst dokumentacji powinien znaleźć się w pomiędzy
+znacznikami początku i końca. Jako znaczniki stosuje się trzykrotny znak
+cudzysłowu. Dokumentacja powinna znaleźć się tuż pod deklaracją
+dokumentowanego narzędzia, np. funkcji:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="kw">def</span> funkcja(arg1, arg2):</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co">    To jest funkcja, sluzy ona do robienia czegos </span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="co">    dziwnego z przekazanymi argumentami</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>    <span class="co"># kod zawierajacy cialo funkcji</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div>
+<p>Środowisko PyCharm w przypadku dokumentacji jest także bardzo
+pomocne. Jeśli chcemy dodać taki rodzaj dokumentacji funkcji, wystarczy
+tuż pod jej nazwą dodać trzy znaki cudzysłowu i nacisnąć klawisz
+<strong><em>Enter</em></strong> a program automatycznie wygeneruje ciało
+dokumentacji w następującej postaci</p>
+<div class="float">
+<img src="figures/python_inst02/doc_comment.png"
+title="Szablon dokumentacji funkcji w PyCharm" alt="komentarz_dok" />
+<div class="figcaption">komentarz_dok</div>
+</div>
+<p>Jak widać na powyższym rysunku PyCharm wygenerował dodatkowe elementy
+które wypada umieścić w dokumentacji. Tuż za znakami cudzysłowów została
+pozostawiona wolna linia w której należy umieścić opis funkcji, tzn. do
+czego służy i ewentualnie jaki algorytm implementuje. Oprócz tego
+PyCharm umieścił informację o argumentach funkcji:</p>
+<ul>
+<li><strong><em>param: argument1:</em></strong> należy dopisać
+informację jaki obiekt powinien być przekazane jako pierwszy
+argument</li>
+<li><strong><em>param: argument1:</em></strong> należy dopisać
+informację jaki obiekt powinien być przekazane jako drugi argument</li>
+<li><strong><em>return:</em></strong> należy dodać informację jaki
+obiekt jest zwracany z funkcji. W przypadku gdy funkcja nie powinna
+zwracać argumentów zwyczajowo podaje się “None” które oznacza, że
+funkcja nic nie zwraca.</li>
+</ul>
+<p>Czasami programiści umieszczają pod argumentami dodatkowo przykład
+zastosowania funkcji.</p>
+<p>Gdy już przygotujemy tak udokumentowaną funkcję, to możemy w
+środowisku PyCharm skorzystać z opcji “Quick Documentation” która
+wyświetla w dodatkowym oknie podpowiedzi to co zapisaliśmy lub ktoś inny
+udokumentował. Aby wyświetlić taką dokumentację należy postawić kursor
+na nazwie funkcji (w miejscu w którym chcemy z niej skorzystać) a
+następnie z górnego menu wybrać <strong><em>View/Quick
+Documentation</em></strong></p>
+<div class="float">
+<img src="figures/python_inst02/quick_documentation.png"
+title="Okno wyświetlania dokumentacji" alt="widok_dokumentacji" />
+<div class="figcaption">widok_dokumentacji</div>
+</div>
+<p>Dokumentacja kodu w języku python jest szczególnie ważna z uwagi na
+brak typów obiektów. Jeśli chcemy aby argument przekazany do funkcji był
+liczbą całkowitą, to nie możemy tego powiedzieć użytkownikowi za pomocą
+deklaracji funkcji (deklaracja zawiera tylko nazwy przekazanych
+zmiennych, nie ma typu) i musimy to zrobić za pośrednictwem
+dokumentacji.</p>
+</div>
+<div id="polskie-znaki-diakrytyczne" class="section level2">
+<h2>Polskie znaki diakrytyczne</h2>
+<p>W sytuacji gdy w komentarzach zostaną umieszczone polskie znaki
+diakrytyczne kod znajdujący się w danym pliku może nie uda się
+uruchomić. Wynika to z tego, że python używa domyślnego kodowania ASCII
+nieobsługującego tego typu znaków. Jeśli jednak chcemy używać polskich
+znaków, to na początku pliku należy wstawić następujący komentarz</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># coding=utf-8</span></span></code></pre></div>
+<p>Ta linijka wymusi na interpreterze skorzystanie z innego
+dekodera.</p>
+</div>
+<div id="zmienne" class="section level2">
+<h2>Zmienne</h2>
+<p>O zmiennych już wcześniej wspominaliśmy, teraz uzupełnimy te
+informacje. Najważniejsza cecha zmiennych to brak typu, z czym wiąże sie
+kilka cech. Po pierwsze typ zmiennej jest taki jak typ wprowadzonej
+wartości. Może być to jednak problematyczne, gdy chcemy wykonać operację
+(np. dzielenie) na konkretnie wybranym typie:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="kw">def</span> oblicz(a,b):</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>    <span class="cf">return</span> (a <span class="op">-</span> b)<span class="op">/</span>a</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="bu">print</span> oblicz(<span class="dv">2</span>, <span class="dv">1</span>)</span></code></pre></div>
+<p>W wyniku działanie tej funkcji, zobaczymy 0, ponieważ funkcja została
+wywołana dla zmiennych integer. W tej sytuacji można problem rozwiązać
+przekazując poprawne wartości:</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="bu">print</span> oblicz(<span class="fl">2.</span>, <span class="fl">1.</span>)</span></code></pre></div>
+<p>Można także rozwiązać ten problem w bardziej ogólny sposób, za pomocą
+funkcji konwertującej do odpowiedniego typu, np.
+<strong><em>float(…)</em></strong> :</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="kw">def</span> oblicz(a,b):</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(a <span class="op">-</span> b)<span class="op">/</span>a</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="bu">print</span> oblicz(<span class="dv">2</span>, <span class="dv">1</span>)</span></code></pre></div>
+<p>Ponadto funkcje te potrafią konwertować string do wybranego typu,
+dlatego powyżej zdefiniowana funkcja zadziała i w takiej sytuacji:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="kw">def</span> oblicz(a,b):</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    a <span class="op">=</span> <span class="bu">float</span>(a)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>    b <span class="op">=</span> <span class="bu">float</span>(b)</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>    <span class="cf">return</span> (a <span class="op">-</span> b)<span class="op">/</span>a</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>a <span class="op">=</span> <span class="st">&quot;2&quot;</span></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="bu">print</span> oblicz(a, <span class="st">&quot;1&quot;</span>)</span></code></pre></div>
+<p>Zmienne mogą być nazywane dowolnie, nawet tak samo jak funkcje
+wcześniej zaimportowane. W tej sytuacji obiekt “funkcja” zostanie
+zastąpiony inną wartością, przez co nie będziemy już mieli możliwości
+użyć funkcji. Sprawdź działanie następującego kodu:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="kw">def</span> moja_funkcja():</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">5</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>moja_funkcja<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>moja_funkcja()</span></code></pre></div>
+<p>Ta cecha języka może być jednak problematyczna, ponieważ wprowadza
+potencjalne błędy które trudno zlokalizować. O ile pisząc własne funkcje
+łatwo zauważyć taki problem, to w przypadku wbudowanych funkcji (zawsze
+dostępnych) takich jak <strong><em>list</em></strong> lub
+<strong><em>len</em></strong> jest to trudniejsze i trzeba na to
+uważać.</p>
+</div>
+<div id="własne-funkcje" class="section level2">
+<h2>Własne funkcje</h2>
+<p>Już kilkukrotnie pokazywaliśmy jak wyglądają funkcje w języku Python.
+Teraz uzupełnimy tę wiedzę o 2 przydatne cechy. W Pythonie funkcjami
+można operować podobnie do zmiennych, ponieważ one są w rzeczywistości
+obiektami. Dzięki temu, można dowolnie zmieniać nazwę funkcji, bądź
+przypisywać im inne. Sprawdź poniższy kod:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">def</span> funkcja1():</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Hellow&quot;</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>funkcja2 <span class="op">=</span> funkcja1</span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>funkcja1()</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>funkcja2()</span></code></pre></div>
+<p>Oraz działanie tego:</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="kw">def</span> suma(a, b):</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="kw">def</span> roznica(a, b):</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">-</span> b</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>suma <span class="op">=</span> roznica</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="bu">print</span> suma(<span class="dv">5</span>, <span class="dv">2</span>)</span></code></pre></div>
+<p>Druga bardzo ważna sprawa związana z funkcjami to przekazywanie
+jednej funkcji do drugiej. Z racji tego, że Python jest dynamicznie
+typowany to przekazanie funkcji do funkcji jest tak proste jak
+przekazanie argumentu. Czy wewnątrz funkcji zostanie ona użyta poprawnie
+dowiemy się dopiero w momencie uruchomienia kodu. Sprawdź poniższy
+przykład, który oblicza całkę metodą trapezów:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="kw">def</span> calka(fun, a, b):</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>    dx <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> <span class="dv">99</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>    Int <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>   <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>        Int <span class="op">+=</span> (fun(i<span class="op">*</span>dx) <span class="op">+</span> fun((i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>dx))<span class="op">/</span><span class="dv">2</span><span class="op">*</span>dx</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>    <span class="cf">return</span> Int</span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="kw">def</span> x_kwadrat(x):</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Calka =&quot;</span>, calka(x_kwadrat, <span class="fl">0.</span>, <span class="fl">10.</span>)</span></code></pre></div>
+</div>
+<div id="słowo-pass-w-ciele-instrukcji" class="section level2">
+<h2>Słowo “pass” w ciele instrukcji</h2>
+<p>W języku C taki zakres określała się za pomocą klamer { }. W
+przypadku tego języka jeśli chcemy pozostawić “pustą” funkcję, to
+wystarczy zapisać jej ciało jako otwarcie i zamknięcie klamer:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="dt">void</span> funkcja<span class="op">()</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A jak to jest w Pythonie? Przecież w Pythonie zakres ciała funkcji
+jest określony tylko przez indentację. Zatem czy nie ma takiej
+możliwości aby funkcja mogła być pozostawiona pusta? Jest, służy do tego
+słowo <strong><em>pass</em></strong>, które określa, że funkcja jest
+pusta i nie wykonuje żadnego kodu. Tak zdefiniowana funkcja wygląda
+następująco:</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="kw">def</span> funkcja():</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="co"># reszta kodu</span></span></code></pre></div>
+</div>
+<div id="podstawowe-wbudowane-funkcje" class="section level2">
+<h2>Podstawowe wbudowane funkcje</h2>
+<p>Do tej pory pokazaliśmy, jak wygląda definicja własnych funkcji.
+Python posiada jednak kilka podstawowych funkcji, które są zawsze
+dostępne i możemy z nich korzystać w dowolnym miejscu kodu. Należą do
+nich np.: <strong><em>print, float, int, str, len, range, dict, list,
+max, min</em></strong>. Niektóre funkcje zostaną wyjaśnione w dalszej
+części gdzie będziemy opisywali ich praktyczne zastosowanie. Zbiór i
+opis wbudowanych funkcji można znaleźć pod tym linkiem <a
+href="https://docs.python.org/2/library/functions.html"
+title="Python build-in functions">build-in functions</a></p>
+</div>
+<div id="listy" class="section level2">
+<h2>Listy</h2>
+<p>Jednym z najważniejszych elementów każdego języka jest kontener do
+przechowywania zbioru danych. W języku Python takim podstawowym typem
+jest lista, która może przechowywać elementy dowolnego typu, tzn. może
+przechowywać zarówno int jak i string w obrębie jednej listy. Ponadto
+listy są modyfikowalne, co oznacza, że do listy można dopisywać nowe
+elementy albo usuwać już znajdujące się w niej.</p>
+<p>Pustą listę można utworzyć na 2 sposoby: - Za pomocą wbudowanej
+funkcji <strong><em>list</em></strong>:</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>aList <span class="op">=</span> <span class="bu">list</span>()</span></code></pre></div>
+<ul>
+<li>Za pomocą nawiasów kwadratowych []</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>aList <span class="op">=</span> []</span></code></pre></div>
+<p>Puste listy są mało przydatne, dlatego wykorzystując nawiasy [] można
+zadeklarować listę od razu wypełnioną:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>]</span></code></pre></div>
+<p>Lista nie musi składać się z elementów tego samego typu:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&quot;dwa&quot;</span>, <span class="fl">3.</span> , <span class="dv">5</span>]</span></code></pre></div>
+<p>Wiemy już jak umieszczać elementy, a jak je się pobiera? Tak samo jak
+w innych językach, używając nawiasów []. Należy jednak pamiętać, że
+listy są indeksowane o 0:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&quot;dwa&quot;</span>, <span class="fl">3.</span> , <span class="dv">5</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="bu">print</span> aList[<span class="dv">0</span>]  <span class="co"># &gt;&gt; 1</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="bu">print</span> aList[<span class="dv">1</span>]  <span class="co"># &gt;&gt; &quot;dwa&quot;</span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="bu">print</span> aList[<span class="dv">0</span>] <span class="op">+</span> aList[<span class="dv">3</span>] <span class="co"># &gt;&gt; 6</span></span></code></pre></div>
+<p>Aby sprawdzić rozmiar listy korzysta się z wbudowanej funkcji
+<strong><em>len</em></strong>:</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&quot;dwa&quot;</span>, <span class="fl">3.</span> , <span class="dv">5</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Dlugosc listy =&quot;</span>, <span class="bu">len</span>(aList)</span></code></pre></div>
+<div id="metody-należące-do-klasy-list" class="section level3">
+<h3>Metody należące do klasy list</h3>
+<p>Lista tak jak wszystkie zmienne jest obiektem, w związku z tym
+posiada przypisane do siebie funkcje, które operują na liście, na której
+zostały wywołane (funkcje takie nazywane są metodami i wywołuje się je
+podając jej nazwę tuż po nazwie listy, np. nazwaListy.nazwaFunkcji()) .
+Do tych funkcji należą: - nazwaListy.append(element) - metoda dodaje
+element na koniec listy, np.:</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>aList.append(<span class="dv">5</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="bu">print</span> aList <span class="co"># &gt;&gt; [1, 2, 5]</span></span></code></pre></div>
+<ul>
+<li>nazwaListy.insert(indeks, element) - metoda wstawia element w
+dokładnej pozycji</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>aList.insert(<span class="dv">1</span>, <span class="st">&quot;cos&quot;</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="bu">print</span> aList <span class="co"># &gt;&gt; [1, &quot;cos&quot;, 2]</span></span></code></pre></div>
+<ul>
+<li><p>nazwaListy.remove(element) - metoda usuwa wskazany element z
+listy (podajemy wartość elementu, nie indeks),</p></li>
+<li><p>nazwaListy.sort() - sortuje listę,</p></li>
+<li><p>nazwaListy.reverse() - odwraca kolejność elementów w
+liście</p></li>
+</ul>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>,<span class="st">&#39;cos&#39;</span>,<span class="dv">2</span>]</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>aList.reverse()</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="bu">print</span> aList <span class="co"># &gt;&gt; [2, &#39;cos&#39;, 1]</span></span></code></pre></div>
+<ul>
+<li>list.index(element) - zwraca numer elementu, np.:</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>,<span class="st">&#39;cos&#39;</span>,<span class="dv">2</span>]</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="bu">print</span> aList.index(<span class="st">&#39;cos&#39;</span>) <span class="co"># &gt;&gt; wyswietli sie 1</span></span></code></pre></div>
+<p>Oprócz tych funkcji dla zmiennych typu list został dodatkowo
+przeciążony operator <strong><em>+</em></strong>. W kontekście użycia
+zmiennych typu list operator ten łączy 2 listy ze sobą:</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>aList<span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>bList <span class="op">=</span> [<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a><span class="bu">print</span> aList <span class="op">+</span> bList <span class="co"># &gt;&gt; [1, 2, 3, 3, 2, 1]</span></span></code></pre></div>
+<p>Można także użyć operatora <strong><em>+=</em></strong> zamiast
+metody <strong><em>append</em></strong> co spowoduje dodanie wszystkich
+elementów z jednej listy po prawej stronie do listy po lewej stronie
+operatora:</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>aList<span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>aList <span class="op">+=</span> [<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a><span class="bu">print</span> aList <span class="co"># &gt;&gt; [1, 2, 3, 3, 2, 1]</span></span></code></pre></div>
+</div>
+<div id="słowo-kluczowe-in-w-kontekście-list" class="section level3">
+<h3>Słowo kluczowe “in” w kontekście list</h3>
+<p>Język Python w specjalny sposób wspiera sprawdzanie czy element
+znajduje się w liście. Do tego służy słowo kluczowe
+<strong><em>in</em></strong>. Przeanalizujmy następujący kod:</p>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&#39;cos&#39;</span>, <span class="dv">2</span>]</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>isInList <span class="op">=</span> <span class="st">&#39;cos&#39;</span> <span class="kw">in</span> aList</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="bu">print</span> isInList <span class="co"># &gt;&gt; True</span></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="bu">print</span> <span class="dv">5</span> <span class="kw">in</span> aList <span class="co"># &gt;&gt; False</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a><span class="cf">if</span> <span class="st">&#39;cos&#39;</span> <span class="kw">in</span> aList:</span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&#39;cos is in the aList&#39;</span></span></code></pre></div>
+<p>Wyrażenie <em>element</em> <strong><em>in</em></strong>
+<em>lista</em> zwraca wartość logiczną True/False.</p>
+</div>
+<div id="pętla-for-i-generator-range" class="section level3">
+<h3>Pętla “for” i generator “range”</h3>
+<p>Jednym z najważniejszy elementów języków programowania są pętle. W
+przypadku Pythona pętla <strong><em>for</em></strong> różni się swojego
+odpowiednika w języku C/C++. W języku C aby pobrać z tablicy kolejne
+elementy piszemy:</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="dt">float</span><span class="op">[]</span> aList <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">};</span></span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="dt">float</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a><span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span><span class="dv">4</span><span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>        sum <span class="op">+=</span> aList<span class="op">[</span>i<span class="op">];</span></span>
+<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Widać powyżej, że aby pobrać kolejne elementy z tablicy trzeba w
+pętli przesuwać indeks elementu i za każdym razem pobierać wartość z
+tablicy. Taka konstrukcja pętli jest bardzo często używana, dlatego w
+języku Python pętla for została sformułowana w następujący sposób:</p>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> aList:</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">+=</span> a</span></code></pre></div>
+<p>Pętla <strong><em>for</em></strong> tutaj ma konstrukcję
+następującą:</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="cf">for</span> elementListy <span class="kw">in</span> nazwaListy:</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>    ... instrukcje operujace na kolejnych elementach z listy ...</span></code></pre></div>
+<p>Widzimy, że w Pythonie nie operujemy za pomocą indeksów, tylko od
+razu za pomocą kolejnych elementów z listy. Zmienna “elementListy” w
+każdym wywołaniu pętli przyjmuje kolejne wartości z listy.</p>
+<p>Niestety, czasami przydaje się korzystanie z indeksów, np. gdy chcemy
+wykonać jakąś operację pewną ilość razy bez korzystania z listy.
+Niestety w takiej sytuacji Python wymaga czegoś, co będzie zawierało te
+indeksy:</p>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>indeksy <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> indeksy:</span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>    <span class="bu">print</span> i</span></code></pre></div>
+<p>W takiej sytuacji uciążliwe by było tworzenie takiej listy, dlatego
+można spodziewać się, że istnieje jakaś funkcje służąca do tego. I
+faktycznie, istniej i nazywa się <strong><em>range</em></strong>.
+Funkcja ta zwraca kolejne indeksy:</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> ragne(<span class="dv">7</span>):</span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>    <span class="bu">print</span> i</span></code></pre></div>
+<p>Musimy tutaj wyjaśnić pewną rzecz. Funkcja
+<strong><em>range</em></strong> nie zwraca w rzeczywistości listy, tylko
+tzw. <strong><em>generator</em></strong>. Generator różni się tym od
+listy tym, że nie przechowuje elementów tylko generuje je na zapytanie o
+kolejny element. Dlatego nawet w przypadku gdy użyjemy funkcji
+<strong><em>range</em></strong> z bardzo dużą liczbą, to pamięć nie
+zostanie zajęta. Funkcja <strong><em>range</em></strong> może przyjmować
+kilka argumentów: 1. Koniec zakresu - <code>range(10)</code> wygeneruje
+liczby od 0 do 9. Koniec zakresu określa największą liczbę całkowitą
+która już nie powinna być wygenerowana. Taka konstrukcja jest dopasowana
+do indeksowania od 0. 2. Początek i koniec zakresu -
+<code>range(2,8)</code> wygeneruje liczby od 2 do 7. 3. Początek, koniec
+i krok - <code>range(2, 20, 3)</code> wygeneruje liczby [2, 5, 8, 11,
+14, 12, 5, 8, 11, 14, 17] czyli od 2 do 20 co 3.</p>
+</div>
+<div id="wycinki-list" class="section level3">
+<h3>Wycinki list</h3>
+<p>Często w trakcie pracy z listami okazuje się, że chcemy pracować nie
+na całej liście, lecz tylko na jej części. Do takich zadań bardzo
+przydatne są “wycinki” list, które pozwalają na pobranie np. 5
+pierwszych elementów. Do tego służy znak
+“<strong><em>:</em></strong>”</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>aList <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">54</span>, <span class="dv">12</span>, <span class="dv">11</span>]</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="bu">print</span> aList[:<span class="dv">5</span>] <span class="co"># &gt;&gt; wyswietli  5 pierwszych elementow [1,2,5,8,4]</span></span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a><span class="bu">print</span> aList[<span class="dv">5</span>:] <span class="co"># &gt;&gt; wyswietli elementy od 5 do końca [54,12,11]</span></span></code></pre></div>
+<p>Można także łączyć oba zakresy</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="bu">print</span> aList[<span class="dv">2</span>:<span class="dv">6</span>] <span class="co"># &gt;&gt; wyswietli  5, 8, 4, 54</span></span></code></pre></div>
+<p>Ponadto można zdefiniować krok pomiędzy indeksami, np. co drugi
+element:</p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="bu">print</span> aList[::<span class="dv">2</span>] <span class="co"># &gt;&gt; wyswietli [1, 5, 4, 12]</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a><span class="bu">print</span> aList[:<span class="dv">5</span>:<span class="dv">2</span>] <span class="co"># &gt;&gt;  wyswiteli [1, 5, 4]</span></span></code></pre></div>
+<p>Ostatnia metoda dostępu do elementów to wykorzystanie ujemnego
+indeksu, który zwraca elementy licząc od końca, tj.:</p>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="bu">print</span> aList[<span class="op">-</span><span class="dv">1</span>] <span class="co"># &gt;&gt; wyswietli ostatni element 11</span></span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="bu">print</span> aList[<span class="op">-</span><span class="dv">3</span>] <span class="co"># &gt;&gt; wyswietli trzeci od końca 54</span></span></code></pre></div>
+<p>Wycinki list działają praktycznie tak jak listy, tzn. można korzystać
+z nich w pętli for, np.:</p>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a><span class="cf">for</span> elmnt <span class="kw">in</span> aList[:<span class="dv">5</span>]:</span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">+=</span> elmnt </span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a>    <span class="bu">print</span> <span class="bu">sum</span></span></code></pre></div>
+<p>lub przypisywać wartość do cześci elementów:</p>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>aList[:<span class="dv">3</span>] <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">101</span>, <span class="dv">102</span>]</span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a><span class="bu">print</span> aList <span class="co"># &gt;&gt; wyswietli [100, 101, 102, 8, 4, 54, 12, 11]</span></span></code></pre></div>
+<p>W dalszej części przedstawimy bibliotekę NumPy która obsługuje typ
+“array”, dla którego wycinki pozwalają na jeszcze większą swobodę.</p>
+</div>
+<div id="listy-wielowymiarowe" class="section level3">
+<h3>Listy wielowymiarowe</h3>
+<p>Jak łatwo się domyślić listy wielowymiarowe to są po prostu listy
+przechowujące jako elementy kolejne listy. Aby stworzyć taką listę
+możemy po prostu skorzystać inicjalizacji […], gdzie elementami będą
+kolejne listy:</p>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>lista2D <span class="op">=</span> [ [<span class="dv">1</span>,<span class="dv">2</span>], [<span class="dv">2</span>,<span class="dv">3</span>] ]</span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Element 0,0 =&quot;</span>, lista2D[<span class="dv">0</span>][<span class="dv">0</span>] <span class="co"># &gt;&gt; wyswietli 1</span></span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Element 0,1 =&quot;</span>, lista2D[<span class="dv">0</span>][<span class="dv">1</span>] <span class="co"># &gt;&gt; wyswietli 2</span></span></code></pre></div>
+<p>Listy wielowymiarowe zazwyczaj są potrzebne do przechowywania danych
+w postaci liczb (np. jako reprezentacja macierzy). W takiej sytuacji typ
+lista nie jest najlepszym kontenerem, ponieważ czas dostępu do zmiennych
+może się wydłużać. Do tego typu operacji najlepiej jest skorzystać z
+tablic pochodzących z biblioteki NumPy, która domyślnie obsługuje
+tablice wielowymiarowe i robi to bardzo efektywnie, ale o tym dalej.</p>
+</div>
+<div id="zaawansowana-inicjalizacja" class="section level3">
+<h3>Zaawansowana inicjalizacja</h3>
+<p>Poprzednio pokazaliśmy, że listę można inicjalizować wartościami
+wpisanymi w prost pomiędzy nawiasami […]. Jednak ta metoda jest dość
+ograniczona, ponieważ explicite trudno wypełnić taką listę zbiorem np.
+100 liczb. W takiej sytuacji lepiej już jest utworzyć pustą listę i
+skorzystać z metody append:</p>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>aList <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>    aList.append(i<span class="op">**</span><span class="dv">2</span>) <span class="co"># &lt;&lt; wypelnienie listy kwadratem kolejnych liczb 0, 1, ..., 99</span></span></code></pre></div>
+<p>Powyższa struktura kodu jest poprawna, jednak tworzenie takiej pętli
+jest uciążliwe. Dlatego w Pythonie konstrukcja tego typu została
+uproszczona do:</p>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>aList <span class="op">=</span> [ i<span class="op">*</span>i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span></code></pre></div>
+<p>Powyższy kod inicjalizuje listę kwadratem kolejnych liczb. Wyrażenie
+tuż przed <strong><em>for</em></strong> jest wartością która powinna
+uzupełniać kolejne elementy listy. Jest to kod który zazwyczaj znajduje
+się w ciele pętli for. Reszta składni tej konstrukcji typowa definicja
+pętli for. W miejscu wartości może także znajdować się wywołanie
+funkcji, a wynik jej działania będzie przypisany do kolejnych elementów,
+np.:</p>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="kw">def</span> inicjalizacja(index):</span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>    a <span class="op">=</span> index <span class="op">/</span> <span class="dv">2</span> </span>
+<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a>    b <span class="op">=</span> index<span class="op">*</span>a</span>
+<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a>    <span class="cf">return</span> b</span>
+<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a>aList <span class="op">=</span> [ inicjalizacja(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span></code></pre></div>
+<p>Ponieważ wewnątrz tej konstrukcji znajduje się zwykła pętla for, to
+po słowie “in” możemy wstawić dowolną inną listę:</p>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>aList <span class="op">=</span> [ i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>bList <span class="op">=</span> [<span class="dv">2</span><span class="op">*</span>element <span class="cf">for</span> element <span class="kw">in</span> aList]</span></code></pre></div>
+</div>
+<div id="rozwijanie-list" class="section level3">
+<h3>Rozwijanie list</h3>
+<p>Jak wiadomo w Pythonie nie korzystamy ze znaków “;” oznaczających
+koniec instrukcji. W tym języku z założenia koniec linii jest końcem
+pojedynczej instrukcji. Czy zatem istnieje możliwość inicjalizacji kilku
+zmiennych w jednej linii? Okazuje się, że tak. Służy do tego “rozwijanie
+list”, które pozwala przypisać kolejne wartości z listy (ogólniej z
+obiektu po którym można iterować) do zmiennych. Konstrukcja ta ma
+następującą postać:</p>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>aList <span class="op">=</span> [ <span class="dv">1</span>, <span class="st">&#39;cos&#39;</span>, <span class="dv">2</span>]</span>
+<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>a1, a2, a3 <span class="op">=</span> aList</span>
+<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a><span class="bu">print</span> a1 <span class="co"># &gt;&gt; 1</span></span>
+<span id="cb57-4"><a href="#cb57-4" tabindex="-1"></a><span class="bu">print</span> a2 <span class="co"># &gt;&gt; &#39;cos&#39;</span></span>
+<span id="cb57-5"><a href="#cb57-5" tabindex="-1"></a><span class="bu">print</span> a3 <span class="co"># &gt;&gt; 2</span></span></code></pre></div>
+<p>Jeśli utworzymy listę w “locie” to okaże się, że możemy przypisać
+wartości do kilku zmiennych w jednej linii:</p>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>a1, a2, a3 <span class="op">=</span> [<span class="dv">1</span>, <span class="st">&#39;cos&#39;</span>, <span class="dv">2</span>]</span></code></pre></div>
+<p>Podobnie można czynić z każdym obiektem który służy do przechowywania
+zbiorów (np. tuple i tablice numpy o których dalej).</p>
+</div>
+</div>
+<div id="tuple" class="section level2">
+<h2>Tuple</h2>
+<p>Następnym typem który pozwala na przechowywanie danych jest
+<strong><em>tuple</em></strong>. Jego konstrukcja i użytkowanie jest
+podobne do list. Jednak w odróżnieniu od nich ten typ jest swego rodzaju
+listą niemodyfikowalną. Jeśli raz zostanie utworzony obiekt tego typu,
+to nie można zmieniać ani wartości znajdującuych się w nim ani liczby
+elementów. Obiekty typu <strong><em>tuple</em></strong> tworzy się
+podobnie do list z tą różnicą, że zamiast nawiasów [] korzystamy z
+():</p>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>aTuple <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;cos&#39;</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a><span class="bu">print</span> aTuple <span class="co"># &gt;&gt; (1, 2, &#39;cos&#39;)</span></span>
+<span id="cb59-3"><a href="#cb59-3" tabindex="-1"></a><span class="bu">print</span> aTuple[<span class="dv">1</span>] <span class="co"># &gt;&gt; 2</span></span></code></pre></div>
+<p>Poniważ jest on niemodyfikowalny, to nie posiada ani metody “append”
+ani nie jest możliwe przypisanie. Sprawdź poniższy kod:</p>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>aTuple <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;cos&#39;</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>aTuple[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">3</span></span></code></pre></div>
+<p>Poza powyższymi uwagami tuple zachowuje się jak lista. To znaczy, że
+można go używać w pętlach:</p>
+<div class="sourceCode" id="cb61"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="cf">for</span> elmnt <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;cos&#39;</span>):</span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a>    <span class="co"># jakiś kod operujący na elementach</span></span></code></pre></div>
+<p>oraz rozwijać tak jak listy:</p>
+<div class="sourceCode" id="cb62"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>a1,a2,a3 <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&#39;cos&#39;</span>)</span></code></pre></div>
+</div>
+<div id="instrukcja-warunkowa-if-elif-else" class="section level2">
+<h2>Instrukcja warunkowa if, elif, else</h2>
+<p>Konstrukcja instrukcji <strong><em>if</em></strong> jest bardzo
+prosta, nawet przedstawialiśmy ją w niektórych przykładach.
+Przypomnijmy:</p>
+<div class="sourceCode" id="cb63"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="cf">if</span> wartosc_bool :</span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a>    <span class="co"># instruckcje jesli wartosc jest prawda</span></span>
+<span id="cb63-3"><a href="#cb63-3" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb63-4"><a href="#cb63-4" tabindex="-1"></a>    <span class="co"># instruckje jesli wartosc jest falszem</span></span></code></pre></div>
+<p>“wartosc_bool” powinna przyjmować wartość <strong>True</strong> lub
+<strong>False</strong>, co może wynikać z warunku logicznego, np.:
+<code>a == b</code> lub <code>a in aList</code>. Należy tutaj pamiętać,
+że “:” musi znaleźć się także po słowie
+<strong><em>else</em></strong></p>
+<p>Oprócz tej prostej konstrukcji często przydatne jest sprawdzanie
+drugiego warunku jeśli pierwszy nie jest spełniony. Do tego służy
+konstrukcja if- elif:</p>
+<div class="sourceCode" id="cb64"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="cf">if</span> wartosc_bool_1 :</span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>    <span class="co"># instruckcje </span></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a><span class="cf">elif</span> wartosc_bool_2 :</span>
+<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a>    <span class="co"># instruckje</span></span>
+<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb64-6"><a href="#cb64-6" tabindex="-1"></a>    <span class="co"># instruckje</span></span></code></pre></div>
+</div>
+<div id="wyrażenia-logiczne" class="section level2">
+<h2>Wyrażenia logiczne</h2>
+</div>
+<div id="string" class="section level2">
+<h2>String</h2>
+<p>Poza danymi liczbowymi najczęściej będziemy musieli pracować z danymi
+w postaci ciągów znaków - typu string. W języku Python zmienną tego typu
+można tworzyć wykorzystując zarówno pojedynczy znak cudzysłowu ‘text’
+lub podwójny “text”. Obie wersje są poprawne i mogą być używane
+zamiennie. Jednak zawsze lepiej jest przyjąć jedną konwencję i jej się
+trzymać.</p>
+<p>Aby utworzyć zmienną pustą zmienną string można wykorzystać funkcję
+<strong><em>str</em></strong>:</p>
+<div class="sourceCode" id="cb65"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a>aString  <span class="op">=</span> <span class="bu">str</span>()</span></code></pre></div>
+<p>lub nie podać żadnego znaku w cudzysłowie:</p>
+<div class="sourceCode" id="cb66"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>aString  <span class="op">=</span> <span class="st">&quot;&quot;</span> <span class="co">#  lub aString=&#39;&#39; </span></span>
+<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a>aString  <span class="op">=</span> <span class="st">&quot;Jakis ciag znakow&quot;</span></span></code></pre></div>
+<div id="wieloliniowe-ciągi-znaków" class="section level3">
+<h3>Wieloliniowe ciągi znaków</h3>
+<p>Aby złamać linię w tekście wystarczy użyć znaku “”, jednak w kodzie
+nadal będziemy pisali w tej samej linii, co jest bardzo nieczytelne.
+Python dodatkowo wspiera pisanie w postaci wieloliniowego tekstu. W tym
+celu korzysta się z potrójnego cudzysłowu:</p>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a>longString <span class="op">=</span> <span class="st">&quot;&quot;&quot;Piszemy dlugi, wieloliniowy tekst, a teraz nowa linia</span></span>
+<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a><span class="st">i nadal piszemy, bez przerywania definicji zmiennej longString&quot;&quot;&quot;</span></span></code></pre></div>
+</div>
+<div id="string-jako-tablica" class="section level3">
+<h3>String jako tablica</h3>
+<p>Zmienne typu string są w rzeczywistości tablicami znaków, w związku z
+czym możemy nimi operować dokładnie tak jak tablicami:</p>
+<div class="sourceCode" id="cb68"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>aString <span class="op">=</span> <span class="st">&quot;Uwielbiam pisac w Pythonie&quot;</span></span>
+<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Liczba znakow to w zdaniu&quot;</span>, <span class="bu">len</span>(aString)</span>
+<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Trzeci znak to &quot;</span>, aString[<span class="dv">2</span>]</span>
+<span id="cb68-6"><a href="#cb68-6" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" tabindex="-1"></a><span class="cf">for</span> znak <span class="kw">in</span> aString:</span>
+<span id="cb68-8"><a href="#cb68-8" tabindex="-1"></a>    <span class="bu">print</span> znak</span></code></pre></div>
+<p>Z racji tego że w listach operator <strong><em>+</em></strong> służył
+do dodawania elementów do listy, to w przypadku stringów może posłużyć
+do łączenia tekstów:</p>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a>aString <span class="op">=</span> <span class="st">&quot;Uwielbiam&quot;</span></span>
+<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a>aString <span class="op">+=</span> <span class="st">&quot; pisac&quot;</span></span>
+<span id="cb69-3"><a href="#cb69-3" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a><span class="bu">print</span> aString <span class="op">+</span> <span class="st">&quot;w Pythonie&quot;</span></span></code></pre></div>
+<p>Wycinki listy działają tak samo także na zmiennej string:</p>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a>aString <span class="op">=</span> <span class="st">&quot;Uwielbiam pisac w Pythonie&quot;</span></span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;5 pierwszych znakow to &quot;</span> <span class="op">+</span> aString[:<span class="dv">5</span>]</span>
+<span id="cb70-4"><a href="#cb70-4" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;A 8 ostatnich to &quot;</span><span class="op">+</span> aString[<span class="op">-</span><span class="dv">8</span>:]</span></code></pre></div>
+</div>
+<div id="konwersja-typów" class="section level3">
+<h3>Konwersja typów</h3>
+<p>Z kolei jeśli chcemy połączyć string ze zmienną innego typu najlepiej
+jest skorzystać z funkcji konwertującej typy -
+<strong><em>str</em></strong>:</p>
+<div class="sourceCode" id="cb71"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">2.2</span></span>
+<span id="cb71-3"><a href="#cb71-3" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="#cb71-4" tabindex="-1"></a>aString <span class="op">=</span> <span class="st">&quot;Liczba a =&quot;</span> <span class="op">+</span> <span class="bu">str</span>(a) <span class="op">+</span> <span class="st">&quot;, a liczba b = &quot;</span> <span class="op">+</span> <span class="bu">str</span>(b)</span>
+<span id="cb71-5"><a href="#cb71-5" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="#cb71-6" tabindex="-1"></a><span class="bu">print</span> aString</span></code></pre></div>
+</div>
+<div id="operator" class="section level3">
+<h3>Operator %</h3>
+<p>Oprócz konwersji zmiennych za pomocą funkcji
+<strong><em>str</em></strong> możemy jej dokonać przy pomocy
+formatowania tekstu, które jest podobne do tego znanego z języka C/C++ w
+funkcji “printf”. W przypadku C korzystaliśmy z funkcji, w Pythonie do
+tego celu używa się operatora <strong><em>%</em></strong>. Sprawdź
+działanie poniższego kodu</p>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">5.234</span></span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a>formatedString <span class="op">=</span> <span class="st">&quot;Wartosc zmiennej a=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> a</span>
+<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a><span class="bu">print</span> formatedString</span>
+<span id="cb72-4"><a href="#cb72-4" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="#cb72-5" tabindex="-1"></a>formatedString <span class="op">=</span> <span class="st">&quot;Wartosc zmiennej a=</span><span class="sc">%.2f</span><span class="st">&quot;</span> <span class="op">%</span> a</span>
+<span id="cb72-6"><a href="#cb72-6" tabindex="-1"></a><span class="bu">print</span> formatedString</span>
+<span id="cb72-7"><a href="#cb72-7" tabindex="-1"></a></span>
+<span id="cb72-8"><a href="#cb72-8" tabindex="-1"></a></span>
+<span id="cb72-9"><a href="#cb72-9" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb72-10"><a href="#cb72-10" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Wartosc zmiennej b = </span><span class="sc">%03d</span><span class="st">&quot;</span> <span class="op">%</span> b</span></code></pre></div>
+<p>W przypadku gdy chcemy sformatować więcej niż jedną zmienną, to
+należy przekazać argumenty do podmiany w postaci
+<strong><em>tuple</em></strong>:</p>
+<div class="sourceCode" id="cb73"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Trzy sformatowane kolejne cyfry to </span><span class="sc">%f</span><span class="st">-</span><span class="sc">%02d</span><span class="st">-</span><span class="sc">%.2f</span><span class="st">&quot;</span> <span class="op">%</span> (<span class="fl">1.25312</span>, <span class="dv">2</span>, <span class="fl">2.35495</span>)</span></code></pre></div>
+<p><strong>Uwaga</strong> zmienne do sformatowania nie mogą być
+przekazane jako lista, ponieważ</p>
+</div>
+<div id="dodatkowe-metody-należące-do-typu-string"
+class="section level3">
+<h3>Dodatkowe metody należące do typu
+<strong><em>string</em></strong></h3>
+<p>Zmienne typu <strong><em>string</em></strong> podobnie jak
+<strong><em>list </em></strong> posiadają dodatkowe metody które
+pozwalają na wygodną pracę. Przydatne metody należące do klasy
+<strong><em>string</em></strong> to:</p>
+<ul>
+<li>s.lower(), s.upper() - metody zwracające nowy obiekt który stanowi
+konwersję znaków do małych/dużych liter:</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a>aString <span class="op">=</span> <span class="st">&quot;UbasfYTEDF&quot;</span></span>
+<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a>bString <span class="op">=</span> aString.lower()</span>
+<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a><span class="bu">print</span> bString <span class="co"># &gt;&gt; &#39;ubasfytedf&#39;</span></span></code></pre></div>
+<ul>
+<li><p>s.strip() - funkcja zwraca nowy string pozbawiony białych znaków
+na początku i końcu</p></li>
+<li><p>s.isalpha() - sprawdza czy string zawiera tylko litery</p></li>
+</ul>
+<div class="sourceCode" id="cb75"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;absctd&quot;</span>.isalpha() <span class="co"># &gt;&gt; True</span></span>
+<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;ab45&quot;</span>.isalpha()  <span class="co"># &gt;&gt; False</span></span></code></pre></div>
+<ul>
+<li>s.isdigit() - sprawdza czy zawiera tylko znaki liczbowe</li>
+<li>s.isspace() - sprawdza czy obiekt zawiera tylko spacje</li>
+<li>s.startswith(“other”)/ s.endswith(“other”) - sprawdza czy string
+zaczyna/kończy się słowem “other”</li>
+<li>s.find(“other”) - sprawdza czy słowo “other” znajduje się w zmiennej
+s. Jeśli znajduje się, to funkcja zwraca indeks początku słowa “other” w
+zmiennej s, np.:</li>
+</ul>
+<div class="sourceCode" id="cb76"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;stringotherstring&quot;</span>.find(<span class="st">&quot;other&quot;</span>) <span class="co"># &gt;&gt; 6</span></span></code></pre></div>
+<ul>
+<li>s.replace(“old”,“new”) - zamienia ciąg znaków “old” w “new” i zwraca
+nowo utworzony obiekt</li>
+<li>s.split(‘delimiter’) - metoda zwraca listę stringów podzielonych za
+pomocą znaku ‘delimiter’. Jeśli nie zostanie przekazany znak
+‘delimiter’, to domyślnie zostanie wybrany biały znak.</li>
+</ul>
+<div class="sourceCode" id="cb77"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a>strList<span class="op">=</span> <span class="st">&quot;numery:1:2:123:312&quot;</span>.split(<span class="st">&#39;:&#39;</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a><span class="bu">print</span> strList <span class="co"># &gt;&gt; [&#39;numery&#39;, &#39;1&#39;, &#39;2&#39;, &#39;123&#39;, &#39;312&#39;]</span></span></code></pre></div>
+<ul>
+<li>s.join(strList) - funkcja która łączy elementy listy. Jako znak
+rozdzielenie zostaje użyta zmienna “s” na której została wywołana
+metoda:</li>
+</ul>
+<div class="sourceCode" id="cb78"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a>delimiter<span class="op">=</span><span class="st">&quot;--&quot;</span></span>
+<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a>strList<span class="op">=</span>[<span class="st">&#39;aaa&#39;</span>,<span class="st">&#39;bbb&#39;</span>,<span class="st">&#39;ccc&#39;</span>]</span>
+<span id="cb78-3"><a href="#cb78-3" tabindex="-1"></a></span>
+<span id="cb78-4"><a href="#cb78-4" tabindex="-1"></a>newString <span class="op">=</span> delimiter.join(strList)</span>
+<span id="cb78-5"><a href="#cb78-5" tabindex="-1"></a><span class="bu">print</span> newString <span class="co"># &gt;&gt; &#39;aaa--bbb--ccc&#39;</span></span>
+<span id="cb78-6"><a href="#cb78-6" tabindex="-1"></a><span class="co"># lub w jendej linii:</span></span>
+<span id="cb78-7"><a href="#cb78-7" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;:&quot;</span>.join(strList) <span class="co"># &gt;&gt; &#39;aaa:bbb:ccc&#39;</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="zadania-treningowe" class="section level1">
+<h1>Zadania treningowe</h1>
+<p>Zanim zaczniesz rozwiązywać zadania przekopiuj poniższą funkcję na
+początek swojego pliku zawierającego:</p>
+<div class="sourceCode" id="cb79"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="kw">def</span> test(fun, <span class="op">*</span>args):</span>
+<span id="cb79-2"><a href="#cb79-2" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;&quot;</span>.join([<span class="st">&#39;-&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>)])</span>
+<span id="cb79-3"><a href="#cb79-3" tabindex="-1"></a>    <span class="bu">print</span> fun.<span class="va">__name__</span>[:<span class="op">-</span><span class="dv">1</span>].upper()<span class="op">+</span><span class="st">&quot; &quot;</span><span class="op">+</span>fun.<span class="va">__name__</span>[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb79-4"><a href="#cb79-4" tabindex="-1"></a>    res <span class="op">=</span> fun(<span class="op">*</span>args[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb79-5"><a href="#cb79-5" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(args[<span class="dv">0</span>], <span class="bu">str</span>):</span>
+<span id="cb79-6"><a href="#cb79-6" tabindex="-1"></a>        decoded <span class="op">=</span> <span class="st">&quot;&quot;</span>.join([<span class="bu">chr</span>(i) <span class="cf">for</span> i <span class="kw">in</span> args[<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb79-7"><a href="#cb79-7" tabindex="-1"></a>        <span class="cf">if</span> res <span class="op">==</span> decoded:</span>
+<span id="cb79-8"><a href="#cb79-8" tabindex="-1"></a>            <span class="bu">print</span> <span class="st">&quot;Yes, &quot;</span><span class="op">+</span>decoded.replace(<span class="st">&quot;my&quot;</span>,<span class="st">&quot;your&quot;</span>)</span>
+<span id="cb79-9"><a href="#cb79-9" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb79-10"><a href="#cb79-10" tabindex="-1"></a>            <span class="bu">print</span> <span class="st">&quot;No, &quot;</span><span class="op">+</span>decoded.replace(<span class="st">&quot;my&quot;</span>,<span class="st">&quot;your&quot;</span>).replace(<span class="st">&quot;has&quot;</span>,<span class="st">&quot;has not&quot;</span>)<span class="op">+</span><span class="st">&quot; yet&quot;</span></span>
+<span id="cb79-11"><a href="#cb79-11" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb79-12"><a href="#cb79-12" tabindex="-1"></a>        <span class="bu">print</span> <span class="st">&quot;Is correct? &quot;</span><span class="op">+</span> <span class="bu">str</span>(res <span class="op">==</span> args[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb79-13"><a href="#cb79-13" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;&quot;</span>.join([<span class="st">&#39;-&#39;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>)])</span></code></pre></div>
+<p>Funkcja ta posłuży do testowania i wyświetlania informacji czy Twoja
+implementacja jest poprawna.</p>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało
+funkcji. Zadaniem tej funkcji jest przetworzenie przekazanej listy
+(przekazana jako listObject) tak oby usunąć powtarzające się elementy
+ale tylko pomiędzy sąsiadami.</p>
+<div class="sourceCode" id="cb80"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a><span class="kw">def</span> zadanie1(listObject):</span>
+<span id="cb80-2"><a href="#cb80-2" tabindex="-1"></a>    <span class="co"># type your code</span></span>
+<span id="cb80-3"><a href="#cb80-3" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb80-4"><a href="#cb80-4" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" tabindex="-1"></a>test(zadanie1, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">68</span>, <span class="dv">68</span>, <span class="dv">24</span>], [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">68</span>,<span class="dv">24</span>])</span></code></pre></div>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało
+funkcji. Funkcja ta powinna zwracać nową listę która jest sumą
+przekazanych list, tak aby kolejne elementy nowej listy składały się
+naprzemiennie, raz element z jednej listy a raz z drugiej. Uwaga, listy
+mogą nie być tej samej długości.</p>
+<div class="sourceCode" id="cb81"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a><span class="kw">def</span> zadanie <span class="dv">2</span>(list1, list2):</span>
+<span id="cb81-2"><a href="#cb81-2" tabindex="-1"></a>    <span class="co"># type your code</span></span>
+<span id="cb81-3"><a href="#cb81-3" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb81-4"><a href="#cb81-4" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="#cb81-5" tabindex="-1"></a>test(zadanie2, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">19</span>, <span class="st">&#39;dd&#39;</span>, <span class="st">&#39;:P&#39;</span>, <span class="st">&quot;:(&quot;</span>], [<span class="dv">12</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;5&#39;</span>], [<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>, <span class="dv">19</span>, <span class="st">&#39;5&#39;</span>, <span class="st">&#39;dd&#39;</span>, <span class="st">&#39;:P&#39;</span>, <span class="st">&#39;:(&#39;</span>])</span></code></pre></div>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało
+funkcji. Funkcja powinna zwracać posortowaną listę elementów typu tuple.
+Sortowanie wykonaj biorąc pod uwagę ostatni element każdego tuple.</p>
+<div class="sourceCode" id="cb82"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="kw">def</span> zadanie3(listTuples):</span>
+<span id="cb82-2"><a href="#cb82-2" tabindex="-1"></a>    <span class="co"># type your code</span></span>
+<span id="cb82-3"><a href="#cb82-3" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb82-4"><a href="#cb82-4" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="#cb82-5" tabindex="-1"></a>test(zadanie3, [(<span class="dv">1</span>, <span class="dv">3</span>), (<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>), (<span class="dv">2</span>, <span class="dv">1</span>)], [(<span class="dv">2</span>, <span class="dv">1</span>), (<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>), (<span class="dv">1</span>, <span class="dv">3</span>)])</span></code></pre></div>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Przekopiuj poniższy kod do pliku, a następnie uzupełnij ciało
+funkcji.</p>
+<div class="sourceCode" id="cb83"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a><span class="kw">def</span> zadanie4(text):</span>
+<span id="cb83-2"><a href="#cb83-2" tabindex="-1"></a>    <span class="co"># type your code</span></span>
+<span id="cb83-3"><a href="#cb83-3" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb83-4"><a href="#cb83-4" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" tabindex="-1"></a>test(zadanie4, <span class="st">&quot;okmy$aiaetiaigaafbaf??a$okwatch$oafbusd$okhas$asbrsi31480$okended$aq340af&quot;</span>, [<span class="dv">109</span>, <span class="dv">121</span>, <span class="dv">32</span>, <span class="dv">119</span>, <span class="dv">97</span>, <span class="dv">116</span>, <span class="dv">99</span>, <span class="dv">104</span>, <span class="dv">32</span>, <span class="dv">104</span>, <span class="dv">97</span>, <span class="dv">115</span>, <span class="dv">32</span>, <span class="dv">101</span>, <span class="dv">110</span>, <span class="dv">100</span>, <span class="dv">101</span>, <span class="dv">100</span>])</span></code></pre></div>
+<p>Zadaniem tej funkcji “zadanie4” jest odczytanie ukrytego zdania w
+poniższym tekście:</p>
+<p>“okmy<span
+class="math inline">\(aiaetiaigaafbaf??a\)</span>okwatch<span
+class="math inline">\(oafbusd\)</span>okhas<span
+class="math inline">\(asbrsi31480\)</span>okended$aq340af”</p>
+<p>Napis ten został zakodowany w następujący sposób: 1. do początku
+każdego wyrazu dodano “ok”, np: “To jest dom” -&gt; “okTo okjest okdom”
+2. za każdym oryginalnym wyrazem wstawiono dodatkowy losowy wyraz do
+zdania, np: “okTo okjest okdom” -&gt; “okTo asifha okjest ??A?Sd okdom
+:asrof” 3. na koniec spacje zastąpione zostały znakiem “<span
+class="math inline">\(&quot;, np.: &quot;okTo asifha okjest ??A?Sd okdom
+:asrof&quot; -&gt; &quot;okTo\)</span>asifha okjest<span
+class="math inline">\(??A?Sd\)</span>okdom$:asrof”</p>
+<p>To zadanie można rozwiązać za pomocą metod klasy string replace,
+join, startswith i split.</p>
+<p>Jeśli ci się uda, to przerób program tak, aby rozkodowywanie było
+wykonane w jednej linii. Do tego celu może Ci się przydać poniższa
+konstrukcja inicjalizacji list:</p>
+<div class="sourceCode" id="cb84"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a>lista <span class="op">=</span> [ kod(s) <span class="cf">for</span> s <span class="kw">in</span> lista <span class="cf">if</span> warunek(s)]</span></code></pre></div>
+<p>Konstrukcja ta pozwala na umieszczenie elementu w liście jeśli jest
+spełniony jakiś warunek.</p>
+</div>
+<div id="zadanie-5" class="section level2">
+<h2>Zadanie 5</h2>
+<p>Napisz grę która będzie polegała na zgadywaniu liczby od 1-9
+wylosowanej przez komputer. Wybrana przez użytkownika liczba powinna być
+wczytana z konsoli. Gra powinna się zakończyć gdy użytkownik trafi
+wylosowaną liczbę.</p>
+<p>Zacznij swój kod od przekopiowania poniższej linii kodu</p>
+<div class="sourceCode" id="cb85"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span></code></pre></div>
+<p>Linijka ta pozwoli na skorzystanie z funkcji “randint” która losuje
+liczby całkowite w wybranym zakresie.</p>
+<p>Do wczytywanie danych z konsoli służy funkcje “input”, która jako
+argument przyjmuje tekst do wyświetlenia, np.:</p>
+<div class="sourceCode" id="cb86"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;Podaj liczbe:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb86-2"><a href="#cb86-2" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Podales &quot;</span><span class="op">+</span>a</span></code></pre></div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

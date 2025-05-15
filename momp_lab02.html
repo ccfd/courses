@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Symulacja przepływu laminarnego za stopniem (2D)</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab02.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Symulacja przepływu laminarnego za stopniem
+(2D)</h1>
+
+</div>
+
+
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Symulacja przepływu laminarnego w kanale z uskokiem, analiza wpływu
+gęstości siatki obliczeniowej i rzędu aproksymacji członów konwekcyjnych
+w równaniach pędu na jakość uzyskanych wyników obliczeń.</p>
+</div>
+<div id="streszczenie" class="section level1">
+<h1>Streszczenie</h1>
+<p>W ramach ćwiczenia należy przeprowadzić symulacje przepływu
+<strong>laminarnego</strong> w kanale z uskokiem dla liczby Reynoldsa
+<strong>Reh=230</strong>. Liczba Reynoldsa bazuje na <strong>średniej
+prędkości</strong> na wlocie do obszaru obliczeniowego i
+<strong>wysokości stopnia</strong> h = 1 cm. Obliczenia testowe należy
+wykonać na dwóch siatkach obliczeniowych (rzadkiej i gęstej), z
+wykorzystaniem schematów pierwszego i drugiego rzędu do dyskretyzacji
+członów konwekcyjnych w równaniach pędu (first and second-order upwind).
+Uzyskane wyniki obliczeń porównać z <a
+href="#opis-danych-eksperymentalnych">danymi eksperymentalnymi</a>.
+Oszacować straty ciśnienia wzdłuż kanału. Wlotowy profil prędkości
+(parabola) należy zdefiniować przy pomocy funkcji <a
+href="#przygotowanie-funkcji-udf">Interpreted UDF</a>.</p>
+<p><strong>Po zakończeniu symulacji nalezy zastanowić się:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Jaka jest przyczyna lokalnego spadku ciśnienia tuż za stopniem?</li>
+<li>Jaki jest wpływ schematu dyskretyzacji członów konwekcyjnych na
+wynik obliczeń?</li>
+<li>Jaki wpływ na jakość uzyskanych wyników obliczeń ma gęstość siatki
+obliczeniowej?</li>
+<li>Co może być przyczyną niezgodności wyników obliczeń numerycznych, o
+ile występują, z danymi eksperymentalnymi?</li>
+</ol>
+<p><em>Warunkiem zakończenia ćwiczenia jest przedstawienie prowadzącemu
+zajęcia otrzymanych wyników obliczeń oraz dokonanie analizy uzyskanych
+wyników. Całość w formie sprawozdania zawierającego obrazy jak również
+analizę wyników.</em></p>
+</div>
+<div id="program-fluent" class="section level1">
+<h1>Program Fluent</h1>
+<div id="symulacje-dla-metody-1-rzędu." class="section level2">
+<h2>1. Symulacje dla metody 1 rzędu.</h2>
+<ol style="list-style-type: decimal">
+<li><p>Otworzyć program Fluent. Włączając pierwszy raz program fluent w
+naszym bloku projektu zostanie wyświetlone okno powitalne w którym
+możemy wprowadzić wstępne ustawienia naszych obliczeń.</p></li>
+<li><p>Na nasze potrzeby, ustawiamy analizę dwuwymiarową (program
+prawdopodobnie się domyśli tego ustawienia). Dodatkowymi opcjami, które
+mogą nas interesować w przyszłości są opcje:</p></li>
+</ol>
+<ul>
+<li><p><strong>Double precision</strong> - Zwiększamy dokładność
+obliczeń kosztem ich prędkości oraz stabilności</p></li>
+<li><p><strong>Solver Processes</strong> - ile rdzeni procesora chcemy
+użyć do obliczeń. Oczywiście zwięszkając zasoby zwiększamy prędkość
+obliczeń.</p>
+<p>w tym momencie nie zmieniamy dodatkowych opcji, zostawiamy
+<strong>ustawienia domyślne</strong></p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Interface użytkownika niewiele różni się od tego w poprzednich
+programach. Po lewej stronie ekranu znajduje się drzewo opcji
+<em>Outline View</em>. Aby <strong>poprawnie ustawić przypadek</strong>
+jakichkolwiek obliczeń powinno się uzupełniać wszystkie potrzebne
+ustawienia przechodząc drzewo opcji od góry do dołu.</p></li>
+<li><p>Po wczytaniu się programu, jeżeli zaznaczyliśmy opcje <em>Display
+mesh after reading</em> a zaznaczyliśmy, w oknie graficznym powinna się
+pojawić nasza geometria.</p>
+<p>Jeżeli się nie pojawiła, w oknie <em>Task Page</em> pomiędzy oknem
+graficznym a drzewem opcji, wybieramy przycisk <em>Display…</em>. W
+nowopowstałym oknie <em>Mesh display</em> klikamy przycisk
+<em>Display</em>.</p></li>
+<li><p>Aby sprawdzić czy przestrzeń obliczeniowa ma odpowiednie wymiary
+wciskamy <strong>Scale…</strong> (Wymiary naszej domeny: 0.7 m x 0.3
+m).</p>
+<p>Jeżeli siatka została wykonana w innych jednostkach niż wcześniej
+sugerowano, to należy ją przeskalować (wybrać jednostkę w której był
+tworzony model <em>Mesh was created in</em> i potwierdzić przyciskiem
+Scale).</p></li>
+<li><p>W oknie <strong>Task Page</strong>, w polu solver sprawdzamy
+nasze podstawowe ustawienia solvera dla naszego przypadku:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Pressure-based - zalecane dla obliczeń nieściśliwych
+(Density-based - ściśliwe)</p></li>
+<li><p>Steady - stan ustalony ( Unstedy - nieustalony)</p></li>
+<li><p>Przepływ jest dwuwymiarowy 2D Space/Planar</p></li>
+</ol></li>
+<li><p>W oknie <strong>Outline View</strong> przechodzimy do
+<strong>Models</strong> po rozwinięciu klikamy dwukrotnie
+<strong>Viscous</strong>. Pojawi nam się okno opcji modeli
+obliczeniowych. Wybieramy odpowiedni <a href="#streszczenie">model</a>.
+Zamykamy okno i zwijamy menu Models.</p></li>
+<li><p>Teraz materiał zdefiniowany w menu <strong>Materials</strong>. Po
+rozwinięciu dwukrotnie klikamy na <strong>air</strong> (lub po
+zaznaczeniu <strong>air</strong> wciskamy przycisk
+<strong>Create/Edit</strong>).</p>
+<p>Wprowadźmy dane jak dla wody tzn.:</p>
+<ul>
+<li>gęstość 1000 kg/m3</li>
+<li>lepkość dynamiczną 0.001 kg/(m·s)</li>
+</ul>
+<p>w oknie <em>Name</em> można zmienić nazwę z <em>air</em> na
+<em>woda</em> (we Fluencie jest też możliwość dodania dowolnego płynu z
+bazy danych <em>Fluent Database</em>, ale trzeba pamiętać potem o
+aktywacji wybranego płynu w <em>Cell Zone Conditions/Edit</em>).
+potwierdzamy <strong>Change/Create</strong> i zamykamy okno.</p></li>
+<li><p>Rozwijamy <strong>Cell Zone Conditions</strong> i otwieramy opcję
+naszej domeny. Pod zakładką Fluid powinna znajdywać się nazwa którą
+przyporządkowaliśmy naszym powierzchniom, w tym przypadku
+<strong>Woda</strong>.</p>
+<p>Upewniamy się, czy w menu rozwijanym <strong>Material Name</strong>
+jest wybrany materiał który przed chwilą stworzylismy
+(<strong>woda</strong>).</p></li>
+<li><p>Przygotowujemy plik <a
+href="#przygotowanie-funkcji-udf">UDF</a>.</p></li>
+<li><p>Wczytujemy zadany profil prędkości do Fluenta za pomocą okna
+<em>(Górna belka)</em> User-Defined/Functions/Interpreted potwierdzić
+przyciskiem Interpret.</p>
+<div class="float">
+<img src="figures/momp_inst2/interpreted.svg#center"
+alt="Rys. 1. Sposób wczytywania interpretowanej funkcji UDF" />
+<div class="figcaption"><strong>Rys. 1.</strong> Sposób wczytywania
+interpretowanej funkcji UDF</div>
+</div></li>
+<li><p>Oknie <strong>Outline View</strong> przechodzimy dalej. Kolejną
+opcją w drzewie jest <strong>Boundary Conditions</strong>. Tutaj
+definiujemy nasze warunki brzegowe. Jeżeli w odpowiedni sposób
+sformatowaliśmy nazwy naszych elementów geometrii, program fluent sam
+domyśli się jakie warunki brzegowe przyporządkować do tych nazw. Rozwiń
+poszczególne warunki brzegowe i upewnij się, że wszystko jest na swoim
+miejscu.</p>
+<ul>
+<li>velocity_inlet - <strong>Inlet</strong> - warunek brzegowy
+<strong>velocity-inlet</strong></li>
+<li>wall - <strong>Wall</strong> - warunek brzegowy
+<strong>wall</strong></li>
+<li>pressure_outlet - <strong>Outlet</strong> - warunek brzegowy
+<strong>pressure-outlet</strong></li>
+</ul>
+<p>Warto też zauważyć, że warunki brzegowe mają swoja reprezentacje w
+postaci kolorów. W oknie graficznym, wlot zawsze będzie niebieski, wylot
+czerwony a ściany (wall) białe.</p>
+<p>Wchodząc do warunku brzegowego inlet <strong>aktywujemy</strong>
+wczytany profil składowej X prędkości na wlocie do obszaru
+obliczeniowego. Należy pamiętać, że jest to składowa x prędkości nie
+moduł prędkości. <strong>Wybieramy</strong> odpowiednią metodę
+prowadzania warunku brzegowego w <strong>Velocity Specification
+Method</strong> i przy składowej X rozwijamy menu i wybieramy naszą
+zmienną z pliku UDF. Akceptujemy wybór i wychodzimy.</p></li>
+<li><p>To już wszystko w zakładce <strong>Setup</strong> w oknie
+<strong>Outline View</strong>.</p></li>
+<li><p>W zakładce <strong>Solution</strong> w
+<strong>Methods</strong>:</p>
+<ul>
+<li>Zmieniamy schemat sprzęgnięcia ciśnienie-prędkość na
+<strong>SIMPLE</strong></li>
+<li>Zmieniamy również schemat dyskretyzacji I rzędu dla członów
+konwekcyjnych w równaniach pędu (<strong>Momentum</strong>:
+<strong>First Order Upwind</strong>).</li>
+</ul></li>
+<li><p>Po rozwinięciu <strong>Monitors</strong> w
+<strong>Residual</strong> ustawiamy poziom zbieżności rozwiązania
+(<strong>Absolute Criteria</strong>) dla wszystkich składników z 0.001
+na 1e-5.</p></li>
+<li><p>W <strong>Initialization</strong> wybieramy Standardową metodę
+inicjalizacji. Pod Compute from wybrać warunek wlotowy, w oknie Initial
+Values pojawiły się teraz wartości z wlotu. Sprawdzić czy prędkość
+odpowiada średniej wprowadzonej do UDFa. Kliknięcie na Initialize
+spowoduje przypisanie tych wartości całemu obszarowi
+obliczeniowemu.</p></li>
+<li><p>Przechodzmy do <strong>Run Calculation</strong>. W polu
+<strong>Parameters</strong> sterujemy, w przypadku obliczeń
+stacjonarnych, <strong>ilością iteracji</strong>. Ustaw wstępnie 30
+iteracji i uruchom obliczenia. Pojawi się okno z informacją
+<strong>Calculation complete</strong> ale to nie znaczy, że obliczenia
+będą poprawne. Aby dokładnośc obliczeń doprowadzić do zadowalającego
+poziomu nalezy obserwować <strong>wykres zbieżności</strong>.
+<strong>Zmień liczbę iteracji</strong> i <strong>kontynuuj
+obliczenia</strong> aż wszystkie zmienne na wykresie <strong>osiągną
+zbieżność</strong>. Jeżeli wykresy <strong>wszystkich</strong> zmiennych
+się zbiegnią, a więc zmienne ustalą się <strong>w pobliżu</strong>
+poziomu zbieżności którą ustawiliśmy w punkcie 11, lub go przekroczą tą
+wartość możemy zakończyć obliczenia. <strong>Jeżeli osiągniemy
+zbieżność</strong> którą ustawilismy, program wyświetli informację
+<strong>! solution converged</strong> w <strong>Konsoli</strong> u dołu
+okna.</p>
+<p><strong>Proszę zachować</strong> wykres zbieżności do
+raportu</p></li>
+<li><p>Na tym etapie możemy już <strong>zwizualizować</strong> nasze
+wyniki.</p></li>
+<li><p>Proszę wykonać wizualizacje konturów ciśnienia, prędkości,
+wektorów prędkości i linii prądu korzystając z opcji
+<strong>Graphics</strong> pod zakładką <strong>Results</strong>:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><strong>Contours</strong> – mapy konturów, wystarczy ustawić
+odpowiedni parametr pod Contours of. Aby przestrzenie między izoliniami
+były wypełnione musi być zaznaczona opcja <strong>Filled</strong>, nie
+trzeba nic zaznaczać w oknie Surfaces.</p></li>
+<li><p><strong>Vectors</strong> – mapy wektorów, aby były czytelniejsze
+można zmienić wartości pod Scale i Skip</p></li>
+<li><p><strong>Pathlines</strong> – linie prądu, pod Release from
+Surfaces, zaznaczyć z których powierzchni mają być puszczane, uwaga:
+przy gęstszych siatkach należy pamiętać o wprowadzeniu jakieś wartości
+pod Path Skip</p></li>
+</ol>
+<p><strong>Wszystkie grafiki mają się znaleźć w
+raporcie</strong></p></li>
+<li><p>Zdefiniować dodatkowe przekroje korzystając z
+Surface/Iso-Surface/Surface of Constant/Mesh. Wybrać współrzędną X(a
+później Y). Utworzyć odcinki <strong>x = 0</strong>, <strong>x =
+0.06</strong> i <strong>y = 0</strong>, podając odpowiednie wartości pod
+Iso-Values.</p>
+<p><strong>Uwaga:</strong> wartości współrzędnych zależą od położenia
+geometrii na płaszczyźnie XY:</p>
+<ul>
+<li>x = 0 - przekrój poprzeczny na uskoku</li>
+<li>x = 0.06 - przekrój poprzeczny w odległości 60 mm od uskoku</li>
+<li>y = 0 - przekrój wzdłuż dolnej krawędzi poziomej kanału</li>
+</ul>
+<p>Wartości liczbowe zostały podane dla przypadku gdy dolny punkt uskoku
+znajduje się w środku układu współrzędnych. Na koniec wyświetlić siatkę
+razem z przekrojami, aby upewnić się że zostały dodane
+poprawnie.</p></li>
+<li><p>Porównać profile składowej x prędkości średniej w przekrojach x =
+0 i x = 0.06 z danymi eksperymentalnymi Results/Plots/XY Plot.
+Porównania dokonujemy przy pomocy Fluenta. Dane eksperymentalne znajdują
+się w katalogu „dane_eksperyment”, wczytać je poprzez Load File.
+Kliknięcie na Plot powoduje wyświetlenie serii danych z pliku,
+zaznaczonych w oknie File Data.</p>
+<p>Zastanowić się jakie wartości powinny znajdować się na osiach X i Y.
+Żeby stworzyć wykres, którego pozioma oś nie jest osią położenia należy
+odznaczyć opcję Position on x axis. Zaznaczenie Position on y axis
+powoduje przypisanie położenia na osi pionowej. Pod X Axis Function
+wybrać składową x prędkości, a pod Surfaces odpowiedni przekrój. Jeżeli
+wyświetlamy dane dla linii poziomej, pod Plot Direction należy ustawić X
+= 1, natomiast dla pionowej Y = 1.</p>
+<p>Opcja „Write to File” umożliwia zapisanie serii danych do
+pliku.</p></li>
+<li><p>Określić położenie punktu przylgnięcia, poprzez wykonanie wykresu
+naprężeń po X Display/Plot/XYPlot/Wall Fluxes/X Wall Shear Stress. Punkt
+przylgnięcia znajduje się w miejscu, w którym wartości naprężeń
+zmieniają znak z ujemnego na dodatni.</p>
+<p>Eksperymentalne wartości znajdują się w pliku
+re-vs-reattachment-point_woda_cm.txt (otworzyć go Notatnikiem i odnaleźć
+wartość dla liczby Reynoldsa najbliższej 230), następnie porównać z
+obliczeniami.</p></li>
+<li><p>Ten etap został zakończony, zanim jednak przejdziemy do kolejnego
+zamykamy program fluent.</p></li>
+</ol>
+<ul>
+<li>W środowisku Workbench zapisujemy przypadek.</li>
+<li>Przy nagłówku bloku (Na 99% będzie to litera <em>A</em>) z którym
+pracowaliśmy przyciskamy czarny trójkąt i z rozwiniętego menu wciskamy
+przycisk <em>Duplicate</em>.</li>
+</ul>
+</div>
+<div id="symulacje-dla-metody-2-rzędu" class="section level2">
+<h2>2. Symulacje dla metody 2 rzędu</h2>
+<ol style="list-style-type: decimal">
+<li><p>Zduplikowany blok nazywamy Instrukcja II.2.</p></li>
+<li><p>W nowo powstałym bloku wchodzimy znów do komórki Setup.</p></li>
+<li><p>Otworzy się fluent, w oknie powitalnym znów zostawiamy ustawienia
+domyślne.</p></li>
+<li><p>Zmieniamy <strong>schemat dyskretyzacji</strong> na schemat
+upwind 2 rzędu (Second order upwind). (Punkt 14 w poprzednim
+akapicie)</p></li>
+<li><p>Wykonujemy obliczenia i porównujemy wyniki obliczeń (Powtarzamy
+kroki 17 - 22) (**Bez inicjalizacji)</p></li>
+</ol>
+</div>
+<div id="symulacje-dla-metody-1-rzędu-na-siatce-gęstej."
+class="section level2">
+<h2>3. Symulacje dla metody 1 rzędu na siatce gęstej.</h2>
+<ol style="list-style-type: decimal">
+<li><p>Duplikuemy Blok A. i nazywamy konsekwentnie <em>Instrukcja
+II.3</em></p></li>
+<li><p>Aby zageścić naszą siatkę, w górnej belce programu wchodzimy w
+zakładkę <strong>Domain</strong>, później w polu <strong>Adapt</strong>
+klikamy <strong>Refine/Coarsening</strong></p></li>
+<li><p>W nowo otwartym oknie wciskamy przycisk <strong>Cell
+Registers</strong>/<strong>New</strong>/<strong>Region…</strong> w
+odpowiednie okienka wpisujemy wartości granicznych współrzędnych naszej
+domeny (te możemy sprawdzić w zakładce
+<strong>Setup</strong>/<strong>General</strong>/<strong>Scale…</strong>
+lub w górnej belce zakładka <strong>Domain</strong> i przycisk
+<strong>Scale…</strong> w pilu <strong>Mesh</strong>).</p></li>
+<li><p>Następnie powtarzamy obliczenia tak jak dla 1 rzędu. ( punkty
+16-21 w akapicie 1 )</p></li>
+</ol>
+</div>
+<div id="symulacje-dla-metody-2-rzędu-na-siatce-gęstej."
+class="section level2">
+<h2>4. Symulacje dla metody 2 rzędu na siatce gęstej.</h2>
+<ol style="list-style-type: decimal">
+<li><p>Duplikujemy Blok <em>Instrukcja II.3</em> , nazywamy …
+wiadomo.</p>
+<p>Dla siatki gęstej ustawmy schemat dyskretyzacji upwind 2 rzędu i
+wykonać obliczenia (punkty 17 - 22) (**Bez inicjalizacji)</p></li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="przygotowanie-funkcji-udf" class="section level1">
+<h1>Przygotowanie funkcji UDF</h1>
+<p>Za pomocą funkcji UDF (<em>User defined function</em>) program fluent
+pozwala nieco bardziej rozszerzyć swoją funkcjonalność. Dzięki temu
+można definiować własne profile prędkości, wprawiać elementy w ruch
+poddany prawom fizyki lub definiować własne modele obliczeniowe.</p>
+<p><a href="http://ccfd.github.io/courses/code/momp/UDF_I2.c">Pod tym
+linikiem</a> znajduje się fragment programu umożliwiający zadanie
+profilu prędkości na wlocie do obszaru obliczeniowego. Należy go pobrać
+do folderu z projektem programu ANSYS.</p>
+<p>W funkcji DEFINE_PROFILE należy podać:</p>
+<ol style="list-style-type: decimal">
+<li>Współrzędne y1 [m] i y2 [m] odpowiadające dolnej i górnej ścianie
+kanału dolotowego</li>
+<li>vel_aver [m/s] średnią wartość składowej x wektora prędkości, którą
+wyznacza się w oparciu o zadaną liczbę Reynoldsa.</li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst2/udfvariables.svg#center"
+alt="Dane potrzebne do pliki UDF" />
+<div class="figcaption">Dane potrzebne do pliki UDF</div>
+</div>
+<p>Po otwarciu Fluenta wczytać go przy pomocy funkcji
+Define/User-defined/Functions/Interpreted.</p>
+<hr />
+</div>
+<div id="opis-danych-eksperymentalnych" class="section level1">
+<h1>Opis danych eksperymentalnych</h1>
+<p>W ramach laboratorium będziemy wykorzystywać <strong>dane
+eksperymentalne</strong>. W kanale z takimi samymi parametrami został
+wykonany eksperyment i zostały zmierzone wartości prędkości.</p>
+<p>Pliki powinny być ściągnięte do folderu w którym się znajduje
+projekt.</p>
+<ul>
+<li><p>W pliku <a
+href="http://ccfd.github.io/courses/data/momp/2/exper-xvel-re230-xh0_woda_cm.xy">PLIK
+1</a> znajduję się składowa x wektora prędkości w przekroju poprzecznym
+dla uskoku.</p></li>
+<li><p>W pliku <a
+href="http://ccfd.github.io/courses/data/momp/2/exper-xvel-re230-xh6_woda_cm.xy">PLIK
+2</a> znajdują się składowa x wektora prędkości w przekroju poprzecznym
+w odległości 60 mm od uskoku.</p></li>
+</ul>
+<div class="float">
+<img src="figures/momp_inst2/addlines.svg#center"
+alt="Dane potrzebne do pliki UDF" />
+<div class="figcaption">Dane potrzebne do pliki UDF</div>
+</div>
+<ul>
+<li>W pliku <a
+href="http://ccfd.github.io/courses/data/momp/2/re-vs-reattachment-point_woda_cm.txt">PLIK
+3</a> znajdują się dane pozwalające na określenie punktu przylgnięcia
+warstwy ścinającej na dolnej ścianie kanału dla różnych liczb Reynoldsa.
+Z załączonych danych powinno się wybrać punkt przylgnięcia odpowiadający
+odpowiedniej liczbie Reynoldsa.</li>
+</ul>
+<div class="float">
+<img src="figures/momp_inst2/reattachment.svg#center"
+alt="Dane potrzebne do pliki UDF" />
+<div class="figcaption">Dane potrzebne do pliki UDF</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

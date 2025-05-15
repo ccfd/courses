@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="M. Dzikowski" />
+<meta name="author" content="rev. K. Marchlewski" />
+
+
+<title>info3_lab_1</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab_1.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="podstawy-pracy-z-systemem-unix" class="section level1">
+<h1>Podstawy pracy z systemem UNIX</h1>
+<p>Większość współczesnych komputerów (i podobnych urządzeń np. tablety
+czy telefony) wyposażonych jest w złożone oprogramowanie, które składa
+się na system operacyjny. Z całą pewnością korzystałeś z systemów
+operacyjnych firmy Microsoft – rodziny Windows. Mogłeś też zetknąć się z
+systemem Android (czyli odmianą Uniksa) od Google czy iOS od Apple. W
+większości przypadków system posiada tzw. interfejs graficzny czyli GUI
+(Graphical User Interface). Systemy te są zasadniczo podobne i np.
+uruchomienie przeglądarki internetowej czy przeglądanie dysku nie jest
+dla nikogo wyzwaniem.</p>
+<p>Jednak nie każdy komputer posiada GUI, dotyczy to np. rozbudowanych
+komputerów wykorzystywanych w obliczeniach numerycznych (np. wyznaczanie
+właściwości aerodynamicznych samochodu z użyciem programu Fluent). W
+takim przypadku nie ma możliwości skorzystania z myszki i obejrzenia
+czegoś na ekranie, ponieważ komputer znajduje się w serwerowni, czasami
+w innym kraju. Aby korzystać z takiego zdalnego komputera musimy
+połączyć się z nim za pomocą specjalnego programu, który pozwoli nam na
+wydawanie mu polecenia w trybie tekstowym.</p>
+<p>Na potrzeby tego laboratorium każdy otrzymał kartkę z loginem i
+hasłem. Są one ważne do końca semestru i można za ich pomocą zalogować
+się na nasz szkolny serwer <code>info3.meil.pw.edu.pl</code> również
+spoza kampusu.</p>
+<p>Jeśli korzystasz z oprogramowania Windows, do połączenia najwygodniej
+wykorzystać darmowy program PuTTy. Po uruchomieniu należy podać
+dane:</p>
+<ul>
+<li><code>Host Name</code>– nazwa hosta
+(<code>info3.meil.pw.edu.pl</code>),</li>
+<li><code>Port</code>– Numer portu, z których chcemy się połączyć
+(<code>22</code>),</li>
+<li><code>Connection Type</code> – typ połączenia
+(<code>SSH</code>).</li>
+</ul>
+<p>Po kliknięciu <code>Open</code> pojawi się czarne okno z zapytaniem o
+login a następnie o hasło. Uwaga: znaki wpisywanego hasła nie są w żaden
+sposób zaznaczone (np. gwiazdkami) i jest ono niewidoczne. Po
+zalogowaniu się zobaczysz informacje o dacie, licencji, wersji systemu,
+itd. kończące się:</p>
+<pre><code>Last login: Thu Feb 21 06:23:38 2013 from xx.xx.xx.xx
+stud01@eto:~$</code></pre>
+<p>W przypadku logowania się z systemu Linuks korzystamy z polecenia
+<code>ssh</code>:</p>
+<pre><code>ssh stud01@info3.meil.pw.edu.pl</code></pre>
+<p>Port <code>22</code> jest domyślnym portem używanym przez polecenie,
+nie trzeba go podawać explicite.</p>
+<p>Zapis:</p>
+<pre><code>stud01@eto:~$</code></pre>
+<p>to tzw. znak zachęty i oznacza, że jako użytkownik
+<code>stud01</code> jesteśmy zalogowani na komputer <code>eto</code>.
+Między znakami <code>:</code> i <code>$</code> znajduje się katalog, w
+którym się aktualnie znajdujemy. W tym przypadku jesteśmy katalogu
+domowym. Znak <code>~</code> to skrót, którego rozwinięcie to
+<code>/home/students/stud01</code>.</p>
+</div>
+<div id="ćwiczenia" class="section level1">
+<h1>Ćwiczenia</h1>
+<div id="pierwsze-starcie" class="section level2">
+<h2>Pierwsze starcie</h2>
+<p>Wpisz w konsoli polecenie <code>date</code> i wciśnij enter. Komputer
+wyświetli aktualną (jego zdaniem) datę i godzinę. Poniżej ponownie
+wyświetli się linijka kończącą się na <code>$</code>, oznaczającą, że
+komputer czeka na nowe polecenia. Używając strzałek <code>góra</code> i
+<code>dół</code> możesz przeglądać historię poleceń. Kliknięcie klawiszy
+<code>Ctrl + R</code> uruchomi opcję wyszukiwania poleceń w historii.
+Klasyczny znak zachęty zostanie zastąpiony przez</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="kw">(</span><span class="ex">reverse-i-search</span><span class="kw">)`</span><span class="st">&#39;:</span></span></code></pre></div>
+<p>Wyszukujemy przez wpisywanie kolejnych znaków z szukanego polecenia,
+a pod dwukropku system pokaże podpowiedź. Kolejne kliknięcie
+<code>Ctrl + R</code> pokaże nastęþną sugestię. Innym ułatwieniem jest
+kończenie nazw. Jeśli wpiszesz <code>dat</code> i naciśniesz 2x klawisz
+<code>tab</code>, wyświetlona zostanie lista poleceń zaczynających się
+na <code>dat</code>. Jeśli jest tylko jedno takie polecenie, nazwa
+zostanie dokończona. Pamiętaj o tych trikach – znacznie ułatwiają pracę
+w trybie tekstowym.</p>
+</div>
+<div id="poruszanie-się-po-katalogach" class="section level2">
+<h2>Poruszanie się po katalogach</h2>
+<p>Pracując w trybie tekstowym, zawsze pracujemy w jakimś katalogu, tzw.
+katalogu bieżącym. Jeśli uruchomimy jakiś program, np. prosty program
+czytający dane z pliku z Informatyki I, będzie on odczytywał pliki
+znajdujące się w tym katalogu. Każdy program, którego będziesz używać, a
+który potrzebuje nazwy pliku lub katalogu (np. do kopiowania), może ją
+otrzymać w dwóch postaciach. Pierwsza to tzw. ścieżka bezwzględna,
+zaczynająca się od znaku <code>/</code> np:</p>
+<pre><code>/home/students/stud01
+/usr/bin/bash
+/etc</code></pre>
+<p>Sprawdź, w jakim katalogu się znajdujesz przez wpisanie polecenia
+<code>pwd</code>.</p>
+<p>Aby zmienić katalog, wykorzystuje się polecenie <code>cd</code>,
+np.</p>
+<pre><code>stud01@eto:~$ cd /tmp
+stud01@eto:/tmp$ pwd
+/tmp
+stud01@eto:~$</code></pre>
+<p>Teraz przejdź do katalogu <code>/home</code> i sprawdź czy się udało,
+z użyciem polecenia <code>pwd</code>. Aby powrócić do katalogu domowego
+wpisz</p>
+<pre><code>stud01@eto:~$ cd ~</code></pre>
+<p>Znak <span class="math inline">\(\sim\)</span> zawsze oznacza katalog
+domowy użytkownika.</p>
+<p>Dodatkowo, oprócz ścieżki bezwzględnej, można podać ścieżkę
+względną:</p>
+<ul>
+<li><code>../</code> oznacza katalog nadrzędny,</li>
+<li><code>/</code> oznacza katalog główny (początek każdej ścieżki
+bezwzględnej),</li>
+<li><code>.</code> i <code>./</code> oznaczają katalog bieżący (ten
+zwracany przez polecenie <code>pwd</code>).</li>
+</ul>
+<p>Poeksperymentuj teraz z poruszaniem się po katalogach. Jeśli
+wpisywanie ścieżek Cię znudzi wypróbuj program <code>mc</code>. Pozwala
+on m. in. na graficzne poruszanie się po drzewie katalogów. Z programu
+wychodzimy przez kliknięcie klawisza <code>F10</code> lub wpisanie
+<code>exit</code>.</p>
+</div>
+<div id="tworzenie-i-usuwanie-katalogów" class="section level2">
+<h2>Tworzenie i usuwanie katalogów</h2>
+<p>Do tworzenia katalogów służy polecenie <code>mkdir</code> np.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">$</span> mkdir nazwa_katalogu</span></code></pre></div>
+<p>a do sprawdzenia zawartości aktualnego katalogu polecenie
+<code>ls</code>. Stwórz teraz katalogi A, B, C i D, każdy wewnątrz
+poprzedniego. Aby to zrobić będziesz musiał stworzyć katalog A, przejść
+do niego, następnie stworzyć B, itd. Do usuwania katalogów służy
+polecenie <code>rmdir</code>. Usuń teraz stworzone katalogi.</p>
+<p>Za pomocą <code>rmdir</code> nie można usunąć katalogu posiadającego
+zawartość. W tym celu należy wykorzystać polecenie <code>rm -r</code>.
+Znaki <code>-r</code> po nazwie programu <code>rm</code> są argumentem
+programu i oznaczają, że katalog ma być usuwany rekurencyjne. Podobne
+argumenty posiada większość poleceń, np. <code>ls -l</code> pokazuje
+zawartość danego katalogu w postaci listy zawierającej różne informacje
+o pliku.</p>
+</div>
+</div>
+<div id="podstawowe-operacja-na-plikach-i-katalogach"
+class="section level1">
+<h1>Podstawowe operacja na plikach i katalogach</h1>
+<p>Komenda <code>echo</code> wypisuje na ekran ciąg znaków, który podany
+jest jako jej argument. Można to wykorzystać do stworzenia pierwszego
+pliku (o znaczeniu symbolu <code>&gt;&gt;</code> będzie na kolejnych
+zajęciach)</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> echo pierwszy plik <span class="op">&gt;&gt;</span> plik.txt</span></code></pre></div>
+<p>Aby wyświetlić zawartość pliku na ekranie używamy polecenia
+<code>cat</code></p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> cat plik.txt</span></code></pre></div>
+<div id="kopiowanie-i-przenoszenie" class="section level2">
+<h2>Kopiowanie i przenoszenie</h2>
+<p>Do kopiowania służy komenda <code>cp CO GDZIE</code>. Stwórz teraz
+katalog i skopiuj do niego Twój plik. Powinno to wyglądać tak:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">$</span> cp plik.txt katalog</span></code></pre></div>
+<p>Aby przenieść/zmienić nazwę pliku lub katalogu używamy polecenia
+<code>mv CO GDZIE</code>. Przejdź do nowego katalogu i zmień nazwę
+pliku. Następnie usuń plik poleceniem <code>rm</code>.</p>
+<p>Nie zawsze trzeba podawać pełną nazwę pliku/katalogu, który chcemy
+wykorzystać jako argument programu. Kliknięcie klawisza <code>tab</code>
+dokończy wpisywaną nazwę. Jeśli podpowiedź nie jest jednoznaczna, po
+dwukrotnym naciśnięciu klawisza <code>tab</code> w konsoli zostaną
+wyświetlone nazwy wszystkich plików/katalogów zaczynające się od
+wpisanych znaków.</p>
+</div>
+</div>
+<div id="pomoc" class="section level1">
+<h1>Pomoc</h1>
+<p>Znakomita większość komend trybu tekstowego posiada porządną
+dokumentację dostępną od ręki, np.:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">$</span> man rm</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">--help</span></span></code></pre></div>
+<p>W przypadku komendy <code>man</code> dostajemy obszerniejszą
+dokumentację. Tekst przewija się za pomocą strzałek. Aby zakończyć
+przeglądanie należy wcisnąć <code>Q</code>. Sprawdź instrukcje dla
+poleceń <code>who</code>, <code>whoami</code>, <code>finger</code> i
+<code>date</code>. Sprawdź jak działają.</p>
+</div>
+<div id="program-tar" class="section level1">
+<h1>Program Tar</h1>
+<p>Program <code>tar</code> służy do pakowania i rozpakowywania drzewa
+katalogów i plików w jeden plik. Plik wynikowy niekoniecznie musi być
+mniejszy niż oryginalne pliki. Dopiero użycie kompresji zmniejszy
+rozmiar. Przygotuj najpierw kilka plików do spakowania:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> mkdir a</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">$</span> cd a</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">$</span> mkdir b</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">$</span> echo asdasd <span class="op">&gt;&gt;</span> ./b/c</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">$</span> cat ./b/c</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">asdasd</span></span></code></pre></div>
+<p>Teraz spakuj je a następnie obejrzyj zawartość archiwum za pomocą
+programu <code>mc</code>.</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-cf</span> test.tar b</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">b</span>  test.tar</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">$</span> mc</span></code></pre></div>
+<p>Sprawdź zawartość katalogu, który spakowałeś, następnie usuń go i
+rozpakuj archiwum.</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">b</span>  test.tar</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">-r</span> b</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="ex">test.tar</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-xf</span> test.tar</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="ex">b</span>  test.tar</span></code></pre></div>
+<p>Sprawdź poleceniem <code>ls -la</code> objętość utworzonego archiwum.
+Następnie spakuj te same pliki z dodatkową flagą <code>z</code>. Dodanie
+tego parametru uruchamia kompresję programem <code>gzip</code>. Zmień
+rozszerzenie archiwum na <code>tar.gz</code>. Sprawdź czy plik wynikowy
+jest mniejszy.</p>
+</div>
+<div id="proste-skrypty" class="section level1">
+<h1>Proste skrypty</h1>
+<p>Najważniejszym aspektem pracy w trybie tekstowym jest możliwość
+tworzenia skryptów, czyli zapisanych w pliku kolejnych komend
+wykonywanych tak, jakbyśmy wpisywali je z klawiatury. Więcej o
+zaawansowanych skryptach dowiesz się na następnych laboratoriach,
+pierwszy napiszesz dzisiaj.</p>
+<p>Prostymi i dość wygodnymi edytorami tekstu są <code>nano</code> i
+<code>vim</code>. Uruchom program <code>nano</code> komendą
+<code>nano skrypt.sh</code> i zapisz do niego pierwszy skrypt:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">echo</span> 1</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="bu">echo</span> 2</span></code></pre></div>
+<p>Następnie zmień uprawnienia, aby pozwolić na uruchomienie naszego
+skryptu:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">$</span> chmod u+x skrypt.sh</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="ex">$</span> ./skrypt.sh</span></code></pre></div>
+<p>Polecenie <code>chmod</code> służy do zmiany uprawnień pliku.
+<code>u</code> oznacza użytkownika (czyli Ciebie), któremu chcemy nadać
+<code>+</code> prawo uruchamiania <code>x</code> skryptów/programów.</p>
+<div id="zmienne" class="section level2">
+<h2>Zmienne</h2>
+<p>Bash obsługuje zmienne, tak jak język C. Nie występuje tu jednak
+typowanie. Aby stworzyć zmienną zawierającą tekst piszemy:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="va">zmienna</span><span class="op">=</span><span class="st">&quot;Tekst&quot;</span></span></code></pre></div>
+<p>Natomiast wynik działania jakiegoś programu możemy zapisać do
+zmiennej w następujący sposób:</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="va">zmienna</span><span class="op">=</span><span class="va">$(</span> <span class="bu">pwd</span> <span class="va">)</span></span></code></pre></div>
+<p>Aby odczytać zmienną piszemy:</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$zmienna</span></span></code></pre></div>
+</div>
+<div id="drugi-skrypt" class="section level2">
+<h2>Drugi skrypt</h2>
+<p>Przygotuj strukturę katalogów:</p>
+<ul>
+<li>AA
+<ul>
+<li>BB
+<ul>
+<li>plik.txt</li>
+</ul></li>
+<li>CC
+<ul>
+<li>DD</li>
+<li>plik.txt</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>zawierając niezbędne komendy w skrypcie. Plik <code>plik.txt</code>
+ma zawierać datę zwracaną przez polecenie <code>date</code>.</p>
+<p>Zmodyfikuj skrypt tak, aby nazwa każdego katalogu zaczynała się
+przedrostkiem przekazanym do skryptu przy jego uruchomieniu.</p>
+<ul>
+<li>przed_AA
+<ul>
+<li>przed_BB
+<ul>
+<li>plik.txt</li>
+</ul></li>
+<li>przed_CC
+<ul>
+<li>przed_DD</li>
+<li>plik.txt</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Abu uruchomić skrypt wraz z dwoma argumentami <code>arg1</code> i
+<code>arg2</code> należy wpisać</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">./skrypt.sh</span> arg1 arg2</span></code></pre></div>
+<p>Do argumentów <code>arg1</code> i <code>arg2</code> mamy dostęp z
+wewnątrz skryptu dzięki tzw. zmiennym programowym. Jest ich dziewięć
+<code>$1</code> – <code>$9</code>, w tym przypadku będą to zmienne
+<code>$1</code> i <code>$2</code>.</p>
+</div>
+<div id="pętle" class="section level2">
+<h2>Pętle</h2>
+<p>Przygotuj skrypt zawierający:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="pp">*</span>.txt</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  <span class="fu">cp</span> <span class="va">$i</span> <span class="va">$1</span>_<span class="va">$i</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<p>i uruchom go w katalogu zawierającym pliki z rozszerzeniem
+<code>.txt</code>. W jaki sposób działa? Pamiętaj o argumencie
+skryptu!</p>
+<p>Napisz skrypt, który tworzy katalog o nazwie podanej jako pierwszy
+argument skryptu <code>$1</code> i kopiuje do niego wszystkie pliki
+<code>.txt</code> dodając do ich nazwy przedrostek podany jako drugi
+argument <code>$2</code>. Co się stanie jeśli nie podasz argumentów do
+skryptu?</p>
+</div>
+</div>
+<div id="gui" class="section level1">
+<h1>GUI</h1>
+<p>Jeśli korzystasz z systemu Linux dane z komputera zdalnego możesz
+skopiować na komputer lokalny za pomocą polecenia <code>scp</code>.
+Będąc cały czas zalogowanym na serwer <code>eto</code> stwórz w katalogu
+domowym plik <code>copyme</code>. Wyloguj się poleceniem
+<code>exit</code> lub skrótem klawiaturowym <code>Ctrl+D</code>.</p>
+<p>Otwórz konsolę na komputerze lokalnym i ściągnij utworzony plik za
+pomocą polecenia</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">scp</span> stud01@info3.meil.pw.edu.pl:~/copyme ./</span></code></pre></div>
+<p>W ogólności składnia ma postać</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">scp</span> login@host:sciezka_do_pliku gdzie_zapisac</span></code></pre></div>
+<p>Program <code>scp</code> działa tak jak <code>cp</code>, z tą
+różnicą, że cel (lub źródło) znajduje się na innym komputerze
+obsługującym połączenia ssh. Dla komputerów z systemem z rodziny Windows
+stworzono program <code>WinSCP</code>, który pozwala na kopiowanie
+danych w trybie graficznym.</p>
+</div>
+<div id="deser" class="section level1">
+<h1>Deser! *</h1>
+<div id="pre-rekwizyty" class="section level2">
+<h2>Pre-rekwizyty</h2>
+<p>Sprawdź do czego służy program <code>write</code> z użyciem polecenia
+<code>man</code>. Porównaj także rezultaty komend:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">$</span> who</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="ex">$</span> who <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $1}&#39;</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="ex">$</span> who <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $2}&#39;</span></span></code></pre></div>
+<p>Zwróć uwagę na symbol <code>|</code>, który oznacza przekierowanie
+wyjścia jednego programu na wejście drugiego. Taki zapis nazywa się
+“potokiem” (ang. pipe).</p>
+</div>
+<div id="skrypt-spamera" class="section level2">
+<h2>Skrypt spamera</h2>
+<p>Stwórz skrypt:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="cf">for</span> u <span class="kw">in</span> <span class="va">$(</span> <span class="fu">who</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $1}&#39;</span> <span class="va">)</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">$u</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<p>i sprawdź jak działa. Następnie zmodyfikuj go tak, aby “zaspamować”
+wszystkich zalogowanych.</p>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

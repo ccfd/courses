@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Ustalony nieściśliwy przepływ trójwymiarowy z oderwaniem</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/momp_lab04.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Ustalony nieściśliwy przepływ trójwymiarowy
+z oderwaniem</h1>
+
+</div>
+
+
+<div id="cel-ćwiczenia" class="section level1">
+<h1>Cel ćwiczenia</h1>
+<p>Celem ćwiczenia jest zapoznanie się ze sposobem modelowania
+przepływów trójwymiarowych oraz obróbka trójwymiarowych wyników
+graficznych.</p>
+</div>
+<div id="streszczenie" class="section level1">
+<h1>Streszczenie</h1>
+<p>Zadanie polega na wyznaczeniu opływu wokół skrzydła typu delta
+ustawionego pod dużym katem natarcia (30°), wyposażonego w śmigło,
+umieszczone w szczelinie. Przepływ odbywa się w zamkniętej przestrzeni
+tunelu aerodynamicznego i posiada płaszczyznę symetrii. Wymiary tunelu
+150x200x600 cm. Przepływającym czynnikiem jest powietrze o prędkości
+V=10m/s i ciśnieniu p=101325 Pa. Model rozważany w tym ćwiczeniu jest
+właściwie półmodelem, w którym odwzorowano tylko połowę skrzydła delta
+oraz połowę kręgu śmigła. Tym samym założono przepływ symetryczny
+względem płaszczyzny XZ.</p>
+</div>
+<div id="przebieg-ćwiczenia" class="section level1">
+<h1>Przebieg ćwiczenia</h1>
+<div id="geometria" class="section level2">
+<h2>Geometria</h2>
+<ol style="list-style-type: decimal">
+<li><p>W środowisku workbench stwórz nowy system obliczeniowy -
+<strong>Fluid Flow(Fluent)</strong>.</p></li>
+<li><p>Otwórz <strong>Design Modeler</strong> klikając prawym
+przyciskiem myszy na komórkę <strong>Geometry</strong>.</p></li>
+<li><p>Ustaw jednostki na <strong>centymetry</strong></p></li>
+<li><p>Stwórz nowy szkic na płaszczyźnie <strong>X-Y</strong>. Narysuj
+geometrię połowy skrzydła delta tak jak na załączonej
+ilustracji.</p></li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst4/instr4_geom.svg#center" title="Szkic 1"
+alt="Rys.1. Szkic 1 na płaszczyźnie X-Y" />
+<div class="figcaption"><strong>Rys.1.</strong> <em>Szkic 1 na
+płaszczyźnie X-Y</em></div>
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Stwórz <strong>powierzchnię</strong> na podstawie utworzonego
+szkicu.</p></li>
+<li><p>W ten sposób utworzyliśmy bardzo proste skrzydło delta a
+dokładnie jego połowę. Płaszczyzna X-Z będzie lustrzanym odbiciem
+skrzydła.</p></li>
+<li><p>Teraz trzeba utworzyć powierzchnię <strong>śmigła</strong>
+zastępczego.</p></li>
+<li><p>Utwórz szkic na płaszczyźnie <strong>Y-Z</strong></p></li>
+<li><p>Wewnątrz szkicu, za pomocą narzędzia <strong>Arc by
+Center</strong>, stwórz półokrąg według załączonej ilustracji.</p></li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst4/instr4_geom2.svg#center" title="Szkic 2"
+alt="Rys.2. Szkic 2 na płaszczyźnie Y-Z" />
+<div class="figcaption"><strong>Rys.2.</strong> <em>Szkic 2 na
+płaszczyźnie Y-Z</em></div>
+</div>
+<pre><code>    UWAGA: Aby utworzyć powierzchnie śmigła, obwód musi być zamknięty. 
+    
+    Nie zapomnij domknąć półokręgu linią!
+    </code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li><p>Utwórz <strong>powierzchnię</strong> na podstawie
+szkicu.</p></li>
+<li><p>Obecnie skrzydło delta jest na 0 kącie natarcia. Nalezy zmienić
+kąt natarcia naszego skrzydła o 30 stopni</p>
+<p>Z menu kontekstowego <strong>Create</strong> wybieramy <strong>Body
+Transformation</strong> następnie <strong>Rotate</strong>.</p>
+<div class="float">
+<img src="figures/momp_inst4/instr4_rotate.svg#center" title="Obrót"
+alt="Rys.3. Obrót" />
+<div class="figcaption"><strong>Rys.3.</strong> <em>Obrót</em></div>
+</div>
+<p><strong>Wybieramy geometrie</strong> do obrotu. To można zrobić na
+dwa sposoby (patrz rysunek).</p>
+<ul>
+<li>Z wciśniętym <strong>ctrl</strong>, wybieramy interesujące nas
+elementy w ostatnim menu w drzewie historii (Patrz rysunek)</li>
+<li>Zaznaczamy powierzchnie w oknie graficznym. Jeżeli w momencie
+zaznaczenia elementu pod naszym kursorem znajdują się inne elementy, w
+lewym dolnym rogu okna graficznego rozwinie się graficzna reprezentacja
+tych elementów. Reprezentowane elementy będą wyświetlone w postaci
+<strong>warstw</strong>. Pierwsza od lewej warstwa reprezentuje element
+znajdujący się najbliżej użytkownika, ostatni od lewej element
+znajdujący się najdalej od użytkownika. Najechanie kursorem na
+odpowiednią warstwę podświetli reprezentowany element. Klikając
+odpowiednią <strong>warstwę</strong> wybieramy interesującą nas
+powierzchnie. (Patrz rysunek)</li>
+</ul>
+<div class="float">
+<img src="figures/momp_inst4/instr4_rotateopt.svg#center" title="Select"
+alt="Rys.4. Sposoby zaznaczania" />
+<div class="figcaption"><strong>Rys.4.</strong> <em>Sposoby
+zaznaczania</em></div>
+</div>
+<p>Wybieramy <strong>skrzydło delta</strong> i
+<strong>wirnik</strong>.</p>
+<p>Następnie <strong>wybieramy oś obrotu</strong>. To też można zrobić
+na dwa sposoby (Patrz rysunek).</p>
+<div class="float">
+<img src="figures/momp_inst4/instr4_rotateopt2.svg#center"
+title="Oś obrotu" alt="Rys.5. Sposoby wskazania osi obrotu" />
+<div class="figcaption"><strong>Rys.5.</strong> <em>Sposoby wskazania
+osi obrotu</em></div>
+</div>
+<ul>
+<li><p>W <strong>menu płaszczyzn</strong> w drzewie historii (tam gdzie
+znajdują się szkice), wybieramy <strong>płaszczyznę prostopadłą</strong>
+do naszej osi obrotu.</p></li>
+<li><p>W <strong>oknie graficznym</strong>, na naszym rysunku, znajdują
+się przerywane linie reprezentujące osie układu współrzędnych. Klikamy
+na odpowiednią oś.</p>
+<p>Kolorowy układ współrzędnych znajdujący się w dolnym prawym rogu okna
+graficznego, służy tylko do manipulacji kamerą.</p></li>
+</ul>
+<p>Po zaznaczeniu osi, w oknie graficznym pojawią się <strong>strzałki
+wyboru kierunku osi</strong>. Klikamy aby odpowiednio zorientować oś
+obrotu. Oś musi być tak zorientowana, żeby nasze “skrzydło”, obracając
+się, zadarło “nos” w kierunku osi <em>Z</em>.</p>
+<p>Wpisujemy kąt obrotu naszych powierzchni.</p>
+<p><strong>Generate</strong></p></li>
+<li><p>Ostatnim krokiem jest utworzenie objętości powietrza.</p></li>
+<li><p>W menu kontekstowym <strong>Create</strong> przejdź do menu
+<strong>Primitives</strong> i wybierz opcję <strong>Box</strong>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>—</th>
+<th>Początek</th>
+<th>Diagonale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>-250 cm</td>
+<td>600 cm</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>0 cm</td>
+<td>150 cm</td>
+</tr>
+<tr class="odd">
+<td>Z</td>
+<td>-80 cm</td>
+<td>200 cm</td>
+</tr>
+</tbody>
+</table>
+<p>Warto ustawić <strong>Operation - Add frozen</strong></p>
+<p><strong>Generate</strong></p>
+<pre><code>Jeżeli figura nie będzie przezroczysta od opcji **Add frozen** i wszystko nam przysłoni, należy w menu kontekstowym wybrać - View -&gt; Wireframe. Wtedy zmienimy sposób reprezentowania widoku na szkieletowy.</code></pre></li>
+<li><p>Z powstałych elementów tworzymy <strong>złożenie</strong>. We
+wspomnianym wcześniej <strong>menu elementów</strong>, ostatnim w
+drzewie historii, wybieramy wszystkie elementy i za pomocą prawego
+przycisku myszki wybieramy <strong>form new part</strong>.</p></li>
+</ol>
+<hr />
+<details>
+<summary>
+Dla chętnych
+</summary>
+<p>
+<ol start="15" style="list-style-type: decimal">
+<li><p>Stwórz kolejny <strong>Box</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>—</th>
+<th>Początek</th>
+<th>Diagonale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>0 cm</td>
+<td>200 cm</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>0 cm</td>
+<td>35 cm</td>
+</tr>
+<tr class="odd">
+<td>Z</td>
+<td>-20 cm</td>
+<td>35 cm</td>
+</tr>
+</tbody>
+</table>
+<p>Warto ustawić <strong>Operation - Add frozen</strong></p>
+<p><strong>Generate</strong></p>
+<p>W momencie tworzenia złożenia (punkt 14), nie dodawaj tej bryły do
+złożenia. Po punkcie 14 powinny być 1 złożenie (part) i jedna bryła
+(Solid).</p></li>
+</ol>
+</p>
+</details>
+<pre><code>---</code></pre>
+<ol start="16" style="list-style-type: decimal">
+<li><strong>Wychodzimy</strong> z DesignModeler</li>
+</ol>
+</div>
+<div id="siatka-obliczeniowa" class="section level2">
+<h2>Siatka obliczeniowa</h2>
+<ol style="list-style-type: decimal">
+<li>Otwieramy moduł <strong>Mesh</strong>.</li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst4/instr4_namedselect.svg#center"
+title="Domena" alt="Rys.6. Nazwy warunków brzegowych" />
+<div class="figcaption"><strong>Rys.6.</strong> <em>Nazwy warunków
+brzegowych</em></div>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Na wstępie nadajmy nazwy warunków brzegowych (Patrz rysunek).
+<strong>W analizie trójwymiarowej naszymi warunkami brzegowymi są
+powierzchnie</strong>. Metoda zaznaczania powierzchni jest taka sama jak
+w systemie zaznaczania w DesignModelerze. Po zaznaczeniu powierzchni
+wcisnamy <strong>n</strong> na klawiaturze i wypełniamy nazwę warunku
+brzegowego.</p>
+<p><strong>UWAGA</strong> zauważ, że design modeler podzielił naszą
+powierzchnie śmigła na dwie części. W górnej belce w zakładce
+<strong>Display</strong> możemy wyświetlić kierunek linii opcją
+<strong>Direction</strong> w polu <strong>Edge</strong>. Dzięki temu
+możesz się upewnić czy obydwie powierzchnie są tak samo zorientowane
+(Zasada prawej dłoni). Orientacja naszej powierzchni śmigła jest ważna w
+obliczeniach.</p>
+<ul>
+<li>Jeżeli obie powierzchnie są tak samo zorientowane zaznaczmy je razem
+i nazywamy razem.</li>
+<li>Jeżeli orientacje powierzchni różnią się od siebie. Nazwijmy je
+dodając cyfrę - fan_1, fan_2.</li>
+</ul></li>
+<li><p>Przejdźmy do ustawień siatki.</p></li>
+<li><p>W drzewie historii, w menu <strong>Mesh</strong>:</p>
+<ul>
+<li>Zakładka <strong>Defaults</strong> - Upewaniamy się, że
+<strong>Physics Preference</strong> jest ustawione na
+<strong>CFD</strong>.</li>
+<li>Zakładka <strong>Sizing</strong>:
+<ul>
+<li>Włączamy opcje <strong>Capture Curvature</strong> (powierzchnia
+wirnika jest okrągła)</li>
+</ul></li>
+</ul></li>
+<li><p>Wygeneruj siatkę. Sprawdź czy geometria skrzydła jest
+odwzorowana.</p></li>
+<li><p>Zaznacz powierzchnię skrzydła oraz powierzchnię wirnika. Utwórz
+dla nich element <strong>Sizing</strong>:</p>
+<ul>
+<li>Type: <strong>Element size</strong></li>
+<li>Element size: <strong>10 mm</strong> (Dla osób ze słabszym sprzętem
+<strong>20mm</strong>)</li>
+<li>Behavior: <strong>Hard</strong></li>
+</ul>
+<p><strong>Generate</strong></p></li>
+<li><p>Utwórz kolejny element typu <strong>Sizing</strong>:</p>
+<ul>
+<li><strong>Scope</strong>/<strong>Geometry</strong> zaznacz bryłę
+reprezentującą powietrze. <strong>Upewnij się, że zaznaczasz objętość a
+nie powierzchnię</strong></li>
+<li>Type: <strong>Sphere of Influence</strong></li>
+<li>Sphere Radious: <strong>500 mm</strong></li>
+<li>Element size: <strong>30 mm</strong> (Dla osób ze słabszym sprzętem
+<strong>50mm</strong>)</li>
+</ul>
+<p><strong>Generate</strong></p>
+<pre><code> Przyjrzyj się siatce. Co się zmieniło?</code></pre></li>
+</ol>
+<hr />
+<details>
+<summary>
+Dla chętnych ciąg dalszy
+</summary>
+<p>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Utwórz kolejny element typu <strong>Sizing</strong>:</p>
+<ul>
+<li><strong>Scope</strong>/<strong>Geometry</strong> zaznacz bryłę
+reprezentującą powietrze. <strong>Upewnij się, że zaznaczasz objętość a
+nie powierzchnię</strong></li>
+<li>Type: <strong>Body of influence</strong></li>
+<li>Bodies of Influence: <strong>Zaznaczamy stworzoną dodatkową objętość
+w punkcie 13</strong></li>
+<li>Element size: <strong>30 mm</strong></li>
+</ul>
+<p><strong>Generate</strong></p>
+<pre><code> Znów przeanalizuj zmianę, zastanów się po co stworzyliśmy dodatkowe zagęszczenie.</code></pre></li>
+</ol>
+</p>
+</details>
+<hr />
+<ol start="9" style="list-style-type: decimal">
+<li>Wychodzimy z programu <strong>Mesh</strong></li>
+</ol>
+</div>
+<div id="obliczenia-w-programie-fluent" class="section level2">
+<h2>Obliczenia w programie Fluent</h2>
+<ol style="list-style-type: decimal">
+<li><p>Otwieramy program fluent</p></li>
+<li><p>Wstępne ustawienia solvera:</p>
+<ul>
+<li>Dimension: <strong>3d</strong></li>
+<li>Display Mesh After Reading</li>
+</ul></li>
+<li><p>Ustawienia warunków analizy:</p>
+<ul>
+<li>General:
+<ul>
+<li>Type: <strong>Pressure-Based</strong></li>
+<li>Time: <strong>Steady</strong></li>
+</ul></li>
+<li>Models
+<ul>
+<li>Model turbulencji: <strong>Spalart-Allmaras</strong></li>
+</ul></li>
+<li>Materials
+<ul>
+<li>Powietrze z standardowymi ustawieniami</li>
+</ul></li>
+<li>Cell zone conditions
+<ul>
+<li>Upewnij się, że materiałem w domenie jest powietrze</li>
+</ul></li>
+<li>Boundary conditions (kliknij dwukrotnie na menu lub w belce górnej w
+zakładce <strong>Physics</strong>, wejdź w <strong>Boundaries</strong> z
+polu <strong>Zones</strong>)
+<ul>
+<li><p><strong>Inlet</strong> - 10 m/s, intensywność turbulencji 2%,
+skala turbulencji 0.5 cm.</p></li>
+<li><p><strong>Symmetry</strong> - sprawdź czy został załozony
+odpowiedni warunek</p></li>
+<li><p><strong>Wing</strong> - upewnij się, że dla skrzydła ustowiony
+został warunek ściany</p>
+<p>Przy ustawieniu warunku brzegowego na <strong>wall</strong> zauważ,
+że fluent stworzy drugą powierzchnię. Zastanów się dlaczego.</p></li>
+<li><p><strong>fan</strong></p>
+<ul>
+<li>Sprawdź w jaki kierunek ma normalna na powierzchni wirnika (Składowa
+X wektora), jeżeli normalna jest w złym kierunku zmień ją zaznaczając
+opcję <strong>Reverse Fan Direction</strong>.</li>
+<li>W menu rozwijanym <strong>Pressure Jump (jednostka)</strong> wybierz
+<strong>constant</strong></li>
+<li>W tym momencie przeprowadzimy obliczenia bez śmigła - wpisujemy
+<strong>0.0</strong></li>
+</ul></li>
+<li><p><strong>Outflow</strong> - domyślne ustawienia</p></li>
+</ul></li>
+</ul></li>
+<li><p>Ustawienia solvera:</p>
+<ul>
+<li>Methods:
+<ul>
+<li>Schemat: <strong>Coupled</strong></li>
+</ul></li>
+<li>Monitors/Residual
+<ul>
+<li>Domyślne wartości zbieżności</li>
+</ul></li>
+</ul></li>
+<li><p>Zainicjalizuj <strong>standardową metodą
+inicjalizacji</strong></p>
+<p>Jako punkt odniesienia wybierz wlot.</p></li>
+<li><p>Prowadź obliczenia aż do osiągnięcia oczekiwanej zbieżności. (W
+zakładce Run Calculation zmień tylko <strong>Number of
+Iterations</strong> w polu <strong>Parameters</strong>)</p>
+<pre><code> Ze względu na obliczenia trójwymiarowe, czas obliczeń będzie zauważalnie większy.</code></pre></li>
+<li><p>Stwórz wizualizacje przepływu Twojej analizy. Zastanów się jakie
+wizualizacje najwięcej powiedzą o stworzonej analizie. Zaprezentuj
+je.</p></li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst4/instr4_wiz.svg#center" title="Wizualizacja"
+alt="Rys.7. Jedna z wizualizacji przepływu" />
+<div class="figcaption"><strong>Rys.7.</strong> <em>Jedna z wizualizacji
+przepływu</em></div>
+</div>
+<ol start="8" style="list-style-type: decimal">
+<li>Wyjdź z programu fluent. Przy wychodzeniu z programu zaznacz drugą
+odpowiedź. Pozwoli to na zachowanie wszystkich ustawień postrocesingu
+(wizualizacji i obróbki danych).</li>
+</ol>
+<div class="float">
+<img src="figures/momp_inst4/instr4_accept.svg#center"
+title="Wizualizacja" alt="Rys.8. Opcje zapisu" />
+<div class="figcaption"><strong>Rys.8.</strong> <em>Opcje
+zapisu</em></div>
+</div>
+<ol start="9" style="list-style-type: decimal">
+<li><p>Zduplikuj system obliczeniowy.</p></li>
+<li><p>““Włącz śmigło” - W warunku brzegowym <strong>fan</strong> wpisz
+wartość <strong>200</strong> Pa (patrz punkt 3).</p></li>
+<li><p>Zainicjalizuj przypadek i prowadź obliczenia aż do osiągnięcia
+oczekiwanej zbieżności.</p></li>
+<li><p>Powtórz wizualizacje i porównaj z wynikami bez śmigła.</p></li>
+</ol>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

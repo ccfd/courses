@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="W. Gryglas" />
+
+
+<title>python_inst03</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/python_inst03.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="wprowadzenie" class="section level1">
+<h1>Wprowadzenie</h1>
+<p>W ramach tych zajęć nauczymy się korzystać z bibliotek Pythona na
+przykładzie NumPy, Matplotlib i SciPy. W praktyce większość narzędzi z
+których korzysta się nacodzień w Pythonie pochodzi właśnie z
+wymienionych bibliotek. Oprócz tych zagadnień nauczymy się jak
+odczytywać/zapisywać pliki oraz jak wykonywać przydatne operacje na
+poziomie systemu.</p>
+<div id="wykorzystywanie-istniejących-modułów" class="section level2">
+<h2>Wykorzystywanie istniejących modułów</h2>
+<p>Podczas poprzednich zajęć powiedzieliśmy, że każdy plik jest nazywany
+modułem. Aby z niego skorzystać w innym pliku należy na początek
+zaimportować go do aktualnego pliku. W tym celu posługujemy się
+następującym wyrażeniem:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> nazwa_modulu</span></code></pre></div>
+<p>Jeśli utworzyliśmy plik o nazwie “matrix.py” zawierający jakieś
+funkcje które wykonują operacje na macierzach, to aby skorzystać z tych
+funkcji musimy się do nich odwołać za pośrednictwem nazwy modułu,
+tzn.:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> matrix</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>A <span class="op">=</span> matrix.create() <span class="co">#wywolanie funkcji &quot;create&quot; z pliku matrix.py</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>matrix.invert(A)</span></code></pre></div>
+<p>Czasami jednak takie odwływanie się jest uciążliwe, ponieważ musimy
+za każdym razem powtarzać nazwę “matrix”. Sytuacja będzie jeszcze
+trudniejsza jeśli np. plik “matrix.py” znajduje się folderze
+“tools”:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> tools.matrix</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>A <span class="op">=</span> tools.matrix.create() </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>tools.matrix.invert(A)</span></code></pre></div>
+<p>Do rozwiązania takiego problemu służy słowo “as” które pozwala
+zmienić nazwę importowanego modułu. Dzięki temu możemy odwoływać się do
+tych funkcji za pomocą skróconego zapisu:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> tools.matrix <span class="im">as</span> mat</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>A <span class="op">=</span> mat.create()</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>mat.invert(A)</span></code></pre></div>
+<p>Innym sposobem rozwiązania tego problemu jest częściowy import, który
+pozwala na import tylko wybranych elementów danego pakietu:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">from</span> tools.matrix <span class="im">import</span> create</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="im">from</span> tools.matrix <span class="im">import</span> invert</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>A <span class="op">=</span> create()</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>invert(A)</span></code></pre></div>
+<p>W powyższym kodzie zamiast importować moduł tools.matrix
+zaimportowaliśmy tylko same funkcje “create” i “invert”. Należy jednak
+uważać nazwy importowanych funkcji nie wprowadzały konfliktu z innymi
+funkcjami. Załóżmy, że importujemy z dwóch różnych pakietów funkcje
+invert:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">from</span> tools.matrix <span class="im">import</span> invert</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="im">from</span> other.numerical <span class="im">import</span> invert</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>invert()</span></code></pre></div>
+<p>W tej sytuacji funkcja “invert” z pakietu tools.matrix zostanie
+“przykryta” drugą funkcją z pakiety “other.numerical” i nie będziemy
+mieli do niej dostępu. Dlatego w takiej sytuacji lepiej jest korzystać z
+funkcji wykorzystując nazwę pakietu.</p>
+<p>Ostatnim użytecznym sposobem importowania narzędzi jest skorzystanie
+ze znaku “*” zamiast nazw funkcji. Pozwala to na import wszystkich
+funkcji znajdujących się wewnątrz danego pliku. Oczywiście, podobnie jak
+poprzednio należy zachować szczególną uwagę na nazwy funkcji. Taki
+sposób importowania jest przydatny gdy piszemy bardzo krótki kod:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">from</span> tools.matrix <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>A <span class="op">=</span> create()</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>invert(A)</span></code></pre></div>
+<p>Dokładnie w taki sam sposób możemy importować wszystkie narzędzia,
+nie koniecznie tylko te które sami napisaliśmy, ale także te które
+pochodzą z zainstalowanych bibliotek. Aby skorzystać z funkcji służącej
+do całkowania znajdującej się w bibliotece SciPy możemy przykładowo
+napisać taki kod:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># ... </span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># ... jakis kod wyznaczajacy wektory Y0 i timeSteps</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="kw">def</span> funkcja_prawych_stron():</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>Y <span class="op">=</span> odeint(funkcja_prawych_stron, Y0, timeSteps )</span></code></pre></div>
+</div>
+<div id="generator-enumerate-i-zip-w-pętli-for" class="section level2">
+<h2>Generator enumerate i zip w pętli for</h2>
+<p>Na poprzednich zajęciach pokazaliśmy jak iterować po kolejnych
+elementach listy, albo po indeksach przy użyciu funkcji
+<strong><em>range</em></strong>. Bardzo często zdarza się, że zarówno
+chcemy pobierać element z listy, ale także znać indeks tego elementu.
+Bazując na poznanych narzędziach mamy 2 opcje:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>index<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">for</span> elmnt <span class="kw">in</span> aList:</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    <span class="bu">print</span> ( <span class="st">&quot;Element aList[</span><span class="sc">%d</span><span class="st">]=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (index, elmnt))</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    index <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div>
+<p>lub:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="bu">print</span> ( <span class="st">&quot;Element aList[</span><span class="sc">%d</span><span class="st">]=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (index, aList[index]))</span></code></pre></div>
+<p>Takie konstrukcje wymagają dodatkowej operacji, zliczania indeksów
+albo pobierania elementów z listy. Aby ułatwić pisanie takich pętli w
+Pythonie posiada wbudowana funkcję o nazwie
+<strong><em>enumerate</em></strong> która zwraca generator
+<strong>par</strong> (index, wartosc_z_sekwencji). Dzięki możliwości
+rozwijania sekwencji (tutaj wspomnianej pary) do zmiennych możemy
+powyższe kody uprościć do takiej pętli:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>aList <span class="op">=</span> [ i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="cf">for</span> index, elmnt <span class="kw">in</span> <span class="bu">enumerate</span>(aList):</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    <span class="bu">print</span> ( <span class="st">&quot;Element aList[</span><span class="sc">%d</span><span class="st">]=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (index, elmnt))</span></code></pre></div>
+<p>Jak widać w powyższym kodzie zamiast iterować po elementach listy
+<strong><em>aList</em></strong> iterujemy po elementach generatora
+<strong><em>enumerate</em></strong>. Jeśli chcemy iterować tylko po
+kolejnych indeksach z listy o danej długości należałoby napisać
+pętlę:</p>
+<pre><code>for i in range(len(aList)):
+    print i</code></pre>
+<p>W tej sytuacji także możemy skorzystać z funkcji
+<strong><em>enumerate</em></strong> która jest krótszym zapisem niż
+zagnieżdżone <strong><em>len</em></strong> w
+<strong><em>range</em></strong>. Ale w tej sytuacji będziemy dostawali
+zbędny element który trzeba przypisać do zmiennej. W takich sytuacjach
+programiści czasami korzystają ze “sztuczki” i przypisują drugi element
+z pary do zmiennej o nazwie “_“:</p>
+<pre><code>for i,_ in enumerate(aList):
+    print i</code></pre>
+<p>Taki kod wygląda bardziej elegancko, jednak może być wolniejszy w
+wywołaniu, ponieważ zawsze będą pobierane elementy z listy.</p>
+<p>Oprócz generatora <strong><em>enumerate</em></strong> bardzo
+użyteczny jest także generator o nazwie <strong><em>zip</em></strong>.
+Służy on do iterowania po dwóch listach na raz. Generator ten, podobnie
+do <strong><em>enumerate</em></strong> zwraca <strong>pary</strong>,
+które możemy rozwinąć do zmiennych lub korzystać nich jako para:</p>
+<pre><code>aList = [ i**2 for i in range(10)]
+bList = [ (i-1)**2 for i in range(10)]
+
+# with pair
+for p in zip(aList, bList):
+    print p[0], p[1]
+
+# or by 
+for a, b in zip(aList, bList):
+    print a, b</code></pre>
+</div>
+<div id="nazwane-argumenty-funkcji" class="section level2">
+<h2>Nazwane argumenty funkcji</h2>
+<p>Podczas używania różnych funkcji często spotykamy się z sytuacją gdy
+do funkcji przekazujemy argument z pewną nazwą, np.:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>tab <span class="op">=</span> np.zeros(<span class="dv">20</span>, dtyp<span class="op">=</span><span class="bu">int</span>)</span></code></pre></div>
+<p>W powyższym przykładzie jako nazwany argument użyliśmy “dtype”.
+Nazwane argumenty funkcji mogą być przekazywane w dowolnej kolejności,
+np. oba poniższe wywołania wykonają ten sam kod:</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>plot(x,y, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>plot(x,y, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)</span></code></pre></div>
+<p>Za pomocą nazwanych argumentów można wywoływać własne funkcje
+przekazując je w dowolnej kolejności:</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="kw">def</span> funkcja(xarg, yarg):</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;xarg=&quot;</span><span class="op">+</span><span class="bu">str</span>(xarg)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;yarg=&quot;</span><span class="op">+</span><span class="bu">str</span>(yarg)</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>funkcja(yarg<span class="op">=</span><span class="dv">3</span>, xarg<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="numpy-array-zamiast-list" class="section level2">
+<h2>Numpy array zamiast list</h2>
+<p>Na poprzednich zajęciach uczyliśmy się jak przechowywać dane w
+listach. Listy są kontenerami zawierającymi dowolne typy. Ma to duży
+wpływ na wydajność kody gdy w rzeczywistości wiemy, że lista na której
+pracujemy składa się tylko z liczb tego samego typu. Wbudowany typ
+<strong><em>list</em></strong> przed wywołaniem dowolnej operacji, np.
+dodawania, będzie musiał wykonać sprawdzenie czy taka operacja może być
+wykonana na przekazanych typach. Dlatego w przypadku wykonywania
+operacji na dużych zbiorach danych lepiej jest skorzystać z narzędzi,
+które potrafią zoptymalizować wykonanie takiego kodu. Jednym z takich
+narzędzi jest klasa <strong><em>array</em></strong> pochodząca z
+biblioteki <strong><em>NumPy</em></strong>. Tablice te różnią się
+znacząco od list, ponieważ: 1. rozmiar jest stały, 2. typ zmiennych jest
+ten sam w całej liście.</p>
+<p>Dlaczego jeszcze należy poznać bibliotekę NumPy? Głównie dlatego, że
+większość innych narzędzi związanych z obliczeniami numerycznymi czy
+rysowaniem wykresów jako wynik obliczeń zwraca obiekty które są właśnie
+typu numpy.array.</p>
+<div id="tworzenie-tablic-numpy.array" class="section level3">
+<h3>Tworzenie tablic numpy.array</h3>
+<p>Aby utworzyć nową tablicę można skorzystać z konstruktora (funkcji
+tworzącej obiekt) klasy numpy.array. Konstruktor przyjmuje Jako argument
+obiekt, po którym można iterować, tzn. taki którego można użyć w pętli
+for. W ten sposób utworzymy tablicę wypełnioną zadanymi elementami:</p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>tablica1 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">12</span>,<span class="dv">5</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="bu">print</span> tablic1<span class="co"># &gt;&gt; [ 1  2  5 12  5]</span></span></code></pre></div>
+<p>Możemy także skorzystać wprost z generatora
+<strong><em>range</em></strong>:</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>tablica1 <span class="op">=</span> np.array([i <span class="cf">for</span> i <span class="kw">in</span> ragne(<span class="dv">10</span>])</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="bu">print</span> tablic1<span class="co"># &gt;&gt; [0 1 2 3 4 5 6 7 8 9]</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>tablica1 <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">10</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="bu">print</span> tablic1<span class="co"># &gt;&gt; [0 1 2 3 4 5 6 7 8 9]</span></span></code></pre></div>
+<p>Drugim sposobem inicjalizacji tablicy jest wykorzystanie funkcji:</p>
+<ul>
+<li>zeros - generuje tablicę o zadanym rozmiarze wypełnioną zerami</li>
+<li>ones - generuje tablicę o zadanym rozmiarze wypełnioną
+jedynkami</li>
+<li>zeors_like - generuje tablicę wypełnioną zerami o rozmiarze takim
+samym jak przekazana tablica</li>
+<li>ones_like - generuje tablicę wypełnioną jedynkami o rozmiarze takim
+samym jak przekazana tablica</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>tablica1 <span class="op">=</span> np.zeros(<span class="dv">10</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="bu">print</span> tablica1 <span class="co">#&gt;&gt; [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>tablica2 <span class="op">=</span> np.ones_like(tablica1)</span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="bu">print</span> tablica2 <span class="co">#&gt;&gt; [ 1.  1.  1.  1.  1.  1.  1.  1.  1.  1.]</span></span></code></pre></div>
+<p>W poprzednim przypadku przekazaliśmy listę o elementach składających
+się z integerów, dlatego wynikowa tablica została utworzona jako tablica
+integerów. W drugiej sytuacji wygenerowaliśmy tablicę która składa się
+ze elementów typu float, ponieważ ten typ jest domyślnie przyjmowany. W
+obu przypadkach możemy jednak zdecydować z jakiego typu powinna się
+składać dana tablica:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>tablica1 <span class="op">=</span> np.array( [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>], dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="bu">print</span> tablica1 <span class="co">#&gt;&gt;[ 1.  2.  3.  4.  5.]</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>tablica2 <span class="op">=</span> np.zeros(<span class="dv">10</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="bu">print</span> tablica2 <span class="co">#&gt;&gt; [0 0 0 0 0 0 0 0 0 0]</span></span></code></pre></div>
+<p>Jak widać definicję typu przeprowadzamy za pomocą nazwanego argumentu
+<strong><em>dtype</em></strong>.</p>
+</div>
+<div id="dostęp-do-elementów---optymalizacja-działań"
+class="section level3">
+<h3>Dostęp do elementów - optymalizacja działań</h3>
+<p>Teraz przejdźmy do wykorzystywania tablic. Zazwyczaj jesteśmy
+przyzwyczajeni do korzystania z nich za pośrednictwem pętli for, jednak
+w przypadku tych tablic tak nie jest. Wynika to z tego, że pętla for
+będzie wymagała pobierania elementów z tablicy. Każdy taki element
+następnie staje się obiektem Python, co jest kosztowne. Każda następna
+operacja, np. dodawanie, zanim zostanie wykonana, będzie wymagała
+sprawdzenia typów, które z założenia zawsze są takie same. Dlatego do
+wykonywania takich operacji lepiej nadaje się skorzystanie z gotowej
+funkcji, która potrafi np. zsumować kolejne elementy dwóch tablic, ale
+tak, że ta operacja jest wykonana optymalnie już na poziomie kodu
+natywnego a nie interpretowanego. Aby lepiej zobaczyć różnicę
+przeanalizujmy poniższy kod, który będzie mierzył czas wykonania
+operacji sumowania:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>size<span class="op">=</span><span class="dv">1000000</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>start <span class="op">=</span> timeit.default_timer()</span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>list1 <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>list2 <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>list3 <span class="op">=</span> [<span class="dv">0</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size)]</span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>start <span class="op">=</span> timeit.default_timer()</span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size):</span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>    list3[i] <span class="op">=</span> list1[i] <span class="op">+</span> list2[i]</span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>t1 <span class="op">=</span> <span class="bu">float</span>(timeit.default_timer()<span class="op">-</span>start)</span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Czas :&quot;</span>, <span class="bu">str</span>(t3)</span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a>list1 <span class="op">=</span> np.array(<span class="bu">range</span>(size))</span>
+<span id="cb22-23"><a href="#cb22-23" tabindex="-1"></a>list2 <span class="op">=</span> np.array(<span class="bu">range</span>(size))</span>
+<span id="cb22-24"><a href="#cb22-24" tabindex="-1"></a>list3 <span class="op">=</span> np.zeros_like(list2)</span>
+<span id="cb22-25"><a href="#cb22-25" tabindex="-1"></a></span>
+<span id="cb22-26"><a href="#cb22-26" tabindex="-1"></a>start <span class="op">=</span> timeit.default_timer()</span>
+<span id="cb22-27"><a href="#cb22-27" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size):</span>
+<span id="cb22-29"><a href="#cb22-29" tabindex="-1"></a>    list3[i] <span class="op">=</span> list1[i] <span class="op">+</span> list2[i]</span>
+<span id="cb22-30"><a href="#cb22-30" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="#cb22-31" tabindex="-1"></a>t2 <span class="op">=</span> <span class="bu">float</span>(timeit.default_timer()<span class="op">-</span>start)</span>
+<span id="cb22-32"><a href="#cb22-32" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Czas :&quot;</span>, <span class="bu">str</span>(t3)</span>
+<span id="cb22-33"><a href="#cb22-33" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="#cb22-34" tabindex="-1"></a></span>
+<span id="cb22-35"><a href="#cb22-35" tabindex="-1"></a>start <span class="op">=</span> timeit.default_timer()</span>
+<span id="cb22-36"><a href="#cb22-36" tabindex="-1"></a></span>
+<span id="cb22-37"><a href="#cb22-37" tabindex="-1"></a>list3 <span class="op">=</span> list1 <span class="op">+</span> list2</span>
+<span id="cb22-38"><a href="#cb22-38" tabindex="-1"></a></span>
+<span id="cb22-39"><a href="#cb22-39" tabindex="-1"></a>t3 <span class="op">=</span> <span class="bu">float</span>(timeit.default_timer()<span class="op">-</span>start)</span>
+<span id="cb22-40"><a href="#cb22-40" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Czas :&quot;</span>, <span class="bu">str</span>(t3)</span>
+<span id="cb22-41"><a href="#cb22-41" tabindex="-1"></a></span>
+<span id="cb22-42"><a href="#cb22-42" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;t2/t1&quot;</span>, t2<span class="op">/</span>t1</span>
+<span id="cb22-43"><a href="#cb22-43" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;t1/t3&quot;</span>, t1<span class="op">/</span>t3</span>
+<span id="cb22-44"><a href="#cb22-44" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;t2/t3&quot;</span>, t2<span class="op">/</span>t3</span></code></pre></div>
+<p>W pierwszej sytuacji wykonaliśmy sumowanie w pętli elementów
+znajdujących się listach. W drugim przypadku także wykonaliśmy sumowanie
+w pętli for, ale tym razem elementów znajdujących się tablicach
+numpy.array. W ostatnim przypadku wykonaliśmy sumowanie wykorzystując
+operator + (czyli w praktyce pewną funkcję) który wykonał
+zoptymalizowaną operację (w rzeczywistości operacja sumowania została
+oddelegowana do funkcji znajdującej się w skompilowanym binarnym
+kodzie). W wyniku działania powyższego skryptu otrzymaliśmy następujący
+wynik:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>Czas : <span class="fl">0.142781019211</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>Czas : <span class="fl">0.458594083786</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>Czas : <span class="fl">0.00325489044189</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>t2<span class="op">/</span>t1 <span class="fl">3.21187008134</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>t1<span class="op">/</span>t3 <span class="fl">43.8666129505</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>t2<span class="op">/</span>t3 <span class="fl">140.893861705</span></span></code></pre></div>
+<p>Jak widać najgorzej spisała się implementacja, która w pętli
+wykonywała sumowanie z tablicy numpy.array. Sumowanie elementów z listy
+było 3 razy szybsze niż z tablicy. Wynika to z tego, że dostęp do
+elementów tablice jest wolniejszy, ponieważ każdy element tablicy jest
+kopiowany z natywnego kodu do obiektu Pythona. Zwróćmy teraz uwagę na
+ostatni przypadek. Operacja sumowania “całych” tablic na raz jest
+wykonana ponad 40 razy szybciej niż iterowanie po elementach listy i aż
+140 razy szybciej niż iterowanie po elementach tablicy. Wynika z tego
+następujący wniosek - <strong>jeśli korzystasz z tablic typu numpy.array
+unikaj za wszelką cenę pętli!</strong>. Bardzo dużo operacji można
+wykonać za pomocą różnych funkcji z pakiety NumPy oraz za pomocą
+wycinków tablic, podobnych do wycinków list.</p>
+</div>
+<div id="tworzenie-i-dostęp-do-elementów-tablicy-wielowymiarowej"
+class="section level3">
+<h3>Tworzenie i dostęp do elementów tablicy wielowymiarowej</h3>
+<p>Klasa array z biblioteka NumPy domyślnie wspiera tworzenie tablic
+wielowymiarowych. Tablicę taką można utworzyć podobnie jak w przypadku
+jednowymiarowej tablicy:</p>
+<ul>
+<li>Za pomocą konstruktora:</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>tab2D <span class="op">=</span> np.array( [[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>], [<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>]])</span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="bu">print</span> tab2D <span class="co"># &gt;&gt; [[1 2 3]</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>           <span class="co">#         [3 2 1]</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>           <span class="co">#         [2 3 1]]</span></span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a>tab2D <span class="op">=</span> np.array( [ [i<span class="op">*</span>j  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)] )</span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="bu">print</span> tab2D <span class="co"># &gt;&gt; [[0 0 0]</span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a>           <span class="co">#         [0 1 2]</span></span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a>           <span class="co">#         [0 2 4]]</span></span></code></pre></div>
+<ul>
+<li>Za pomocą funkcji zeros, ones, zeros_like, ones_like:</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>tab2D <span class="op">=</span> np.zeros( (<span class="dv">3</span>, <span class="dv">3</span>) )</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="bu">print</span> tab2D <span class="co"># &gt;&gt; [[0 0 0]</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>           <span class="co">#         [0 0 0]</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>           <span class="co">#         [0 0 0]]</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>tab2D <span class="op">=</span> np.ones_like( tab2D )</span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="bu">print</span> tab2D <span class="co"># &gt;&gt; [[1 1 1]</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>           <span class="co">#         [1 1 1]</span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>           <span class="co">#         [1 1 1]]</span></span></code></pre></div>
+<p>Jak widać w powyższym przykładzie tablice wielowymiarowe tworzymy
+przekazując jako rozmiar obiekt <strong><em>tuple</em></strong> (liczby
+znajdujące się w nawiasach ()) który jako elementy przyjmuje rozmiar
+tablicy w kolejnych wymiarach. Oczywiście, podobnie jak w przypadku
+tablicy jednowymiarowej możemy wybrać typ elementów za pomocą nazwanego
+argumentu <strong><em>dtype</em></strong>.</p>
+<p>W przypadku tablic wielowymiarowych można dostać się do jej elementów
+dokładnie tak samo jak w przypadku list:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>tab2D <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Element z drugiego wiersza i drugiej kolumny to&quot;</span>, tab2D[<span class="dv">1</span>][<span class="dv">1</span>]</span></code></pre></div>
+<p>Jednak dostęp do elementów w powyższy sposób może być wolniejszy,
+ponieważ tablica taka najpierw musi zwrócić cały wiersz, a następnie
+dopiero odpowiednią kolumnę. Wielowymiarowe tablice NumPy domyślnie
+wspierają odwoływanie się do konkretnego elementy poprzez podanie
+wiersza i kolumny w obrębie jednego nawiasu []:</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>tab2D <span class="op">=</span> np.zeros((<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Element z drugiego wiersza i drugiej kolumny to&quot;</span>, tab2D[<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div>
+</div>
+<div id="spradzanie-rozmiru-tablic" class="section level3">
+<h3>Spradzanie rozmiru tablic</h3>
+<p>Gdy posiadaliśmy obiekt typu <strong><em>list</em></strong> to liczbę
+elementów można było sprawdzić za pomocą funkcji
+<strong><em>len</em></strong>. Ta funkcja także zadziała w przypadku
+tablic:</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>tab <span class="op">=</span> np.zeros(<span class="dv">10</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="bu">print</span> <span class="bu">len</span>(tab) <span class="co"># &gt;&gt; 10</span></span></code></pre></div>
+<p>A w przypadku tablic wielowymiarowych funkcja ta zwróci tylko rozmiar
+pierwszego wymiaru (np. liczbę wierszy w tablicy dwuwymiarowej). Dlatego
+aby sprawdzić wymiar korzystamy ze zmiennej “shape” przypisanej do
+obiektu tablicy, która sama w sobie jest typu
+<strong><em>tuple</em></strong>:</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>tab2D <span class="op">=</span> np.ones((<span class="dv">10</span>,<span class="dv">5</span>), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="bu">print</span> tab2D.shape <span class="co"># &gt;&gt; (10, 5)</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Pierwszy wymiar&quot;</span>, tab2D.shape[<span class="dv">0</span>] <span class="co"># &gt;&gt; Pierwszy wymiar 10</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Drugi wymiar&quot;</span>, tab2D.shape[<span class="dv">0</span>] <span class="co"># &gt;&gt; Drugi wymiar 5</span></span></code></pre></div>
+</div>
+<div id="wycinki-tablic-i-uzupełnianie-wartości-tablicy"
+class="section level3">
+<h3>Wycinki tablic i uzupełnianie wartości tablicy</h3>
+<p>Podczas poprzednich zajęć pokazaliśmy jak można wygodnie pracować na
+części listy. Podobne, a nawet dalej idące, narzędzie wspierają tablice.
+Tworzenie wycinków w tablicach jednowymiarowych jest dokładnie takie
+same jak w przypadku list. Tablice pozwalają jednak na przypisanie tej
+samej wartości do wszystkich elementów z wycinka:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>tab <span class="op">=</span> np.zeros(<span class="dv">5</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>tab[:<span class="dv">3</span>] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="bu">print</span> tab <span class="co"># &gt;&gt; [ 2.  2.  2.  0.  0.]</span></span></code></pre></div>
+<p>W przypadku list nie mogliśmy tak zrobić, można było tylko przypisać
+do inną listę o tym samym wymiarze.</p>
+<p>Podobnie sprawa ma się w przypadku tablic wielowymiarowych:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>tab2D <span class="op">=</span> np.zeros((<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>tab2D[:<span class="dv">2</span>,:<span class="dv">2</span>] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="bu">print</span> tab2D <span class="co">#&gt;&gt; [[ 2.  2.  0.  0.]</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>                        <span class="co">#        [ 2.  2.  0.  0.]</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>                        <span class="co">#        [ 0.  0.  0.  0.]</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>                        <span class="co">#            [ 0.  0.  0.  0.]]</span></span></code></pre></div>
+</div>
+<div id="wycinki-tablic-za-pomocą-indeksów-i-masek"
+class="section level3">
+<h3>Wycinki tablic za pomocą indeksów i masek</h3>
+<p>Tablice NumPy pozwalają także na inny sposób tworzenia wycinków
+tablic: 1. Za pomocą listy indeksów. 2. Za pomocą maski - tablica o tej
+samej długości co źródłowa i złożona ze zmiennych typu boolean - wartość
+True oznacza wybór elementy a False pominięcie</p>
+<p>Sprawdź działanie poniższego kodu:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>tab <span class="op">=</span> np.zeros(<span class="dv">10</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>tab[[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">9</span>]] <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="bu">print</span> tab</span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>mask <span class="op">=</span> tab <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="bu">print</span> mask</span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>tab[ mask ] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="bu">print</span> tab</span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a>tab <span class="op">=</span> np.array( [ randint(<span class="dv">0</span>,<span class="dv">9</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)])</span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Liczby losowe wieksze od 5:&quot;</span></span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> tab[tab <span class="op">&gt;</span> <span class="dv">5</span>]:</span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a>    <span class="bu">print</span> e</span></code></pre></div>
+</div>
+<div id="operacje-matematyczne-na-całych-tablicach"
+class="section level3">
+<h3>Operacje matematyczne na całych tablicach</h3>
+<p>Obiekty klasy <strong><em>numpy.array</em></strong> wspierają
+większość znanych funkcji takich jak <strong><em>sin, cos, exp, abs,
+…</em></strong> oraz operatory ** +, -, /, *, <strong> </strong>. Pełną
+lista funkcji matematycznych zobacz <a
+href="http://docs.scipy.org/doc/numpy/reference/routines.math.html"
+title="Funkcje matematyczne NumPy">tutaj</a>. Aby skorzystać z tych
+funkcji trzeba odwoływać się do nich poprzez nazwę pakietu.</p>
+<p>Inna bardzo przydatna funkcja należąca do pakietu NumPy to
+<strong><em>linspace(start, stop, step)</em></strong> która generuje
+tablicę o liczbach równomiernie rozłożonych w zadanym zakresie:</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>xy <span class="op">=</span> np.zeros((<span class="dv">10</span>,<span class="dv">2</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>xy[:, <span class="dv">0</span>] <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a><span class="bu">print</span> xy[:,<span class="dv">0</span>] <span class="co">#&gt;&gt;[-1.         -0.77777778 -0.55555556 -0.33333333 -0.11111111  0.11111111 0.33333333 0.55555556  0.77777778  1. ]</span></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>xy[:, <span class="dv">1</span>] <span class="op">=</span> np.exp( xy[:, <span class="dv">0</span>] )</span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="bu">print</span> xy</span></code></pre></div>
+</div>
+</div>
+<div id="operacje-na-plikach" class="section level2">
+<h2>Operacje na plikach</h2>
+<p>Podstawy wczytywania i zapisywania danych do plików w Pythonie niczym
+szczególnym nie różni się od pracy w innych językach. Aby otworzyć
+strumień danych z pliku wystarczy utworzyć obiekt typu
+<strong><em>file</em></strong> za pomocą funkcji
+<strong><em>open(filename, mode)</em></strong>, gdzie parametr
+<strong><em>mode</em></strong> określa cel otwarcia pliku:</p>
+<ul>
+<li>“r” - wczytywanie danych z pliku, strumień ustawiony jest na
+początku pliku.</li>
+<li>“r+” - wczytywanie i zapisywanie do pliku, strumień ustawiony na
+początku pliku.</li>
+<li>“a” - zapisywanie danych do pliku, strumień jest ustawiony na końcu
+pliku.</li>
+<li>“a+” - zapisywanie danych do pliku, strumień jest ustawiony na końcu
+pliku.</li>
+<li>“w” - zapisywanie danych do pliku, jeśli plik nie jest pusty
+zostanie wyczyszczony.</li>
+<li>“w+” - wczytywanie i zapisywanie danych do pliku, jeśli plik nie
+jest pusty zostanie wyczyszczony.</li>
+</ul>
+<p>Po zakończeniu pracy z plikiem należy pamiętać o zamknięciu
+strumienia do pliku, co można sprawdzić dzięki zmiennej
+<strong><em>closed</em></strong> należącej do obiektu plik:</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>plik <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> plik.closed:</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;closing file ...&quot;</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>    plik.close()</span></code></pre></div>
+<p>Czasami można zapomnieć zamknąć strumień, bądź pojawi się wyjątek
+(który automatycznie przerwie wykonywanie kodu) w trakcie pracy nad
+plikiem. Taka sytuacja może spowodować niepoprawną pracę kodu. W związku
+z tym istniej potrzeba takiej konstrukcji, w której kod, niezależnie od
+tego co się stanie w pewnej jego części, wykona “sprzątającą” operację.
+W wielu językach taka konstrukcja nazywa się
+<strong><em>try/finally</em></strong> która zapewnia, że nie zależnie od
+tego co się stanie po słowie <strong><em>try</em></strong> zostanie
+wykonany kod <strong><em>finally</em></strong>. W przypadku pracy z
+plikami miałoby to postać:</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>plik <span class="op">=</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;r&quot;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="cf">try</span>:    </span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>    .... operacje na pliku .....</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>    plik.close()</span></code></pre></div>
+<p>W Pythonie taka konstrukcja także istnieje, ale posiada on także
+jeszcze jedną, która potrafi automatycznie wykonać sprzątanie i jest
+bardzo przyjazna dla oka :). Zapewnia ona, że zasoby wykorzystywane
+przez kod zostaną zwolnione i wyczyszczone. Ta nowa konstrukcja ma
+następującą postać:</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="cf">with</span> wyrazenie[<span class="im">as</span> zmienna]:</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>    ... blok kodu operujacego na obiekcie zmienna ...</span></code></pre></div>
+<p>W przypadku pracy z plikami jako “wyrazenie” wystarczy użyć funkcję
+<strong><em>open</em></strong>:</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>,<span class="st">&quot;r&quot;</span>) <span class="im">as</span> plik:</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>    ... kod pracujacy na zmiennej plik ....</span></code></pre></div>
+<p>Na koniec przyjrzyjmy się kilku metodom jakie należą do obiektów typu
+<strong><em>file</em></strong>, które pozwolą na praktyczne wczytywanie
+danych:</p>
+<ul>
+<li>read() - wczytuje na raz cały plik, można przekazać parametr “size”
+który ograniczy ilość bitów do jego wartości.</li>
+<li>readline() - wczytuje kolejną linię z pliku.</li>
+<li>readlines() - wczytuje wszystkie linie z pliku i zwraca listę.</li>
+<li>write(str) - zapisuje przekazany ciąg znaków do pliku</li>
+<li>writelines(sekwencja_stringow) - zapisuje kolejne linie z
+przekazanej sekwencji stringów (np. listy)</li>
+</ul>
+<p>Oprócz tych funkcji należy pamiętać, że obiekt
+<strong><em>file</em></strong> sam w sobie jest sekwencją stringów,
+dzięki czemu pozwala on iterować w pętli for po kolejnych liniach:</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>,<span class="st">&quot;r&quot;</span>) <span class="im">as</span> plik:</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>    <span class="cf">for</span> linia <span class="kw">in</span> plik:</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>            <span class="bu">print</span> <span class="st">&quot;Wczytalem linie tekstu = &quot;</span>, linia</span></code></pre></div>
+<p>Z kolei jeśli chcemy zapisać dane, wygodnie jest skorzystać z metody
+<strong><em>write</em></strong>:</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>zdanie<span class="op">=</span><span class="st">&quot;Jaki ten python jest latwy i czytelny&quot;</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> plik:</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>    <span class="cf">for</span> slowo <span class="kw">in</span> zdanie.split():</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>        plik.write(slowo <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<p>lub jeszcze w jednej linii kodu:</p>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>zdanie<span class="op">=</span><span class="st">&quot;Jaki ten python jest latwy i czytelny&quot;</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;tmp.txt&quot;</span>, <span class="st">&quot;w&quot;</span>) <span class="im">as</span> plik: plik.writelines([s<span class="op">+</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> <span class="cf">for</span> s <span class="kw">in</span> zdanie.split()])</span></code></pre></div>
+</div>
+<div id="podstawowe-narzędzie-obsługi-systemu" class="section level2">
+<h2>Podstawowe narzędzie obsługi systemu</h2>
+<p>Python jako język skryptowy bardzo dobrze nadaje się do obsługi zadań
+związanych z zarządzaniem plikami/katalogami bądź wywoływania różnych
+procesów. Duży zbiór takich narzędzi znajduje się pakiecie o nazwie
+<strong><em>os</em></strong>, z którego opiszemy poniżej kilka
+najbardziej przydatnych funkcji. Zbiór wszystkich funkcji można znaleźć
+<a href="https://docs.python.org/2/library/os.html#module-os"
+title="moduł os">tutaj</a>.</p>
+<div id="ścieżki-do-plików" class="section level3">
+<h3>Ścieżki do plików</h3>
+<p>Czasami pojawia się potrzeba przetwarzania ścieżek do plików bądź
+wyciąganie z niej odpowiednich informacji. W tym celu korzystamy z
+pod-modułu path w którym znajdują się przydatne funkcje:</p>
+<ul>
+<li><strong><em>abspath(path)</em></strong> zwraca pełną ścieżkę</li>
+<li><strong><em>basename(path)</em></strong> zwraca nazwę pliku lub
+najwyższego folderu w podanej ścieżce</li>
+<li><strong><em>dirname(path)</em></strong> zwraca ścieżkę do folderu w
+którym znajduje się plik/folder wskazywany przez “path”</li>
+<li><strong><em>gettatime/gettmtime</em></strong> - zwracają czas
+ostatniego dostępu/modyfikacji pliku</li>
+<li><strong><em>splitext(path)</em></strong> - funkcja dzieli podaną
+ścieżkę na parę (“ścieżka z tylko nazwa pliku”, “rozszerzenie pliku z
+kropką”)</li>
+<li><strong><em>exists(path)</em></strong> - zwraca False gdy nie
+istnieje dana ścieżka bądź wskazuje na zepsuty link</li>
+<li><strong><em>isabs(path)</em></strong> - sprawdza czy ścieżka jest
+ścieżką absolutną</li>
+<li><strong><em>isfile(path)</em></strong> - sprawdza czy ścieżka
+wskazuje na plik (podąża za linkami)</li>
+<li><strong><em>isdir(path)</em></strong> - sprawdza czy ścieżka
+wskazuje na folder</li>
+<li><strong><em>islink(path)</em></strong> - sprawdza czy ścieżka
+wskazuje na link</li>
+<li><strong><em>join(path, </em>paths)</strong>* - łączy ścieżki
+używając systemowego</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="im">from</span> os <span class="im">import</span> path</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>sciezka <span class="op">=</span> <span class="st">&quot;/home/wgryglas/tmp/python/some/module.py&quot;</span></span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a><span class="co">#nazwa pliku:</span></span>
+<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a><span class="bu">print</span> path.basename(sciezka) <span class="co"># &gt;&gt; module.py</span></span>
+<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a><span class="co">#sciezka do folderu zawierajacego plik:</span></span>
+<span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a><span class="bu">print</span> path.dirname(sciezka) <span class="co">#&gt;&gt; /home/wgryglas/tmp/python/some</span></span>
+<span id="cb41-10"><a href="#cb41-10" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="#cb41-11" tabindex="-1"></a><span class="co"># Czy sciezka istnieje, i czy jest plikiem</span></span>
+<span id="cb41-12"><a href="#cb41-12" tabindex="-1"></a><span class="cf">if</span> path.exists(sciezka):</span>
+<span id="cb41-13"><a href="#cb41-13" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Is &quot;</span><span class="op">+</span>sciezka<span class="op">+</span><span class="st">&quot; file?&quot;</span> <span class="op">+</span> <span class="bu">str</span>( path.isfile(sciezka) )</span>
+<span id="cb41-14"><a href="#cb41-14" tabindex="-1"></a></span>
+<span id="cb41-15"><a href="#cb41-15" tabindex="-1"></a>home <span class="op">=</span> <span class="st">&quot;/home/wgryglas&quot;</span></span>
+<span id="cb41-16"><a href="#cb41-16" tabindex="-1"></a>folder <span class="op">=</span> <span class="st">&quot;tmp/python/some&quot;</span></span>
+<span id="cb41-17"><a href="#cb41-17" tabindex="-1"></a>plik <span class="op">=</span> <span class="st">&quot;module.py&quot;</span></span>
+<span id="cb41-18"><a href="#cb41-18" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;Full path:&quot;</span> <span class="op">+</span> path.join(home, folder, plik)</span></code></pre></div>
+<p>Należy tutaj zwrócić uwagę, że funkcja
+<strong><em>os.path.join</em></strong> łączy ścieżki wykorzystując
+separator odpowiedni dla danego systemu operacyjnego. Sam separator
+wykorzystywany przez tą funkcję można także wykorzystać jawnie ponieważ
+znak ten jest przechowywany w zmiennej globalnej w module
+<strong><em>os</em></strong> o nazwie <strong><em>sep</em></strong>:</p>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a><span class="bu">print</span> os.sep</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a><span class="bu">print</span> <span class="st">&quot;folder&quot;</span> <span class="op">+</span> os.sep <span class="op">+</span> <span class="st">&quot;plik&quot;</span> </span></code></pre></div>
+<p>Aby kod działał poprawnie na wszystkich systemach należy wystrzegać
+się jawnego używania znaku “" lub”/” a należy korzystać ze zmiennej
+<strong><em>os.sep</em></strong> lub funkcji
+<strong><em>os.path.join</em></strong>.</p>
+</div>
+<div id="listowanie-katalogów" class="section level3">
+<h3>Listowanie katalogów</h3>
+<p>Do przejrzenia plików w danym folderze służy funkcja
+<strong><em>listdir</em></strong> z pakietu
+<strong><em>os</em></strong>. Funkcja ta zwraca listę stringów będących
+nazwami plików i folderów:</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>currentDir <span class="op">=</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a><span class="cf">for</span> entry <span class="kw">in</span> os.listdir(currentDir):</span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>    <span class="cf">if</span> os.path.isdir(entry):</span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a>        <span class="bu">print</span> entry <span class="op">+</span> <span class="st">&quot; is directory&quot;</span></span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a>    <span class="cf">elif</span> os.path.isfile(entry):</span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a>        <span class="bu">print</span> entry <span class="op">+</span> <span class="st">&quot;is file&quot;</span></span></code></pre></div>
+<p>Czasami jednak istnieje potrzeba listowania plików o specyficznej
+nazwie określonej za pomocą jakiegoś wzorca. W bashu do tego celu
+najczęściej korzysta się ze znaku “<em>”, np. ”</em>.txt” oznacza
+dowolny plik kończący się rozszerzeniem .txt. Podobnie można listować
+pliki w Pythonie, ale do tego celu należy skorzystać z funkcji
+<strong><em>globe1</em></strong> pakietu
+<strong><em>globe</em></strong>:</p>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob1</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a><span class="cf">for</span> txtFile <span class="kw">in</span> glob1(<span class="st">&quot;/home/wgryglas/Desktop&quot;</span>, <span class="st">&quot;*.txt&quot;</span>):</span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>    <span class="bu">print</span> <span class="st">&quot;Plik text: &quot;</span><span class="op">+</span>txtFile</span></code></pre></div>
+</div>
+<div id="manipulacje-folderami-i-plikami-za-pomocą-modułu-os"
+class="section level3">
+<h3>Manipulacje folderami i plikami za pomocą modułu “os”</h3>
+<p>Pakiet <strong><em>os</em></strong> pozwala także na dokonywanie
+tworzenie jednego folderu - <strong><em>os.mkdir(path,
+[mode])</em></strong> gdzie opcjonalny parametr
+<strong><em>mode</em></strong> określa prawa dostępu (domyślna wartość
+to 0777).</p>
+<p>Z kolei jeśli chcemy utworzyć całą ścieżkę folderów, końcowy i jego
+właścicieli, to należy skorzystać z funkcji
+<strong><em>os.makedirs(path, [mode])</em></strong></p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob1</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>base <span class="op">=</span> <span class="st">&quot;/home/wgryglas/Dekstop&quot;</span></span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a>os.mkdir( os.path.join(base,<span class="st">&quot;test_dir&quot;</span>) )</span>
+<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a><span class="co">#print test_* directories</span></span>
+<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a><span class="bu">print</span> [ d <span class="cf">for</span> d <span class="kw">in</span> glob1(base, <span class="st">&quot;test_*&quot;</span>) <span class="cf">if</span> os.path.isdir(base<span class="op">+</span>os.sep<span class="op">+</span>d)] <span class="co"># &gt;&gt; [&#39;test_dir&#39;]</span></span>
+<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a><span class="co"># create sequence of directories</span></span>
+<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>os.makedirs( os.path.join(base, <span class="st">&quot;test2_dir&quot;</span>,<span class="st">&quot;internal_dir&quot;</span>) )</span></code></pre></div>
+<p>Czasami potrzebujemy informację o aktualnym katalogu w którym się
+znajdujemy. Do tego służy funkcja <strong><em>getcwd()</em></strong>
+która zwraca pełną ścieżkę do folderu roboczego, względem którego możemy
+odwoływać się do innych plików.</p>
+<p>Oprócz funkcji tworzących foldery możemy korzystać także z funkcji
+usuwających je: - <strong><em>os.rmdir</em></strong> - usuwa pojedynczy
+folder, ale tylko gdy jest pusty. -
+<strong><em>os.removdirs</em></strong> - usuwa całą ścieżkę folderów,
+ale tylko do miejsca gdzie foldery są puste</p>
+<p>Ponadto w pakiecie <strong><em>os</em></strong> znajduje się funkcja
+<strong><em>remove(path)</em></strong> która usuwa pojedynczy plik.
+Jeśli ścieżka wskazuje na folder, to pojawi się błąd.</p>
+<p>Ostatnia przydatna funkcja to <strong><em>rename(src,
+dst)</em></strong>. Jak nazwa wskazuje służy ona do zmiany nazwy
+pliku/folderu. Jedna w praktyce to nie zmiana nazwy tylko przeniesienie
+pliku/folderu ze ścieżki <strong><em>src</em></strong> do ścieżki
+<strong><em>dst</em></strong>.</p>
+</div>
+<div id="operacje-na-plikach-za-pomocą-pakietu-shutil"
+class="section level3">
+<h3>Operacje na plikach za pomocą pakietu “shutil”</h3>
+<p>Do manipulacji plikami służy służy moduł o nazwie
+<strong><em>shutil</em></strong>. Pozwala ona na: - kopiowanie
+pojedynczych plików za pomocą <strong><em>shutli.copy(src,
+dst)</em></strong>, gdzie <strong><em>src</em></strong> określa plik
+źródłowy a <strong><em>dst</em></strong> ścieżkę do kopii. Jeśli
+<strong><em>dst</em></strong> jest folderem to plik <strong>src</strong>
+zostanie skopiowany z tą samą nazwą do folderu
+<strong><em>dst</em></strong>. - kopiowanie całych folderów wraz z
+zawartością. Do tego służy funkcja
+<strong><em>shutil.copytree(src,dst)</em></strong>. W przypadku tej
+funkcji folder <strong><em>dst</em></strong> nie może wcześniej istnieć.
+- usuwanie folderów wraz całą zawartością za pomocą
+<strong><em>shutil.rmtree(path)</em></strong>.</p>
+<p>Więcej funkcji z tego pakietu możesz znaleźć <a
+href="https://docs.python.org/2/library/shutil.html?highlight=shutil#module-shutil"
+title="Moduł shutil">tutaj</a></p>
+</div>
+</div>
+<div id="rysowanie-wykresów---podstawy-biblioteki-matplotlib"
+class="section level2">
+<h2>Rysowanie wykresów - podstawy biblioteki Matplotlib</h2>
+<p>Na koniec tych zajęć przedstawimy drugą po
+<strong><em>NumPy</em></strong> bardzo przydaną bibliotekę -
+<strong><em>Matplotlib</em></strong>. Jest to biblioteka służąca z
+założenia do wyświetlania wykresów. Oprócz samych wykresów pozwala na
+wyświetlanie i prostą obróbkę wykresów. Biblioteka ta jest tak
+zaprojektowana, żeby przypominała korzystanie z funkcji MATLABa, dzięki
+czemu jest dość prosta do nauczenia się. Ponadto jest ona rozszerzeniem
+pakietu NumPy, dzięki czemu domyślnie operuje na tablicach, ale wspiera
+także dane w postaci list. W tym punkcie pokażemy jak wykonać prosty
+wykres, animację i wyświetlić obrazek.</p>
+<div id="najprostsze-wykresy" class="section level3">
+<h3>Najprostsze wykresy</h3>
+<p>Aby utworzyć wykres należy na początek utworzyć okno za pomocą
+funkcji <strong><em>figure</em></strong> w którym będzie umieszczony
+nasz wykres. Aby następnie wyświetlić krzywą korzystamy z funkcji
+<strong><em>plot</em></strong> która umieści daną krzywą w domyślnych
+osiach. Każde następne wywołanie tej funkcji będzie dorysowywać kolejne
+krzywe w tym samym oknie. Wywołanie funkcji plot nie wyświetli
+automatycznie okna. Aby to zrobić należy na koniec wywołać funkcję
+<strong><em>show</em></strong>. Wszystkie te funkcje znajdują się w
+pod-module <strong><em>pyplot</em></strong> z pakietu
+<strong><em>matplotlib</em></strong>.</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb46-6"><a href="#cb46-6" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" tabindex="-1"></a>plt.figure()</span>
+<span id="cb46-8"><a href="#cb46-8" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" tabindex="-1"></a>plt.plot(x, y)</span>
+<span id="cb46-10"><a href="#cb46-10" tabindex="-1"></a>plt.plot(x, np.cos(x))</span>
+<span id="cb46-11"><a href="#cb46-11" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="#cb46-12" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>Domyślnie program będzie nadawał różne kolory do każdej kolejnej
+linii. Można jednak wybrać kolor i format linii za pomocą skrótowego
+formatu, np.:</p>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb47-6"><a href="#cb47-6" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" tabindex="-1"></a>plt.figure()</span>
+<span id="cb47-8"><a href="#cb47-8" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" tabindex="-1"></a>plt.plot(x, y, <span class="st">&quot;b.&quot;</span>)</span>
+<span id="cb47-10"><a href="#cb47-10" tabindex="-1"></a>plt.plot(x, np.cos(x), <span class="st">&quot;b-&quot;</span>)</span>
+<span id="cb47-11"><a href="#cb47-11" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="#cb47-12" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>Format “b.” oznacza skorzystanie z niebieskiej linii z markerami w
+postaci kropek. Z kolei “b-” oznacza niebieską linię. Podobny efekt
+uzyskamy za pomocą nazywanych argumentów:</p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>plt.figure()</span>
+<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a></span>
+<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a>plt.plot(x, y, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a>plt.plot(x, np.cos(x), color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a></span>
+<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>Oczywiście taki wykres można następnie lepiej dostosować poprzez
+pokazanie siatki, tytułu i nazw osi:</p>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb49-6"><a href="#cb49-6" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" tabindex="-1"></a>plt.figure()</span>
+<span id="cb49-8"><a href="#cb49-8" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" tabindex="-1"></a>plt.plot(x, y, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" tabindex="-1"></a>plt.plot(x, np.cos(x), color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb49-11"><a href="#cb49-11" tabindex="-1"></a></span>
+<span id="cb49-12"><a href="#cb49-12" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb49-13"><a href="#cb49-13" tabindex="-1"></a>plt.xlable(<span class="st">&quot;x&quot;</span>)</span>
+<span id="cb49-14"><a href="#cb49-14" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;y&quot;</span>)</span>
+<span id="cb49-15"><a href="#cb49-15" tabindex="-1"></a>plt.title(<span class="st">&quot;sin(x) i cos(x)&quot;</span>)</span>
+<span id="cb49-16"><a href="#cb49-16" tabindex="-1"></a></span>
+<span id="cb49-17"><a href="#cb49-17" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</div>
+<div id="kilka-wykresów-w-jednym-oknie" class="section level3">
+<h3>Kilka wykresów w jednym oknie</h3>
+<p>Funkcja plt.plot, plt.xlabel … dokonuje rysowania na aktywnych
+osiach. Gdy posiadamy okno z jednym wykresem jest to oczywiste na której
+z osi go tworzymy, jednak w przypadku dwóch musimy się w jakiś sposób do
+wybranej osi odwoływać. Do tworzenia kilku wykresów w jednym oknie służy
+funkcja <strong><em>subplots</em></strong> która jako argument przyjmuje
+liczby osi w danym kierunku, np.: <code>plt.subplots(2,2)</code>
+wygeneruje okno z 4 układami współrzędnych. Funkcja ta zwraca oprócz
+obiektu “figure” także tablicę NumPy składającą się obiektów “axes”:</p>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a><span class="bu">print</span> axes.shape <span class="co">#&gt;&gt; (2, )</span></span>
+<span id="cb50-5"><a href="#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb50-7"><a href="#cb50-7" tabindex="-1"></a><span class="bu">print</span> axes.shape <span class="co">#&gt;&gt; (2, 2)</span></span></code></pre></div>
+<p>Jak widać powyżej zmienna “axes” jest tablicą 1 albo dwu wymiarową w
+której kolejne indeksy odnoszą się do odpowiednich osi. Aby dokonać
+wykresu w wybranej osi należy skorzystać z nie z
+<code>plt.plot(..)</code> a np. <code>axes[0,0].plot(...)</code>.
+Ponadto w przypadku niewielkiej liczby wykresów może być przydatnej
+rozwinięcie tablicy do zmiennych:</p>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb51-6"><a href="#cb51-6" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>)</span>
+<span id="cb51-8"><a href="#cb51-8" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" tabindex="-1"></a>ax1.plot(x, y, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;.&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb51-10"><a href="#cb51-10" tabindex="-1"></a>ax2.plot(x, np.cos(x), color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, marker<span class="op">=</span><span class="st">&quot;&quot;</span>, linestyle<span class="op">=</span><span class="st">&quot;-&quot;</span>)</span>
+<span id="cb51-11"><a href="#cb51-11" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" tabindex="-1"></a>ax1.grid(<span class="va">True</span>)</span>
+<span id="cb51-13"><a href="#cb51-13" tabindex="-1"></a>ax1.set_xlabel(<span class="st">&quot;x&quot;</span>)</span>
+<span id="cb51-14"><a href="#cb51-14" tabindex="-1"></a>ax1.set_ylabel(<span class="st">&quot;y&quot;</span>)</span>
+<span id="cb51-15"><a href="#cb51-15" tabindex="-1"></a>ax1.set_title(<span class="st">&quot;sin(x)&quot;</span>)</span>
+<span id="cb51-16"><a href="#cb51-16" tabindex="-1"></a>ax2.set_title(<span class="st">&quot;cos(x)&quot;</span>)</span>
+<span id="cb51-17"><a href="#cb51-17" tabindex="-1"></a></span>
+<span id="cb51-18"><a href="#cb51-18" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p>Należy tutaj zwrócić uwagę, że metody obiektów klasy
+<strong><em>AxesSubplot</em></strong> korzystają z nazw z przedrostkiem
+“set_” w odróżnieniu do tych podstawowych z pakiety
+<strong><em>matplotlib.pyplot</em></strong>.</p>
+</div>
+<div id="tworzenie-animacji" class="section level3">
+<h3>Tworzenie animacji</h3>
+<p>Dzięki bibliotece matoplotlib animacje są bardzo proste do zrobienia.
+Należy tylko umieć aktualizować dane w wybranych liniach na wykresie. Do
+tego cele należy posługiwać się pewnym uchwytem który pozwala na
+manipulację wybraną linią z wykresu. Uchwyt taki zawsze otrzymujemy jako
+zwrot z funkcji <strong><em>matplotlib.pyplot.plot</em></strong>, tylko
+do tej pory nie przypisywaliśmy go do zmiennej. Teraz to uczynimy:</p>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb52-7"><a href="#cb52-7" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" tabindex="-1"></a>line,  <span class="op">=</span> plt.plot(x, np.zeros_like(x))</span></code></pre></div>
+<p>Funkcja <strong><em>plot</em></strong> zwraca więcej niż jeden
+argument, dlatego musimy do zmiennych przypisać wszystkie. Jednak my
+potrzebujemy tylko pierwszy obiekt, dlatego tuż za
+<strong><em>line</em></strong> postawiliśmy przecinek a za nim nic.
+Oznacza to, że pierwszy argument zostanie przypisany do zmiennej
+<strong><em>line</em></strong> a reszta nie ma dla nas znaczenia.</p>
+<p>Obiekt <strong><em>line</em></strong> jest typu
+<strong><em>matplotlib.lines.Line2D</em></strong> (sprawdź pisząc
+<code>type(line)</code>). Klasa ta posiada metodę nazywającą się
+<strong><em>set_ydata</em></strong>, która przypisuje nowe wartości do
+wykresu. Z tej właśnie funkcji będziemy korzystali w trakcie animacji
+podczas zmiany kolejnych klatek.</p>
+<p>Do utworzenia animacji skorzystamy z funkcji
+<strong><em>FuncAnimation</em></strong> z modułu
+<strong><em>matplotlib.animation</em></strong>. Funkcja ta jako argument
+musi przyjąć inną funkcję która będzie służyła do aktualizacji danych w
+kolejnych klatkach. A zatem:</p>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,np.pi, <span class="dv">100</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb53-8"><a href="#cb53-8" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" tabindex="-1"></a>line,  <span class="op">=</span> plt.plot(x, np.zeros_like(x))</span>
+<span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a></span>
+<span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a>plt.xlim([<span class="dv">0</span>, np.pi])</span>
+<span id="cb53-12"><a href="#cb53-12" tabindex="-1"></a>plt.ylim([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb53-13"><a href="#cb53-13" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="#cb53-14" tabindex="-1"></a><span class="kw">def</span> update_plot(frame):</span>
+<span id="cb53-15"><a href="#cb53-15" tabindex="-1"></a>    a  <span class="op">=</span> <span class="bu">float</span>(frame)<span class="op">/</span><span class="dv">100</span></span>
+<span id="cb53-16"><a href="#cb53-16" tabindex="-1"></a>    line.set_ydata(np.sin(a<span class="op">*</span>x))</span>
+<span id="cb53-17"><a href="#cb53-17" tabindex="-1"></a></span>
+<span id="cb53-18"><a href="#cb53-18" tabindex="-1"></a>anim <span class="op">=</span> FuncAnimation(fig, update_plot, frames<span class="op">=</span><span class="dv">300</span>, interval<span class="op">=</span><span class="dv">1</span>, repeat<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb53-19"><a href="#cb53-19" tabindex="-1"></a></span>
+<span id="cb53-20"><a href="#cb53-20" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="float">
+<img src="figures/python_inst03/anim_example.gif"
+title="Przykład animacji za pomocą FuncAnimation"
+alt="Przykład animacji" />
+<div class="figcaption">Przykład animacji</div>
+</div>
+</div>
+</div>
+</div>
+<div id="zadania" class="section level1">
+<h1>Zadania</h1>
+<div id="zadanie-1" class="section level2">
+<h2>Zadanie 1</h2>
+<p>W folderze <strong><em>resources/lab1/files</em></strong>
+zlokalizowanym w repozytorium znajduje się szereg plików o losowych
+nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci:
+<em>location: [nazwa folderu]</em>, gdzie [nazwa folderu] może różnić
+się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w
+podanej lokalizacji do folderów, których nazwy są takie same jak ta
+podana wewnątrz pliku.</p>
+<div class="float">
+<img src="figures/python_inst02/1.png" title="Przykład przetworzenia"
+alt="Pliki w folderach" />
+<div class="figcaption">Pliki w folderach</div>
+</div>
+<p>Nowo utworzone foldery mogą zostać umieszczone w dowolnej
+lokalizacji.</p>
+</div>
+<div id="zadanie-2" class="section level2">
+<h2>Zadanie 2</h2>
+<p>Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności <span
+class="math inline">\(k=10\)</span> znajdujących się polu grawitacyjnym
+o przyśpieszeniu <span
+class="math inline">\(\vec{g}=[0,-9.81][\frac{m}{s^2}]\)</span>. Oba
+ciała są wstępnie ustawione w odległości <span class="math inline">\(l =
+10\)</span> od siebie i leżą na linii poziomej, a sprężyna w tym
+momencie jest nienaciągnięta. Prędkość początkowa ciała pierwszego
+wynosi <span class="math inline">\(u_1=[0,5][\frac{m}{s}]\)</span> a
+drugiego $ u_2=[-3,3] []$. Masy obu ciał są równe i wynoszą <span
+class="math inline">\(m=1 [kg]\)</span> lub <span
+class="math inline">\(m=10 [kg]\)</span> (sprawdź jak zmienią się wyniki
+w obu przypadkach).</p>
+<p>Wykonaj wykres torów ruchu obu ciał, a następnie utwórz animację, w
+której przedstawisz ruch ciał w postaci punktów poruszających się po
+obliczonych torach.</p>
+<p><img src="figures/python_inst03/mass1.gif" title="Masa m=1kg"
+alt="mass-1kg" /> <img src="figures/python_inst03/mass10.gif"
+title="Masa m=10kg" alt="mass-10kg" /></p>
+<p>Animację można zapisać do pliku *.gif za pomocą metody “save” z
+obiektu animation. Aby zapisać do tego formatu należy posiadać
+zainstalowaną aplikację “imagemagic”:</p>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="co"># ...</span></span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>anim <span class="op">=</span> animation.FuncAnimation(....)</span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>anim.save(<span class="st">&quot;nazwa_pliku.gif&quot;</span>, writer<span class="op">=</span><span class="st">&quot;imagemagic&quot;</span>, fps<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</div>
+<div id="zadanie-3" class="section level2">
+<h2>Zadanie 3</h2>
+<p>Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z
+większego rozmiaru na mniejszy. W tym celu:</p>
+<ol style="list-style-type: decimal">
+<li><p>Utwórz nowy plik pythona o nazwie zadanie3.py</p></li>
+<li><p>Wewnątrz tego pliku przygotuj funkcję “reduce” która jako
+argumenty będzie przyjmowała obiekt reprezentujący listę/tablicę
+dwuwymiarową oraz rozmiar wynikowej macierzy (parametr określający
+rozmiar powinien obsługiwać sytuację gdy przekazano 1 liczbę lub
+parę)</p></li>
+<li><p>Uzupełnij ciało funkcji wykorzystując algorytm opisany poniższym
+rysunkiem <img src="figures/python_inst02/2.png"
+title="Algorytm skalowania" alt="algorytm" /> Na powyższym rysunku
+oznaczono jak poszukiwać referencyjnych elementów w tablicy większej w
+zależności od indeksu elementu w tablicy mniejszej. Wartość kolejnych
+elementów w tablicy mniejszej powinna być obliczona jako średnia z
+zaznaczonych sąsiadów i referencyjnego elementu z tablicy
+większej.</p></li>
+<li><p>Zwróć wynikową tablicę/listę dwuwymiarową.</p></li>
+</ol>
+</div>
+<div id="zadanie-4" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Należy napisać skrypt który będzie wczytywał plik graficzny
+<strong><em>resources/lab1/meil.png</em></strong>.</p>
+<div class="float">
+<img
+src="https://github.com/ccfd/python_course/blob/master/resources/lab2/meil.png?raw=true"
+title="Obraz do przetworzenia" alt="logo" />
+<div class="figcaption">logo</div>
+</div>
+<p>Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20
+(wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie
+obraz wczytany i przeskalowany obok siebie.</p>
+<div id="podpowiedzi" class="section level3">
+<h3>Podpowiedzi</h3>
+<ul>
+<li>Obraz można wczytać za pomocą funkcji
+<strong><em>imread</em></strong> znajdującej się w bibliotece
+<strong><em>matplotlib.image</em></strong>. Wczytany obraz będzie w
+postaci tablicy 3 wymiarowej, gdzie pierwsze 2 wymiary określają indeks
+pojedynczego punktu, a ostatni określa kanał (red, green, blue i
+opcjonalnie alpha)</li>
+<li>Aby utworzyć 2 wykresy/obrazki w jednym oknie zamiast funkcji
+<strong><em>figure</em></strong> (z biblioteki matplotlib.pyplot) należy
+skorzystać z funkcji <strong><em>subplot</em></strong> gdzie argumentami
+jest para określająca liczbę wykresów w wierszach i kolumnach:</li>
+</ul>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a><span class="co"># kod wyznaczający tablice x, y ....</span></span>
+<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a>_, axes <span class="op">=</span>  plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(x, y)</span>
+<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(y, x)</span>
+<span id="cb55-6"><a href="#cb55-6" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<ul>
+<li>Obraz zapisany w postaci macierzy kolorów RGB (lub RGBA) można
+wyświetlić za pomocą funkcji <strong><em>imshow</em></strong>
+znajdującej się w bibliotece <strong><em>matplotlib.pyplot</em></strong>
+(w przypadku rysowania w jednym oknie należy skorzystać z metody
+<strong><em>imshow</em></strong> należącej do obiektów typu Axes,
+zwracanych z funkcji subplot)</li>
+</ul>
+</div>
+</div>
+<div id="zadanie-4-1" class="section level2">
+<h2>Zadanie 4</h2>
+<p>Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie
+jasności obrazka w danym punkcie generował obraz w pliku tekstowym za
+pomocą wybranych znaków. Obraz tekstowy powinien zostać utworzony na
+bazie przeskalowanego, mniejszego obrazka oraz powinien używać co
+najmniej 2 różnych znaków do określenia 2 różnych jasności (np. “||” dla
+czarnego koloru i “–” dla szarego). Poniżej zamieszczono przykładowy
+rezultat.</p>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>                  <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>                 </span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>            <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>           </span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>        <span class="op">||</span>  <span class="op">-</span> <span class="op">-</span>           <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>         </span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>      <span class="op">||||</span>        <span class="op">-</span> <span class="op">||</span>        <span class="op">-</span> <span class="op">-</span> <span class="op">-</span>     </span>
+<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a>    <span class="op">||||||</span>      <span class="op">||||||</span>  <span class="op">||||</span>    <span class="op">-</span> <span class="op">-</span>     </span>
+<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a>    <span class="op">||||</span>  <span class="op">||||</span>  <span class="op">||</span>      <span class="op">||||||</span>    <span class="op">-</span> <span class="op">-</span>   </span>
+<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a>  <span class="op">||||</span>    <span class="op">||</span>    <span class="op">||</span>      <span class="op">||</span>    <span class="op">||</span>    <span class="op">-</span> <span class="op">-</span> </span>
+<span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a>  <span class="op">||||</span>  <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>    <span class="op">||||</span>  <span class="op">-</span> <span class="op">-</span> </span>
+<span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a>  <span class="op">||</span>    <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>  <span class="op">-</span> <span class="op">-</span> </span>
+<span id="cb56-10"><a href="#cb56-10" tabindex="-1"></a><span class="op">||||</span>  <span class="op">-</span> <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>    <span class="op">-</span> </span>
+<span id="cb56-11"><a href="#cb56-11" tabindex="-1"></a><span class="op">||||</span>  <span class="op">-</span> <span class="op">||</span>    <span class="op">||||||||</span>  <span class="op">||</span>      <span class="op">||</span>    <span class="op">-</span> </span>
+<span id="cb56-12"><a href="#cb56-12" tabindex="-1"></a><span class="op">||||</span>    <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>    <span class="op">-</span> </span>
+<span id="cb56-13"><a href="#cb56-13" tabindex="-1"></a>  <span class="op">||-</span>   <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>      <span class="op">||</span>  <span class="op">-</span> <span class="op">-</span> </span>
+<span id="cb56-14"><a href="#cb56-14" tabindex="-1"></a>  <span class="op">||||</span>  <span class="op">||||</span>    <span class="op">||</span>      <span class="op">||</span>    <span class="op">||||</span>  <span class="op">-</span> <span class="op">-</span> </span>
+<span id="cb56-15"><a href="#cb56-15" tabindex="-1"></a>  <span class="op">||||</span>    <span class="op">||-</span>   <span class="op">||</span>      <span class="op">||</span>  <span class="op">||||</span>    <span class="op">-</span>   </span>
+<span id="cb56-16"><a href="#cb56-16" tabindex="-1"></a>    <span class="op">||||</span>    <span class="op">||</span>  <span class="op">||</span>      <span class="op">||||||</span>    <span class="op">-</span> <span class="op">-</span>   </span>
+<span id="cb56-17"><a href="#cb56-17" tabindex="-1"></a>    <span class="op">-</span> <span class="op">||||</span>      <span class="op">||</span>      <span class="op">||||</span>    <span class="op">-</span> <span class="op">-</span>     </span>
+<span id="cb56-18"><a href="#cb56-18" tabindex="-1"></a>      <span class="op">||||||</span>                    <span class="op">-</span>       </span>
+<span id="cb56-19"><a href="#cb56-19" tabindex="-1"></a>          <span class="op">||||||||</span>      <span class="op">||||||</span>          </span>
+<span id="cb56-20"><a href="#cb56-20" tabindex="-1"></a>            <span class="op">||||||||||||||||-</span>           </span></code></pre></div>
+<div id="podpowiedzi-1" class="section level3">
+<h3>Podpowiedzi</h3>
+<p>W celu określenia jasności obrazka w danym punkcie skorzystaj z
+definicji kolorów HSV zamiast RGB. Kolory HSV, podobnie jak RGB są
+przechowywane w macierzy o 3 kanałach. Definicja każdego z kanałów można
+zobaczyć na poniższym rysunku:</p>
+<div class="float">
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/0/0d/HSV_color_solid_cylinder_alpha_lowgamma.png"
+title="Skala HSV, źródło wikipedia" alt="SkalaHSV" />
+<div class="figcaption">SkalaHSV</div>
+</div>
+<p>Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą
+funkcji <strong><em>rgb_to_hsv</em></strong> znajdującej się w
+bibliotece <strong><em>matplotlib.colors</em></strong>. Kanał
+<strong><em>Value</em></strong> dla macierzy HSV jest określony jako
+trzeci(ostatni).</p>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

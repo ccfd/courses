@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>cpp_inst01</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst01.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="instrukcja-i" class="section level1">
+<h1>Instrukcja I</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<div id="współczesny-c" class="section level3">
+<h3>Współczesny C++</h3>
+<p>Niniejszy tekst rozpoczyna cykl instrukcji stanowiących kurs
+wprowadzający do języka C++. Język ten, pomimo swojego dojrzałego wieku,
+wciąż bardzo dynamicznie się rozwija. W chwili pisania tej instrukcji,
+jego najnowszą odsłonę stanowi niedawno zatwierdzony standard C++20.
+Komitet ISO, który go wydaje, pracuje obecnie w trzyletnim cyklu;
+dotychczasowe wydania standardu to C++98, C++03, C++11, C++14, C++17 i
+C++20 (następna planowana wersja to C++23). Wspominamy o tym, gdyż
+dobrze napisany kod w ww. języku wygląda dziś znacząco inaczej, niż
+kilkanaście lat temu. W czasie trwania zajęć postaramy się przedstawić
+czytelnikowi możliwie jak najbardziej współczesne elementy języka oraz
+schematy programowania. Postaramy się zaznaczać, w którym standardzie
+pojawił się dany element i dlaczego wyparł on ten wcześniej używany (lub
+jaką lukę wypełnia). Tym samym sugerujemy czytelnikowi zaopatrzyć się w
+kompilator wspierający możliwie jak najnowszy standard. Absolutne
+minimum to wsparcie dla C++11. Od tej edycji zwykło się mówić o
+“współczesnym C++” (ang. <em>modern C++</em>), gdyż fundamentalnie
+zmieniła ona paradygmat programowania w C++.</p>
+</div>
+<div id="dlaczego-c" class="section level3">
+<h3>Dlaczego C++?</h3>
+<p>Na samym początku chcielibyśmy zaznaczyć do czego służy C++ oraz
+kiedy należy sięgnąć po inny język. Niewątpliwie największą jego siłę
+stanowi wydajność, zarówno w zakresie wykorzystywanej pamięci, jak i
+czasu wykonania programu. Pisząc w C++ sami zarządzamy pamięcią, zatem
+napisany program nigdy nie wykorzysta jej więcej, niż sobie tego
+zażyczymy - sami decydujemy o swoim losie. Dzięki dostępnym
+niskopoziomowym narzędziom oraz wyrafinowaniu optymalizatorów dostępnych
+we współczesnych kompilatorach możemy mieć duży stopień pewności, że
+dany algorytm zaimplementowany w C++ wykona się co najmniej tak samo
+szybko, jak w jakimkolwiek innym języku. Jedną z przyświecających
+twórcom tego języka maksym jest “<em>leave no room for a language
+between C++ and assembly</em>”. Jednocześnie, C++ pozwala na wspięcie
+się na relatywnie wysoki poziom abstrakcji. Przez abstrakcję rozumiemy
+tutaj wyrażanie stosunkowo skomplikowanych operacji w zwięzły sposób.
+Zamiast opisywać niskopoziomowe operacje na bitach, wtajemniczenie w
+które wymaga czasu i skupienia, opisujemy interakcje między obiektami,
+których znaczenie widoczne jest na pierwszy rzut oka. Pozwala to na
+pisanie przejrzystego, łatwo sprawdzalnego kodu, co przyspiesza proces
+tworzenia oprogramowania. Z tego powodu często mówi się, że jedną z
+zalet C++ są “darmowe abstrakcje” (ang. <em>zero-cost
+abstractions</em>), tzn. abstrakcje, które nie pociągają za sobą kosztu
+w wydajności kodu.</p>
+<p>C++ nie jest jednak magicznym narzędziem, które najlepiej nadaje się
+do wszystkiego. Pomimo wspomnianych abstrakcji, kod potrzebny do
+wykonania danego zadania będzie przeważnie dłuższy (w znaczeniu liczby
+linijek) od kodu napisanego w wysokopoziomowym języku, np. Pythonie.
+Jeżeli naszym celem jest napisanie szybko małego programu, którego czas
+wykonania wynosi kilka sekund, prawdopodobnie należy sięgnąć po inne
+narzędzie. Z tego powodu, często w dużych systemach w C++ napisane są
+kernele (jądra), a bardziej peryferyjna funkcjonalność (frontend,
+interfejsy) zaimplementowana jest w innym języku. C++ możemy
+współcześnie znaleźć np. w branżach takich jak automotive, aerospace i
+game development, w bazach kodu do obliczeń na superkomputerach (HPC),
+ale także w kodzie źródłowym dużych serwisów jak Facebook czy Google, w
+których, ze względu na skalę, nawet mikrooptymalizacje mogą pociągać za
+sobą milionowe oszczędności.</p>
+</div>
+<div id="zakres-kursu" class="section level3">
+<h3>Zakres kursu</h3>
+<p>W trakcie zajęć nauczymy się podstaw języka C++ oraz zilustrujemy na
+jego przykładzie ideę programowania obiektowego. Położymy także nacisk
+na naukę dobrych praktyk i wytłumaczymy, czemu służą. Po ukończeniu
+niniejszego kursu, czytelnik powinien być w stanie samemu napisać proste
+programy, ale także potrafić poruszać się po bardziej skomplikowanych
+bibliotekach. Nie ukrywamy jednak, że kursowi temu daleko do bycia
+wyczerpującym. C++ stanowi obszerny temat, którego zgłębienie wymaga
+wiele czasu, wysiłku i przede wszystkim pracy nad własnym kodem (dlatego
+prawdopodobnie najbardziej rozwijającą częścią tego kursu są projekty
+domowe). Nadzieja autorów jest taka, że czytelnik, który w przyszłości
+potrzebował będzie wykorzystać ten język, posiadał będzie solidny
+fundament wiedzy, znał będzie “filozofię” programowania w C++ i wiedział
+będzie gdzie szukać zasobów do rozwijania swoich umiejętności.</p>
+<p>Prerekwizytami do niniejszego kursu są:</p>
+<ul>
+<li>Znajomość języka C: zmienne, pętle, funkcje, zarządzanie pamięcią
+(czyli czym różni się stos od sterty, <code>malloc</code>,
+<code>free</code>) itp.</li>
+<li>Dostęp do kompilatora wspierającego standard C++11 (a najlepiej
+C++17). Instrukcje przygotowane są w sposób niezależny od platformy, ale
+sugestia autorów to gcc lub clang na systemie Linux i MSVC na systemie
+Windows (dostępne przez IDE Visual Studio). Ostatnią deskę ratunku
+stanowią kompilatory online, wśród których króluje niewątpliwie <a
+href="https://godbolt.org/">Compiler Explorer</a>.</li>
+<li>Dostęp do internetu w trakcie zajęć: wątpliwości co do standardu
+(oraz biblioteki standardowej) najlepiej wyjaśniać zaglądając do <a
+href="https://en.cppreference.com/">dokumentacji</a>. Będzie ona także
+dostępna w czasie zaliczenia.</li>
+</ul>
+<p>Zaznaczamy też, że, przystępując do laboratorium, czytelnik powinien
+być zaznajomiony z treścią odpowiedniego wykładu. Opisy zawarte w
+instrukcjach nie są wyczerpujące, stanowią one jedynie zwięzłe
+przypomnienie i mają za zadanie skupić uwagę czytelnika na
+najważniejszych aspektach omawianego zagadnienia.</p>
+</div>
+</div>
+<div id="klasy" class="section level2">
+<h2>Klasy</h2>
+<div id="pola-i-metody" class="section level3">
+<h3>Pola i metody</h3>
+<p>Fundamentalnym pojęciem dla C++ i programowania obiektowego jest
+klasa. Definiując klasy oraz tworząc ich instancje (obiekty), możemy
+wyrazić operacje na bitach pamięci w sposób abstrakcyjny i zrozumiały
+dla człowieka. Klasy deklarujemy przy użycia słowa kluczowego
+<code>class</code> lub <code>struct</code>. Różnią się one jedynie tym,
+że domyślnie wszystkie pola klasy zadeklarowanej jako <code>class</code>
+są prywatne, a <code>struct</code> publiczne (co to dokładnie znaczy
+omówimy za chwilę).</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="kw">class</span> A</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="co">// definicje i/lub deklaracje pól i metod, domyślnie prywatne</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="kw">struct</span> B</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="co">// definicje i/lub deklaracje pól i metod, domyślnie publiczne</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Zadeklarowawszy takie (puste) klasy, możemy stworzyć ich
+instancje:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    A obiekt_typu_A<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    B obiekt_typu_B<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Oczywiście aby nasze klasy były jakkolwiek użyteczne, musimy
+wyposażyć je w pola i/lub metody:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">struct</span> Human</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="dt">int</span>    age<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="dt">double</span> height<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Możemy teraz stworzyć człowieka:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    Human Alice<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    Alice<span class="op">.</span>height <span class="op">=</span> <span class="fl">175.5</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    Alice<span class="op">.</span>age    <span class="op">=</span> <span class="dv">35</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Jak widzimy, powyższa klasa pozwoliła nam związać ze sobą parę
+parametrów w jeden obiekt. Pracując nad nim (np. podając go do funkcji),
+oszczędzamy czas, gdyż nie musimy za każdym razem mówić o parze
+parametrów, ale o jednym tworze. Takie struktury były już dostępne w C.
+W C++ klasy mogą mieć także metody:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="kw">struct</span> Human</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>    <span class="dt">void</span> printAge<span class="op">()</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> age <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="dt">int</span>    age<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="dt">double</span> height<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>    Human Alice<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>    Alice<span class="op">.</span>height <span class="op">=</span> <span class="fl">175.5</span><span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>    Alice<span class="op">.</span>age    <span class="op">=</span> <span class="dv">35</span><span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>    Alice<span class="op">.</span>printAge<span class="op">();</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div id="zadanie-1" class="section level4">
+<h4>Zadanie 1</h4>
+<p>Napisz klasę <code>Wektor2D</code>, która przechowuje (jako publiczne
+zmienne) współrzędną x i y dwuwymiarowego wektora. Dodaj do niej metodę
+<code>norm</code>, zwracającą normę wektora, oraz <code>print</code>,
+drukującą (w ładnym formacie) jego współrzędne.</p>
+</div>
+</div>
+<div id="konstruktory-i-destruktory" class="section level3">
+<h3>Konstruktory i destruktory</h3>
+<p>Szczególne typy metod to konstruktory i destruktory. Konstruktory to
+metody służące do tworzenia obiektów. Klasa może mieć dowolną liczbę
+konstruktorów (rozróżnianych typami podawanych argumentów, dokładnie tak
+samo jak przeciążalibyśmy każdą inną funkcję). Destruktor to metoda
+wywoływana przy niszczeniu obiektów danej klasy.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="kw">struct</span> Human</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    Human<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">double</span> h<span class="op">,</span> <span class="bu">std::</span>string n<span class="op">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>        age    <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>        height <span class="op">=</span> h<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>        name   <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Hello, &quot;</span> <span class="op">&lt;&lt;</span> name <span class="op">&lt;&lt;</span> <span class="st">&quot;!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>    <span class="op">~</span>Human<span class="op">()</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Goodbye, &quot;</span> <span class="op">&lt;&lt;</span> name <span class="op">&lt;&lt;</span> <span class="st">&quot;...</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>    <span class="dt">int</span>         age<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>    <span class="dt">double</span>      height<span class="op">;</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>    <span class="bu">std::</span>string name<span class="op">;</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a>    Human Alice<span class="op">(</span><span class="dv">35</span><span class="op">,</span> <span class="fl">175.5</span><span class="op">,</span> <span class="st">&quot;Alice&quot;</span><span class="op">);</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div id="nieco-niuansów-inicjalizacji" class="section level4">
+<h4>Nieco niuansów inicjalizacji</h4>
+<p>Zauważmy, że teraz próba konstrukcji <code>Human Alice;</code>
+spowodowałaby błąd kompilacji. Dzieje się tak dlatego, że w przypadku, w
+którym nie zdefiniujemy żadnego konstruktora, kompilator spróbuje za nas
+stworzyć konstruktor domyślny (tzn. taki bez argumentów). Ponieważ
+zdefiniowaliśmy <code>Human(int, double, std::string)</code>, kompilator
+nie doda konstruktora domyślnego. Nieco więcej o tym i o tzw. “Rule of
+5” powiemy w następnej instrukcji. Warto też tutaj powiedzieć, że
+niestety z przyczyn historycznych składnia konstrukcji w C++ jest dość
+zagmatwana (zainteresowanych szczegółami odsyłamy np. do <a
+href="https://youtu.be/7DTlWPgX6zs">tego wykładu</a>). Poniższe
+inicjalizacje zmiennej typu <code>int</code> są dokładnie
+równoważne:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="dt">int</span> a1 <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// Nie, tutaj nie ma przypisania, int od razu inicjalizowany jest 0. Nieco mylące...</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="dt">int</span> a2<span class="op">(</span><span class="dv">0</span><span class="op">);</span>  <span class="co">// Tutaj bez niespodzianki, ale co się stanie, gdy zawołamy domyślny konstruktor jakiejś klasy?</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="dt">int</span> a3<span class="op">{</span><span class="dv">0</span><span class="op">};</span>  <span class="co">// Od C++11 preferujemy nawiasy klamrowe!</span></span></code></pre></div>
+<p>Współcześnie, silnie preferujemy inicjalizację (konstrukcję) przy
+pomocy nawiasów klamrowych. Wynika to między innymi z faktu, że wołanie
+konstruktora domyślnego (tzn. tego bez argumentów) przy pomocy nawiasów
+okrągłych skutkuje dość nieoczekiwanym zachowaniem, tzw. <em>most vexing
+parse</em>.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">struct</span> Human</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    Human<span class="op">()</span> <span class="op">{</span> age <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> height <span class="op">=</span> <span class="fl">40.</span><span class="op">;</span> name <span class="op">=</span> <span class="st">&quot;Nameless&quot;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="co">// Reszta jak wyżej...</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>    Human no_name1<span class="op">{};</span> <span class="co">// Tutaj tworzymy obiekt no_name1 przy użyciu konstruktora domyślnego klasy Human</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>    Human no_name2<span class="op">;</span>   <span class="co">// Jak  wyżej</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>    Human no_name3<span class="op">();</span> <span class="co">// Tutaj deklarujemy funkcję no_name3, która przyjmuje 0 argumentów i zwraca typ Human</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>                      <span class="co">// Most vexing parse!</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Powodem tego zjawiska jest to, że w C++ wszystko, co może tylko być
+deklaracją, jest interpretowane jako deklaracja. Inicjalizacja nawiasami
+klamrowymi może w pewnym przypadku sprawić kłopoty, o czym powiemy na
+zajęciach dotyczących kontenerów (kłopoty wynikają ze szczególnych zasad
+dotyczących <code>std::initializer_list</code>). Póki co starajmy się
+jednak wyrabiać dobre nawyki i pozostańmy przy podawaniu argumentów
+konstruktorów wewnątrz <code>{ }</code>.</p>
+</div>
+<div id="zadanie-2" class="section level4">
+<h4>Zadanie 2</h4>
+<p>Dodaj do klasy <code>Wektor2D</code> konstruktor dwuargumentowy,
+który nadaje wartości współrzędnym wektora, a następnie je drukuje.
+Napisz destruktor, który także drukuje tę informację. Stwórz kilka
+różnych wektorów. W jakiej kolejności są one niszczone? W którym miejscu
+w kodzie następuje destrukcja?</p>
+</div>
+<div id="zadanie-3" class="section level4">
+<h4>Zadanie 3</h4>
+<p>Napisz klasę <code>Informer</code>, która posiada konstruktor
+domyślny, drukujący informację o konstrukcji, oraz destruktor, drukujący
+informację o destrukcji. Dodaj do klasy <code>Wektor2D</code> pole typu
+<code>Informer</code>. Które destruktory wołane są przy zniszczeniu
+wektora? W jakiej kolejności? Zastanów się, jakie ma to implikacje dla
+komponowania większych obiektów z mniejszych obiektów.</p>
+</div>
+</div>
+<div id="modyfikatory-dostępu" class="section level3">
+<h3>Modyfikatory dostępu</h3>
+<p>Wszystkie pola i metody, z których dotychczas korzystaliśmy, były
+publiczne, tzn. mieliśmy do nich dostęp spoza klasy (z funkcji
+<code>main</code>). Często możemy jednak chcieć zablokować dostęp do
+części pól i/lub metod jakiejś klasy. Postawmy się na przykład w pozycji
+autora/autorki biblioteki do sprawdzania pogody. W tego typu bibliotece
+gdzieś musi znaleźć się funkcjonalność do komunikacji z serwerem, a
+następnie interpretowania danych, które od niego otrzymamy. Jednak nie
+chcemy, aby użytkownik naszej biblioteki musiał ten proces widzieć ani
+rozumieć. Wolimy, żeby użytkownik wołał po prostu np.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;biblioteka_pogodowa.h&quot;</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    Godzina g<span class="op">{</span><span class="st">&quot;17:00&quot;</span><span class="op">};</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    Pogoda  p<span class="op">{</span>godzina<span class="op">};</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    p<span class="op">.</span>getFromServer<span class="op">();</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    p<span class="op">.</span>print<span class="op">();</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Czynimy zatem publicznymi konstruktor oraz metody
+<code>getFromServer</code> i <code>print</code>. Natomiast wszystkie
+inne metody przez nie wołane (np. te służące do komunikacji z serwerem)
+czynimy prywatnymi (metody mogą wołać wszystkie inne metody danej klasy,
+w tym te prywatne). Klasa <code>Pogoda</code> ma więc dość mały
+interfejs. Dzięki temu jest łatwa w użyciu oraz trudna do nadużycia. Jak
+wiadomo duża część pracy programistycznej to pisanie kodu w taki sposób,
+aby był “idiotoodporny”.</p>
+<p>Często spotykanym podejściem jest pisanie tzw. “setterów” i
+“getterów”. Polega ono na czynieniu pól klasy prywatnymi i dodawaniu
+publicznych funkcji <code>setX</code> i <code>getX</code>. W ten sposób
+zabezpieczamy się przed nieumyślną zmianą danej wartości. W naszym
+przypadku mogłoby wyglądać to następująco:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">class</span> Human</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="dt">void</span> setAge<span class="op">(</span><span class="dt">int</span> a<span class="op">)</span> <span class="op">{</span> age <span class="op">=</span> a<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="dt">int</span>  getAge<span class="op">()</span>      <span class="op">{</span> <span class="cf">return</span> age<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="dt">int</span>    age<span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    <span class="dt">double</span> height<span class="op">;</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<div id="zadanie-4" class="section level4">
+<h4>Zadanie 4</h4>
+<p>Dodaj do klasy <code>Wektor2D</code> metody <code>setX</code>,
+<code>getX</code>, <code>setY</code> i <code>getY</code>, służące do
+odczytywania i modyfikowania współrzędnych wektora. Uczyń pola opisujące
+współrzędne prywatnymi. Co stanie się, gdy spróbujesz zawołać np.
+<code>std::cout &lt;&lt; wektor.x;</code>?</p>
+</div>
+</div>
+<div id="przeciążanie-operatorów" class="section level3">
+<h3>Przeciążanie operatorów</h3>
+<p>W języku C++ operatory (<a
+href="https://en.cppreference.com/w/cpp/language/operators">tu
+znajdziesz ich listę</a>) możemy przeciążać tak samo jak wszystkie inne
+funkcje. Spójrzmy na przykład:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">class</span> Human<span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="kw">struct</span> Couple</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    Couple<span class="op">()</span> <span class="op">{}</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    Couple<span class="op">(</span>Human p1<span class="op">,</span> Human p2<span class="op">)</span> <span class="op">{</span> person1 <span class="op">=</span> p1<span class="op">;</span> person2 <span class="op">=</span> p2<span class="op">;</span> <span class="op">}</span> <span class="co">// Uwaga: Human musi mieć konstruktor domyślny</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    Human person1<span class="op">;</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    Human person2<span class="op">;</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>Couple <span class="kw">operator</span><span class="op">+(</span>Human h1<span class="op">,</span> Human h2<span class="op">)</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>    <span class="cf">return</span> Couple<span class="op">{</span>h1<span class="op">,</span> h2<span class="op">};</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>    Human Alice<span class="op">{</span><span class="dv">35</span><span class="op">,</span> <span class="fl">175.5</span><span class="op">,</span> <span class="st">&quot;Alice&quot;</span><span class="op">};</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>    Human Sam<span class="op">{</span><span class="dv">34</span><span class="op">,</span> <span class="dv">174</span><span class="op">,</span> <span class="st">&quot;Sam&quot;</span><span class="op">};</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>    Couple c<span class="op">;</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>    c <span class="op">=</span> Alice <span class="op">+</span> Sam<span class="op">;</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Pozwala nam to często na pisanie bardziej ekspresyjnego kodu poprzez
+definiowanie abstrakcyjnych operacji przy pomocy znanych nam intuicyjnie
+operatorów (<code>&amp;&amp;</code>, <code>+</code>, <code>*</code>,
+itd.). Więcej na temat szczególnego operatora <code>=</code> powiemy na
+kolejnych zajęciach.</p>
+<div id="zadanie-5" class="section level4">
+<h4>Zadanie 5</h4>
+<p>Przeciąż operatory <code>+</code> i <code>*</code> tak, aby były
+zdefiniowane dla klasy <code>Wektor2D</code> (zgodnie z tradycyjną
+algebrą).</p>
+</div>
+<div id="zadanie-6" class="section level4">
+<h4>Zadanie 6</h4>
+<p>Przeciąż operator <code>&lt;&lt;</code> tak, aby można było zawołać
+<code>std::cout &lt;&lt; wektor;</code>. Następnie przeciąż go tak, aby
+można było zawołać
+<code>std::cout &lt;&lt; wektor1 &lt;&lt; wektor2 /* &lt;&lt; ... */ &lt;&lt; wektorn</code>.</p>
+</div>
+</div>
+<div id="pola-i-metody-statyczne" class="section level3">
+<h3>Pola i metody statyczne</h3>
+<p>Dotychczas definiowaliśmy pola i metody, które operowały na
+konkretnym obiekcie danej klasy (np. imię jest indywidualną cechą
+każdego człowieka). Czasem przydatne mogą być także pola i metody
+statyczne, czyli zdefiniowane dla całej klasy, nie dla jej
+poszczególnych instancji. Przyjrzyjmy się przykładowi:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">struct</span> Human</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="at">static</span>       <span class="dt">int</span> n_humans<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    <span class="at">static</span> <span class="at">const</span> <span class="dt">int</span> n_human_heads <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>    </span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    Human<span class="op">()</span>  <span class="op">{</span> <span class="op">++</span>n_humans<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>    <span class="op">~</span>Human<span class="op">()</span> <span class="op">{</span> <span class="op">--</span>n_humans<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="dt">int</span> Human<span class="op">::</span>n_humans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span></code></pre></div>
+<p>Dzięki odpowiedniej definicji konstruktora i destruktora, pole
+<code>n_humans</code> pozwala nam śledzić, ile ludzi żyje w danym
+momencie wykonania programu. Dodatkowo, pole <code>n_human_heads</code>
+pozwala nam na zapisanie, ile głów ma człowiek (jest to cecha wspólna
+wszystkich ludzi). W różnych miejscach kodu możemy odnosić się do tej
+wielkości, a jeżeli na późniejszym etapie pracy zdecydujemy się, że
+chcemy, aby gatunek ludzki w naszym programie miał jednak więcej głów,
+wystarczy zmienić jedną wartość. Taki sposób pisania kodu pozwala nam
+zaoszczędzić pracy oraz uniknąć potencjalnych błędów.</p>
+<div id="zadanie-7" class="section level4">
+<h4>Zadanie 7</h4>
+<p>Dodaj do klasy <code>Wektor2D</code> prywatne pole
+<code>num_wek</code> typu całkowitego, które przechowuje bieżącą liczbę
+istniejących obecnie wektorów. Zainicjalizuj je zerem. Zmodyfikuj
+odpowiednio konstruktory i dodaj odpowiedni destruktor. Stwórz w
+<code>main</code>ie kilka wektorów, z których część umieścisz w
+dodatkowym zagnieżdżonym scope’ie (bloku nawiasów <code>{}</code>).
+Zweryfikuj swoją pracę wyświetlając wartość pola <code>num_wek</code> na
+różnych etapach wykonania programu (lub podglądając ją w
+debuggerze).</p>
+<p>Statyczne mogą być także funkcje (metody). W ostatnim zadaniu nic nie
+stoi na przeszkodzie, abyśmy ręcznie zmodyfikowali zmienną
+reprezentującą liczbę istniejących wektorów. Naprawmy ten potencjalny
+problem, wykorzystując fakt, że metody statyczne mają dostęp do
+prywatnych pól i metod danej klasy (zarówno tych statycznych jak i
+nie).</p>
+</div>
+<div id="zadanie-8" class="section level4">
+<h4>Zadanie 8</h4>
+<p>Uczyń pole <code>num_wek</code> prywatnym. Dodaj do klasy
+<code>Wektor2D</code> publiczną, statyczną funkcję o sygnaturze
+<code>int populacja()</code>, która zwraca wartość pola
+<code>num_wek</code>. Zmodyfikuj odpowiednio kod w
+<code>main</code>ie.</p>
+<p>Bardzo istotny przykład wykorzystania metod statycznych stanowi
+wrapper na konstruktor (wrapper to w programowaniu określenie na
+funkcjonalność, która zawija jedynie inną funkcjonalność, nie dodając
+zbyt wiele od siebie). Chcielibyśmy teraz zdefiniować dodatkowy
+konstruktor klasy <code>Wektor2D</code>, który przyjmie współrzędne
+wektora w układzie biegunowym. Konstruktor taki przyjmuje oczywiście 2
+liczby zmiennoprzecinkowe, ma zatem sygnaturę
+<code>Wektor2D(double, double)</code>. Niestety, taki konstruktor został
+już przez nas zdefiniowany. Jak zatem obejść ten problem i umożliwić
+inicjalizację wektorów w obu układach odniesienia?</p>
+</div>
+<div id="zadanie-9" class="section level4">
+<h4>Zadanie 9</h4>
+<p>Uczyń konstruktor wektora o sygnaturze
+<code>Wektor2D(double, double)</code> prywatnym. Napisz publiczną,
+statyczną metodę <code>Wektor2D kart(double, double)</code>, która
+tworzy wektor na podstawie podanych współrzędnych w układzie
+kartezjańskim. Teraz dodaj kolejną publiczną, statyczną metodę
+<code>Wektor2D bieg(double, double)</code>, która tworzy wektor na
+podstawie podanych współrzędnych w układzie biegunowym (musisz
+skonwertować je do układu kartezjańskiego). Zmodyfikuj odpowiednio kod w
+<code>main</code>ie (wszystkie wektory tworzone bezpośrednio muszą teraz
+być tworzone przez zawołanie odpowiedniej metody statycznej).
+Zweryfikuj, czy konwersja współrzędnych z jednego układu współrzędnych
+na drugi przebiegła (matematycznie) poprawnie. Parę uwag do zadania:</p>
+<ul>
+<li>Funkcje trygonometryczne znajdziesz w nagłówku
+<code>#include &lt;cmath&gt;</code>. Wszystkie nagłówki wykorzystywane w
+języku C zostały przeniesione do C++ w sposób
+<code>nazwa_nagłówka.h</code> → <code>cnazwa_nagłówka</code>.</li>
+<li>Domyślny konstruktor wektora może pozostać publiczny. Punkt (0, 0)
+pokrywa się w obu układach współrzędnych, nie ma tu dwuznaczności.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="pytania-na-koniec" class="section level2">
+<h2>Pytania na koniec</h2>
+<ul>
+<li>Czym jest <code>std::cout</code> (do jakiej kategorii bytów należy)?
+Jaki ma scope (“zasięg istnienia”)?</li>
+<li>Z jakiego konstruktora klasy <code>std::string</code> korzystaliśmy
+w klasie <code>Human</code>?</li>
+<li>Czy klasa może mieć więcej niż 1 destruktor? Dlaczego?</li>
+<li>Na ile sposobów możemy zdefiniować <code>operator+</code> dla klasy
+<code>Wektor2D</code>? W razie wątpliwości zajrzyj <a
+href="https://youtu.be/gjFrjNK3Dq4">tutaj</a>.</li>
+<li>W którym miejscu programu rozpoczynają swoje życie obiekty
+statyczne? W którym je kończą?</li>
+</ul>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="J. Gałecki" />
+
+
+<title>cpp_inst04</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cpp_inst04.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="instrukcja-iv" class="section level1">
+<h1>Instrukcja IV</h1>
+<div id="wstęp" class="section level2">
+<h2>Wstęp</h2>
+<p>Na dzisiejszych zajęciach zajmiemy się szablonami (template’ami) klas
+oraz funkcji (od C++14 istnieją także szablony zmiennych, ale
+zaznajomienie się z nimi pozostawiamy dla chętnych). Template’y stanowią
+fundament C++ oraz są głównym powodem, dla którego język ten nie jest
+tylko “C z klasami” (choć stwierdzenie to można znaleźć w wielu
+miejscach w sieci). Ich obecność pozwala na pisanie generycznego kodu o
+maksymalnie szerokiej gamie zastosowań. Przykładem takiego podejścia
+jest sama biblioteka standardowa (STL - <em>Standard Template
+Library</em>), w której nie znajdziemy prawie żadnych funkcji i klas,
+lecz <em>szablony</em> funkcji i klas. Szablony definiujemy zgodnie z
+następującą składnią:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span> <span class="co">/* lista parametrów */</span> <span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">// Tutaj normalna definicja klasy/funkcji/aliasu/obiektu(C++14), wewnątrz której korzystamy z parametrów</span></span></code></pre></div>
+<p>Dalej możemy korzystać ze zdefiniowego szablonu w następujący
+sposób:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">/* nazwa szablonu */</span> <span class="op">&lt;</span> <span class="co">/* konkretne argumenty zgodne z rodzajem zadeklarowanych parametrów */</span> <span class="op">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">// Powyższa linijka jest nazwą klasy/funkcji/etc., z której możemy korzystać jak z każdej innej klasy/funkcji/etc.</span></span></code></pre></div>
+<p>Dzięki zastosowaniu template’ów możemy zdefiniować ciało danej
+klasy/funkcji/etc. tylko raz, a następnie instancjonować dany szablon
+dla dowolnych (zgodnych z deklaracją) parametrów, w zależności od
+potrzeby. Podkreślmy, że klasą/funkcją/etc. jest dopiero instancja
+szablonu, nie sam szablon. Proces instancjonowania template’ów odbywa
+się w czasie kompilacji, także możemy mieć pewność, że wykorzystanie tej
+funkcjonalności języka nie pociąga za sobą żadnego kosztu w wydajności
+programu. Pełne wprowadzenie do tego tematu czytelnik może znaleźć np.
+<a href="https://youtu.be/LMP_sxOaz6g">tutaj</a>.</p>
+</div>
+<div id="rodzaje-parametrów-szablonów" class="section level2">
+<h2>Rodzaje parametrów szablonów</h2>
+<p>Zanim napiszemy pierwszy szablon, powiedzmy, jakie może on w ogóle
+mieć rodzaje parametrów. Ich pełną listę możemy oczywiście znaleźć <a
+href="https://en.cppreference.com/w/cpp/language/template_parameters">w
+dokumentacji</a>, tutaj ograniczymy się do dwóch najważniejszych: typów
+oraz parametrów niebędących typami (tłumaczenie z angielskiego jest
+niestety mało wdzięczne).</p>
+<div id="typ-jako-parametr" class="section level3">
+<h3>Typ jako parametr</h3>
+<p>Szablony w C++ mogą być sparametryzowanane typami, zgodnie ze
+składnią</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> T <span class="co">/* ... */</span><span class="op">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">/* definicja szablonu */</span></span></code></pre></div>
+<p>Zamiast <code>typename</code> możemy zamiennie użyć
+<code>class</code>, <code>typename</code> jest jednak zgodne z
+powszechną konwencją. Wszędzie, gdzie w definicji danego
+sparametryzowanego bytu występuje typ, możemy teraz użyć <code>T</code>.
+Możemy zatem użyć <code>T</code> m.in. jako:</p>
+<ul>
+<li>typ pola klasy</li>
+<li>typ argumentu funkcji (w tym metody klasy)</li>
+<li>typ zwracany przez funkcję</li>
+<li>argument innego szablonu (template’y możemy dowolnie
+zagnieżdżać)</li>
+</ul>
+<p>Wyobraźmy sobie teraz, że mamy napisać funkcję, która przyjmuje 2
+liczby i zwraca ich sumę. Gdyby nie template’y, musielibyśmy pisać
+osobną funkcję dla <code>int</code>ów, <code>double</code>’i,
+<code>float</code>ów, <code>bool</code>i itd. Teraz wystarczy, że
+napiszemy jeden szablon, sparametryzowany typem argumentu i odpowiednio
+go zainstancjonujemy (jak dowiemy się niebawem jawne podanie parametrów
+szablonu nie będzie konieczne). Przykład ten stanowi jedynie wierzchołek
+góry lodowej zastosowań szablonów w C++.</p>
+</div>
+<div id="nttp" class="section level3">
+<h3>NTTP</h3>
+<p>Parametrem szablonu może być także byt inny niż typ. W języku
+angielskim mówimy <em>non-type template parameter</em>, w dalszej części
+tego tekstu korzystać będziemy właśnie ze skrótu NTTP. NTTP mogą
+być:</p>
+<ul>
+<li>typy całkowite (<code>int</code>, <code>char</code>,
+<code>bool</code>, etc.)</li>
+<li>enumeracje (<code>enum</code>)</li>
+<li>referencje lvalue do obiektu lub funkcji (poza zakresem tej
+instrukcji)</li>
+<li>wskaźniki do obiektu lub funkcji (poza zakresem tej instrukcji)</li>
+<li><code>std::nullptr_t</code> (poza zakresem tej instrukcji)</li>
+<li>od C++20 wymagania NTTP zostały poluzowane, dopuszczane są teraz
+także typy strukturalne i zmiennoprzecinkowe (zdecydowanie poza zakresem
+tej instrukcji)</li>
+</ul>
+<p>NTTP dają szablonowi dostęp do wartości liczbowych (lub im podobnym)
+<em>w czasie kompilacji</em>. W konsekwencji w pełni legalna jest np.
+statyczna alokacja pamięci uzależniona od liczby całkowitej będącej
+parametrem szablonu (<code>int tab[N]</code> jest w tym kontekście
+dopuszczalne).</p>
+</div>
+</div>
+<div id="szablony-klas" class="section level2">
+<h2>Szablony klas</h2>
+<p>Możemy teraz napisać nasz pierwszy szablon klasy. Zacznijmy od rzeczy
+trywialnych.</p>
+<div id="zadanie-1" class="section level4">
+<h4>Zadanie 1</h4>
+<p>Napisz szablon klasy <code>Para</code>, który trzyma 2 obiekty typu,
+którym jest sparametryzowany.</p>
+<p>Szablonu <code>Para</code> możemy teraz użyć wszędzie tam, gdzie
+potrzebujemy trzymać razem parę obiektów pewnego typu.</p>
+</div>
+<div id="zadanie-2" class="section level4">
+<h4>Zadanie 2</h4>
+<p>Dodaj do szablonu klasy <code>Para</code> metodę <code>suma</code>,
+która zwraca sumę trzymanych obiektów (użyj operatora
+<code>+</code>)</p>
+<p>Widzimy już pierwszy problem towarzyszący szablonom - aby napisany
+kod był poprawny, dla typu, którym zainstancjonujemy szablon, musi
+istnieć zdefiniowany poprawnie operator <code>+</code>. W czasie pisania
+szablonu nie mamy kontroli nad typem, który zostanie do tego
+użyty<sup>1</sup>. Na szczęście wszystkie błędy tego typu zostaną
+wykryte w czasie kompilacji.</p>
+<p>Przećwiczmy także klasy sparametryzowane NTTP.</p>
+</div>
+<div id="zadanie-3" class="section level4">
+<h4>Zadanie 3</h4>
+<p>Napisz szablon klasy <code>TablicaPar</code> sparametryzowany 1 typem
+oraz 1 NTTP typu <code>unsigned int</code>. Niech przechowuje ona
+statycznie zaalokowaną tablicę obiektów typu <code>Para&lt;T&gt;</code>
+o długości <code>N</code>, gdzie <code>T</code> i <code>N</code> to
+parametry klasy <code>TablicaPar&lt;T, N&gt;</code>.</p>
+</div>
+<div id="zadanie-4" class="section level4">
+<h4>Zadanie 4</h4>
+<p>Przeciąż dla klasy <code>TablicaPar</code> operator <code>[]</code>
+tak, aby umożliwić indeksowanie po trzymanej tablicy.</p>
+</div>
+<div id="zadanie-5" class="section level4">
+<h4>Zadanie 5</h4>
+<p>Przećwicz działanie napisanych szablonów na typie <code>double</code>
+(np. wypełnij tablicę a następnie policz sumę wszystkich trzymanych par
+liczb). Teraz wykonaj to samo zadanie dla typu <code>int</code>. W ilu
+miejscach musiałaś/musiałeś zmodyfikować kod?</p>
+</div>
+<div id="specjalizacje-szablonów-klas" class="section level3">
+<h3>Specjalizacje szablonów klas</h3>
+<p>Jeżeli chcemy, aby nasz szablon zachowywał się w szczególny sposób
+dla jakiejś grupy parametrów, możemy dodać do niego specjalizację. Klasy
+specjalizujemy wg. następującego schematu:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">// Definicja</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="co">/* parametry */</span><span class="op">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="kw">class</span> Klasa <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">// Specjalizacja</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="co">/* lista parametrów specjalizacji, w szczególności może być pusta */</span><span class="op">&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="kw">class</span> Klasa<span class="op">&lt;</span><span class="co">/* konkretne typy/wartości/etc. wynikające z parametrów specjalizacji */</span><span class="op">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span></code></pre></div>
+<p>Pokażmy to na konkretnym przykładzie:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="kw">struct</span> S <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>    <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span> puts<span class="op">(</span><span class="st">&quot;Szablon ogólny&quot;</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="kw">struct</span> S<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="dt">void</span> print<span class="op">()</span> <span class="op">{</span> puts<span class="op">(</span><span class="st">&quot;Specjalizacja dla double&quot;</span><span class="op">);</span> <span class="op">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<div id="zadanie-6" class="section level4">
+<h4>Zadanie 6</h4>
+<p>Skopiuj powyższy kod i stwórz w funkcji <code>main</code> obiekty
+typu <code>S&lt;int&gt;</code> i <code>S&lt;double&gt;</code>.
+Zweryfikuj, że metoda <code>print</code> działa zgodnie z
+oczekiwaniami.</p>
+<p>Nie musimy jednak specjalizować klas dla konkretnych parametrów.
+Zwróćmy uwagę, że sama specjalizacja także posiada listę parametrów,
+którą możemy wykorzystać. Na przykład:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">// Ogólna definicja</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="kw">struct</span> S <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">// Specjalizacja dla wskaźników</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="kw">struct</span> S<span class="op">&lt;</span>T<span class="op">*&gt;</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">// Specjalizacja dla referencji</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="kw">struct</span> S<span class="op">&lt;</span>T<span class="op">&amp;&gt;</span> <span class="op">{</span> <span class="co">/* ... */</span> <span class="op">};</span></span></code></pre></div>
+<p>Zauważmy też, że nie musimy podawać ogólnej definicji szablonu,
+wystarczy ogólna <em>deklaracja</em>. W takim wypadku, gdy spróbujemy
+zainstancjonować szablon dla parametrów, które nie pasują do żadnej z
+jego specjalizacji, nasz program się nie skompiluje. Jest to swego
+rodzaju sposób nakładania więzów na szablony (choć niezbyt elegancki,
+<em>vide</em> przypis<sup>1</sup>). Możemy także postąpić odwrotnie:
+deklarując specjalizację bez definicji “wyłączamy” ją.</p>
+</div>
+<div id="zadanie-7" class="section level4">
+<h4>Zadanie 7</h4>
+<p>Zadeklaruj specjalizację dla klasy <code>TablicaPar</code>, która
+“wyłączy” puste tablice (czyli klasy <code>TablicaPar&lt;T, 0&gt;</code>
+dla każdego <code>T</code>).</p>
+<hr />
+<p><sup>1</sup> Nie jest to do końca prawda, istnieją sposoby nakładania
+więzów na typy, którymi parametryzujemy szablon. Zainteresowane osoby
+odsyłamy do haseł: SFINAE (dawniej), <code>if constexpr</code> (C++17)
+oraz koncepty (<em>concepts</em>, C++20). Techniki te wykraczają jednak
+poza zakres bieżących zajęć.</p>
+</div>
+</div>
+</div>
+<div id="szablony-funkcji" class="section level2">
+<h2>Szablony funkcji</h2>
+<p>Szablony funkcji definiujemy zgodnie z tym samym schematem, co
+szablony klas. Główną różnicę stanowi możliwość dedukcji typów
+argumentów<sup>2</sup> (opisana niżej). Siłą szablonu funkcji jest fakt,
+że można wykorzystać jego parametry jako typy argumentów (lub wartości
+zwracanej). Możemy zatem napisac w jednym miejscu dowolnie skomplikowaną
+implementację pewnego algorytmu działającego na argumentach nie
+konkretnego typu, ale całej <em>rodziny typów</em>, spełniającej jakieś
+minimalne założenia tej implementacji. Na przykład, pisząc funkcję</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> T<span class="op">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>T add<span class="op">(</span><span class="at">const</span> T<span class="op">&amp;</span> a<span class="op">,</span> <span class="at">const</span> T<span class="op">&amp;</span> b<span class="op">)</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="op">{</span> <span class="cf">return</span> a <span class="op">+</span> b<span class="op">;</span> <span class="op">}</span></span></code></pre></div>
+<p>jesteśmy przy jej pomocy w stanie dodać 2 obiekty każdego typu
+należacego do rodziny typów, dla których zdefiniowany jest operator
+<code>+</code> zwrcający obiekt tego samego typu co jego argumenty.
+Działa więc ona równie dobrze dla typu <code>double</code>, jak dla typu
+<code>Wektor2D</code> z pierwszego laboratorium. Jest to swego rodzaju
+statyczny polimorfizm - mamy wspólny interfejs dla różnych klas. Jeżeli
+spróbujemy zainstancjonować szablon z typem niespełniającym naszych
+założeń, nasz program się nie skompiluje.</p>
+<div id="zadanie-8" class="section level4">
+<h4>Zadanie 8</h4>
+<p>Napisz funkcję <code>iloczyn</code>, która przyjmuje tablicę typu,
+którym jest sparametryzowana oraz liczbę całkowitą będącą rozmiarem
+tablicy. Niech zwraca ona iloczyn elementów tej tablicy, liczony
+operatorem <code>*</code>. Zastanów się, jakie założenia czynisz na
+temat typu tablicy?</p>
+</div>
+<div id="dedukcja-typów-argumentów" class="section level3">
+<h3>Dedukcja typów argumentów</h3>
+<p>Napisaną powyżej funkcję możemy zawołać np. w następujący sposób:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dt">int</span> tab<span class="op">[]</span>    <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">};</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="dt">int</span> silnia_3 <span class="op">=</span> iloczyn<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;(</span>tab<span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span></code></pre></div>
+<p>W drugiej linijce jawne podanie parametru funkcji
+<code>iloczyn</code> jest niepotrzebne. C++ jest statycznie typowany, a
+zatem podanie <code>tab</code> jako argumentu jednoznacznie determinuje
+parametr, z jakim ma zostać zainstancjonowany szablon.</p>
+<div id="zadanie-9" class="section level4">
+<h4>Zadanie 9</h4>
+<p>Napisz wolnostojącą funkcję <code>sumaPary</code>, która przyjmuje
+parę (w znaczeniu szablonu <code>Para</code> napisanego wyżej) obiektów
+typu, którym jest sparametryzowana i zwraca ich sumę (użyj metody
+<code>suma</code>). Stwórz parę liczb całkowitych i policz ich sumę przy
+użyciu funkcji <code>sumaPary</code>. Ile razy musiałaś/musiałeś użyć
+słowa kluczowego <code>int</code>? Dzięki dedukcji typów argumentów
+odpowiedź powinna wynosić 1!</p>
+<hr />
+<p><sup>2</sup> Od C++17 istnieje dedukcja parametrów typu obiektu na
+podstawie typu argumentów jego konstruktora (CTAD), jednak temat ten
+wykracza poza zakres bieżącego kursu.</p>
+</div>
+</div>
+</div>
+<div id="wybrane-szablony-z-stl" class="section level2">
+<h2>Wybrane szablony z STL</h2>
+<p>W tej części instrukcji pokażemy działanie kilku podstawowych
+szablonów biblioteki standardowej. Pierwsze 4 dotyczą tzw. <em>smart
+pointers</em>, czyli klas, które pozwalają nam korzystać ze wskaźników w
+prostszy i bezpieczniejszy sposób: <code>std::unique_ptr</code> i
+<code>std::shared_ptr</code> (z nagłówka <code>memory</code>). Istnieje
+także 3. rodzaj smart pointera - <code>std::weak_ptr</code> - lecz
+zaznajomienie się z nim pozostawiamy dla chętnych. Dalej poznamy
+<code>std::variant</code>, <code>std::get</code> i
+<code>std::visit</code> (z nagłówka <code>variant</code>), które pozwolą
+nam drastycznie uprościć kod z zajęć dotyczących polimorfizmu. Dodajmy,
+że celem tego rozdziału nie jest nauczenie czytelnika każdego niuansu
+omawianych szablonów (po takowe odsyłamy do dokumentacji), tylko
+przedstawienie ich filozofii i podstaw użytkowania, tak, aby w
+przyszłości czytelnik wiedział po jakie rozwiązanie sięgnąć w obliczu
+konkretnego problemu. W tym rozdziale nie zawieramy także zadań
+dotyczących omawianych szablonów. Zamiast tego, po jego przeczytaniu
+polecamy przystąpić do wykonywania projektu nr 1, do zaliczenia którego
+potrzebne będzie wykorzystanie szablonów omówionych poniżej.</p>
+<div id="stdunique_ptr" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/memory/unique_ptr"><code>std::unique_ptr</code></a></h3>
+<p>Klasa <code>std::unique_ptr&lt;T&gt;</code> to smart pointer
+(“inteligentny wskaźnik”) posiadający <strong>wyłączną</strong> własność
+nad zasobem typu <code>T</code> i niszczący ten zasób w swoim
+destruktorze (zakres życia zasobu jest ograniczony zakresem życia smart
+pointera). Wypunktujmy najważniejsze cechy tego szablonu:</p>
+<ol style="list-style-type: decimal">
+<li>Jeden z konstruktorów <code>std::unique_ptr&lt;T&gt;</code>
+przyjmuje obiekt typu <code>T*</code> i zarządza zasobem, na który
+wskazuje podany wskaźnik. Od C++14 nie korzystamy z tego konstruktora,
+lecz zamiast tego z funkcji <code>std::make_unique&lt;T&gt;</code>.</li>
+<li><code>std::unique_ptr</code> posiada konstruktor domyślny, który
+tworzy obiekt, który niczym nie zarządza.</li>
+<li><code>std::unique_ptr</code> ma usunięty konstruktor kopiujący i
+kopiujący operator przypisania.</li>
+<li><code>std::unique_ptr</code> ma dobrze zdefiniowany konstruktor
+przenoszący i przenoszący operator przypisania. Te dwie metody specjalne
+“przejmują” zasób, którym zarządzał argument konstruktora/operatora
+przenoszącego.</li>
+<li><code>std::unique_ptr</code> posiada zdefiniowane operatory
+<code>*</code> oraz <code>-&gt;</code>, które działają analogicznie jak
+dla zwykłego wskaźnika.</li>
+<li>Destruktor <code>std::unique_ptr</code> niszczy zasób, którym dany
+obiekt zarządza.</li>
+</ol>
+<p>Szablon klasy <code>std::unique_ptr</code> także posiada
+specjalizację dla typów będących tablicami
+(<code>std::unique_ptr&lt;T[]&gt;</code>), która reprezentuje wyłączną
+własność nad <em>tablicą</em> obiektów. Działa ona nieco inaczej niż
+ogólny szablon:</p>
+<ol style="list-style-type: decimal">
+<li><code>std::unique_ptr&lt;T[]&gt;</code> nie ma przeciążonych
+operatorów <code>*</code> i <code>-&gt;</code>. Zamiast nich posiada
+operator <code>[]</code>, który pozwala na indeksowanie po tablicy,
+którą zarządza.</li>
+<li><code>std::unique_ptr&lt;T[]&gt;</code> niszczy trzymane zasoby przy
+użyciu <code>delete[]</code>, a nie <code>delete</code> (poprawnie usuwa
+każdy element tablicy).</li>
+</ol>
+<p>Wymieniowne powyżej cechy pozwalają nam korzystać z obiektów
+<code>std::unique_ptr</code> dokładnie tak samo, jak z wbudowanych
+wskaźników, nie musimy się za to martwić o zwalnianie pamięci. Dodatkowo
+mamy pewność, że nigdy nie wykonamy nieumyślnej kopii zasobu, ani nie
+spróbujemy odnieść się do zasobu, który został zniszczony. Warto też
+zaznaczyć, że dynamiczny polimorfizm opisany w instrukcji nr 3 działa w
+niezmienionej formie dla <code>std::unique_ptr</code>! W konsekwencji,
+jeżeli mamy istenijący kod, w którym korzystamy z wbudowanych
+wskaźników, to możemy zamienić deklarację wszystkich <code>T*</code> na
+<code>std::unique_ptr&lt;T&gt;</code> oraz usunąć wszystkie zawołania
+operatora <code>delete</code> (pod warunkiem, że wbudowane wskaźniki
+reprezentowały wyłączną własność). Taka operacja pozwoli nam skrócić kod
+(nie musimy wołać <code>delete</code>) oraz zagwarantuje nam jego
+poprawność (nigdy nie zapomnimy już zwolnić pamięci, próba kopiowania
+wskaźników teraz kończy się błędem kompilacji). Przyjrzyjmy się, jak
+może to wyglądać. Rozważmy następujący kod:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="dt">bool</span>  warunek <span class="op">=</span> sprawdzWarunek<span class="op">();</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>Baza<span class="op">*</span> wsk_baza<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>warunek<span class="op">)</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    wsk_baza <span class="op">=</span> <span class="kw">new</span> Pochodna1<span class="op">{};</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    wsk_baza <span class="op">=</span> <span class="kw">new</span> Pochodna2<span class="op">{};</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>wsk_baza<span class="op">-&gt;</span>metodaWirtualna<span class="op">();</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="kw">delete</span> wsk_baza<span class="op">;</span></span></code></pre></div>
+<p>Możemy go przepisać jako:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="dt">bool</span>                  warunek <span class="op">=</span> sprawdzWarunek<span class="op">();</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="bu">std::</span>unique_ptr<span class="op">&lt;</span>Baza<span class="op">&gt;</span> wsk_baza<span class="op">;</span> <span class="co">// konstruktor domyślny</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>warunek<span class="op">)</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    wsk_baza <span class="op">=</span> <span class="bu">std::</span>unique_ptr<span class="op">&lt;</span>Pochodna1<span class="op">&gt;{</span><span class="kw">new</span> Pochodna1<span class="op">{}};</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    wsk_baza <span class="op">=</span> <span class="bu">std::</span>unique_ptr<span class="op">&lt;</span>Pochodna2<span class="op">&gt;{</span><span class="kw">new</span> Pochodna2<span class="op">{}};</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>wsk_baza<span class="op">-&gt;</span>metodaWirtualna<span class="op">();</span> <span class="co">// działa dzięki przeciązeniu operatora -&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">// nie musimy pamiętać o wołaniu delete, robi to za nas destruktor!</span></span></code></pre></div>
+<p>W tym przykładzie widzimy, że
+<code>std::unique_ptr&lt;KlasaPochodna&gt;</code> jest konwertowalny na
+<code>std::unique_ptr&lt;KlasaBazowa&gt;</code>.</p>
+</div>
+<div id="stdmake_unique" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique"><code>std::make_unique</code></a></h3>
+<p>W powyższym przykładzie, mało eleganckie mogą wydawać się linijki, w
+któych tworzymy <code>std::unique_ptr&lt;PochodnaX&gt;</code> i
+przypisujemy je do <code>wsk_baza</code>. Szczęśliwie, od standardu
+C++14, mamy do dyspozycji szablon funkcji <code>std::make_unique</code>.
+<code>std::make_unique&lt;T&gt;(argumenty...)</code> konstruuje na
+stercie obiekt typu <code>T</code> przy użyciu podanych
+argumentów<sup>3</sup>, a następnie zwraca
+<code>std::unique_ptr&lt;T&gt;</code> do tego obiektu. Efektywnie woła
+on za nas operator <code>new</code>. W konsekwencji, linijkę</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>wsk_baza <span class="op">=</span> <span class="bu">std::</span>unique_ptr<span class="op">&lt;</span>Pochodna1<span class="op">&gt;{</span><span class="kw">new</span> Pochodna1<span class="op">{}};</span></span></code></pre></div>
+<p>możemy zamienić na</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>wsk_baza <span class="op">=</span> <span class="bu">std::</span>make_unique<span class="op">&lt;</span>Pochodna1<span class="op">&gt;();</span></span></code></pre></div>
+<p>co jest niewątpliwie zwięźlejsze i prostsze w zrozumieniu.
+<code>std::make_unique</code> jest jednym z szablonów funkcji, przy
+użyciu których nie używamy dedukcji typów, lecz zawsze jawnie podajemy
+parametr szablonu funkcji. Jest to bardzo logiczne - nie jesteśmy w
+stanie na podstawie typów argumentów stwierdzić typu obiektu, którego
+konstruktor chcemy zawołać. Wiele klas może mieć konstruktory, które
+przyjmują dany zestaw typów!</p>
+</div>
+<div id="stdshared_ptr" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/memory/shared_ptr"><code>std::shared_ptr</code></a></h3>
+<p>Drugim rodzajem smart pointera, który omówimy w niniejszej instrukcji
+jest <code>std::shared_ptr</code>. Szablon ten reprezentuje wskaźnik do
+zasobu, który może być współdzielony. Korzystamy z niego podobnie, jak z
+<code>std::unique_ptr</code>, tzn. przy użyciu operatorów
+<code>*</code>, <code>-&gt;</code> lub <code>[]</code>. Różnica polega
+na tym, że nie ma on usuniętego konstruktora kopiującego i kopiującego
+operatora przypisania. Te specjalne metody wykonują tzw. płytką kopię,
+tzn. nowa kopia obiektu typu <code>std::shared_ptr&lt;T&gt;</code>
+wskazuje na <em>ten sam</em> zasób <code>T</code>, na który wskazywał
+obiekt kopiowany. Jest to zachowanie identyczne do wbudowanego
+wskaźnika. “Inteligencja” tego wskaźnika polega na tym, że śledzi on
+liczbę kopii, która zostanie wykonana i zniszczy zasób dopiero wtedy,
+gdy zniszczona zostanie ostatnia kopia
+<code>std::shared_ptr&lt;T&gt;</code>, która na niego wskazuje. Ponownie
+omijamy więc konieczność wołania <code>delete</code>! Zobaczmy to na
+przykładzie następującego programu:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;memory&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">// Klasa reprezentująca niekopiowalny zasób</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="kw">struct</span> NiekopiowalnyZasob</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>    <span class="dt">int</span> w<span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>    </span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>    NiekopiowalnyZasob<span class="op">(</span><span class="dt">int</span> <span class="va">w_</span><span class="op">)</span> <span class="op">:</span> w<span class="op">{</span><span class="va">w_</span><span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>    </span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>    <span class="co">// Kopiowanie usunięte</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>    NiekopiowalnyZasob<span class="op">(</span><span class="at">const</span> NiekopiowalnyZasob<span class="op">&amp;)</span>            <span class="op">=</span> <span class="kw">delete</span><span class="op">;</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>    NiekopiowalnyZasob<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> NiekopiowalnyZasob<span class="op">&amp;)</span> <span class="op">=</span> <span class="kw">delete</span><span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>    </span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>    <span class="co">// Przenoszenie i destruktor zdefaultowane dla zgodności z Ro5</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>    NiekopiowalnyZasob<span class="op">(</span>NiekopiowalnyZasob<span class="op">&amp;&amp;)</span>                 <span class="op">=</span> <span class="cf">default</span><span class="op">;</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>    NiekopiowalnyZasob<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=(</span>NiekopiowalnyZasob<span class="op">&amp;&amp;)</span>      <span class="op">=</span> <span class="cf">default</span><span class="op">;</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>    <span class="op">~</span>NiekopiowalnyZasob<span class="op">()</span>                                    <span class="op">=</span> <span class="cf">default</span><span class="op">;</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a>    <span class="co">// Stworzenie zasobu</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a>    <span class="bu">std::</span>shared_ptr<span class="op">&lt;</span>NiekopiowalnyZasob<span class="op">&gt;</span> wsk1<span class="op">{</span><span class="kw">new</span> NiekopiowalnyZasob<span class="op">{</span><span class="dv">42</span><span class="op">}};</span></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a>        <span class="co">// Kopia WSKAŹNIKA NA zasób</span></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a>        <span class="bu">std::</span>shared_ptr<span class="op">&lt;</span>NiekopiowalnyZasob<span class="op">&gt;</span> wsk2<span class="op">{</span>wsk1<span class="op">};</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> wsk1<span class="op">-&gt;</span>w <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> wsk2<span class="op">-&gt;</span>w <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span></span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Adres wsk1: &quot;</span>        <span class="op">&lt;&lt;</span> <span class="op">&amp;</span>wsk1  <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Adres wsk2: &quot;</span>        <span class="op">&lt;&lt;</span> <span class="op">&amp;</span>wsk2  <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Adres zasobu wsk1: &quot;</span> <span class="op">&lt;&lt;</span> <span class="op">&amp;*</span>wsk1 <span class="op">&lt;&lt;</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Adres zasobu wsk2: &quot;</span> <span class="op">&lt;&lt;</span> <span class="op">&amp;*</span>wsk2 <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a>    <span class="op">}</span> <span class="co">// Tutaj niszczymy wsk2, ale nie zasób, gdyż wsk1 nadal żyje</span></span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="op">}</span> <span class="co">// Tutaj niszczymy wsk1 oraz zasób, gdyż nic już na niego nie wskazuje</span></span></code></pre></div>
+<p>Kompilując i wykonując powyższy kod (lub podglądając <a
+href="https://godbolt.org/z/1E5afc">ten link</a>) możemy udowodnić, że
+<code>wsk1</code> i <code>wsk2</code> faktycznie wskazują na ten sam
+obiekt. Dla jasności: w tym kontekście <code>&amp;*wsk</code> oznacza
+wzięcie adresu zasobu, na który wskazuje <code>wsk</code>, gdyż
+<code>*wsk</code> zwraca referencję do zasobu (wołamy przeciążony
+operator <code>*</code>), a zatem zawołanie operatora <code>&amp;</code>
+na tej referencji zwróci jego adres. <code>&amp;wsk</code> to po prostu
+adres obiektu <code>wsk</code> (wołamy wbudowany operator wzięcia
+adresu, tak samo jak robiliśmy to w C dla typów wbudowanych)</p>
+</div>
+<div id="stdmake_shared" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/memory/shared_ptr/make_shared"><code>std::make_shared</code></a></h3>
+<p><code>std::make_shared</code> działa dokładnie analogicznie do
+<code>std::make_unique</code> - konstruuje na stercie obiekt przy pomocy
+podanych argumentów i zwraca <code>std::shared_ptr</code>, który na
+niego wskazuje. W efekcie pomaga nam ominąć operator <code>new</code>
+(woła go za nas).</p>
+</div>
+<div id="uwagi-nt.-smart-pointerów" class="section level3">
+<h3>Uwagi nt. smart pointerów</h3>
+<p>Powyżej omówiliśmy 2 typy inteligentnych wskaźników:
+<code>std::unique_ptr</code> reprezentujący wyłączną własność oraz
+<code>std::shared_ptr</code> reprezentujący własność współdzieloną.
+Jeżeli różnice między nimi nie są w pełni jasne, odsyłamy czytelnika np.
+do <a href="https://youtu.be/UOB7-B2MfwA">tego nagrania</a>. Poprawne
+ich wykorzystanie pozwala na wyeliminowanie wycieków pamięci poprzez
+automatyzację (do pewnego stopnia) zarządzania zasobami. Dzięki
+pomocniczym funkcjom <code>std::make_unique</code> i
+<code>std::make_shared</code> możemy więc sformułować następującą zasadę
+programowania w C++:</p>
+<p><strong>Nigdy nie wołaj bezpośrednio operatorów <code>new</code> i
+<code>delete</code></strong></p>
+<p>Znając te narzędzia warto też wiedzieć, kiedy po nie sięgać. Temat
+ten jest omówiony bardzo dokładnie np. <a
+href="https://youtu.be/JfmTagWcqoE">w tym nagraniu</a> (jest to
+półtoragodzinny wykład, także wymieniamy je jako materiał
+nadprogramowy). Decydując po jakie rozwiązanie sięgnąć, powinniśmy
+kierować się następującą hierarchią:</p>
+<ol style="list-style-type: decimal">
+<li>Preferujemy zarządzanie zasobami bezpośrednio przez lifetime (zakres
+istnienia) obiektu, tzn. deklarujemy go bezpośrednio jako zmienną
+lokalną lub pole klasy.</li>
+<li>Jeżeli nie jest to możliwe (np. zasób nie mieści się na stosie),
+tworzymy zasób dynamicznie (<code>std::make_unique</code>) i zarządzmy
+nim przez <code>std::unique_ptr</code>.</li>
+<li>Po <code>std::shared_ptr</code> sięgamy dopiero wtedy, gdy
+<code>std::unique_ptr</code> nie jest wystarczający.</li>
+</ol>
+<p>Uwaga: <code>std::unique_ptr</code> nadal możemy podawać do funkcji
+przy pomocy referencji. Konieczność korzystania z
+<code>std::shared_ptr</code> objawia się głównie w programach
+wielowątkowych (zasób współdzielony przez więcej niż jeden wątek, jest
+automatycznie niszczony gdy wszystkie wątki zakończą pracę) lub w
+strukturach danych będących grafami (dany wierzchołek może mieć więcej
+niż jednego rodzica).</p>
+</div>
+<div id="stdvariant" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/utility/variant"><code>std::variant</code></a></h3>
+<p>Cofnijmy się na chwilę do rozważań o dynamicznym polimorfizmie z
+poprzedniej instrukcji. Celem stosowania kombinacji dziedziczenia i
+metod wirtualnych była praca z obiektem, którego typ był tak jakby
+zmienny w czasie wykonania programu. Mając wskaźnik do klasy bazowej,
+mogliśmy, na podstawie np. wartości wpisanych z klawiatury, decydować na
+obiekt którego typu pochodnego będzie wskazywał. Rozwiązanie to było
+jednak obarczone następującymi problemami:</p>
+<ul>
+<li>niepotrzebnie skomplikowany kod
+<ul>
+<li>konieczność tworzenia abstrakcyjnych klas bazowych</li>
+<li>pamiętanie o pisaniu słowa <code>virtual</code>, szczególnie przy
+destruktorze</li>
+<li>design pattern wizytatora jest dość skomplikowany</li>
+<li>ogólnie rzecz ujmując, sposób, w jaki chcieliśmy przechowywać/używać
+obiekty klas silnie ingerował w sposób, w jaki implementowaliśmy ich
+funkcjonalność. W idealnym świecie chcielibyśmy zawrzeć w definicji
+klasy jedynie to co robi. To, że chcemy trzymać obiekty danej klasy w
+heterogenicznym kontenerze razem z obiektami innych klas powinno być
+zmartwieniem kontenera, a nie trzymanych przez niego obiektów.</li>
+</ul></li>
+<li>konieczność dynamicznej alokacji pamięci
+<ul>
+<li>koszt w wydajności: sama alokacja jest dość kosztowną operacją</li>
+<li>koszt w wydajności: dereferencja wskaźnika nie jest darmową operacją
+(dostęp do obiektu na stercie jest wolniejszy niż dostęp do obiektu na
+stosie)</li>
+<li>fragmentacja pamięci: dynamiczna alokacja dużej liczby małych
+obiektów może prowadzić do sytuacji, w której nie mamy dostępnego dużego
+<em>ciągłego</em> obszaru pamięci</li>
+</ul></li>
+</ul>
+<p>Odpowiedzią na te problemy jest dodany w standardzie C++17 szablon
+<code>std::variant</code>. Wprowadza on do XXI wieku koncepcję unii
+typów, znaną jeszcze z C (choć zapewnie nie z kursu informatyki na
+wydziale MEiL). Szablon ten wygląda następująco:</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> T1<span class="op">,</span> <span class="kw">typename</span> T2<span class="op">,...&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="kw">class</span> variant<span class="op">;</span></span></code></pre></div>
+<p>Instancja klasy <code>std::variant&lt;T1, T2,...&gt;</code> w danym
+momencie trzyma obiekt dokładnie jednego z typów <code>T1</code>,
+<code>T2</code>, itd. Poniżej będziemy nieformalnie odnosić się do tego
+ciągu typów jako “paczki typów wariantu”. Wypunktujmy jego najważniejsze
+cechy:</p>
+<ul>
+<li>standard gwarantuje, że sama klasa <code>std::variant</code> nigdy
+nie dokonuje dynamicznej alokacji dodatkowej pamięci</li>
+<li>obiekt tej klasy jest rozmiaru największego z typów <code>T1</code>,
+<code>T2</code>,… plus pewna (mała) stała wartość (np. w kompilatorze
+<code>gcc</code> jest to 8B)</li>
+<li>posiada konstruktor, który przyjmuje referencję (dobrze zdefiniowany
+zarówno dla LVR, jak i RVR) do do obiektu klasy należącej do paczki
+typów wariantu. Możemy więc skonstruować np.</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">double</span><span class="op">&gt;</span> v<span class="op">{</span><span class="fl">3.14</span><span class="op">};</span></span></code></pre></div>
+<p>ale już nie</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">float</span><span class="op">&gt;</span> v<span class="op">{</span><span class="fl">3.14</span><span class="op">};</span> <span class="co">// BŁĄD!</span></span></code></pre></div>
+<p>gdyż wartość <code>3.14</code> jest typu <code>double</code> (a
+dokładniej <code>double&amp;&amp;</code>), konwersja na
+<code>float</code> nie jest tu dopuszczalna. Jeżeli chcemy jawnie
+wymusić typ obiektu, który ma trzymać wariant, możemy użyć 5.
+przeciążenia konstruktora <a
+href="https://en.cppreference.com/w/cpp/utility/variant/variant">z
+dokumentacji</a>.</p>
+<ul>
+<li>posiada operator przypisania, który działa analogicznie do
+konstruktora opisanego powyżej. Np.:</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span> <span class="dt">double</span><span class="op">&gt;</span> v<span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span></code></pre></div>
+<ul>
+<li>posiada dobrze zdefiniowane konstruktory kopiujące i przenoszące
+oraz kopiujące i przenoszące operatory przypisania</li>
+<li>posiada domyślny konstruktor, gdy pierwszy z paczki typów wariantu
+posiada domyślny konstruktor (wtedy domyślnie konstruuje obiekt
+<code>T1</code>)</li>
+<li>posiada metodę <code>size_t index()</code>, która zwraca indeks
+(liczony od 0) trzymanego obecnie typu z podanej paczki typów wariantu.
+Np.:</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span> <span class="dt">double</span><span class="op">&gt;</span> v1<span class="op">{</span><span class="dv">42</span><span class="op">};</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span> <span class="dt">double</span><span class="op">&gt;</span> v2<span class="op">{</span><span class="fl">42.</span><span class="op">};</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> v1<span class="op">.</span>index<span class="op">()</span> <span class="op">&lt;&lt;</span> <span class="ch">&#39; &#39;</span> <span class="op">&lt;&lt;</span> v2<span class="op">.</span>index<span class="op">();</span></span></code></pre></div>
+<p>wydrukuje <code>0 1</code>. Z tej metody nie korzystamy jednak zbyt
+często (po prostu nie ma takiej potrzeby, nie ze względu na jakieś dobre
+praktyki). - dostęp do obiektu trzymanego przez wariant odbywa się przez
+<code>std::get</code> i <code>std::visit</code>, opisane poniżej</p>
+</div>
+<div id="stdget4" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/utility/variant/get"><code>std::get</code></a><sup>4</sup></h3>
+<p>Mamy dany obiekt typu <code>std::variant&lt;T1, T2,...&gt; v</code>,
+który wiemy, że trzyma w danej chwili obiekt typu <code>T2</code>.
+Możemy uzyskać dostęp do tego obiektu dostęp na 2 różne sposoby:</p>
+<ul>
+<li>za pomocą indeksu</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>T2<span class="op">&amp;</span> wartosc <span class="op">=</span> <span class="bu">std::</span>get<span class="op">&lt;</span><span class="dv">1</span><span class="op">&gt;(</span>v<span class="op">);</span></span></code></pre></div>
+<ul>
+<li>za pomocą typu (działa jedynie gdy <code>T2</code> występuje w
+paczce typów wariantu dokładnie raz)</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>T2<span class="op">&amp;</span> wartosc <span class="op">=</span> <span class="bu">std::</span>get<span class="op">&lt;</span>T2<span class="op">&gt;(</span>v<span class="op">);</span></span></code></pre></div>
+<p>Jeżeli <code>v</code> nie trzymałby w danej chwili wartości typu
+<code>T2</code>, operacja rzuci wyjątek. O wyjątkach dowiemy się więcej
+na późniejszym laboratorium, na chwilę obecną powiedzmy jedynie, że
+próba dostępu do wartości trzymanej przez wariant przez niepoprawny typ
+spowoduje zakończenie pracy naszego programu w trybie awaryjnym. Dodajmy
+też, że <code>std::get</code> zwraca <em>referencję</em> do trzymanego
+obiektu, także nie musimy wykonywać jego kopii. Jeżeli chcielibyśmy to
+zrobić, możemy oczywiście zawołać po prostu:</p>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>T2 kopia_wartosci <span class="op">=</span> <span class="bu">std::</span>get<span class="op">&lt;</span><span class="dv">1</span><span class="op">&gt;(</span>v<span class="op">);</span> <span class="co">// </span></span></code></pre></div>
+</div>
+<div id="stdvisit" class="section level3">
+<h3><a
+href="https://en.cppreference.com/w/cpp/utility/variant/visit"><code>std::visit</code></a></h3>
+<p>Poznana dotychczas funkcjonalność pozwala nam na napisanie wizytatora
+wariantu (spokojnie, jest to dużo prostsze niż w przypadku wirtualnego
+polimorfizmu). Jeżeli mamy wariant sparametryzowany paczką
+<code>T1</code>, <code>T2</code>,… i wiemy, że każdy z typów należących
+do tej paczki ma metodę <code>drukuj</code>, możemy napisać następującą
+funkcję:</p>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="dt">void</span> drukujWariant<span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>variant<span class="op">&lt;</span>T1<span class="op">,</span> T2<span class="op">,...&gt;&amp;</span> v<span class="op">)</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>v<span class="op">.</span>index<span class="op">()</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>        <span class="bu">std::</span>get<span class="op">&lt;</span><span class="dv">0</span><span class="op">&gt;(</span>v<span class="op">).</span>drukuj<span class="op">();</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>v<span class="op">.</span>index<span class="op">()</span> <span class="op">==</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>        <span class="bu">std::</span>get<span class="op">&lt;</span><span class="dv">1</span><span class="op">&gt;(</span>v<span class="op">).</span>drukuj<span class="op">();</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>    <span class="co">// itd ...</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Funkcja ta jest bardzo konkretnym wizytatorem, który woła metodę
+<code>drukuj</code> obiektu trzymanego przez wariant. Podobnie jak w
+przypadku wirtualnego polimorfizmu, chcielibyśmy teraz uogólnić ideę
+wizytowania, tzn. stworzyć uniwersalny mechanizm, przy użyciu którego
+możliwe jest zawołanie dowolnej zdefiniowanej przez siebie funkcji,
+która obsłuży w odpowiedni sposób różne możliwe obiekty trzymane przez
+wariant (spoiler alert: taki mechanizm dostarcza biblioteka standardowa,
+spróbujemy jednak najpierw stworzyć go sami, aby zrozumieć, jak działa).
+Tutaj ujawni się esencja wygody (tak, wygody, nie skomplikowania), którą
+mogą zapewnić nam template’y.</p>
+<p>Zanim przejdziemy do przypadku wariantu, zastanówmy się nad
+zagadnieniem przekazywania funkcji jako argumentów innych funkcji. W
+języku C służyły do tego wskaźniki do funkcji, które były jednak
+niewygodne oraz cechowały się dość mało intuicyjną składnią. Aby
+zobaczyć, jak rozwiązujemy to zagadnienie w C++, pochylmy się nad
+następującym przykładem. Chcielibyśmy napisać szablon funkcji, która
+przyjmie argument “wołalny” (ang. <em>callable</em>) oraz drugi argument
+dowolnego typu, a następnie podaje drugi argument do wywołania
+pierwszego argumentu. Mówiąc prościej, chcielibyśmy przyjąć obiekt
+funkcjo-podobny oraz jego argument i wywołać tę (tak jakby) funkcję z
+tym argumentem. Dzięki template’om, możemy w trywialny sposób zapisać
+taką abstrakcję:</p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span><span class="kw">typename</span> <span class="dt">Fun_t</span><span class="op">,</span> <span class="kw">typename</span> <span class="dt">Arg_t</span><span class="op">&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="dt">void</span> zawolaj<span class="op">(</span><span class="dt">Fun_t</span> fun<span class="op">,</span> <span class="dt">Arg_t</span> arg<span class="op">)</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    fun<span class="op">(</span>arg<span class="op">);</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Pomijamy rozważania dotyczące przyjmowania argumentów jako referencje
+i wykonywania kopii, gdyż nie to jest tutaj istotne. Mając taki szablon,
+możemy teraz napisać:</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="dt">void</span> drukuj<span class="op">(</span><span class="dt">int</span> i<span class="op">)</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;int: &quot;</span> <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>    zawolaj<span class="op">(</span>drukuj<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Dzięki dedukcji typów nie musimy się przejmować, czym jest tak
+naprawdę <code>drukuj</code> podany jako argument do
+<code>zawolaj</code>. Maszyneria template’ów martwi się o to za nas, a
+my możemy spędzić nasz czas na rzeczach bardziej produktywnych niż
+przypominanie sobie składni wskaźników do funkcji z języka C (bo to
+właśnie ta funkcjonalność jest przez nas wykorzystana w powyższym
+przykładzie). Kłopoty pojawią się, gdy funkcja <code>drukuj</code>
+będzie miała więcej niż jedno przeciążenie. Nie będzie wtedy
+jednoznaczne, które znich ma zostać podane do funkcji (czytelnik może
+sprawdzić to samodzielnie). Zamiast tego, możemy podać <em>obiekt</em>,
+który posiada przeciążenia operatora nawiasów okrągłych dla wszystkich
+potrzebnych typów. Konkretnie:</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="kw">struct</span> Drukarka</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>    <span class="dt">void</span> <span class="kw">operator</span><span class="op">()(</span><span class="dt">int</span> i<span class="op">)</span>    <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;int: &quot;</span> <span class="op">&lt;&lt;</span> i <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>    <span class="dt">void</span> <span class="kw">operator</span><span class="op">()(</span><span class="dt">double</span> d<span class="op">)</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;double: &quot;</span> <span class="op">&lt;&lt;</span> d <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Teraz możemy zawołać:</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>Drukarka d<span class="op">;</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>zawolaj<span class="op">(</span>d<span class="op">,</span> <span class="dv">42</span><span class="op">);</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>zawolaj<span class="op">(</span>d<span class="op">,</span> <span class="fl">1.</span><span class="op">);</span></span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="co">// Lub zwięźlej:</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co">// zawolaj(Drukarka{}, 42);</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="co">// zawolaj(Drukarka{}, 1.);</span></span></code></pre></div>
+<p>Idea reprezentacji operacji przez obiekty ze zdefiniowanym operatorem
+<code>()</code> (tzw. obiekty funkcyjne lub funktory) zostanie
+rozwinięta na laboratorium dotyczącym algorytmów STL, powróćmy teraz
+jednak do wizytacji wariantu.</p>
+<p>Wykorzystując opisany wyżej chwyt, możemy napisać szablon ogólnego
+wizytatora konkretnego wariantu
+<code>std::variant&lt;int, double&gt;</code> (ponownie pomijamy
+rozważania nt. referencji i kopiowania):</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">typename</span> <span class="dt">Wizytator_t</span><span class="op">&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="dt">void</span> wizytuj<span class="op">(</span><span class="dt">Wizytator_t</span> wizytator<span class="op">,</span> <span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">double</span><span class="op">&gt;</span> wariant<span class="op">)</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> index <span class="op">=</span> wariant<span class="op">.</span>index<span class="op">();</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>    <span class="cf">if</span>      <span class="op">(</span>index <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>        wizytator<span class="op">(</span><span class="bu">std::</span>get<span class="op">&lt;</span><span class="dv">0</span><span class="op">&gt;(</span>wariant<span class="op">));</span></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>index <span class="op">==</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>        wizytator<span class="op">(</span><span class="bu">std::</span>get<span class="op">&lt;</span><span class="dv">1</span><span class="op">&gt;(</span>wariant<span class="op">));</span></span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Podkreślmy, że próba ominięcia drzewa decyzyjnego skończy się błędem
+kompilacji</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>wizytator<span class="op">(</span><span class="bu">std::</span>get<span class="op">&lt;</span>wariant<span class="op">.</span>index<span class="op">()&gt;(</span>wariant<span class="op">));</span> <span class="co">// Błąd!!!</span></span></code></pre></div>
+<p>gdyż argumenty template’ów muszą zostać określone w czasie
+kompilacji, a operacja <code>wariant.index()</code> jest z natury rzeczy
+sprawdzana w czasie wykonania programu. Zobaczmy jak możemy wykorzystać
+ten szablon:</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">double</span><span class="op">&gt;</span> v<span class="op">{</span><span class="fl">1.</span><span class="op">};</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>wizytuj<span class="op">(</span>Drukarka<span class="op">{},</span> v<span class="op">);</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co">// wydrukuje &quot;double: 1&quot;</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>wizytuj<span class="op">(</span>Drukarka<span class="op">{},</span> v<span class="op">);</span></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="co">// wydrukuje &quot;int: 42&quot;</span></span></code></pre></div>
+<p>Jeżeli zdefiniujemy inny obiekt funkcyjny, możemy postąpić zgodnie z
+tym samym schematem! Mamy więc ogólną metodę dostępu do wariantu
+<code>std::variant&lt;double, int&gt;</code>.</p>
+<p>Ogólną metodę dostępu do dowolnego wariantu zapewnia nam szablon
+funkcji <code>std::visit</code>. Jest on sparametryzowany nie tylko
+typem funktora, ale także typem samego wariantu. Dzięki temu możemy w
+sposób analogiczny do tego zobrazowanego wyżej wizytować obiekt każdej
+klasy stworzonej przez zainstancjonowanie szablonu
+<code>std::variant</code>. Możemy więc przepisać kod z przykładu
+jako:</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="bu">std::</span>variant<span class="op">&lt;</span><span class="dt">int</span><span class="op">,</span> <span class="dt">double</span><span class="op">&gt;</span> v<span class="op">{</span><span class="fl">1.</span><span class="op">};</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="bu">std::</span>visit<span class="op">(</span>Drukarka<span class="op">{},</span> v<span class="op">);</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="co">// wydrukuje &quot;double: 1&quot;</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>v <span class="op">=</span> <span class="dv">42</span><span class="op">;</span></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a><span class="bu">std::</span>visit<span class="op">(</span>Drukarka<span class="op">{},</span> v<span class="op">);</span></span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a><span class="co">// wydrukuje &quot;int: 42&quot;</span></span></code></pre></div>
+<p>Ponownie widzimy, że nawet tak skomplikowana funkcjonalność jak
+<code>std::visit</code> (pod maską ma ona dużo meta-programowania) może
+być przez nas wykorzystana w prosty sposób, a wszystko dzięki dedukcji
+parametrów z typów argumentów oraz bibliotece standardowej.</p>
+</div>
+<div id="podsumowanie-stdvariant" class="section level3">
+<h3>Podsumowanie <code>std::variant</code></h3>
+<ul>
+<li><code>std::variant</code> daje nam możliwość trzymania różnych typów
+w jednym obiekcie</li>
+<li>dzięki przyjaznemu interfejsowi możemy nadawać wariantowi wartości w
+naturalny sposób (operator przypisania, konstruktor)</li>
+<li>dostęp do trzymanego obiektu uzyskujemy używając pomocniczego
+szablonu funkcji <code>std::visit</code></li>
+<li>dzięki wariantowi możemy w naturalny sposób definiować nasze klasy
+polimorficzne - omijamy dziedziczenie i słowo <code>virtual</code></li>
+</ul>
+<p>Na koniec zobaczmy, jak przepisać wizytator kształtów z poprzedniego
+laboratorium.</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode c++"><code class="sourceCode cpp"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;variant&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="co">// Uproszczona klasa koło</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="kw">class</span> Kolo</span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>    Kolo<span class="op">()</span> <span class="op">:</span> r<span class="op">{</span><span class="dv">0</span><span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>    Kolo<span class="op">(</span><span class="dt">double</span> <span class="va">r_</span><span class="op">)</span> <span class="op">:</span> r<span class="op">{</span><span class="va">r_</span><span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>    <span class="dt">void</span> id<span class="op">()</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Jestem kołem o polu &quot;</span> <span class="op">&lt;&lt;</span> <span class="fl">3.14</span> <span class="op">*</span> r <span class="op">*</span> r <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">};</span></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>    </span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>    <span class="dt">double</span> r<span class="op">;</span></span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a><span class="co">// Uproszczona klasa kwadrat</span></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a><span class="kw">class</span> Kwadrat</span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>    Kwadrat<span class="op">()</span> <span class="op">:</span> a<span class="op">{</span><span class="dv">0</span><span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a>    Kwadrat<span class="op">(</span><span class="dt">double</span> <span class="va">a_</span><span class="op">)</span> <span class="op">:</span> a<span class="op">{</span><span class="va">a_</span><span class="op">}</span> <span class="op">{}</span></span>
+<span id="cb31-23"><a href="#cb31-23" tabindex="-1"></a>    <span class="dt">void</span> id<span class="op">()</span> <span class="op">{</span> <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Jestem kwadratem o polu &quot;</span> <span class="op">&lt;&lt;</span> a <span class="op">*</span> a <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb31-24"><a href="#cb31-24" tabindex="-1"></a>    </span>
+<span id="cb31-25"><a href="#cb31-25" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb31-26"><a href="#cb31-26" tabindex="-1"></a>    <span class="dt">double</span> a<span class="op">;</span></span>
+<span id="cb31-27"><a href="#cb31-27" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb31-28"><a href="#cb31-28" tabindex="-1"></a></span>
+<span id="cb31-29"><a href="#cb31-29" tabindex="-1"></a><span class="co">// Wizytujący funktor, pokażemy jak ominąć jego definicję na lab 6</span></span>
+<span id="cb31-30"><a href="#cb31-30" tabindex="-1"></a><span class="kw">struct</span> WizytatorKsztaltu</span>
+<span id="cb31-31"><a href="#cb31-31" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-32"><a href="#cb31-32" tabindex="-1"></a>    <span class="dt">void</span> <span class="kw">operator</span><span class="op">()(</span>Kolo k<span class="op">)</span>    <span class="op">{</span> k<span class="op">.</span>id<span class="op">();</span> <span class="op">}</span></span>
+<span id="cb31-33"><a href="#cb31-33" tabindex="-1"></a>    <span class="dt">void</span> <span class="kw">operator</span><span class="op">()(</span>Kwadrat k<span class="op">)</span> <span class="op">{</span> k<span class="op">.</span>id<span class="op">();</span> <span class="op">}</span></span>
+<span id="cb31-34"><a href="#cb31-34" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb31-35"><a href="#cb31-35" tabindex="-1"></a></span>
+<span id="cb31-36"><a href="#cb31-36" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb31-37"><a href="#cb31-37" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb31-38"><a href="#cb31-38" tabindex="-1"></a>    <span class="bu">std::</span>variant<span class="op">&lt;</span>Kwadrat<span class="op">,</span> Kolo<span class="op">&gt;</span> v<span class="op">;</span></span>
+<span id="cb31-39"><a href="#cb31-39" tabindex="-1"></a>    </span>
+<span id="cb31-40"><a href="#cb31-40" tabindex="-1"></a>    <span class="bu">std::</span>string s<span class="op">;</span></span>
+<span id="cb31-41"><a href="#cb31-41" tabindex="-1"></a>    <span class="bu">std::</span>cin <span class="op">&gt;&gt;</span> s<span class="op">;</span></span>
+<span id="cb31-42"><a href="#cb31-42" tabindex="-1"></a>    <span class="dt">double</span> d<span class="op">;</span></span>
+<span id="cb31-43"><a href="#cb31-43" tabindex="-1"></a>    <span class="bu">std::</span>cin <span class="op">&gt;&gt;</span> d<span class="op">;</span></span>
+<span id="cb31-44"><a href="#cb31-44" tabindex="-1"></a>    </span>
+<span id="cb31-45"><a href="#cb31-45" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>s <span class="op">==</span> <span class="st">&quot;kwadrat&quot;</span><span class="op">)</span></span>
+<span id="cb31-46"><a href="#cb31-46" tabindex="-1"></a>        v <span class="op">=</span> Kwadrat<span class="op">{</span>d<span class="op">};</span></span>
+<span id="cb31-47"><a href="#cb31-47" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>s <span class="op">==</span> <span class="st">&quot;kolo&quot;</span><span class="op">)</span></span>
+<span id="cb31-48"><a href="#cb31-48" tabindex="-1"></a>        v <span class="op">=</span> Kolo<span class="op">{</span>d<span class="op">};</span></span>
+<span id="cb31-49"><a href="#cb31-49" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb31-50"><a href="#cb31-50" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb31-51"><a href="#cb31-51" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Nie rozpoznano kształtu</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb31-52"><a href="#cb31-52" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// wartość inna niż 0 oznacza błąd programu</span></span>
+<span id="cb31-53"><a href="#cb31-53" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb31-54"><a href="#cb31-54" tabindex="-1"></a>    </span>
+<span id="cb31-55"><a href="#cb31-55" tabindex="-1"></a>    <span class="bu">std::</span>visit<span class="op">(</span>WizytatorKsztaltu<span class="op">{},</span> v<span class="op">);</span></span>
+<span id="cb31-56"><a href="#cb31-56" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<p><sup>3</sup> Mechanizm, który pozwala definiować szablony dla
+nieznanej <em>a priori</em> liczby parametrów wykracza poza zakres tego
+kursu. Zainteresowani mogą szukać hasła <em>variadic templates</em>.</p>
+<p><sup>4</sup> W bibliotece standardowej są co najmniej 3 różne
+szablony funkcji <code>std::get</code>. W tym przypadku mowa o szablonie
+<code>std::get(std::variant)</code>, ale są także
+<code>std::get(std::array)</code> i <code>std::get(std::tuple)</code>.
+Służą one jednak do dostępu do klas, które leżą poza zakresem tego kursu
+(ze względu na ograniczenia czasowe, nie wysoki stopień skomplikowania
+<code>std::tuple</code> i <code>std::array</code>).</p>
+</div>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

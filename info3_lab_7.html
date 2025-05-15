@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Ł. Łaniewski-Wołłk" />
+
+
+<title>info3_lab_7</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/info3_lab_7.md">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="polecenia-i-materiały" class="section level1">
+<h1>Polecenia i Materiały</h1>
+<p>By otworzyć linię poleceń w systemie Windows, można: poszukać jej w
+Akcesoriach, bądz wybrać Menu Start, Uruchom i wpisać
+<code>cmd</code>.</p>
+<p>Większość poleceń należy wykonać na maszynie
+<code>info3.meil.pw.edu.pl</code>, lecz niektóre można wykonać w lini
+poleceń Windows.</p>
+<p>Materiały do tego laboratiorium można znaleść w katalogu
+<code>/home/zasoby/Info3/smsniff</code> na serwerze
+<code>info3.meil.pw.edu.pl</code>. Całą zawartość katalogu można
+przegrać np. na pulpit za pomocą WinSCP, a na koniec zajęć skasować.</p>
+</div>
+<div id="serwery-i-porty" class="section level1">
+<h1>Serwery i porty</h1>
+<p>Standard TCP/IP mówi jak na na podstawowym poziomie działa Internet.
+W internecie są podłączone komputery i każdy z nich ma swój unikatowy
+numer IP. Ten numer to 4 bajty - zazwyczaj zapisuje się go w postaci 4
+liczb oddzielonych kropkami (np. 127.0.0.1). Bajt to 8 bitów, wiec można
+w nim zapisać liczby od <span class="math inline">\(0\)</span> do <span
+class="math inline">\(2^8-1 = 255\)</span>. Tak więc wszystkich numerów
+IP jest <span class="math inline">\(2^{32}\)</span> więc ponad <span
+class="math inline">\(4\)</span> miliardy. Jednak w internecie numery sa
+przydzielane grupami, wiec szybko się wyczerpały. W związku z tym
+wprowadzono nowy standard IPv6. Nie należy jednak sądzić że to <span
+class="math inline">\(6\)</span> oznacza że teraz jest <span
+class="math inline">\(6\)</span> liczb. Jest to poprostu wersja 6ta
+standardu - i numerów jest teraz <span
+class="math inline">\(2^{128}\)</span>, co daje prawie jeden septylion.
+Są pewne grupy numerów które są wyjątkowe.:</p>
+<ul>
+<li>127.0.0.1 (localhost) – numer IP komputera na którym jesteśmy
+zalogowani – widoczny tylko z tego komputera</li>
+<li>192.168.?.? – numery IP komputerów w sieci lokalnej – widoczne tylko
+wewnątrz tej sieci</li>
+<li>192.168.0.1 – zwyczajowy adres bramy sieci (np routera w twoim domu)
+– widoczny tylko w tej sieci.</li>
+</ul>
+<p>Standardową metodą komunikacji jest łączenie się jednego komputera z
+portem drugiego komputera. Każdy komputer ma wiele portów — tak by jeden
+komputer mógł obsługiwać wiele różnych funkcji. Komputer który łączy się
+nazywamy klientem, zaś komputer do którego się łączymy serwerem.
+Rozmawiają one przy pomocy zestawu ustalonych komend, które nazywamy
+protokołem. Żeby nie pomylić protokołów, przypisano im unikatowe porty.
+To oznacza, że dany port jest zwyczajowo używany do danego protokołu —
+ale fizycznie można by do tego użyć dowolnego innego.</p>
+<div id="ćwiczenia" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj dowiedzieć się jaki numer IP mają różne komputery używając
+np. komendy <code>ping google.com</code></li>
+<li>Spróbuj to samo z nazwami <code>localhost</code> i
+<code>orange.meil.pw.edu.pl</code></li>
+<li>Spróbuj dowiedzieć się coś wiecej o wybranej domenie
+<code>whois google.com</code> albo <code>whois onet.pl</code></li>
+</ul>
+</div>
+<div id="telnet" class="section level2">
+<h2>Telnet</h2>
+<p><strong>Port</strong>: 23</p>
+<p>Jednym z bardzo użytecznych programów jest <code>telnet</code>. Gdy
+uruchomimy <code>telnet google.com</code> program spróbuje połączyć się
+z komputerem google.com, na porcie 23. Gdyby udało mu sie połączyć,
+moglibyśmy z klawiatury wysyłać teksty do serwera, a na ekranie
+wyswietlała by się odpowiedz. Telnet służył do obsługi konsoli — tak jak
+SSH (putty) którego używasz. Jednak telnet nie był niczym zabezpieczony
+(nawet hasło było widoczne), dlatego nie jest teraz nigdzie używany.
+Jednak <code>telnet</code> jest użyteczny ponieważ możemy mu wskazać
+port na który ma się połączyć — i w ten sposób “oszukać” program i
+połączyć się z innym protokołem.</p>
+<div id="ćwiczenia-1" class="section level3">
+<h3>Ćwiczenia</h3>
+<p>W następnych ćwiczenia połączymy się na różnych portach z różnymi
+komputerami pisząc:</p>
+<ul>
+<li><code>telnet info3.meil.pw.edu.pl</code></li>
+<li><code>telnet info3.meil.pw.edu.pl 22</code></li>
+<li><code>telnet localhost</code></li>
+<li><code>telnet google.com</code></li>
+<li><code>telnet google.com 80</code></li>
+</ul>
+</div>
+</div>
+<div id="hypertext-transfer-protocol-http" class="section level2">
+<h2>Hypertext Transfer Protocol (HTTP)</h2>
+<p><strong>Port</strong>:80 <strong>SSL</strong>:443</p>
+<p>HTTP to najczęściej używany protokół w internecie. Pozwala on na
+pobieranie stron z serwerów. W odróżnieniu od poprzednich, nie jest to
+protokół typu <em>instrukcja-odpowiedz</em>. W tym protokole, wysyłamy
+zapytanie, zaś serwer wysyła nam odpowiedz i zamyka połączenie.
+Zapytanie wygląda następująco:</p>
+<pre class="http"><code>GET [ścieżka] HTTP/1.0
+Host: [nazwa serwera]
+[inna opcja]: [wartosc]
+[pusta linia]</code></pre>
+<p>Po <code>GET</code> naprawdę nie trzeba pisać nic — lecz jeden serwer
+może obsługiwać strony gazeta.pl, tv.gazeta.pl i wiadomosci.gazeta.pl,
+gdybyśmy nie podali <code>Host:</code> serwer nie wiedziałby o którą
+stronę chodzi. Dla przykładu jeśli chcemy sciągnać stronę
+<code>http://m.google.com/index.html</code> wpiszemy:</p>
+<pre class="http"><code>GET /index.html HTTP/1.0
+Host: m.google.com
+</code></pre>
+<p>Inne opcje to :</p>
+<ul>
+<li><code>User-Agent:</code> – twoja przeglądarka</li>
+<li><code>Accept:</code> – Jakie formaty umiesz przeczytać (html, txt) -
+można nadać im priorytety.</li>
+<li><code>Accept-Language</code> – Jakie języki akceptujemy – też można
+nadać priorytety.</li>
+</ul>
+<div id="ćwiczenia-2" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj ściągnąć główną stronę “m.google.com”</li>
+<li>Spróbuj ściągnąć główną stronę “www.onet.pl”</li>
+<li>Spróbuj ściągnąć główną stronę do pliku</li>
+<li>Wyszukaj w tym pliku adresu jakiegoś obrazka i go ściągnij</li>
+<li>Napisz skrypt do ściągania plików z serwera HTTP. Z dwoma
+argumentami: nazwa serwera i ścieżka</li>
+</ul>
+</div>
+</div>
+<div id="http-over-secure-socket-layer-https" class="section level2">
+<h2>HTTP over Secure Socket Layer (HTTPS)</h2>
+<p><strong>Port</strong>:80 <strong>SSL</strong>:443</p>
+<p>Do wielu usług warto łączyć się kanałem szyfrowanym. Po pierwszym
+użyciu w tym celu programu <code>telnet</code>, np łączac się z
+<code>telnet google.com 443</code>, widzimy że nie umiemy rozmawiać
+zaszyfrowanymi bajtami.</p>
+<p>Do komunikacji z serwerem po szyfrowanym połączeniu możemy użyć
+program <code>openssl</code>. Dla przykładu:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> google.com:443</span></code></pre></div>
+<div id="ćwiczenia-3" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj ściągnąć główną stronę “m.google.com” po protokole
+szyfrowanym</li>
+<li>Spróbuj dodać komentarz w serwisie <code>github.com</code> do
+dyskusji <a
+href="https://github.com/ccfd/courses/issues/12"><code>https://github.com/ccfd/courses/issues/12</code></a>.
+Użyj do tego zapytania do serwera <code>api.github.com</code>
+(skonstruuj je uprzednio w pliku tekstowym):</li>
+</ul>
+<pre class="http"><code>POST /repos/ccfd/courses/issues/12/comments HTTP/1.1
+Host: api.github.com
+Authorization: token [token]
+User-Agent: Wget/1.9.1
+Connection: close
+Content-Type: application/json
+Content-Length: 53
+
+{&quot;body&quot;:&quot;To jest bardzo wazny komentarz\nBardzo\n&quot;}</code></pre>
+<p><code>[token]</code> możesz uzyskać logując się na GitHub i dodając
+token w menu “Settings”, “Personal access tokens”.</p>
+</div>
+</div>
+<div id="simple-mail-transfer-protocol-smtp" class="section level2">
+<h2>Simple Mail Transfer Protocol (SMTP)</h2>
+<p><strong>Port</strong>:25 <strong>TLS</strong>:587
+<strong>SSL</strong>:465</p>
+<p>SMTP to protokół używany do wysyłania e-maili. Polączyć się z nim
+można pod portem nr 25. Jego postawowe instrukcje to:</p>
+<ul>
+<li><code>HELO something</code> – przywitanie się z serwerem</li>
+<li><code>MAIL From: something</code> – Od kogo jest e-mail</li>
+<li><code>RCPT To: something</code> – Do kogo jest e-mail</li>
+<li><code>DATA</code> – Po tej komendzie można napisać treść e-maila.
+Zakończyć trzeba [enter].[enter]</li>
+<li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
+</ul>
+<p>Z szyfrowanym protokołem SMTP (typu TLS), można się połączyć za
+pomocą:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">openssl</span> s_client <span class="at">-connect</span> <span class="pp">[</span><span class="ss">serwer</span><span class="pp">]</span>:25 <span class="at">-starttls</span> smtp</span></code></pre></div>
+<div id="ćwiczenia-4" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj wysłać ze swojego konta e-mail do kolegi obok</li>
+<li>Wyślij e-mail do na swoje prywatne konto i w domu obejrzyj jego
+nagłówek (poszukaj go w spam’ie).</li>
+<li>Spróbuj wysłać e-mail z konta “admin na swoje konto</li>
+<li>Napisz plik wejściowy, który po przekierowaniu do polecenia ‘telnet’
+wyśle e-mail do kolegi</li>
+<li>Napisz skrypt z jednym argumentem który wyśle zawartość wybranego
+pliku do kolegi</li>
+</ul>
+</div>
+</div>
+<div id="post-office-protocol-version-3-pop3" class="section level2">
+<h2>Post Office Protocol version 3 (POP3)</h2>
+<p><strong>Port</strong>:110 <strong>SSL</strong>:995</p>
+<p>POP3 to protokół używany do odbierania e-maili ze skrzynki. Połączyć
+się z nim można pod portem nr <span class="math inline">\(110\)</span>.
+Jego podstawowe instrukcje to:</p>
+<ul>
+<li><code>USER użytkownik</code> – ustawia użytkownika którego chcemy
+zalogować</li>
+<li><code>PASS hasło</code> – loguje użytkownika</li>
+<li><code>LIST</code> – Wypisuje listę e-maili w skrzynce w formacie
+[numer] [rozmiar]</li>
+<li><code>RETR number</code> – pobiera e-mail</li>
+<li><code>DELE number</code> – kasuje e-mail</li>
+<li><code>TOP number</code> – pobiera pierwsze pare linii e-mail</li>
+<li><code>QUIT</code> – Kończy rozmowę z serwerem</li>
+</ul>
+<p>Do połączenia szyfrowanego użyj analogicznego polecenia jak w sekcji
+o HTTPS</p>
+<div id="ćwiczenia-5" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Spróbuj odebrać swoje e-maile</li>
+<li>Spróbuj odebrać czyjeś e-maile</li>
+<li>Napisz plik wejściowy, który po przekierowaniu do polecenia
+<code>telnet</code> pobierze konkretnego e-maila. Jeśli telnet nie
+reaguje na wejściowy plik, jest to spowodowane tym, ze serwer nie nadąża
+z interpretowaniem komend. Napisz skrypt który co sekundę będzie
+wypisywał na ekran jedną linijkę z pliku - a następnie przekieruj z
+niego wyjście do telnet’u.</li>
+<li>Napisz skrypt z jednym argumentem, który odbierze e-mail o danym
+numerze.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="sniffing" class="section level1">
+<h1>Sniffing</h1>
+<p>Sniffing, czyli analiza pakietów (Packet Analysis) to najprostsza
+technika podsłuchu w internecie. Polega ona na przechwytywaniu pakietów
+na poziomie interface’u sieciowego i rozkodowywaniu ich do postaci
+czytelnej dla człowieka. W ten sposób możemy zobaczyć wszelkie
+połączenia TCP/IP (a także UDP). Analizując dane przesyłane pomiędzy
+klientami a serwerami, możemy nie tylko dowiedzieć się kto z kim się
+łączy ale:</p>
+<ul>
+<li>Zobaczyć adresy internetowe na które wchodzą użytkownicy</li>
+<li>Zobaczyć e-maile przesyłane przy pomocy SMTP i odbierane przez POP3,
+a nawet podejrzeć hasła</li>
+<li>Zobaczyć wpisywane hasła w kiepsko zabezpieczonych stronach
+HTTP</li>
+<li>Podsłuchiwać programy IM, takie jak: MSN, GG (szyfrowanie jest
+domyślnie wyłączone), stare wersje ICQ i IRC.</li>
+</ul>
+<p>W materiałach można znaleść program <code>smsniff.exe</code>. Jest to
+typowy prosty sniffer pod Windows. Sieć w laboratorium jest oparta na
+dobrym switch’u, więc jedyne pakiety widoczne w sieci, to takie które
+idą od lub do danego komputera (oraz broadcast). Oznacza to, że nie da
+się podsłuchiwać innych studentów.</p>
+<p><strong>UWAGA:</strong> <em>Większość sieci (w tym praktycznie
+wszystkie WiFi) nie są zabezpieczone przed Sniffingiem! Pamiętaj, że to
+co właśnie robisz, może zrobić każdy!</em></p>
+<div id="ćwiczenia-6" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Podsłuchaj swoje połączenie przez SSH z orange’m (port 22)</li>
+<li>Podsłuchując wejdź w przeglądarce na <a
+href="http://meil.pw.edu.pl/"><code>http://meil.pw.edu.pl/</code></a></li>
+<li>Podsłuchując wejdź w przeglądarce na <a
+href="https://meil.pw.edu.pl/"><code>https://meil.pw.edu.pl/</code></a></li>
+</ul>
+</div>
+</div>
+<div id="dla-dociekliwych-przekierowanie-portu" class="section level1">
+<h1>Dla dociekliwych: Przekierowanie portu</h1>
+<p><em>Ta część jest dla osób które chcą się pobawić i pogrzebać - nie
+ma gwarancji że cokolwiek zadziała!</em></p>
+<p>Porty można przekierować. Jeśli przekierujemy port x z serwera X do
+portu y serwera Y, to będzie to oznaczać, że jeśli połączymy się z
+portem x z serwerem X, to on przekaże całą komunikację do portu y
+serwera Y. Innymi słowy jeśli napiszemy:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">telnet</span> X x</span></code></pre></div>
+<p>to połączymy się z portem y na Y. Jest to wyjątkowo przydatne, jeśli
+my nie potrafimy połączyć się z komputerem Y. Dla przykłady gdy Y jest
+za firewall’em, albo jest w innej podsieci.</p>
+<div id="ćwiczenia-7" class="section level3">
+<h3>Ćwiczenia</h3>
+<ul>
+<li>Uruchom putty. Wejdz w ustawienia ,,tunneling”. Tam ustaw by port
+<code>80</code> był przekierowany na <code>google.com:80</code>.
+Następnie połącz się z maszyną <code>info3</code> jak zwykle.</li>
+<li>Spróbuj w przeglądarce otworzyć adres <a
+href="http://localhost/"><code>http://localhost/</code></a></li>
+<li>Zobacz co działa a co nie. Jeśli nie działa, to dlaczego?</li>
+</ul>
+</div>
+<div id="ćwiczenia-socks-proxy" class="section level3">
+<h3>Ćwiczenia SOCKS Proxy</h3>
+<ul>
+<li>Uruchom putty. Wejdz w ustawienia “tunneling”. Tam ustaw by port
+<code>12345</code> był przekierowaniem typu “Dynamic”. Następnie połącz
+się z maszyną <code>info3</code> jak zwykle.</li>
+<li>Ustaw następnie w opcjach przeglądarki serwer SOCKS proxy na
+<code>localhost</code> i port <code>12345</code></li>
+<li>wejdz na google.com</li>
+<li><em>ciesz się internetem zza firewall’a</em></li>
+</ul>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="W. Gryglas, eng. T.Wacławczyk" />
+
+
+<title>cs2_lab06.knit</title>
+
+<script src="site_libs/header-attrs-2.29.1/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.1/jquery-3.6.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CCFD Courses</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info1_regulamin.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="https://github.com/ccfd/courses_graphics/archive/master.zip">Projekt z biblioteką graficzną</a>
+    </li>
+    <li>
+      <a href="info1_tworzenie_projektu.html">Instrukcja tworzenia projektu</a>
+    </li>
+    <li>
+      <a href="info1_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info1_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info1_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info1_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info1_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info1_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info1_lab07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info1_lab08.html">Instrukcja VIII</a>
+    </li>
+    <li>
+      <a href="info1_lab09.html">Instrukcja IX</a>
+    </li>
+    <li>
+      <a href="info1_lab10.html">Instrukcja X</a>
+    </li>
+    <li>
+      <a href="info1_arkusz_kalkulacyjny.html">Arkusz kalkulacyjny</a>
+    </li>
+    <li>
+      <a href="info1_projekty.html">Projekty</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info2_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="info2_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info2_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="info2_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="info2_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info2_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info2_lab06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info2_training_exercises.html">Zadania treningowe</a>
+    </li>
+    <li>
+      <a href="info2_projekty.html">Zadania domowe</a>
+    </li>
+    <li>
+      <a href="info2_raport.html">Raport</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS I
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs1_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs1_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs1_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs1_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs1_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs1_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs1_lab06.html">Instruction VI</a>
+    </li>
+    <li>
+      <a href="cs1_lab07.html">Instruction VII</a>
+    </li>
+    <li>
+      <a href="cs1_lab08.html">Instruction VIII</a>
+    </li>
+    <li>
+      <a href="cs1_lab09.html">Instruction IX</a>
+    </li>
+    <li>
+      <a href="cs1_spreadsheet.html">Spreadsheet</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    CS II
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cs2_rules.html">Rules</a>
+    </li>
+    <li>
+      <a href="cs2_lab01.html">Instruction I</a>
+    </li>
+    <li>
+      <a href="cs2_lab02.html">Instruction II</a>
+    </li>
+    <li>
+      <a href="cs2_lab03.html">Instruction III</a>
+    </li>
+    <li>
+      <a href="cs2_lab04.html">Instruction IV</a>
+    </li>
+    <li>
+      <a href="cs2_lab05.html">Instruction V</a>
+    </li>
+    <li>
+      <a href="cs2_lab06.html">Instruction VI</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Info III
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="info3_informacje.html">Regulamin i Informacje</a>
+    </li>
+    <li>
+      <a href="info3_lab_1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="info3_lab_2-3.html">Instrukcja II - III</a>
+    </li>
+    <li>
+      <a href="info3_lab_4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="info3_lab_5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="info3_lab_6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="info3_lab_7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="info3_lab_dodatki.html">Bash: Dodatki</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Met Num
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="metnum_regulamin.html">Regulamin</a>
+    </li>
+    <li>
+      <a href="metnum_lab1.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="metnum_lab2.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="metnum_lab3.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="metnum_lab4.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="metnum_lab5.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="metnum_lab6.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="metnum_lab7.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="metnum_projekty.html">Projekty</a>
+    </li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skrypt</a>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="metnum_skrypt02.html">Metody Iteracyjne</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    C++
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="cpp_rules.html">Regulamin przedmiotu</a>
+    </li>
+    <li>
+      <a href="cpp_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="cpp_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="cpp_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="cpp_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="cpp_inst05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="cpp_inst06.html">Instrukcja VI</a>
+    </li>
+    <li>
+      <a href="cpp_inst07.html">Instrukcja VII</a>
+    </li>
+    <li>
+      <a href="cpp_projects.html">Lista projektów</a>
+    </li>
+    <li>
+      <a href="cpp_old_link.html">Stare materiały</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Python
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="python_inst01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="python_inst02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="python_inst03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="python_inst04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="python_inst05.html">Instrukcja V</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    HPC
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hpc_resources.html">Resources</a>
+    </li>
+    <li>
+      <a href="hpc_lab01.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="hpc_lab02.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="hpc_lab03.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="hpc_lab04.html">Lab 4-5</a>
+    </li>
+    <li>
+      <a href="hpc_lab06.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="hpc_lab07.html">Lab 7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    MOMP
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="momp_rules.html">Informacje</a>
+    </li>
+    <li>
+      <a href="momp_lab01.html">Instrukcja I</a>
+    </li>
+    <li>
+      <a href="momp_lab02.html">Instrukcja II</a>
+    </li>
+    <li>
+      <a href="momp_lab03.html">Instrukcja III</a>
+    </li>
+    <li>
+      <a href="momp_lab04.html">Instrukcja IV</a>
+    </li>
+    <li>
+      <a href="momp_lab05.html">Instrukcja V</a>
+    </li>
+    <li>
+      <a href="momp_lab06.html">Instrukcja VI</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a class="hidden">
+    <span class="fa fa-file-pdf-o fa-lg"></span>
+     
+    PDF
+  </a>
+</li>
+<li>
+  <a href="https://github.com/ccfd/courses/edit/master/cs2_lab06.Rmd">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
+</li>
+<li>
+  <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">
+    <span class="fa fa-creative-commons fa-lg"></span>
+     
+    CC
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- Dummy header -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="solution-of-the-set-of-linear-algebraic-equations"
+class="section level1">
+<h1>Solution of the set of linear algebraic equations</h1>
+<p>Files for the present tutorial can be found using following
+links:</p>
+<ul>
+<li><a href="http://ccfd.github.io/courses/code/info2/gauss.h">Header
+file gauss.h</a></li>
+<li><a href="http://ccfd.github.io/courses/code/info2/gauss.cpp">Source
+file gauss.cpp</a></li>
+</ul>
+<div id="introduction" class="section level2">
+<h2>1. Introduction</h2>
+<p>During this laboratory we will use one of the numerical methods for
+solution of the set of linear algebraic equations. The numerical methods
+for this kind of problems are extremely important in practically all
+applications of (continous) mechanics. In practice, all non-linear
+problems (also described by partial differential equations) can be
+transformed using appropriate discretiziation rules and some additional
+assumptions, to the sets (sometimes huge) of linar equations. These sets
+are solved in the procedure allowing to obtain approximate solution of
+the exact non-linear problem. Such transformation is usefull as the sets
+of linear equations are praticularly well suited for numerical solution
+by computers which perform efficiently only simple operations (e.g.,
+addition, subtruction). Such approximate solutions are very usefull in
+engineering practice, very often they are only available solutions of
+the complex, non-linear problems.</p>
+<p>The exit point is the set of linear equations: <span
+class="math display">\[ A \cdot x = b \]</span> where: <span
+class="math inline">\(A\)</span> is a matrix of coefficients, <span
+class="math inline">\(x\)</span> is vector of unknowns and <span
+class="math inline">\(b\)</span> is the right hand side (RHS) vector
+that is given. We know how to solve above system using the Gauss method.
+But before that we will construct the set of the linear equations to
+solve.</p>
+<p>To this goal, we use finite difference method. It is based on
+discretization of derivatives using the values at different, prdefined
+points (grid centers). Such approach allows to reformulate problem
+described by continous differential equations to the set of linear
+algebraic equations. This process is called discretization. Solution of
+this problem - meaining finding values of the vector <span
+class="math inline">\(x\)</span> - typically requires finding inverse of
+the matrix <span class="math inline">\(A\)</span> and finding of its
+left product with vector <span class="math inline">\(b\)</span>: <span
+class="math display">\[ x = A^{-1}\cdot b\]</span> as <span
+class="math inline">\(A^{-1}A=I\)</span> where <span
+class="math inline">\(I\)</span> is identity matrix.</p>
+<p>Let us note, computation of the inverse matrix <span
+class="math inline">\(A^{-1}\)</span> although possible is
+computationally expensive. For this reason during this classes we use
+<strong>Gauss elimination method</strong> that is from the class of the
+direct methods (not iterative) for solution of the set of linear
+algebraic equations.</p>
+<p>Futher, we divide the work into two parts. First we will discretize
+continous problem in order to create the set of linear algebraic
+equations, next we solve this set using the aformentioned Gauss
+method.</p>
+</div>
+<div id="creation-of-the-set-of-linear-equations"
+class="section level2">
+<h2>2. Creation of the set of linear equations</h2>
+<p>Let us condier a problem of heat transport by conduction in the one
+dimensional steel rod (see Fig.)</p>
+<p><img src="figures/info2/inst6/problem.png" title="Zagadnienie" /></p>
+<p>We want to find a distribution of temperature, knowing that at the
+beggining of the rod, temperature is <span
+class="math inline">\(T_p=273\,[K]\)</span> and at the end of the rod
+<span class="math inline">\(T_k=300\,[K]\)</span>. Additionally we know:
+<span class="math inline">\(L=1\,[m]\)</span> the length of the rod,
+<span class="math inline">\(\lambda=58\,[W/mK]\)</span> heat
+conductivity of steel. Moreover, the steel rod is heated by an
+additional heat source varying along its length as <span
+class="math inline">\(Q=-10^4\cdot
+sin(x\pi)[\frac{W}{m^3}]\)</span>.</p>
+<p>Hence, the heat conduction is described by the equation: <span
+class="math display">\[ \frac{\partial}{dx} \left( \lambda
+\frac{\partial T}{dx} \right) = Q(x) \]</span> Taking into account that
+<span class="math inline">\(\lambda=const.\)</span>, we can simplify
+above equation to: <span class="math display">\[ \frac{d^2T}{dx^2} =
+\frac{Q(x)}{\lambda} \]</span> This is a second-order, ordinary
+differential equation (<span class="math inline">\(T\)</span> depends
+only on <span class="math inline">\(x\)</span>) formulated as boundary
+value problem. Hence, to solve above equation we need two boundary
+conditions for temperature: <span class="math display">\[ T(x=0) = T_p
+\]</span> <span class="math display">\[ T(x=L) = T_k \]</span> In order
+to solve above problem using finite difference method we have to
+reformulate it to a set of the linear algebraic equations. To this goal,
+we have to divide computational domain (length of the rod <span
+class="math inline">\(L=1\,[m]\)</span>) into smaller elements. We
+choose to divide the interval <span class="math inline">\([0,1]\)</span>
+into <span class="math inline">\(N\)</span> elements, as depicted in
+Figure below.</p>
+<p><img src="figures/info2/inst6/discretization.png"
+title="Dyskretyzacja" /></p>
+<p>The points <span class="math inline">\(x_0, x_1, ..., x_N\)</span>
+are called the nodes of the computational grid. Let us assume for now,
+their distribution is uniform (equidistant), hence, <span
+class="math inline">\(x_{i+1}-x_i = h\)</span> where <span
+class="math inline">\(h = \frac{L}{N}\)</span> is constant, <span
+class="math inline">\(L=1\,[m]\)</span> in our case: <span
+class="math display">\[h = \frac{1}{N}\]</span> Before we discretize
+equation, let’s introduce following notation: <span
+class="math display">\[ T = [T_0, T_1, T_2, T_3, ..., T_N]^T\]</span>
+where <span class="math inline">\(T\)</span> is a vector storing values
+of the solution at discrete grid points <span
+class="math inline">\(T=T(x_i)\)</span>, <span
+class="math inline">\(i=0,...,N\)</span>.</p>
+<p>Now, let’s recall definition of the derivative of the function: <span
+class="math display">\[ \frac{dT}{dx} = \lim_{dx\to
+0}{\frac{T(x+dx)-T(x)}{dx}}\]</span> The computer can not use
+infinitisemaly small numbers, for this reason <span
+class="math inline">\(dx\)</span> in the computer code must be finite.
+To this goal, let us choose <span class="math inline">\(h\)</span> which
+is small but finite: <span class="math display">\[\frac{dT}{dx} \approx
+\frac{T(x+h)-T(x)}{h}\]</span> In above equation one problem appears.
+For which value of <span class="math inline">\(x\)</span> abobove
+formula approximates the derivative: <span
+class="math inline">\(x\)</span>, <span
+class="math inline">\(x+h\)</span> or maybe <span
+class="math inline">\(x+\frac{h}{2}\)</span>? In reality above
+approximation is true for each of the previousely definied points as it
+is only an approximation.</p>
+<ul>
+<li><p>If we choose that the derivative is approximated at point x:
+<span class="math inline">\(\frac{dT}{dx}(x)\)</span> above
+approximation results in the explicit Euler’s scheme (in
+space).</p></li>
+<li><p>If we choose that the derivative is approximated at point x+h:
+<span class="math inline">\(\frac{dT}{dx}(x+h)\)</span> above
+approximation results in implicit Euler’s scheme (in space).</p></li>
+</ul>
+<p>For the present classes, we however assume that the difference <span
+class="math inline">\(\frac{T(x+h)-T(x)}{h}\)</span> approximates the
+value of the derivative at point <span
+class="math inline">\(x+h/2\)</span>: <span
+class="math inline">\(\frac{dT}{dx}(x+\frac{h}{2})\)</span> One can show
+this is second-order accurate discretization of the derivative. As our
+heat conduction equation, uses second-order sparial derivative <span
+class="math inline">\(\frac{d^2T}{dx^2}\)</span> we use above
+approximation twice. Let’s introduce notation <span
+class="math inline">\(\frac{dT}{dx} = Y\)</span>. Then our problem can
+be written in the form: <span class="math display">\[\frac{dY}{dx} =
+\frac{Q(x)}{\lambda}\]</span> And we use approximation of the derivative
+of the function <span class="math inline">\(Y\)</span> (central
+difference) to obtain: <span
+class="math display">\[\frac{Y(x+\frac{h}{2})-Y(x-\frac{h}{2})}{h} =
+\frac{Q(x)}{\lambda}\]</span> Let us write terms in above formula
+explicitely: <span
+class="math inline">\(Y(x+\frac{h}{2})=\frac{dT}{dx}(x+\frac{h}{2})\)</span>
+oraz <span
+class="math inline">\(Y(x-\frac{h}{2})=\frac{dT}{dx}(x-\frac{h}{2})\)</span>:
+<span class="math display">\[
+Y(x+\frac{h}{2}) = \frac{T(x+h)-T(x)}{h}\\
+Y(x-\frac{h}{2}) = \frac{T(x)-T(x-h)}{h}
+\]</span> After substitution to the initial heat condution equation, we
+obtain: <span class="math display">\[\frac{\frac{T(x+h)-T(x)}{h} -
+\frac{T(x)-T(x-h)}{h}}{h} = \frac{T(x+h)-2\cdot T(x)+T(x-h)}{h^2} =
+\frac{Q(x)}{\lambda}\]</span> Above formula, is an approximation of the
+second-order derivative using the values of <span
+class="math inline">\(T\)</span> function in three points: <span
+class="math inline">\(x-h, x, x+h\)</span>. The central scheme is
+second-order accurate what is its desirable feature, we can use above
+equation to construct corresponding set of the linear algebraic
+equations. Let’s modify above formula by multiplying both sides by <span
+class="math inline">\(h^2\)</span> what leads to: <span
+class="math display">\[ T(x+h) - 2T(x) + T(x-h) =
+\frac{Q(x)}{\lambda}h^2 \]</span> Let go back to the figure above
+presenting discretization. We take into account internal nodes having
+numbers 1,…,N-1. If we substitute values of following <span
+class="math inline">\(x_i\)</span> to the equation above following set
+of the equations is obained: <span class="math display">\[
+T_2 - 2 \cdot T_1 + T_0 = \frac{Q(x_1)}{\lambda} \cdot h^2 \\
+T_3 - 2 \cdot T_2 + T_1 = \frac{Q(x_2)}{\lambda} \cdot h^2 \\
+T_4 - 2 \cdot T_3 + T_2 = \frac{Q(x_3)}{\lambda} \cdot h^2 \\
+. \\
+. \\
+. \\
+T_N - 2 \cdot T_{N-1} + T_{N-2} = \frac{Q(x_{N-1})}{\lambda} \cdot h^2
+\]</span> Above set omits points <span class="math inline">\(0\)</span>
+and <span class="math inline">\(N\)</span> as it is hard to write an
+equation for them (nodes <span class="math inline">\(x_{-1}\)</span> and
+<span class="math inline">\(x_{N+1}\)</span> does not exsist) we will
+take them into account in the moment. Now let’s look on the form of the
+above equations. Each of them carries information about 3 unknown values
+denoted as <span class="math inline">\(T_{i+1}, T_{i}, T_{i-1}\)</span>.
+These are values of the unknown function in corresponding nodes. We
+introduce one more vector <span class="math inline">\(F\)</span>: <span
+class="math display">\[ F_i = \frac{Q(x_i)}{\lambda} \cdot h^2\]</span>
+its elements <span class="math inline">\(F=F(x_i)\)</span> contain
+values of the known RHS in the equation. Therefore, reformulated
+equation finaly has a form: <span class="math display">\[ T_{i+1} - 2
+\cdot T_i + T_{i-1} = F_i \]</span> Using vector notation above equation
+in matrix form reads: <span class="math display">\[ K \cdot T =
+F\]</span> where <span class="math inline">\(K\)</span> is the matrix of
+coefficients: <span class="math display">\[
+\begin{bmatrix}
+1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots
+&amp; \ddots &amp;  0\\
+0 &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; &amp; 1 &amp; -2
+&amp; 1
+\end{bmatrix}
+\times
+\begin{bmatrix}
+T_0 \\
+T_1 \\
+T_2 \\
+\vdots \\
+T_{N}
+\end{bmatrix}
+=
+\begin{bmatrix}
+F_1 \\
+F_2 \\
+\vdots \\
+F_{N-1}
+\end{bmatrix}
+\]</span> Above set of linear algebraic equation is not
+<strong>closed</strong>. As it is easy to notice the matrix <span
+class="math inline">\(K\)</span> is not square since two equations for
+the nodes <span class="math inline">\(x_0\)</span> and <span
+class="math inline">\(x_N\)</span> are missing. Here, we must use
+boundary values: <span class="math display">\[
+T(x=x_0) = T_0 = T_p = 273\\
+T(x=x_N) = T_N = T_k = 300
+\]</span> Above equations mean that we know solution (temperature <span
+class="math inline">\(F_0=T_0\)</span> and <span
+class="math inline">\(F_N=T_N\)</span>) at points <span
+class="math inline">\(x_0\)</span> and <span
+class="math inline">\(x_N\)</span>. Therefore we can explicitly include
+them into the set of algerbraic equations:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; \dots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \dots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \ddots
+&amp; \ddots &amp;  0\\
+0 &amp; \dots &amp; \dots &amp; \dots &amp; \dots  &amp; 1 &amp; -2
+&amp; 1\\
+0 &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp; \dots &amp;
+\dots &amp; 1\\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+T_0 \\
+T_1 \\
+T_2 \\
+\vdots \\
+T_{N-1}\\
+T_{N}
+\end{bmatrix}
+=
+\begin{bmatrix}
+273 \\
+\frac{Q(x_1)}{\lambda} \cdot h^2 \\
+\frac{Q(x_2)}{\lambda} \cdot h^2 \\
+\vdots \\
+\frac{Q(x_{N-1})}{\lambda} \cdot h^2 \\
+300
+\end{bmatrix}
+\]</span></p>
+</div>
+<div id="exercises" class="section level2">
+<h2>Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Create a variable: two dimensional array <span
+class="math inline">\(K\)</span> using static memory allocation. Set
+constant size of a matrix <code>N=6</code> (use an instruction
+<code>const int N=...;</code> or preprocessor declaration
+<code>#define</code> to change the size of a matrix). Remember, the
+number of discretization (grid) points equals <span
+class="math inline">\(N+1\)</span> in the above example.</p></li>
+<li><p>Create static arrays to store the RHS vector <span
+class="math inline">\(F\)</span> and vector of unkowns <span
+class="math inline">\(T\)</span>/</p></li>
+<li><p>Initialize matrix <span class="math inline">\(K\)</span>
+according to discretization presented above.</p></li>
+<li><p>Write function displaing matrix <span
+class="math inline">\(K\)</span> with protoype:</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dt">void</span> DisplayMatrix<span class="op">(</span><span class="dt">int</span> n<span class="op">,</span> <span class="dt">double</span> A<span class="op">[][</span>N<span class="op">]);</span></span></code></pre></div>
+<p>Check if matrix <span class="math inline">\(K\)</span> in your code
+has elements as described above.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Compute the vector of <span class="math inline">\(F\)</span> using
+definition from above description.</li>
+</ol>
+</div>
+<div id="solution-of-the-set-of-linear-algebraic-equations-1"
+class="section level2">
+<h2>3. Solution of the set of linear algebraic equations</h2>
+<p>Finally, we can solve the set of linear algebraic equations. As a
+result we obtain one-dimensional array <span
+class="math inline">\(T\)</span> storing the values of unknown
+temperature in predefined grid points.</p>
+</div>
+<div id="exercises-1" class="section level2">
+<h2>Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Apply function <code>gauss</code> performing the Gauss
+elimination to solve above system of equations. The header of this
+function:
+<code>void gauss(int n, double A[][N], double b[], double x[])</code>
+where <code>n</code> number of equations, <code>A</code> the coefficient
+matrix, <code>b</code> - the right hand side vector and <code>x</code>
+the vector of unknowns (stores final result).</p></li>
+<li><p>Prepeare diagram of the function <span
+class="math inline">\(T=T(x)\)</span> using graphical library. If
+<code>N=20</code> (meaning 21 points) your result should be similar to
+the result depicted in the figure below
+<img src="cs2_lab06_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p></li>
+<li><p>Test your program for different <code>n</code> (be carefull, the
+Gauss method is slow <span class="math inline">\(~n^3\)</span>
+operations are required to obtain the solution).</p></li>
+<li><p>Based on the function <code>gauss</code> write a function
+computing upper tri-diagonal matrix. Next, use it to compute determinant
+of the matrix <span class="math inline">\(K\)</span>.</p></li>
+</ol>
+</div>
+</div>
+
+<!-- Dummy footer -->
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
