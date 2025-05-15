@@ -45,5 +45,5 @@ title: Resources
 
 ## GPU Lecture and Labs
 
-- [Repository: Lectures + Labs](https://github.com/ggruszczynski/gpu_colab)
-- [Lecture 1](https://raw.githack.com/ggruszczynski/gpu_colab/main/lectures/gpu_lecture1.html)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture8.pdf)
+- [Code (reduction case study)](http://ccfd.github.io/courses/code/hpc/cuda-reduction.zip)
