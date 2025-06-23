@@ -24,6 +24,8 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build site
         run: R -e "rmarkdown::render_site()";
+      - name: Build pdfs
+        run: tools/pdf_all;
       - name: Correcting headers
         run: tools/headers;
       - name: Upload static files as artifact
