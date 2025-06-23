@@ -43,7 +43,7 @@ Hint: use tabulator.
 Write a program which reads from a keyboard coordinates of three arbitrary points in 2D.
 Calculate distances between those points.
 Calculate also an area and a perimeter of a triangle defined by these points.
-Use Heron formula $P = \sqrt{s(s−a)(s−b)(s−c)}$, where $s= \frac{1}{2} (a + b + c )$, and $a$, $b$, $c$ are the lengths of the triangle sides.
+Use Heron formula $P = \sqrt{s(s-a)(s-b)(s-c)}$, where $s= \frac{1}{2} (a + b + c )$, and $a$, $b$, $c$ are the lengths of the triangle sides.
 Format a printout of the results in a clear and readable way.
 
 ## 4.
@@ -68,8 +68,8 @@ If the condition is not satisfied print the error.
 Execute the following code:
 ```c++
 double a, b;
-double w1 = a*a – b*b;
-double w2 = (a + b)*(a – b);
+double w1 = a*a - b*b;
+double w2 = (a + b)*(a - b);
 printf("w1 = %lf, w2 = %lf\n", w1, w2);
 ```
 This time you can assign values to the variables $a$ and $b$ directly inside the code.

@@ -697,7 +697,7 @@ gdzie indeks ***n*** oznacza numer kroku czasowego, a $T^n = T(t^n)$ i $g^n = g(
 
 $$ T^{n+1} = T^n + \Delta t \cdot g^n $$
 
-Jak widać powyższy wzór pozwala na zastosowanie go do naszego docelowego zagadnienia. Jednak musimy w jakiś sposób obliczyć wartość funkcji ***g*** w poprzednim kroku. U nas funkcja g jest równa $\Delta T(x,y,t) a zatem musimy obliczyć wyrażenie:
+Jak widać powyższy wzór pozwala na zastosowanie go do naszego docelowego zagadnienia. Jednak musimy w jakiś sposób obliczyć wartość funkcji ***g*** w poprzednim kroku. U nas funkcja g jest równa $\Delta T(x,y,t)$ a zatem musimy obliczyć wyrażenie:
 
 $$ \frac{\partial^2 T(x,y,t^n)}{\partial x^2} + \frac{\partial^2 T(x,y,t^n)}{\partial y^2} $$
 
@@ -709,7 +709,7 @@ Powyższy wzór może być łatwo zastosowany do naszego zadania. Wartości funk
 
 $$ T^{n+1}_{i,j} = T^{n}_{i,j} + \Delta t \cdot a \cdot ( \frac{T^{n}_{i+1,j} -2\cdot T^{n}_{i,j} + T^{n}_{i-1,j}}{dx^2} + \frac{T^{n}_{i,j+1} -2\cdot T^{n}_{i,j} + T^{n}_{i,j-1}}{dy^2}) $$
 
-Jeśli założymy, że ***dx=dy = \delta*** to wzór uprości się do postaci:
+Jeśli założymy, że $dx=dy = \delta$ to wzór uprości się do postaci:
 
 $$ T^{n+1}_{i,j} = T^{n}_{i,j} + \frac{\Delta t \cdot a}{\delta^2} \cdot ( T^{n}_{i,j+1} + T^{n}_{i+1,j} - 4 \cdot T^{n}_{i,j} + T^{n}_{i-1,j} + T^{n}_{i,j-1}) $$
 

@@ -32,7 +32,7 @@ number: 0
 1. Zapoznanie z systemem UNIX/Linux
 2. Programowanie w powłoce (Bash)
 3. Relacyjne bazy danych - MySQL
-4. Tworzenie dokumentów tekstowych w $\LaTeX u$
+4. Tworzenie dokumentów tekstowych w LaTeX
 5. Programowanie równoległe
 6. Sieci i protokoły internetowe
 
@@ -52,7 +52,7 @@ Ocena: 2 zadania: dst., 3 zadania: db. 4 zadania: bdb.
 3. Napisz skrypt wyświetlający nazwę pliku o największym rozmiarze. Skrypt powinien sprawdzać wyłącznie pliki znajdujące się w tym samym katalogu co on.  
 **Podpowiedź:** skorzystaj z wyniku polecenia *du -b plik*
 
-4. Utwórz plik *.pdf* zawierający równanie zapisane w systemie $\LaTeX$.
+4. Utwórz plik *.pdf* zawierający równanie zapisane w systemie LaTeX.
 $$
 1-|\mu_0|^2=\frac{(\mathfrak{R} f_0)^2+(\mathfrak{B}f_0-kR_x)^2-(\mathfrak{R}f_0)^2-(\mathfrak{B}f_0-kR_x)^2}{(\mathfrak{R}f_0)^2-(\mathfrak{B}f_0-kR_x)^2}
 $$  
