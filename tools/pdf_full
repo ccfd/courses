@@ -8,10 +8,24 @@ else
 fi
 
 test -z "$1" && exit -1
-echo -n "Compiling $1 to pdf - "
-if R --vanilla --slave -e "library(rmarkdown); source('tools/pdf_full.R'); render('$1',pdf_full($OPT))" >pdf_compile.log 2>&1
+MD="$1"
+shift
+
+echo -n "Compiling $MD to pdf - "
+if R --vanilla --slave -e "library(rmarkdown); source('tools/pdf_full.R'); render('$MD',pdf_full($OPT))" >pdf_compile.log 2>&1
 then
-	echo "OK"
+	PDF="${MD%.*}.pdf"
+	if test -f "$PDF"
+	then
+		echo "OK"
+		if ! test -z "$1"
+		then
+			echo "Moving $PDF to $1"
+			mv "$PDF" "$1"
+		fi
+	else
+		echo "File not found: $PDF"
+	fi
 else
 	echo "ERROR"
 	cat pdf_compile.log
