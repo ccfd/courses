@@ -12,25 +12,20 @@ jobs:
   build_and_publish:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4.2.2
-
-      - name: Install tools
-        run: |
-          sudo apt-get update
-          sudo apt install -y build-essential pandoc libxml2-dev libssl-dev libcurl4-openssl-dev r-base r-base-dev r-cran-devtools;
-          sudo apt install -y libharfbuzz-dev libfribidi-dev;
-          sudo R -e "devtools::install_github('rstudio/rmarkdown')";
-          wget https://github.com/mathjax/MathJax/archive/master.zip;
-          unzip master.zip >/dev/null;
-          rm master.zip;
-          export RMARKDOWN_MATHJAX_PATH=$PWD/MathJax-master;
-
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+      - name: Setup pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+      - name: Setup tinytex
+        uses: r-lib/actions/setup-tinytex@v2
+      - name: Setup dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build site
-        run: |
-          R -e "rmarkdown::render_site()";
-          tools/headers;
+        run: R -e "rmarkdown::render_site()";
+      - name: Correcting headers
+        run: tools/headers;
       - name: Upload site artifact for review
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/upload-artifact@v4.6.1
