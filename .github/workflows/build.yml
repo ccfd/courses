@@ -1,12 +1,15 @@
-name: Build site for review
+name: Publish to GitHub Pages
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
 
 jobs:
-  build_site_and_upload:
+  build_and_publish:
     runs-on: ubuntu-latest
     steps:
 
@@ -28,9 +31,17 @@ jobs:
         run: |
           R -e "rmarkdown::render_site()";
           tools/headers;
-
       - name: Upload site artifact for review
+        if: ${{ github.event_name == 'pull_request' }}
         uses: actions/upload-artifact@v4.6.1
         with:
           name: site_for_review
           path: _site
+      - name: Publish
+        if: ${{ github.event_name == 'push' }}
+        uses: crazy-max/ghaction-github-pages@v4.1.0
+        with:
+          build_dir: _site
+          verbose: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
