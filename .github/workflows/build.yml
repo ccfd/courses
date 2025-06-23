@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build_and_publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,17 +26,19 @@ jobs:
         run: R -e "rmarkdown::render_site()";
       - name: Correcting headers
         run: tools/headers;
-      - name: Upload site artifact for review
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/upload-artifact@v4.6.1
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: site_for_review
-          path: _site
-      - name: Publish
-        if: ${{ github.event_name == 'push' }}
-        uses: crazy-max/ghaction-github-pages@v4.1.0
-        with:
-          build_dir: _site
-          verbose: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: _site/
+  publish:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
