@@ -4,5 +4,5 @@ FILES=$(ls | grep '^[^_].*\.R\?md$')
 
 for i in $FILES
 do
-	make -f tools/pdf_all.mk ${i%.*}.pdf
+	tools/pdf_full $i _site/
 done
