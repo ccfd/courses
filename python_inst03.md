@@ -791,7 +791,7 @@ Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji.
 
 ## Zadanie 2
 
-Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności $k=10$ znajdujących się polu grawitacyjnym o przyśpieszeniu $\vec{g}=[0,-9.81][\frac{m}{s^2}]$. Oba ciała są wstępnie ustawione w odległości $l = 10$ od siebie i leżą na linii poziomej, a sprężyna w tym momencie jest nienaciągnięta. Prędkość początkowa ciała pierwszego wynosi $u_1=[0,5][\frac{m}{s}]$ a drugiego $ u_2=[-3,3] [\frac{m}{s}]$. Masy obu ciał są równe i wynoszą $m=1 [kg]$ lub $m=10 [kg]$ (sprawdź jak zmienią się wyniki w obu przypadkach). 
+Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności $k=10$ znajdujących się polu grawitacyjnym o przyśpieszeniu $\vec{g}=[0,-9.81][\frac{m}{s^2}]$. Oba ciała są wstępnie ustawione w odległości $l = 10$ od siebie i leżą na linii poziomej, a sprężyna w tym momencie jest nienaciągnięta. Prędkość początkowa ciała pierwszego wynosi $u_1=[0,5][\frac{m}{s}]$ a drugiego $u_2=[-3,3][\frac{m}{s}]$. Masy obu ciał są równe i wynoszą $m=1[kg]$ lub $m=10[kg]$ (sprawdź jak zmienią się wyniki w obu przypadkach). 
 
 Wykonaj wykres torów ruchu obu ciał, a następnie utwórz animację, w której przedstawisz ruch ciał w postaci punktów poruszających się po obliczonych torach. 
 
@@ -821,7 +821,7 @@ Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tabl
 ## Zadanie 4
 Należy napisać skrypt który będzie wczytywał plik graficzny ***resources/lab1/meil.png***. 
 
-![logo](https://github.com/ccfd/python_course/blob/master/resources/lab2/meil.png?raw=true "Obraz do przetworzenia") 
+![logo](common/ccfd.png "Obraz do przetworzenia") 
 
 Ponadto skrypt ten powinien przeskalować obraz do rozmiaru 20x20 (wykorzystaj funkcję z poprzedniego zadania) i wyświetlić w jednym oknie obraz wczytany i przeskalowany obok siebie.
 
@@ -865,9 +865,7 @@ Uzupełnij skrypt z poprzedniego zadania tak, aby na podstawie jasności obrazka
             ||||||||||||||||-           
 ```
 ### Podpowiedzi
-W celu określenia jasności obrazka w danym punkcie skorzystaj z definicji kolorów HSV zamiast RGB. Kolory HSV, podobnie jak RGB są przechowywane w macierzy o 3 kanałach. Definicja każdego z kanałów można zobaczyć na poniższym rysunku:
-
-![SkalaHSV](https://upload.wikimedia.org/wikipedia/commons/0/0d/HSV_color_solid_cylinder_alpha_lowgamma.png "Skala HSV, źródło wikipedia") 
+W celu określenia jasności obrazka w danym punkcie skorzystaj z definicji kolorów HSV zamiast RGB. Kolory HSV, podobnie jak RGB są przechowywane w macierzy o 3 kanałach. 
 
 Konwrsji koloru z macierzy RGB na macierz HSV można dokonać za pomocą funkcji ***rgb_to_hsv*** znajdującej się w bibliotece ***matplotlib.colors***. Kanał  ***Value*** dla macierzy HSV jest określony jako trzeci(ostatni).
 

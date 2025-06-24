@@ -30,7 +30,7 @@ Pozwala na łatwe kopiowanie zawartości (ma dobrze zdefiniowane metody specjaln
 Pozwala na dostęp do elementów poprzez klucz, np. `mapa_ocen["Janina Kowalska"] = 5`.
 - [`std::list`](https://en.cppreference.com/w/cpp/container/list) - rozprasza elementy w pamięci.
 każdy element należy do komórki, która przechowuje wskaźnik do kolejnej komórki.
-W konsekwencji, aby dostać się do *i*-tego elementu musimy przejść przez *i*−1 elementów go poprzedzających.
+W konsekwencji, aby dostać się do *i*-tego elementu musimy przejść przez *i*-1 elementów go poprzedzających.
 - [`std::deque`](https://en.cppreference.com/w/cpp/container/deque) - dwukierunkowa kolejka (możemy dodawać elementy na końcu i na początku).
 Typowe implementacje alokują pamięć blokami (np. na 16 elementów, nie na 1).
 

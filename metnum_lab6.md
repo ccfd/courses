@@ -24,12 +24,10 @@ Po podstawieniu dostajemy:
 \ddot{f}(t) \mathbf{M} \mathbf{w} = -f(t)\mathbf{S} \mathbf{w}
 \]
 Jeśli znajdziemy $\mathbf{w}$ takie, że:
-$$
 \begin{align}
 \mathbf{M} \mathbf{w} = \lambda \mathbf{S} \mathbf{w} 
 \tag{1}
 \end{align}
-$$
 to otrzymamy:
 \[
 \lambda \ddot{f}(t) = -f(t) \quad \Rightarrow \quad
@@ -63,12 +61,10 @@ Otrzymamy:
 \]
 Na podstawie tego wzoru możemy skonstruować prostą iterację:
 
-$$
 \begin{align*}
 \mathbf{p} &= \mathbf{S}^{-1} \mathbf{M} \mathbf{w} \\
 \mathbf{w} &= \frac{\mathbf{p}}{\sqrt{\mathbf{p}^T \mathbf{M} \mathbf{p}}}
 \end{align*}
-$$
 
 W pierwszym etapie liczymy wynik $\mathbf{S}^{-1} \mathbf{M} \mathbf{w}$, a następnie normalizujemy go tak aby $\mathbf{w}^T \mathbf{M} \mathbf{w} = 1$.
 Łatwo pokazać, że:

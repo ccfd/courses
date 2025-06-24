@@ -56,7 +56,7 @@ h = 10 \\
 l_1 = 5 \\
 l_2 = 8
 $$
-Wyznacz zależność kąta α od czasu dla 10 różnych chwil czasowych: $t = 0, 0.5, 1, 1.5, ..., 4.5$. Następnie dokonaj interpolacji z otrzymanych punktów i przedstaw na wykresie zależność:
+Wyznacz zależność kąta $\alpha$ od czasu dla 10 różnych chwil czasowych: $t = 0, 0.5, 1, 1.5, ..., 4.5$. Następnie dokonaj interpolacji z otrzymanych punktów i przedstaw na wykresie zależność:
 $$ \alpha = \alpha(t) $$
 wykorzystując 100 punktów, których wartości powinny pochodzić z zastosowania interpolacji metodą wielomianową. 
 
@@ -95,7 +95,7 @@ $$ f(x) = - x \cdot sinh(x) + a $$
 
 5. Dokonaj interpolacji funkcji $Całka=f(a)$ metodą wielomianową i przedstaw wynik w punktach: $a=1, 1.1, 1.2, \dots, 9.9, 10$ na wykresie wykorzystując bibliotekę graficzną. 
 
-**Mała podpowiedź:** Pierwiastki równania $−x \cdot sinh(x) + a$ dla $a=1, \dots, 10$ to liczby z zakresów:
+**Mała podpowiedź:** Pierwiastki równania $-x \cdot sinh(x) + a$ dla $a=1, \dots, 10$ to liczby z zakresów:
 $$ 
 x_{01} = [-0.5, -2.5] \\
 x_{01} = [0.5, 2.5]
@@ -103,14 +103,13 @@ $$
 
 
 ## Zadanie 5
-
-Zarejestrowano prędkość poruszającego się samochodu w przedziale czasu $t \in <0, 3>$ sekund. Okazało się, że prędkość tą opisuje następująca funkcja:
-$$
 \newcommand{\tmax}{3}
 \newcommand{\seekdistance}{5}
 \newcommand{\rhsfunction}{sin(t) \cdot cosh(t)}
 \newcommand{\rhsfunctionlong}{sin(t) \cdot \frac{e^t+e^{-t}}{2}}
 \newcommand{\rhsfunctionlongTau}{sin(\tau) \cdot \frac{e^\tau+e^{-\tau}}{2}}
+Zarejestrowano prędkość poruszającego się samochodu w przedziale czasu $t \in <0, 3>$ sekund. Okazało się, że prędkość tą opisuje następująca funkcja:
+$$
 v(t) = \rhsfunction = \rhsfunctionlong \quad [\frac{m}{s}]
 $$
 
@@ -129,9 +128,6 @@ gdzie wartości $t_i$ powinny być punktami z przedziału $t\in<0,3>$.
 
 
 ## Zadanie 6
-
-Grubość belki $h$ o przekroju kwadratowym w zależności od położenia $x$ opisują następujące funkcje:
-$$
 \newcommand{\grubosc}{0.1}
 \newcommand{\dlugosc}{5}
 \newcommand{\aOne}{0.025}
@@ -139,6 +135,8 @@ $$
 \newcommand{\aThree}{0.075}
 \newcommand{\mGnacySkala}{1000000}
 \newcommand{\mGnacySkalaText}{10^6}
+Grubość belki $h$ o przekroju kwadratowym w zależności od położenia $x$ opisują następujące funkcje:
+$$
 h(x) = 2\cdot \delta(x) [m]
 $$
 
@@ -193,11 +191,10 @@ $$
 Z kolei siła to: 
 $$ \vec{F} = m \cdot \vec{a} = m \cdot \left[10^{-2} \cdot (0.8+sin(x \cdot 10^{-2}), 10 \cdot (0.8+sin(y)) \right] \left[\frac{m}{s^2}\right] $$
 Ostatecznie całka którą należy obliczyć to:
-$$ 
-\begin{aligned}
+\begin{align}
     m\cdot \int_{x_0}^{x_1} \vec{a} \cdot \vec{ds} = m\cdot \int_{x_0}^{x_1} [1, y'] \cdot \left[10^{-2} \cdot (0.8+sin(x \cdot 10^{-2}), 10 \cdot (0.8+sin(y)) \right] dx
-\end{aligned}
-$$
+\end{align}
+
 
 Jedyna rzecz której nie posiadamy to koniec przedziału całkowania. Jak wiemy końcem będzie moment zderzenia samolotu z ziemią, czyli y=0 . Ponieważ równanie to jest nieliniowe, to wypada skorzystać w tym miejscu z jakiejś metody do rozwiązywania równań nieliniowych. Jak będziemy znali ten ostatni parametr to pozostaje scałkować numerycznie (np. metodą trapezów)
 pracę i można obliczyć ostatecznie wartość prędkości.
@@ -247,10 +244,10 @@ Zatem schemat rozwiązania zadania będzie następujący:
 Przyjmijmy, że dolny punkt znajduje się w punkcie $[0,0]$. Wtedy możemy napisać 2 równania opisujące ten mechanizm:
 $$ 
 x_1^2 + y_1^2  = l_1^2 \quad \to \quad y_1 = \sqrt{l_1^2 - x_1^2}, \quad ponieważ \quad y_1 > 0 \\
-(x_2 − x_1)^2 +(h − y_1)^2 =l_2^2
+(x_2 - x_1)^2 +(h - y_1)^2 =l_2^2
 $$
 a po podstawieniu ($x_2$ wynika z danych):
-$$ (2 \cdot sin(t) + 2 − x_1)^2 +(h − \sqrt{l_1^2 - x_1^2} )^2 =l_2^2 $$
+$$ (2 \cdot sin(t) + 2 - x_1)^2 +(h - \sqrt{l_1^2 - x_1^2} )^2 =l_2^2 $$
 
 Mamy zatem jedno równanie nieliniowe opisujące ruch dolnej korby mechanizmu, gdzie niewiadoma to $x_1$. Czas w tym równaniu występuje tylko jako parametr, który będzie się zmieniał co zadany krok przy kolejnych rozwiązaniach tego równania. W związku z tym najwygodniej bedzie czas zadeklarować jako zmienną globalną, tak aby nie trzeba było modyfikować funkcji znajdujących się w plikach narzedzia.h i narzedzia.cpp. Pozostaje rozwiązać to równanie wykorzystując np. metodę siecznych.
 
@@ -281,13 +278,11 @@ którego rozwiązaniem będzie poszukiwany czas $t$.
 
 Skąd zatem wziąć funkcję $x = x(t)$? Należy skorzystać ze informacji jaką niesie prędkość pojazdu. Biorąc pod uwagę równanie określające prędkość można sformułować następujące zagadnienie:
 
-$$
 \begin{align*}
 	&\frac{dx}{dt} = \rhsfunction \\
     &x|_{t=0} = 0 \\
     &t \in <0, \tmax>
 \end{align*}
-$$
 
 Powyższy problem to nic innego jak poszukiwanie całki nieoznaczonej funkcji $\frac{dx}{dt}=v(t)$. Ale jak to zrobić za pomocą poznanych narzędzi? Otóż należy połączyć 2 metody - całkowanie numeryczne oraz interpolację. Poznane metody całkowania pozwalają wyznaczyć całkę oznaczoną postaci:
 
@@ -351,13 +346,11 @@ $$
 $$
 
 a po podstawieniu $W_x = \frac{h(x)^3}{6}$ i zróżniczkowaniu otrzymamy:
-$$
 \begin{align}
 	\frac{d\sigma}{dx} &= \frac{3}{4} \cdot \frac{M' \delta - 3 \cdot M \delta'}{\delta^4}\\
     M' &= \frac{1}{l} \left(cosh(\frac{x}{l})sin(x\cdot\frac{\pi}{x}) + \pi sinh(\frac{x}{l})cos(x\cdot\frac{\pi}{x})\right)\\
     \delta' &= a \cdot (l - 2 \cdot x)
 \end{align}
-$$
 
 Znając przekrój można wyznaczyć wartość $\sigma_{max}(\mathbf{a})$. Trudno jest jednak wygenerować pary $(\mathbf{a}, \sigma_{max})$ dla wszystkich dopuszczalnych wartości parametru $\mathbf{a}$. Dlatego należy wykonać powyższe obliczenia dla pewnego zbioru konkretnych wartości tego parametru, np. $\mathbf{a} = 0, 0.01, ..., 0.1$, a następnie dokonać interpolacji funkcji $\sigma_{max}=\sigma_{max}(\mathbf{a})$ za pomocą wielomianów Lagrange'a. Ostatecznie, posiadając wymaganą funkcję w postaci interpolacji, pozostaje rozwiązać równanie $\frac{d\sigma}{dx} = 0$. 
 

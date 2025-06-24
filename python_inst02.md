@@ -577,7 +577,7 @@ aString  = "Jakis ciag znakow"
 ```
 
 ### Wieloliniowe ciągi znaków
-Aby złamać linię w tekście wystarczy użyć znaku "\n", jednak w kodzie nadal będziemy pisali w tej samej linii, co jest bardzo nieczytelne.  Python dodatkowo wspiera pisanie w postaci wieloliniowego tekstu. W tym celu korzysta się z potrójnego cudzysłowu:
+Aby złamać linię w tekście wystarczy użyć znaku `"\n"`, jednak w kodzie nadal będziemy pisali w tej samej linii, co jest bardzo nieczytelne.  Python dodatkowo wspiera pisanie w postaci wieloliniowego tekstu. W tym celu korzysta się z potrójnego cudzysłowu:
 
 ```python
 longString = """Piszemy dlugi, wieloliniowy tekst, a teraz nowa linia
