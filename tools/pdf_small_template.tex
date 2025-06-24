@@ -93,6 +93,8 @@ $endif$
 \let\rmarkdownfootnote\footnote%
 \def\footnote{\protect\rmarkdownfootnote}
 
+\newcommand{\includesvg}[1]{\includegraphics{#1}}
+
 $for(header-includes)$
 $header-includes$
 $endfor$

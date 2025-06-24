@@ -30,7 +30,7 @@ Tym samym założono przepływ symetryczny względem płaszczyzny XZ.
 
 4. Stwórz nowy szkic na płaszczyźnie **X-Y**. Narysuj geometrię połowy skrzydła delta tak jak na załączonej ilustracji.
 
-![**Rys.1.** *Szkic 1 na płaszczyźnie X-Y*](figures/momp_inst4/instr4_geom.svg#center "Szkic 1")
+![**Rys.1.** *Szkic 1 na płaszczyźnie X-Y*](figures/momp_inst4/instr4_geom.svg "Szkic 1")
 
 5. Stwórz **powierzchnię** na podstawie utworzonego szkicu.
 
@@ -42,7 +42,7 @@ Tym samym założono przepływ symetryczny względem płaszczyzny XZ.
 
 9. Wewnątrz szkicu, za pomocą narzędzia **Arc by Center**, stwórz półokrąg według załączonej ilustracji. 
 
-![**Rys.2.** *Szkic 2 na płaszczyźnie Y-Z*](figures/momp_inst4/instr4_geom2.svg#center "Szkic 2")
+![**Rys.2.** *Szkic 2 na płaszczyźnie Y-Z*](figures/momp_inst4/instr4_geom2.svg "Szkic 2")
 
 		UWAGA: Aby utworzyć powierzchnie śmigła, obwód musi być zamknięty. 
 		
@@ -54,7 +54,7 @@ Tym samym założono przepływ symetryczny względem płaszczyzny XZ.
 
 	Z menu kontekstowego **Create** wybieramy **Body Transformation** następnie **Rotate**.
 	
-	![**Rys.3.** *Obrót*](figures/momp_inst4/instr4_rotate.svg#center "Obrót")
+	![**Rys.3.** *Obrót*](figures/momp_inst4/instr4_rotate.svg "Obrót")
 	
 	**Wybieramy geometrie** do obrotu. To można zrobić na dwa sposoby (patrz rysunek).
 	
@@ -66,14 +66,14 @@ Tym samym założono przepływ symetryczny względem płaszczyzny XZ.
 	Najechanie kursorem na odpowiednią warstwę podświetli reprezentowany element.
 	Klikając odpowiednią **warstwę** wybieramy interesującą nas powierzchnie. (Patrz rysunek)
 	
-	![**Rys.4.** *Sposoby zaznaczania*](figures/momp_inst4/instr4_rotateopt.svg#center "Select")
+	![**Rys.4.** *Sposoby zaznaczania*](figures/momp_inst4/instr4_rotateopt.svg "Select")
 	
 	
 	Wybieramy **skrzydło delta** i **wirnik**.
 	
 	Następnie **wybieramy oś obrotu**. To też można zrobić na dwa sposoby (Patrz rysunek).
 	
-	![**Rys.5.** *Sposoby wskazania osi obrotu*](figures/momp_inst4/instr4_rotateopt2.svg#center "Oś obrotu")
+	![**Rys.5.** *Sposoby wskazania osi obrotu*](figures/momp_inst4/instr4_rotateopt2.svg "Oś obrotu")
 	
 	- W **menu płaszczyzn** w drzewie historii (tam gdzie znajdują się szkice), wybieramy **płaszczyznę prostopadłą** do naszej osi obrotu.
 	- W **oknie graficznym**, na naszym rysunku, znajdują się przerywane linie reprezentujące osie układu współrzędnych. Klikamy na odpowiednią oś.
@@ -137,7 +137,7 @@ Tym samym założono przepływ symetryczny względem płaszczyzny XZ.
 
 1. Otwieramy moduł **Mesh**.
 
-![**Rys.6.** *Nazwy warunków brzegowych*](figures/momp_inst4/instr4_namedselect.svg#center "Domena")
+![**Rys.6.** *Nazwy warunków brzegowych*](figures/momp_inst4/instr4_namedselect.svg "Domena")
 
 2. Na wstępie nadajmy nazwy warunków brzegowych (Patrz rysunek). **W analizie trójwymiarowej naszymi warunkami brzegowymi są powierzchnie**.
 Metoda zaznaczania powierzchni jest taka sama jak w systemie zaznaczania w DesignModelerze. 
@@ -251,13 +251,13 @@ Po zaznaczeniu powierzchni wcisnamy **n** na klawiaturze i wypełniamy nazwę wa
 		
 7. Stwórz wizualizacje przepływu Twojej analizy. Zastanów się jakie wizualizacje najwięcej powiedzą o stworzonej analizie. Zaprezentuj je.
 
-![**Rys.7.** *Jedna z wizualizacji przepływu*](figures/momp_inst4/instr4_wiz.svg#center "Wizualizacja")
+![**Rys.7.** *Jedna z wizualizacji przepływu*](figures/momp_inst4/instr4_wiz.svg "Wizualizacja")
 
 8. Wyjdź z programu fluent. 
 Przy wychodzeniu z programu zaznacz drugą odpowiedź. 
 Pozwoli to na zachowanie wszystkich ustawień postrocesingu (wizualizacji i obróbki danych).
 
-![**Rys.8.** *Opcje zapisu*](figures/momp_inst4/instr4_accept.svg#center "Wizualizacja")
+![**Rys.8.** *Opcje zapisu*](figures/momp_inst4/instr4_accept.svg "Wizualizacja")
 
 9. Zduplikuj system obliczeniowy.
 
