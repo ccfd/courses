@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if test -z "$1"
+then
+    echo "Usage: tools/svg_to_pdf file.svg [out.pdf]"
+    exit 1
+fi
+FILE="$1"
+shift
+
+if ! test -f "$FILE"
+then
+    echo "File not found: $FILE"
+    exit 2
+fi
+
+if test -z "$1"
+then
+    OUT="$FILE.pdf"
+else
+    OUT="$1"
+    shift
+fi
+
+echo "Converting $FILE to $OUT"
+inkscape "$FILE" --export-area-drawing --batch-process --export-type=pdf "--export-filename=$OUT"
