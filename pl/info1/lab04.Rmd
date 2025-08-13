@@ -105,6 +105,7 @@ Dodatkowo, narysuj na ekranie odpowiednio przeskalowaną ćwiartkę koła oraz k
 - Wywołaj powyższą funkcję 100-krotnie, aby sprawdzić, jak działa^[Funkcję zwracającą typ możemy wywołać zarówno przypisując wartość, która jest przez nią zwracana do jakiejś zmiennej np. `a = isInCircle()` jak i po prostu wywołać ją w programie bez przypisania, pisząc `isInCircle()`.
 Wówczas wartość zwracana przez funkcję przepadnie, ale wszystkie inne rzeczy, które się dzieją w funkcji (u nas jest to rysowanie), zostaną i tak wykonane ].
 Wynik działania powinien przypominać rysunek poniżej.
+
 ```{r, echo=FALSE}
 n = 300
 a = seq(0, pi/2, len = 300)
