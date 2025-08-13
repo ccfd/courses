@@ -14,7 +14,7 @@ set.seed(123)
 
 Wczytajmy pierw macierz sztywności z pliku:
 ```{r}
-S = as.matrix(read.table("data/metnum/S.txt"))
+S = as.matrix(read.table("../../data/metnum/S.txt"))
 S = Matrix(S,sparse=TRUE)
 ```
 
