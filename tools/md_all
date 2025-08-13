@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILES=$(find pl/ en/ -name "*Rmd" | grep '^[^_].*\.Rmd$')
+
+for i in $FILES
+do
+	tools/md_full $i
+done

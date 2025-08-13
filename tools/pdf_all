@@ -2,7 +2,22 @@
 
 FILES=$(find pl/ en/ -name "*md" | grep '^[^_].*\.R\?md$')
 
-for i in $FILES
+for FILE in $FILES
 do
-	tools/pdf_full $i public/
+	EXT="${FILE##*.}"
+	BAS="${FILE%.*}"
+	if [ "$BAS.$EXT" != "$FILE" ]; then
+		echo "Text separation did not work: $FILE"
+		exit 2
+	fi
+	if [ "$EXT" = "Rmd" ]; then
+		KNITMD=$BAS.knit.md
+		if test -f "$KNITMD"; then
+			echo "Skipping $FILE, as $KNITMD exists"
+		else
+			tools/pdf_full $FILE public/
+		fi
+	else
+		tools/pdf_full $FILE public/
+	fi
 done

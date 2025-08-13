@@ -1,0 +1,24 @@
+#!/bin/bash
+
+TOOLS="$(dirname "$(realpath $0)")"
+
+test -z "$1" && exit -1
+RMD="$1"
+shift
+MD="${RMD%.*}.knit.md"
+
+echo -n "Compiling $RMD to $MD - "
+if R --vanilla --slave -e "library(rmarkdown); TOOLS='$TOOLS'; render('$RMD', run_pandoc = FALSE, clean = FALSE)" >md_compile.log 2>&1
+then
+	if test -f "$MD"
+	then
+		echo "OK"
+	else
+		echo "File not found: $MD"
+	fi
+else
+	echo "ERROR"
+	cat md_compile.log
+	echo "-----"
+fi
+
