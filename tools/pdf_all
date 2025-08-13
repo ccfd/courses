@@ -1,8 +1,8 @@
 #!/bin/bash
 
-FILES=$(ls | grep '^[^_].*\.R\?md$')
+FILES=$(find pl/ en/ -name "*md" | grep '^[^_].*\.R\?md$')
 
 for i in $FILES
 do
-	tools/pdf_full $i _site/
+	tools/pdf_full $i public/
 done
