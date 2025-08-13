@@ -14,6 +14,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.148.0'
+          extended: true
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
       - name: Setup pandoc
@@ -22,8 +27,10 @@ jobs:
         uses: r-lib/actions/setup-tinytex@v2
       - name: Setup dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
+      - name: Build mds
+        run: tools/md_all;
       - name: Build site
-        run: R -e "rmarkdown::render_site()";
+        run: hugo build
       - name: Build pdfs
         run: tools/pdf_all;
       - name: Correcting headers
@@ -32,7 +39,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site/
+          path: public/
   publish:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     environment:
