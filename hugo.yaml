@@ -8,6 +8,8 @@ theme: hugo-book
 disablePathToLower: true
 enableGitInfo: true
 
+uglyURLs: true
+
 # Needed for mermaid/katex shortcodes
 markup:
   goldmark:
