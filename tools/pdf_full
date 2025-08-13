@@ -15,7 +15,8 @@ test -z "$1" && exit -1
 MD="$1"
 shift
 
-export TEXINPUTS="$TOOLS:$TEXINPUTS:"
+export TEXINPUTS="$TOOLS:$TEXINPUTS"
+echo "TEXINPUTS = $TEXINPUTS"
 
 echo -n "Compiling $MD to pdf - "
 if R --vanilla --slave -e "library(rmarkdown); TOOLS='$TOOLS'; source('tools/pdf_full.R'); render('$MD',pdf_full($OPT))" >pdf_compile.log 2>&1
