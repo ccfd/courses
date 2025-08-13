@@ -1,8 +1,8 @@
 ---
 author: "Ł. Łaniewski-Wołłk"
-course: Informatyka I
-material: Laboratorium 2
-number: 2
+course: Podstawy Programowania
+title: Instrukcja 2
+weight: 102
 ---
 
 # Funkcje

@@ -1,8 +1,8 @@
 ---
-number: 8
-course: Informatyka I
-material: Instrukcja 8
 author: B. Górecki
+course: Podstawy Programowania
+title: Instrukcja 8
+weight: 108
 ---
 
 Tydzień temu nauczyliśmy się jak dynamicznie alokować pamięć dla tablicy jednowymiarowej.

@@ -1,8 +1,8 @@
 ---
 author: "Ł. Łaniewski-Wołłk"
-course: Informatyka I
-material: Instrukcja Dodatkowa I
-number: 11
+course: Podstawy Programowania
+title: Instrukcja 11
+weight: 111
 ---
 
 Na dzisiejszych zajęciach będziemy programować mikrokontroler.

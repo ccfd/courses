@@ -1,8 +1,8 @@
 ---
 author: "B. Górecki"
-course: Informatyka I
-material: Instrukcja 3
-number: 3
+course: Podstawy Programowania
+title: Instrukcja 3
+weight: 103
 ---
 
 Niniejsza instrukcja poświęcona jest trzem zagadnieniom:

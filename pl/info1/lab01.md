@@ -1,8 +1,8 @@
 ---
 author: "Ł. Łaniewski-Wołłk"
-course: Informatyka I
-material: Instrukcja 1
-number: 1
+course: Podstawy Programowania
+title: Instrukcja 1
+weight: 101
 ---
 
 

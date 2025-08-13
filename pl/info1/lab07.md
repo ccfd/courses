@@ -1,8 +1,8 @@
 ---
-number: 7
-course: Informatyka I
-material: Instrukcja 7
 author: W. Regulski
+course: Podstawy Programowania
+title: Instrukcja 7
+weight: 107
 ---
 
 # Dynamiczna alokacja pamięci

@@ -1,9 +1,11 @@
 ---
-course: Informatyka I
-material: Instrukcja 6
-number: 6
 author: "B. Górecki"
+course: Podstawy Programowania
+title: Instrukcja 6
+weight: 106
 ---
+
+{{< katex />}}
 
 # Współpraca z plikami
 Do tej pory posługiwaliśmy się danymi, które pochodziły ze standardowego wejścia (klawiatury) i były zapisywane do standardowego wyjścia (terminala).
