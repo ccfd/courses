@@ -1,4 +1,8 @@
 #!/bin/bash
+
+TOOLS="$(dirname "$(realpath $0)")"
+
+
 if test "x$1" == "xkeep_tex"
 then
 	OPT="keep_tex=TRUE"
@@ -11,8 +15,10 @@ test -z "$1" && exit -1
 MD="$1"
 shift
 
+export TEXINPUTS="$TOOLS:$TEXINPUTS:"
+
 echo -n "Compiling $MD to pdf - "
-if R --vanilla --slave -e "library(rmarkdown); source('tools/pdf_full.R'); render('$MD',pdf_full($OPT))" >pdf_compile.log 2>&1
+if R --vanilla --slave -e "library(rmarkdown); TOOLS='$TOOLS'; source('tools/pdf_full.R'); render('$MD',pdf_full($OPT))" >pdf_compile.log 2>&1
 then
 	PDF="${MD%.*}.pdf"
 	if test -f "$PDF"
