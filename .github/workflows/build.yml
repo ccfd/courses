@@ -32,7 +32,7 @@ jobs:
       - name: Setup tex packages
         run: |
           tlmgr update --self
-          tlmgr install listings fancyhdr multirow soul setspace colortbl
+          tlmgr install listings fancyhdr multirow soul setspace colortbl pdfpages
       - name: Setup dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build mds
