@@ -15,9 +15,9 @@ do
 		if test -f "$KNITMD"; then
 			echo "Skipping $FILE, as $KNITMD exists"
 		else
-			tools/pdf_full $FILE public/
+			tools/pdf_full $FILE $1
 		fi
 	else
-		tools/pdf_full $FILE public/
+		tools/pdf_full $FILE $1
 	fi
 done

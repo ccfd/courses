@@ -29,6 +29,10 @@ jobs:
         uses: r-lib/actions/setup-pandoc@v2
       - name: Setup tinytex
         uses: r-lib/actions/setup-tinytex@v2
+      - name: Setup tex packages
+        run: |
+          tlmgr update --self
+          tlmgr install colortbl
       - name: Setup dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build mds
