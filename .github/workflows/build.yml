@@ -32,15 +32,15 @@ jobs:
       - name: Setup tex packages
         run: |
           tlmgr update --self
-          tlmgr install listings fancyhdr multirow soul setspace colortbl pdfpages
+          tlmgr install listings fancyhdr multirow soul setspace colortbl pdfpages pdflscape
       - name: Setup dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build mds
         run: tools/md_all;
-      - name: Build site
-        run: hugo build
       - name: Build pdfs
         run: tools/pdf_all;
+      - name: Build site
+        run: hugo build
       - name: Correcting headers
         run: tools/headers;
       - name: Upload static files as artifact
