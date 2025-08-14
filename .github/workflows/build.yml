@@ -31,11 +31,12 @@ jobs:
         uses: r-lib/actions/setup-tinytex@v2
       - name: Setup tex packages
         run: >
-          tlmgr update --self;
+          tlmgr update --self
+
           tlmgr install amsfonts amsmath lm unicode-math
-            iftex listings fancyvrb fancyhdr longtable
-            booktabs multirow graphicx bookmark xcolor
-            soul geometry setspace babel;
+          iftex listings fancyvrb fancyhdr longtable
+          booktabs multirow graphicx bookmark xcolor
+          soul geometry setspace babel;
       - name: Setup dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build mds
