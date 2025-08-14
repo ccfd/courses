@@ -34,8 +34,8 @@ jobs:
           tlmgr update --self
 
           tlmgr install amsfonts amsmath lm unicode-math
-          iftex listings fancyvrb fancyhdr longtable
-          booktabs multirow graphicx bookmark xcolor
+          iftex listings fancyvrb fancyhdr
+          booktabs multirow bookmark xcolor
           soul geometry setspace babel;
       - name: Setup dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
