@@ -12,7 +12,7 @@ Fraktale to zbiory matematyczne charakteryzujące się tzw. samopodobieństwem -
 
 Idea trójkąta Sierpińskiego polega na tym, że każdy trójkąt zawiera w sobie trzy takie same trójkąty o dwukrotnie krótszych bokach (patrz Rys. 1).
 
-![Rys.1. Trójkąt Sierpińskiego.](figures/info1/trojkatSierpinskiego.png "Trójkąt Sierpińskiego.")
+![Rys.1. Trójkąt Sierpińskiego.](trojkatSierpinskiego.png "Trójkąt Sierpińskiego.")
 
 Trójkąt Sierpińskiego można stworzyć na różne sposoby.
 My wykorzystamy **rekurencję**.
@@ -146,7 +146,7 @@ Czy widać różnicę?
 - \* Zamiast średniej oblicz maksimum lub minimum.
 - Zamień funkcję `setcolor()` na `setgray()`.
 
-![Rys.2. Zbiór Julii.](figures/info1/julia.png "Zbiór Julii.")
+![Rys.2. Zbiór Julii.](julia.png "Zbiór Julii.")
 
-![Rys.3. Zbiór Mandelbrota.](figures/info1/mandelbrot.png "Zbiór Mandelbrota.")
+![Rys.3. Zbiór Mandelbrota.](mandelbrot.png "Zbiór Mandelbrota.")
 
