@@ -10,7 +10,7 @@ author: ?, rev. W. Gryglas
 ## Zadanie 1
 
 Dany jest układ:
-![](figures/info2/homework/zad-01.png "Zadanie 01")
+![](zad-01.png "Zadanie 01")
 
 a sprężyna ma charakterystykę nieliniową: $k = k_1(1+k_2 \cdot x^2)$
 
@@ -32,7 +32,7 @@ a sprężyna ma charakterystykę nieliniową: $k = k_1(1+k_2 \cdot x^2)$
 ## Zadanie 2
 Dany jest układ:
 
-![](figures/info2/homework/zad-02.png "Zadanie 02")
+![](zad-02.png "Zadanie 02")
 
 #### W ramach zadania należy:
 1. Wykonać rysunek (**porządny!**), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).
@@ -54,7 +54,7 @@ Dany jest układ:
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-03.png "Zadanie 03")
+![](zad-03.png "Zadanie 03")
 
 wahadło matematyczne; duże drgania, tzn. $sin(\alpha) \neq \alpha$
 
@@ -79,7 +79,7 @@ wahadło matematyczne; duże drgania, tzn. $sin(\alpha) \neq \alpha$
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-04.png "Zadanie 04")
+![](zad-04.png "Zadanie 04")
 
 #### W ramach zadania należy:
 1. Wykonać rysunek (**porządny!**), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na ciało, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).
@@ -100,7 +100,7 @@ Dany jest układ:
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-05.png "Zadanie 05")
+![](zad-05.png "Zadanie 05")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -125,7 +125,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-06.png "Zadanie 06")
+![](zad-06.png "Zadanie 06")
 
 duże drgania, tzn. $sin(\alpha) \neq \alpha$; uproszczenie: siła od sprężyny działa zawsze poziomo
 
@@ -149,7 +149,7 @@ duże drgania, tzn. $sin(\alpha) \neq \alpha$; uproszczenie: siła od sprężyny
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-07.png "Zadanie 07")
+![](zad-07.png "Zadanie 07")
 duże drgania, tzn. $sin(\alpha) \neq \alpha$; uproszczenie: siła od sprężyny działa zawsze poziomo
 
 #### W ramach zadania należy:
@@ -173,7 +173,7 @@ duże drgania, tzn. $sin(\alpha) \neq \alpha$; uproszczenie: siła od sprężyny
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-08.png "Zadanie 08")
+![](zad-08.png "Zadanie 08")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -199,7 +199,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-09.png "Zadanie 09")
+![](zad-09.png "Zadanie 09")
 
 sprężyna o charakterystyce nieliniowej: $k = k1 (1+k_2 \cdot x^2)$
 
@@ -223,7 +223,7 @@ sprężyna o charakterystyce nieliniowej: $k = k1 (1+k_2 \cdot x^2)$
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-10.png "Zadanie 10")
+![](zad-10.png "Zadanie 10")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -248,7 +248,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-11.png "Zadanie 11")
+![](zad-11.png "Zadanie 11")
 
 Stożek w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał zanurzeniu do $\frac{2}{3}$ wysokości. W celu uproszczenia problemu należy wziąć pod uwage jedyni siły hydrostatyczne. 
 
@@ -273,7 +273,7 @@ Stożek w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiada�
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-12.png "Zadanie 12")
+![](zad-12.png "Zadanie 12")
 
 Kula w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał zanurzeniu do $\frac{1}{2}$ wysokości. W celu uproszczenia problemu należy wziąć pod uwage jedyni siły hydrostatyczne. 
 
@@ -297,7 +297,7 @@ Kula w wodzie. Należy tak dobrać gęstość, aby stan równowagi odpowiadał z
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-13.png "Zadanie 13")
+![](zad-13.png "Zadanie 13")
 
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
@@ -323,7 +323,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-14.png "Zadanie 14")
+![](zad-14.png "Zadanie 14")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -348,7 +348,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-15.png "Zadanie 15")
+![](zad-15.png "Zadanie 15")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -373,7 +373,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-16.png "Zadanie 16")
+![](zad-16.png "Zadanie 16")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -398,7 +398,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-17.png "Zadanie 17")
+![](zad-17.png "Zadanie 17")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -422,7 +422,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-18.png "Zadanie 18")
+![](zad-18.png "Zadanie 18")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -446,7 +446,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-19.png "Zadanie 19")
+![](zad-19.png "Zadanie 19")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -470,7 +470,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-20.png "Zadanie 20")
+![](zad-20.png "Zadanie 20")
 
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
 gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S$-powierzchnia odniesienia i $C$-stały współczynnik. 
@@ -494,7 +494,7 @@ gdzie: $\rho$-gęstość powietrza, $v$-prędkość kuli względem powietrza, $S
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-21.png "Zadanie 21")
+![](zad-21.png "Zadanie 21")
 
 Ruch masy może odbywać się tylko w pionie, sprężyna o charakterystyce nieliniowej: $k = k_1(1 + k_2 \cdot x^2)$.
 
@@ -518,7 +518,7 @@ Ruch masy może odbywać się tylko w pionie, sprężyna o charakterystyce nieli
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-22.png "Zadanie 22")
+![](zad-22.png "Zadanie 22")
 
 Ruch masy może odbywać się tylko w pionie. 
 
@@ -543,7 +543,7 @@ Ruch masy może odbywać się tylko w pionie.
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-23.png "Zadanie 23")
+![](zad-23.png "Zadanie 23")
 
 #### W ramach zadania należy:
 1. Wykonać rysunek (**porządny!**), rysunek powinien zawierać: wprowadzony układ współrzędnych (początek w położeniu równowagi), siły działające na masę, inne wielkości mające wpływ na rozwiązanie zadania (wymiary, współczynniki, itp.).
@@ -565,7 +565,7 @@ Dany jest układ:
 
 Dany jest układ:
 
-![](figures/info2/homework/zad-24.png "Zadanie 24")
+![](zad-24.png "Zadanie 24")
 
 Ruch masy może odbywać się tylko w pionie, opór powietrza wyraża się wzorem:
 $$ F_{oporu} = \frac{\rho v^2}{2} \cdot S \cdot C $$
