@@ -80,7 +80,7 @@ Dodatkowymi opcjami, które mogą nas interesować w przyszłości są opcje:
 
 11.	Wczytujemy zadany profil prędkości do Fluenta za pomocą okna *(Górna belka)* User-Defined/Functions/Interpreted potwierdzić przyciskiem Interpret.
 
-	![**Rys. 1.** Sposób wczytywania interpretowanej funkcji UDF](figures/momp_inst2/interpreted.svg)
+	![**Rys. 1.** Sposób wczytywania interpretowanej funkcji UDF](interpreted.svg)
 
 12.	Oknie **Outline View** przechodzimy dalej. Kolejną opcją w drzewie jest **Boundary Conditions**. 
 Tutaj definiujemy nasze warunki brzegowe. 
@@ -211,7 +211,7 @@ W funkcji DEFINE_PROFILE należy podać:
 1. Współrzędne y1 [m] i y2 [m] odpowiadające dolnej i górnej ścianie kanału dolotowego
 2. vel_aver [m/s] średnią wartość składowej x wektora prędkości, którą wyznacza się w oparciu o zadaną liczbę Reynoldsa. 
 
-![Dane potrzebne do pliki UDF](figures/momp_inst2/udfvariables.svg)
+![Dane potrzebne do pliki UDF](udfvariables.svg)
 
 
 
@@ -229,9 +229,9 @@ Pliki powinny być ściągnięte do folderu w którym się znajduje projekt.
 
 - W pliku [PLIK 2]( http://ccfd.github.io/courses/data/momp/2/exper-xvel-re230-xh6_woda_cm.xy ) znajdują się składowa x wektora prędkości w przekroju poprzecznym w odległości 60 mm od uskoku.
 
-![Dane potrzebne do pliki UDF](figures/momp_inst2/addlines.svg)
+![Dane potrzebne do pliki UDF](addlines.svg)
 
 - W pliku [PLIK 3]( http://ccfd.github.io/courses/data/momp/2/re-vs-reattachment-point_woda_cm.txt) znajdują się dane pozwalające na określenie punktu przylgnięcia warstwy ścinającej na dolnej ścianie kanału dla różnych liczb Reynoldsa. Z załączonych danych powinno się wybrać punkt przylgnięcia odpowiadający odpowiedniej liczbie Reynoldsa.
 
-![Dane potrzebne do pliki UDF](figures/momp_inst2/reattachment.svg)
+![Dane potrzebne do pliki UDF](reattachment.svg)
 
