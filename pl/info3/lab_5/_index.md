@@ -384,7 +384,7 @@ Pozostałe parametry to:
 
 Wykonaj poniższą tabelę:
 
-![](figures/info3_lab_5_table.png "Tabela")
+![](info3_lab_5_table.png "Tabela")
 
 # Grafika
 
