@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=$(find pl/ en/ -name "*md" | grep '^[^_].*\.R\?md$' | grep -v '/_')
+FILES=$(find pl/ en/ -name "*md" | grep '^.*\.R\?md$')
 
 for FILE in $FILES
 do
