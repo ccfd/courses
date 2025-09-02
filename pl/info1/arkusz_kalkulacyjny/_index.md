@@ -24,7 +24,7 @@ Przy przeciągnięciu poziomo, zmianie ulegnie kolumna.
 - W celu sformatowania tabeli zaznacz wybrane komórki, kliknij prawym klawiszem myszki i wybierz *Format Cells*.
 Wyświetlone zostaną zakładki umożliwiające zmianę wyglądu tabeli w szerokim zakresie (min. zakładka *Borders* umożliwia dodanie i edycję linii).
 
-![Rys.1. Tabela z tabliczką mnożenia.](figures/info1/sheet_1.png "Tabliczka mnożenia.")
+![Rys.1. Tabela z tabliczką mnożenia.](sheet_1.png "Tabliczka mnożenia.")
 
 ## Sprzedaż samochodów
 Stwórz tabelę zawierającą informacje o sprzedaży pięciu modeli samochodów.
@@ -35,14 +35,14 @@ Argumentem jest zakres komórek, których wartości należy zsumować.
 Przykładowo `SUM(A1:A10)` zsumuje wartości w kolumnie `A` w wierszach od `1` do `10`.
 - Tabelę sformatuj tak aby wyglądała jak na Rys. 2.
 
-![Rys.2. Tabela sprzedaży aut.](figures/info1/sheet_2.png "Tabela sprzedaży aut.")
+![Rys.2. Tabela sprzedaży aut.](sheet_2.png "Tabela sprzedaży aut.")
 
 ## Wyniki z kolokwium
 Stwórz dwie tabele.
 Pierwsza z nich powinna zawierać kolumny o nazwach jak na Rys. 3.
 Tabelę należy uzupełnić wymyślonymi danymi.
 
-![Rys.3. Wyniki z kolokwium.](figures/info1/sheet_3.png "Wyniki z kolokwium.")
+![Rys.3. Wyniki z kolokwium.](sheet_3.png "Wyniki z kolokwium.")
 
 Druga tabela powinna zawierać dwie kolumny: `Nr indeksu` oraz `Imię i Nazwisko`.
 
@@ -72,7 +72,7 @@ Tło wzoru możesz zmienić na białe klikając prawym klawiszem myszki na pole 
 Po utworzeniu wykresu, kliknij na niego dwukrotnie w celu wejścia w tryb edycji poszczególnych elementów wykresu.
 Sformatuj wykres tak jak na Rys. 4.
 
-![Rys.4. Wykres funkcji jednej zmiennej.](figures/info1/sheet_4.png "Wykres funkcji jednej zmiennej.")
+![Rys.4. Wykres funkcji jednej zmiennej.](sheet_4.png "Wykres funkcji jednej zmiennej.")
 
 ## Wyznaczanie pierwiastków funkcji kwadratowej
 Utwórz arkusz w celu wyznaczenia pierwiastków funkcji kwadratowej.
@@ -87,7 +87,7 @@ Przykładowo, formuła `IF(A1>0, A2, A3)` zwraca zawartość komórki `A2` jeśl
 - Wyznacz miejsca zerowe funkcji (formuła `SQRT()` zwraca pierwiastek kwadratowy z liczby).
 Uwzględnij przypadek, w którym dany pierwiastek nie istnieje (niech w takim przypadku w komórce wyświetli się napis ,,brak'').
 
-![Rys.5. Miejsca zerowe funkcji kwadratowej.](figures/info1/sheet_5.png "Miejsca zerowe funkcji kwadratowej.")
+![Rys.5. Miejsca zerowe funkcji kwadratowej.](sheet_5.png "Miejsca zerowe funkcji kwadratowej.")
 
 ## Importowanie danych z pliku
 Ściągnij przykładowy plik [wyniki.dat](data/info1/wyniki.dat) i przenieś go do katalogu z plikiem arkusza kalkulacyjnego.
@@ -105,7 +105,7 @@ Następnie wybieramy dowolny punkt (wszystkie punkty powinny się podświetlić 
 W zakładce *Type* wybieramy regresję wielomianową (*polynomial*) stopnia drugiego, zaznaczamy opcje *Show Equation* i *Show Coefficient of Determination* i klikamy *OK*.
 Powinniśmy otrzymać wykres podobny do poniższego.
 
-![Rys.6. Funkcja trendu.](figures/info1/sheet_6.png "Funkcja trendu.")
+![Rys.6. Funkcja trendu.](sheet_6.png "Funkcja trendu.")
 
 ## Wykres funkcji dwóch zmiennych (tylko Microsoft Excel)
 Utwórz wykres funkcji
@@ -116,4 +116,4 @@ w obszarze $D={(x,y)|x\in[0,1.6] \wedge y\in[0,1.6]}$.
 Pierwszy wiersz powinien zawierać wartości argumentu `x` a pierwsza kolumna wartości argumentu `y`.
 Komórki znajdujące się ,,na przecięciu'' komórek zawierających współrzędne powinny zawierać wartości funkcji $f(x,y)$. 
 
-![Rys.7. Wykres funkcji dwóch zmiennych.](figures/info1/sheet_7.png "Wykres funkcji dwóch zmiennych.")
+![Rys.7. Wykres funkcji dwóch zmiennych.](sheet_7.png "Wykres funkcji dwóch zmiennych.")
