@@ -127,7 +127,7 @@ Wynikiem rozwiązania takiego układu równań będzie rozkład wartości temper
 
 Na początek zajmijmy się przygotowaniem układu równań.
 Tak jak już na początku wspomnieliśmy powstanie on jako wynik dyskretyzacji równania przewodnictwa cieplnego:
-![](figures/info2/inst6/problem.png "Zagadnienie")
+![](problem.png "Zagadnienie")
 
 Problem który chcemy rozwiązać to rozkład temperatury w stalowym pręcie o długości $L=1[m]$ i przewodności cieplnej $\lambda=58[\frac{W}{mK}]$.
 Pręt jest ogrzewany za pomocą źródła ciepła zmieniającego się wzdłuż pręta - $Q= - 10^4 \cdot sin(x\pi)[\frac{W}{m^3}]$.
@@ -145,7 +145,7 @@ W celu rozwiązania tego problemu metodą różnic skończonych musimy go przefo
 Na początek musimy dokonać dyskretyzacji przestrzennej zagadnienia.
 W tym celu musimy podzielić obszar obliczeniowy (długość pręta $L=1[m]$) [0, 1] na $N$ odcinków, tak jak to pokazano no poniższym rysunku.
 
-![](figures/info2/inst6/discretization.png "Dyskretyzacja")
+![](discretization.png "Dyskretyzacja")
 
 Punkty $x_0, x_1, \ldots x_N$ będziemy nazywali węzłami siatki obliczeniowej.
 Na tą chwilę, możemy założyć, że wszystkie punkty (łącznie jest ich N+1) są równo oddalone, tj. zachodzi $x_{i+1}-x_i = h$, gdzie $h$ ma stałą, ustaloną wartość równą:
