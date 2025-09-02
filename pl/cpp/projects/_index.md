@@ -164,7 +164,7 @@ powinny być czytane z pliku tekstowego (jednego lub wielu).
 Elementy tej łamigłówki są kwadratami i prostokątami o różnych rozmiarach. Jest ich
 natomiast zawsze stała ilość. Zadanie gracza polega na wysunięciu z pokoju szafy -
 największego kwadratowego elementu (i tylko tego elementu).
-![Szafa Kowalskich](figures/cpp_projects/szafa_kowalskich.png)
+![Szafa Kowalskich](szafa_kowalskich.png)
 
 25. Gra „River Raid”
 Ta pozycja to lot samolotem bojowym wzdłuż krętej rzeki. Rzekę widzimy z góry, w
