@@ -18,7 +18,7 @@ Umiejętność rozwiązania zagadnienia liniowego jest nieodzownym elementem imp
 
 # Problem liniowy
 
-![ ](figures/metnum_inst1/mechanizm.png "Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej).")
+![ ](mechanizm.png "Wyjściowy układ mechaniczny (po lewej) oraz poszczególne człony uwolnione od więzów (po prawej).")
 Rozważmy mechanizm pokazany na rysunku i uwolnijmy ten układ od więzów, uwydatniając siły w parach kinematycznych.
 Znana jest geometria układu oraz ciężary poszczególnych członów wynoszące $G_{AB}=25$, $G_{BC}=16$ oraz $G_{CD}=53$.
 
@@ -189,7 +189,7 @@ Proces iteracyjny dla metody Newtona-Raphsona ma następującą postać:
 
 ## Zadanie 2
 
-![ ](figures/metnum_inst1/czworobok.png)
+![ ](czworobok.png)
 
 Zajmijmy się teraz czworobokiem przegubowym pokazanym powyżej i rozważmy zadanie o położeniach (patrz: TMM I).
 Zadanie o położeniach zawsze prowadzi do układu równań nieliniowych.
