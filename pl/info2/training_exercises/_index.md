@@ -37,7 +37,7 @@ $$v(x=0)=85 [\frac{m}{s}]$$
 ## Zadanie 2
 Pan Janusz wymyślił sobie, że ogrodzi działkę od strony północnej na kształt sinusoidy. Jako, że nie uczęszczał na zajęcia z informatyki 2 to nie potrafi sam obliczyć jaką długość siatki powinien on zakupić w sklepie. Wymiary działki są następujące:
 
-![](figures/info2/training/fence.png "Ogrodzenie")
+![](fence.png "Ogrodzenie")
 
 Górną krawędź opisuje funkcja 
 $$2 \cdot sin(\frac{x}{10})$$
@@ -46,7 +46,7 @@ gdzie $x=0$ odpowiada lewemu bokowi. Pomóż Panu Januszowi i oblicz ile metrów
 ## Zadanie 3
 Zamieszczony mechanizm na rysunku poniżej składa się z dwóch członów połączonych między sobą, z ziemią i szyną na górze parami obrotowymi. 
 
-![](figures/info2/training/mechanism.png "Mechanizm")
+![](mechanism.png "Mechanizm")
 
 Mechanizm ten ma 1 stopień swobody(można jedynie przesuwać górny punkt wzdłuż linii kreskowej). Górna końcówka przemieszcza się w czasie zgodnie z następującym równaniem:
 $$ x = 2 \cdot sin(t) + 2 $$
@@ -147,7 +147,7 @@ $$
 gdzie $\mathbf{a}$ jest parametrem funkcji i może zmieniać się w zakresie $<0, 0.1>$. $\delta_0$ jest minimalną grubością równą $0.1 [m]$.
 
 
-![](figures/info2/training/exemplary_bars.png "Przykladowe belki")
+![](exemplary_bars.png "Przykladowe belki")
 
 Belka jest obciążona w taki sposób, że moment gnący opisuje poniższa funkcja:
 $$
