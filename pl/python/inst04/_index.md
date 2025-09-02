@@ -538,7 +538,7 @@ plt.figure()
 plt.contour(X, Y, Z)
 plt.show()
 ```
-![contour](figures/python_inst04/contour.png "Najprostszy wykres konturowy")
+![contour](contour.png "Najprostszy wykres konturowy")
 
 Jak widać utworzenie wykresu konturowego, jest tak proste jak zwykłego. Wykres konturowy może zostać także wyświetlony jako wypełniony, jednak należy wtedy skorzystać z zamiast funkcji ***contour*** funkcję ***contourf***. Trudno jest odczytywać wykresy konturowe po samych kolorach bo musimy posiadać ich definicję. W tym celu korzystamy z funkcji ***colorbar***. Do skali kolorów można także dodać tytuł:
 
@@ -559,7 +559,7 @@ cbar = plt.colorbar(cnt)
 cbar.ax.set_ylabel("values of sin(x*y)")
 plt.show()
 ```
-![contourf](figures/python_inst04/contourf_colorbar.png "Wypełniony wykres konturowy ze skalą kolorów")
+![contourf](contourf_colorbar.png "Wypełniony wykres konturowy ze skalą kolorów")
 
 Do funkcji ***contourf*** można przekazać za pomocą argumentu ***levels*** wartości określające poziomy na których powinny zmieniać się kolory:
 
@@ -588,7 +588,7 @@ cnt = plt.contourf(X, Y, Z, levels=np.linspace(-1,1,21),  cmap=matplotlib.cm.win
 cbar = plt.colorbar(cnt)
 plt.show()
 ```
-![contourf_winter](figures/python_inst04/contourf_winter_colormap.png "Wykres konturowy ze zmienioną mapą kolorów")
+![contourf_winter](contourf_winter_colormap.png "Wykres konturowy ze zmienioną mapą kolorów")
 
 ## Wykresy trójwymiarowe
 Elementy grafiki 3D znajdują się w pakiecie ***mplot3d***. Znajdują się tam funkcje pozwalające na rysowanie linii oraz powierzchni w trzech wymiarach. Na początek przedstawimy rysowanie linii na przykładzie spirali:
@@ -608,7 +608,7 @@ ax3D = fig.add_subplot(111, projection="3d") #dodajemy osie 3D
 ax3D.plot(x,y,z)
 plt.show()
 ```
-![spirala](figures/python_inst04/spiral.png "Przykład zastosowania Axes3D.plot")
+![spirala](spiral.png "Przykład zastosowania Axes3D.plot")
 
 Aby przedstawić wyświetlanie powierzchni zastosujemy te same dane co w przypadku wykresów konturowych. Dane w tym przypadku muszą być przygotowane w podobny sposób, tj. za pomocą tablic dwuwymiarowych dla współrzędnych X, Y i Z:
 
@@ -631,7 +631,7 @@ psurf= ax3D.plot_surface(X, Y, Z,  cmap = matplotlib.cm.coolwarm)
 cbar = fig.colorbar(psurf)
 plt.show()
 ```
-![plot_surf](figures/python_inst04/surf.png "Przykład zastosowania Axes3D.plot_surf")
+![plot_surf](surf.png "Przykład zastosowania Axes3D.plot_surf")
 
 Widać, że na powierzchni pojawiają się duże prostokąty, pomimo, że danych jest znacznie więcej. Wynika to z tego że domyślnie jest rysowany tylko co dziesiąty element. Aby się tego pozbyć należy ustawić parametry rstride i cstride na 1. Ponadto aby linie nie były widoczne należy ustawić grubość linii na 0:
 
@@ -642,7 +642,7 @@ psurf= ax3D.plot_surface(X, Y, Z,  cmap = matplotlib.cm.coolwarm, linewidth=0, r
 cbar = fig.colorbar(psurf)
 plt.show()
 ```
-![plot_surf_adjusted](figures/python_inst04/surf2.png "Bardziej dokładna powierzchnia")
+![plot_surf_adjusted](surf2.png "Bardziej dokładna powierzchnia")
 
 # Zadania 
 
@@ -650,7 +650,7 @@ plt.show()
 
 Skopiuj plik resources/lab3/zadanie1-template.py do swojego katalogu roboczego i zmień jego nazwę na "zadanie1.py". Następnie uzupełnij ciało funkcji ***animate_contour_plot***. Zadaniem tej funkcji jest wykonanie animacji wykresu konturowego na bazie przekazanej listy tablic 2D. Każda kolejna tablica 2D jest zbiorem wartości jakiejś funkcji z(x,y) w kolejnych węzłach siatki kartezjańskiej (nie koniecznie kwadratowej) dla kolejnych klatek animacji.
 
-![grid](figures/python_inst04/grid_and_numbering.png "Siatka 2D dla wykresu konturowego")
+![grid](grid_and_numbering.png "Siatka 2D dla wykresu konturowego")
 
 Funkcja ta powinna także obsługiwać sytuację gdy przekazana jest tylko jedna tablica  - wyświetlenie mapy konturowej bez uruchamiania animacji. Zadeklarowana funkcja posiada dodatkowe domyślne argumenty, które powinny zostać wykorzystane. 
 
