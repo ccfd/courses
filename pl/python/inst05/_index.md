@@ -49,7 +49,7 @@ Drugim sposobem jest pobranie ParaView z [oficjalnego repozytorium](http://www.p
 
 Dokonaj optymalizacji kształtu poniższej geometrii tak aby otrzymany profil kanału zapewniał najmniejszą stratę energii przepływu. Optymalizacji powinny podlegać jednie kolanka kanału, nie wlot i wylot.
 
-![kanal](figures/python_inst05/tube.png "Kanał do optymalizacji")
+![kanal](tube.png "Kanał do optymalizacji")
 
 Stratę przepływu można wyznaczyć jako różnicę ciśnienia całkowitego pomiędzy wlotem i wylotem. Twoim zadaniem jest napisanie skryptu w języku Python który będzie służył do modyfikacji siatki obliczeniowej, wczytywania wyników oraz uruchamiania kolejnych symulacji w pętli optymalizacyjnej. W związku z tym kod powinien realizować następujący zadania:
 
@@ -87,11 +87,11 @@ Zadanie to rozwiąż na trzy różne sposoby, które będą różniły się meto
 
 Dokonaj transformacji tak, że parametr określa jak mocno powinny zostać przesunięte węzły względem odległości od linii środkowej kolanka. Parametr dodatni powinien określać odsunięcie od środkowej linii, a ujemny przyciągnięcie do niej. Ponadto transformacja powinna zapewniać, że punkty na skraju kolanka nie zostaną wcale przesunięte (wartość odsunięcia powinna być uzależniona od np. kąta pomiędzy środkiem kolanka a punktem). 
 
-![optymalizacja dwu parametryczna](figures/python_inst05/optimization_iteration.png "Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach")
+![optymalizacja dwu parametryczna](optimization_iteration.png "Optymalizacja dwu parametryczna, wartość funkcji celu w kolejnych iteracjach")
 
-![optymalizacja dwu parametryczna - prędkość](figures/python_inst05/opt_velocity.gif "Optymalizacja dwu parametryczna, pole prędkości") ![optymalizacja dwu parametryczna, ciśnienie całkowite](figures/python_inst05/opt_totalpressure.gif "Optymalizacja dwu parametryczna, pole ciśnienia całkowitego")
+![optymalizacja dwu parametryczna - prędkość](opt_velocity.gif "Optymalizacja dwu parametryczna, pole prędkości") ![optymalizacja dwu parametryczna, ciśnienie całkowite](opt_totalpressure.gif "Optymalizacja dwu parametryczna, pole ciśnienia całkowitego")
 
-![optymalizacja 4-parometrowa](figures/python_inst05/optimization_iteration_4params.png "Optymalizacja 4-parometrowa, wartość funkcji celu w kolejnych iteracjach")
+![optymalizacja 4-parometrowa](optimization_iteration_4params.png "Optymalizacja 4-parometrowa, wartość funkcji celu w kolejnych iteracjach")
 
-![optymalizacja 4-parometrowa - prędkość](figures/python_inst05/opt_velocity.gif "Optymalizacja 4-parometrowa, pole prędkości") ![optymalizacja 4-parometrowa, ciśnienie całkowite](figures/python_inst05/opt_totalpressure_4params.gif "Optymalizacja 4-parometrowa, pole ciśnienia całkowitego")
+![optymalizacja 4-parometrowa - prędkość](opt_velocity.gif "Optymalizacja 4-parometrowa, pole prędkości") ![optymalizacja 4-parometrowa, ciśnienie całkowite](opt_totalpressure_4params.gif "Optymalizacja 4-parometrowa, pole ciśnienia całkowitego")
 
