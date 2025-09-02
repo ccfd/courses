@@ -120,14 +120,14 @@ Po rozpakowaniu za pierwszym razem musimy uruchomić program z konsoli (po pierw
 Po wywołaniu tej komendy program powinien się uruchomić. Przy pierwszym uruchomieniu program wyświetli okno konfiguracji w który należało będzie ustawić własne preferencje. 
 
 ## Początek pracy w PyCharm
-![Okno PyCharm](figures/python_inst01/01.png "Okno PyCharm")
+![Okno PyCharm](01.png "Okno PyCharm")
 
 Gdy wstępna konfiguracja programu zostanie ukończona powinno automatycznie otworzyć się okno programu. Jeśli nie posiadamy żadnego ostatnio otwartego projektu, to należy:
 
 1. Przejść do menu *File* i wybrać *New project*. Następnie wybrać lokalizację projektu na dysku i nazwę dla nowego projektu.
 2. Nowy projekt otworzy się w drzewie projektu. Aby dodać nowy plik do projektu klikamy prawym przyciskiem na ten katalog w drzewie w którym plik ma zostać umieszczony.
 
-![Nowy plik *.py](figures/python_inst01/02.png)
+![Nowy plik *.py](02.png)
 
 W trakcie tworzenia nowego pliku: 
 
@@ -135,7 +135,7 @@ W trakcie tworzenia nowego pliku:
 2. Upewnij się że ***Kind*** jest ustawiony jako ***Python File***,
 3. Zatwierdź utworzenie pliku. 
 
-![Pierwszy kod](figures/python_inst01/03.png)
+![Pierwszy kod](03.png)
 
 Nowo dodany plik zostanie automatycznie otwarty w panelu po prawej stronie. PyCharm automatycznie doda do pliku linijkę z kodem:
 ```python
@@ -152,7 +152,7 @@ first_function()
 ```
 Przeanalizujmy powyższy kod. Słowo kluczowe `def` oznacza początek definicji funkcji. Następnie podajemy nazwę definiowanej funkcji, w naszym przypadku jest to *first_function*. W Pythonie nie podajemy typu zawracanej wartości, ponieważ typy jako takie w nim nie istnieją. Python jest językiem dynamicznie typowany co oznacza, że typ zmiennej jest taki jak wartość do niej przypisana, dlatego nie trzeba zmiennej deklarować. Każda zmienna może być typu *integer* a następnie może stać się typu *string*, w związku z czym nie ma sensu podawanie typu zwracanego obiektu ponieważ on wyniknie z tego co zostanie zwrócone. Po nazwie funkcji podajemy w nawiasie nazwy argumentów (tylko nazwy, poniweaż typy nie są potrzebne) a następnie wstawiamy znak **:**,  który rozpoczyna ciało funkcji. I tutaj pojawia się ciekawe zjawisko - brak klamer. W Pythonie klamry określające przynależność części kodu do instrukcji, zostały zastąpione wcięciem w tekście o 1 tabulację. Koniec ciała funkcji z kolei definiujemy poprzez przesunięcie kodu o 1 tabulację z powrotem w lewo. Funkcje wywołujemy dokładnie tak samo jak w większości innych języków, poprzez podanie nazwy funkcji i argumentów w okrągłych nawiasach.
 
-![Pierwsze uruchomienie nowego pliku](figures/python_inst01/19.png)
+![Pierwsze uruchomienie nowego pliku](19.png)
 
 Gdy posiadamy już kod należy go uruchomić aby sprawdzić czy poprawnie zapisaliśmy to co chcemy osiągnąć. W przypadku kodu Pythona wystarczy wywołać interpreter ze wskazaniem ścieżki do pliku. Taką operację można wykonać z poziomu konsoli:
 ```bash
@@ -163,11 +163,11 @@ Jednak w sytuacji gdy korzystamy IDE uruchamianie kodu z konsoli nie jest wygodn
 1. Kliknij prawym przyciskiem w pustym miejscu w edytowanym pliku.
 2. Wybierz opcję ***Run***.
 
-![Wynik działania kodu](figures/python_inst01/04.png)
+![Wynik działania kodu](04.png)
 
 Po uruchomieniu kodu PyCharm automatycznie rozwinie konsolę w której powinien wyświetlić się napis *"Hellow world!"*.
 
-![Panel uruchamiania kodu](figures/python_inst01/05.png)
+![Panel uruchamiania kodu](05.png)
 
 Wróćmy jeszcze do konfiguracji uruchamianiowej.Po kliknięciu na ***Run*** automatycznie zostaje utworzona domyślna konfiguracja, która nazywa się tak jak edytowany plik. Ponadto taka konfiugracja zostaje dodana do rozwijanego menu w prawym górnym rogu, tuż nad edytorem tekstu. Znajdują się tam 3 przyciski:
 
@@ -177,9 +177,9 @@ Wróćmy jeszcze do konfiguracji uruchamianiowej.Po kliknięciu na ***Run*** aut
 
 Po co nam różne konfiguracje? Otóż w obrębie jednego projektu możemy mieć kilka  różnych plików zawierających kod który ma wykonać jakieś zadania. Często zdaża się tak, że edytuajmy jedan plik, ale żeby zobaczyć efekty pracy chcemy jednak uruchomić inny wcześniej wybrany. 
 
-![Konfiguracja uruchamiania kodu](figures/python_inst01/06.png)
+![Konfiguracja uruchamiania kodu](06.png)
 
-Na koniec jeszcze zobaczmy co zawiera konfiguracja uruchomieniowa naszego pliku test.py. Aby otworzyć okno jej edycji należy wybrać opcję ***Edit configuration*** z rozwijanego menu ([rysunek](figures/python_inst01/05.png)). W panelu ***Configuration*** znajdują się 3 najważniejsze pola:
+Na koniec jeszcze zobaczmy co zawiera konfiguracja uruchomieniowa naszego pliku test.py. Aby otworzyć okno jej edycji należy wybrać opcję ***Edit configuration*** z rozwijanego menu ([rysunek](05.png)). W panelu ***Configuration*** znajdują się 3 najważniejsze pola:
 
 1. ***Script*** - ścieżka do pliku który ma zostać uruchomiony.
 2. ***Script parameters*** - parametry jakie powinny zostać przkazane do naszego kodu w czasie jego wywołania. Paremetry te to nic innego jak parametry przekazywane do programów gdy je wywołujemy z konsoli, np.:
@@ -193,11 +193,11 @@ W powyższym przykładzie ***rm*** jest nazwą programu, a *directory_name* to p
 
 Jak już wcześniej o tym wspomnieliśmy kod i materiały potrzebne do pracy będziemy przechowywali przy wykorzystaniu systemu kontroli wersji ***git*** oraz zdalnego repozytorium w serwisie ***GitHub***. W serwisie tym znajduje się oficjalne repozytorium (pewna przestrzeń dyskowa obsługiwana przez system kontroli wersji) z materiałami do naszych ćwiczeń. Materiały te mogą edytować tylko osoby posiadające odpowiednie uprawnienia. Jednak dostęp do nich posiada każdy. Wszyscy mogą skopiować to repozytorium na własne konto i modyfikować je. Jednak zmiany te nie będą nigdy wprowadzone do oficjalnego repozytorium (chyba, że administratorzy uznają, że warto te zmiany dołączyć do swojego repozytorium, ale o tym później). Kopia jakiegoś repozytorium na własne konto jest nazywana ***Fork***. Oprócz tworzenia kopii repozytorium do swojego konta można także utworzyć kopię zwaną ***Branch*** - gałąź, która będzie znajdowała się nadal wewnątrz repozytorium, ale tą operację mogą tworzyć jedynie osoby które są przypisane do repozytorium. Od momentu utworzenia kopii kod staje się "własnością" osoby która go skopiowała i nie jest powiązany z głównym repozytorium. Często jednak chcemy wprowadzać własne zmiany do kodu, ale przy okazji chcemy aby nasz kody był cały czas aktualny z oficjalnym repozytorium. W takiej sytuacji można połączyć własną kopię ***Fork*** z drugim zdalnym repozytorium i co jakiś czas je aktualizować. Procedurę taką opiszemy na następnych ćwiczeniach, a teraz przejdziemy do utworzenia własnego repozytorium na bazie istniejącego.
 
-![Kopiowanie istniejącego repozytorium](figures/python_inst01/18.png)
+![Kopiowanie istniejącego repozytorium](18.png)
 
 Należy przejść na stronę [GitHub](https://github.com "GitHub") i zalogować się na własne konto. Następnie należy znaleźć repozytorium z materiałami do naszego kursu (za pomocą wyszukiwarki bądź wprost z tego [linku](https://github.com/ccfd/python_course)). Następnie należy kliknąć na przycisk znajdujący się w prawym górnym rogu ***Fork***. Ta operacja utworzy kopię repozytorium na własnym koncie. Poniważ uczestnicy będą pisali własny kod będący rozwiązaniem zadań, to właśnie ta kopia repozytorium posłuży im do przechowywania własnego kodu i automatycznego pobierania materiałów przygotowanych przez prowadzących. 
 
-![Tworzenie lokalnego repozytorium w PyCharm](figures/python_inst01/07.png)
+![Tworzenie lokalnego repozytorium w PyCharm](07.png)
 
 Utworzyliśmy właśnie własne repozytorium. Jednak znajduje się ono na razie tylko na serwerze. Aby ściągnąć pliki zawarte w tym repozytorium należy utowrzyć tzw. lokalne repozytorium. Lokalne repozytorium jest kopią kodu zawartego na serwerze na przestrzeń dyskową własnego komputera. Dzięki temu można wprowadzać zmiany z pozimu własnego komputera. Należy jednak pamiętać, że wszystkie takie zamiany będą tylko lokalne, tzn. istniały tylko w obrębie własnego komputera. Aby te zmiany mogły się pojawić także na serwerze, trzeba będzie je tam wysłać, ale o tym dalej. 
 Operacja kopiowania (pobierania) zdalnego repozytorium na własny komputer nazywana jest klonowaniem (clone). Można to uczynić z poziumu konsoli za pośrednictwem programu ***git***:
@@ -212,40 +212,40 @@ PyCharm jest rozbuodwanym środowsikiem i sam także pozwala na utorzenie lokaln
 3. Na koniec wskazać ***GitHub*** który jest dodatkowo wspierany przez PyCharm.
 
 
-![Konfiguracja dostępu do konta GitHub](figures/python_inst01/08.png)
+![Konfiguracja dostępu do konta GitHub](08.png)
 
 Następnie PyCharm poprsi o zalogowanie się na nasze konto, poniważ będzie chciał pobrać informacje o dostępnych repozytoriach na naszym koncie:
 1. Podajemy login.
 2. Podajemy hasło do naszego konta.
 3. Logujemy się klikając na wskazany przycisk.
 
-![Lokalne hasło](figures/python_inst01/09.png)
+![Lokalne hasło](09.png)
 
 Poniważ za każdym razem gdy będziemy chcieli pobrać lub wysłać nową wersję kodu będziemy musieli podać login i hasło. Może być to uciążliwe, dlatego PyCharm pozwala na wprowadzenie dodatkowego hasła, które będzie istniało tylko w obrębie PyCharm. Dzięki temu będziemy mogli wpisać to nowe hasło tylko raz na jedną sesję pracy z programem, a on wykorzysta zapisane i zaszyfrowane właściwe hasło i login do naszego konta na GitHub, co znacząco ułatwia pracę. Jeśli kotś nie chce tego robić wystarczy klinkąć ***Cancel*** i PyCharm będzie za każdym razem (gdy będzie to wymagane) prosił o podanie właściwego loginu i hasła do konta na GitHub. 
 
-![Wybór adresu własnego repozytorium](figures/python_inst01/11.png)
+![Wybór adresu własnego repozytorium](11.png)
 
 Następnym krokiem jest wybór adresu repozytorium na serwerze. Można to zrobić wchodząc na własne konto i wybierając repozytorium które skopiwoaliśmy. Następnie można skopiować jego adres za pomocą przycisku na stronie.
 
-![Konfiguracja lokalnego repozytorium](figures/python_inst01/10.png)
+![Konfiguracja lokalnego repozytorium](10.png)
 
 1. Z racji tego, że już zalogowaliśmy się na nasze konto za pomocą PyCharm, to on sam automatycznie pobrał wszystkie adresy naszych repozytoriów. Dlatego w miejscu ***Git Repository URL*** można wkleić skopiowany adres bądź wybrać jeden z rozwijanego menu. 
 2. Oprócz adresu musimy wybrać lokalizajcę na naszym dysku gdzie ma zostać przechowana lokalna kopia kodu (w przypadku używania konsoli należało przejść do właściwego folderu przed wywołaniem git clone ...). 
 3. Na koniec zatwierdzamy klikając na ***Clone***.
 
-![Dodawanie nowego projektu do PyCharm](figures/python_inst01/12.png)
+![Dodawanie nowego projektu do PyCharm](12.png)
 
 Gdy PyCharm zakończy pobierać dane z serwera zapyta czy otworzyć to repozytorium jako nowy projekt - klikamy ***Yes***.
 
-![Konfiguracja dodawania projektu](figures/python_inst01/13.png)
+![Konfiguracja dodawania projektu](13.png)
 
 Po kliknięciu na ***Yes*** może pojawić się powyższy komunikat. Chodzi tutaj o to, że wcześniej utowrzyliśmy pierwszy projekt i program pyta się czy nowy projekt powinien zostać dodany do drzewka czy powinien otworzyć całkiem nowe okno. Możemy wybrać opcję ***Open in current window*** choć to nie będzie miało większego znaczenia.
 
-![Uruchamianie testowego kodu z repozytorium](figures/python_inst01/14.png)
+![Uruchamianie testowego kodu z repozytorium](14.png)
 
 Gdy załaduje się projekt z naszego repozytorium otwórzmy plik "test_script.py". Plik ten zawiera testowy kod, który wykorzystuje biblioteki NumPy i Matplotlib. Jeśli program zadziała poprawnie to będzie znaczyło, że udało się zainstalować je poprawnie. Aby uruchomić ten plik możemy zrobić tak jak poprzedni, czyli wybrać opcję ***Run*** z menu otwieranego prawym przyciskiem myszy. 
 
-![Okno wyniku działania testowego kodu](figures/python_inst01/15.png)
+![Okno wyniku działania testowego kodu](15.png)
 
 Jeśli program zadziałał poprawnie, to powinniśmy zobaczyć powyższy wykres w nowym oknie. 
 
@@ -261,7 +261,7 @@ na linijkę:
 numpyArray2 = np.sin(array) + np.cos(array)
 ```
 
-![Zatwierdzanie zmian w lokalnym i zdalnym repozytorium](figures/python_inst01/16.png)
+![Zatwierdzanie zmian w lokalnym i zdalnym repozytorium](16.png)
 
 Teraz musimy zatwierdzić zmianę. W tym celu możemy utworzyć "commit" dla pojedyńczego pliku lub wszystkich w naszym projekcie, co zazwyczaj jest bardziej wygodne. Aby to zrobić:
 
@@ -269,7 +269,7 @@ Teraz musimy zatwierdzić zmianę. W tym celu możemy utworzyć "commit" dla poj
 2. Wybierz opcję ***Git***.
 3. A następnie ***Commit Directory...***.
 
-![Parametry zatwierdzania zmian](figures/python_inst01/20.png)
+![Parametry zatwierdzania zmian](20.png)
 
 Otworzy się teraz nowe okno służące do zatwierdzania zmian. Warto robić takie zatwierdzenia jak najczęściej, dzięki czemu każda zmiana w kodzie będzie łatwa do odszukania i np. usunięcia. Aby utowrzyć "Commit" musimy:
 
@@ -277,11 +277,11 @@ Otworzy się teraz nowe okno służące do zatwierdzania zmian. Warto robić tak
 2. Wpisać wiadomość informującą jakie zmiany w kodzie zostały przeprowadzone. 
 3. Zatwierdzić przyciskiem ***Commit***. Uwaga, zanim kliknie się na ten przycisk rozwija się dodakowe menu, które pozwala wybrać opcję ***Commit and Push***. Opcja ta tworzy nowy commit i automatycznie wysyła zmiany na serwer. Czasami nie chcemy wysłać zmian, ponieważ nie jesteśmy pewni czy nie będziemy chcieli zrezygnować z nich za jakiś czas. Wybierzmy teraz drugą opcję, tj. ***Commit and Push***.
 
-![Wysyłanie zmian do zdalnego repozytorium](figures/python_inst01/17.png)
+![Wysyłanie zmian do zdalnego repozytorium](17.png)
 
 Po utworzeniu commitu PyCharm otworzy nowe okno w którym należy zatwierdzić, że chcemy wysłać zmiany na serwer. W naszym przypadku commit powinien zostać zaznaczony automatycznie, więc wystarczy kliknąć na przycisk ***Push***.
 
-![Pobieranie zmian ze zdalnego repozytorium](figures/python_inst01/21.png)
+![Pobieranie zmian ze zdalnego repozytorium](21.png)
 
 Na koniec pokażemy jeszcze jak pobrać zmiany ze zdalnego repozytorium na nasze lokalne, które już istnieje (np. w sytuacji, gdy ktoś inny wprowadził zmiany i chcemy aby ten nowszy kod pojawił się także u nas na dysku). Do tego celu korzystamy z opcji "Pull" która działa przeciwnie do "Push" - czyli pobiera wszystkie zmiany z serwera i dołącza je do naszego kodu. Aby dokonać tej operacji z pozimu konsoli należy przejść do właściwego folderu zawierającego nasze lokalne repozytorium, a następnie wywołać:
 ```bash
