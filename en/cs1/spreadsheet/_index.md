@@ -26,7 +26,7 @@ When you drag horizontally, the column number is changing.
 - In order to format the table, select cells, click with right hand button and select *Format Cells*.
 With this step you open a window allowing a change of the table formatting (e.g. tab *Borders* allows one to edit lines).
 
-![Fig.1. Multiplication table.](figures/cs1/sheet_1.png "Multiplication table.")
+![Fig.1. Multiplication table.](sheet_1.png "Multiplication table.")
 
 ## Sale of cars
 Create a table with information on sale results of fife car models.
@@ -37,14 +37,14 @@ Provide a cell range as an argument.
 For example, use `SUM(A1:A10)` to sum values in the column `A` and rows `1` to `10`.
 - Format the table as in Figure 2.
 
-![Fig.2. Table of car sales.](figures/cs1/sheet_2.png "Table of car sales.")
+![Fig.2. Table of car sales.](sheet_2.png "Table of car sales.")
 
 ## Results of a test
 Create two tables.
 First one should contain columns named as in the Figure 3.
 Fill the table with devised data.
 
-![Rys.3. Results of a test.](figures/cs1/sheet_3.png "Results of a test.")
+![Rys.3. Results of a test.](sheet_3.png "Results of a test.")
 
 Second table should contain two columns `Index` and `Name and Surname`.
 
@@ -75,7 +75,7 @@ You can set the background to white by clicking on the area with right hand butt
 When the plot is ready, double click on its each element in order to enter the edition mode of the element.
 Format the plot as in the Figure 4.
 
-![Fig.4. Plot of the one-dimensional function.](figures/cs1/sheet_4.png "Plot of the one-dimensional function.")
+![Fig.4. Plot of the one-dimensional function.](sheet_4.png "Plot of the one-dimensional function.")
 
 ## Computing roots of the quadratic function
 Create a sheet in a spreadsheet software in order to compute roots of the quadratic function.
@@ -90,7 +90,7 @@ For example, formula `IF(A1>0, A2, A3)` returns a value of the cell `A2` if a va
 - Compute roots of the function (formula `SQRT()` returns the square root of a number).
 Take into account a case when a selected root does not exist (in such a case the correspnding cell should contain a massage "lack")..
 
-![Fig.5. Roots of the quadratic function.](figures/cs1/sheet_5.png "Roots of the quadratic function.")
+![Fig.5. Roots of the quadratic function.](sheet_5.png "Roots of the quadratic function.")
 
 ## Importing data from a file
 Download a file [results.dat](data/cs1/results.dat) and move it to a catalogue with a spreadsheet.
@@ -111,4 +111,4 @@ Next we select any sample point (after that all point should be highlighted gree
 In the tab *Type* we select the polynomial regression (*polynomial*) of the second order and tick options *Show Equation*, *Show Coefficient of Determination* and click *OK*.
 We should obtain a plot like in the Figure 6.
 
-![Rys.6. Trend function.](figures/cs1/sheet_6.png "Trend function.")
+![Rys.6. Trend function.](sheet_6.png "Trend function.")
