@@ -775,7 +775,7 @@ anim = FuncAnimation(fig, update_plot, frames=300, interval=1, repeat=False)
 
 plt.show()
 ```
-![Przykład animacji](figures/python_inst03/anim_example.gif "Przykład animacji za pomocą FuncAnimation")
+![Przykład animacji](anim_example.gif "Przykład animacji za pomocą FuncAnimation")
 
 
 
@@ -785,7 +785,7 @@ plt.show()
 
 W folderze ***resources/lab1/files*** zlokalizowanym w repozytorium znajduje się szereg plików o losowych nazwach. W każdym z plików znajduje się tylko jeden wiersz o postaci: *location: [nazwa folderu]*, gdzie [nazwa folderu] może różnić się pomiędzy plikami. Należy skopiować poszczególne pliki zawarte w podanej lokalizacji do folderów, których nazwy są takie same jak ta podana wewnątrz pliku. 
 
-![Pliki w folderach](figures/python_inst02/1.png "Przykład przetworzenia") 
+![Pliki w folderach](1.png "Przykład przetworzenia") 
 
 Nowo utworzone foldery mogą zostać umieszczone w dowolnej lokalizacji. 
 
@@ -795,7 +795,7 @@ Wyznacz ruch dwóch ciał połączonych sprężynami o sztywności $k=10$ znajdu
 
 Wykonaj wykres torów ruchu obu ciał, a następnie utwórz animację, w której przedstawisz ruch ciał w postaci punktów poruszających się po obliczonych torach. 
 
-![mass-1kg](figures/python_inst03/mass1.gif "Masa m=1kg") ![mass-10kg](figures/python_inst03/mass10.gif "Masa m=10kg")
+![mass-1kg](mass1.gif "Masa m=1kg") ![mass-10kg](mass10.gif "Masa m=10kg")
 
 Animację można zapisać do pliku *.gif za pomocą metody "save" z obiektu animation. Aby zapisać do tego formatu należy posiadać zainstalowaną aplikację "imagemagic":
 
@@ -812,7 +812,7 @@ Należy utworzyć funkcję która będzie potrafiła przeskalować macierz z wi�
 1. Utwórz nowy plik pythona o nazwie zadanie3.py
 2. Wewnątrz tego pliku przygotuj funkcję "reduce" która jako argumenty będzie przyjmowała obiekt reprezentujący listę/tablicę dwuwymiarową oraz rozmiar wynikowej macierzy (parametr określający rozmiar powinien obsługiwać sytuację gdy przekazano 1 liczbę lub parę)
 3. Uzupełnij ciało funkcji wykorzystując algorytm opisany poniższym rysunkiem
-![algorytm](figures/python_inst02/2.png "Algorytm skalowania") 
+![algorytm](2.png "Algorytm skalowania") 
 Na powyższym rysunku oznaczono jak poszukiwać referencyjnych elementów w tablicy większej w zależności od indeksu elementu w tablicy mniejszej. Wartość kolejnych elementów w tablicy mniejszej powinna być obliczona jako średnia z zaznaczonych sąsiadów i referencyjnego elementu z tablicy większej. 
 
 4. Zwróć wynikową tablicę/listę dwuwymiarową.
