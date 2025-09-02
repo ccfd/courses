@@ -123,7 +123,7 @@ Składa się ona z węzłów (ang. *node*) - każdy węzeł przechowuje 1 elemen
 Jeżeli węzły przechowują także wskaźnik do poprzedniego węzła, mówimy o liście dwukierunkowej.
 Pomocna w zrozumieniu tej struktury danych może być następująca wizualizacja rozkładu w pamięci elementów listy jednokierunkowej:
 
-![list.png](figures/cpp_inst5/list.png)
+![list.png](list.png)
 
 Jak widać, możemy dodawać nowe elementy na dowolnej pozycji listy (z przodu, z tyłu, gdzieś w środku) bez konieczności przesuwania elementów już istniejących.
 Ceną, którą płacimy za tę wygodę jest czas dostępu do elementów - aby dostać się do *i*-tego elementu, musimy przejść przez *i* - 1 elementów go poprzedzających.
@@ -228,7 +228,7 @@ Dekrementacja iteratora poprzedzającego `list.end()` nie doprowadzi zatem nigdy
 Ponieważ problem trawersowania kontenerów od końca jest dość powszechny, biblioteka standardowa oferuje mechanizm, który to ułatwia: iteratory odwrotne (*reverse iterator*).
 Ideę ich działania zobrazowano poniżej.
 
-![iterators.png](figures/cpp_inst5/iterators.png)
+![iterators.png](iterators.png)
 
 Ostatni rodzaj iteratora, jaki poznamy, to iterator `const`.
 Nie oznacza to, że nie możemy zmieniać jego wartości (taki iterator nie jest szczególnie przydatny, poza tym możemy go stworzyć po prostu deklarując np. `const std::vector<int>::iterator it = ...`), oznacza to, że nie możemy zmienić wartości elementu, na który wskazuje.
