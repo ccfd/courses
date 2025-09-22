@@ -4,15 +4,25 @@ TOOLS="$(dirname "$(realpath $0)")"
 
 test -z "$1" && exit -1
 RMD="$1"
+RMD_PATH="${RMD%/*}"
+RMD_FILE="${RMD##*/}"
 shift
-MD="${RMD%.*}.knit.md"
+if test -z "$1"; then
+	OUT="${RMD_FILE%.*}.md"
+else
+	OUT="$1"
+	shift
+fi
+
+MD="$RMD_PATH/$OUT"
 
 echo -n "Compiling $RMD to $MD - "
-if R --vanilla --slave -e "library(rmarkdown); TOOLS='$TOOLS'; render('$RMD', run_pandoc = FALSE, clean = FALSE)" >md_compile.log 2>&1
+if R --vanilla --slave -e "library(rmarkdown); TOOLS='$TOOLS'; render('$RMD', output_file='$OUT', output_dir='$RMD_PATH', run_pandoc = FALSE, clean = FALSE)" >md_compile.log 2>&1
 then
 	if test -f "$MD"
 	then
 		echo "OK"
+		git config --local core.excludesfile "$MD"
 	else
 		echo "File not found: $MD"
 	fi
