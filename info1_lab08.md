@@ -1,6 +1,6 @@
 ---
 number: 8
-course: Informatyka I
+course: Podst. Prog.
 material: Instrukcja 8
 author: B. Górecki
 ---

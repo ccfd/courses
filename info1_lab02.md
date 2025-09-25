@@ -1,6 +1,6 @@
 ---
 author: "Ł. Łaniewski-Wołłk"
-course: Informatyka I
+course: Podst. Prog.
 material: Laboratorium 2
 number: 2
 ---

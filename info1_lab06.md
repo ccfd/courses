@@ -1,5 +1,5 @@
 ---
-course: Informatyka I
+course: Podst. Prog.
 material: Instrukcja 6
 number: 6
 author: "B. Górecki"

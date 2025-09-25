@@ -1,6 +1,6 @@
 ---
 author: "B. Górecki"
-course: Informatyka I
+course: Podst. Prog.
 material: Instrukcja 3
 number: 3
 ---

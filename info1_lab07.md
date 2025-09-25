@@ -1,6 +1,6 @@
 ---
 number: 7
-course: Informatyka I
+course: Podst. Prog.
 material: Instrukcja 7
 author: W. Regulski
 ---

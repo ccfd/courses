@@ -1,6 +1,6 @@
 ---
 title: Tworzenie nowego projektu w programie Microsoft Visual Studio 2013
-course: Informatyka I
+course: Podst. Prog.
 material: Tworzenie projektu
 number: 0
 output:
