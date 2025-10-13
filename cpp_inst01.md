@@ -10,8 +10,8 @@ author: J. Gałecki
 ### Współczesny C++
 Niniejszy tekst rozpoczyna cykl instrukcji stanowiących kurs wprowadzający do języka C++.
 Język ten, pomimo swojego dojrzałego wieku, wciąż bardzo dynamicznie się rozwija.
-W chwili pisania tej instrukcji, jego najnowszą odsłonę stanowi niedawno zatwierdzony standard C\+\+20.
-Komitet ISO, który go wydaje, pracuje obecnie w trzyletnim cyklu; dotychczasowe wydania standardu to C\+\+98, C\+\+03, C\+\+11, C\+\+14, C\+\+17 i C\+\+20 (następna planowana wersja to C++23).
+W chwili pisania tej instrukcji, jego najnowszą odsłonę stanowi niedawno zatwierdzony standard C\+\+23.
+Komitet ISO, który go wydaje, pracuje obecnie w trzyletnim cyklu; dotychczasowe wydania standardu to C\+\+98, C\+\+03, C\+\+11, C\+\+14, C\+\+17, C\+\+20 i C\+\+23 (następna planowana wersja to C++26).
 Wspominamy o tym, gdyż dobrze napisany kod w ww. języku wygląda dziś znacząco inaczej, niż kilkanaście lat temu.
 W czasie trwania zajęć postaramy się przedstawić czytelnikowi możliwie jak najbardziej współczesne elementy języka oraz schematy programowania.
 Postaramy się zaznaczać, w którym standardzie pojawił się dany element i dlaczego wyparł on ten wcześniej używany (lub jaką lukę wypełnia).
@@ -110,10 +110,10 @@ Takie struktury były już dostępne w C.
 W C\+\+ klasy mogą mieć także metody:
 
 ```C++
-#include <iostream>
+#include <print>
 struct Human
 {
-    void printAge() { std::cout << age << '\n'; }
+    void printAge() { std::println("{}", age); }
 
     int    age;
     double height;
@@ -139,7 +139,7 @@ Klasa może mieć dowolną liczbę konstruktorów (rozróżnianych typami podawa
 Destruktor to metoda wywoływana przy niszczeniu obiektów danej klasy.
 
 ```C++
-#include <iostream>
+#include <print>
 struct Human
 {
     Human(int a, double h, std::string n)
@@ -147,11 +147,11 @@ struct Human
         age    = a;
         height = h;
         name   = n;
-        std::cout << "Hello, " << name << "!\n";
+        std::println("Hello, {}!", name);
     }
     ~Human()
     {
-        std::cout << "Goodbye, " << name << "...\n";
+        std::print("Goodbye, {}...", name);
     }
     
     int         age;
@@ -263,7 +263,7 @@ private:
 #### Zadanie 4
 Dodaj do klasy `Wektor2D` metody `setX`, `getX`, `setY` i `getY`, służące do odczytywania i modyfikowania współrzędnych wektora.
 Uczyń pola opisujące współrzędne prywatnymi.
-Co stanie się, gdy spróbujesz zawołać np. `std::cout << wektor.x;`?
+Co stanie się, gdy spróbujesz zawołać np. `std::print("{}", wektor.x)`?
 
 ### Przeciążanie operatorów
 W języku C++ operatory ([tu znajdziesz ich listę](https://en.cppreference.com/w/cpp/language/operators)) możemy przeciążać tak samo jak wszystkie inne funkcje.
@@ -298,10 +298,6 @@ Więcej na temat szczególnego operatora `=` powiemy na kolejnych zajęciach.
 
 #### Zadanie 5
 Przeciąż operatory `+` i `*` tak, aby były zdefiniowane dla klasy `Wektor2D` (zgodnie z tradycyjną algebrą).
-
-#### Zadanie 6
-Przeciąż operator `<<` tak, aby można było zawołać `std::cout << wektor;`.
-Następnie przeciąż go tak, aby można było zawołać `std::cout << wektor1 << wektor2 /* << ... */ << wektorn`.
 
 ### Pola i metody statyczne
 Dotychczas definiowaliśmy pola i metody, które operowały na konkretnym obiekcie danej klasy (np. imię jest indywidualną cechą każdego człowieka).
@@ -359,7 +355,6 @@ Zweryfikuj, czy konwersja współrzędnych z jednego układu współrzędnych na
 - Domyślny konstruktor wektora może pozostać publiczny. Punkt (0, 0) pokrywa się w obu układach współrzędnych, nie ma tu dwuznaczności.
 
 ## Pytania na koniec
-- Czym jest `std::cout` (do jakiej kategorii bytów należy)? Jaki ma scope ("zasięg istnienia")?
 - Z jakiego konstruktora klasy `std::string` korzystaliśmy w klasie `Human`?
 - Czy klasa może mieć więcej niż 1 destruktor? Dlaczego?
 - Na ile sposobów możemy zdefiniować `operator+` dla klasy `Wektor2D`? W razie wątpliwości zajrzyj [tutaj](https://youtu.be/gjFrjNK3Dq4).
