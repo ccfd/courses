@@ -52,39 +52,50 @@ catch(...)
 Zanim powiemy o tym jak rzucać wyjątki i jakie mogą mieć typy, zobaczmy konkretny przykład sytuacji, w której wyjątek jest rzucany przez bibliotekę standardową.
 
 #### Zadanie 1
-Napisz program, który wczytuje z klawiatury liczbę całkowitą.
-Następnie w bloku `try` stwórz wektor wypełniony zerami o długości podanej z klawiatury.
+Napisz program, który tworzy wektor 100 `int`ów, dowolnie go wypełnia (np. zerami), a następnie wczytuje z klawiatury liczbę całkowitą `index` i drukuje co znajduje się w wektorze pod indeksem `index`.
+Do dostępu do wektora użyj metody `at`, nie operatora nawiasów kwadratowych.
+Następnie w bloku `try` stwórz wektor wypełniony zerami o długości 100.
 W bloku `catch(...)` wyświetl wiadomość informującą, że został rzucony wyjątek.
-Sprawdź co stanie się, gdy podasz małą liczbę, a co gdy podasz liczbę przekraczającą pamięć RAM dostępną na Twoim komputerze.
+Sprawdź co stanie się, gdy podasz liczbę 42, a co gdy podasz liczbę przekraczającą rozmiar wektora.
 
 ### Rozróżnianie wyjątków, `std::exception`
 W zadaniu 1, blok `catch(...)` pozwolił nam na wykrycie, że *pewien* wyjątek został rzucony.
 Często chcemy jednak, aby sam wyjątek niósł ze sobą jakąś informację.
 Mamy możliwość łapania *konkretnych typów* wyjątków.
-Na przykład, klasy i funkcje biblioteki standardowej w przypadku nieudanej alokacji pamięci rzucają wyjątek typu `std::bad_alloc`.
+Na przykład, biblioteka standardowa w przypadku "bezpiecznego" dostępu poza zakres (metody `at` różnych kontenerów) rzucają wyjątek typu `std::out_of_range`.
 
 #### Zadanie 2
-Wykonaj zadanie 1, tym razem łapiąc konkretny wyjątek typu `std::bad_alloc`.
+Wykonaj zadanie 1, tym razem łapiąc konkretny wyjątek typu `std::out_of_range`.
 Wyświetl do konsoli wiadomość zawartą w tym wyjątku (użyj metody `what`).
 
 Może się zdarzyć, że w bloku `try` mogą zostać rzucone różne typy wyjątków.
 W zależności od tego, jaki błąd wystąpił, mamy wtedy możliwość wykonania innego zestawu instrukcji.
-Zobaczmy to na przykładzie `std::bad_alloc` i `std::bad_variant_access`.
-`std::bad_variant_access` jest typem wyjątku, który rzucany jest gdy próbujemy dostać się do wariantu poprzez typ, którego obecnie nie trzyma.
+Zobaczmy to na przykładzie `std::out_of_range` i `std::bad_cast`.
+`std::bad_cast` jest typem wyjątku, który rzucany jest gdy próbujemy rzutować dynamicznie (`dynamic_cast`) referencję na typ bazowy `B&` na referencję na typ pochodny `D1&`, a okazuje się, że referencja wskazuje na obiekt innego typu, np. `D2`.
+Przykład takiej hierarchii klas podano niżej:
+
+```c++
+struct B {
+    virtual void dummy() = 0;
+};
+struct D1 : B {
+    void dummy() override {}
+};
+struct D2 : B {
+    void dummy() override {}
+};
+```
 
 #### Zadanie 3
-Napisz program, który wczytuje z klawiatury liczby całkowite `a` i `b`.
-Następnie w bloku `try` stwórz wektor wypełniony zerami o długości `a` oraz wariant typu `std::variant<int, std::string>`.
-Jeżeli `b` jest parzyste, przypisz do wariantu wartość 42, a jeżeli nie, wartość `"nieparzyste"`.
-Spróbuj wyświetlić wartość trzymaną przez wariant jako `int` (`std::cout << std::get<int>(v)`).
-Napisz 2 bloki `catch`, jeden łapiący `std::bad_alloc`, jeden łapiący `std::bad_variant_access`, w których wyświetlisz wiadomość o rzuconym wyjątku.
-Zbadaj zachowanie programu w zależności od podanych z klawiatury zmiennych.
+Wykonaj ponownie zadanie drugie, ale tym razem oprócz indeksowania wykonaj niepoprawne dynamiczne rzutowanie opisane powyżej
+Napisz 2 bloki `catch`, jeden łapiący `std::out_of_range`, jeden łapiący `std::bad_cast`, w których wyświetlisz wiadomość o rzuconym wyjątku.
+Zbadaj zachowanie programu w zależności od podanej z klawiatury zmiennej.
 
 Wyjątki rzucane przez bibliotekę standardową są polimorficznymi typami, które dziedziczą po klasie `std::exception` i nadpisują jej wirtualną metodę `what` (vide [dokumentacja](https://en.cppreference.com/w/cpp/error/exception)).
-W przypadku, gdy nie zależy nam na innym zestawie instrukcji dla różnych typów wyjątków, a jedynie informacji jaki typ wyjątku został rzucony, możemy to wykorzystać, pisząc tylko jeden blok `catch` łapiący klasę bazową.
+W przypadku, gdy nie zależy nam na innym zestawie instrukcji dla różnych typów wyjątków, a jedynie informacji jaka sytuacja wyjątkowa miała miejsce, możemy to wykorzystać, pisząc tylko jeden blok `catch` łapiący klasę bazową.
 
 #### Zadanie 4
-Wykonaj ponownie zadanie 3, tym razem pisząc tylko jeden blok `catch`, łapiący wyjątek typu `std::exception`.
+Wykonaj ponownie zadanie 3, tym razem pisząc tylko jeden blok `catch`, łapiący (przez referencję) wyjątek typu `std::exception`.
 Wyświetl w nim informację zwróconą przez metodę `what`.
 Zbadaj zachowanie programu w zależności od podanych z klawiatury zmiennych.
 
