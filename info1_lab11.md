@@ -11,7 +11,7 @@ Mikrokontroler to mały układ scalony, który (zazwyczaj) ma w sobie zintegrowa
 
 Na tych zajęciach użyjemy płytkę prototypową kompatybilną z Arduino. Urządzenia takie mają zintegrowane na jednej płytce: mikrokontroler i interfejs USB, a dodatkowo wgrany mają fabrycznie tak zwany "bootloader". Bootloader pełni rolę programatora, pozwalając wgrać programy do pamiecy stałej mikrokontrollera przez interfejs szeregowy. Bootloader Arduino stał się tak popularny, że wiele innych firm produkuje płytki z mikrokontolerami z wgranym ich bootloaderem. Pozwala to na programowanie wszelkich takich płytek przy pomocy tego samego zestawu narzędzi.
 
-## Zaczynamy
+# Zaczynamy
 
 Dziś będziemy używać narzędzia Arduino IDE.
 
@@ -25,11 +25,11 @@ while (1) {
 }
 ```
 
-### `Piny`
+## `Piny`
 
 Nasza płytka ma piny typu General Purpose Input Output (GPIO). Oznacza to, że możemy ustawić je w różne stany służące do odczytu danych (input) i wysyłania danych (output). Do ustawiania stanu służy funkcja `pinMode(pin, typ)`. Dziś użyjemy dwóch typów:
 
-#### `OUTPUT`
+### `OUTPUT`
 `OUTPUT` pozwala na ustawianie wyjscia na pinie na logiczne `0` (`LOW`) i `1` (`HIGH`). Zero to samo co uziemienie (ground), a jedyna to napięcie operacyjne układu (u nas 3V). Jesli podlaczymy taki pin (np. 2) do lampki (jak na rysunku), bedziemy mogli ja zapalac i gasic ustawiajac pin za pomoca `digitalWrite(2,HIGH);` i `digitalWrite(2,LOW);`.
 
 ![](figures/info1/micro/led.png)
@@ -38,12 +38,12 @@ Jesli zas do takiego pinu (np 10) podlaczymy buzzer (jak na rysunku) i uzyjemy k
 
 ![](figures/info1/micro/buzzer.png)
 
-#### `INPUT_PULLUP`
+### `INPUT_PULLUP`
 `INPUT_PULLUP` pozwala na sprawdzanie na pinie czy jest on podłączony (`LOW`) czy nie (`HIGH`) do zera (ground). Jesli do takiego pina (np 3) podlaczymy przelacznik, a jego drugi styk podlaczymy do ziemi, bedziemy mogli wykryc czy przelacznik jest nacisniety sprawdzajac czy `digitalRead(3) == LOW`.
 
 ![](figures/info1/micro/button.png)
 
-### Buzzer
+## Buzzer
 Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 10 (`D10`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
 ```
 void setup() {
@@ -73,7 +73,7 @@ void loop() {
 ```
 
 
-## Nasz uklad
+# Nasz uklad
 
 Możemy teraz podłączyć przyciski. Każdy przycisk ma 4 porty, dwa styki przełącznika i dwa styki LED. Dioda LED jest w obudowie zlutowana w opornikiem limitującym natężenie, wiec nie bedziemy potrzebować dodatkowych komponentów. **Nigdy nie należy podłączać diody LED bez rezystora**.
 
@@ -104,7 +104,7 @@ void loop() {
 }
 ```
 
-### Przyciski
+## Przyciski
 Teraz możemy obsłużyć przyciski:
 ```
 void loop() {
@@ -122,7 +122,7 @@ void loop() {
 
 Użyj funkcji `tone(pin, frequency)` i `notone(pin)` by wydać dzwięk przy naciśnięciu przycisku. Stwórz tablice częstotliwości które chcesz zagrać.
 
-### Naduś guzik
+## Naduś guzik
 Przy pomocy `digitalRead(switch_pin) == LOW` możemy wykryć czy dany przycisk jest wciśnięty. Zadeklaruj funkcję `keydown(k)`:
 ```
 void keydown(int k) {
@@ -134,8 +134,8 @@ void keydown(int k) {
 ```
 Zmodyfikuj `loop` tak, by funkcja `keydown` została wywoła **raz** w momencie naciśnięcia przycisku.
 
-## Gry
-### Memory
+# Gry
+## Memory
 
 Główne zdanie na dziś polega na napisaniu małej gry:
 - Wygeneruj losową sekwencję 5 przycisków, użyjąc funkcję `random(4)`, i umieść ją w tablicy.
@@ -144,10 +144,10 @@ Główne zdanie na dziś polega na napisaniu małej gry:
 
 Gdy wszystko będzie działać, zmodyfukuj kod tak, by sekwencja zaczynała od jednego elementu i zwiekszała się za każdym razem gdy użytkownik poprawnie ją wykona.
 
-### Speed (dodatkowe)
+## Speed (dodatkowe)
 
 Spróbuj napisać następującą grę, w której zapala się losowy przycisk i trzeba go nacisnąć zanim zgaśnie. Każdy następny przycisk zapala się na coraz krótrzy czas i odstępy po miedzy nimi maleją.
 
-### Multi-speed (dodatkowe)
+## Multi-speed (dodatkowe)
 
 Zmodyfikuj powyższą grę tak, by podświetlała się dowolna kombinacja przycisków i trzeba było nacisnąć je wszystkie zanim zgasną.

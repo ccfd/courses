@@ -31,7 +31,7 @@ Akronim ten, pomimo dość tajemniczo brzmiącego rozwinięcia, opisuje bardzo p
 Dzięki temu kod konieczny do zarządzania zasobem piszemy w jednym miejscu, a następnie wykorzystujemy go w trakcie normalnej pracy z danym obiektem.
 Takie podejście ma następujące zalety:
 
-- Zwiększa poprawność kodu. Obiekty są automatycznie niszczone przy wyjściu ze scope'u, także nigdy nie zapomnimy już np. zwolnić pamięci! Znak "`}`" jest naszym przyjacielem.
+- Zwiększa poprawność kodu. Obiekty są automatycznie niszczone przy wyjściu ze scope'u, także nigdy nie zapomnimy już np. zwolnić pamięci! Znaki `{...}` są naszym przyjacielem.
 - Zmniejsza liczbę linijek kodu, które musimy napisać.
 - Pozwala zachować poprawność programu w sytuacjach wyjątkowych.
 
