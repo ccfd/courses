@@ -45,7 +45,7 @@ Całość w formie sprawozdania zawierającego obrazy jak również analizę wyn
 	Średnice rury to D = 0.1524m i D<sub>inlet</sub> = 0.517D = 0.0788 m.
 	
 3. Przepływ jest osiowosymteryczny. Zapewne program fluent to zauważy i wypisze odpowiednie ostrzeżenie w konsoli (dzięki odpowiedniemu nazewnictwu warunku brzegowego). Sprawdź ustawienia w **Setup/General** w polu **Solver**.
-4. Wybieramy odpowiedni model turbulencji w **Define/Models** i odpowiednią opcję w **Near-Wall Treatment**.
+4. Wybieramy odpowiedni model turbulencji w **Setup/Models** i odpowiednią opcję w **Near-Wall Treatment**.
 5. Sprawdzamy poprawność zdefiniowania własności płynu. **Setup/Materials/Fluid**.
 6. Pobieramy [plik z zdefiniowanymi parametrami warunku brzegowego](http://ccfd.github.io/courses/data/momp/3/inlet_profile_keps.prof).
 7. Wczytujemy pobrane profile. Można to zrobić na dwa sposoby:
