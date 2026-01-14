@@ -44,14 +44,14 @@ Jesli zas do takiego pinu (np 10) podlaczymy buzzer (jak na rysunku) i uzyjemy k
 ![](figures/info1/micro/button.png)
 
 ### Buzzer
-Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 10 (`D10`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
+Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 10 (`D4`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
 ```
 void setup() {
-    pinMode(10, OUTPUT);
+    pinMode(4, OUTPUT);
 }
 
 void loop() {
-    tone(10, 262, 500); // C4 - 261.626 Hz
+    tone(4, 262, 500); // C4 - 261.626 Hz
     delay(1000);
 }
 ```
@@ -60,11 +60,11 @@ Dodatkowo możemy zapalić zintegrowaną diodę LED przy pomocy `digiralWrite(..
 ```
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(10, OUTPUT);
+    pinMode(4, OUTPUT);
 }
 
 void loop() {
-    tone(10, 262, 500); // C4 - 261.626 Hz
+    tone(4, 262, 500); // C4 - 261.626 Hz
     delay(1000);
     digitalWrite(LED_BUILTIN,HIGH);
     delay(1000);
@@ -80,7 +80,7 @@ Możemy teraz podłączyć przyciski. Każdy przycisk ma 4 porty, dwa styki prze
 ![](figures/info1/micro/button_led.png)
 
 
-W każdym przycisku jeden styk przełącznika i jeden styk LED podłączymy do zera (`GND`) a pozostały styk przełącznika podłączymy do pinu w stanie `INPUT_PULLUP`, a styk LED do `OUTPUT`. Ostatecznie będziemy mieli 4x2 stykow podłączonych do pinów od `D2` do `D9`, i łańcuszek styków podłączonych do zera.Piny 2,4,6 i 8 podłączymy do LEDow w przyciskach, zaś 3,5,7 i 9 podłączymy do przycisków. Pin 10, jak wczesniej, użyjemy do buzzera.
+W każdym przycisku jeden styk przełącznika i jeden styk LED podłączymy do zera (`GND`) a pozostały styk przełącznika podłączymy do pinu w stanie `INPUT_PULLUP`, a styk LED do `OUTPUT`. Ostatecznie będziemy mieli 4x2 stykow podłączonych do pinów od `D10` do `A3`, i łańcuszek styków podłączonych do zera. Piny 10,12,14(A0) i 16(A2) podłączymy do LEDow w przyciskach, zaś 11,13,15 i 17(A3) podłączymy do przycisków. Pin 4, jak wczesniej, użyjemy do buzzera.
 
 ![](figures/info1/micro/complete.png)
 
@@ -88,15 +88,15 @@ Na początek ustawimy stany wszystkich pinów które będziemu używać:
 ```c
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(2, OUTPUT);
-    pinMode(3, INPUT_PULLUP);
-    pinMode(4, OUTPUT);
-    pinMode(5, INPUT_PULLUP);
-    pinMode(6, OUTPUT);
-    pinMode(7, INPUT_PULLUP);
-    pinMode(8, OUTPUT);
-    pinMode(9, INPUT_PULLUP);
     pinMode(10, OUTPUT);
+    pinMode(11, INPUT_PULLUP);
+    pinMode(12, OUTPUT);
+    pinMode(13, INPUT_PULLUP);
+    pinMode(14, OUTPUT);
+    pinMode(15, INPUT_PULLUP);
+    pinMode(16, OUTPUT);
+    pinMode(17, INPUT_PULLUP);
+    pinMode(4, OUTPUT);
 }
 
 void loop() {
@@ -109,8 +109,8 @@ Teraz możemy obsłużyć przyciski:
 ```
 void loop() {
     for(int i=0;i<4;i++) {
-        int switch_pin = i*2+3;
-        int led_pin = i*2+2;
+        int switch_pin = i*2+11;
+        int led_pin = i*2+10;
         if (digitalRead(switch_pin) == LOW) {
             digitalWrite(led_pin,HIGH);
         } else {
@@ -126,7 +126,7 @@ Użyj funkcji `tone(pin, frequency)` i `notone(pin)` by wydać dzwięk przy naci
 Przy pomocy `digitalRead(switch_pin) == LOW` możemy wykryć czy dany przycisk jest wciśnięty. Zadeklaruj funkcję `keydown(k)`:
 ```
 void keydown(int k) {
-    int led_pin = k*2+2;
+    int led_pin = k*2+10;
     digitalWrite(led_pin,HIGH);
     delay(1000);
     digitalWrite(led_pin,LOW);
