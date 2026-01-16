@@ -44,7 +44,7 @@ Jesli zas do takiego pinu (np 10) podlaczymy buzzer (jak na rysunku) i uzyjemy k
 ![](figures/info1/micro/button.png)
 
 ### Buzzer
-Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 10 (`D4`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
+Pierw wybróbujemy buzzer. Buzzer to mały piezoelektryczny głosnik zaprojektowany do wydawania tonów. Możemy podłączyć jedno wyjście buzzera do zera (`GND`) a drugi do pinu 4 (`D4`). Możemy wtedy użyć komendy `tone(pin, frequency, duration)`, żeby wysłać na pinie kwadratową falę o zadanej czestotliwości, i funkcji `delay(duration)` by poczekać zadany czas.
 ```
 void setup() {
     pinMode(4, OUTPUT);
@@ -87,16 +87,15 @@ W każdym przycisku jeden styk przełącznika i jeden styk LED podłączymy do z
 Na początek ustawimy stany wszystkich pinów które będziemu używać:
 ```c
 void setup() {
-    pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(10, OUTPUT);
-    pinMode(11, INPUT_PULLUP);
-    pinMode(12, OUTPUT);
-    pinMode(13, INPUT_PULLUP);
-    pinMode(14, OUTPUT);
-    pinMode(15, INPUT_PULLUP);
-    pinMode(16, OUTPUT);
-    pinMode(17, INPUT_PULLUP);
-    pinMode(4, OUTPUT);
+    pinMode(10, OUTPUT);       // D10 - LED 1
+    pinMode(11, INPUT_PULLUP); // D11 - Switch 1
+    pinMode(12, OUTPUT);       // D12 - LED 2
+    pinMode(13, INPUT_PULLUP); // D13 - Switch 2
+    pinMode(14, OUTPUT);       // A0  - LED 3
+    pinMode(15, INPUT_PULLUP); // A1  - Switch 3
+    pinMode(16, OUTPUT);       // A2  - LED 4
+    pinMode(17, INPUT_PULLUP); // A3  - Switch 4
+    pinMode(4, OUTPUT);        // D4  - Buzzer
 }
 
 void loop() {
