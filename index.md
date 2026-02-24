@@ -11,3 +11,4 @@ The CCFD group at the [MEIL](http://meil.pw.edu.pl/) Faculty conduct several cou
 - Metody Numeryczne/Numerical Methods --- Methods for iteratively solving large linear systems of algebraic equations, finding their eigenvalues, etc.
 - Python --- Usage of the Python scripting language for solving engineering problems
 - HPC --- High Performance Computing
+- Statistics 1 --- Basics of data analysis in R
