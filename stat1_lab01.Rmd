@@ -9,6 +9,17 @@ material: Instruction 1
 # Introduction to R and Basic Data Analysis
 
 This laboratory introduces you to the R programming environment and basic data analysis techniques.
+R was specifically designed for statistics and data analysis, so tasks such as loading data, computing summaries, and creating visualisations are native parts of the language and its standard ecosystem.
+
+As a first quick-and-dirty example, run the following code, which reads measurement data directly from the course website and inspects it:
+
+```r
+tab = read.table("https://ccfd.github.io/courses/data/info1/przebieg.txt")
+
+str(tab)
+summary(tab)
+plot(tab)
+```
 
 ## 1. Getting Started with R
 
