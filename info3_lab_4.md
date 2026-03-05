@@ -1,403 +1,440 @@
 ---
-author: ''
+author: "K. Marchlewski"
 course: Informatyka 3
-material: Instrukcja 4
-number: 4
+material: Instrukcja 5
+number: 5
 ---
 
-# Relacyjne bazy danych w interpretacji MySQL -  podstawy
-### Ćwiczenie 4
+# Wstęp
 
-# Połączenie z serwerem MySQL
-1. Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).
-2. Klient MySQL'a uruchamia komenda: `mysql -u studXX`{.bash}
-Program wita nas krótkim komunikatem oraz znakiem zachęty:
-```sql
-mysql>
-```
-po którym wpisujemy polecenia.
-Każda instrukcja powinna być zakończona średnikiem.
-W przeciwnym wypadku po wciśnięciu klawisza *enter* program wyświetli znak
-```sql
-        ->
-```
-oznaczający, że oczekiwany jest ciąg dalszy polecenia.
-3. Dostępne bazy danych możemy wyświetlić za pomocą instrukcji:
-```sql
-SHOW DATABASES;
-```
-4. My chcemy skorzystać z bazy danych o nazwie *world*:
-```sql
-USE world;
-```
+Statystyczny użytkownik myszki komputerowej żyje w przekonaniu, iż stworzenie dokumentu tekstowego wysokiej jakości jest stosunkowo proste.
+Jest prawdopodobne, że przekonanie to zostało mu zaszczepione przez edytory typu WYSWIG (What You See is What You Get).
+Klasycznym przykładem takiego programu jest MS Word.
+Umożliwia on m. in. modyfikację kroju czcionki oraz rozmiaru marginesów w taki sposób aby dokument był przyjemny dla oka.
+Czy wizualna atrakcyjność dokumentu oznacza jednak, że dokument jest wysokiej jakości?
+Ciężko powiedzieć... nie napisaliśmy jeszcze co to znaczy "dokument wysokiej jakości".
 
-# Baza danych *world*
-### Sprawdż jakie tabele zawarte są w bazie danych *world*:
+Otóż, dokument powinien być tak sformatowany, aby umożliwić czytelnikowi całkowite skupienie się na tekście.
+Nie powinien zawierać elementów, które rozpraszają lub odwracają jego uwagę od tego co jest najważniejsze -- od treści.
+Aby zrealizować ten cel należy wybrać: krój czcionki (szeryfowa, bezszeryfowa), ustalić liczbę wyrazów w linii (50, 66 a może 80?), dokonać podziału wyrazów, które nie mieszczą się w linii, ustalić położenie wykresów i tabel na kartce papieru (góra, dół) oraz wiele innych.
+Nie jest to proste, zwłaszcza jeśli zmienimy coś w gotowym tekście wymuszając przesunięcie rysunków i tabel na kartce.
 
-```sql
-SHOW TABLES;
-```
-Okaże się, że są to: *City*, *Country* i *CountryLanguage*.
-Informacje jakie są przechowywane w poszczególnych tabelach (definicję tabeli) wyświetli poniższe polecenie, np. dla tabeli *City*:
-```sql
-DESCRIBE City;
-```
-Sprawdź jakie wartości przechowują poszczególne tabele.
+Aby zachować wysoki poziom zasad typograficznych i jednocześnie ułatwić autorowi skupienie się na treści dokumentu stworzono program `LaTeX` (wł. zestaw makr i instrukcji do obsługi programu `TeX`).
+Nazwę `LaTeX` czytamy `la-tech`. Program rozdziela funkcję autora od zecera (osoby dokonującej składu tekstu) i zwalnia nas z odpowiedzialności za prawidłową typografię.
 
-## Zapytania podstawowe (zapytanie - *query*)
+Pisanie w `LaTeXu` w pewnym stopniu przypomina pisanie w języku HTML.
+"Program" składa się z właściwego tekstu i zestawu instrukcji, które mówią o tym jak nasz tekst ma wyglądać po "kompilacji".
+Dzięki ogromnej liczbie pakietów i szablonów dostępnych w systemie `LaTeX` można tworzyć wiele różnych typów dokumentów.
+Na dzisiejszych zajęciach skorzystamy z podstawowego typu `article`.
 
-1. Wyświetl wszystkie informacje zawarte w tabeli Country:
-```sql
-SELECT * FROM Country;
-```
-2. Wyświetl wartości wszystkich rekordów dla dwóch pól (kolumn) (np. Name i Region):
-```sql
-SELECT Name, Region FROM Country;
-```
-3. Wyświetl nazwy wszystkich państw leżących w Europie wraz z długością życia ich mieszkańców:
-```sql
-SELECT Name, LifeExpectancy FROM Country
-WHERE Continent='Europe';
-```
-4. Wyświetl nazwy wszystkich państw leżących w Europie i Azji wraz z długością życia ich mieszkańców:
-```sql
-SELECT Name, LifeExpectancy FROM Country
-WHERE Continent IN ('Europe', 'Asia');
-```
-5. Wyświetl informację z punktu poprzedniego, ale posortowaną względem długości życia (dodaj do poprzedniej komendy frazę -- `ORDER BY LifeExpectancy`{.sql}).
-6. Wyświetl liczbę ludności żyjącej w Europie:
-```sql
-SELECT SUM(Population) FROM Country WHERE Continent='Europe';
-```
-7. Znajdź średnie zaludnienie krajów w Europie:
-```sql
-SELECT AVG(Population) FROM Country WHERE Continent='Europe';
-```
-8. Znajdź nazwy i kody wszystkich państw, których nazwy zaczynaj się od "Ch":
-```sql
-SELECT Name, Code FROM Country WHERE Name LIKE 'Ch%';
-```
-9. Wyświetl wszystkie informacje o miastach w Finlandii (*CountryCode* Finlandii to "FIN"):
-```sql
-SELECT * FROM City WHERE CountryCode = 'FIN';
-```
-10. Wyświetl wszystkie informacje o miastach w Polsce (*CountryCode* Polski to "POL") i posortuj je według województw:
-```sql
-SELECT * FROM City WHERE CountryCode = 'POL'
-ORDER BY District;
-```
-11. Wyświetl nazwy krajów, które uzyskały niepodległość po roku 1980.
-Wyświetl również rok uzyskania niepodległości.
-```sql
-SELECT Name, IndepYear FROM Country WHERE IndepYear > 1980;
-```
-12. Wyświetl nazwy krajów Ameryki Północnej, które uzyskały niepodległość pomiędzy rokiem 1800 a rokiem 1900.
-Wyświetl również rok uzyskania niepodległości.
-Posortuj dane według tej daty:
-```sql
-SELECT Name, IndepYear from Country
-WHERE Continent = 'North America' AND
-IndepYear > 1800 AND
-IndepYear < 1900
-ORDER BY IndepYear;
-```
+W celu poszerzenia wiedzy, autorzy polecają pozycję: *Nie za krótkie wprowadzenie do systemu `LaTeX`$2_{\varepsilon}$*.
 
-## Zapytania bardziej zaawansowane
+# Pierwszy dokument
 
-13. Wyświetl nazwy miast o ludności przekraczającej 3 000 000.
-Wyświetl również kody państw, w których te miasta leżą i liczbę ludności.
-Posortuj dane w kolejności malejącej według kodu kraju, a następnie według populacji (w przypadku alfabetu, kolejność malejąca oznacza porządek od Z do A):
-```sql
-SELECT Name, CountryCode, Population FROM City
-WHERE Population > 3000000
-ORDER BY CountryCode DESC, Population DESC;
-```
-14. Wyświetl wszystkie miasta w Norwegii (załóż, że nie znasz wartości *CountryCode* tego państwa):
-```sql
-SELECT * FROM City WHERE CountryCode=
-(SELECT Code FROM Country WHERE Name='Norway');
-```
-15. Wyświetl nazwę najbardziej zaludnionego państwa w Ameryce Południowej.
-Obok nazwy wyświetl liczbę jego ludności:
-```sql
-SELECT Name, Population FROM Country
-WHERE Population=
-(SELECT MAX(Population) FROM Country
-WHERE Continent='South America');
-```
-W tym przypadku otrzymamy Brazylię jako jedyny wynik.
-Przedstawione rozwiązanie nie jest jednak jednoznaczne!
-Mogło by się zdarzyć, że otrzymana maksymalna wartość populacji występuje nie tylko na kontynencie południowoamerykańskim.
-Wynik należy uściślić:
-```sql
-SELECT Name, Population FROM Country
-WHERE Population=
-(SELECT MAX(Population) FROM Country
-WHERE Continent='South America')
-AND Continent='South America';
-```
-16. Wyświetl liczbę państw leżących na każdym kontynencie:
-```sql
-SELECT Continent, Count(*) AS 'Number of Countries'
-FROM Country GROUP BY Continent;
-```
-17. Wyświetl nazwy wszystkich stolic Europejskich (wykorzystaj fakt, że kolumna *ID* w tabeli *City* odpowiada kolumnie *Capital* w tabeli *Country*):
-```sql
-SELECT Name FROM City WHERE ID IN
-(SELECT Capital FROM Country WHERE Continent='Europe');
-```
-Tak skonstruowane zapytanie działa bardzo wolno ponieważ sprowadza się do wielokrotnego przeszukiwania tabeli *Country*.
-W takich przypadkach należy wykorzystać łączenie tabel i posłużyć się konstrukcją `tab1 INNER JOIN tab2 ON condition`{.sql}
-```sql
-SELECT City.Name FROM City INNER JOIN Country
-ON City.ID=Country.Capital
-WHERE Continent='Europe';
-```
-18. Wyświetl informacje o językach używanych w europejskich państwach:
-```sql
-SELECT Country.Name, CountryLanguage.Language FROM Country
-INNER JOIN CountryLanguage
-ON Country.Code=CountryLanguage.CountryCode
-WHERE Country.Continent='Europe';
-```
-19. Wyświetl nazwę i powierzchnię najmniejszego państwa na świecie:
-```sql
-SELECT Name, SurfaceArea FROM Country
-WHERE SurfaceArea =
-(SELECT MIN(SurfaceArea) FROM Country);
-```
-20. Wyświetl nazwę i powierzchnię najmniejszego państwa w Afryce.
-21. Wyświetl nazwy państw i nazwy ich stolic.
-22. Wyświetl nazwy państw azjatyckich i ich stolic.
-23. Wyświetl nazwy państw afrykańskich i ich stolic posortowane według nazwy kraju (użyj aliasów tabel).
-24. Wyświetl informacje o językach oficjalnych używanych w europejskich państwach.
-25. Wyświetl wszystkie państwa, w których ludzie mówią po Polsku.
-26. Wyświetl jakimi językami posługują się mieszkańcy Hiszpanii.
-27. Wyświetl nazwy państw, które uzyskały niepodległość po roku 1900, w których to państwach językiem oficjalnym jest hiszpański.
-28. Powtórz powyższe zapytanie dla języków: francuskiego i angielskiego.
+Przejdziemy teraz do stworzenia pierwszego dokumentu w `LaTeXu`.
+Najpierw musimy zadeklarować klasę dokumentu.
+Robimy to za pomocą polecenia `\documentclass[opcje]{typ}`{.tex}, które umożliwia nam wybranie typu dokumentu (`article`, `report`, `book`, `letter`) oraz dodatkowych opcji, np.
 
-## Pytania dodatkowe:
+* rozmiaru pisma (`10pt`, `11pt`, itp.),
+* rozmiaru papieru (`a4paper`, `letterpaper`),
+* czy strona tytułowa ma być wygenerowana osobno (`titlepage`, `notitlepage`),
+* liczby kolumn (`onecolumn`, `twocolumn`),
+* czy tekst ma być przygotowany do wydruku dwustronnego (`oneside`, `twoside`), itd.
 
-29. Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od 70 lat.
-30. Policz liczbę Europejskich krajów, w których czas życia jest dłuższy od 70 lat.
-31. Wyświetl średni czas życia na świecie.
-32. Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia na świecie.
-33. Wyświetl nazwy Europejskich krajów, w których czas życia jest krótszy od średniego czasu życia w Europie.
-34. Wyświetl nazwy krajów na świecie, w których czas życia jest krótszy niż połowa najdłuższego czasu życia w Europie (w kolejności malejącej).
-35. Wyświetl nazwy krajów na świecie, dla których nie ma danych na temat czasu życia (`NULL`).
-W tym celu skorzystaj z funkcji `ISNULL(wiersz)`{.sql}.
-36. Wyświetl liczbę państw leżących na każdym kontynencie, których ludność liczy powyżej 50 000 000.
-37. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa).
-38. Dla każdego państwa wyświetl sumę ludności mieszkającej w miastach (wykorzystaj kod tego państwa), ale tylko jeśli suma ta przekracza 10 000 000. Otrzymane wartości posortuj w kolejności malejącej.
-39. Jak w punkcie powyżej, tylko w miejsce kolejnych wywołań `SUM(Population)` użyj aliasu.
-40. Jak w punkcie powyżej, tylko na wszelki wypadek wyklucz wiersze, w których wystąpił brak danych (`NULL`).
-41. Jak w punkcie powyżej, tylko weź pod uwagę jedynie miasta mające powyżej 100 000 mieszkańców.
-42. Wykonaj poniższe zapytanie i zinterpretuj wynik:
-```sql
-SELECT Country.Name, City.Name FROM Country, City;
-```
-43. Wykonaj poniższe zapytanie i zinterpretuj wynik:
-```sql
-SELECT Country.Name, City.Name FROM Country, City
-WHERE Country.Name = 'Poland';
-```
-44. Wyświetl wszystkie miasta w Europie i nazwę państwa w którym leżą.
-45. Wyświetl wszystkie miasta w Polsce. Załóż, że nie znasz wartości CountryCode.
-46. Wykonaj polecenie z powyższego punktu przy pomocy złączenia tabel.
-47. Wyświetl wszystkie miasta leżące w kraju, w którym leży Warszawa.
-Użyj samo-złączenia (czyli złączenia tabeli samej ze sobą).
-48. Znajdź liczbę wystąpień każdego miasta na świecie.
-49. Znajdź liczbę wystąpień każdego miasta na świecie.
-Wyświetl jedynie te miasta, które występują przynajmniej 3 razy.
-Wyniki posortuj.
-50. Wyświetl tabelę zawierającą listę miast, które występują przynajmniej 3 razy na świecie oraz nazwę państwa, w którym dane miasto leży.
-Czy miasta o powtarzających się nazwach leżą w jednym państwie?
-51. Zakładając, że nie znasz daty uzyskania niepodległości przez Watykan (kod: "VAT"), wyświetl te europejskie państwa, które uzyskały niepodległość przed uzyskaniem niepodległości przez Watykanem.
+Opcje ujęte w nawiasy kwadratowe (`[` i`]`) nie są obligatoryjne -- jeśli nie zdefiniujemy żadnej, zostaną użyte wartości domyślne.
 
-# Tworzenie i używanie nowych baz danych
+W edytorze tekstu wpisz poniższy kod:
+```{.tex}
+\documentclass[11pt, a4paper, twoside]{article}
 
-0. Utwórz własną bazę danych `studxy` (*xy* to numer przydzielony na początku semestru), która zawierać będzie informacje o osobach i należących do nich numerach telefonów:
-```sql
-CREATE DATABASE studxy;
+\begin{document}
+  Stół z powyłamywanymi nogami!
+\end{document}
 ```
-Przejdź do nowo utworzonej bazy danych:
-```sql
-USE studxy;
+zapisz go w pliku z rozszerzeniem `.tex`, np. `dokument.tex` i skompiluj za pomocą polecenia
+```bash
+pdflatex dokument.tex
 ```
-1. Utwórz pierwszą tabelę, która zawierać będzie informacje o osobach:
-```sql
-CREATE TABLE Person (
-ID int,
-Surname varchar(30) NOT NULL,
-FirstName varchar(30) DEFAULT 'brak',
-PRIMARY KEY (ID) );
-```
-Pole ID będzie identyfikatorem osoby. Będzie ono typu całkowitego. Pole Surname będzie zawierało nazwisko osoby. Może ono przechowywać maksymalnie 30 znaków i musi być podane przy dodawaniu nowej osoby (NOT NULL), choć może być podane puste! Pole FirstName będzie przechowywać imię. Załóżmy, że można imienia nie podać i jeśli się tego nie zrobi to domyślnie zostanie wprowadzony tekst ‘brak’. Na koniec musimy podać, które pole będzie używane jako klucz główny. W naszym przypadku będzie to pole ID – każdy użytkownik musi mieć numer unikatowy.
-- Sprawdź czy utworzona tabela ma poprawną postać: 
-```sql
-DESCRIBE Person;
-```
-2. Utwórz drugą tabelę, która będzie zawierać informacje o numerach telefonów.
-- Najpierw utwórz tabelę jedynie z jedną kolumną ID. Kolumna ta powinna być kluczem głównym tabeli `Phone` a wartość pola powinna być automatycznie zwiększana o 1 (przy dodaniu nowego rekordu):
-```sql
-CREATE TABLE Phone (ID int auto_increment PRIMARY KEY);
-```
-- Dodaj drugą kolumnę zawierającą numery telefonów:
-```sql
-ALTER TABLE Phone ADD Number varchar(16) DEFAULT '';
-```
-- W przypadku pomyłki możesz usunąć kolumnę z tabeli:
-```sql
-ALTER TABLE Phone DROP COLUMN Number;
-```
-- Dodaj kolejną kolumnę zawierającą ID osoby, do której należy dany numer telefonu:
-```sql
-ALTER TABLE Phone ADD PersonID int NOT NULL;
-```
-- Załóżmy, że numery telefonów nie mogą się powtarzać, czyli że właścicielem danego telefonu może być tylko jedna osoba:
-```sql
-ALTER TABLE Phone ADD UNIQUE (Number);
-```
-- Podobnie jak poprzednio, sprawdź postać utworzonej tabeli Phone:
-```sql
-DESCRIBE Phone;
-```
-3. Wprowadź nieco danych do Twojej bazy
-- Wprowadź pierwszą osobę. Podaj wszystkie wartości pól (w odpowiedniej kolejności):
-```sql
-INSERT INTO Person VALUES (1, 'Kowalski', 'Jan');
-```
-- Wprowadź nowe numery telefonów Jana Kowalskiego. Ponieważ pole `ID` tabeli `Phone` jest wypełniane automatycznie nie musimy go podać (choć możemy). Powinniśmy więc poinformować *MySQL’a*, które pola wypełniamy. Służy do tego lista pól podawana w nawiasach po nazwie tabeli:
-```sql
-INSERT INTO Phone (Number, PersonID)
-VALUES ('022 358 85 58', 1);
-```
-```sql
-INSERT INTO Phone (Number, PersonID)
-VALUES ('0 600 560 780', 1);
-```
-- Wprowadź nową osobę. Tym razem nie podawaj imienia użytkownika, a nazwisko ustaw na NULL: 
-```sql
-INSERT INTO Person (ID, Surname) VALUES (2, NULL);
-```
-(Która własność tabeli Person spowodowała że wystąpił błąd?)
-- Wprowadź nową osobę. Tym razem nie podawaj imienia użytkownika: 
-```sql
-INSERT INTO Person (ID, Surname) VALUES (2, 'Dzik');
-```
-(Jakie imię zostało wpisane do bazy danych?)
-- Spróbuj wprowadzić kolejną osobę podając jej imię a nie podając nazwiska:
-```sql
-INSERT INTO Person (ID, FirstName) VALUES (3, 'Adam');
-```
-(Jakie nazwisko zostało wpisane do bazy danych?)
-- Spróbuj wprowadzić kolejną osobę podając jej nazwisko i numer `ID` identyczny z już istniejącym:
-```sql
-INSERT INTO Person (ID, Surname) VALUES (2, 'Lis');
-```
-(Która własność tabeli Person spowodowała że wystąpił błąd?)
-- Jeśli chcesz zmodyfikować pewne dane możesz użyć komendy UPDATE, np.:
-```sql
-UPDATE Person SET FirstName='Adam' WHERE ID=2;
-```
-- Dodaj dwa telefony dla użytkownika od ID = 2.
-4. Pobieranie informacji.
-- Wyświetl wszystkie numery telefonów Kowalskiego.
-- Wyświetl wszystkie numery telefonów zaczynające się od numeru 022.
-- Jak w powyższym podpunkcie, ale wyświetl także właścicieli tych numerów.
-5. Skrypty. Wpisywanie powtarzających się komend jest zazwyczaj męczące i zniechęcające. Można sobie ułatwić życie wpisując komendy *MySQL’a* do pliku. Utwórz plik o przykładowej nazwie *query.sql*. Umieść w tym pliku dwa zapytania:
-```sql
-SELECT * FROM Person;
-```
-```sql
-SELECT * FROM Phone;
-```
-Plik możesz utworzyć za pomocą edytora *nano* na serwerze, lub przy pomocy dowolnego edytora na komputerze lokalnym. Ostatecznie plik powinien zostać umieszczony w katalogu, z którego logowałeś się do bazy danych. Teraz z poziomu *MySQL’a* wykonaj komendę:
-```sql
-SOURCE query.sql
-```
-6. Umieść w skrypcie query.sql instrukcję tworzącą tabelę Person (`CREATE ...`) i instrukcje wprowadzające do niej dane (`INSERT ...`). Ponieważ tabela Person już istnieje, przed wywołaniem instrukcji `CREATE` należy tą tabelę usunąć. Na początku skryptu wprowadź zatem następujący warunek:
-```sql
-DROP TABLE IF EXISTS Person;
-```
-Powyższa instrukcja jest charakterystyczna dla *MySQL’a* i może nie zadziałać w innych wersjach *SQL’a*. 
-7. Wykonaj polecenia z poprzedniego punktu w odniesieniu do tabeli *Phone*. (Dodaj nowe instrukcje do pliku *query.sql*).
-8. Export. Możemy się niekiedy spotkać z potrzebą zapisania danych z tabel w formacie dogodnym dla innych aplikacji niż MySQL (np. format \*.csv dla *Excela*). Napisz instrukcję eksportującą wszystkie dane z tabeli Person do pliku *res.txt*:
-```sql
-SELECT * INTO OUTFILE 'res.txt' FROM Person;
-```
-Jak widać po liście pól (tutaj \*) należy użyć instrukcji `INTO OUTFILE` podając nazwę pliku docelowego. Plik zostanie utworzony, w katalogu z którego nastąpiło logowanie do bazy danych.
-9. Export danych do formatu \*.csv wymaga by pola w wierszu oddzielone były przecinkami:
-```sql
-SELECT * INTO OUTFILE 'res.txt' FIELDS TERMINATED BY ','
-FROM Person;
-```
-10. Eksportuj dane zawierające następujący zestaw danych: imię, nazwisko i numer telefonu.
-11. Usuwanie danych. Skoro posiadasz już wygodne narzędzie do odtwarzania tabel (skrypt *query.sql*) można przystąpić do testowania usuwania danych. Na początek usuń dane Kowalskiego z tabeli *Person*:
-```sql
-DELETE FROM Person WHERE Surname = 'Kowalski';
-```
-Odtwórz tabelę *Person* i usuń z tabeli *Phone* wszystkie telefony Kowalskiego (musisz połączyć instrukcję `DELETE` z instrukcją `SELECT` w celu pozyskania identyfikatora Kowalskiego).
+Kompilator utworzy kilka plików, m. in. plik `dokument.pdf`, który zawiera nasz tekst.
 
-# Schematy tabel
+Otwórz plik `dokument.pdf` i naciesz oczy wynikiem swojej pracy.
+Ale co to?
+Okazuje się, że brakuje kilku liter!
+Podstawowe możliwości `LaTeXa` nie sięgają bowiem języka polskiego.
 
-## Schemat tabel zawartych w bazie danych *world*
+### Pakiety
 
-![](figures/info3_lab_4-5_test_base.png "Baza danych World")
+Domyślne reguły można (i często trzeba) rozszerzyć wykorzystując dodatkowe pakiety.
+Przykładowo, kompletną obsługę języka polskiego włączamy dodając pakiety:
 
-Baza danych world zawiera trzy tabele: `City`, `Country` i `CountryLanguage`. Powyższy schemat przedstawia powiązania jakie występują pomiędzy tymi tabelami. Pola: `ID` w tabeli `City` i `Code` w tabeli `Country` są unikatowe. To znaczy, że każdy rekord, np. w tabeli `City`, musi mieć inną wartość pola `ID`. Pole `CountryCode` w tabeli `City` przechowuje wartość pola `Code` z tabeli `Country`. W ten sposób można zidentyfikować, w którym państwie leży dane miasto. Podobna sytuacja występuje w powiązaniu tabeli `CountryLanguage` i `Country`. Tabela `CountryLanguage` zwiera dane o językach używanych we wszystkich państwach. Każdy rekord tej tabeli określa np. procentowy udział języka w danym państwie. Zatem, powiedzmy, język polski wystąpi w kilku rekordach tej tabeli, bo jest używany w kilku państwach.
+* `\usepackage[T1]{fontenc}`{.tex} - zawiera czcionkę z polskimi znakami,
+* `\usepackage[utf8]{inputenc}`{.tex} - definiuje kodowanie (`utf8` - Linux, `Cp1250` - Windows) znaków w pliku źródłowym,
+* `\usepackage[english, polish]{babel}`{.tex} - definiuje język dokumentu,
+* `\usepackage{polski}`{.tex} - wymusza polskie reguły składu dokumentu. 
 
-Z powyższego wynika, że w przypadku obydwu powiązań, mamy do czynienia z relacją jeden-do-wielu. W przypadku tabel `City` i `Country`: każde miasto może wystąpić tylko w jednym państwie, ale każde państwo może posiadać wiele miast. W przypadku tabel `Country` i `CountryLanguage` jest to może mniej oczywiste: każdy rekord z tabeli `CountryLanguage` określający język w danym państwie może przynależeć tylko do jednego państwa. (Gdyby rekord ten określał język "w ogóle", to oczywiście mógłby być powiązany z wieloma rekordami z tabeli `Country`. Jednak wtedy nie można by w nim przechowywać danych charakterystycznych dla danego państwa, jak: czy jest to język oficjalny i jaki procent ludności nim włada.) Patrząc w drugą stronę: w każdym państwie może mieszkać wiele narodowości.
+Pakiety, z których planujemy korzystać umieszczamy w t.zw. *preambule*: za instrukcją `\documentclass`, a przed instrukcją `\begin{document}`.
+Zmodyfikuj teraz kod źródłowy tak, aby polskie znaki wydrukowały się prawidłowo.
 
-Powiązania te ilustruje przykład przedstawiony na rysunku. Z pierwszym rekordem z tabeli `Country` (`POL Code`) powiązane są dwa miasta z tabeli `City` (`1 ID`, `2 ID`) i dwa języki z tabeli `CountryLanguage`.
+### Strona tytułowa
 
-Pola: `ID` (`City`), `Code` (`Country`), `CountryCode` (`City`, `CountryLanguage`) muszą zawsze być wypełnione, to znaczy, że możemy mieć pewność, że odpowiednie powiązania będą istnieć. Pomiędzy tabelami `Country` i `City` istnieje jeszcze jedno powiązanie oznaczone linią przerywaną: `Capital` - `ID`. Każde państwo może posiadać stolicę. Kod miasta będącego stolicą przechowywany jest w polu `Capital`. Pole to może mieć wartość `NULL`, ponieważ są pewne obszary globu (zazwyczaj jednak zależne od pewnych państw) nie posiadające wyraźnych struktur państwowych. Wystarczy sprawdzić jakie to terytoria:
-```sql
-SELECT Name FROM Country WHERE Capital IS NULL;
+Ponieważ tekst wygląda teraz elegancko, warto pochwalić się swoim osiągnięciem światu.
+Włącz opcję utworzenia osobnej strony tytułowej i dodaj (za instrukcjami dołączającymi pakiety) instrukcje "sterujące" jej zawartością, np.:
+```{.tex}
+\author{Gall Anonim}
+\title{Kroniki}
+\date{1113-1116}
+```
+W "ciele" dokumentu (między instrukcjami `\begin{document}`{.tex} i `\end{document}`{.tex}) umieść instrukcję
+```{.tex}
+\maketitle
+```
+i skompiluj ponownie tekst.
+Sprawdź co się stanie jeśli opcja osobnej strony tytułowej nie będzie włączona.
+
+# Podział logiczny dokumentu
+
+### Sekcje
+
+Rzadko mamy do czynienia z tekstami pozbawionymi struktury logicznej.
+Przemyślana kompozycja dokumentu pozwala uporządkować treść i ułatwia jej zapamiętanie.
+W `LaTeXu` podstawowy podział dokumentu można otrzymać wykorzystując instrukcje:
+```{.tex}
+\section{Nazwa}
+\subsection{Nazwa}
+\subsubsection{Nazwa}
+\paragraph{Nazwa}
+\subparagraph{Nazwa}
+```
+Podziel wybrany fragment tekstu za pomocą wymienionych poleceń i sprawdź jak działają.
+Zbuduj teraz spis treści odpowiadający utworzonym rozdziałom.
+W tym celu dodaj instrukcję
+```{.tex}
+\tableofcontents
+```
+na początku ciała dokumentu.
+
+Tak otrzymany spis treści jest mało interaktywny -- możemy dowiedzieć się gdzie jest szukany rozdział, ale przejść do niego musimy sami.
+W celu automatycznego tworzenia zakładek oraz linków w obrębie spisu treści, które zaprowadzą nas do poszukiwanego fragmentu, należy użyć pakietu:
+```{.tex}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue}
+```
+Pakiet ten pozwala także na umieszczanie linków w tekście.
+Przykładowo, instrukcja:
+```{.tex}
+\href{https://google.com/}{Google}
+```
+zaprowadzi nas do popularnej wyszukiwarki.
+
+### Listy i numeracje
+
+Wypunktowania i numeracje uzyskuje się wykorzystując tzw. otoczenia.
+Charakteryzują się one dwiema instrukcjami: otwierającą `\begin{}`{.tex} i zamykającą `\end{}`{.tex}.
+W przypadku listy nieuporządkowanej napiszemy:
+```{.tex}
+\begin{itemize}
+  \item A
+  \item B
+\end{itemize}
+```
+Z kolei dla listy uporządkowanej
+```{.tex}
+\begin{enumerate}
+  \item A
+  \item B
+\end{enumerate}
+```
+Utwórz teraz zagnieżdżoną listę:
+
+1. A1
+2. B1
+    - A2
+    - B2
+        - A3
+        - B3
+    - C2
+3. C1
+    1. D2
+    2. E2
+4. D1
+
+# Wzory i równania matematyczne
+
+Dobry tekst naukowy nie może obyć się bez równań i wzorów (chodź znaleźli by się i tacy, którzy twierdzą inaczej).
+W `LaTeXu` istnieje kilka sposobów dodawania wyrażeń matematycznych.
+Podstawowy z nich umożliwia wstawianie wyrażeń w tej samej linii co tekst (z ang. często mówi się *inline*)
+```{.tex}
+  wzór $E=mc^2$ powstał \ldots
+```
+Kolejny sposób to wykorzystanie otoczenia, które pozwala na wyświetlenie równania w osobnym wierszu, np.
+```{.tex}
+dla trójkąta prostokątnego zachodzi:
+\[
+  c ^ 2 = a ^ 2 + b ^ 2
+\]
+```
+Dla utrzymania porządku często warto numerować równania
+```{.tex}
+\begin{equation}
+  c ^ 2 = a ^ 2 + b ^ 2
+\end{equation}
 ```
 
-## Schemat tabel `Person` i `Phone`
+Aby sprawnie posługiwać się jakimś językiem trzeba znać jego składnię.
+Przedstawimy teraz podstawowe symbole i techniki wykorzystywane w `LaTeXu` przy wpisywaniu równań matematycznych.
 
-![](figures/info3_lab_4-5_twoja_base.png "Twoja Baza danych")
+Greckie litery są jednym z podstawowych elementów.
+Są dość łatwe do zapamiętania ze względu na zapis "fonetyczny".
+Małe litery uzyskamy stosując:
+```{.tex}
+  \[
+    \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \kappa, \lambda, \mu, \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega
+  \]
+```
 
-# Ściągawka
+Duże, natomiast:
+```{.tex}
+  \[
+    \Gamma, \Delta, \Theta, \Lambda, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega
+  \]
+```
 
-Komenda                                | Rezultat 
----------------------------------------|----------------------------------------
-**USE** *baza_danych*                  | wybór bazy danych
-**SHOW DATABASES**                     | wyświetla wszystkie bazy danych
-**SHOW TABLES FROM** *baza_danych*     | wyświetla tabele danej bazy danych
-**SHOW TABLES**                        | wyświetla tabele bieżącej bazy danych
-**DESCRIBE** *tabela*                  | wyświetla strukturę tabeli
-**SELECT \* FROM** *tabela*            | wyświetla wszystkie kolumny tabeli
-**SELECT** *kolumna1*, *kolumna2* **FROM** *tabela* | wyświetla podane kolumny tabeli
-**SELECT** *kolumna* **AS** *naglowek* **FROM** *tabela* | wyświetla kolumnę tabeli, przy czym jej standardowy nagłówek zostanie zastąpiony słowem (aliasem): nagłówek; jeśli przypisywany alias jest wieloczłonowy należy wziąć go w podwójny cudzysłów: ”nowy nagłówek”
-**SELECT** *kolumna* **FROM** *tabela* **WHERE** *warunek* | wyświetla te wiersze danej kolumny tabeli, które spełniają określony warunek
-**SELECT** *kolumna1* **FROM** *tabela* **WHERE** *kolumna2* **IS NOT NULL** | wyświetla te wiersze danej kolumny1, w których wartości kolumny2 są niepuste; pola puste wyszukuje instrukcja **IS NULL**
-**SELECT** *kolumna1* **FROM** *tabela* **WHERE** *warunek1* **AND** *warunek2* **OR** *warunek3* | wyświetla te wiersze danej kolumny tabeli, które spełniają określony złożony warunek; klauzula **WHERE** może zawierać operatory logiczne: **AND**, **OR**, **NOT**
-**SELECT** *kolumna1*, *kolumna2* **FROM** *tabela* **ORDER BY** *kolumna2* | wyświetla podane kolumny tabeli w kolejności elementów kolumny2
-**SELECT** *kolumna1*, *kolumna2* **FROM** *tabela* **ORDER BY** *kolumna2* **DESC** | wyświetla podane kolumny tabeli w kolejności odwrotnej elementów kolumny2
-**LOWER**(*tekst*) | funkcja zamienia tekst na małe litery
-**UPPER**(*tekst*) | funkcja zamienia tekst na wielkie litery
-**TRIM**(*tekst*) | funkcja obcina spacje początkowe i końcowe tekstu
-**SUM**(*kolumna*) | funkcja wylicza sumę wartości z grupy wartości
-**AVG**(*kolumna*) | funkcja wylicza średnią wartość z grupy wartości
-**MAX**(*kolumna*) | funkcja znajduje maksymalną wartość z grupy wartości
-**MIN**(*kolumna*) | funkcja znajduje minimalną wartość z grupy wartości
-**SELECT DISTINCT** *kolumna* **FROM** *tabela* | wyświetla wiersze danej kolumny których wartości nie powtarzają się 
-**SELECT COUNT**(\*) **FROM** *tabela* | zlicza wiersze w tabeli, oprócz wierszy pustych; zwraca pojedynczy wynik
-**SELECT COUNT** (*kolumna*) **FROM** *tabela* | zlicza  wiersze podanej kolumny tabeli, oprócz wierszy pustych; zwraca pojedynczy wynik
-**SELECT COUNT** (**DISTINCT** *kolumna*) **FROM** *tabela* | zlicza nie powtarzające się wiersze podanej kolumny tabeli, oprócz wierszy pustych; zwraca pojedynczy wynik
-**SELECT** *kolumna* **FROM** *tabela* **GROUP BY** *kolumna* | wyświetla pogrupowane wiersze kolumny tabeli; działanie podobne do instrukcji **DISTINCT** – otrzymamy tyle samo wierszy co w tej instrukcji; kolumna użyta w klauzuli **GROUP BY** musi wystąpić wśród kolumn klauzuli **SELECT**
-**SELECT** *kolumna1*, **SUM** (*kolumna2*) **FROM** *tabela* **GROUP BY** *kolumna1* | wyświetla pogrupowane wiersze z *kolumna1* i sumę wartości wierszy z *kolumna2* liczoną oddzielnie dla każdej grupy *kolumna1*
-**SELECT** *kolumna1*, **SUM**(*kolumna2*) **FROM** *tabela*  **WHERE** *warunek1* **GROUP BY** *kolumna1* **HAVING** *warunek2* **ORDER BY** *kolumna1* | wyświetla pogrupowane wiersze *kolumna1* i sumę wartości wierszy *kolumna2* liczoną oddzielnie dla każdej grupy *kolumna1*, przy czym suma liczona jest tylko po wierszach spełniających dany *warunek1*; instrukcja **HAVING** określa *warunek2* wyświetlenia całej grupy; grupy są posortowane według *kolumna1*; kolumny użyte w instrukcji **HAVING** muszą wystąpić w instrukcji **SELECT**
-**DROP TABLE** *tabela* | usuwa tabelę
-**CREATE TABLE** *tabela* (definicje kolumn) | tworzy tabelę 
-**ALTER TABLE** *tabela* **ADD** definicja kolumny | dodaje do istniejącej tabeli kolumnę 
-**ALTER TABLE** *tabela* **DROP COLUMN** *kolumna* | usuwa z istniejącej tabeli kolumnę
-**INSERT INTO** *tabela* (*kolumna1*, *kolumna2*) **VALUES** (*wartość1*, *'wartość2'*) | dodaje do tabeli rekord wstawiając odpowiednie wartości do odpowiednich kolumn. Wartości tekstowe powinny być ujęte w apostrofy
-**INSERT INTO** *tabela* **VALUES** (wartości *kolumn*) | dodaje do tabeli rekord, w liście wartości należy wymienić wartości dla wszystkich kolumn 
-**UPDATE** *tabela* **SET** *kolumna* = *wartość* | zmienia wartość danej kolumny we wszystkich rekordach tabeli
-**UPDATE** *tabela* **SET** *kolumna* = *wartość* **WHERE** *warunek* | zmienia wartość danej kolumny w rekordach spełniających dany warunek 
-**DELETE FROM** *tabela* | usuwa wszystkie rekordy danej tabeli
-**DELETE FROM** *tabela* **WHERE** *warunek* | usuwa rekordy spełniające dany warunek
+Indeksy górne i dolne otrzymuje się przez użycie symboli `^` i `_`:
+```{.tex}
+\[ n^3=m^{a^2-d} \]
+\[ \alpha_{1,2}=x_1+y_{1,2} \]
+```
+
+Zapis pierwiastków wymaga z kolei instrukcji `\sqrt{}`{.tex} 
+```{.tex}
+\[ R = \sqrt{x ^ 2 + y ^ 2 + z ^ 2} \]
+```
+
+Symbol wektora uzyskuje się przez
+```{.tex}
+\[ \vec{z} = \vec{x} \times \vec{y} \]
+```
+
+Podkreślenia i klamry wykorzystywane do komentowania poszczególnych części wzorów:
+```{.tex}
+\[ \overline{x + i \cdot y}\cdot\underline{v - i \cdot w} \]
+\[ \underbrace{M_{\mu \nu} + 1}_{\neq 0} \Rightarrow \overbrace{N_{\nu \mu}}^{= 0} \]
+```
+
+Nazwy funkcji powinny być zapisane zwykłą czcionką:
+```{.tex}
+\[ 1 = \sin^2(x) + \cos^2(x) \]
+```
+a nie pochyloną:
+```{.tex}
+\[ 1 = sin^2(x) + cos^2(x) \]
+```
+
+Ułamki piętrowe uzyskujemy przez
+```{.tex}
+\[ \frac{x ^ 3 + \sqrt{x^2}}{x ^ 2 + x - 1} \]
+```
+
+Nawiasy możemy wprowadzić wprost
+```{.tex}
+\[ y=((\frac{1}{1 + x})^2 - 1) \]
+```
+Nie jest to jednak elegancki sposób.
+W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest napisać
+```{.tex}
+\[ y=\left( \left( \frac{1}{1 + x} \right)^2 - 1 \right) \]
+```
+
+Całki zapisujemy:
+```{.tex}
+\[ \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx \]
+```
+Natomiast sumy:
+```{.tex}
+\[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]
+```
+
+Tablice (macierze, wyznaczniki itd\ldots) zapisujemy stosując otoczenie `array`{.tex}.
+```{.tex}
+\[
+  \left|
+    \begin{array}{ccc}
+      a_{11} & a_{12} & a_{13} \\
+      a_{21} & a_{22} & a_{23} \\
+      a_{31} & a_{32} & a_{33} \\
+    \end{array}
+  \right|
+\]
+```
+Parametry `{ccc}`{.tex} oznaczają, że utworzona tablica będzie miała trzy kolumny, z których każda będzie zawierała tekst wyrównany do środka.
+Dwie pozostałe możliwości to `r` -- wyrównanie do prawej i `l` -- wyrównanie do lewej.
+
+Otoczenie te można także wykorzystać do zapisu warunków
+```{.tex}
+\[
+  \delta(x)=\left\{
+    \begin{array}{lr}
+      0 & x \ne 0 \\
+      +\infty & x = 0 \\
+    \end{array}
+  \right.
+\]
+```
+
+## Ćwiczenia
+
+Zapisz poniższe równania wykorzystując system `LaTeX`.
+Niektóre symbole, których należy użyć, nie były wprowadzone wcześniej.
+W sieci Internet można znaleźć listy dostępnych symboli.
+W naszej pracowni można skorzystać ze strony: https://www.sharelatex.com/learn/Mathematical_expressions
+
+Należy pamiętać, że symbole rzadsze są dostępne dopiero po dołączeniu odpowiednich pakietów.
+Przykładowo, symbol całki podwójnej `\iint`{.tex} uzyskamy po dołączeniu pakietu `amsmath`{.tex}.
+
+$$
+  i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t)=-\frac{\hbar^2}{2m}\nabla^2 \Psi(\vec{r},t) + V(\vec{r}) \Psi(\vec{r},t)
+$$
+
+$$
+  \oint_{\partial \Sigma}\mathbf{B} \cdot \mathrm{dl} =
+  \mu_0 \iint_{\Sigma} \mathbf{J} \cdot \mathrm{d} \mathbf{S} +
+  \mu_0 \varepsilon_0 \frac{\mathrm{d}}{\mathrm{dt}} \iint_{\Sigma} \mathbf{E} \cdot \mathrm{d} \mathbf{S} 
+$$
+
+$$
+\mathrm{Var} \left(\hat{Z}(x_0)-Z(x_0)\right) =
+$$
+$$
+=\underbrace{c(x_0,x_0)}_{\mathrm{Var}(Z(x_0))}-
+\underbrace{
+\left(
+\begin{array}{c}
+c(x_1,x_0) \\
+\vdots \\
+c(x_n,x_0) \\
+\end{array}
+\right)
+\left(
+\begin{array}{ccc}
+c(x_1,x_1) & \cdots & c(x_1,x_n)  \\
+\vdots & \ddots & \vdots  \\
+c(x_n,x_1) & \cdots & c(x_n,x_n)
+\end{array}
+\right)^{-1}
+\left(
+\begin{array}{c}
+c(x_1,x_0) \\
+\vdots \\
+c(x_n,x_0)
+\end{array}
+\right)}_{\mathrm{Var}(\hat{Z}(x_0))}
+$$
+
+# Tabele
+
+Istnieje wiele bibliotek rozszerzających możliwości tworzenia tabel w systemie `LaTeX`.
+Pokarzemy najprostszy przykład z wykorzystaniem otoczenia `tabular`.
+Otoczenie to tworzy tabelę w sposób automatyczny, tzn. szerokości i wysokości poszczególnych komórek są dobierane do ich zawartości.
+Jedyne parametry na jakie mamy wpływ to liczba kolumn i sposób ich justowania.
+Przeanalizuj poniższy kod:
+```{.tex}
+  \begin{tabular}{l||c|c|c}
+     & symb. & symb. & symb. \\ \hline \hline
+    symb. & X & O & O \\ \hline
+    symb. & O & X & X \\ \hline
+    symb. & X & O & X \\
+  \end{tabular}
+```
+Jaki wpływ na wygląd tabeli ma parametr `{l||c|c|c}`{.tex}?
+
+Otoczenie `tabular` pozwala także na tworzenie wielokolumnowych rubryk.
+Służy do tego polecenie `\multicolumn{l_kolumn}{justowanie}{tekst}`{.tex}.
+```{.tex}
+  \begin{tabular}{c|c|c}
+    \multicolumn{3}{c}{symb.} \\ \hline \hline
+    X & O & O \\ \hline
+    O & X & X \\ \hline
+    X & O & X \\
+  \end{tabular}
+```
+
+Użycie powyższej konstrukcji ma pewną wadę.
+Tabele dodane do dokumentu za pomocą otoczenia `tabular` nie zawsze znajdą się tam gdzie byśmy tego chcieli.
+Aby mieć kontrolę nad położeniem tabeli należy użyć otoczenia `table`, które ma jeden argument opcjonalny mówiący o tym gdzie na stronie ma się znaleźć wstawka z tabelą.
+Dodatkowo, otoczenie to pozwala na dodanie podpisu do naszej tabeli.
+Służy do tego instrukcja `\caption{podpis}`{.tex}.
+Przykładowo, jeśli chcemy aby tabela znalazła się dokładnie w miejscu użycia, napiszemy:
+```{.tex}
+\begin{table}[h]
+  \begin{tabular}{c|c|c}
+    X & O & O \\ \hline
+    O & X & X \\ \hline
+    X & O & X \\
+  \end{tabular}
+  \caption{Kółko i krzyżyk.}
+\end{table}
+```
+Pozostałe parametry to:
+
+- `t` -- umieść wstawkę na górze strony,
+- `b` -- umieść wstawkę na dole strony,
+- `p` -- umieść wstawkę na oddzielnej stronie ze wstawkami.
+
+## Ćwiczenia
+
+Wykonaj poniższą tabelę:
+
+![](figures/info3_lab_5_table.png "Tabela")
+
+# Grafika
+
+Wstawienie grafiki w $LaTeX u$ ogranicza się do dołączenia pakietu `\usepackage{graphicx}`{.tex} oraz użycia instrukcji `\includegraphics[parametry]{sciezka_do_grafiki}`{.tex}.
+Przykładowo, jeśli chcemy wstawić obrazek, którego szerokość będzie równa `95%` szerokości tekstu napiszemy:
+```{.tex}
+\includegraphics[width=.95\textwidth]{rysunek.pdf}
+```
+
+Podobnie jak to było w przypadku tabel, kontrolę nad położeniem rysunku i możliwość dodawania podpisów otrzymamy po zastosowaniu specjalnego otoczenia.
+W przypadku grafiki będzie to otoczenie `figure`:
+```{.tex}
+\begin{figure}[!h]
+    \includegraphics[width=.95\textwidth]{rysunek.pdf}
+    \caption{Rysunek.}
+\end{figure}
+```
+
+# Odwołania
+
+System `LaTeX` umożliwia wstawienie odwołania do niemal każdego obiektu posiadającego numer.
+Oznacza to, że możemy odwołać się do dowolnego rozdziału, równania, tabeli czy rysunku.
+Obiekt, do którego planujemy się odwołać oznaczamy za pomocą polecenia `\label{nazwa_obiektu}`.
+Natomiast w miejscu, w którym odwołujemy się, wstawiamy polecenie `\ref{nazwa_obiektu}`.
+Zamiast numeru obiektu, możemy podać stronę, na której znajduje się dany element.
+W tym celu stosujemy polecenie `\pageref{nazwa_obiektu}`.
+Stosując indywidualne nazwy obiektów, nie musimy martwić się o ewentualne zmiany numeracji wynikające z pracy nad tekstem.
+`LaTeX` zajmie się koniecznymi modyfikacjami.  
+Przykładowo, aby odwołać się do rozdziału piszemy:
+```{.tex}
+\section{Rodzaje sznurówek}\label{sznu}
+W rozdziale \ref{sznu} opiszemy problem doboru sznurówek.
+```
+W celu odwołania się do tabeli:
+```{.tex}
+\begin{table}[h]
+  \begin{tabular}{c|c|c}
+    X & O & O \\ \hline
+    O & X & X \\ \hline
+    X & O & X \\
+  \end{tabular}
+  \caption{Kółko i krzyżyk.}
+  \label{kik}
+\end{table}
+
+Tabela \ref{kik} zawiera przykładową partię w kółko i krzyżyk.
+Znajduje się ona na stronie \pageref{kik}.
+```
+
+### Ćwiczenia
+
+Stwórz odwołania do pozostałych obiektów użytych w trakcie ćwiczeń (równań i rysunków).
+
