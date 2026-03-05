@@ -10,9 +10,9 @@ number: 1
 
 # Podstawy pracy z systemem UNIX
 
-Większość współczesnych komputerów (i podobnych urządzeń np. tablety czy telefony) wyposażonych jest w system operacyjny oraz towarzyszące mu oprogramowanie.
+Większość współczesnych komputerów (i podobnych urządzeń np. tabletów i telefonów) wyposażonych jest w system operacyjny oraz towarzyszące mu oprogramowanie.
 Z całą pewnością korzystałeś/aś z systemów operacyjnych firmy Microsoft -- rodziny Windows.
-Mogłeś/aś też zetknąć się z systemem Android  (czyli odmianą Uniksa) od Google czy iOS od Apple.
+Mogłeś/aś też zetknąć się z systemem Android (czyli odmianą Uniksa) od Google czy iOS od Apple.
 W większości przypadków system posiada tzw. interfejs graficzny, czyli GUI (Graphical User Interface).
 Systemy te są zasadniczo podobne i np. uruchomienie przeglądarki internetowej czy przeglądanie plików nie jest dla nikogo wyzwaniem.
 
@@ -21,7 +21,7 @@ W takim przypadku nie ma możliwości skorzystania z myszki i obejrzenia czegoś
 Aby korzystać z takiego zdalnego komputera musimy połączyć się z nim za pomocą specjalnego programu, który pozwoli nam na wydawanie mu polecenia w trybie tekstowym.
 Tryb tekstowy posiada m.in. następujące zalety:
 - pozwala na automatyzację poprzez pisanie skryptów
-- pozawala na szybszą pracę (przynajmniej po osiągnięciu pewnego poziomu doświadczenia)
+- pozawala na szybszą pracę (przynajmniej po osiągnięciu pewnego poziomu biegłości)
 - jest dużo bardziej ustandaryzowany - przesiadając się na inną odmianę systemu operacyjnego nie musimy uczyć się od nowa położeń menu, konfiguracji ustawień, etc.
 
 # Ćwiczenia
@@ -85,7 +85,7 @@ Aby powrócić do katalogu domowego wpisz
 ```
 stud01@eto:~$ cd ~
 ```
-Znak $\sim$  zawsze oznacza katalog domowy użytkownika.
+Znak $\sim$ zawsze oznacza katalog domowy użytkownika.
 
 Dodatkowo, oprócz ścieżki bezwzględnej, można podać ścieżkę względną:
 
@@ -288,3 +288,47 @@ Pamiętaj o argumencie skryptu!
 
 Napisz skrypt, który tworzy katalog o nazwie podanej jako pierwszy argument skryptu `$1` i kopiuje do niego wszystkie pliki `.txt` dodając do ich nazwy przedrostek podany jako drugi argument `$2`.
 Co się stanie jeśli nie podasz argumentów do skryptu?
+
+# Na deser: piszemy własne narzędzie
+
+Narzędzia, które wykorzystalywaliśmy powyżej nie są w żaden sposób "magiczne", możemy napisać własne.
+W tym celu zademonstrujemy jak skompilować i uruchomić proste programy w języku C.
+
+**Uwaga:** jeśli chcesz korzystać z C++, nie C, w poniższych poleceniach zamień `gcc` na `g++` (możesz też zmienić rozszerzenia plików na `.cpp`, ale na Linuxie rozszerzenia nie mają znaczenia).
+
+## `Hello, World!` z konsoli
+
+Utwórz plik źródłowy `helloworld.cc` o zawartości
+```c++
+#include <stdio.h>
+int main() {
+  printf("Hello, World!\n");
+}
+```
+
+Następnie skompiluj go używając kompilatora `gcc`:
+```bash
+gcc -o helloworld.x helloworld.cc
+```
+
+Zauważ, że w bieżącym katalogu pojawił się plik `helloworld.x` (gdybyśmy nie podali opcji `-o`, domyślna nazwa to `a.out`).
+Uruchom go wołając `./helloworld.x`.
+
+## Przyjmujemy argumenty
+
+Naturalnie nasuwa się pytanie, skąd program wie, jakie argumenty zostały do niego podane?
+W językach C i C++ funkcja `main` może przyjmować 2 argumenty:
+- pierwszy typu `int`, zawierający liczbę podanych argumentów plus 1, zwyczajowo nazywany `argc`, od *argument count*
+- drugi typu `char**`, zawierający tablicę stringów reprezentujących argumenty, zwyczajowo nazywany `argv`, od *argument values*. Pierwszy element tablicy zawiera nazwę wywołanego programu (stąd `argc` jest o jeden większe)
+
+Przykładowo, program drukujący argumenty może wyglądać następująco:
+```c++
+#include <stdio.h>
+int main(int argc, char** argv) {
+  for(int i = 1; i != argc; ++i)
+    printf("%s\n", argv[i]);
+}
+```
+
+Skompiluj powyższy program i zobacz co wydrukuje, gdy podasz do niego argumenty, np. `-a -b -c`.
+Porównaj co stanie się, gdy umieścisz argumenty w cudzysłowie.
