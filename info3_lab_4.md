@@ -1,8 +1,8 @@
 ---
 author: "K. Marchlewski"
 course: Informatyka 3
-material: Instrukcja 5
-number: 5
+material: Instrukcja 4
+number: 4
 ---
 
 # Wstęp

@@ -1,8 +1,8 @@
 ---
 author: ''
 course: Informatyka 3
-material: Instrukcja 4
-number: 4
+material: Instrukcja 3
+number: 3
 ---
 
 # Relacyjne bazy danych w interpretacji MySQL -  podstawy
