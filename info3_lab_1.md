@@ -20,6 +20,7 @@ Jednak nie każdy komputer posiada GUI, dotyczy to np. rozbudowanych komputerów
 W takim przypadku nie ma możliwości skorzystania z myszki i obejrzenia czegoś na ekranie, ponieważ komputer znajduje się w serwerowni, czasami w innym kraju.
 Aby korzystać z takiego zdalnego komputera musimy połączyć się z nim za pomocą specjalnego programu, który pozwoli nam na wydawanie mu polecenia w trybie tekstowym.
 Tryb tekstowy posiada m.in. następujące zalety:
+
 - pozwala na automatyzację poprzez pisanie skryptów
 - pozawala na szybszą pracę (przynajmniej po osiągnięciu pewnego poziomu biegłości)
 - jest dużo bardziej ustandaryzowany - przesiadając się na inną odmianę systemu operacyjnego nie musimy uczyć się od nowa położeń menu, konfiguracji ustawień, etc.
@@ -318,6 +319,7 @@ Uruchom go wołając `./helloworld.x`.
 
 Naturalnie nasuwa się pytanie, skąd program wie, jakie argumenty zostały do niego podane?
 W językach C i C++ funkcja `main` może przyjmować 2 argumenty:
+
 - pierwszy typu `int`, zawierający liczbę podanych argumentów plus 1, zwyczajowo nazywany `argc`, od *argument count*
 - drugi typu `char**`, zawierający tablicę stringów reprezentujących argumenty, zwyczajowo nazywany `argv`, od *argument values*. Pierwszy element tablicy zawiera nazwę wywołanego programu (stąd `argc` jest o jeden większe)
 
