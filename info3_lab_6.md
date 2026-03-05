@@ -1,8 +1,8 @@
 ---
 author: "Ł. Łaniewski-Wołłk"
 course: Informatyka III
-material: Instrukcja 7
-number: 7
+material: Instrukcja 6
+number: 6
 ---
 
 # Polecenia i Materiały
