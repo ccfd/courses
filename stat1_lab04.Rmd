@@ -22,18 +22,16 @@ The database server is:
 
 ### 1.1 Required packages
 
-To connect from R we will use the `DBI` interface and the `RMySQL` (or `RMariaDB`) driver.
+To connect from R we will use the `DBI` interface and the `RMariaDB` (or `RMySQL`) driver.
 
 ```r
-install.packages("DBI")
-install.packages("RMySQL")   # or RMariaDB if preferred
+install.packages("RMariaDB")   # or RMySQL if preferred
 ```
 
 Then load the packages:
 
 ```r
-library(DBI)
-library(RMySQL)   # or library(RMariaDB)
+library(RMariaDB)
 ```
 
 ### 1.2 Opening a connection
@@ -42,7 +40,7 @@ Create a connection object to the `world` database:
 
 ```r
 con <- dbConnect(
-  RMySQL::MySQL(),
+  RMariaDB::MariaDB(),
   host     = "info3.meil.pw.edu.pl",
   dbname   = "world",
   user     = "statistics",
@@ -320,25 +318,9 @@ head(norway_cities)
 **Task 3.2**  
 Repeat the query for **Spain** and **Poland**, changing only the country name in the nested `SELECT`.
 
-### 3.3 Maximum population with a subquery
-
-SQL task: display the name and population of the most populous country in South America.
-
-```r
-qry <- "
-SELECT Name, Population
-FROM Country
-WHERE Population = (
-  SELECT MAX(Population)
-  FROM Country
-  WHERE Continent = 'South America'
-) AND Continent = 'South America';
-"
-sa_max <- dbGetQuery(con, qry)
-sa_max
-```
-
 **Task 3.3**  
+
+Display the name and population of the most populous country in South America.
 Modify the query to find the least populous country in South America (use `MIN(Population)` instead of `MAX`).
 
 ### 3.4 Grouping and aggregation with `GROUP BY`
