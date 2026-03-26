@@ -1,10 +1,10 @@
 ---
 number: 0
-course: Informatyka 2
+course: WMN
 material: Regulamin
 ---
 
-# Regulamin przedmiotu Informatyka II (semestr: 2024L)
+# Regulamin przedmiotu Wprowadzenie do Metod Numerycznych (semestr: 2025L)
   
 ## Punktacja
 - Kolokwium na wykładzie pod koniec semestru: 50 pkt. (mniej niż 25 pkt. oznacza 0 pkt.),
