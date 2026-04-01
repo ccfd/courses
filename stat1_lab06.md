@@ -174,9 +174,10 @@ legend("topleft", legend = levels(factor(fl_small$origin)),
 ### 4.3 Optional transformed-scale 2D plot
 
 ```r
-plot(log(fl_small$distance), log(fl_small$air_time),
+plot(fl_small$distance, fl_small$air_time,
      pch = 19, cex = 0.5, col = "darkgreen",
-     xlab = "log(distance)", ylab = "log(air_time)",
+     log = "xy",
+     xlab = "Distance (log scale)", ylab = "Air time (log scale)",
      main = "Log-log view")
 ```
 
