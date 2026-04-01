@@ -220,22 +220,30 @@ scatterplot3d(
 )
 ```
 
-### 5.2 Optional interactive 3D with `plotly`
+### 5.2 Optional interactive 3D with `rgl`
 
 ```r
-install.packages("plotly")
-library(plotly)
+install.packages("rgl")
+library(rgl)
 
-plot_ly(
-  data = fl_small,
-  x = ~distance,
-  y = ~air_time,
-  z = ~dep_delay,
-  color = ~origin,
-  type = "scatter3d",
-  mode = "markers",
-  marker = list(size = 2)
+cols <- as.numeric(factor(fl_small$origin))
+
+plot3d(
+  x = fl_small$distance,
+  y = fl_small$air_time,
+  z = fl_small$dep_delay,
+  col = cols,
+  size = 3,
+  xlab = "distance",
+  ylab = "air_time",
+  zlab = "dep_delay"
 )
+
+legend3d("topright",
+         legend = levels(factor(fl_small$origin)),
+         pch = 16,
+         col = seq_along(levels(factor(fl_small$origin))),
+         cex = 1)
 ```
 
 ### Tasks (3D visualization)
@@ -243,7 +251,7 @@ plot_ly(
 **Task 5.1**
 
 1. Create one static 3D plot using `scatterplot3d`.
-2. If possible, create one interactive 3D plot using `plotly`.
+2. If possible, create one interactive 3D plot using `rgl`.
 3. Explain briefly what extra insight (if any) the 3D view gives compared to 2D.
 
 ## 6. Linear models for `air_time` vs `distance`
