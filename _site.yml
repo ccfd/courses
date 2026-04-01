@@ -46,7 +46,7 @@ navbar:
         href: info1_arkusz_kalkulacyjny.html
       - text: "Projekty"
         href: info1_projekty.html
-    - text: "Info II"
+    - text: "WMN"
       menu:
       - text: "Regulamin"
         href: info2_regulamin.html
@@ -198,10 +198,10 @@ navbar:
         href: stat1_lab03.html
       - text: "Instruction IV"
         href: stat1_lab04.html
-        - text: "Instruction V"
-          href: stat1_lab05.html
-        - text: "Instruction VI"
-          href: stat1_lab06.html
+      - text: "Instruction V"
+        href: stat1_lab05.html
+      - text: "Instruction VI"
+        href: stat1_lab06.html
     - text: "HPC"
       menu:
       - text: "Resources"
