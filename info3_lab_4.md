@@ -247,11 +247,11 @@ W przypadku równań, które wymagają nawiasów różnej wysokości lepiej jest
 
 Całki zapisujemy:
 ```{.tex}
-\[ \Gamma(z)=\int_{0}^{\inf}x^{z-1} e^{-x} dx \]
+\[ \Gamma(z)=\int_{0}^{\infty}x^{z-1} e^{-x} dx \]
 ```
 Natomiast sumy:
 ```{.tex}
-\[ S=\sum_{n=1}^{\inf} a \cdot q^{n-1} \]
+\[ S=\sum_{n=1}^{\infty} a \cdot q^{n-1} \]
 ```
 
 Tablice (macierze, wyznaczniki itd\ldots) zapisujemy stosując otoczenie `array`{.tex}.
