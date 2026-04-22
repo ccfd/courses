@@ -6,11 +6,14 @@ number: 3
 ---
 
 # Relacyjne bazy danych w interpretacji MySQL -  podstawy
-### Ćwiczenie 4
 
-# Połączenie z serwerem MySQL
-1. Zaloguj się na swoje osobiste konto na serwerze info3.meil.pw.edu.pl (dostęp do bazy danych jest możliwy tylko z tego serwera).
-2. Klient MySQL'a uruchamia komenda: `mysql -u studXX`{.bash}
+## Połączenie z serwerem SQL
+
+1. Na potrzeby niniejszych zajęć został skonfigurowany serwer SQL, dostępny z komputerów w sali 120 poprzez:
+```bash
+mysql --skip-ssl -h info3.meil.pw.edu.pl -u statistics -p
+```
+O hasło zapytaj prowadzącego/ą.
 Program wita nas krótkim komunikatem oraz znakiem zachęty:
 ```sql
 mysql>
@@ -22,16 +25,16 @@ W przeciwnym wypadku po wciśnięciu klawisza *enter* program wyświetli znak
         ->
 ```
 oznaczający, że oczekiwany jest ciąg dalszy polecenia.
-3. Dostępne bazy danych możemy wyświetlić za pomocą instrukcji:
+2. Dostępne bazy danych możemy wyświetlić za pomocą instrukcji:
 ```sql
 SHOW DATABASES;
 ```
-4. My chcemy skorzystać z bazy danych o nazwie *world*:
+3. My chcemy skorzystać z bazy danych o nazwie *world*:
 ```sql
 USE world;
 ```
 
-# Baza danych *world*
+## Baza danych *world*
 ### Sprawdż jakie tabele zawarte są w bazie danych *world*:
 
 ```sql
