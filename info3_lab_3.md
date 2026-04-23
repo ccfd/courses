@@ -9,7 +9,7 @@ number: 3
 
 ## Połączenie z serwerem SQL
 
-1. Na potrzeby niniejszych zajęć został skonfigurowany serwer SQL, dostępny z komputerów w sali 120 poprzez:
+Na potrzeby niniejszych zajęć został skonfigurowany serwer SQL, dostępny z komputerów w sali 120 poprzez:
 ```bash
 mysql --skip-ssl -h info3.meil.pw.edu.pl -u statistics -p
 ```
@@ -25,11 +25,12 @@ W przeciwnym wypadku po wciśnięciu klawisza *enter* program wyświetli znak
         ->
 ```
 oznaczający, że oczekiwany jest ciąg dalszy polecenia.
-2. Dostępne bazy danych możemy wyświetlić za pomocą instrukcji:
+
+Dostępne bazy danych możemy wyświetlić za pomocą instrukcji:
 ```sql
 SHOW DATABASES;
 ```
-3. My chcemy skorzystać z bazy danych o nazwie *world*:
+My chcemy skorzystać z bazy danych o nazwie *world*:
 ```sql
 USE world;
 ```
