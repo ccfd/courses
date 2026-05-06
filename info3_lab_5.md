@@ -133,45 +133,52 @@ Rozpocznij nową sesję interaktywną.
 Sprawdź wersję zainstalowanego kompilatora `gcc` komendą `gcc --version`.
 Następnie załaduj moduł `common/compilers/gcc/13.2.0` i sprawdź ponownie wersję `gcc`.
 
-# Obliczenia równoległe
+# Obliczenia równoległe z wykorzystaniem MPI
 
 Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu, potrzebuje mechanizmu komunikacji.
 W naszym przypadku będzie to standard MPI (*Message Passing Interface*).
 Biblioteka OpenMPI dostarcza nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami składającymi się na nasz "program".
 
-### Ćwiczenie 1
+#### Ćwiczenie 1
 
-Przygotuj plik `program.cpp` o poniższej treści. Następnie skompiluj go za pomocą programu
-`mpic++`:
+Przygotuj plik `program.cpp` o poniższej treści.
+Następnie skompiluj go za pomocą programu `mpic++`.
+Nie zapomnij załadować najpierw modułu `common/mpi/openmpi/5.0.3`.
 
 ```c++
+#include "mpi.h"
+
 #include <stdio.h>
-#include <mpi.h>
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
   int numprocs, rank, namelen;
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Get_processor_name(processor_name, &namelen);
-    printf("Hello World! from process %d out of %d on %s\n",
-           rank, numprocs, processor_name);
+  MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Get_processor_name(processor_name, &namelen);
+  printf("Hello World! from process %d out of %d on %s\n",
+         rank, numprocs, processor_name);
   MPI_Finalize();
 }
 ```
 
-Powyższy program można skompilować i uruchomić używając komend:
-```Bash
+Powyższy program można skompilować i uruchomić slecając następujący skrypt komendą `sbatch`:
+
+```bash
+#!/bin/bash -l
 mpic++ -o program program.cpp
-mpirun -np 4 program
+srun program
 ```
-gdzie `4` to liczba procesorów, na których ma zostać uruchomiony program.
 
-Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie. Wywołanie `MPI_Comm_size` zwroci nam liczbe procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`). Zmienna `rank` jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
+Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami.
+Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie.
+Wywołanie `MPI_Comm_size` zwroci nam liczbe procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`).
+Zmienna `rank` jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy.
+Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
 
-### Ćwiczenie 2
+#### Ćwiczenie 2
 
 Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne statystyki:
 
@@ -183,13 +190,22 @@ Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne 
 6. Oblicz $S_2 = \sum_i (a_i - \mu)^2$
 7. Wyświetl wariancję: $\sigma^2 = \frac{1}{n-1} S_2$
 
-Pamietaj aby we wszystkich komunikatach umieszczać zmienną `rank`, tak by było wiadomo, który komunikat pochodzi, od którego procesu. By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę `fflush(stdout);`{.cpp} zaraz po każdym wywołaniu `printf`{.cpp}. Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.
+Pamietaj aby we wszystkich komunikatach umieszczać zmienną `rank`, tak by było wiadomo, który komunikat pochodzi, od którego procesu.
+By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę `fflush(stdout);`{.cpp} zaraz po każdym wywołaniu `printf`{.cpp}.
+Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.
 
-Aktualnie, losowanie jest bardzo niedoskonałe. Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np. wartość `time(NULL) + rank` jako *ziarno* do funkcji `srand`, tak aby ciąg losowy był zainicjalizowany inną liczbą na każdym procesorze.
+Aktualnie, losowanie jest bardzo niedoskonałe.
+Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach).
+Żeby tego uniknąć przekaż np. wartość `time(NULL) + rank` jako *ziarno* do funkcji `srand`, tak aby ciąg losowy był zainicjalizowany inną liczbą na każdym procesorze.
 
-### Ćwiczenie 3
+#### Ćwiczenie 3
 
-Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1. Możemy wymusić aby procesy czekały na siebie nawzajem dodając instrukcję `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej. Zauważ, że powoduje to iż program działa tak wolno, jak jego najwolniejszy element. Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:
+Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach.
+Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1.
+Możemy wymusić aby procesy czekały na siebie nawzajem dodając instrukcję `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`.
+Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej.
+Zauważ, że powoduje to iż program działa tak wolno, jak jego najwolniejszy element.
+Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:
 
 ```{r, echo=FALSE}
 par(mfrow=c(1,2),mar=c(2.1,2.1,0.1,0.1))
@@ -218,13 +234,17 @@ text(0.1,cumsum(tms[,4]),"Barrier", adj=c(0,-0.2))
 
 ```
 
-### Ćwiczenie 4
+#### Ćwiczenie 4
 
-Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z $a$. Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:
+Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z $a$.
+Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów.
+W bibliotece MPI mamy do dyspozycji funkcję:
+
 ```c++
 MPI_Reduce(source, destination, count, datatype, operation, root,
            MPI_COMM_WORLD);
 ```
+
 - `source` to **wskaźnik** do danych, które mamy np. zsumować.
 - `destination` to wskaźnik do miejsca, gdzie ma być umieszczony wynik.
 - `count` to liczba elementów danych do zsumowania. Czyli np. `1` jeśli dane to jedna liczba.
@@ -235,26 +255,29 @@ MPI_Reduce(source, destination, count, datatype, operation, root,
 
 Użyj tej funkcji aby obliczyć globalne statystyki, a następnie wyświetl je (pamietaj, że mają one sens tylko na węźle `root`). Weź pod uwagę, że globalne `n` jest inne niż `n` lokalne.
 
-Bliźniaczą do funkcji `MPI_Reduce` jest funkcja `MPI_Allreduce`. Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu `root`.
+Bliźniaczą do funkcji `MPI_Reduce` jest funkcja `MPI_Allreduce`.
+Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu `root`.
+
 ```c++
-MPI_Allreduce(source, destination, count, datatype, operation,
-              MPI_COMM_WORLD);
+MPI_Allreduce(source, destination, count, datatype, operation, MPI_COMM_WORLD);
 ```
 
-### Ćwiczenie \*
+#### Ćwiczenie 5\*
 
 Stwórz nowy program równoległy `program2.cpp`, który będzie obliczał powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy `a` (tzn., będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:
 
 $\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{n}\sum_j a_j\right)^2$
 
-tak aby był wyrażony za pomocą $S_1$ i nowego $\hat S_2 = \sum_i a_i^2$, który da się obliczyć bez znajomości średniej $\mu$. Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`. Porównaj czas wykonania wykonując:
-```Bash
-time mpirun -np 1 program2
-time mpirun -np 2 program2
-time mpirun -np 4 program2
+tak aby był wyrażony za pomocą $S_1$ i nowego $\hat S_2 = \sum_i a_i^2$, który da się obliczyć bez znajomości średniej $\mu$.
+Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`.
+Porównaj czas wykonania wykonując:
+
+```bash
+#!/bin/bash -l
+time srun -n 1 program2
+time srun -n 2 program2
+time srun -n 4 program2
 ```
 
-
-
-### Ćwiczenie
+#### Ćwiczenie 6
 Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w kolejce.
