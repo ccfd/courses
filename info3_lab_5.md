@@ -31,7 +31,7 @@ Do logowania na zdalne maszyny służy komenda `ssh` (od *secure shell*).
 Aby połączyć się z klastrem ICM należy wykonać polecenie
 
 ```bash
-ssh [nazwa użytkownika]@hpc.icm.edu.pl
+ssh username@hpc.icm.edu.pl
 ```
 
 Po podaniu hasła oraz kodu OTP wyświetli się wiadomość powitalna oraz prompt sugerujący, że jesteśmy na węźle dostępowym:
@@ -40,21 +40,104 @@ Po podaniu hasła oraz kodu OTP wyświetli się wiadomość powitalna oraz promp
 [user@login ~]$
 ```
 
-## Zlecanie zadań obliczeniowych
+## Praca z systemem kolejkowym
 
-### Tryb interaktywny
+Jak nazwa wskazuje, węzeł loginowy nie służy do prowadzenia obliczeń.
+W tym celu musimy zlecić naszą pracę na węzły obliczeniowe.
+Ponieważ z klastra korzysta wielu użytkowników, musi dziać się to w sposób zorganizowany, a zasoby powinny być przydzielane sprawiedliwie.
+Do rozwiązania tego problemu służą systemy kolejkowe.
+Najpopularniejszy z nich, obecny na maszynach ICM, to `slurm`.
+Posiada on bogatą [dokumentację](https://slurm.schedmd.com/overview.html), która może okazać się pomocna w czasie tego laboratorium.
+
+### Stan kolejki
+
+Zanim zlecimy pierwsze zadanie, sprawdźmy stan kolejki.
+W tym celu użyj 2 poleceń:
+
+- `sinfo` - wyświetla informacje o obciążeniu węzłów obliczeniowych (*idle* - węzły wolne, *allocated* - węzły zajęte w całości, *mixed* - węzły obciążone częściowo)
+- `squeue` - wyświetla informacje o uruchomionych i oczekujących zadaniach. Przydatna jest opcja `--me`, ograniczająca output jedynie do naszych zadań (obecnie nie mamy żadnych w kolejce)
+
+### Zlecanie zadań
+
+Zadania obliczeniowe możemy zlecać przy pomocy `srun` i `sbatch`, podając jako argument program lub skrypt, które mają zostać wykonane.
+Polecenia te przyjmują także kilka innych argumentów (pełna lista dostępna w dokumentacji):
+
+- `-A`/`--account` (wymagane) - konto, z którego pobierany będzie budżet godzin obliczeniowych (CPUh), do odczytania z portalu ICM lub informacji wyświetlanych przy logowaniu (prowadzący/a powinien był dodać Twoje konto do odpowiedniego projektu przed zajęciami)
+- `-p`/`--parititon` (wymagane) - partycja klastra, na której ma zostać uruchomione zadanie. Tutaj podaj wartość `topola` (nazwa maszyny)
+- `-n`/`--ntasks` (domyślnie 1) - liczba równoległych instancji zadania (procesów), która ma zostać uruchomiona
+- `-N`/`--nodes` (domyślnie 1) - min. liczba węzłów, na których ma zostać uruchomione zadanie
+- `-c`/`--cpus-per-task` (domyślnie 1) - liczba rdzeni per instancja zadania
+- `--mem` - ilość pamięci per węzeł na zadanie
+- `-t`/`--time` - limit czasowy zadania
+- `-J`/`--job-name` - nazwa zadania
+- `-D`/`--chdir` - katalog roboczy dla zadania (domyślnie katalog, z którego zadanie zostało zlecone)
+
+Zadania możemy zlecać w trybie interaktywnym lub wsadowym (batchowym).
+Przyjrzyjmy się teraz jak to zrobić.
+
+### Sesja interaktywna
+
+Sesja interaktywna polega efektywnie na logowaniu `ssh` na węzeł obliczeniowy.
+Uruchamiamy jako zadanie `srun` program `bash -l` (terminal, flaga `-l` jest potrzebna do odpowiedniej konfiguracji środowiska), podając dodatkowo opcję `--pty`.
+
+```bash
+srun -p topola -A g105-2774 --pty bash -l
+```
+
+Po wykonaniu powyższej komendy wyświetli się informacja o węźle, do którego otrzymaliśmy dostęp.
+Zmieni się także prompt.
 
 ### Tryb wsadowy
 
+Tryb interaktywny jest przydatny do krótkich eksperymentów, natomiast przeważnie chcemy zlecić większe, równoległe zadanie.
+W takim wypadku nie mamy pewności, że zasoby będą dostępne od razu, a same obliczenia mogą trwać długo (np. kilka dni).
+Wobec tego nie chcemy pozostawiać otwartej konsoli, tylko zlecić zadanie do kolejki i za jakiś czas sprawdzić wyniki.
+Dokładnie do tego służy tryb wsadowy (komenda `sbatch`).
+
+#### Zadanie
+
+Napisz skrypt `printdate.sh`, który drukuje obecną datę:
+
+```bash
+#!/bin/bash -l
+
+date
+```
+
+Następnie zleć go do kolejki: `sbatch (opcje jak wyżej) printdate.sh`.
+
+Poczekaj aż skrypt się wykona (polecenie `squeue --me`).
+Zobacz, co pojawiło się w pliku log o nazwie `slurm-(id zadania).out`.
+
+### Tryb wsadowy - zadnie równoległe
+
+Siła trybu wsadowego pochodzi od możliwości uruchamiania zadań w trybie równoległym.
+Możemy to zrobić używając komendy `srun` wewnątrz skryptu zlecanego przez `sbatch`.
+
+Wykonaj ponownie ostatnie zadanie, podając opcję `-n 2`.
+Ile razy wyświetli się data?
+Teraz podmień komendę `date` na `srun date`.
+Czy teraz data wyświetli się 2 razy?
+
 ### Moduły
+
+Na klastrze zainstalowane jest wiele różnych programów, często te same programy w różnych wersjach.
+Aby uniknąć konfliktów, programy nie są dostępne od razu, tylko musimy załadować te, które potrzebujemy.
+Robimy to za pomocą modułów.
+Aby wyświetlić listę modułów, użyj (z węzła obliczeniowego, w sesji interaktywnej) komendy `module av`.
+Moduły ładujemy za pomocą komendy `module load (moduł)`.
+
+#### Zadanie
+
+Rozpocznij nową sesję interaktywną.
+Sprawdź wersję zainstalowanego kompilatora `gcc` komendą `gcc --version`.
+Następnie załaduj moduł `common/compilers/gcc/13.2.0` i sprawdź ponownie wersję `gcc`.
 
 # Obliczenia równoległe
 
-Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu,
-potrzebuje mechanizmu komunikacji. W naszym przypadku będzie to
-standard MPI czyli Message Passing Interface. Biblioteka OpenMPI dostarcza
-nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami
-składającymi się na nasz "program".
+Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu, potrzebuje mechanizmu komunikacji.
+W naszym przypadku będzie to standard MPI (*Message Passing Interface*).
+Biblioteka OpenMPI dostarcza nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami składającymi się na nasz "program".
 
 ### Ćwiczenie 1
 
@@ -171,36 +254,7 @@ time mpirun -np 2 program2
 time mpirun -np 4 program2
 ```
 
-# Kolejka PBS
 
-W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś
-mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego
-samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy
-do zlecania zadań, pozostałe, tzw. węzły obliczeniowe, przyjmują i wykonują
-zadania. Na `info3` jest tylko jeden węzeł który spełnia obie role.
-
-### Ćwiczenia
-
-Sprawdź co zrobi komenda `qsub -I`{.bash} (wielka litera i). To program do wysyłania zadań do wykonania. Opcja `-I` oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz `qstat`, sprawdź opcje `-n` i `-f`. Zobacz, że twoje 'zadanie' jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie mogą być wykorzystywane tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę `-l`, np.:
-```Bash
-qsub -l nodes=1:ppn=4 -I
-qsub -l nodes=1:ppn=2 -l walltime=00:00:10 -I
-```
-Parametr `walltime=00:00:10` mówi nam o maksymalnym czasie trwania zadania. Po upłynięciu tego czasu zadanie zostanie automatycznie przerwane.
-
-## Zadania nieinteraktywne
-
-W większości przypadków czas trwania zadania interaktywnego jest mocno ograniczony. Bardziej użyteczne są zadania nieinteraktywne. Aby zlecić takie zadanie potrzebny jest nam plik zadania `plik.sh`:
-```Bash
-#!/bin/bash
-cd $PBS_O_WORKDIR
-mpirun --hostfile $PBS_NODEFILE --display-map ./program
-```
-Zlecamy jego wykonanie przez
-```Bash
-qsub plik.sh
-```
-Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu `.oXX` i `.eXX`. Czym one są? Dodaj do skryptu `plik.sh` komendę `sleep 8`{.bash}, która spowoduje ze zadanie *zaśnie* na 8 sekund, tak by w liście wypisywanej przez `qstat` dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.
 
 ### Ćwiczenie
 Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w kolejce.
