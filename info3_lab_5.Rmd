@@ -122,7 +122,7 @@ Czy teraz data wyświetli się 2 razy?
 ### Moduły
 
 Na klastrze zainstalowane jest wiele różnych programów, często te same programy w różnych wersjach.
-Aby uniknąć konfliktów, programy nie są dostępne od razu, tylko musimy załadować te, które potrzebujemy.
+Aby uniknąć konfliktów, programy nie są dostępne od razu, tylko musimy załadować te, których potrzebujemy.
 Robimy to za pomocą modułów.
 Aby wyświetlić listę modułów, użyj (z węzła obliczeniowego, w sesji interaktywnej) komendy `module av`.
 Moduły ładujemy za pomocą komendy `module load (moduł)`.
@@ -164,19 +164,20 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-Powyższy program można skompilować i uruchomić slecając następujący skrypt komendą `sbatch`:
+Powyższy program można skompilować i uruchomić zlecając następujący skrypt komendą `sbatch`:
 
 ```bash
 #!/bin/bash -l
+module load common/mpi/openmpi/5.0.3
 mpic++ -o program program.cpp
 srun program
 ```
 
-Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami.
-Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie.
-Wywołanie `MPI_Comm_size` zwroci nam liczbe procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`).
+Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą odpowiednio do inicjalizacji i do zakończenia komunikacji pomiędzy procesami.
+Powinny one być wołane odpowiednio na początku i na końcu programu, ponieważ tylko pomiędzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie.
+Wywołanie `MPI_Comm_size` zwróci nam liczbę procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`).
 Zmienna `rank` jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy.
-Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
+Jeśli nigdzie jej nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
 
 #### Ćwiczenie 2
 
@@ -190,21 +191,21 @@ Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne 
 6. Oblicz $S_2 = \sum_i (a_i - \mu)^2$
 7. Wyświetl wariancję: $\sigma^2 = \frac{1}{n-1} S_2$
 
-Pamietaj aby we wszystkich komunikatach umieszczać zmienną `rank`, tak by było wiadomo, który komunikat pochodzi, od którego procesu.
+Pamiętaj aby we wszystkich komunikatach umieszczać zmienną `rank`, tak aby było wiadomo, który komunikat pochodzi od którego procesu.
 By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę `fflush(stdout);`{.cpp} zaraz po każdym wywołaniu `printf`{.cpp}.
-Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.
+Komenda ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.
 
 Aktualnie, losowanie jest bardzo niedoskonałe.
 Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach).
-Żeby tego uniknąć przekaż np. wartość `time(NULL) + rank` jako *ziarno* do funkcji `srand`, tak aby ciąg losowy był zainicjalizowany inną liczbą na każdym procesorze.
+Żeby tego uniknąć przekaż np. wartość `time(NULL) + rank` jako *ziarno* do funkcji `srand`, tak aby ciąg losowy był zainicjalizowany inną liczbą w każdym procesie.
 
 #### Ćwiczenie 3
 
 Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach.
 Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1.
-Możemy wymusić aby procesy czekały na siebie nawzajem dodając instrukcję `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`.
-Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej.
-Zauważ, że powoduje to iż program działa tak wolno, jak jego najwolniejszy element.
+Możemy wymusić, aby procesy czekały na siebie nawzajem, dodając instrukcję `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`.
+W programach równoległych bariera jest mechanizmem synchronizacji, który powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej.
+Zauważ, że powoduje to, że program działa tak wolno, jak jego najwolniejszy element.
 Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:
 
 ```{r, echo=FALSE}
@@ -237,7 +238,7 @@ text(0.1,cumsum(tms[,4]),"Barrier", adj=c(0,-0.2))
 #### Ćwiczenie 4
 
 Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z $a$.
-Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów.
+Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji (np. sumowania albo wzięcia maxiumum) na danych ze wszystkich procesów.
 W bibliotece MPI mamy do dyspozycji funkcję:
 
 ```c++
@@ -251,7 +252,7 @@ MPI_Reduce(source, destination, count, datatype, operation, root,
 - `datatype` to typ danych, które sumujemy: `MPI_INT` lub `MPI_DOUBLE`.
 - `operation` to operacja, którą wykonujemy, np: `MPI_SUM` lub `MPI_MAX`.
 - `root` to numer procesu, do którego przesyłamy wynik, np: `0.`
-- Ostatni argument to uchwyt komunikatora, na którym ma zostać wykonana redukcja. W naszym wypadku to domyślny komunikator `MPI_COMM_WORLD`
+- Ostatni argument to uchwyt komunikatora, na którym ma zostać wykonana redukcja. W naszym wypadku to domyślny komunikator `MPI_COMM_WORLD`.
 
 Użyj tej funkcji aby obliczyć globalne statystyki, a następnie wyświetl je (pamietaj, że mają one sens tylko na węźle `root`). Weź pod uwagę, że globalne `n` jest inne niż `n` lokalne.
 
@@ -280,4 +281,4 @@ time srun -n 4 program2
 ```
 
 #### Ćwiczenie 6
-Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w kolejce.
+Spróbuj wykonać zadania z którejś z wcześniejszych instrukcji, np. konwersję obrazków z `.jpg` na `.gif`, jako nieinteraktywne zadanie w kolejce.
