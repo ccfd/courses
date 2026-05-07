@@ -2,6 +2,7 @@
 author: 
   - "M. Dzikowski"
   - "Ł. Łaniewski-Wołłk"
+  - "J. Gałecki"
 course: Informatyka III
 material: Instrukcja 5
 number: 5
@@ -9,54 +10,176 @@ number: 5
 
 # Wstęp
 
-Obliczenia z wykorzystaniem komputerów są nieodłączną częścią współczesnej nauki.
-Natomiast, podstawą obliczeń komputerowych są obliczenia równoległe. Gdy
-korzystamy z 1 komputera, nawet bardzo mocnego, jesteśmy ograniczeni do
-około 32 procesorów (obecnie) i kilkuset Gb pamięci RAM. Co więcej, czas
-obliczeń spada (przynajmniej tego byśmy sobie życzyli) jak 1/(liczba procesów).
-Dlatego z reguły potrzebujemy i chcemy wykorzystać ich jak najwięcej.
+Obliczenia z wykorzystaniem komputerów, takie jak symulacje fizyczne, są nieodłączną częścią współczesnej nauki i przemysłu.
+Podstawą obliczeń komputerowych są obliczenia równoległe.
+Gdy korzystamy z jednego komputera komputera - nawet bardzo mocnego - jesteśmy ograniczeni do kilkudziesięciu/kilkuset rdzeni procesora i kilkuset/kilku tysięcy GB pamięci RAM.
+Czas obliczeń jest odwrotnie proporcjonalny do liczby rdzeni (przynajmniej w optymistycznym scenariuszu), dlatego z reguły potrzebujemy i chcemy wykorzystać ich jak najwięcej.
+Na tych zajęciach zobaczymy, jak prowadzić obliczenia równoległe w modelu pamięci rozproszonej, tzn. z wykorzystaniem wielu komputerów połączonych siecią.
+W tym celu potrzebujemy dwóch elementów:
 
-# Obliczenia równoległe
+- dostępu do rzeczonej sieci komputerów (klastra obliczeniowego, pot. superkomputera)
+- interfejsu programistycznego, pozwalającego na komunikację pomiędzy procesami uruchomionymi na różnych komputerach
 
-Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu,
-potrzebuje mechanizmu komunikacji. W naszym przypadku będzie to
-standard MPI czyli Message Passing Interface. Biblioteka OpenMPI dostarcza
-nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami
-składającymi się na nasz "program".
+# Praca na klastrze
 
-### Ćwiczenie 1
+Przed przystąpieniem do zajęć, powinieneś/powinnaś był/a założyć konto w systemie ICM UW, pozwalające na dostęp do maszyn obliczeniowych centrum.
+Resztę niniejszej instrukcji będzimy wykonywać właśnie na nich.
 
-Przygotuj plik `program.cpp` o poniższej treści. Następnie skompiluj go za pomocą programu
-`mpic++`:
+## Logowanie `ssh`
+
+Do logowania na zdalne maszyny służy komenda `ssh` (od *secure shell*).
+Aby połączyć się z klastrem ICM należy wykonać polecenie
+
+```bash
+ssh username@hpc.icm.edu.pl
+```
+
+Po podaniu hasła oraz kodu OTP wyświetli się wiadomość powitalna oraz prompt sugerujący, że jesteśmy na węźle dostępowym:
+
+```
+[user@login ~]$
+```
+
+## Praca z systemem kolejkowym
+
+Jak nazwa wskazuje, węzeł loginowy nie służy do prowadzenia obliczeń.
+W tym celu musimy zlecić naszą pracę na węzły obliczeniowe.
+Ponieważ z klastra korzysta wielu użytkowników, musi dziać się to w sposób zorganizowany, a zasoby powinny być przydzielane sprawiedliwie.
+Do rozwiązania tego problemu służą systemy kolejkowe.
+Najpopularniejszy z nich, obecny na maszynach ICM, to `slurm`.
+Posiada on bogatą [dokumentację](https://slurm.schedmd.com/overview.html), która może okazać się pomocna w czasie tego laboratorium.
+
+### Stan kolejki
+
+Zanim zlecimy pierwsze zadanie, sprawdźmy stan kolejki.
+W tym celu użyj 2 poleceń:
+
+- `sinfo` - wyświetla informacje o obciążeniu węzłów obliczeniowych (*idle* - węzły wolne, *allocated* - węzły zajęte w całości, *mixed* - węzły obciążone częściowo)
+- `squeue` - wyświetla informacje o uruchomionych i oczekujących zadaniach. Przydatna jest opcja `--me`, ograniczająca output jedynie do naszych zadań (obecnie nie mamy żadnych w kolejce)
+
+### Zlecanie zadań
+
+Zadania obliczeniowe możemy zlecać przy pomocy `srun` i `sbatch`, podając jako argument program lub skrypt, które mają zostać wykonane.
+Polecenia te przyjmują także kilka innych argumentów (pełna lista dostępna w dokumentacji):
+
+- `-A`/`--account` (wymagane) - konto, z którego pobierany będzie budżet godzin obliczeniowych (CPUh), do odczytania z portalu ICM lub informacji wyświetlanych przy logowaniu (prowadzący/a powinien był dodać Twoje konto do odpowiedniego projektu przed zajęciami)
+- `-p`/`--parititon` (wymagane) - partycja klastra, na której ma zostać uruchomione zadanie. Tutaj podaj wartość `topola` (nazwa maszyny)
+- `-n`/`--ntasks` (domyślnie 1) - liczba równoległych instancji zadania (procesów), która ma zostać uruchomiona
+- `-N`/`--nodes` (domyślnie 1) - min. liczba węzłów, na których ma zostać uruchomione zadanie
+- `-c`/`--cpus-per-task` (domyślnie 1) - liczba rdzeni per instancja zadania
+- `--mem` - ilość pamięci per węzeł na zadanie
+- `-t`/`--time` - limit czasowy zadania
+- `-J`/`--job-name` - nazwa zadania
+- `-D`/`--chdir` - katalog roboczy dla zadania (domyślnie katalog, z którego zadanie zostało zlecone)
+
+Zadania możemy zlecać w trybie interaktywnym lub wsadowym (batchowym).
+Przyjrzyjmy się teraz jak to zrobić.
+
+### Sesja interaktywna
+
+Sesja interaktywna polega efektywnie na logowaniu `ssh` na węzeł obliczeniowy.
+Uruchamiamy jako zadanie `srun` program `bash -l` (terminal, flaga `-l` jest potrzebna do odpowiedniej konfiguracji środowiska), podając dodatkowo opcję `--pty`.
+
+```bash
+srun -p topola -A g105-2774 --pty bash -l
+```
+
+Po wykonaniu powyższej komendy wyświetli się informacja o węźle, do którego otrzymaliśmy dostęp.
+Zmieni się także prompt.
+
+### Tryb wsadowy
+
+Tryb interaktywny jest przydatny do krótkich eksperymentów, natomiast przeważnie chcemy zlecić większe, równoległe zadanie.
+W takim wypadku nie mamy pewności, że zasoby będą dostępne od razu, a same obliczenia mogą trwać długo (np. kilka dni).
+Wobec tego nie chcemy pozostawiać otwartej konsoli, tylko zlecić zadanie do kolejki i za jakiś czas sprawdzić wyniki.
+Dokładnie do tego służy tryb wsadowy (komenda `sbatch`).
+
+#### Zadanie
+
+Napisz skrypt `printdate.sh`, który drukuje obecną datę:
+
+```bash
+#!/bin/bash -l
+
+date
+```
+
+Następnie zleć go do kolejki: `sbatch (opcje jak wyżej) printdate.sh`.
+
+Poczekaj aż skrypt się wykona (polecenie `squeue --me`).
+Zobacz, co pojawiło się w pliku log o nazwie `slurm-(id zadania).out`.
+
+### Tryb wsadowy - zadnie równoległe
+
+Siła trybu wsadowego pochodzi od możliwości uruchamiania zadań w trybie równoległym.
+Możemy to zrobić używając komendy `srun` wewnątrz skryptu zlecanego przez `sbatch`.
+
+Wykonaj ponownie ostatnie zadanie, podając opcję `-n 2`.
+Ile razy wyświetli się data?
+Teraz podmień komendę `date` na `srun date`.
+Czy teraz data wyświetli się 2 razy?
+
+### Moduły
+
+Na klastrze zainstalowane jest wiele różnych programów, często te same programy w różnych wersjach.
+Aby uniknąć konfliktów, programy nie są dostępne od razu, tylko musimy załadować te, których potrzebujemy.
+Robimy to za pomocą modułów.
+Aby wyświetlić listę modułów, użyj (z węzła obliczeniowego, w sesji interaktywnej) komendy `module av`.
+Moduły ładujemy za pomocą komendy `module load (moduł)`.
+
+#### Zadanie
+
+Rozpocznij nową sesję interaktywną.
+Sprawdź wersję zainstalowanego kompilatora `gcc` komendą `gcc --version`.
+Następnie załaduj moduł `common/compilers/gcc/13.2.0` i sprawdź ponownie wersję `gcc`.
+
+# Obliczenia równoległe z wykorzystaniem MPI
+
+Każdy program przygotowany do pracy równoległej oprócz podstawowego algorytmu, potrzebuje mechanizmu komunikacji.
+W naszym przypadku będzie to standard MPI (*Message Passing Interface*).
+Biblioteka OpenMPI dostarcza nam narzędzi niezbędnych do uruchamiania i komunikacji między poszczególnymi procesami składającymi się na nasz "program".
+
+#### Ćwiczenie 1
+
+Przygotuj plik `program.cpp` o poniższej treści.
+Następnie skompiluj go za pomocą programu `mpic++`.
+Nie zapomnij załadować najpierw modułu `common/mpi/openmpi/5.0.3`.
 
 ```c++
+#include "mpi.h"
+
 #include <stdio.h>
-#include <mpi.h>
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
   int numprocs, rank, namelen;
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Get_processor_name(processor_name, &namelen);
-    printf("Hello World! from process %d out of %d on %s\n",
-           rank, numprocs, processor_name);
+  MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Get_processor_name(processor_name, &namelen);
+  printf("Hello World! from process %d out of %d on %s\n",
+         rank, numprocs, processor_name);
   MPI_Finalize();
 }
 ```
 
-Powyższy program można skompilować i uruchomić używając komend:
-```Bash
+Powyższy program można skompilować i uruchomić zlecając następujący skrypt komendą `sbatch`:
+
+```bash
+#!/bin/bash -l
+module load common/mpi/openmpi/5.0.3
 mpic++ -o program program.cpp
-mpirun -np 4 program
+srun program
 ```
-gdzie `4` to liczba procesorów, na których ma zostać uruchomiony program.
 
-Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą do odpowiednio inicjalizacji i zakonczenia komunikacji pomiedzy procesami. Powinny one być odpowiednio na początku i na końcu programu, ponieważ tylko pomiedzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie. Wywołanie `MPI_Comm_size` zwroci nam liczbe procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`). Zmienna `rank` jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy. Jeśli jej nigdzie nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
+Przeanalizujmy teraz program. Funkcje `MPI_Init` i `MPI_Finalize` służą odpowiednio do inicjalizacji i do zakończenia komunikacji pomiędzy procesami.
+Powinny one być wołane odpowiednio na początku i na końcu programu, ponieważ tylko pomiędzy nimi można wykonać jakiekolwiek wywołanie biblioteki `MPI` i komunikować się z innymi procesami w grupie.
+Wywołanie `MPI_Comm_size` zwróci nam liczbę procesów (np. `4`), zaś `MPI_Comm_rank` zwróci nam numer *naszego* procesu (np. `0`,`1`,`2` lub `3`).
+Zmienna `rank` jest wiec jedną z najważniejszych w kodzie, ponieważ odróżna nasze procesy.
+Jeśli nigdzie jej nie użyjemy, to wszystkie nasze procesy zrobią dokładnie to samo.
 
-### Ćwiczenie 2
+#### Ćwiczenie 2
 
 Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne statystyki:
 
@@ -68,13 +191,22 @@ Rozszerz program tak, by każdy proces losował pewne liczby i wypisywał pewne 
 6. Oblicz $S_2 = \sum_i (a_i - \mu)^2$
 7. Wyświetl wariancję: $\sigma^2 = \frac{1}{n-1} S_2$
 
-Pamietaj aby we wszystkich komunikatach umieszczać zmienną `rank`, tak by było wiadomo, który komunikat pochodzi, od którego procesu. By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę `fflush(stdout);`{.cpp} zaraz po każdym wywołaniu `printf`{.cpp}. Intrukcja ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.
+Pamiętaj aby we wszystkich komunikatach umieszczać zmienną `rank`, tak aby było wiadomo, który komunikat pochodzi od którego procesu.
+By mieć pewność, że komunikaty wypisywane są rzeczywiście wtedy, kiedy występują w kodzie (a nie są buforowane przez system), dodaj komendę `fflush(stdout);`{.cpp} zaraz po każdym wywołaniu `printf`{.cpp}.
+Komenda ta powoduje, że cały buforowany tekst zostanie wyświetlony na ekran od razu.
 
-Aktualnie, losowanie jest bardzo niedoskonałe. Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach. Żeby tego uniknąć przekaż np. wartość `time(NULL) + rank` jako *ziarno* do funkcji `srand`, tak aby ciąg losowy był zainicjalizowany inną liczbą na każdym procesorze.
+Aktualnie, losowanie jest bardzo niedoskonałe.
+Wszystkie procesy wylosowały ten sam ciąg losowy (można zobaczyć to już po pierwszym elemencie, który jest identyczny we wszystkich procesach).
+Żeby tego uniknąć przekaż np. wartość `time(NULL) + rank` jako *ziarno* do funkcji `srand`, tak aby ciąg losowy był zainicjalizowany inną liczbą w każdym procesie.
 
-### Ćwiczenie 3
+#### Ćwiczenie 3
 
-Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach. Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1. Możemy wymusić aby procesy czekały na siebie nawzajem dodając instrukcję `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`. Bariera w programach wielowątkowych powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej. Zauważ, że powoduje to iż program działa tak wolno, jak jego najwolniejszy element. Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:
+Zaobserwuj, że różne procesy dochodzą do różnych etapów algorytmu w różnych momentach.
+Np. średnia dla procesu 0 może być wyznaczona przed wypełnieniem liczbami tablicy w procesie 1.
+Możemy wymusić, aby procesy czekały na siebie nawzajem, dodając instrukcję `MPI_Barrier(MPI_COMM_WORLD);`{.cpp} po wywołaniach `printf`/`fflush`.
+W programach równoległych bariera jest mechanizmem synchronizacji, który powoduje, że wszystkie procesy czekają w tym miejscu kodu, aż reszta procesów dojdzie do tego miejsca, a następnie wszystkie razem ruszają dalej.
+Zauważ, że powoduje to, że program działa tak wolno, jak jego najwolniejszy element.
+Przebieg programu we wszystkich procesach jest pokazany poglądowo na poniższym obrazku:
 
 ```{r, echo=FALSE}
 par(mfrow=c(1,2),mar=c(2.1,2.1,0.1,0.1))
@@ -103,72 +235,50 @@ text(0.1,cumsum(tms[,4]),"Barrier", adj=c(0,-0.2))
 
 ```
 
-### Ćwiczenie 4
+#### Ćwiczenie 4
 
-Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z $a$. Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji, np. sumowania czy wzięcia maxiumum, na danych ze wszystkich procesów. W bibliotece MPI mamy do dyspozycji funkcję:
+Użyj funkcji wykonującej redukcję aby obliczyć średnią globalną (po wszystkich procesach) i wariancję z $a$.
+Redukcja w programowaniu równoległym polega na wykonaniu jakiejś operacji (np. sumowania albo wzięcia maxiumum) na danych ze wszystkich procesów.
+W bibliotece MPI mamy do dyspozycji funkcję:
+
 ```c++
 MPI_Reduce(source, destination, count, datatype, operation, root,
            MPI_COMM_WORLD);
 ```
+
 - `source` to **wskaźnik** do danych, które mamy np. zsumować.
 - `destination` to wskaźnik do miejsca, gdzie ma być umieszczony wynik.
 - `count` to liczba elementów danych do zsumowania. Czyli np. `1` jeśli dane to jedna liczba.
 - `datatype` to typ danych, które sumujemy: `MPI_INT` lub `MPI_DOUBLE`.
 - `operation` to operacja, którą wykonujemy, np: `MPI_SUM` lub `MPI_MAX`.
 - `root` to numer procesu, do którego przesyłamy wynik, np: `0.`
-- Ostatni argument to uchwyt komunikatora, na którym ma zostać wykonana redukcja. W naszym wypadku to domyślny komunikator `MPI_COMM_WORLD`
+- Ostatni argument to uchwyt komunikatora, na którym ma zostać wykonana redukcja. W naszym wypadku to domyślny komunikator `MPI_COMM_WORLD`.
 
 Użyj tej funkcji aby obliczyć globalne statystyki, a następnie wyświetl je (pamietaj, że mają one sens tylko na węźle `root`). Weź pod uwagę, że globalne `n` jest inne niż `n` lokalne.
 
-Bliźniaczą do funkcji `MPI_Reduce` jest funkcja `MPI_Allreduce`. Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu `root`.
+Bliźniaczą do funkcji `MPI_Reduce` jest funkcja `MPI_Allreduce`.
+Przesyła ona wynik do wszystkich procesów, a nie tylko do procesu `root`.
+
 ```c++
-MPI_Allreduce(source, destination, count, datatype, operation,
-              MPI_COMM_WORLD);
+MPI_Allreduce(source, destination, count, datatype, operation, MPI_COMM_WORLD);
 ```
 
-### Ćwiczenie \*
+#### Ćwiczenie 5\*
 
 Stwórz nowy program równoległy `program2.cpp`, który będzie obliczał powyższą średnią i wariancję, używając tylko jednej pętli, bez alokowania tablicy `a` (tzn., będzie liczył średnią i wariancję bez przechowywania pojedyńczych elementów). By to zrobić przekształć wzór na wariancję:
 
 $\sigma^2 = \frac{1}{n-1}\sum_i\left(a_i - \frac{1}{n}\sum_j a_j\right)^2$
 
-tak aby był wyrażony za pomocą $S_1$ i nowego $\hat S_2 = \sum_i a_i^2$, który da się obliczyć bez znajomości średniej $\mu$. Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`. Porównaj czas wykonania wykonując:
-```Bash
-time mpirun -np 1 program2
-time mpirun -np 2 program2
-time mpirun -np 4 program2
+tak aby był wyrażony za pomocą $S_1$ i nowego $\hat S_2 = \sum_i a_i^2$, który da się obliczyć bez znajomości średniej $\mu$.
+Użyj we wszystkich procesach tego samego (bardzo wysokiego) `n`.
+Porównaj czas wykonania wykonując:
+
+```bash
+#!/bin/bash -l
+time srun -n 1 program2
+time srun -n 2 program2
+time srun -n 4 program2
 ```
 
-# Kolejka PBS
-
-W przypadku każdego dużego systemu komputerowego potrzebny jest jakiś
-mechanizm zarządzania zasobami: 2 osoby nie mogą naraz korzystać z tego
-samego procesora/rdzenia. W prawdziwym systemie komputer centralny służy
-do zlecania zadań, pozostałe, tzw. węzły obliczeniowe, przyjmują i wykonują
-zadania. Na `info3` jest tylko jeden węzeł który spełnia obie role.
-
-### Ćwiczenia
-
-Sprawdź co zrobi komenda `qsub -I`{.bash} (wielka litera i). To program do wysyłania zadań do wykonania. Opcja `-I` oznacza tryb interaktywny: zostaniemy zalogowani na wolny węzeł przez ssh. Wpisz teraz `qstat`, sprawdź opcje `-n` i `-f`. Zobacz, że twoje 'zadanie' jest uruchomione w kolejce. Wyloguj się teraz, bo blokujesz zasoby kolejki. Jednocześnie mogą być wykorzystywane tylko 4 rdzenie. Ilością pobieranych zasobów można sterować poprzez flagę `-l`, np.:
-```Bash
-qsub -l nodes=1:ppn=4 -I
-qsub -l nodes=1:ppn=2 -l walltime=00:00:10 -I
-```
-Parametr `walltime=00:00:10` mówi nam o maksymalnym czasie trwania zadania. Po upłynięciu tego czasu zadanie zostanie automatycznie przerwane.
-
-## Zadania nieinteraktywne
-
-W większości przypadków czas trwania zadania interaktywnego jest mocno ograniczony. Bardziej użyteczne są zadania nieinteraktywne. Aby zlecić takie zadanie potrzebny jest nam plik zadania `plik.sh`:
-```Bash
-#!/bin/bash
-cd $PBS_O_WORKDIR
-mpirun --hostfile $PBS_NODEFILE --display-map ./program
-```
-Zlecamy jego wykonanie przez
-```Bash
-qsub plik.sh
-```
-Obejrzyj zawartość katalogu, znajdź pliki o rozszerzeniu `.oXX` i `.eXX`. Czym one są? Dodaj do skryptu `plik.sh` komendę `sleep 8`{.bash}, która spowoduje ze zadanie *zaśnie* na 8 sekund, tak by w liście wypisywanej przez `qstat` dało się je zobaczyć. Jako grupa możecie dodać wiele takich zadań i zobaczyć jak są po kolei realizowane przez kolejkę PBS.
-
-### Ćwiczenie
-Spróbuj wykonać któryś z wcześniejszych skryptów konwerujących obrazki (np konwersje .jpg na .gif) jako nieinteraktywne zadanie w kolejce.
+#### Ćwiczenie 6
+Spróbuj wykonać zadania z którejś z wcześniejszych instrukcji, np. konwersję obrazków z `.jpg` na `.gif`, jako nieinteraktywne zadanie w kolejce.
