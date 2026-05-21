@@ -90,10 +90,112 @@ Następnie zastosuj wybrany filtr (np. tylko czarne doniczki).
 Przyjrzyj się URL, pod jakim wyświetlane jest Twoje zapytanie.
 Czy wygląda ono znajomo?
 
-## Praca z bazą danych autorów
+## Edycja bazy danych poprzez API REST
 
 Teraz zobaczymy, w jaki sposób można modyfikować zawartość bazy danych poprzez API REST.
 W tym celu użyjemy narzędzia `json-server`.
 Pozwala ono na postawienie lokalnego serwera w oparciu o jeden plik `db.json`, stanowiący jego bazę danych.
 Następnie możemy rozmawiać z serwerem poprzez API REST.
 `json-server` będzie modyfikował zawartość pliku `db.json`, którą możemy na bieżąco podglądać (jest to w końcu zwykły plik tekstowy).
+
+Stwórz plik `db.json` z pustą bazą danych i uruchom `json-server`:
+
+```bash
+nano db.json
+# Wpisz do pliku:
+# { "puste": [] }
+json-server db.json
+```
+
+Powinna się wyświetlić informacja o dostępnym endpointcie "puste"
+Następnie otwórz nową konsolę (nie zamykając tej, w której uruchomiony jest serwer) i sprawdź, czy możesz się z nim połączyć (`localhost`, port 3000):
+
+```bash
+curl -vI http://localhost:3000/puste
+```
+
+### Baza danych autorów - czytanie
+
+Teraz popracujemy z [bazą danych autorów](http://ccfd.github.io/courses/data/info3/db.json).
+Podmień db.json na podlinkowany plik (serwer automatycznie zauważy zmiany, nie musisz go resetować).
+
+#### Zadania
+
+- Jaki endpointy zawiera podana baza danych?
+- Otwórz bazę danych w przeglądarce (pozostałe zadania wykonaj z konsoli)
+- Wyświetl wszystkich autorów
+- Wyświetl autorów urodzonych po roku 1960 ([składnia kwerendy `json-server`](https://deepwiki.com/typicode/json-server/3.2-query-parameters))
+- Jakie jest ID Olgi Tokarczuk? Pamiętaj, żeby spację w URL zamienić na `+`.
+- Wyświetl książki w bazie opublikowane przez Olgę Tokarczuk.
+- Wyświetl książki w bazie opublikowane przez Olgę Tokarczuk, posortowane alfabetycznie tytułami (`_sort`).
+- Wyświetl książki w bazie, które zdobyły nagrodę Nobla.
+
+### Baza danych autorów - PUT, POST, PATCH, DELETE
+
+Dotychczasowe zapytania HTTP używały metody GET (domyślnie w `curl`u).
+Teraz zobaczymy, jak modyfikować pozycje w bazie metodami PUT, POST i PATCH.
+
+Zakończ pracę serwera (`ctrl+C`), utwórz nową, pustą bazę danych (tak jak na początku, tylko nazwij inaczej plik) i uruchom w oparciu o nią serwer.
+Wyświetl zawartość bazy, a następnie wykonaj komendę:
+
+```bash
+curl -X POST 'http://localhost:3000/puste' \
+  -H "Content-Type: application/json" \
+  -d '{"pole": "wartość", "lista": ["el1", "el2"]}'
+```
+
+Wyświetl ponownie zawartość endpointu `puste` - jak się zmieniła?
+Zwróć uwagę na automatycznie nadane pole `id`.
+Wykonaj ponownie tę samą komendę.
+Jak teraz zmieniła się zawartość bazy?
+
+Teraz wykonaj komendę (podmieniając `[ID]` na wygenerowane ID jednej z pozycji):
+
+```bash
+curl -X PUT 'http://localhost:3000/puste/[ID]' \
+  -H "Content-Type: application/json" \
+  -d '{"pole": "wartość 2"}'
+```
+
+Teraz zrób to samo, tylko zamień `PUT` na `PATCH` i podaj ID drugiej z utworzonych pozycji.
+Odpowiedz na pytanie: jaka jest różnica między `POST`, `PUT` i `PATCH`?
+
+Możemy także całkowicie usuwać pozycje posługując się metodą `DELETE`:
+
+```bash
+curl -X DELETE 'http://localhost:3000/puste/[ID]'
+```
+
+#### Zadanie
+
+Uruchom ponownie serwer z bazą literatury i wykonaj następujące zadania:
+
+- Dodaj pozycję:
+
+```
+{
+  "tytul": "Astronauci",
+  "autorId": 3,
+  "rokWydania": 1954,
+  "gatunek": "science fiction"
+}
+```
+
+- Kto jest autorem dodanej książki?
+- W powyższym opisie wkradł się błąd. Rok wydania "Astronautów" to 1951. Popraw w bazie utworzoną pozycję.
+- Zamień utworzoną pozycję (zachowując ID, zwróć uwagę na brak pola "gatunek") na:
+
+```
+{
+  "tytul": "Filozofia przypadku. Literatura w świetle empirii",
+  "autorId": 3,
+  "rokWydania": 1968,
+}
+```
+
+- Usuń całkowicie utworzoną pozycję
+- Dodaj do bazy książek "Pana Tadeusza." Zauważ, że wymaga to dodania najpierw autora. Dane bibliograficzne (jeśli ich nie pamiętasz) pobierz z internetu.
+
+## Na deser
+
+Pobaw się autentyfikacją w oparciu o rozszerzenie `json-server-auth`...
