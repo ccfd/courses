@@ -11,6 +11,22 @@ test -z "$1" && exit -1
 MD="$1"
 shift
 
+
+case "${MD##*.}" in
+    md)
+    	OLD="$MD"
+        MD="${OLD%.md}.Rmd"
+        cp "$OLD" "$MD"
+        ;;
+    Rmd)
+    	OLD=""
+        ;;
+    *)
+        echo "Error: file must have extension .md or .Rmd" >&2
+        exit 1
+        ;;
+esac
+
 echo -n "Compiling $MD to pdf - "
 if R --vanilla --slave -e "library(rmarkdown); source('tools/pdf_full.R'); render('$MD',pdf_full($OPT))" >pdf_compile.log 2>&1
 then
@@ -32,3 +48,7 @@ else
 	echo "-----"
 fi
 
+if ! test -z "$OLD"
+then
+	rm "$MD"
+fi
