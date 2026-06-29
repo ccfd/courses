@@ -1,7 +1,7 @@
 ---
 number: 3
 title: Programming in R – functions, loops, lists
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 3
 ---

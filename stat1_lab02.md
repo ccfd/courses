@@ -1,7 +1,7 @@
 ---
 number: 2
 title: Exploring a car sales dataset in R
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 2
 ---

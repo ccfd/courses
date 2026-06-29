@@ -1,7 +1,7 @@
 ---
 number: 6
 title: Exploring `nycflights13` and simple linear models
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 6
 ---

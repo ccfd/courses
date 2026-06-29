@@ -1,7 +1,7 @@
 ---
 number: 9
 title: Mixed effect models with `lme4`
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 9
 ---

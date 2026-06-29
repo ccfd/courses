@@ -1,7 +1,7 @@
 ---
 number: 1
 title: Introduction to R and Basic Data Analysis
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 1
 ---

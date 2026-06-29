@@ -1,7 +1,7 @@
 ---
 number: 4
 title: Accessing an SQL database from R
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 4
 ---

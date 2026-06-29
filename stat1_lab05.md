@@ -1,7 +1,7 @@
 ---
 number: 5
 title: Simple linear models with `lm` in R
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 5
 ---

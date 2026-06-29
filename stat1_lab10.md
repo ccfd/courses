@@ -1,7 +1,7 @@
 ---
 number: 10
 title: Survival analysis with the `survival` package
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 10
 ---

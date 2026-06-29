@@ -1,7 +1,7 @@
 ---
 number: 7
 title: Synthetic data and parameter influence in linear models
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 7
 ---

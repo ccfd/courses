@@ -1,7 +1,7 @@
 ---
 number: 8
 title: Logistic regression on synthetic pilot training data
-author:
+author: "Łukasz Łaniewski-Wołłk"
 course: Statistics 1
 material: Instruction 8
 ---
