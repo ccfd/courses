@@ -165,6 +165,20 @@ int main()
 }
 ```
 
+#### Zadanie 2
+Dodaj do klasy `Wektor2D` konstruktor dwuargumentowy, który nadaje wartości współrzędnym wektora, a następnie je drukuje.
+Napisz destruktor, który także drukuje tę informację.
+Stwórz kilka różnych wektorów.
+W jakiej kolejności są one niszczone?
+W którym miejscu w kodzie następuje destrukcja?
+
+#### Zadanie 3
+Napisz klasę `Informer`, która posiada konstruktor domyślny, drukujący informację o konstrukcji, oraz destruktor, drukujący informację o destrukcji.
+Dodaj do klasy `Wektor2D` pole typu `Informer`.
+Które destruktory wołane są przy zniszczeniu wektora?
+W jakiej kolejności?
+Zastanów się, jakie ma to implikacje dla komponowania większych obiektów z mniejszych obiektów.
+
 #### Nieco niuansów inicjalizacji
 Zauważmy, że teraz próba konstrukcji `Human Alice;` spowodowałaby błąd kompilacji.
 Dzieje się tak dlatego, że w przypadku, w którym nie zdefiniujemy żadnego konstruktora, kompilator spróbuje za nas stworzyć konstruktor domyślny (tzn. taki bez argumentów).
@@ -201,20 +215,6 @@ int main()
 Powodem tego zjawiska jest to, że w C++ wszystko, co może tylko być deklaracją, jest interpretowane jako deklaracja.
 Inicjalizacja nawiasami klamrowymi może w pewnym przypadku sprawić kłopoty, o czym powiemy na zajęciach dotyczących kontenerów (kłopoty wynikają ze szczególnych zasad dotyczących `std::initializer_list`).
 Póki co starajmy się jednak wyrabiać dobre nawyki i pozostańmy przy podawaniu argumentów konstruktorów wewnątrz `{ }`.
-
-#### Zadanie 2
-Dodaj do klasy `Wektor2D` konstruktor dwuargumentowy, który nadaje wartości współrzędnym wektora, a następnie je drukuje.
-Napisz destruktor, który także drukuje tę informację.
-Stwórz kilka różnych wektorów.
-W jakiej kolejności są one niszczone?
-W którym miejscu w kodzie następuje destrukcja?
-
-#### Zadanie 3
-Napisz klasę `Informer`, która posiada konstruktor domyślny, drukujący informację o konstrukcji, oraz destruktor, drukujący informację o destrukcji.
-Dodaj do klasy `Wektor2D` pole typu `Informer`.
-Które destruktory wołane są przy zniszczeniu wektora?
-W jakiej kolejności?
-Zastanów się, jakie ma to implikacje dla komponowania większych obiektów z mniejszych obiektów.
 
 ### Modyfikatory dostępu
 Wszystkie pola i metody, z których dotychczas korzystaliśmy, były publiczne, tzn. mieliśmy do nich dostęp spoza klasy (z funkcji `main`).
