@@ -8,30 +8,23 @@ author: J. Gałecki
 
 # Programowanie Obiektowe w Języku C++
 
-Regulamin przedmiotu oraz zasady zaliczenia w roku 2024/2025
+Regulamin przedmiotu oraz zasady zaliczenia w roku 2026/2027. Wiążący jest tekst dostępny w USOS, poniższe należy traktować jako skrót.
 
 ## Prowadzący (wykład oraz laboratorium)
 
-mgr inż. Jakub Gałecki, jakub.galecki@pw.edu.pl, pokój 123.
+dr inż. Jakub Gałecki, jakub.galecki@pw.edu.pl, pokój 123.
 
-## Termin laboratorium
+## Terminy laboratorium
 
-1. Poniedziałek 12:15
-2. Poniedziałek 14:15
-3. Wtorek 8:15
-4. Wtorek 10:15
+1. Poniedziałek 18:15
+2. Wtorek 16:15
+3. Piątek 16:15
 
 ## Konsultacje
 
-mgr inż. Jakub Gałecki, jakub.galecki@pw.edu.pl, pokój 123 -- poniedziałek 18:15, inne terminy możliwe do uzgodnienia
+Pokój 123 -- poniedziałek 18:15, inne terminy możliwe do uzgodnienia
 
-### Liczba punktów ECTS: 3
-
-### Efekty uczenia się
-
-Cel: Nauczenie programowania w języku C++, zapoznanie z metodologią programowania obiektowego
-
-### Treści kształcenia
+## Treści kształcenia
 
 1. Podstawy koncepcji programowania obiektowego.
 2. Obiekty w C++ - atrybuty i metody, konstruktory i destruktory.
@@ -47,35 +40,24 @@ Zalecana literatura:
 
 * B. Stroustrup: Język C++. Kompendium wiedzy, Wydawnictwo Helion, 2014.
 * inna dowolna książka o programowaniu w C++.
+* prezentacje konferencyjne dostępne na platformie youtube, np. z konferencji CppCon (cykl "back to basics").
 
 Dodatkowa literatura:
 
 * Materiały na stronie <https://en.cppreference.com/w/cpp>
 * Materiały dostarczone przez wykładowcę.
 
-### Efekty typu W(iedza)
-
-Opis: Znajomość podstaw języka programowania C++.
-
-Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
-
-### Efekty typu U(miejętności)
-
-Opis: Potrafi programować w języku C++ przy wykorzystaniu mechanizmów obiektowych.
-
-Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
-
-## Sposób weryfikacji efektów i oceniania, warunki zaliczenia oraz szczegółowy regulamin przedmiotu
+## Sposób weryfikacji efektów i oceniania, warunki zaliczenia
 
 1. Przedmiot składa się z:
     * 7 wykładów (15h) i 7 (15h) obowiązkowych ćwiczeń,
     * kolokwium zaliczeniowego,
-    * 2 obowiązkowych projektów zaliczeniowych.
+    * 2 projektów zaliczeniowych.
 
 2. Postępy studenta opisane są skalą punktową w zakresie 0-100 punktów. Punkty otrzymuje się za:
-    * Zaliczenie zejściówek przeprowadzonych po 5 ćwiczeniach (max 5pkt każda). Łącznie 25 pkt
-    * Projekt zaliczeniowy 1, 15 punktów
-    * Projekt zaliczeniowy 2, 25 punktów
+    * Zaliczenie zejściówek przeprowadzonych po 5 ćwiczeniach (max 5pkt każda). Łącznie 25 p.
+    * Projekt zaliczeniowy 1, 15 p.
+    * Projekt zaliczeniowy 2, 25 p.
         * W razie stwierdzenia niesamodzielności pracy (zapożyczenia kodu bez jego zrozumienia) student otrzymuje 0 punktów bez możliwości poprawy.
         * Ostateczny termin zaliczenia projektu ustala prowadzący ćwiczenia, jednak nie może być to termin późniejszy niż ostatni dzień semestru.
     * Kolokwium zaliczeniowe oceniane do 35 punktów.
@@ -97,7 +79,7 @@ Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
     * 81-90: 4.5
     * 91-100: 5.0
 
-    Oceny wystawione w ostatnim dnu semestru są ostateczne. Nie będzie popraw w sesji ani semestrze letnim. Nie istnieją oceny „N”.
+    Oceny wystawione w ostatnim dniu semestru są ostateczne. Nie będzie popraw w sesji ani semestrze letnim. Nie istnieją oceny „N”.
 
 5. Obecność na ćwiczeniach jest obowiązkowa. Każda nieusprawiedliwiona i nieodrobiona nieobecność na ćwiczeniach powoduje odjęcie 3 punktów.
 
@@ -105,7 +87,7 @@ Weryfikacja: Bieżąca praca na laboratorium, projekty i kolokwium zaliczeniowe.
 
     *b)* W przypadku nieobecności planowanej (np. wyjazd) odrobienie jest możliwe jedynie w przypadku wcześniejszej zgody prowadzącego ćwiczenia.
 
-    *c)* Zasady, oraz termin odrobienia nieobecności ustala prowadzący ćwiczenia.
+    *c)* Zasady oraz termin odrobienia nieobecności ustala prowadzący ćwiczenia.
 
 6. Prowadzący ćwiczenia może zorganizować poprawę kolokwium zaliczeniowego. Do kolokwium poprawkowego może przystąpić student:
 
