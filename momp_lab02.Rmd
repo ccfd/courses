@@ -12,7 +12,7 @@ Symulacja przepływu laminarnego w kanale z uskokiem, analiza wpływu gęstości
 # Streszczenie
 
 W ramach ćwiczenia należy przeprowadzić symulacje przepływu **laminarnego** w kanale z uskokiem dla liczby Reynoldsa **Reh=230**. 
-Liczba Reynoldsa bazuje na **średniej prędkości** na wlocie do obszaru obliczeniowego i **wysokości stopnia** h = 1 cm. 
+Liczba Reynoldsa bazuje na **średniej prędkości** na wlocie do obszaru obliczeniowego i **wysokości stopnia** h = 1 cm.
 Obliczenia testowe należy wykonać na dwóch siatkach obliczeniowych (rzadkiej i gęstej), z wykorzystaniem schematów pierwszego i drugiego rzędu do dyskretyzacji członów konwekcyjnych w równaniach pędu (first and second-order upwind). 
 Uzyskane wyniki obliczeń porównać z [danymi eksperymentalnymi](#opis-danych-eksperymentalnych). 
 Oszacować straty ciśnienia wzdłuż kanału. Wlotowy profil prędkości (parabola) należy zdefiniować przy pomocy funkcji [Interpreted UDF](#przygotowanie-funkcji-udf).
@@ -116,7 +116,7 @@ W polu **Parameters** sterujemy, w przypadku obliczeń stacjonarnych, **ilości�
 Ustaw wstępnie 30 iteracji i uruchom obliczenia. Pojawi się okno z informacją **Calculation complete** ale to nie znaczy, że obliczenia będą poprawne.
 Aby dokładnośc obliczeń doprowadzić do zadowalającego poziomu nalezy obserwować **wykres zbieżności**.
 **Zmień liczbę iteracji** i **kontynuuj obliczenia** aż wszystkie zmienne na wykresie **osiągną zbieżność**.
-Jeżeli wykresy **wszystkich** zmiennych się zbiegnią, a więc zmienne ustalą się **w pobliżu** poziomu zbieżności którą ustawiliśmy w punkcie 11, lub go przekroczą tą wartość możemy zakończyć obliczenia.
+Jeżeli wykresy **wszystkich** zmiennych się zbiegnią, a więc zmienne ustalą się **w pobliżu** poziomu zbieżności którą ustawiliśmy w punkcie 15, lub go przekroczą tą wartość możemy zakończyć obliczenia.
 **Jeżeli osiągniemy zbieżność** którą ustawilismy, program wyświetli informację **! solution converged** w **Konsoli** u dołu okna.
 
 	**Proszę zachować** wykres zbieżności do raportu
@@ -188,7 +188,7 @@ Punkt przylgnięcia znajduje się w miejscu, w którym wartości naprężeń zmi
 
 3. W nowo otwartym oknie wciskamy przycisk **Cell Registers**/**New**/**Region...** w odpowiednie okienka wpisujemy wartości granicznych współrzędnych naszej domeny (te możemy sprawdzić w zakładce **Setup**/**General**/**Scale...** lub w górnej belce zakładka **Domain** i przycisk **Scale...** w pilu **Mesh**).
 
-3. Następnie powtarzamy obliczenia tak jak dla 1 rzędu. ( punkty 16-21 w akapicie 1 )
+4. Następnie powtarzamy obliczenia tak jak dla 1 rzędu. ( punkty 16-21 w akapicie 1 )
 
 ## 4. Symulacje dla metody 2 rzędu na siatce gęstej.
 
@@ -229,9 +229,9 @@ Pliki powinny być ściągnięte do folderu w którym się znajduje projekt.
 
 - W pliku [PLIK 2]( http://ccfd.github.io/courses/data/momp/2/exper-xvel-re230-xh6_woda_cm.xy ) znajdują się składowa x wektora prędkości w przekroju poprzecznym w odległości 60 mm od uskoku.
 
-![Dane potrzebne do pliki UDF](figures/momp_inst2/addlines.svg)
+![Wizualizacja przekrojów i spodziewane rozkłady w pliku 1 oraz 2](figures/momp_inst2/addlines.svg)
 
 - W pliku [PLIK 3]( http://ccfd.github.io/courses/data/momp/2/re-vs-reattachment-point_woda_cm.txt) znajdują się dane pozwalające na określenie punktu przylgnięcia warstwy ścinającej na dolnej ścianie kanału dla różnych liczb Reynoldsa. Z załączonych danych powinno się wybrać punkt przylgnięcia odpowiadający odpowiedniej liczbie Reynoldsa.
 
-![Dane potrzebne do pliki UDF](figures/momp_inst2/reattachment.svg)
+![Wizualizacja punktu przylgnięcia](figures/momp_inst2/reattachment.svg)
 

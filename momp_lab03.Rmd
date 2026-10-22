@@ -142,17 +142,21 @@ Całość w formie sprawozdania zawierającego obrazy jak również analizę wyn
 	
 2. Zmień warunki brzegowe dla turbulencji na wlocie, **Setup/Boundary Conditions/Inlet/Velocity_inlet** w polu **Turbulence** zmień metode na **Intensity and Hydraulic diameter**.
 
-	*Relacja pomiędzy energią kinetyczną turbulencji, k, intensywnością turbulencji, Tu, i prędkością średnią, U<sub>śr</sub>:* 
+	*Relacja pomiędzy energią kinetyczną turbulencji, k, intensywnością turbulencji, Ti, i prędkością średnią, U<sub>śr</sub>:* 
 
-	*k=1.5(Tu U<sub>śr</sub>)U<sup>2</sup>.*
+	*k=1.5(Ti U<sub>śr</sub>)<sup>2</sup>.*
 	
 	*Dla w pełni rozwiniętego przepływu w rurze można przyjąć Tu=4% w osi rury.*
 	
 	*W przepływach wewnętrznych skala długości turbulentnej l<sub>t</sub> nie może być większa od fizycznego rozmiaru obiektu L. Dla analizowanego przepływu w rurze L=D<sub>inlet</sub>.  Przyjmuje się, że skala długości turbulentnej:*
 	
-	*l<sub>t</sub>. Przy czym \(\epsilon\) = k<sup>3/2</sup> / l<sub>t</sub>.*
+	*l<sub>t</sub> = 0.07 L.*
 	
-	*Podaj warunki brzegowe: Tu=4% i L=D<sub>inlet</sub>.* **Zainicjalizuj** *obliczenia i* **przelicz**. 
+	*Przy czym \(\epsilon\) = k<sup>3/2</sup> / l<sub>t</sub>.*
+	
+	*Podaj warunki brzegowe: Tu=4% i L=D<sub>inlet</sub>.* 
+	
+3. **Zainicjalizuj** *obliczenia i* **przelicz**. 
 	
 	Porównaj wyniki obliczeń dla przekroju wzdłużnego z danymi eksperymentalnymi i z poprzednio uzyskanymi wynikami. 
 	
@@ -160,7 +164,7 @@ Całość w formie sprawozdania zawierającego obrazy jak również analizę wyn
 	
 		Przedstaw w raporcie.
 	
-3.	Wyłącz program Fluent, w środowisu Workbench zapisz projekt.
+4.	Wyłącz program Fluent, w środowisu Workbench zapisz projekt.
 
 ## Siatka gęsta, podejście Enhanced Wall Treatment.
 
