@@ -227,7 +227,7 @@ navbar:
       - text: "Lab 7"
         href: hpc_lab07.html
         
-    - text: "MOMP"
+    - text: "MOMP/CFD"
       menu:
       - text: "Informacje"
         href: momp_rules.html
@@ -243,6 +243,16 @@ navbar:
         href: momp_lab05.html
       - text: "Instrukcja VI"
         href: momp_lab06.html
+      - text: "---"
+      - text: "English version"
+      - text: "Instruction I"
+      - text: "Instruction II"
+        href: momp_lab02_EN.html
+      - text: "Instruction III"
+        href: momp_lab03_EN.html
+      - text: "Instruction IV"
+      - text: "Instruction V"
+      - text: "Instruction VI"
 
 exclude: [ "*.sh", "deploy", "*~", "tools", "*.zip", "*.pdf", "MathJax-master" ]
 output:
