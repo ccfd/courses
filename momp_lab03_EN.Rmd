@@ -26,7 +26,7 @@ Three approaches to prescribing the inlet profiles of turbulent kinetic energy a
 
 1. Profiles obtained for fully developed pipe flow (inlet_profile_keps.prof).
 2. The default Fluent settings, which have no physical significance.
-3. User-defined values based on estimates of the turbulence intensity, Tu [%], and the turbulent length scale, lt [m].
+3. User-defined values based on estimates of the turbulence intensity, Ti [%], and the turbulent length scale, lt [m].
 
 Pre-prepared *.cas files containing the coarse and fine computational meshes are provided.
 Mesh generation is therefore not required.
@@ -81,7 +81,7 @@ Mesh generation is therefore not required.
     - Report Type: **Area-Weighted Average**, for the mean velocity.
     - Report Type: **Vertex Maximum**, for the maximum velocity.
 
-    Record the mean velocity, **U<sub>śr</sub>**, and the maximum velocity, **Uxmax**.
+    Record the mean velocity, **U<sub>mean</sub>**, and the maximum velocity, **Uxmax**.
     These values are required to normalise the axial component of the mean velocity and the turbulent kinetic energy for comparison with the [experimental data](#experimental-data-description-and-graphical-interpretation).
 
 14. Define the normalised functions using **User-defined/Field Functions/Custom** in the top menu:
@@ -90,7 +90,7 @@ Mesh generation is therefore not required.
 
       From the **Field Functions** drop-down menu, select Velocity and Axial Velocity, then click Select. Select the division operator and enter the previously recorded maximum inlet velocity. Enter a name and click Define.
 
-    - The turbulent kinetic energy normalised by the square of the mean inlet velocity, **k/(U<sub>śr</sub>)<sup>2</sup>**.
+    - The turbulent kinetic energy normalised by the square of the mean inlet velocity, **k/(U<sub>mean</sub>)<sup>2</sup>**.
 
       From the **Field Functions** drop-down menu, select Turbulence and Turbulent Kinetic Energy (k), then divide by the square of the corresponding constant.
 
@@ -148,14 +148,14 @@ Mesh generation is therefore not required.
 
    *k=1.5(Ti U<sub>mean</sub>)<sup>2</sup>.*
 
-   *For fully developed pipe flow, Tu=4% may be assumed on the pipe axis.*
+   *For fully developed pipe flow, Ti=4% may be assumed on the pipe axis.*
 
    *In internal flows, the turbulent length scale l<sub>t</sub> cannot exceed the characteristic physical dimension L. For the pipe flow considered here, L=D<sub>inlet</sub>. The turbulent length scale is assumed to be: l<sub>t</sub> = 0.07 L.* 
    
    *Dissipation rate*
    *\(\epsilon\) = k<sup>3/2</sup> / l<sub>t</sub>.*
 
-   *Specify the boundary conditions Tu=4% and L=D<sub>inlet</sub>.* 
+   *Specify the boundary conditions Ti=4% and L=D<sub>inlet</sub>.* 
    
 3. **Initialise** *the solution and* **run the calculation**.
 
