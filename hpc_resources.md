@@ -15,35 +15,35 @@ title: Resources
 
 ## Lecture 1
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture1.pdf)
-- [Python code](ccfd.github.io/courses/code/hpc/lecture1/dgemm.py)
-- [C++ code](ccfd.github.io/courses/code/hpc/lecture1/cpp.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture1.pdf)
+- [Python code](http://ccfd.github.io/courses/code/hpc/lecture1/dgemm.py)
+- [C++ code](http://ccfd.github.io/courses/code/hpc/lecture1/cpp.zip)
 
 ## Lecture 2
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture2.pdf)
-- [Demo code](ccfd.github.io/courses/code/hpc/lecture2_code.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture2.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture2_code.zip)
 
 ## Lecture 3
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture3.pdf)
-- [Demo code](ccfd.github.io/courses/code/hpc/lecture3_code.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture3.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture3_code.zip)
 
 ## Lecture 4-5
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture45.pdf)
-- [Demo code](ccfd.github.io/courses/code/hpc/lecture45_code.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture45.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture45_code.zip)
 
 ## Lecture 6
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture6.pdf)
-- [Demo code](ccfd.github.io/courses/code/hpc/lecture6_code.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture6.pdf)
+- [Demo code](http://ccfd.github.io/courses/code/hpc/lecture6_code.zip)
 
 ## Lecture 7
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture7.pdf)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture7.pdf)
 
 ## GPU Lecture and Labs
 
-- [Presentation](ccfd.github.io/courses/data/hpc/lecture8.pdf)
-- [Code (reduction case study)](ccfd.github.io/courses/code/hpc/cuda-reduction.zip)
+- [Presentation](http://ccfd.github.io/courses/data/hpc/lecture8.pdf)
+- [Code (reduction case study)](http://ccfd.github.io/courses/code/hpc/cuda-reduction.zip)
