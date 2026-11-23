@@ -15,7 +15,7 @@ Biblioteka standardowa oferuje szeroką gamę różnych kontenerów, której nie
 Zamiast tego, postaramy bliżej zapoznać się jedynie z kilkoma wybranymi kontenerami i wyciągnąć możliwie ogólne wnioski dotyczące korzystania z nich.
 Podkreślmy, że nie ma kontenerów lepszych i gorszych, a jedynie takie, które lepiej lub gorzej nadają się do rozwiązania konkretnego problemu.
 
-Aby móc skupić się na zachowaniu kontenerów, a nie szczegółach typów, które mają być w nich przechowywane, do niniejszej instrukcji dołączony jest plik `Human.hpp`, w którym zaimplementowana jest klasa reprezentująca człowieka.
+Aby móc skupić się na zachowaniu kontenerów, a nie szczegółach typów, które mają być w nich przechowywane, do niniejszej instrukcji dołączony jest plik [`Human.hpp`](http://ccfd.github.io/courses/code/cpp/Human.hpp), w którym zaimplementowana jest klasa reprezentująca człowieka.
 Zadania zebrane poniżej zakładają, że czytelnik ma do niego dostęp.
 
 ## Wybrane typy kontenerów
